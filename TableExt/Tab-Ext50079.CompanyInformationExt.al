@@ -14,5 +14,8 @@ tableextension 50079 "Company Information Ext" extends "Company Information"
         // {
         //     // cleaned
         // }
+
+        field(50001; "Document Logo"; Blob)//BC Upgrade 2025-06-23 ID was 14017611->50001
+        { }
     }
 }
