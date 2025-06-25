@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -11,378 +11,6 @@
       <rd:DataSourceID>a9bc5f97-8081-48df-957c-1783b5e97c11</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Customer_No_">
-          <DataField>Customer_No_</DataField>
-        </Field>
-        <Field Name="CompanyInfo_Name">
-          <DataField>CompanyInfo_Name</DataField>
-        </Field>
-        <Field Name="CompanyAddress_2___________CompanyAddress_3_">
-          <DataField>CompanyAddress_2___________CompanyAddress_3_</DataField>
-        </Field>
-        <Field Name="CompanyAddress_4___________CompanyAddress_8_">
-          <DataField>CompanyAddress_4___________CompanyAddress_8_</DataField>
-        </Field>
-        <Field Name="CompanyAddress_6___________CompanyAddress_7_">
-          <DataField>CompanyAddress_6___________CompanyAddress_7_</DataField>
-        </Field>
-        <Field Name="PeriodText">
-          <DataField>PeriodText</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_1_">
-          <DataField>InvoiceDateArray_1_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_2_">
-          <DataField>InvoiceDateArray_2_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_3_">
-          <DataField>InvoiceDateArray_3_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_5_">
-          <DataField>InvoiceDateArray_5_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_4_">
-          <DataField>InvoiceDateArray_4_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_1_">
-          <DataField>InvoiceNoArray_1_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_2_">
-          <DataField>InvoiceNoArray_2_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_3_">
-          <DataField>InvoiceNoArray_3_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_4_">
-          <DataField>InvoiceNoArray_4_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_5_">
-          <DataField>InvoiceNoArray_5_</DataField>
-        </Field>
-        <Field Name="CompanyInfo__Maquila_Registration_No__">
-          <DataField>CompanyInfo__Maquila_Registration_No__</DataField>
-        </Field>
-        <Field Name="BillToAddress_1_">
-          <DataField>BillToAddress_1_</DataField>
-        </Field>
-        <Field Name="BillToAddress_2_">
-          <DataField>BillToAddress_2_</DataField>
-        </Field>
-        <Field Name="BillToAddress_3_">
-          <DataField>BillToAddress_3_</DataField>
-        </Field>
-        <Field Name="BillToAddress_4_">
-          <DataField>BillToAddress_4_</DataField>
-        </Field>
-        <Field Name="BillToAddress_5_">
-          <DataField>BillToAddress_5_</DataField>
-        </Field>
-        <Field Name="BillToAddress_6_">
-          <DataField>BillToAddress_6_</DataField>
-        </Field>
-        <Field Name="BillToAddress_7_">
-          <DataField>BillToAddress_7_</DataField>
-        </Field>
-        <Field Name="NiMexCustomer__Pitex_Maquila_No__">
-          <DataField>NiMexCustomer__Pitex_Maquila_No__</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_7_">
-          <DataField>InvoiceDateArray_7_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_7_">
-          <DataField>InvoiceNoArray_7_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_6_">
-          <DataField>InvoiceDateArray_6_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_6_">
-          <DataField>InvoiceNoArray_6_</DataField>
-        </Field>
-        <Field Name="Customer__Export_Pediment_No__">
-          <DataField>Customer__Export_Pediment_No__</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_8_">
-          <DataField>InvoiceDateArray_8_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_8_">
-          <DataField>InvoiceNoArray_8_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_9_">
-          <DataField>InvoiceDateArray_9_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_9_">
-          <DataField>InvoiceNoArray_9_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_10_">
-          <DataField>InvoiceDateArray_10_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_10_">
-          <DataField>InvoiceNoArray_10_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_11_">
-          <DataField>InvoiceDateArray_11_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_11_">
-          <DataField>InvoiceNoArray_11_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_12_">
-          <DataField>InvoiceDateArray_12_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_12_">
-          <DataField>InvoiceNoArray_12_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_13_">
-          <DataField>InvoiceDateArray_13_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_13_">
-          <DataField>InvoiceNoArray_13_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_14_">
-          <DataField>InvoiceDateArray_14_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_14_">
-          <DataField>InvoiceNoArray_14_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_15_">
-          <DataField>InvoiceDateArray_15_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_15_">
-          <DataField>InvoiceNoArray_15_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_16_">
-          <DataField>InvoiceDateArray_16_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_16_">
-          <DataField>InvoiceNoArray_16_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_17_">
-          <DataField>InvoiceDateArray_17_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_17_">
-          <DataField>InvoiceNoArray_17_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_18_">
-          <DataField>InvoiceDateArray_18_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_18_">
-          <DataField>InvoiceNoArray_18_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_19_">
-          <DataField>InvoiceDateArray_19_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_19_">
-          <DataField>InvoiceNoArray_19_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_20_">
-          <DataField>InvoiceDateArray_20_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_20_">
-          <DataField>InvoiceNoArray_20_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_21_">
-          <DataField>InvoiceDateArray_21_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_21_">
-          <DataField>InvoiceNoArray_21_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_22_">
-          <DataField>InvoiceDateArray_22_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_22_">
-          <DataField>InvoiceNoArray_22_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_23_">
-          <DataField>InvoiceDateArray_23_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_23_">
-          <DataField>InvoiceNoArray_23_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_24_">
-          <DataField>InvoiceDateArray_24_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_24_">
-          <DataField>InvoiceNoArray_24_</DataField>
-        </Field>
-        <Field Name="InvoiceDateArray_25_">
-          <DataField>InvoiceDateArray_25_</DataField>
-        </Field>
-        <Field Name="InvoiceNoArray_25_">
-          <DataField>InvoiceNoArray_25_</DataField>
-        </Field>
-        <Field Name="TotalLineAmt">
-          <DataField>TotalLineAmt</DataField>
-        </Field>
-        <Field Name="TotalLineAmtFormat">
-          <DataField>TotalLineAmtFormat</DataField>
-        </Field>
-        <Field Name="TotalTax">
-          <DataField>TotalTax</DataField>
-        </Field>
-        <Field Name="TotalTaxFormat">
-          <DataField>TotalTaxFormat</DataField>
-        </Field>
-        <Field Name="TotalAmtInclTax">
-          <DataField>TotalAmtInclTax</DataField>
-        </Field>
-        <Field Name="TotalAmtInclTaxFormat">
-          <DataField>TotalAmtInclTaxFormat</DataField>
-        </Field>
-        <Field Name="Customer__Port_of_Discharge_">
-          <DataField>Customer__Port_of_Discharge_</DataField>
-        </Field>
-        <Field Name="CompanyInfo__Port_of_Loading_">
-          <DataField>CompanyInfo__Port_of_Loading_</DataField>
-        </Field>
-        <Field Name="CUSTOMER_____Customer__No__">
-          <DataField>CUSTOMER_____Customer__No__</DataField>
-        </Field>
-        <Field Name="InvoiceVisible8">
-          <DataField>InvoiceVisible8</DataField>
-        </Field>
-        <Field Name="InvoiceVisible9">
-          <DataField>InvoiceVisible9</DataField>
-        </Field>
-        <Field Name="InvoiceVisible10">
-          <DataField>InvoiceVisible10</DataField>
-        </Field>
-        <Field Name="InvoiceVisible11">
-          <DataField>InvoiceVisible11</DataField>
-        </Field>
-        <Field Name="InvoiceVisible12">
-          <DataField>InvoiceVisible12</DataField>
-        </Field>
-        <Field Name="InvoiceVisible13">
-          <DataField>InvoiceVisible13</DataField>
-        </Field>
-        <Field Name="InvoiceVisible14">
-          <DataField>InvoiceVisible14</DataField>
-        </Field>
-        <Field Name="InvoiceVisible15">
-          <DataField>InvoiceVisible15</DataField>
-        </Field>
-        <Field Name="InvoiceVisible16">
-          <DataField>InvoiceVisible16</DataField>
-        </Field>
-        <Field Name="InvoiceVisible17">
-          <DataField>InvoiceVisible17</DataField>
-        </Field>
-        <Field Name="InvoiceVisible18">
-          <DataField>InvoiceVisible18</DataField>
-        </Field>
-        <Field Name="InvoiceVisible19">
-          <DataField>InvoiceVisible19</DataField>
-        </Field>
-        <Field Name="InvoiceVisible20">
-          <DataField>InvoiceVisible20</DataField>
-        </Field>
-        <Field Name="InvoiceVisible21">
-          <DataField>InvoiceVisible21</DataField>
-        </Field>
-        <Field Name="InvoiceVisible22">
-          <DataField>InvoiceVisible22</DataField>
-        </Field>
-        <Field Name="InvoiceVisible23">
-          <DataField>InvoiceVisible23</DataField>
-        </Field>
-        <Field Name="InvoiceVisible24">
-          <DataField>InvoiceVisible24</DataField>
-        </Field>
-        <Field Name="InvoiceVisible25">
-          <DataField>InvoiceVisible25</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Virtural_Operation_No__">
-          <DataField>Commercial_Invoice_MEX__Virtural_Operation_No__</DataField>
-        </Field>
-        <Field Name="HSTariffCode_Description">
-          <DataField>HSTariffCode_Description</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Country_of_Origin_">
-          <DataField>Commercial_Invoice_MEX__Country_of_Origin_</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Item_No__">
-          <DataField>Commercial_Invoice_MEX__Item_No__</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Custom_Agent_License_No__">
-          <DataField>Commercial_Invoice_MEX__Custom_Agent_License_No__</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Customer_Agent_E_S_">
-          <DataField>Commercial_Invoice_MEX__Customer_Agent_E_S_</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Summary_Entry_Code_">
-          <DataField>Commercial_Invoice_MEX__Summary_Entry_Code_</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Date_of_Entry_">
-          <DataField>Commercial_Invoice_MEX__Date_of_Entry_</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX_Quantity">
-          <DataField>Commercial_Invoice_MEX_Quantity</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX_QuantityFormat">
-          <DataField>Commercial_Invoice_MEX_QuantityFormat</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX_Weight">
-          <DataField>Commercial_Invoice_MEX_Weight</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX_WeightFormat">
-          <DataField>Commercial_Invoice_MEX_WeightFormat</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Line_Amount_">
-          <DataField>Commercial_Invoice_MEX__Line_Amount_</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Line_Amount_Format">
-          <DataField>Commercial_Invoice_MEX__Line_Amount_Format</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX__Summary_Entry_No__">
-          <DataField>Commercial_Invoice_MEX__Summary_Entry_No__</DataField>
-        </Field>
-        <Field Name="CalcUnitPrice">
-          <DataField>CalcUnitPrice</DataField>
-        </Field>
-        <Field Name="CalcUnitPriceFormat">
-          <DataField>CalcUnitPriceFormat</DataField>
-        </Field>
-        <Field Name="Country_of_Origin______SUBTOTAL_">
-          <DataField>Country_of_Origin______SUBTOTAL_</DataField>
-        </Field>
-        <Field Name="Virtural_Operation_No_______TOTAL_">
-          <DataField>Virtural_Operation_No_______TOTAL_</DataField>
-        </Field>
-        <Field Name="Commercial_Invoice_MEX_Entry_No_">
-          <DataField>Commercial_Invoice_MEX_Entry_No_</DataField>
-        </Field>
-        <Field Name="Text001_gCtx">
-          <DataField>Text001_gCtx</DataField>
-        </Field>
-        <Field Name="Mex_Export_Pediment__Pedimento_Virtual_No__">
-          <DataField>Mex_Export_Pediment__Pedimento_Virtual_No__</DataField>
-        </Field>
-        <Field Name="Mex_Export_Pediment_Pedimento_Entry_No_">
-          <DataField>Mex_Export_Pediment_Pedimento_Entry_No_</DataField>
-        </Field>
-        <Field Name="Mex_Export_Pediment_Customer_No_">
-          <DataField>Mex_Export_Pediment_Customer_No_</DataField>
-        </Field>
-        <Field Name="Text002_gCtx">
-          <DataField>Text002_gCtx</DataField>
-        </Field>
-        <Field Name="Show">
-          <DataField>Show</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -7936,4 +7564,371 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>8b416f68-0db3-4422-bcaa-8ad81f31ab58</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Customer_No_">
+          <DataField>Customer_No_</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Name">
+          <DataField>CompanyInfo_Name</DataField>
+        </Field>
+        <Field Name="CompanyAddress_2___________CompanyAddress_3_">
+          <DataField>CompanyAddress_2___________CompanyAddress_3_</DataField>
+        </Field>
+        <Field Name="CompanyAddress_4___________CompanyAddress_8_">
+          <DataField>CompanyAddress_4___________CompanyAddress_8_</DataField>
+        </Field>
+        <Field Name="CompanyAddress_6___________CompanyAddress_7_">
+          <DataField>CompanyAddress_6___________CompanyAddress_7_</DataField>
+        </Field>
+        <Field Name="PeriodText">
+          <DataField>PeriodText</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_1_">
+          <DataField>InvoiceDateArray_1_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_2_">
+          <DataField>InvoiceDateArray_2_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_3_">
+          <DataField>InvoiceDateArray_3_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_5_">
+          <DataField>InvoiceDateArray_5_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_4_">
+          <DataField>InvoiceDateArray_4_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_1_">
+          <DataField>InvoiceNoArray_1_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_2_">
+          <DataField>InvoiceNoArray_2_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_3_">
+          <DataField>InvoiceNoArray_3_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_4_">
+          <DataField>InvoiceNoArray_4_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_5_">
+          <DataField>InvoiceNoArray_5_</DataField>
+        </Field>
+        <Field Name="CompanyInfo__Maquila_Registration_No__">
+          <DataField>CompanyInfo__Maquila_Registration_No__</DataField>
+        </Field>
+        <Field Name="BillToAddress_1_">
+          <DataField>BillToAddress_1_</DataField>
+        </Field>
+        <Field Name="BillToAddress_2_">
+          <DataField>BillToAddress_2_</DataField>
+        </Field>
+        <Field Name="BillToAddress_3_">
+          <DataField>BillToAddress_3_</DataField>
+        </Field>
+        <Field Name="BillToAddress_4_">
+          <DataField>BillToAddress_4_</DataField>
+        </Field>
+        <Field Name="BillToAddress_5_">
+          <DataField>BillToAddress_5_</DataField>
+        </Field>
+        <Field Name="BillToAddress_6_">
+          <DataField>BillToAddress_6_</DataField>
+        </Field>
+        <Field Name="BillToAddress_7_">
+          <DataField>BillToAddress_7_</DataField>
+        </Field>
+        <Field Name="NiMexCustomer__Pitex_Maquila_No__">
+          <DataField>NiMexCustomer__Pitex_Maquila_No__</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_7_">
+          <DataField>InvoiceDateArray_7_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_7_">
+          <DataField>InvoiceNoArray_7_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_6_">
+          <DataField>InvoiceDateArray_6_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_6_">
+          <DataField>InvoiceNoArray_6_</DataField>
+        </Field>
+        <Field Name="Customer__Export_Pediment_No__">
+          <DataField>Customer__Export_Pediment_No__</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_8_">
+          <DataField>InvoiceDateArray_8_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_8_">
+          <DataField>InvoiceNoArray_8_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_9_">
+          <DataField>InvoiceDateArray_9_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_9_">
+          <DataField>InvoiceNoArray_9_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_10_">
+          <DataField>InvoiceDateArray_10_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_10_">
+          <DataField>InvoiceNoArray_10_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_11_">
+          <DataField>InvoiceDateArray_11_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_11_">
+          <DataField>InvoiceNoArray_11_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_12_">
+          <DataField>InvoiceDateArray_12_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_12_">
+          <DataField>InvoiceNoArray_12_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_13_">
+          <DataField>InvoiceDateArray_13_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_13_">
+          <DataField>InvoiceNoArray_13_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_14_">
+          <DataField>InvoiceDateArray_14_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_14_">
+          <DataField>InvoiceNoArray_14_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_15_">
+          <DataField>InvoiceDateArray_15_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_15_">
+          <DataField>InvoiceNoArray_15_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_16_">
+          <DataField>InvoiceDateArray_16_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_16_">
+          <DataField>InvoiceNoArray_16_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_17_">
+          <DataField>InvoiceDateArray_17_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_17_">
+          <DataField>InvoiceNoArray_17_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_18_">
+          <DataField>InvoiceDateArray_18_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_18_">
+          <DataField>InvoiceNoArray_18_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_19_">
+          <DataField>InvoiceDateArray_19_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_19_">
+          <DataField>InvoiceNoArray_19_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_20_">
+          <DataField>InvoiceDateArray_20_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_20_">
+          <DataField>InvoiceNoArray_20_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_21_">
+          <DataField>InvoiceDateArray_21_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_21_">
+          <DataField>InvoiceNoArray_21_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_22_">
+          <DataField>InvoiceDateArray_22_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_22_">
+          <DataField>InvoiceNoArray_22_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_23_">
+          <DataField>InvoiceDateArray_23_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_23_">
+          <DataField>InvoiceNoArray_23_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_24_">
+          <DataField>InvoiceDateArray_24_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_24_">
+          <DataField>InvoiceNoArray_24_</DataField>
+        </Field>
+        <Field Name="InvoiceDateArray_25_">
+          <DataField>InvoiceDateArray_25_</DataField>
+        </Field>
+        <Field Name="InvoiceNoArray_25_">
+          <DataField>InvoiceNoArray_25_</DataField>
+        </Field>
+        <Field Name="TotalLineAmt">
+          <DataField>TotalLineAmt</DataField>
+        </Field>
+        <Field Name="TotalLineAmtFormat">
+          <DataField>TotalLineAmtFormat</DataField>
+        </Field>
+        <Field Name="TotalTax">
+          <DataField>TotalTax</DataField>
+        </Field>
+        <Field Name="TotalTaxFormat">
+          <DataField>TotalTaxFormat</DataField>
+        </Field>
+        <Field Name="TotalAmtInclTax">
+          <DataField>TotalAmtInclTax</DataField>
+        </Field>
+        <Field Name="TotalAmtInclTaxFormat">
+          <DataField>TotalAmtInclTaxFormat</DataField>
+        </Field>
+        <Field Name="Customer__Port_of_Discharge_">
+          <DataField>Customer__Port_of_Discharge_</DataField>
+        </Field>
+        <Field Name="CompanyInfo__Port_of_Loading_">
+          <DataField>CompanyInfo__Port_of_Loading_</DataField>
+        </Field>
+        <Field Name="CUSTOMER_____Customer__No__">
+          <DataField>CUSTOMER_____Customer__No__</DataField>
+        </Field>
+        <Field Name="InvoiceVisible8">
+          <DataField>InvoiceVisible8</DataField>
+        </Field>
+        <Field Name="InvoiceVisible9">
+          <DataField>InvoiceVisible9</DataField>
+        </Field>
+        <Field Name="InvoiceVisible10">
+          <DataField>InvoiceVisible10</DataField>
+        </Field>
+        <Field Name="InvoiceVisible11">
+          <DataField>InvoiceVisible11</DataField>
+        </Field>
+        <Field Name="InvoiceVisible12">
+          <DataField>InvoiceVisible12</DataField>
+        </Field>
+        <Field Name="InvoiceVisible13">
+          <DataField>InvoiceVisible13</DataField>
+        </Field>
+        <Field Name="InvoiceVisible14">
+          <DataField>InvoiceVisible14</DataField>
+        </Field>
+        <Field Name="InvoiceVisible15">
+          <DataField>InvoiceVisible15</DataField>
+        </Field>
+        <Field Name="InvoiceVisible16">
+          <DataField>InvoiceVisible16</DataField>
+        </Field>
+        <Field Name="InvoiceVisible17">
+          <DataField>InvoiceVisible17</DataField>
+        </Field>
+        <Field Name="InvoiceVisible18">
+          <DataField>InvoiceVisible18</DataField>
+        </Field>
+        <Field Name="InvoiceVisible19">
+          <DataField>InvoiceVisible19</DataField>
+        </Field>
+        <Field Name="InvoiceVisible20">
+          <DataField>InvoiceVisible20</DataField>
+        </Field>
+        <Field Name="InvoiceVisible21">
+          <DataField>InvoiceVisible21</DataField>
+        </Field>
+        <Field Name="InvoiceVisible22">
+          <DataField>InvoiceVisible22</DataField>
+        </Field>
+        <Field Name="InvoiceVisible23">
+          <DataField>InvoiceVisible23</DataField>
+        </Field>
+        <Field Name="InvoiceVisible24">
+          <DataField>InvoiceVisible24</DataField>
+        </Field>
+        <Field Name="InvoiceVisible25">
+          <DataField>InvoiceVisible25</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Virtural_Operation_No__">
+          <DataField>Commercial_Invoice_MEX__Virtural_Operation_No__</DataField>
+        </Field>
+        <Field Name="HSTariffCode_Description">
+          <DataField>HSTariffCode_Description</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Country_of_Origin_">
+          <DataField>Commercial_Invoice_MEX__Country_of_Origin_</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Item_No__">
+          <DataField>Commercial_Invoice_MEX__Item_No__</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Custom_Agent_License_No__">
+          <DataField>Commercial_Invoice_MEX__Custom_Agent_License_No__</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Customer_Agent_E_S_">
+          <DataField>Commercial_Invoice_MEX__Customer_Agent_E_S_</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Summary_Entry_Code_">
+          <DataField>Commercial_Invoice_MEX__Summary_Entry_Code_</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Date_of_Entry_">
+          <DataField>Commercial_Invoice_MEX__Date_of_Entry_</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX_Quantity">
+          <DataField>Commercial_Invoice_MEX_Quantity</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX_QuantityFormat">
+          <DataField>Commercial_Invoice_MEX_QuantityFormat</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX_Weight">
+          <DataField>Commercial_Invoice_MEX_Weight</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX_WeightFormat">
+          <DataField>Commercial_Invoice_MEX_WeightFormat</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Line_Amount_">
+          <DataField>Commercial_Invoice_MEX__Line_Amount_</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Line_Amount_Format">
+          <DataField>Commercial_Invoice_MEX__Line_Amount_Format</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX__Summary_Entry_No__">
+          <DataField>Commercial_Invoice_MEX__Summary_Entry_No__</DataField>
+        </Field>
+        <Field Name="CalcUnitPrice">
+          <DataField>CalcUnitPrice</DataField>
+        </Field>
+        <Field Name="CalcUnitPriceFormat">
+          <DataField>CalcUnitPriceFormat</DataField>
+        </Field>
+        <Field Name="Country_of_Origin______SUBTOTAL_">
+          <DataField>Country_of_Origin______SUBTOTAL_</DataField>
+        </Field>
+        <Field Name="Virtural_Operation_No_______TOTAL_">
+          <DataField>Virtural_Operation_No_______TOTAL_</DataField>
+        </Field>
+        <Field Name="Commercial_Invoice_MEX_Entry_No_">
+          <DataField>Commercial_Invoice_MEX_Entry_No_</DataField>
+        </Field>
+        <Field Name="Text001_gCtx">
+          <DataField>Text001_gCtx</DataField>
+        </Field>
+        <Field Name="Mex_Export_Pediment__Pedimento_Virtual_No__">
+          <DataField>Mex_Export_Pediment__Pedimento_Virtual_No__</DataField>
+        </Field>
+        <Field Name="Mex_Export_Pediment_Pedimento_Entry_No_">
+          <DataField>Mex_Export_Pediment_Pedimento_Entry_No_</DataField>
+        </Field>
+        <Field Name="Mex_Export_Pediment_Customer_No_">
+          <DataField>Mex_Export_Pediment_Customer_No_</DataField>
+        </Field>
+        <Field Name="Text002_gCtx">
+          <DataField>Text002_gCtx</DataField>
+        </Field>
+        <Field Name="Show">
+          <DataField>Show</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -10,129 +10,6 @@
       <rd:DataSourceID>9352ade3-62a5-44be-a65c-441982c558df</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="COMPANYNAME">
-          <DataField>COMPANYNAME</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENO">
-          <DataField>CurrReport_PAGENO</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_No__Information__Inventory">
-          <DataField>Lot_No__Information__Lot_No__Information__Inventory</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_No__Information__InventoryFormat">
-          <DataField>Lot_No__Information__Lot_No__Information__InventoryFormat</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_No__Information___Mfg__Lot_No__">
-          <DataField>Lot_No__Information__Lot_No__Information___Mfg__Lot_No__</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_No__Information___Lot_Creation_Date_">
-          <DataField>Lot_No__Information__Lot_No__Information___Lot_Creation_Date_</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_No__Information__Blocked">
-          <DataField>Lot_No__Information__Lot_No__Information__Blocked</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_No__Information___Lot_No__">
-          <DataField>Lot_No__Information__Lot_No__Information___Lot_No__</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_No__Information___Item_No__">
-          <DataField>Lot_No__Information__Lot_No__Information___Item_No__</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_No__Information___Inspection_Comments_">
-          <DataField>Lot_No__Information__Lot_No__Information___Inspection_Comments_</DataField>
-        </Field>
-        <Field Name="Value_Entry___Cost_Amount__Actual__">
-          <DataField>Value_Entry___Cost_Amount__Actual__</DataField>
-        </Field>
-        <Field Name="Value_Entry___Cost_Amount__Actual__Format">
-          <DataField>Value_Entry___Cost_Amount__Actual__Format</DataField>
-        </Field>
-        <Field Name="Blocked_ItemsCaption">
-          <DataField>Blocked_ItemsCaption</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENOCaption">
-          <DataField>CurrReport_PAGENOCaption</DataField>
-        </Field>
-        <Field Name="Item_No_Caption">
-          <DataField>Item_No_Caption</DataField>
-        </Field>
-        <Field Name="Div_Caption">
-          <DataField>Div_Caption</DataField>
-        </Field>
-        <Field Name="Lot_No_Caption">
-          <DataField>Lot_No_Caption</DataField>
-        </Field>
-        <Field Name="BlockedCaption">
-          <DataField>BlockedCaption</DataField>
-        </Field>
-        <Field Name="Creation_DateCaption">
-          <DataField>Creation_DateCaption</DataField>
-        </Field>
-        <Field Name="Mfg__Lot_No_Caption">
-          <DataField>Mfg__Lot_No_Caption</DataField>
-        </Field>
-        <Field Name="Inspection_CommentsCaption">
-          <DataField>Inspection_CommentsCaption</DataField>
-        </Field>
-        <Field Name="CostCaption">
-          <DataField>CostCaption</DataField>
-        </Field>
-        <Field Name="ValueCaption">
-          <DataField>ValueCaption</DataField>
-        </Field>
-        <Field Name="InventoryCaption">
-          <DataField>InventoryCaption</DataField>
-        </Field>
-        <Field Name="Lot_No__Information_Variant_Code">
-          <DataField>Lot_No__Information_Variant_Code</DataField>
-        </Field>
-        <Field Name="FilterString">
-          <DataField>FilterString</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Global_Dimension_1_Code_">
-          <DataField>Item_Ledger_Entry__Global_Dimension_1_Code_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_Entry_No_">
-          <DataField>Item_Ledger_Entry_Entry_No_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_Item_No_">
-          <DataField>Item_Ledger_Entry_Item_No_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_Lot_No_">
-          <DataField>Item_Ledger_Entry_Lot_No_</DataField>
-        </Field>
-        <Field Name="Value_Entry__Cost_Amount__Actual__">
-          <DataField>Value_Entry__Cost_Amount__Actual__</DataField>
-        </Field>
-        <Field Name="Value_Entry__Cost_Amount__Actual__Format">
-          <DataField>Value_Entry__Cost_Amount__Actual__Format</DataField>
-        </Field>
-        <Field Name="Value_Entry_Entry_No_">
-          <DataField>Value_Entry_Entry_No_</DataField>
-        </Field>
-        <Field Name="Value_Entry_Item_Ledger_Entry_No_">
-          <DataField>Value_Entry_Item_Ledger_Entry_No_</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -2839,4 +2716,122 @@ End Function</Code>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>4854e833-1a31-4941-a33e-c9ed86fd06c7</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO">
+          <DataField>CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_No__Information__Inventory">
+          <DataField>Lot_No__Information__Lot_No__Information__Inventory</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_No__Information__InventoryFormat">
+          <DataField>Lot_No__Information__Lot_No__Information__InventoryFormat</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_No__Information___Mfg__Lot_No__">
+          <DataField>Lot_No__Information__Lot_No__Information___Mfg__Lot_No__</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_No__Information___Lot_Creation_Date_">
+          <DataField>Lot_No__Information__Lot_No__Information___Lot_Creation_Date_</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_No__Information__Blocked">
+          <DataField>Lot_No__Information__Lot_No__Information__Blocked</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_No__Information___Lot_No__">
+          <DataField>Lot_No__Information__Lot_No__Information___Lot_No__</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_No__Information___Item_No__">
+          <DataField>Lot_No__Information__Lot_No__Information___Item_No__</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_No__Information___Inspection_Comments_">
+          <DataField>Lot_No__Information__Lot_No__Information___Inspection_Comments_</DataField>
+        </Field>
+        <Field Name="Value_Entry___Cost_Amount__Actual__">
+          <DataField>Value_Entry___Cost_Amount__Actual__</DataField>
+        </Field>
+        <Field Name="Value_Entry___Cost_Amount__Actual__Format">
+          <DataField>Value_Entry___Cost_Amount__Actual__Format</DataField>
+        </Field>
+        <Field Name="Blocked_ItemsCaption">
+          <DataField>Blocked_ItemsCaption</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENOCaption">
+          <DataField>CurrReport_PAGENOCaption</DataField>
+        </Field>
+        <Field Name="Item_No_Caption">
+          <DataField>Item_No_Caption</DataField>
+        </Field>
+        <Field Name="Div_Caption">
+          <DataField>Div_Caption</DataField>
+        </Field>
+        <Field Name="Lot_No_Caption">
+          <DataField>Lot_No_Caption</DataField>
+        </Field>
+        <Field Name="BlockedCaption">
+          <DataField>BlockedCaption</DataField>
+        </Field>
+        <Field Name="Creation_DateCaption">
+          <DataField>Creation_DateCaption</DataField>
+        </Field>
+        <Field Name="Mfg__Lot_No_Caption">
+          <DataField>Mfg__Lot_No_Caption</DataField>
+        </Field>
+        <Field Name="Inspection_CommentsCaption">
+          <DataField>Inspection_CommentsCaption</DataField>
+        </Field>
+        <Field Name="CostCaption">
+          <DataField>CostCaption</DataField>
+        </Field>
+        <Field Name="ValueCaption">
+          <DataField>ValueCaption</DataField>
+        </Field>
+        <Field Name="InventoryCaption">
+          <DataField>InventoryCaption</DataField>
+        </Field>
+        <Field Name="Lot_No__Information_Variant_Code">
+          <DataField>Lot_No__Information_Variant_Code</DataField>
+        </Field>
+        <Field Name="FilterString">
+          <DataField>FilterString</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Global_Dimension_1_Code_">
+          <DataField>Item_Ledger_Entry__Global_Dimension_1_Code_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_Entry_No_">
+          <DataField>Item_Ledger_Entry_Entry_No_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_Item_No_">
+          <DataField>Item_Ledger_Entry_Item_No_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_Lot_No_">
+          <DataField>Item_Ledger_Entry_Lot_No_</DataField>
+        </Field>
+        <Field Name="Value_Entry__Cost_Amount__Actual__">
+          <DataField>Value_Entry__Cost_Amount__Actual__</DataField>
+        </Field>
+        <Field Name="Value_Entry__Cost_Amount__Actual__Format">
+          <DataField>Value_Entry__Cost_Amount__Actual__Format</DataField>
+        </Field>
+        <Field Name="Value_Entry_Entry_No_">
+          <DataField>Value_Entry_Entry_No_</DataField>
+        </Field>
+        <Field Name="Value_Entry_Item_Ledger_Entry_No_">
+          <DataField>Value_Entry_Item_Ledger_Entry_No_</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -10,132 +10,6 @@
       <rd:DataSourceID>59332879-9aa4-42bb-894b-f3284b835ee6</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Sales_Cr_Memo_Header_No_">
-          <DataField>Sales_Cr_Memo_Header_No_</DataField>
-        </Field>
-        <Field Name="CopyNo">
-          <DataField>CopyNo</DataField>
-        </Field>
-        <Field Name="BillToAddress_1_">
-          <DataField>BillToAddress_1_</DataField>
-        </Field>
-        <Field Name="mCustomer__VAT_Registration_No__">
-          <DataField>mCustomer__VAT_Registration_No__</DataField>
-        </Field>
-        <Field Name="tLongAddress">
-          <DataField>tLongAddress</DataField>
-        </Field>
-        <Field Name="tLongCityState">
-          <DataField>tLongCityState</DataField>
-        </Field>
-        <Field Name="Sales_Cr_Memo_Header___No______________Sales_Cr_Memo_Header___Mex__Factura_No__">
-          <DataField>Sales_Cr_Memo_Header___No______________Sales_Cr_Memo_Header___Mex__Factura_No__</DataField>
-        </Field>
-        <Field Name="tDayText">
-          <DataField>tDayText</DataField>
-        </Field>
-        <Field Name="tMonText">
-          <DataField>tMonText</DataField>
-        </Field>
-        <Field Name="tYrText">
-          <DataField>tYrText</DataField>
-        </Field>
-        <Field Name="PageLoop_Number">
-          <DataField>PageLoop_Number</DataField>
-        </Field>
-        <Field Name="PrintFooter">
-          <DataField>PrintFooter</DataField>
-        </Field>
-        <Field Name="STRSUBSTNO_Text001_CurrReport_PAGENO___1_">
-          <DataField>STRSUBSTNO_Text001_CurrReport_PAGENO___1_</DataField>
-        </Field>
-        <Field Name="TempSalesCreditMemoLine__Unit_of_Measure_">
-          <DataField>TempSalesCreditMemoLine__Unit_of_Measure_</DataField>
-        </Field>
-        <Field Name="TempSalesCreditMemoLine_Quantity">
-          <DataField>TempSalesCreditMemoLine_Quantity</DataField>
-        </Field>
-        <Field Name="TempSalesCreditMemoLine_QuantityFormat">
-          <DataField>TempSalesCreditMemoLine_QuantityFormat</DataField>
-        </Field>
-        <Field Name="UnitPriceToPrint">
-          <DataField>UnitPriceToPrint</DataField>
-        </Field>
-        <Field Name="UnitPriceToPrintFormat">
-          <DataField>UnitPriceToPrintFormat</DataField>
-        </Field>
-        <Field Name="AmountExclInvDisc">
-          <DataField>AmountExclInvDisc</DataField>
-        </Field>
-        <Field Name="AmountExclInvDiscFormat">
-          <DataField>AmountExclInvDiscFormat</DataField>
-        </Field>
-        <Field Name="TempSalesCreditMemoLine__No__________TempSalesCreditMemoLine_Description">
-          <DataField>TempSalesCreditMemoLine__No__________TempSalesCreditMemoLine_Description</DataField>
-        </Field>
-        <Field Name="STRSUBSTNO_Text002_CurrReport_PAGENO___1_">
-          <DataField>STRSUBSTNO_Text002_CurrReport_PAGENO___1_</DataField>
-        </Field>
-        <Field Name="AmountExclInvDisc_Control79">
-          <DataField>AmountExclInvDisc_Control79</DataField>
-        </Field>
-        <Field Name="AmountExclInvDisc_Control79Format">
-          <DataField>AmountExclInvDisc_Control79Format</DataField>
-        </Field>
-        <Field Name="TempSalesCreditMemoLine__Amount_Including_VAT____TempSalesCreditMemoLine_Amount">
-          <DataField>TempSalesCreditMemoLine__Amount_Including_VAT____TempSalesCreditMemoLine_Amount</DataField>
-        </Field>
-        <Field Name="TempSalesCreditMemoLine__Amount_Including_VAT____TempSalesCreditMemoLine_AmountFormat">
-          <DataField>TempSalesCreditMemoLine__Amount_Including_VAT____TempSalesCreditMemoLine_AmountFormat</DataField>
-        </Field>
-        <Field Name="TempSalesCreditMemoLine__Amount_Including_VAT_">
-          <DataField>TempSalesCreditMemoLine__Amount_Including_VAT_</DataField>
-        </Field>
-        <Field Name="TempSalesCreditMemoLine__Amount_Including_VAT_Format">
-          <DataField>TempSalesCreditMemoLine__Amount_Including_VAT_Format</DataField>
-        </Field>
-        <Field Name="TotalTaxLabel">
-          <DataField>TotalTaxLabel</DataField>
-        </Field>
-        <Field Name="Sales_Cr_Memo_Header___Currency_Code_">
-          <DataField>Sales_Cr_Memo_Header___Currency_Code_</DataField>
-        </Field>
-        <Field Name="Subtotal_Caption">
-          <DataField>Subtotal_Caption</DataField>
-        </Field>
-        <Field Name="SalesCrMemo_Number">
-          <DataField>SalesCrMemo_Number</DataField>
-        </Field>
-        <Field Name="Sales_Line_Comment_Line_Comment">
-          <DataField>Sales_Line_Comment_Line_Comment</DataField>
-        </Field>
-        <Field Name="Sales_Line_Comment_Line_Document_Type">
-          <DataField>Sales_Line_Comment_Line_Document_Type</DataField>
-        </Field>
-        <Field Name="Sales_Line_Comment_Line_No_">
-          <DataField>Sales_Line_Comment_Line_No_</DataField>
-        </Field>
-        <Field Name="Sales_Line_Comment_Line_Doc__Line_No_">
-          <DataField>Sales_Line_Comment_Line_Doc__Line_No_</DataField>
-        </Field>
-        <Field Name="Sales_Line_Comment_Line_Line_No_">
-          <DataField>Sales_Line_Comment_Line_Line_No_</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1165,4 +1039,125 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>3cd0dc2a-28dc-4831-92d3-85f14c4af23a</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Sales_Cr_Memo_Header_No_">
+          <DataField>Sales_Cr_Memo_Header_No_</DataField>
+        </Field>
+        <Field Name="CopyNo">
+          <DataField>CopyNo</DataField>
+        </Field>
+        <Field Name="BillToAddress_1_">
+          <DataField>BillToAddress_1_</DataField>
+        </Field>
+        <Field Name="mCustomer__VAT_Registration_No__">
+          <DataField>mCustomer__VAT_Registration_No__</DataField>
+        </Field>
+        <Field Name="tLongAddress">
+          <DataField>tLongAddress</DataField>
+        </Field>
+        <Field Name="tLongCityState">
+          <DataField>tLongCityState</DataField>
+        </Field>
+        <Field Name="Sales_Cr_Memo_Header___No______________Sales_Cr_Memo_Header___Mex__Factura_No__">
+          <DataField>Sales_Cr_Memo_Header___No______________Sales_Cr_Memo_Header___Mex__Factura_No__</DataField>
+        </Field>
+        <Field Name="tDayText">
+          <DataField>tDayText</DataField>
+        </Field>
+        <Field Name="tMonText">
+          <DataField>tMonText</DataField>
+        </Field>
+        <Field Name="tYrText">
+          <DataField>tYrText</DataField>
+        </Field>
+        <Field Name="PageLoop_Number">
+          <DataField>PageLoop_Number</DataField>
+        </Field>
+        <Field Name="PrintFooter">
+          <DataField>PrintFooter</DataField>
+        </Field>
+        <Field Name="STRSUBSTNO_Text001_CurrReport_PAGENO___1_">
+          <DataField>STRSUBSTNO_Text001_CurrReport_PAGENO___1_</DataField>
+        </Field>
+        <Field Name="TempSalesCreditMemoLine__Unit_of_Measure_">
+          <DataField>TempSalesCreditMemoLine__Unit_of_Measure_</DataField>
+        </Field>
+        <Field Name="TempSalesCreditMemoLine_Quantity">
+          <DataField>TempSalesCreditMemoLine_Quantity</DataField>
+        </Field>
+        <Field Name="TempSalesCreditMemoLine_QuantityFormat">
+          <DataField>TempSalesCreditMemoLine_QuantityFormat</DataField>
+        </Field>
+        <Field Name="UnitPriceToPrint">
+          <DataField>UnitPriceToPrint</DataField>
+        </Field>
+        <Field Name="UnitPriceToPrintFormat">
+          <DataField>UnitPriceToPrintFormat</DataField>
+        </Field>
+        <Field Name="AmountExclInvDisc">
+          <DataField>AmountExclInvDisc</DataField>
+        </Field>
+        <Field Name="AmountExclInvDiscFormat">
+          <DataField>AmountExclInvDiscFormat</DataField>
+        </Field>
+        <Field Name="TempSalesCreditMemoLine__No__________TempSalesCreditMemoLine_Description">
+          <DataField>TempSalesCreditMemoLine__No__________TempSalesCreditMemoLine_Description</DataField>
+        </Field>
+        <Field Name="STRSUBSTNO_Text002_CurrReport_PAGENO___1_">
+          <DataField>STRSUBSTNO_Text002_CurrReport_PAGENO___1_</DataField>
+        </Field>
+        <Field Name="AmountExclInvDisc_Control79">
+          <DataField>AmountExclInvDisc_Control79</DataField>
+        </Field>
+        <Field Name="AmountExclInvDisc_Control79Format">
+          <DataField>AmountExclInvDisc_Control79Format</DataField>
+        </Field>
+        <Field Name="TempSalesCreditMemoLine__Amount_Including_VAT____TempSalesCreditMemoLine_Amount">
+          <DataField>TempSalesCreditMemoLine__Amount_Including_VAT____TempSalesCreditMemoLine_Amount</DataField>
+        </Field>
+        <Field Name="TempSalesCreditMemoLine__Amount_Including_VAT____TempSalesCreditMemoLine_AmountFormat">
+          <DataField>TempSalesCreditMemoLine__Amount_Including_VAT____TempSalesCreditMemoLine_AmountFormat</DataField>
+        </Field>
+        <Field Name="TempSalesCreditMemoLine__Amount_Including_VAT_">
+          <DataField>TempSalesCreditMemoLine__Amount_Including_VAT_</DataField>
+        </Field>
+        <Field Name="TempSalesCreditMemoLine__Amount_Including_VAT_Format">
+          <DataField>TempSalesCreditMemoLine__Amount_Including_VAT_Format</DataField>
+        </Field>
+        <Field Name="TotalTaxLabel">
+          <DataField>TotalTaxLabel</DataField>
+        </Field>
+        <Field Name="Sales_Cr_Memo_Header___Currency_Code_">
+          <DataField>Sales_Cr_Memo_Header___Currency_Code_</DataField>
+        </Field>
+        <Field Name="Subtotal_Caption">
+          <DataField>Subtotal_Caption</DataField>
+        </Field>
+        <Field Name="SalesCrMemo_Number">
+          <DataField>SalesCrMemo_Number</DataField>
+        </Field>
+        <Field Name="Sales_Line_Comment_Line_Comment">
+          <DataField>Sales_Line_Comment_Line_Comment</DataField>
+        </Field>
+        <Field Name="Sales_Line_Comment_Line_Document_Type">
+          <DataField>Sales_Line_Comment_Line_Document_Type</DataField>
+        </Field>
+        <Field Name="Sales_Line_Comment_Line_No_">
+          <DataField>Sales_Line_Comment_Line_No_</DataField>
+        </Field>
+        <Field Name="Sales_Line_Comment_Line_Doc__Line_No_">
+          <DataField>Sales_Line_Comment_Line_Doc__Line_No_</DataField>
+        </Field>
+        <Field Name="Sales_Line_Comment_Line_Line_No_">
+          <DataField>Sales_Line_Comment_Line_Line_No_</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

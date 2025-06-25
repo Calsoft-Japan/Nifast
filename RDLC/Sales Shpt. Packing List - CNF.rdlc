@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -11,327 +11,6 @@
       <rd:DataSourceID>48c2b385-6e01-4d26-8eb2-f07e8772930a</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="CurrReport_PAGENO">
-          <DataField>CurrReport_PAGENO</DataField>
-        </Field>
-        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___External_Document_No__">
-          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___External_Document_No__</DataField>
-        </Field>
-        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___Sell_to_Customer_No__">
-          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___Sell_to_Customer_No__</DataField>
-        </Field>
-        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___Location_Code_">
-          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___Location_Code_</DataField>
-        </Field>
-        <Field Name="Sales_Shipment_Header___Order_No________">
-          <DataField>Sales_Shipment_Header___Order_No________</DataField>
-        </Field>
-        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___Order_No__">
-          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___Order_No__</DataField>
-        </Field>
-        <Field Name="LocationAddress_1_">
-          <DataField>LocationAddress_1_</DataField>
-        </Field>
-        <Field Name="LocationAddress_2_">
-          <DataField>LocationAddress_2_</DataField>
-        </Field>
-        <Field Name="LocationAddress_3_">
-          <DataField>LocationAddress_3_</DataField>
-        </Field>
-        <Field Name="LocationAddress_4_">
-          <DataField>LocationAddress_4_</DataField>
-        </Field>
-        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___No__">
-          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___No__</DataField>
-        </Field>
-        <Field Name="CompanyInformation__Document_Logo_">
-          <DataField>CompanyInformation__Document_Logo_</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENOCaption">
-          <DataField>CurrReport_PAGENOCaption</DataField>
-        </Field>
-        <Field Name="O_R_D_E_R____P_A_C_K____L_I_S_TCaption">
-          <DataField>O_R_D_E_R____P_A_C_K____L_I_S_TCaption</DataField>
-        </Field>
-        <Field Name="Customer_PO_Caption">
-          <DataField>Customer_PO_Caption</DataField>
-        </Field>
-        <Field Name="Customer_ID_Caption">
-          <DataField>Customer_ID_Caption</DataField>
-        </Field>
-        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___Location_Code_Caption">
-          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___Location_Code_Caption</DataField>
-        </Field>
-        <Field Name="Sales_Order_No_Caption">
-          <DataField>Sales_Order_No_Caption</DataField>
-        </Field>
-        <Field Name="Shipment_No__Caption">
-          <DataField>Shipment_No__Caption</DataField>
-        </Field>
-        <Field Name="ASNCaption">
-          <DataField>ASNCaption</DataField>
-        </Field>
-        <Field Name="ASNValue">
-          <DataField>ASNValue</DataField>
-        </Field>
-        <Field Name="CompanyInfo_Name2">
-          <DataField>CompanyInfo_Name2</DataField>
-        </Field>
-        <Field Name="BillToAddress_1_">
-          <DataField>BillToAddress_1_</DataField>
-        </Field>
-        <Field Name="BillToAddress_2_">
-          <DataField>BillToAddress_2_</DataField>
-        </Field>
-        <Field Name="BillToAddress_3_">
-          <DataField>BillToAddress_3_</DataField>
-        </Field>
-        <Field Name="BillToAddress_4_">
-          <DataField>BillToAddress_4_</DataField>
-        </Field>
-        <Field Name="BillToAddress_5_">
-          <DataField>BillToAddress_5_</DataField>
-        </Field>
-        <Field Name="ShipToAddress_1_">
-          <DataField>ShipToAddress_1_</DataField>
-        </Field>
-        <Field Name="ShipToAddress_2_">
-          <DataField>ShipToAddress_2_</DataField>
-        </Field>
-        <Field Name="ShipToAddress_3_">
-          <DataField>ShipToAddress_3_</DataField>
-        </Field>
-        <Field Name="ShipToAddress_4_">
-          <DataField>ShipToAddress_4_</DataField>
-        </Field>
-        <Field Name="ShipToAddress_5_">
-          <DataField>ShipToAddress_5_</DataField>
-        </Field>
-        <Field Name="BillToAddress_6_">
-          <DataField>BillToAddress_6_</DataField>
-        </Field>
-        <Field Name="ShipToAddress_6_">
-          <DataField>ShipToAddress_6_</DataField>
-        </Field>
-        <Field Name="Posted_Package__Packing_Date_">
-          <DataField>Posted_Package__Packing_Date_</DataField>
-        </Field>
-        <Field Name="PostedPkgCount">
-          <DataField>PostedPkgCount</DataField>
-        </Field>
-        <Field Name="PostedPkgCountFormat">
-          <DataField>PostedPkgCountFormat</DataField>
-        </Field>
-        <Field Name="Posted_Package__Closed_by_Packing_Station_Code_">
-          <DataField>Posted_Package__Closed_by_Packing_Station_Code_</DataField>
-        </Field>
-        <Field Name="Posted_Package__External_Tracking_No__">
-          <DataField>Posted_Package__External_Tracking_No__</DataField>
-        </Field>
-        <Field Name="Posted_Package__Calculation_Weight_">
-          <DataField>Posted_Package__Calculation_Weight_</DataField>
-        </Field>
-        <Field Name="Posted_Package__Calculation_Weight_Format">
-          <DataField>Posted_Package__Calculation_Weight_Format</DataField>
-        </Field>
-        <Field Name="Posted_Package__Shipping_Agent_Code_">
-          <DataField>Posted_Package__Shipping_Agent_Code_</DataField>
-        </Field>
-        <Field Name="Sales_Shipment_Header___Shipment_Method_Code_">
-          <DataField>Sales_Shipment_Header___Shipment_Method_Code_</DataField>
-        </Field>
-        <Field Name="Posted_Package__No__">
-          <DataField>Posted_Package__No__</DataField>
-        </Field>
-        <Field Name="SoldCaption">
-          <DataField>SoldCaption</DataField>
-        </Field>
-        <Field Name="To_Caption">
-          <DataField>To_Caption</DataField>
-        </Field>
-        <Field Name="ShipCaption">
-          <DataField>ShipCaption</DataField>
-        </Field>
-        <Field Name="To_Caption_Control1000000035">
-          <DataField>To_Caption_Control1000000035</DataField>
-        </Field>
-        <Field Name="Posted_Package__Packing_Date_Caption">
-          <DataField>Posted_Package__Packing_Date_Caption</DataField>
-        </Field>
-        <Field Name="Total_Packages_Caption">
-          <DataField>Total_Packages_Caption</DataField>
-        </Field>
-        <Field Name="Closed_by_Packing_StationCaption">
-          <DataField>Closed_by_Packing_StationCaption</DataField>
-        </Field>
-        <Field Name="Posted_Package__External_Tracking_No__Caption">
-          <DataField>Posted_Package__External_Tracking_No__Caption</DataField>
-        </Field>
-        <Field Name="Posted_Package__Calculation_Weight_Caption">
-          <DataField>Posted_Package__Calculation_Weight_Caption</DataField>
-        </Field>
-        <Field Name="Package_No_Caption">
-          <DataField>Package_No_Caption</DataField>
-        </Field>
-        <Field Name="Posted_Package__Shipping_Agent_Code_Caption">
-          <DataField>Posted_Package__Shipping_Agent_Code_Caption</DataField>
-        </Field>
-        <Field Name="Sales_Shipment_Header___Shipment_Method_Code_Caption">
-          <DataField>Sales_Shipment_Header___Shipment_Method_Code_Caption</DataField>
-        </Field>
-        <Field Name="TypeCaption">
-          <DataField>TypeCaption</DataField>
-        </Field>
-        <Field Name="No_Caption">
-          <DataField>No_Caption</DataField>
-        </Field>
-        <Field Name="DescriptionCaption">
-          <DataField>DescriptionCaption</DataField>
-        </Field>
-        <Field Name="UOMCaption">
-          <DataField>UOMCaption</DataField>
-        </Field>
-        <Field Name="QuantityCaption">
-          <DataField>QuantityCaption</DataField>
-        </Field>
-        <Field Name="Lot_No_Caption">
-          <DataField>Lot_No_Caption</DataField>
-        </Field>
-        <Field Name="PacksCaption">
-          <DataField>PacksCaption</DataField>
-        </Field>
-        <Field Name="SNPCaption">
-          <DataField>SNPCaption</DataField>
-        </Field>
-        <Field Name="Posted_Package_Source_ID">
-          <DataField>Posted_Package_Source_ID</DataField>
-        </Field>
-        <Field Name="DocumentNo_SalesShipmentLine">
-          <DataField>DocumentNo_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="LineNo_SalesShipmentLine">
-          <DataField>LineNo_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="Type_SalesShipmentLine">
-          <DataField>Type_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="UseNo">
-          <DataField>UseNo</DataField>
-        </Field>
-        <Field Name="Description_SalesShipmentLine">
-          <DataField>Description_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="Quantity_SalesShipmentLine">
-          <DataField>Quantity_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="Quantity_SalesShipmentLineFormat">
-          <DataField>Quantity_SalesShipmentLineFormat</DataField>
-        </Field>
-        <Field Name="UnitofMeasureCode_SalesShipmentLine">
-          <DataField>UnitofMeasureCode_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="Packs">
-          <DataField>Packs</DataField>
-        </Field>
-        <Field Name="PacksFormat">
-          <DataField>PacksFormat</DataField>
-        </Field>
-        <Field Name="UnitsPerParcel">
-          <DataField>UnitsPerParcel</DataField>
-        </Field>
-        <Field Name="UnitsPerParcelFormat">
-          <DataField>UnitsPerParcelFormat</DataField>
-        </Field>
-        <Field Name="CrossReferenceNo_SalesShipmentLine">
-          <DataField>CrossReferenceNo_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="ExternalDocumentNo_SalesShipmentLine">
-          <DataField>ExternalDocumentNo_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="CertificateNo_SalesShipmentLine">
-          <DataField>CertificateNo_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="RanNo_SalesShipmentLine">
-          <DataField>RanNo_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="ReleaseNo_SalesShipmentLine">
-          <DataField>ReleaseNo_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="DrawingNo_SalesShipmentLine">
-          <DataField>DrawingNo_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="RevisionNo_SalesShipmentLine">
-          <DataField>RevisionNo_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="RevisionDate_SalesShipmentLine">
-          <DataField>RevisionDate_SalesShipmentLine</DataField>
-        </Field>
-        <Field Name="Cross_Reference_No__Caption">
-          <DataField>Cross_Reference_No__Caption</DataField>
-        </Field>
-        <Field Name="Customer_PO_No_Caption">
-          <DataField>Customer_PO_No_Caption</DataField>
-        </Field>
-        <Field Name="Certificate_No_Caption">
-          <DataField>Certificate_No_Caption</DataField>
-        </Field>
-        <Field Name="SalesShptLine__Ran_No__Caption">
-          <DataField>SalesShptLine__Ran_No__Caption</DataField>
-        </Field>
-        <Field Name="SalesShptLine__Release_No__Caption">
-          <DataField>SalesShptLine__Release_No__Caption</DataField>
-        </Field>
-        <Field Name="SalesShptLine__Revision_Date_Caption">
-          <DataField>SalesShptLine__Revision_Date_Caption</DataField>
-        </Field>
-        <Field Name="SalesShptLine__Revision_No__Caption">
-          <DataField>SalesShptLine__Revision_No__Caption</DataField>
-        </Field>
-        <Field Name="Drawing_No__Caption">
-          <DataField>Drawing_No__Caption</DataField>
-        </Field>
-        <Field Name="EntryRelFound">
-          <DataField>EntryRelFound</DataField>
-        </Field>
-        <Field Name="MfgLotNo_LotNoInfo_SalesShptLine">
-          <DataField>MfgLotNo_LotNoInfo_SalesShptLine</DataField>
-        </Field>
-        <Field Name="ItemEntryNo_ItemEntryRelation">
-          <DataField>ItemEntryNo_ItemEntryRelation</DataField>
-        </Field>
-        <Field Name="LotNo_ItemEntryRelation">
-          <DataField>LotNo_ItemEntryRelation</DataField>
-        </Field>
-        <Field Name="UseQuantity">
-          <DataField>UseQuantity</DataField>
-        </Field>
-        <Field Name="UseQuantityFormat">
-          <DataField>UseQuantityFormat</DataField>
-        </Field>
-        <Field Name="UseDescription">
-          <DataField>UseDescription</DataField>
-        </Field>
-        <Field Name="Mfg_Lot_No_Lbl">
-          <DataField>Mfg_Lot_No_Lbl</DataField>
-        </Field>
-        <Field Name="MfgLotNo_LotNoInfo">
-          <DataField>MfgLotNo_LotNoInfo</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -4812,4 +4491,320 @@ End Function</Code>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>e8d3be4e-c82f-40c2-b071-c079bd1b5f0a</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="CurrReport_PAGENO">
+          <DataField>CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___External_Document_No__">
+          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___External_Document_No__</DataField>
+        </Field>
+        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___Sell_to_Customer_No__">
+          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___Sell_to_Customer_No__</DataField>
+        </Field>
+        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___Location_Code_">
+          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___Location_Code_</DataField>
+        </Field>
+        <Field Name="Sales_Shipment_Header___Order_No________">
+          <DataField>Sales_Shipment_Header___Order_No________</DataField>
+        </Field>
+        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___Order_No__">
+          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___Order_No__</DataField>
+        </Field>
+        <Field Name="LocationAddress_1_">
+          <DataField>LocationAddress_1_</DataField>
+        </Field>
+        <Field Name="LocationAddress_2_">
+          <DataField>LocationAddress_2_</DataField>
+        </Field>
+        <Field Name="LocationAddress_3_">
+          <DataField>LocationAddress_3_</DataField>
+        </Field>
+        <Field Name="LocationAddress_4_">
+          <DataField>LocationAddress_4_</DataField>
+        </Field>
+        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___No__">
+          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___No__</DataField>
+        </Field>
+        <Field Name="CompanyInformation__Document_Logo_">
+          <DataField>CompanyInformation__Document_Logo_</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENOCaption">
+          <DataField>CurrReport_PAGENOCaption</DataField>
+        </Field>
+        <Field Name="O_R_D_E_R____P_A_C_K____L_I_S_TCaption">
+          <DataField>O_R_D_E_R____P_A_C_K____L_I_S_TCaption</DataField>
+        </Field>
+        <Field Name="Customer_PO_Caption">
+          <DataField>Customer_PO_Caption</DataField>
+        </Field>
+        <Field Name="Customer_ID_Caption">
+          <DataField>Customer_ID_Caption</DataField>
+        </Field>
+        <Field Name="Sales_Shipment_Header__Sales_Shipment_Header___Location_Code_Caption">
+          <DataField>Sales_Shipment_Header__Sales_Shipment_Header___Location_Code_Caption</DataField>
+        </Field>
+        <Field Name="Sales_Order_No_Caption">
+          <DataField>Sales_Order_No_Caption</DataField>
+        </Field>
+        <Field Name="Shipment_No__Caption">
+          <DataField>Shipment_No__Caption</DataField>
+        </Field>
+        <Field Name="ASNCaption">
+          <DataField>ASNCaption</DataField>
+        </Field>
+        <Field Name="ASNValue">
+          <DataField>ASNValue</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Name2">
+          <DataField>CompanyInfo_Name2</DataField>
+        </Field>
+        <Field Name="BillToAddress_1_">
+          <DataField>BillToAddress_1_</DataField>
+        </Field>
+        <Field Name="BillToAddress_2_">
+          <DataField>BillToAddress_2_</DataField>
+        </Field>
+        <Field Name="BillToAddress_3_">
+          <DataField>BillToAddress_3_</DataField>
+        </Field>
+        <Field Name="BillToAddress_4_">
+          <DataField>BillToAddress_4_</DataField>
+        </Field>
+        <Field Name="BillToAddress_5_">
+          <DataField>BillToAddress_5_</DataField>
+        </Field>
+        <Field Name="ShipToAddress_1_">
+          <DataField>ShipToAddress_1_</DataField>
+        </Field>
+        <Field Name="ShipToAddress_2_">
+          <DataField>ShipToAddress_2_</DataField>
+        </Field>
+        <Field Name="ShipToAddress_3_">
+          <DataField>ShipToAddress_3_</DataField>
+        </Field>
+        <Field Name="ShipToAddress_4_">
+          <DataField>ShipToAddress_4_</DataField>
+        </Field>
+        <Field Name="ShipToAddress_5_">
+          <DataField>ShipToAddress_5_</DataField>
+        </Field>
+        <Field Name="BillToAddress_6_">
+          <DataField>BillToAddress_6_</DataField>
+        </Field>
+        <Field Name="ShipToAddress_6_">
+          <DataField>ShipToAddress_6_</DataField>
+        </Field>
+        <Field Name="Posted_Package__Packing_Date_">
+          <DataField>Posted_Package__Packing_Date_</DataField>
+        </Field>
+        <Field Name="PostedPkgCount">
+          <DataField>PostedPkgCount</DataField>
+        </Field>
+        <Field Name="PostedPkgCountFormat">
+          <DataField>PostedPkgCountFormat</DataField>
+        </Field>
+        <Field Name="Posted_Package__Closed_by_Packing_Station_Code_">
+          <DataField>Posted_Package__Closed_by_Packing_Station_Code_</DataField>
+        </Field>
+        <Field Name="Posted_Package__External_Tracking_No__">
+          <DataField>Posted_Package__External_Tracking_No__</DataField>
+        </Field>
+        <Field Name="Posted_Package__Calculation_Weight_">
+          <DataField>Posted_Package__Calculation_Weight_</DataField>
+        </Field>
+        <Field Name="Posted_Package__Calculation_Weight_Format">
+          <DataField>Posted_Package__Calculation_Weight_Format</DataField>
+        </Field>
+        <Field Name="Posted_Package__Shipping_Agent_Code_">
+          <DataField>Posted_Package__Shipping_Agent_Code_</DataField>
+        </Field>
+        <Field Name="Sales_Shipment_Header___Shipment_Method_Code_">
+          <DataField>Sales_Shipment_Header___Shipment_Method_Code_</DataField>
+        </Field>
+        <Field Name="Posted_Package__No__">
+          <DataField>Posted_Package__No__</DataField>
+        </Field>
+        <Field Name="SoldCaption">
+          <DataField>SoldCaption</DataField>
+        </Field>
+        <Field Name="To_Caption">
+          <DataField>To_Caption</DataField>
+        </Field>
+        <Field Name="ShipCaption">
+          <DataField>ShipCaption</DataField>
+        </Field>
+        <Field Name="To_Caption_Control1000000035">
+          <DataField>To_Caption_Control1000000035</DataField>
+        </Field>
+        <Field Name="Posted_Package__Packing_Date_Caption">
+          <DataField>Posted_Package__Packing_Date_Caption</DataField>
+        </Field>
+        <Field Name="Total_Packages_Caption">
+          <DataField>Total_Packages_Caption</DataField>
+        </Field>
+        <Field Name="Closed_by_Packing_StationCaption">
+          <DataField>Closed_by_Packing_StationCaption</DataField>
+        </Field>
+        <Field Name="Posted_Package__External_Tracking_No__Caption">
+          <DataField>Posted_Package__External_Tracking_No__Caption</DataField>
+        </Field>
+        <Field Name="Posted_Package__Calculation_Weight_Caption">
+          <DataField>Posted_Package__Calculation_Weight_Caption</DataField>
+        </Field>
+        <Field Name="Package_No_Caption">
+          <DataField>Package_No_Caption</DataField>
+        </Field>
+        <Field Name="Posted_Package__Shipping_Agent_Code_Caption">
+          <DataField>Posted_Package__Shipping_Agent_Code_Caption</DataField>
+        </Field>
+        <Field Name="Sales_Shipment_Header___Shipment_Method_Code_Caption">
+          <DataField>Sales_Shipment_Header___Shipment_Method_Code_Caption</DataField>
+        </Field>
+        <Field Name="TypeCaption">
+          <DataField>TypeCaption</DataField>
+        </Field>
+        <Field Name="No_Caption">
+          <DataField>No_Caption</DataField>
+        </Field>
+        <Field Name="DescriptionCaption">
+          <DataField>DescriptionCaption</DataField>
+        </Field>
+        <Field Name="UOMCaption">
+          <DataField>UOMCaption</DataField>
+        </Field>
+        <Field Name="QuantityCaption">
+          <DataField>QuantityCaption</DataField>
+        </Field>
+        <Field Name="Lot_No_Caption">
+          <DataField>Lot_No_Caption</DataField>
+        </Field>
+        <Field Name="PacksCaption">
+          <DataField>PacksCaption</DataField>
+        </Field>
+        <Field Name="SNPCaption">
+          <DataField>SNPCaption</DataField>
+        </Field>
+        <Field Name="Posted_Package_Source_ID">
+          <DataField>Posted_Package_Source_ID</DataField>
+        </Field>
+        <Field Name="DocumentNo_SalesShipmentLine">
+          <DataField>DocumentNo_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="LineNo_SalesShipmentLine">
+          <DataField>LineNo_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="Type_SalesShipmentLine">
+          <DataField>Type_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="UseNo">
+          <DataField>UseNo</DataField>
+        </Field>
+        <Field Name="Description_SalesShipmentLine">
+          <DataField>Description_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="Quantity_SalesShipmentLine">
+          <DataField>Quantity_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="Quantity_SalesShipmentLineFormat">
+          <DataField>Quantity_SalesShipmentLineFormat</DataField>
+        </Field>
+        <Field Name="UnitofMeasureCode_SalesShipmentLine">
+          <DataField>UnitofMeasureCode_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="Packs">
+          <DataField>Packs</DataField>
+        </Field>
+        <Field Name="PacksFormat">
+          <DataField>PacksFormat</DataField>
+        </Field>
+        <Field Name="UnitsPerParcel">
+          <DataField>UnitsPerParcel</DataField>
+        </Field>
+        <Field Name="UnitsPerParcelFormat">
+          <DataField>UnitsPerParcelFormat</DataField>
+        </Field>
+        <Field Name="CrossReferenceNo_SalesShipmentLine">
+          <DataField>CrossReferenceNo_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="ExternalDocumentNo_SalesShipmentLine">
+          <DataField>ExternalDocumentNo_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="CertificateNo_SalesShipmentLine">
+          <DataField>CertificateNo_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="RanNo_SalesShipmentLine">
+          <DataField>RanNo_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="ReleaseNo_SalesShipmentLine">
+          <DataField>ReleaseNo_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="DrawingNo_SalesShipmentLine">
+          <DataField>DrawingNo_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="RevisionNo_SalesShipmentLine">
+          <DataField>RevisionNo_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="RevisionDate_SalesShipmentLine">
+          <DataField>RevisionDate_SalesShipmentLine</DataField>
+        </Field>
+        <Field Name="Cross_Reference_No__Caption">
+          <DataField>Cross_Reference_No__Caption</DataField>
+        </Field>
+        <Field Name="Customer_PO_No_Caption">
+          <DataField>Customer_PO_No_Caption</DataField>
+        </Field>
+        <Field Name="Certificate_No_Caption">
+          <DataField>Certificate_No_Caption</DataField>
+        </Field>
+        <Field Name="SalesShptLine__Ran_No__Caption">
+          <DataField>SalesShptLine__Ran_No__Caption</DataField>
+        </Field>
+        <Field Name="SalesShptLine__Release_No__Caption">
+          <DataField>SalesShptLine__Release_No__Caption</DataField>
+        </Field>
+        <Field Name="SalesShptLine__Revision_Date_Caption">
+          <DataField>SalesShptLine__Revision_Date_Caption</DataField>
+        </Field>
+        <Field Name="SalesShptLine__Revision_No__Caption">
+          <DataField>SalesShptLine__Revision_No__Caption</DataField>
+        </Field>
+        <Field Name="Drawing_No__Caption">
+          <DataField>Drawing_No__Caption</DataField>
+        </Field>
+        <Field Name="EntryRelFound">
+          <DataField>EntryRelFound</DataField>
+        </Field>
+        <Field Name="MfgLotNo_LotNoInfo_SalesShptLine">
+          <DataField>MfgLotNo_LotNoInfo_SalesShptLine</DataField>
+        </Field>
+        <Field Name="ItemEntryNo_ItemEntryRelation">
+          <DataField>ItemEntryNo_ItemEntryRelation</DataField>
+        </Field>
+        <Field Name="LotNo_ItemEntryRelation">
+          <DataField>LotNo_ItemEntryRelation</DataField>
+        </Field>
+        <Field Name="UseQuantity">
+          <DataField>UseQuantity</DataField>
+        </Field>
+        <Field Name="UseQuantityFormat">
+          <DataField>UseQuantityFormat</DataField>
+        </Field>
+        <Field Name="UseDescription">
+          <DataField>UseDescription</DataField>
+        </Field>
+        <Field Name="Mfg_Lot_No_Lbl">
+          <DataField>Mfg_Lot_No_Lbl</DataField>
+        </Field>
+        <Field Name="MfgLotNo_LotNoInfo">
+          <DataField>MfgLotNo_LotNoInfo</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

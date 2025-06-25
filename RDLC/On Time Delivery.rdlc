@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -10,54 +10,6 @@
       <rd:DataSourceID>09eefeda-319a-4e8f-9fd9-e099ebd2bedb</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="TODAY">
-          <DataField>TODAY</DataField>
-        </Field>
-        <Field Name="No_Vendor">
-          <DataField>No_Vendor</DataField>
-        </Field>
-        <Field Name="Name_Vendor">
-          <DataField>Name_Vendor</DataField>
-        </Field>
-        <Field Name="OrderNo_PurchRcptHeader">
-          <DataField>OrderNo_PurchRcptHeader</DataField>
-        </Field>
-        <Field Name="No_PurchRcptHeader">
-          <DataField>No_PurchRcptHeader</DataField>
-        </Field>
-        <Field Name="Quantity_PurchRcptLine">
-          <DataField>Quantity_PurchRcptLine</DataField>
-        </Field>
-        <Field Name="Quantity_PurchRcptLineFormat">
-          <DataField>Quantity_PurchRcptLineFormat</DataField>
-        </Field>
-        <Field Name="No_PurchRcptLine">
-          <DataField>No_PurchRcptLine</DataField>
-        </Field>
-        <Field Name="ExpectedReceiptDate_PurchRcptLine">
-          <DataField>ExpectedReceiptDate_PurchRcptLine</DataField>
-        </Field>
-        <Field Name="PostingDate_PurchRcptLine">
-          <DataField>PostingDate_PurchRcptLine</DataField>
-        </Field>
-        <Field Name="Dif">
-          <DataField>Dif</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1404,4 +1356,47 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="TODAY">
+          <DataField>TODAY</DataField>
+        </Field>
+        <Field Name="No_Vendor">
+          <DataField>No_Vendor</DataField>
+        </Field>
+        <Field Name="Name_Vendor">
+          <DataField>Name_Vendor</DataField>
+        </Field>
+        <Field Name="OrderNo_PurchRcptHeader">
+          <DataField>OrderNo_PurchRcptHeader</DataField>
+        </Field>
+        <Field Name="No_PurchRcptHeader">
+          <DataField>No_PurchRcptHeader</DataField>
+        </Field>
+        <Field Name="Quantity_PurchRcptLine">
+          <DataField>Quantity_PurchRcptLine</DataField>
+        </Field>
+        <Field Name="Quantity_PurchRcptLineFormat">
+          <DataField>Quantity_PurchRcptLineFormat</DataField>
+        </Field>
+        <Field Name="No_PurchRcptLine">
+          <DataField>No_PurchRcptLine</DataField>
+        </Field>
+        <Field Name="ExpectedReceiptDate_PurchRcptLine">
+          <DataField>ExpectedReceiptDate_PurchRcptLine</DataField>
+        </Field>
+        <Field Name="PostingDate_PurchRcptLine">
+          <DataField>PostingDate_PurchRcptLine</DataField>
+        </Field>
+        <Field Name="Dif">
+          <DataField>Dif</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

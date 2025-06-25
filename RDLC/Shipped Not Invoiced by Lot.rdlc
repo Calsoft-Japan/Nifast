@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -10,135 +10,6 @@
       <rd:DataSourceID>675ba6b7-c2d4-4346-9e4b-7892f673171d</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="COMPANYNAME">
-          <DataField>COMPANYNAME</DataField>
-        </Field>
-        <Field Name="FilterText">
-          <DataField>FilterText</DataField>
-        </Field>
-        <Field Name="Dim1Text">
-          <DataField>Dim1Text</DataField>
-        </Field>
-        <Field Name="Customer______Source_No_____________Cust_Name">
-          <DataField>Customer______Source_No_____________Cust_Name</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Posting_Date_">
-          <DataField>Item_Ledger_Entry__Posting_Date_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Document_No__">
-          <DataField>Item_Ledger_Entry__Document_No__</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Location_Code_">
-          <DataField>Item_Ledger_Entry__Location_Code_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_Quantity">
-          <DataField>Item_Ledger_Entry_Quantity</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_QuantityFormat">
-          <DataField>Item_Ledger_Entry_QuantityFormat</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Invoiced_Quantity_">
-          <DataField>Item_Ledger_Entry__Invoiced_Quantity_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Invoiced_Quantity_Format">
-          <DataField>Item_Ledger_Entry__Invoiced_Quantity_Format</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Lot_No__">
-          <DataField>Item_Ledger_Entry__Lot_No__</DataField>
-        </Field>
-        <Field Name="Sales_Amount__Expected______Sales_Amount__Actual__">
-          <DataField>Sales_Amount__Expected______Sales_Amount__Actual__</DataField>
-        </Field>
-        <Field Name="Sales_Amount__Expected______Sales_Amount__Actual__Format">
-          <DataField>Sales_Amount__Expected______Sales_Amount__Actual__Format</DataField>
-        </Field>
-        <Field Name="OrderNo">
-          <DataField>OrderNo</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Item_No__">
-          <DataField>Item_Ledger_Entry__Item_No__</DataField>
-        </Field>
-        <Field Name="Quantity____Invoiced_Quantity_">
-          <DataField>Quantity____Invoiced_Quantity_</DataField>
-        </Field>
-        <Field Name="Quantity____Invoiced_Quantity_Format">
-          <DataField>Quantity____Invoiced_Quantity_Format</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Global_Dimension_1_Code_">
-          <DataField>Item_Ledger_Entry__Global_Dimension_1_Code_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Sales_Amount__Expected__">
-          <DataField>Item_Ledger_Entry__Sales_Amount__Expected__</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Sales_Amount__Expected__Format">
-          <DataField>Item_Ledger_Entry__Sales_Amount__Expected__Format</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Sales_Amount__Actual__">
-          <DataField>Item_Ledger_Entry__Sales_Amount__Actual__</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Sales_Amount__Actual__Format">
-          <DataField>Item_Ledger_Entry__Sales_Amount__Actual__Format</DataField>
-        </Field>
-        <Field Name="Totals__Customer______Source_No_____________Cust_Name">
-          <DataField>Totals__Customer______Source_No_____________Cust_Name</DataField>
-        </Field>
-        <Field Name="Grand_Totals_">
-          <DataField>Grand_Totals_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Posting_Date_Caption">
-          <DataField>Item_Ledger_Entry__Posting_Date_Caption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Document_No__Caption">
-          <DataField>Item_Ledger_Entry__Document_No__Caption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Location_Code_Caption">
-          <DataField>Item_Ledger_Entry__Location_Code_Caption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_QuantityCaption">
-          <DataField>Item_Ledger_Entry_QuantityCaption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Invoiced_Quantity_Caption">
-          <DataField>Item_Ledger_Entry__Invoiced_Quantity_Caption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Lot_No__Caption">
-          <DataField>Item_Ledger_Entry__Lot_No__Caption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Item_No__Caption">
-          <DataField>Item_Ledger_Entry__Item_No__Caption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Sales_Amount__Expected__Caption">
-          <DataField>Item_Ledger_Entry__Sales_Amount__Expected__Caption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Sales_Amount__Actual__Caption">
-          <DataField>Item_Ledger_Entry__Sales_Amount__Actual__Caption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_Entry_No_">
-          <DataField>Item_Ledger_Entry_Entry_No_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_Source_Type">
-          <DataField>Item_Ledger_Entry_Source_Type</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_Source_No_">
-          <DataField>Item_Ledger_Entry_Source_No_</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry_Entry_Type">
-          <DataField>Item_Ledger_Entry_Entry_Type</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -3843,4 +3714,128 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>6e1c6318-ab31-490b-acbd-078f9efdd787</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="FilterText">
+          <DataField>FilterText</DataField>
+        </Field>
+        <Field Name="Dim1Text">
+          <DataField>Dim1Text</DataField>
+        </Field>
+        <Field Name="Customer______Source_No_____________Cust_Name">
+          <DataField>Customer______Source_No_____________Cust_Name</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Posting_Date_">
+          <DataField>Item_Ledger_Entry__Posting_Date_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Document_No__">
+          <DataField>Item_Ledger_Entry__Document_No__</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Location_Code_">
+          <DataField>Item_Ledger_Entry__Location_Code_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_Quantity">
+          <DataField>Item_Ledger_Entry_Quantity</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_QuantityFormat">
+          <DataField>Item_Ledger_Entry_QuantityFormat</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Invoiced_Quantity_">
+          <DataField>Item_Ledger_Entry__Invoiced_Quantity_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Invoiced_Quantity_Format">
+          <DataField>Item_Ledger_Entry__Invoiced_Quantity_Format</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Lot_No__">
+          <DataField>Item_Ledger_Entry__Lot_No__</DataField>
+        </Field>
+        <Field Name="Sales_Amount__Expected______Sales_Amount__Actual__">
+          <DataField>Sales_Amount__Expected______Sales_Amount__Actual__</DataField>
+        </Field>
+        <Field Name="Sales_Amount__Expected______Sales_Amount__Actual__Format">
+          <DataField>Sales_Amount__Expected______Sales_Amount__Actual__Format</DataField>
+        </Field>
+        <Field Name="OrderNo">
+          <DataField>OrderNo</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Item_No__">
+          <DataField>Item_Ledger_Entry__Item_No__</DataField>
+        </Field>
+        <Field Name="Quantity____Invoiced_Quantity_">
+          <DataField>Quantity____Invoiced_Quantity_</DataField>
+        </Field>
+        <Field Name="Quantity____Invoiced_Quantity_Format">
+          <DataField>Quantity____Invoiced_Quantity_Format</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Global_Dimension_1_Code_">
+          <DataField>Item_Ledger_Entry__Global_Dimension_1_Code_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Sales_Amount__Expected__">
+          <DataField>Item_Ledger_Entry__Sales_Amount__Expected__</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Sales_Amount__Expected__Format">
+          <DataField>Item_Ledger_Entry__Sales_Amount__Expected__Format</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Sales_Amount__Actual__">
+          <DataField>Item_Ledger_Entry__Sales_Amount__Actual__</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Sales_Amount__Actual__Format">
+          <DataField>Item_Ledger_Entry__Sales_Amount__Actual__Format</DataField>
+        </Field>
+        <Field Name="Totals__Customer______Source_No_____________Cust_Name">
+          <DataField>Totals__Customer______Source_No_____________Cust_Name</DataField>
+        </Field>
+        <Field Name="Grand_Totals_">
+          <DataField>Grand_Totals_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Posting_Date_Caption">
+          <DataField>Item_Ledger_Entry__Posting_Date_Caption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Document_No__Caption">
+          <DataField>Item_Ledger_Entry__Document_No__Caption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Location_Code_Caption">
+          <DataField>Item_Ledger_Entry__Location_Code_Caption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_QuantityCaption">
+          <DataField>Item_Ledger_Entry_QuantityCaption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Invoiced_Quantity_Caption">
+          <DataField>Item_Ledger_Entry__Invoiced_Quantity_Caption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Lot_No__Caption">
+          <DataField>Item_Ledger_Entry__Lot_No__Caption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Item_No__Caption">
+          <DataField>Item_Ledger_Entry__Item_No__Caption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Sales_Amount__Expected__Caption">
+          <DataField>Item_Ledger_Entry__Sales_Amount__Expected__Caption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Sales_Amount__Actual__Caption">
+          <DataField>Item_Ledger_Entry__Sales_Amount__Actual__Caption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_Entry_No_">
+          <DataField>Item_Ledger_Entry_Entry_No_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_Source_Type">
+          <DataField>Item_Ledger_Entry_Source_Type</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_Source_No_">
+          <DataField>Item_Ledger_Entry_Source_No_</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry_Entry_Type">
+          <DataField>Item_Ledger_Entry_Entry_Type</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

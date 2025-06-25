@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -10,186 +10,6 @@
       <rd:DataSourceID>6c510e97-8277-4f33-8fcb-42ed0ad1a9bd</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="PrintDetail">
-          <DataField>PrintDetail</DataField>
-        </Field>
-        <Field Name="TIME">
-          <DataField>TIME</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENO">
-          <DataField>CurrReport_PAGENO</DataField>
-        </Field>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="FilterText">
-          <DataField>FilterText</DataField>
-        </Field>
-        <Field Name="CompanyInformation_Name">
-          <DataField>CompanyInformation_Name</DataField>
-        </Field>
-        <Field Name="TempHSCode_Code_________TempHSCode_Description">
-          <DataField>TempHSCode_Code_________TempHSCode_Description</DataField>
-        </Field>
-        <Field Name="ExtCostLCY">
-          <DataField>ExtCostLCY</DataField>
-        </Field>
-        <Field Name="ExtCostLCYFormat">
-          <DataField>ExtCostLCYFormat</DataField>
-        </Field>
-        <Field Name="Qty">
-          <DataField>Qty</DataField>
-        </Field>
-        <Field Name="QtyFormat">
-          <DataField>QtyFormat</DataField>
-        </Field>
-        <Field Name="Total_">
-          <DataField>Total_</DataField>
-        </Field>
-        <Field Name="Weight">
-          <DataField>Weight</DataField>
-        </Field>
-        <Field Name="WeightFormat">
-          <DataField>WeightFormat</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENOCaption">
-          <DataField>CurrReport_PAGENOCaption</DataField>
-        </Field>
-        <Field Name="Receiving_SummaryCaption">
-          <DataField>Receiving_SummaryCaption</DataField>
-        </Field>
-        <Field Name="Total_Cost__LCY_Caption">
-          <DataField>Total_Cost__LCY_Caption</DataField>
-        </Field>
-        <Field Name="Unit_CostCaption">
-          <DataField>Unit_CostCaption</DataField>
-        </Field>
-        <Field Name="QuantityCaption">
-          <DataField>QuantityCaption</DataField>
-        </Field>
-        <Field Name="DescripcionCaption">
-          <DataField>DescripcionCaption</DataField>
-        </Field>
-        <Field Name="FraccionCaption">
-          <DataField>FraccionCaption</DataField>
-        </Field>
-        <Field Name="WeightCaption">
-          <DataField>WeightCaption</DataField>
-        </Field>
-        <Field Name="HSLoop_Number">
-          <DataField>HSLoop_Number</DataField>
-        </Field>
-        <Field Name="HSLoop">
-          <DataField>HSLoop</DataField>
-        </Field>
-        <Field Name="Qty_Control1102623016">
-          <DataField>Qty_Control1102623016</DataField>
-        </Field>
-        <Field Name="Qty_Control1102623016Format">
-          <DataField>Qty_Control1102623016Format</DataField>
-        </Field>
-        <Field Name="TempHSCode_Code">
-          <DataField>TempHSCode_Code</DataField>
-        </Field>
-        <Field Name="CalcUnitCostLCY">
-          <DataField>CalcUnitCostLCY</DataField>
-        </Field>
-        <Field Name="CalcUnitCostLCYFormat">
-          <DataField>CalcUnitCostLCYFormat</DataField>
-        </Field>
-        <Field Name="ExtCostLCY_Control1102623019">
-          <DataField>ExtCostLCY_Control1102623019</DataField>
-        </Field>
-        <Field Name="ExtCostLCY_Control1102623019Format">
-          <DataField>ExtCostLCY_Control1102623019Format</DataField>
-        </Field>
-        <Field Name="TempHSCode_Description">
-          <DataField>TempHSCode_Description</DataField>
-        </Field>
-        <Field Name="Weight_Control1102623033">
-          <DataField>Weight_Control1102623033</DataField>
-        </Field>
-        <Field Name="Weight_Control1102623033Format">
-          <DataField>Weight_Control1102623033Format</DataField>
-        </Field>
-        <Field Name="Purch__Rcpt__Line_Document_No_">
-          <DataField>Purch__Rcpt__Line_Document_No_</DataField>
-        </Field>
-        <Field Name="Purch__Rcpt__Line_Line_No_">
-          <DataField>Purch__Rcpt__Line_Line_No_</DataField>
-        </Field>
-        <Field Name="Purch__Rcpt__Line_No_">
-          <DataField>Purch__Rcpt__Line_No_</DataField>
-        </Field>
-        <Field Name="Item_Entry_Relation__Lot_No__">
-          <DataField>Item_Entry_Relation__Lot_No__</DataField>
-        </Field>
-        <Field Name="Qty_Control1102623025">
-          <DataField>Qty_Control1102623025</DataField>
-        </Field>
-        <Field Name="Qty_Control1102623025Format">
-          <DataField>Qty_Control1102623025Format</DataField>
-        </Field>
-        <Field Name="ExtCostLCY_Control1102623023">
-          <DataField>ExtCostLCY_Control1102623023</DataField>
-        </Field>
-        <Field Name="ExtCostLCY_Control1102623023Format">
-          <DataField>ExtCostLCY_Control1102623023Format</DataField>
-        </Field>
-        <Field Name="Purch__Rcpt__Line___No__">
-          <DataField>Purch__Rcpt__Line___No__</DataField>
-        </Field>
-        <Field Name="Purch__Rcpt__Line__Description">
-          <DataField>Purch__Rcpt__Line__Description</DataField>
-        </Field>
-        <Field Name="CalcUnitCostLCY_Control1102623028">
-          <DataField>CalcUnitCostLCY_Control1102623028</DataField>
-        </Field>
-        <Field Name="CalcUnitCostLCY_Control1102623028Format">
-          <DataField>CalcUnitCostLCY_Control1102623028Format</DataField>
-        </Field>
-        <Field Name="Weight_Control1102623030">
-          <DataField>Weight_Control1102623030</DataField>
-        </Field>
-        <Field Name="Weight_Control1102623030Format">
-          <DataField>Weight_Control1102623030Format</DataField>
-        </Field>
-        <Field Name="Item_Entry_Relation_Item_Entry_No_">
-          <DataField>Item_Entry_Relation_Item_Entry_No_</DataField>
-        </Field>
-        <Field Name="Item_Entry_Relation_Source_ID">
-          <DataField>Item_Entry_Relation_Source_ID</DataField>
-        </Field>
-        <Field Name="Item_Entry_Relation_Source_Ref__No_">
-          <DataField>Item_Entry_Relation_Source_Ref__No_</DataField>
-        </Field>
-        <Field Name="Nifast_PO______OrderText">
-          <DataField>Nifast_PO______OrderText</DataField>
-        </Field>
-        <Field Name="ObservationsCaption">
-          <DataField>ObservationsCaption</DataField>
-        </Field>
-        <Field Name="FooterPrint_Number">
-          <DataField>FooterPrint_Number</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1820,4 +1640,179 @@ End Function</Code>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>58b2b9ef-9282-4a9c-a71d-e7715ac47ab1</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="PrintDetail">
+          <DataField>PrintDetail</DataField>
+        </Field>
+        <Field Name="TIME">
+          <DataField>TIME</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO">
+          <DataField>CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="FilterText">
+          <DataField>FilterText</DataField>
+        </Field>
+        <Field Name="CompanyInformation_Name">
+          <DataField>CompanyInformation_Name</DataField>
+        </Field>
+        <Field Name="TempHSCode_Code_________TempHSCode_Description">
+          <DataField>TempHSCode_Code_________TempHSCode_Description</DataField>
+        </Field>
+        <Field Name="ExtCostLCY">
+          <DataField>ExtCostLCY</DataField>
+        </Field>
+        <Field Name="ExtCostLCYFormat">
+          <DataField>ExtCostLCYFormat</DataField>
+        </Field>
+        <Field Name="Qty">
+          <DataField>Qty</DataField>
+        </Field>
+        <Field Name="QtyFormat">
+          <DataField>QtyFormat</DataField>
+        </Field>
+        <Field Name="Total_">
+          <DataField>Total_</DataField>
+        </Field>
+        <Field Name="Weight">
+          <DataField>Weight</DataField>
+        </Field>
+        <Field Name="WeightFormat">
+          <DataField>WeightFormat</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENOCaption">
+          <DataField>CurrReport_PAGENOCaption</DataField>
+        </Field>
+        <Field Name="Receiving_SummaryCaption">
+          <DataField>Receiving_SummaryCaption</DataField>
+        </Field>
+        <Field Name="Total_Cost__LCY_Caption">
+          <DataField>Total_Cost__LCY_Caption</DataField>
+        </Field>
+        <Field Name="Unit_CostCaption">
+          <DataField>Unit_CostCaption</DataField>
+        </Field>
+        <Field Name="QuantityCaption">
+          <DataField>QuantityCaption</DataField>
+        </Field>
+        <Field Name="DescripcionCaption">
+          <DataField>DescripcionCaption</DataField>
+        </Field>
+        <Field Name="FraccionCaption">
+          <DataField>FraccionCaption</DataField>
+        </Field>
+        <Field Name="WeightCaption">
+          <DataField>WeightCaption</DataField>
+        </Field>
+        <Field Name="HSLoop_Number">
+          <DataField>HSLoop_Number</DataField>
+        </Field>
+        <Field Name="HSLoop">
+          <DataField>HSLoop</DataField>
+        </Field>
+        <Field Name="Qty_Control1102623016">
+          <DataField>Qty_Control1102623016</DataField>
+        </Field>
+        <Field Name="Qty_Control1102623016Format">
+          <DataField>Qty_Control1102623016Format</DataField>
+        </Field>
+        <Field Name="TempHSCode_Code">
+          <DataField>TempHSCode_Code</DataField>
+        </Field>
+        <Field Name="CalcUnitCostLCY">
+          <DataField>CalcUnitCostLCY</DataField>
+        </Field>
+        <Field Name="CalcUnitCostLCYFormat">
+          <DataField>CalcUnitCostLCYFormat</DataField>
+        </Field>
+        <Field Name="ExtCostLCY_Control1102623019">
+          <DataField>ExtCostLCY_Control1102623019</DataField>
+        </Field>
+        <Field Name="ExtCostLCY_Control1102623019Format">
+          <DataField>ExtCostLCY_Control1102623019Format</DataField>
+        </Field>
+        <Field Name="TempHSCode_Description">
+          <DataField>TempHSCode_Description</DataField>
+        </Field>
+        <Field Name="Weight_Control1102623033">
+          <DataField>Weight_Control1102623033</DataField>
+        </Field>
+        <Field Name="Weight_Control1102623033Format">
+          <DataField>Weight_Control1102623033Format</DataField>
+        </Field>
+        <Field Name="Purch__Rcpt__Line_Document_No_">
+          <DataField>Purch__Rcpt__Line_Document_No_</DataField>
+        </Field>
+        <Field Name="Purch__Rcpt__Line_Line_No_">
+          <DataField>Purch__Rcpt__Line_Line_No_</DataField>
+        </Field>
+        <Field Name="Purch__Rcpt__Line_No_">
+          <DataField>Purch__Rcpt__Line_No_</DataField>
+        </Field>
+        <Field Name="Item_Entry_Relation__Lot_No__">
+          <DataField>Item_Entry_Relation__Lot_No__</DataField>
+        </Field>
+        <Field Name="Qty_Control1102623025">
+          <DataField>Qty_Control1102623025</DataField>
+        </Field>
+        <Field Name="Qty_Control1102623025Format">
+          <DataField>Qty_Control1102623025Format</DataField>
+        </Field>
+        <Field Name="ExtCostLCY_Control1102623023">
+          <DataField>ExtCostLCY_Control1102623023</DataField>
+        </Field>
+        <Field Name="ExtCostLCY_Control1102623023Format">
+          <DataField>ExtCostLCY_Control1102623023Format</DataField>
+        </Field>
+        <Field Name="Purch__Rcpt__Line___No__">
+          <DataField>Purch__Rcpt__Line___No__</DataField>
+        </Field>
+        <Field Name="Purch__Rcpt__Line__Description">
+          <DataField>Purch__Rcpt__Line__Description</DataField>
+        </Field>
+        <Field Name="CalcUnitCostLCY_Control1102623028">
+          <DataField>CalcUnitCostLCY_Control1102623028</DataField>
+        </Field>
+        <Field Name="CalcUnitCostLCY_Control1102623028Format">
+          <DataField>CalcUnitCostLCY_Control1102623028Format</DataField>
+        </Field>
+        <Field Name="Weight_Control1102623030">
+          <DataField>Weight_Control1102623030</DataField>
+        </Field>
+        <Field Name="Weight_Control1102623030Format">
+          <DataField>Weight_Control1102623030Format</DataField>
+        </Field>
+        <Field Name="Item_Entry_Relation_Item_Entry_No_">
+          <DataField>Item_Entry_Relation_Item_Entry_No_</DataField>
+        </Field>
+        <Field Name="Item_Entry_Relation_Source_ID">
+          <DataField>Item_Entry_Relation_Source_ID</DataField>
+        </Field>
+        <Field Name="Item_Entry_Relation_Source_Ref__No_">
+          <DataField>Item_Entry_Relation_Source_Ref__No_</DataField>
+        </Field>
+        <Field Name="Nifast_PO______OrderText">
+          <DataField>Nifast_PO______OrderText</DataField>
+        </Field>
+        <Field Name="ObservationsCaption">
+          <DataField>ObservationsCaption</DataField>
+        </Field>
+        <Field Name="FooterPrint_Number">
+          <DataField>FooterPrint_Number</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

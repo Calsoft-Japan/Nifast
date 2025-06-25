@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -11,408 +11,6 @@
       <rd:DataSourceID>46e820e3-b29c-49bb-9305-d46d994d8e31</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="No_SalesCrMemoHeader">
-          <DataField>No_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="CompanyInfo3Picture">
-          <DataField>CompanyInfo3Picture</DataField>
-        </Field>
-        <Field Name="CompanyInfo2Picture">
-          <DataField>CompanyInfo2Picture</DataField>
-        </Field>
-        <Field Name="CompanyInfo1Picture">
-          <DataField>CompanyInfo1Picture</DataField>
-        </Field>
-        <Field Name="CompanyAddress1">
-          <DataField>CompanyAddress1</DataField>
-        </Field>
-        <Field Name="CompanyAddress2">
-          <DataField>CompanyAddress2</DataField>
-        </Field>
-        <Field Name="CompanyAddress3">
-          <DataField>CompanyAddress3</DataField>
-        </Field>
-        <Field Name="CompanyAddress4">
-          <DataField>CompanyAddress4</DataField>
-        </Field>
-        <Field Name="CompanyAddress5">
-          <DataField>CompanyAddress5</DataField>
-        </Field>
-        <Field Name="CompanyAddress6">
-          <DataField>CompanyAddress6</DataField>
-        </Field>
-        <Field Name="CopyTxt">
-          <DataField>CopyTxt</DataField>
-        </Field>
-        <Field Name="BillToAddress1">
-          <DataField>BillToAddress1</DataField>
-        </Field>
-        <Field Name="BillToAddress2">
-          <DataField>BillToAddress2</DataField>
-        </Field>
-        <Field Name="BillToAddress3">
-          <DataField>BillToAddress3</DataField>
-        </Field>
-        <Field Name="BillToAddress4">
-          <DataField>BillToAddress4</DataField>
-        </Field>
-        <Field Name="BillToAddress5">
-          <DataField>BillToAddress5</DataField>
-        </Field>
-        <Field Name="BillToAddress6">
-          <DataField>BillToAddress6</DataField>
-        </Field>
-        <Field Name="BillToAddress7">
-          <DataField>BillToAddress7</DataField>
-        </Field>
-        <Field Name="ShptDate_SalesCrMemoHeader">
-          <DataField>ShptDate_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="Currency_Code_SalesCrMemoHeader">
-          <DataField>Currency_Code_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="ApplDocType_SalesCrMemoHeader">
-          <DataField>ApplDocType_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="ApplDocNo_SalesCrMemoHeader">
-          <DataField>ApplDocNo_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="ShipToAddress1">
-          <DataField>ShipToAddress1</DataField>
-        </Field>
-        <Field Name="ShipToAddress2">
-          <DataField>ShipToAddress2</DataField>
-        </Field>
-        <Field Name="ShipToAddress3">
-          <DataField>ShipToAddress3</DataField>
-        </Field>
-        <Field Name="ShipToAddress4">
-          <DataField>ShipToAddress4</DataField>
-        </Field>
-        <Field Name="ShipToAddress5">
-          <DataField>ShipToAddress5</DataField>
-        </Field>
-        <Field Name="ShipToAddress6">
-          <DataField>ShipToAddress6</DataField>
-        </Field>
-        <Field Name="ShipToAddress7">
-          <DataField>ShipToAddress7</DataField>
-        </Field>
-        <Field Name="BilltoCustNo_SalesCrMemoHeader">
-          <DataField>BilltoCustNo_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="YourRef_SalesCrMemoHeader">
-          <DataField>YourRef_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="SalesPurchPersonName">
-          <DataField>SalesPurchPersonName</DataField>
-        </Field>
-        <Field Name="DocDate_SalesCrMemoHeader">
-          <DataField>DocDate_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="CompanyInformation__Document_Logo_">
-          <DataField>CompanyInformation__Document_Logo_</DataField>
-        </Field>
-        <Field Name="CompanyAddress7">
-          <DataField>CompanyAddress7</DataField>
-        </Field>
-        <Field Name="CompanyAddress8">
-          <DataField>CompanyAddress8</DataField>
-        </Field>
-        <Field Name="BillToAddress8">
-          <DataField>BillToAddress8</DataField>
-        </Field>
-        <Field Name="ShipToAddress8">
-          <DataField>ShipToAddress8</DataField>
-        </Field>
-        <Field Name="SellToCustomerNo_SalesCrMemoHeader">
-          <DataField>SellToCustomerNo_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="ExternalDocument_No_SalesCrMemoHeader">
-          <DataField>ExternalDocument_No_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="Ship_to_Code_SalesCrMemoHeader">
-          <DataField>Ship_to_Code_SalesCrMemoHeader</DataField>
-        </Field>
-        <Field Name="Name_SalesPerson2">
-          <DataField>Name_SalesPerson2</DataField>
-        </Field>
-        <Field Name="TaxRegLabel">
-          <DataField>TaxRegLabel</DataField>
-        </Field>
-        <Field Name="TaxRegNo">
-          <DataField>TaxRegNo</DataField>
-        </Field>
-        <Field Name="PrintFooter">
-          <DataField>PrintFooter</DataField>
-        </Field>
-        <Field Name="CopyNo">
-          <DataField>CopyNo</DataField>
-        </Field>
-        <Field Name="TaxIdentType_Cust">
-          <DataField>TaxIdentType_Cust</DataField>
-        </Field>
-        <Field Name="CreditCaption">
-          <DataField>CreditCaption</DataField>
-        </Field>
-        <Field Name="ShipDateCaption">
-          <DataField>ShipDateCaption</DataField>
-        </Field>
-        <Field Name="ApplytoTypeCaption">
-          <DataField>ApplytoTypeCaption</DataField>
-        </Field>
-        <Field Name="ApplytoNumberCaption">
-          <DataField>ApplytoNumberCaption</DataField>
-        </Field>
-        <Field Name="CustomerIDCaption">
-          <DataField>CustomerIDCaption</DataField>
-        </Field>
-        <Field Name="ReferenceCaption">
-          <DataField>ReferenceCaption</DataField>
-        </Field>
-        <Field Name="PONumberCaption">
-          <DataField>PONumberCaption</DataField>
-        </Field>
-        <Field Name="Inside_SalesPersonCaption">
-          <DataField>Inside_SalesPersonCaption</DataField>
-        </Field>
-        <Field Name="SalesPersonCaption">
-          <DataField>SalesPersonCaption</DataField>
-        </Field>
-        <Field Name="ShipCaption">
-          <DataField>ShipCaption</DataField>
-        </Field>
-        <Field Name="CreditMemoCaption">
-          <DataField>CreditMemoCaption</DataField>
-        </Field>
-        <Field Name="CreditMemoNumberCaption">
-          <DataField>CreditMemoNumberCaption</DataField>
-        </Field>
-        <Field Name="CreditMemoDateCaption">
-          <DataField>CreditMemoDateCaption</DataField>
-        </Field>
-        <Field Name="PageCaption">
-          <DataField>PageCaption</DataField>
-        </Field>
-        <Field Name="TaxIdentTypeCaption">
-          <DataField>TaxIdentTypeCaption</DataField>
-        </Field>
-        <Field Name="ToCaption">
-          <DataField>ToCaption</DataField>
-        </Field>
-        <Field Name="PageNo_CurrentReport">
-          <DataField>PageNo_CurrentReport</DataField>
-        </Field>
-        <Field Name="Number_SalesCrMemoLine">
-          <DataField>Number_SalesCrMemoLine</DataField>
-        </Field>
-        <Field Name="AmountExclInvDisc">
-          <DataField>AmountExclInvDisc</DataField>
-        </Field>
-        <Field Name="AmountExclInvDiscFormat">
-          <DataField>AmountExclInvDiscFormat</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineNo">
-          <DataField>TempSalesCrMemoLineNo</DataField>
-        </Field>
-        <Field Name="DocNo_TempSalesCrMemoLine">
-          <DataField>DocNo_TempSalesCrMemoLine</DataField>
-        </Field>
-        <Field Name="LineNo_TempSalesCrMemoLine">
-          <DataField>LineNo_TempSalesCrMemoLine</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineUOM">
-          <DataField>TempSalesCrMemoLineUOM</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineQty">
-          <DataField>TempSalesCrMemoLineQty</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineQtyFormat">
-          <DataField>TempSalesCrMemoLineQtyFormat</DataField>
-        </Field>
-        <Field Name="UnitPriceToPrint">
-          <DataField>UnitPriceToPrint</DataField>
-        </Field>
-        <Field Name="UnitPriceToPrintFormat">
-          <DataField>UnitPriceToPrintFormat</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineDesc">
-          <DataField>TempSalesCrMemoLineDesc</DataField>
-        </Field>
-        <Field Name="TaxLiable">
-          <DataField>TaxLiable</DataField>
-        </Field>
-        <Field Name="TaxLiableFormat">
-          <DataField>TaxLiableFormat</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineAmtTaxLiable">
-          <DataField>TempSalesCrMemoLineAmtTaxLiable</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineAmtTaxLiableFormat">
-          <DataField>TempSalesCrMemoLineAmtTaxLiableFormat</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineAmtAmtExclInvDisc">
-          <DataField>TempSalesCrMemoLineAmtAmtExclInvDisc</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineAmtAmtExclInvDiscFormat">
-          <DataField>TempSalesCrMemoLineAmtAmtExclInvDiscFormat</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineAmtInclVATAmt">
-          <DataField>TempSalesCrMemoLineAmtInclVATAmt</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineAmtInclVATAmtFormat">
-          <DataField>TempSalesCrMemoLineAmtInclVATAmtFormat</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineAmtInclVAT">
-          <DataField>TempSalesCrMemoLineAmtInclVAT</DataField>
-        </Field>
-        <Field Name="TempSalesCrMemoLineAmtInclVATFormat">
-          <DataField>TempSalesCrMemoLineAmtInclVATFormat</DataField>
-        </Field>
-        <Field Name="AmountSubjectToSalesTax">
-          <DataField>AmountSubjectToSalesTax</DataField>
-        </Field>
-        <Field Name="AmountSubjectToSalesTaxFormat">
-          <DataField>AmountSubjectToSalesTaxFormat</DataField>
-        </Field>
-        <Field Name="AmountExemptFromSalesTax">
-          <DataField>AmountExemptFromSalesTax</DataField>
-        </Field>
-        <Field Name="AmountExemptFromSalesTaxFormat">
-          <DataField>AmountExemptFromSalesTaxFormat</DataField>
-        </Field>
-        <Field Name="SubTotal">
-          <DataField>SubTotal</DataField>
-        </Field>
-        <Field Name="SubTotalFormat">
-          <DataField>SubTotalFormat</DataField>
-        </Field>
-        <Field Name="InvoiceDiscount">
-          <DataField>InvoiceDiscount</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountFormat">
-          <DataField>InvoiceDiscountFormat</DataField>
-        </Field>
-        <Field Name="TotalTax">
-          <DataField>TotalTax</DataField>
-        </Field>
-        <Field Name="TotalTaxFormat">
-          <DataField>TotalTaxFormat</DataField>
-        </Field>
-        <Field Name="Total">
-          <DataField>Total</DataField>
-        </Field>
-        <Field Name="TotalFormat">
-          <DataField>TotalFormat</DataField>
-        </Field>
-        <Field Name="BreakdownTitle">
-          <DataField>BreakdownTitle</DataField>
-        </Field>
-        <Field Name="BreakdownLabel1">
-          <DataField>BreakdownLabel1</DataField>
-        </Field>
-        <Field Name="BreakdownLabel2">
-          <DataField>BreakdownLabel2</DataField>
-        </Field>
-        <Field Name="BreakdownAmt1">
-          <DataField>BreakdownAmt1</DataField>
-        </Field>
-        <Field Name="BreakdownAmt1Format">
-          <DataField>BreakdownAmt1Format</DataField>
-        </Field>
-        <Field Name="BreakdownAmt2">
-          <DataField>BreakdownAmt2</DataField>
-        </Field>
-        <Field Name="BreakdownAmt2Format">
-          <DataField>BreakdownAmt2Format</DataField>
-        </Field>
-        <Field Name="BreakdownAmt3">
-          <DataField>BreakdownAmt3</DataField>
-        </Field>
-        <Field Name="BreakdownAmt3Format">
-          <DataField>BreakdownAmt3Format</DataField>
-        </Field>
-        <Field Name="BreakdownLabel3">
-          <DataField>BreakdownLabel3</DataField>
-        </Field>
-        <Field Name="BreakdownAmt4">
-          <DataField>BreakdownAmt4</DataField>
-        </Field>
-        <Field Name="BreakdownAmt4Format">
-          <DataField>BreakdownAmt4Format</DataField>
-        </Field>
-        <Field Name="BreakdownLabel4">
-          <DataField>BreakdownLabel4</DataField>
-        </Field>
-        <Field Name="TotalTaxLabel">
-          <DataField>TotalTaxLabel</DataField>
-        </Field>
-        <Field Name="ItemNoCaption">
-          <DataField>ItemNoCaption</DataField>
-        </Field>
-        <Field Name="UnitCaption">
-          <DataField>UnitCaption</DataField>
-        </Field>
-        <Field Name="DescriptionCaption">
-          <DataField>DescriptionCaption</DataField>
-        </Field>
-        <Field Name="QuantityCaption">
-          <DataField>QuantityCaption</DataField>
-        </Field>
-        <Field Name="UnitPriceCaption">
-          <DataField>UnitPriceCaption</DataField>
-        </Field>
-        <Field Name="TotalPriceCaption">
-          <DataField>TotalPriceCaption</DataField>
-        </Field>
-        <Field Name="SubtotalCaption">
-          <DataField>SubtotalCaption</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountCaption">
-          <DataField>InvoiceDiscountCaption</DataField>
-        </Field>
-        <Field Name="TotalCaption">
-          <DataField>TotalCaption</DataField>
-        </Field>
-        <Field Name="AmountSubjecttoSalesTaxCaption">
-          <DataField>AmountSubjecttoSalesTaxCaption</DataField>
-        </Field>
-        <Field Name="AmountExemptfromSalesTaxCaption">
-          <DataField>AmountExemptfromSalesTaxCaption</DataField>
-        </Field>
-        <Field Name="Comment_SalesCommentLine">
-          <DataField>Comment_SalesCommentLine</DataField>
-        </Field>
-        <Field Name="DocumentType_SalesCommentLine">
-          <DataField>DocumentType_SalesCommentLine</DataField>
-        </Field>
-        <Field Name="No__SalesCommentLine">
-          <DataField>No__SalesCommentLine</DataField>
-        </Field>
-        <Field Name="DocumentLineNo__SalesCommentLine">
-          <DataField>DocumentLineNo__SalesCommentLine</DataField>
-        </Field>
-        <Field Name="LineNo__SalesCommentLine">
-          <DataField>LineNo__SalesCommentLine</DataField>
-        </Field>
-        <Field Name="CommentCaption">
-          <DataField>CommentCaption</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -4209,4 +3807,401 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>6a3a408b-b8c6-4ef0-be46-629f3cff4fd7</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="No_SalesCrMemoHeader">
+          <DataField>No_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="CompanyInfo3Picture">
+          <DataField>CompanyInfo3Picture</DataField>
+        </Field>
+        <Field Name="CompanyInfo2Picture">
+          <DataField>CompanyInfo2Picture</DataField>
+        </Field>
+        <Field Name="CompanyInfo1Picture">
+          <DataField>CompanyInfo1Picture</DataField>
+        </Field>
+        <Field Name="CompanyAddress1">
+          <DataField>CompanyAddress1</DataField>
+        </Field>
+        <Field Name="CompanyAddress2">
+          <DataField>CompanyAddress2</DataField>
+        </Field>
+        <Field Name="CompanyAddress3">
+          <DataField>CompanyAddress3</DataField>
+        </Field>
+        <Field Name="CompanyAddress4">
+          <DataField>CompanyAddress4</DataField>
+        </Field>
+        <Field Name="CompanyAddress5">
+          <DataField>CompanyAddress5</DataField>
+        </Field>
+        <Field Name="CompanyAddress6">
+          <DataField>CompanyAddress6</DataField>
+        </Field>
+        <Field Name="CopyTxt">
+          <DataField>CopyTxt</DataField>
+        </Field>
+        <Field Name="BillToAddress1">
+          <DataField>BillToAddress1</DataField>
+        </Field>
+        <Field Name="BillToAddress2">
+          <DataField>BillToAddress2</DataField>
+        </Field>
+        <Field Name="BillToAddress3">
+          <DataField>BillToAddress3</DataField>
+        </Field>
+        <Field Name="BillToAddress4">
+          <DataField>BillToAddress4</DataField>
+        </Field>
+        <Field Name="BillToAddress5">
+          <DataField>BillToAddress5</DataField>
+        </Field>
+        <Field Name="BillToAddress6">
+          <DataField>BillToAddress6</DataField>
+        </Field>
+        <Field Name="BillToAddress7">
+          <DataField>BillToAddress7</DataField>
+        </Field>
+        <Field Name="ShptDate_SalesCrMemoHeader">
+          <DataField>ShptDate_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="Currency_Code_SalesCrMemoHeader">
+          <DataField>Currency_Code_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="ApplDocType_SalesCrMemoHeader">
+          <DataField>ApplDocType_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="ApplDocNo_SalesCrMemoHeader">
+          <DataField>ApplDocNo_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="ShipToAddress1">
+          <DataField>ShipToAddress1</DataField>
+        </Field>
+        <Field Name="ShipToAddress2">
+          <DataField>ShipToAddress2</DataField>
+        </Field>
+        <Field Name="ShipToAddress3">
+          <DataField>ShipToAddress3</DataField>
+        </Field>
+        <Field Name="ShipToAddress4">
+          <DataField>ShipToAddress4</DataField>
+        </Field>
+        <Field Name="ShipToAddress5">
+          <DataField>ShipToAddress5</DataField>
+        </Field>
+        <Field Name="ShipToAddress6">
+          <DataField>ShipToAddress6</DataField>
+        </Field>
+        <Field Name="ShipToAddress7">
+          <DataField>ShipToAddress7</DataField>
+        </Field>
+        <Field Name="BilltoCustNo_SalesCrMemoHeader">
+          <DataField>BilltoCustNo_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="YourRef_SalesCrMemoHeader">
+          <DataField>YourRef_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="SalesPurchPersonName">
+          <DataField>SalesPurchPersonName</DataField>
+        </Field>
+        <Field Name="DocDate_SalesCrMemoHeader">
+          <DataField>DocDate_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="CompanyInformation__Document_Logo_">
+          <DataField>CompanyInformation__Document_Logo_</DataField>
+        </Field>
+        <Field Name="CompanyAddress7">
+          <DataField>CompanyAddress7</DataField>
+        </Field>
+        <Field Name="CompanyAddress8">
+          <DataField>CompanyAddress8</DataField>
+        </Field>
+        <Field Name="BillToAddress8">
+          <DataField>BillToAddress8</DataField>
+        </Field>
+        <Field Name="ShipToAddress8">
+          <DataField>ShipToAddress8</DataField>
+        </Field>
+        <Field Name="SellToCustomerNo_SalesCrMemoHeader">
+          <DataField>SellToCustomerNo_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="ExternalDocument_No_SalesCrMemoHeader">
+          <DataField>ExternalDocument_No_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="Ship_to_Code_SalesCrMemoHeader">
+          <DataField>Ship_to_Code_SalesCrMemoHeader</DataField>
+        </Field>
+        <Field Name="Name_SalesPerson2">
+          <DataField>Name_SalesPerson2</DataField>
+        </Field>
+        <Field Name="TaxRegLabel">
+          <DataField>TaxRegLabel</DataField>
+        </Field>
+        <Field Name="TaxRegNo">
+          <DataField>TaxRegNo</DataField>
+        </Field>
+        <Field Name="PrintFooter">
+          <DataField>PrintFooter</DataField>
+        </Field>
+        <Field Name="CopyNo">
+          <DataField>CopyNo</DataField>
+        </Field>
+        <Field Name="TaxIdentType_Cust">
+          <DataField>TaxIdentType_Cust</DataField>
+        </Field>
+        <Field Name="CreditCaption">
+          <DataField>CreditCaption</DataField>
+        </Field>
+        <Field Name="ShipDateCaption">
+          <DataField>ShipDateCaption</DataField>
+        </Field>
+        <Field Name="ApplytoTypeCaption">
+          <DataField>ApplytoTypeCaption</DataField>
+        </Field>
+        <Field Name="ApplytoNumberCaption">
+          <DataField>ApplytoNumberCaption</DataField>
+        </Field>
+        <Field Name="CustomerIDCaption">
+          <DataField>CustomerIDCaption</DataField>
+        </Field>
+        <Field Name="ReferenceCaption">
+          <DataField>ReferenceCaption</DataField>
+        </Field>
+        <Field Name="PONumberCaption">
+          <DataField>PONumberCaption</DataField>
+        </Field>
+        <Field Name="Inside_SalesPersonCaption">
+          <DataField>Inside_SalesPersonCaption</DataField>
+        </Field>
+        <Field Name="SalesPersonCaption">
+          <DataField>SalesPersonCaption</DataField>
+        </Field>
+        <Field Name="ShipCaption">
+          <DataField>ShipCaption</DataField>
+        </Field>
+        <Field Name="CreditMemoCaption">
+          <DataField>CreditMemoCaption</DataField>
+        </Field>
+        <Field Name="CreditMemoNumberCaption">
+          <DataField>CreditMemoNumberCaption</DataField>
+        </Field>
+        <Field Name="CreditMemoDateCaption">
+          <DataField>CreditMemoDateCaption</DataField>
+        </Field>
+        <Field Name="PageCaption">
+          <DataField>PageCaption</DataField>
+        </Field>
+        <Field Name="TaxIdentTypeCaption">
+          <DataField>TaxIdentTypeCaption</DataField>
+        </Field>
+        <Field Name="ToCaption">
+          <DataField>ToCaption</DataField>
+        </Field>
+        <Field Name="PageNo_CurrentReport">
+          <DataField>PageNo_CurrentReport</DataField>
+        </Field>
+        <Field Name="Number_SalesCrMemoLine">
+          <DataField>Number_SalesCrMemoLine</DataField>
+        </Field>
+        <Field Name="AmountExclInvDisc">
+          <DataField>AmountExclInvDisc</DataField>
+        </Field>
+        <Field Name="AmountExclInvDiscFormat">
+          <DataField>AmountExclInvDiscFormat</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineNo">
+          <DataField>TempSalesCrMemoLineNo</DataField>
+        </Field>
+        <Field Name="DocNo_TempSalesCrMemoLine">
+          <DataField>DocNo_TempSalesCrMemoLine</DataField>
+        </Field>
+        <Field Name="LineNo_TempSalesCrMemoLine">
+          <DataField>LineNo_TempSalesCrMemoLine</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineUOM">
+          <DataField>TempSalesCrMemoLineUOM</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineQty">
+          <DataField>TempSalesCrMemoLineQty</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineQtyFormat">
+          <DataField>TempSalesCrMemoLineQtyFormat</DataField>
+        </Field>
+        <Field Name="UnitPriceToPrint">
+          <DataField>UnitPriceToPrint</DataField>
+        </Field>
+        <Field Name="UnitPriceToPrintFormat">
+          <DataField>UnitPriceToPrintFormat</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineDesc">
+          <DataField>TempSalesCrMemoLineDesc</DataField>
+        </Field>
+        <Field Name="TaxLiable">
+          <DataField>TaxLiable</DataField>
+        </Field>
+        <Field Name="TaxLiableFormat">
+          <DataField>TaxLiableFormat</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineAmtTaxLiable">
+          <DataField>TempSalesCrMemoLineAmtTaxLiable</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineAmtTaxLiableFormat">
+          <DataField>TempSalesCrMemoLineAmtTaxLiableFormat</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineAmtAmtExclInvDisc">
+          <DataField>TempSalesCrMemoLineAmtAmtExclInvDisc</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineAmtAmtExclInvDiscFormat">
+          <DataField>TempSalesCrMemoLineAmtAmtExclInvDiscFormat</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineAmtInclVATAmt">
+          <DataField>TempSalesCrMemoLineAmtInclVATAmt</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineAmtInclVATAmtFormat">
+          <DataField>TempSalesCrMemoLineAmtInclVATAmtFormat</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineAmtInclVAT">
+          <DataField>TempSalesCrMemoLineAmtInclVAT</DataField>
+        </Field>
+        <Field Name="TempSalesCrMemoLineAmtInclVATFormat">
+          <DataField>TempSalesCrMemoLineAmtInclVATFormat</DataField>
+        </Field>
+        <Field Name="AmountSubjectToSalesTax">
+          <DataField>AmountSubjectToSalesTax</DataField>
+        </Field>
+        <Field Name="AmountSubjectToSalesTaxFormat">
+          <DataField>AmountSubjectToSalesTaxFormat</DataField>
+        </Field>
+        <Field Name="AmountExemptFromSalesTax">
+          <DataField>AmountExemptFromSalesTax</DataField>
+        </Field>
+        <Field Name="AmountExemptFromSalesTaxFormat">
+          <DataField>AmountExemptFromSalesTaxFormat</DataField>
+        </Field>
+        <Field Name="SubTotal">
+          <DataField>SubTotal</DataField>
+        </Field>
+        <Field Name="SubTotalFormat">
+          <DataField>SubTotalFormat</DataField>
+        </Field>
+        <Field Name="InvoiceDiscount">
+          <DataField>InvoiceDiscount</DataField>
+        </Field>
+        <Field Name="InvoiceDiscountFormat">
+          <DataField>InvoiceDiscountFormat</DataField>
+        </Field>
+        <Field Name="TotalTax">
+          <DataField>TotalTax</DataField>
+        </Field>
+        <Field Name="TotalTaxFormat">
+          <DataField>TotalTaxFormat</DataField>
+        </Field>
+        <Field Name="Total">
+          <DataField>Total</DataField>
+        </Field>
+        <Field Name="TotalFormat">
+          <DataField>TotalFormat</DataField>
+        </Field>
+        <Field Name="BreakdownTitle">
+          <DataField>BreakdownTitle</DataField>
+        </Field>
+        <Field Name="BreakdownLabel1">
+          <DataField>BreakdownLabel1</DataField>
+        </Field>
+        <Field Name="BreakdownLabel2">
+          <DataField>BreakdownLabel2</DataField>
+        </Field>
+        <Field Name="BreakdownAmt1">
+          <DataField>BreakdownAmt1</DataField>
+        </Field>
+        <Field Name="BreakdownAmt1Format">
+          <DataField>BreakdownAmt1Format</DataField>
+        </Field>
+        <Field Name="BreakdownAmt2">
+          <DataField>BreakdownAmt2</DataField>
+        </Field>
+        <Field Name="BreakdownAmt2Format">
+          <DataField>BreakdownAmt2Format</DataField>
+        </Field>
+        <Field Name="BreakdownAmt3">
+          <DataField>BreakdownAmt3</DataField>
+        </Field>
+        <Field Name="BreakdownAmt3Format">
+          <DataField>BreakdownAmt3Format</DataField>
+        </Field>
+        <Field Name="BreakdownLabel3">
+          <DataField>BreakdownLabel3</DataField>
+        </Field>
+        <Field Name="BreakdownAmt4">
+          <DataField>BreakdownAmt4</DataField>
+        </Field>
+        <Field Name="BreakdownAmt4Format">
+          <DataField>BreakdownAmt4Format</DataField>
+        </Field>
+        <Field Name="BreakdownLabel4">
+          <DataField>BreakdownLabel4</DataField>
+        </Field>
+        <Field Name="TotalTaxLabel">
+          <DataField>TotalTaxLabel</DataField>
+        </Field>
+        <Field Name="ItemNoCaption">
+          <DataField>ItemNoCaption</DataField>
+        </Field>
+        <Field Name="UnitCaption">
+          <DataField>UnitCaption</DataField>
+        </Field>
+        <Field Name="DescriptionCaption">
+          <DataField>DescriptionCaption</DataField>
+        </Field>
+        <Field Name="QuantityCaption">
+          <DataField>QuantityCaption</DataField>
+        </Field>
+        <Field Name="UnitPriceCaption">
+          <DataField>UnitPriceCaption</DataField>
+        </Field>
+        <Field Name="TotalPriceCaption">
+          <DataField>TotalPriceCaption</DataField>
+        </Field>
+        <Field Name="SubtotalCaption">
+          <DataField>SubtotalCaption</DataField>
+        </Field>
+        <Field Name="InvoiceDiscountCaption">
+          <DataField>InvoiceDiscountCaption</DataField>
+        </Field>
+        <Field Name="TotalCaption">
+          <DataField>TotalCaption</DataField>
+        </Field>
+        <Field Name="AmountSubjecttoSalesTaxCaption">
+          <DataField>AmountSubjecttoSalesTaxCaption</DataField>
+        </Field>
+        <Field Name="AmountExemptfromSalesTaxCaption">
+          <DataField>AmountExemptfromSalesTaxCaption</DataField>
+        </Field>
+        <Field Name="Comment_SalesCommentLine">
+          <DataField>Comment_SalesCommentLine</DataField>
+        </Field>
+        <Field Name="DocumentType_SalesCommentLine">
+          <DataField>DocumentType_SalesCommentLine</DataField>
+        </Field>
+        <Field Name="No__SalesCommentLine">
+          <DataField>No__SalesCommentLine</DataField>
+        </Field>
+        <Field Name="DocumentLineNo__SalesCommentLine">
+          <DataField>DocumentLineNo__SalesCommentLine</DataField>
+        </Field>
+        <Field Name="LineNo__SalesCommentLine">
+          <DataField>LineNo__SalesCommentLine</DataField>
+        </Field>
+        <Field Name="CommentCaption">
+          <DataField>CommentCaption</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>
