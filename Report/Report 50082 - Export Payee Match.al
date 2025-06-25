@@ -3,34 +3,34 @@ report 50082 "Export Payee Match"
     // NF1.00:CIS.NG    06/18/16 Create New Report to Export Payee Match File to Shared Directory and Upload to FTP
 
     Caption = 'Export Payee Match';
-    Permissions = TableData 270=rm;
+    Permissions = TableData 270 = rm;
     ProcessingOnly = true;
 
     dataset
     {
-        dataitem(DataItem5439;Table272)
+        dataitem("Check Ledger Entry"; "Check Ledger Entry")
         {
-            DataItemTableView = SORTING(Document No.,Posting Date)
-                                WHERE(Entry Status=FILTER(Posted|Financially Voided));
-            RequestFilterFields = "Check Date","Bank Account No.";
+            DataItemTableView = SORTING("Document No.", "Posting Date")
+                                WHERE("Entry Status" = FILTER(Posted | "Financially Voided"));
+            RequestFilterFields = "Check Date", "Bank Account No.";
 
             trigger OnAfterGetRecord()
             var
                 ChrLength_lInt: Integer;
-                Vendor_lRec: Record "23";
-                Customer_lRec: Record "18";
+                Vendor_lRec: Record Vendor;
+                Customer_lRec: Record Customer;
             begin
                 RecNo_gInt := RecNo_gInt + 1;
 
                 IF GUIALLOWED THEN
-                  Window_gDlg.UPDATE(2,ROUND(RecNo_gInt / TotalRec_gInt * 10000,1));
+                    Window_gDlg.UPDATE(2, ROUND(RecNo_gInt / TotalRec_gInt * 10000, 1));
 
                 IF RecNo_gInt = 1 THEN BEGIN
-                  //3.1
-                  Export_31_gFnc;
+                    //3.1
+                    Export_31_gFnc;
 
-                  //3.2
-                  Export_32_gFnc;
+                    //3.2
+                    Export_32_gFnc;
                 END;
 
                 //3.3
@@ -41,33 +41,34 @@ report 50082 "Export Payee Match"
             begin
                 //3.5 & 3.6
                 IF RecNo_gInt > 0 THEN BEGIN
-                  Export_35_gFnc;
-                  Export_36_gFnc;
+                    Export_35_gFnc;
+                    Export_36_gFnc;
                 END;
 
-                TextFile_gFil.CLOSE;
+                //TextFile_gFil.CLOSE;BC Upgrade can not do local file access
             end;
 
             trigger OnPreDataItem()
             begin
                 IF GETFILTER("Bank Account No.") = '' THEN
-                  ERROR(Text001_gCtx,FIELDCAPTION("Bank Account No."));
+                    ERROR(Text001_gCtx, FIELDCAPTION("Bank Account No."));
 
                 IF GETFILTER("Check Date") = '' THEN
-                  ERROR('Please apply Check Date Filter');
+                    ERROR('Please apply Check Date Filter');
 
                 TotalRec_gInt := COUNT;
                 RecNo_gInt := 0;
 
+                /*BC Upgrade can not do local file access 
                 TextFile_gFil.CREATE(FileName_gTxt);
-                TextFile_gFil.CREATEOUTSTREAM(OutStreamObj_gOsm);
+                TextFile_gFil.CREATEOUTSTREAM(OutStreamObj_gOsm); */
 
                 IF GUIALLOWED THEN BEGIN
-                  Window_gDlg.OPEN(
-                    '#1##################################\\' +
-                    '@2@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\');
+                    Window_gDlg.OPEN(
+                      '#1##################################\\' +
+                      '@2@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\');
 
-                  Window_gDlg.UPDATE(1,Text002_gCtx);
+                    Window_gDlg.UPDATE(1, Text002_gCtx);
                 END;
 
                 //3.0
@@ -87,7 +88,7 @@ report 50082 "Export Payee Match"
                 group(Option)
                 {
                     Caption = 'Option';
-                    field("For Testing";ForTesting_gBln)
+                    field("For Testing"; ForTesting_gBln)
                     {
                         Caption = 'For Testing';
                     }
@@ -107,37 +108,38 @@ report 50082 "Export Payee Match"
     trigger OnPostReport()
     begin
         IF GUIALLOWED THEN
-          Window_gDlg.CLOSE;
+            Window_gDlg.CLOSE;
 
         ExportFTPFiles_lFnc(FileName_gTxt);
 
         IF RecNo_gInt = 0 THEN BEGIN
-          IF EXISTS(FileName_gTxt) THEN
-            ERASE(FileName_gTxt);
+            /* BC Upgrade can not do local file access
+            IF EXISTS(FileName_gTxt) THEN
+                ERASE(FileName_gTxt); */
 
-          ERROR(Text004_gCtx);
+            ERROR(Text004_gCtx);
         END ELSE
-          MESSAGE(Text005_gCtx,FileName_gTxt);
+            MESSAGE(Text005_gCtx, FileName_gTxt);
     end;
 
     trigger OnPreReport()
     begin
         GLSetup_gRec.GET;
         IF GLSetup_gRec."Upload File To FTP" THEN BEGIN
-          GLSetup_gRec.TESTFIELD("FTP Server Name with Directory");  //  ftp://ftp.haldengroup.com/ECommerceDemo/WebOrder/
-          GLSetup_gRec.TESTFIELD("FTP User ID");
-          GLSetup_gRec.TESTFIELD("FTP Password");
+            GLSetup_gRec.TESTFIELD("FTP Server Name with Directory");  //  ftp://ftp.haldengroup.com/ECommerceDemo/WebOrder/
+            GLSetup_gRec.TESTFIELD("FTP User ID");
+            GLSetup_gRec.TESTFIELD("FTP Password");
         END;
 
         GLSetup_gRec.TESTFIELD("Payee Match Export Shared Dir");
         UpdatePath_gFnc(GLSetup_gRec."Payee Match Export Shared Dir");
 
-        FileName_gTxt := GLSetup_gRec."Payee Match Export Shared Dir" + 'PayeeMatch' + '_' + FORMAT(TODAY,0,'<Day,2><Month,2><Year4>') + '_' + FORMAT(TIME,0,'<Hours24,2><Minutes,2><Seconds,2>') + '.txt';
+        FileName_gTxt := GLSetup_gRec."Payee Match Export Shared Dir" + 'PayeeMatch' + '_' + FORMAT(TODAY, 0, '<Day,2><Month,2><Year4>') + '_' + FORMAT(TIME, 0, '<Hours24,2><Minutes,2><Seconds,2>') + '.txt';
     end;
 
     var
-        BankAcc_gRec: Record "270";
-        GLSetup_gRec: Record "98";
+        BankAcc_gRec: Record "Bank Account";
+        GLSetup_gRec: Record "General Ledger Setup";
         TextFile_gFil: File;
         OutStreamObj_gOsm: OutStream;
         Window_gDlg: Dialog;
@@ -177,9 +179,9 @@ report 50082 "Export Payee Match"
         ASCIIFiles_lTxt: Text[20];
     begin
         IF ForTesting_gBln THEN
-          ASCIIFiles_lTxt := '$$LW00PMFF[ATEST$$'
+            ASCIIFiles_lTxt := '$$LW00PMFF[ATEST$$'
         ELSE
-          ASCIIFiles_lTxt := '$$LW00PMFF$$';
+            ASCIIFiles_lTxt := '$$LW00PMFF$$';
 
         OutStreamObj_gOsm.WRITETEXT(ASCIIFiles_lTxt);
         OutStreamObj_gOsm.WRITETEXT();
@@ -205,10 +207,10 @@ report 50082 "Export Payee Match"
         BankAcc_gRec.TESTFIELD("File Number Payee Match");
 
         IF INCSTR(BankAcc_gRec."File Number Payee Match") = '' THEN
-          ERROR(Text500000,BankAcc_gRec."File Number Payee Match");
+            ERROR(Text500000, BankAcc_gRec."File Number Payee Match");
 
         IF STRLEN(BankAcc_gRec."File Number Payee Match") <> 4 THEN
-          BankAcc_gRec.FIELDERROR("File Number Payee Match",'should be contain 4 digit');
+            BankAcc_gRec.FIELDERROR("File Number Payee Match", 'should be contain 4 digit');
 
         FileNumber_lTxt := INCSTR(BankAcc_gRec."File Number Payee Match");
         BankAcc_gRec."File Number Payee Match" := FileNumber_lTxt;
@@ -217,15 +219,15 @@ report 50082 "Export Payee Match"
         //Client Number
         BankAcc_gRec.TESTFIELD("Client Number Payee Match");
         IF STRLEN(BankAcc_gRec."Client Number Payee Match") <> 9 THEN
-          BankAcc_gRec.FIELDERROR("Client Number Payee Match",'should be contain 9 chacter');
+            BankAcc_gRec.FIELDERROR("Client Number Payee Match", 'should be contain 9 chacter');
 
         ClientNumber_lTxt := BankAcc_gRec."Client Number Payee Match";
 
         //File Creation Date
-        FileCreationDate_lTxt := FORMAT(TODAY,8,'<Year4><Month,2><Day,2>');
+        FileCreationDate_lTxt := FORMAT(TODAY, 8, '<Year4><Month,2><Day,2>');
 
         //FILLER
-        LeftFillCharacter_lFnc(FILLER_lTxt,665,' ');
+        LeftFillCharacter_lFnc(FILLER_lTxt, 665, ' ');
 
         OutStreamObj_gOsm.WRITETEXT(RecordIdentifier_lTxt);
         OutStreamObj_gOsm.WRITETEXT(RecordCount3_1_gCod);
@@ -248,7 +250,7 @@ report 50082 "Export Payee Match"
         FinanicialInstituionNumber_lTxt: Text[5];
         ServiceTypeIndicator_lTxt: Text[4];
         FILLER2_lTxt: Text[592];
-        GLSetup_lRec: Record "98";
+        GLSetup_lRec: Record "General Ledger Setup";
     begin
         //Record Identifier
         RecordIdentifier_lTxt := 'B';
@@ -262,16 +264,16 @@ report 50082 "Export Payee Match"
         //Transit/Branch Number
         BankAcc_gRec.TESTFIELD("Transit/Branch Number");
         IF STRLEN(BankAcc_gRec."Transit/Branch Number") <> 5 THEN
-          BankAcc_gRec.FIELDERROR("Transit/Branch Number",'should be length of 5 digit');
+            BankAcc_gRec.FIELDERROR("Transit/Branch Number", 'should be length of 5 digit');
 
         TransitBranchNumber_lTxt := BankAcc_gRec."Transit/Branch Number";
 
         //Reserved for account Numbers
-        LeftFillCharacter_lFnc(ReservedForAccount_lTxt,5,' ');
+        LeftFillCharacter_lFnc(ReservedForAccount_lTxt, 5, ' ');
 
         //Bank Account Number
         BankAcc_gRec.TESTFIELD("Bank Account No.");
-        BankAccountNumber_lTxt := DELCHR(BankAcc_gRec."Bank Account No.",'=','-');
+        BankAccountNumber_lTxt := DELCHR(BankAcc_gRec."Bank Account No.", '=', '-');
 
         //Currency
         GLSetup_lRec.GET;
@@ -280,12 +282,12 @@ report 50082 "Export Payee Match"
         //SRF Number
         BankAcc_gRec.TESTFIELD("SRF Number");
         IF STRLEN(BankAcc_gRec."SRF Number") <> 9 THEN
-          BankAcc_gRec.FIELDERROR("SRF Number",'must have 9 character');
+            BankAcc_gRec.FIELDERROR("SRF Number", 'must have 9 character');
 
         SRFNumber_lTxt := BankAcc_gRec."SRF Number";
 
         //FILLER
-        LeftFillCharacter_lFnc(FILLER_lTxt,52,' ');
+        LeftFillCharacter_lFnc(FILLER_lTxt, 52, ' ');
 
         //Financial Year Institution Number
         FinanicialInstituionNumber_lTxt := '00003';  //Default as per file Format
@@ -294,7 +296,7 @@ report 50082 "Export Payee Match"
         ServiceTypeIndicator_lTxt := '0002';  //0002 = Payee Match only
 
         //FILLER
-        LeftFillCharacter_lFnc(FILLER2_lTxt,592,' ');
+        LeftFillCharacter_lFnc(FILLER2_lTxt, 592, ' ');
 
         OutStreamObj_gOsm.WRITETEXT(RecordIdentifier_lTxt);
         OutStreamObj_gOsm.WRITETEXT(RecordCount3_1_gCod);
@@ -313,7 +315,7 @@ report 50082 "Export Payee Match"
 
     procedure Export_33_gFnc()
     var
-        VLE_lRec: Record "25";
+        VLE_lRec: Record "Vendor Ledger Entry";
         RecordIdentifier_lTxt: Text[1];
         TransactionCode_lTxt: Text[3];
         TransitBranchNumber_lTxt: Text[5];
@@ -339,7 +341,7 @@ report 50082 "Export Payee Match"
         AddressLine7_lTxt: Text[51];
         Diff_lInt: Integer;
         Var_ltxt: Text;
-        BankAcc_lRec: Record "270";
+        BankAcc_lRec: Record "Bank Account";
     begin
         BankAcc_lRec.GET("Check Ledger Entry"."Bank Account No.");
         //Record Identifier
@@ -350,52 +352,52 @@ report 50082 "Export Payee Match"
 
         //Transaction Code
         CASE "Check Ledger Entry"."Entry Status" OF
-          "Check Ledger Entry"."Entry Status"::Posted:
-            TransactionCode_lTxt := '300';
-          "Check Ledger Entry"."Entry Status"::"Financially Voided":
-            TransactionCode_lTxt := '490';
-          ELSE
-            ERROR('Check Entry Status case is not defined');
+            "Check Ledger Entry"."Entry Status"::Posted:
+                TransactionCode_lTxt := '300';
+            "Check Ledger Entry"."Entry Status"::"Financially Voided":
+                TransactionCode_lTxt := '490';
+            ELSE
+                ERROR('Check Entry Status case is not defined');
         END;
 
         //Transit/Branch Number
         TransitBranchNumber_lTxt := BankAcc_gRec."Transit/Branch Number";
 
         //Reserved for account Numbers
-        LeftFillCharacter_lFnc(ReservedForAccountgt7_lTxt,5,' ');
+        LeftFillCharacter_lFnc(ReservedForAccountgt7_lTxt, 5, ' ');
 
         //Bank Account Number
         BankAcc_gRec.TESTFIELD("Bank Account No.");
-        BankAccountNumber_lTxt := DELCHR(BankAcc_gRec."Bank Account No.",'=','-');
+        BankAccountNumber_lTxt := DELCHR(BankAcc_gRec."Bank Account No.", '=', '-');
 
         //Reserved for cheque # greater than 8 & //Cheque Number
         "Check Ledger Entry".TESTFIELD("Check No.");
         ChequeNumber_lTxt := "Check Ledger Entry"."Check No.";
-        LeftFillCharacter_lFnc(ChequeNumber_lTxt,12-STRLEN(ChequeNumber_lTxt),'0');
+        LeftFillCharacter_lFnc(ChequeNumber_lTxt, 12 - STRLEN(ChequeNumber_lTxt), '0');
 
         //Cheque Amount
-        TotalAmount_gDec += ROUND("Check Ledger Entry".Amount,0.01);
+        TotalAmount_gDec += ROUND("Check Ledger Entry".Amount, 0.01);
         ChequeAmount_lTxt := GetAmtText_gFnc("Check Ledger Entry".Amount);
-        LeftFillCharacter_lFnc(ChequeAmount_lTxt,10-STRLEN(ChequeAmount_lTxt),'0');
+        LeftFillCharacter_lFnc(ChequeAmount_lTxt, 10 - STRLEN(ChequeAmount_lTxt), '0');
 
         //Client Reference
-        LeftFillCharacter_lFnc(ClientReference_lTxt,19,' ');
+        LeftFillCharacter_lFnc(ClientReference_lTxt, 19, ' ');
 
         //Trace Number
-        LeftFillCharacter_lFnc(TraceNumber_lTxt,8,' ');
+        LeftFillCharacter_lFnc(TraceNumber_lTxt, 8, ' ');
 
         //Issue Date
-        IssueDate_lTxt := FORMAT("Check Ledger Entry"."Check Date",8,'<Year4><Month,2><Day,2>');
+        IssueDate_lTxt := FORMAT("Check Ledger Entry"."Check Date", 8, '<Year4><Month,2><Day,2>');
 
         //Vendor Number
         VendorNumber_lTxt := '';
         VLE_lRec.RESET;
-        VLE_lRec.SETRANGE("Document No.","Check Ledger Entry"."Check No.");
-        VLE_lRec.SETRANGE("Posting Date","Check Ledger Entry"."Posting Date");
+        VLE_lRec.SETRANGE("Document No.", "Check Ledger Entry"."Check No.");
+        VLE_lRec.SETRANGE("Posting Date", "Check Ledger Entry"."Posting Date");
         IF VLE_lRec.FINDFIRST THEN
-          VendorNumber_lTxt := VLE_lRec."Vendor No.";
+            VendorNumber_lTxt := VLE_lRec."Vendor No.";
 
-        RightFillCharacter_lFnc(VendorNumber_lTxt,14-STRLEN(VendorNumber_lTxt),' ');
+        RightFillCharacter_lFnc(VendorNumber_lTxt, 14 - STRLEN(VendorNumber_lTxt), ' ');
 
 
         //Country Code
@@ -405,35 +407,35 @@ report 50082 "Export Payee Match"
         DistributionCode_lTxt := '000';  //Value: "000" = Mail; "999" = Return to Sender (Cheque Issuance Only)
 
         //Payee Name 1
-        PayeeName1_lTxt := COPYSTR("Check Ledger Entry".Description,1,35);
-        RightFillCharacter_lFnc(PayeeName1_lTxt,60-STRLEN(PayeeName1_lTxt),' ');
+        PayeeName1_lTxt := COPYSTR("Check Ledger Entry".Description, 1, 35);
+        RightFillCharacter_lFnc(PayeeName1_lTxt, 60 - STRLEN(PayeeName1_lTxt), ' ');
 
         //Payee Name 2
-        RightFillCharacter_lFnc(PayeeName2_lTxt,60,' ');
+        RightFillCharacter_lFnc(PayeeName2_lTxt, 60, ' ');
 
         //Payee Name 3
-        RightFillCharacter_lFnc(PayeeName3_lTxt,60,' ');
+        RightFillCharacter_lFnc(PayeeName3_lTxt, 60, ' ');
 
         //Address Line 1
-        RightFillCharacter_lFnc(AddressLine1_lTxt,60,' ');
+        RightFillCharacter_lFnc(AddressLine1_lTxt, 60, ' ');
 
         //Address Line 2
-        RightFillCharacter_lFnc(AddressLine2_lTxt,60,' ');
+        RightFillCharacter_lFnc(AddressLine2_lTxt, 60, ' ');
 
         //Address Line 3
-        RightFillCharacter_lFnc(AddressLine3_lTxt,60,' ');
+        RightFillCharacter_lFnc(AddressLine3_lTxt, 60, ' ');
 
         //Address Line 4
-        RightFillCharacter_lFnc(AddressLine4_lTxt,60,' ');
+        RightFillCharacter_lFnc(AddressLine4_lTxt, 60, ' ');
 
         //Address Line 5
-        RightFillCharacter_lFnc(AddressLine5_lTxt,60,' ');
+        RightFillCharacter_lFnc(AddressLine5_lTxt, 60, ' ');
 
         //Address Line 6
-        RightFillCharacter_lFnc(AddressLine6_lTxt,60,' ');
+        RightFillCharacter_lFnc(AddressLine6_lTxt, 60, ' ');
 
         //Address Line 7
-        RightFillCharacter_lFnc(AddressLine7_lTxt,51,' ');
+        RightFillCharacter_lFnc(AddressLine7_lTxt, 51, ' ');
 
         OutStreamObj_gOsm.WRITETEXT(RecordIdentifier_lTxt);
         OutStreamObj_gOsm.WRITETEXT(RecordCount3_1_gCod);
@@ -489,27 +491,27 @@ report 50082 "Export Payee Match"
         TransitBranchNumber_lTxt := BankAcc_gRec."Transit/Branch Number";
 
         //Reserved for account Numbers
-        LeftFillCharacter_lFnc(ReservedForAccount_lTxt,5,' ');
+        LeftFillCharacter_lFnc(ReservedForAccount_lTxt, 5, ' ');
 
         //Bank Account
         BankAcc_gRec.TESTFIELD("Bank Account No.");
-        BankAccountNumber_lTxt := DELCHR(BankAcc_gRec."Bank Account No.",'=','-');
+        BankAccountNumber_lTxt := DELCHR(BankAcc_gRec."Bank Account No.", '=', '-');
 
         //Total Number Transaction Records
         TotalNumberTransactionRecords_lTxt := '00000001';   //1 Transcation in file
 
         //Total Dollar Amt. Transaction Record
         TotalDollarAmtTransactionRecords_lTxt := GetAmtText_gFnc(TotalAmount_gDec);   //Implied two decimals - 2 Decimal Include in amount
-        LeftFillCharacter_lFnc(TotalDollarAmtTransactionRecords_lTxt,13-STRLEN(TotalDollarAmtTransactionRecords_lTxt),'0');
+        LeftFillCharacter_lFnc(TotalDollarAmtTransactionRecords_lTxt, 13 - STRLEN(TotalDollarAmtTransactionRecords_lTxt), '0');
 
         //Total Number Remittance Data Records
-        LeftFillCharacter_lFnc(TotalNumberRemittanceDataRecords_lTxt,8,'0');
+        LeftFillCharacter_lFnc(TotalNumberRemittanceDataRecords_lTxt, 8, '0');
 
         //Total Dollar Amt. Remittance Data Records
-        LeftFillCharacter_lFnc(TotalDollarAmtRemittanceDataRecords_lTxt,13,'0');
+        LeftFillCharacter_lFnc(TotalDollarAmtRemittanceDataRecords_lTxt, 13, '0');
 
         //FILLER
-        LeftFillCharacter_lFnc(FILLER_lTxt,623,' ');
+        LeftFillCharacter_lFnc(FILLER_lTxt, 623, ' ');
 
         OutStreamObj_gOsm.WRITETEXT(RecordIdentifier_lTxt);
         OutStreamObj_gOsm.WRITETEXT(RecordCount3_1_gCod);
@@ -544,10 +546,10 @@ report 50082 "Export Payee Match"
 
         //Total Dollar Amt. Transaction Record
         TotalDollarAmtTransactionRecords_lTxt := GetAmtText_gFnc(TotalAmount_gDec);   //Implied two decimals - 2 Decimal Include in amount
-        LeftFillCharacter_lFnc(TotalDollarAmtTransactionRecords_lTxt,13-STRLEN(TotalDollarAmtTransactionRecords_lTxt),'0');
+        LeftFillCharacter_lFnc(TotalDollarAmtTransactionRecords_lTxt, 13 - STRLEN(TotalDollarAmtTransactionRecords_lTxt), '0');
 
         //FILLER
-        LeftFillCharacter_lFnc(FILLER_lTxt,665,' ');
+        LeftFillCharacter_lFnc(FILLER_lTxt, 665, ' ');
 
         OutStreamObj_gOsm.WRITETEXT(RecordIdentifier_lTxt);
         OutStreamObj_gOsm.WRITETEXT(RecordCount3_1_gCod);
@@ -560,38 +562,38 @@ report 50082 "Export Payee Match"
     begin
     end;
 
-    local procedure LeftFillCharacter_lFnc(var FillString_vTxt: Text[100];FillCount_iInt: Integer;FillCharacter_iTxt: Text[1])
+    local procedure LeftFillCharacter_lFnc(var FillString_vTxt: Text[100]; FillCount_iInt: Integer; FillCharacter_iTxt: Text[1])
     var
         i: Integer;
     begin
-        IF FillCount_iInt <=0 THEN
-          EXIT;
-        FOR i:=1 TO FillCount_iInt DO
-          FillString_vTxt := FillCharacter_iTxt + FillString_vTxt;
+        IF FillCount_iInt <= 0 THEN
+            EXIT;
+        FOR i := 1 TO FillCount_iInt DO
+            FillString_vTxt := FillCharacter_iTxt + FillString_vTxt;
     end;
 
-    local procedure RightFillCharacter_lFnc(var FillString_vTxt: Text[100];FillCount_iInt: Integer;FillCharacter_iTxt: Text[1])
+    local procedure RightFillCharacter_lFnc(var FillString_vTxt: Text[100]; FillCount_iInt: Integer; FillCharacter_iTxt: Text[1])
     var
         i: Integer;
     begin
-        IF FillCount_iInt <=0 THEN
-          EXIT;
-        FOR i:=1 TO FillCount_iInt DO
-          FillString_vTxt += FillCharacter_iTxt;
+        IF FillCount_iInt <= 0 THEN
+            EXIT;
+        FOR i := 1 TO FillCount_iInt DO
+            FillString_vTxt += FillCharacter_iTxt;
     end;
 
     procedure UpdatePath_gFnc(var Path_vTxt: Text[250])
     begin
-        IF COPYSTR(Path_vTxt,STRLEN(Path_vTxt),1) <> '\' THEN
-          Path_vTxt := Path_vTxt + '\';
+        IF COPYSTR(Path_vTxt, STRLEN(Path_vTxt), 1) <> '\' THEN
+            Path_vTxt := Path_vTxt + '\';
     end;
 
     local procedure GetAmtText_gFnc(Amount_iDec: Decimal): Text[15]
     var
         ChequeAmount_lTxt: Text[15];
     begin
-        Amount_iDec := ROUND(Amount_iDec,0.01);
-        ChequeAmount_lTxt := FORMAT(Amount_iDec,0,'<Integer>') + DELCHR(FORMAT(Amount_iDec,0,'<Decimals,3>'),'=','.');   //Implied two decimals - 2 Decimal Include in amount
+        Amount_iDec := ROUND(Amount_iDec, 0.01);
+        ChequeAmount_lTxt := FORMAT(Amount_iDec, 0, '<Integer>') + DELCHR(FORMAT(Amount_iDec, 0, '<Decimals,3>'), '=', '.');   //Implied two decimals - 2 Decimal Include in amount
         EXIT(ChequeAmount_lTxt)
     end;
 
@@ -601,7 +603,7 @@ report 50082 "Export Payee Match"
 
     local procedure ExportFTPFiles_lFnc(FileNameWithDir_iTxt: Text)
     var
-        FTPDotNet_gDnt: DotNet FTPFileUploadDownload;
+        //FTPDotNet_gDnt: DotNet FTPFileUploadDownload; BC Upgrade can not do local file access
         ErrorMessage_lTxt: Text[250];
         FileName_lTxt: Text[250];
         FileNameWithDir_lTxt: Text;
@@ -609,11 +611,12 @@ report 50082 "Export Payee Match"
         i_Int: Integer;
         HasError_lBln: Boolean;
     begin
+        /*BC Upgrade can not do local file access 
         IF NOT GLSetup_gRec."Upload File To FTP" THEN
-          EXIT;
+            EXIT;
 
         IF GUIALLOWED THEN
-          Window_gDlg.OPEN('Uploading File To FTP.....');
+            Window_gDlg.OPEN('Uploading File To FTP.....');
 
         FileNameWithDir_lTxt := FileNameWithDir_iTxt;
 
@@ -633,10 +636,10 @@ report 50082 "Export Payee Match"
           ErrorMessage_lTxt);
 
         IF GUIALLOWED THEN
-          Window_gDlg.CLOSE;
+            Window_gDlg.CLOSE;
 
         IF HasError_lBln THEN
-          ERROR(ErrorMessage_lTxt);
+            ERROR(ErrorMessage_lTxt); */
     end;
 }
 

@@ -2,158 +2,158 @@ report 50073 "Receiving Report - Trans Rcpt"
 {
     // NF1.00:CIS.CM  09-15-15 Merged during upgrade
     DefaultLayout = RDLC;
-    RDLCLayout = './Receiving Report - Trans Rcpt.rdlc';
+    RDLCLayout = '.\RDLC\Receiving Report - Trans Rcpt.rdlc';
 
 
     dataset
     {
-        dataitem(DataItem4354;Table5746)
+        dataitem("Transfer Receipt Header"; "Transfer Receipt Header")
         {
-            RequestFilterFields = "No.","Transfer Order No.","Posting Date";
-            column(EmptyString;'')
+            RequestFilterFields = "No.", "Transfer Order No.", "Posting Date";
+            column(EmptyString; '')
             {
             }
-            column(EmptyString_Control1000000019;'')
+            column(EmptyString_Control1000000019; '')
             {
             }
-            column(USERID;USERID)
+            column(USERID; USERID)
             {
             }
-            column(CurrReport_PAGENO;CurrReport.PAGENO)
+            column(CurrReport_PAGENO; CurrReport.PAGENO)
             {
             }
-            column(TIME;TIME)
+            column(TIME; TIME)
             {
             }
-            column(FORMAT_TODAY_0_4_;FORMAT(TODAY,0,4))
+            column(FORMAT_TODAY_0_4_; FORMAT(TODAY, 0, 4))
             {
             }
-            column(Transfer_Receipt_Header__No__;"No.")
+            column(Transfer_Receipt_Header__No__; "No.")
             {
             }
-            column(Transfer_Receipt_Header__Vessel_Name_;"Vessel Name")
+            column(Transfer_Receipt_Header__Vessel_Name_; "Vessel Name")
             {
             }
-            column(Transfer_Receipt_Header__Posting_Date_;"Posting Date")
+            column(Transfer_Receipt_Header__Posting_Date_; "Posting Date")
             {
             }
-            column(Transfer_Receipt_Header__Transfer_to_Code_;"Transfer-to Code")
+            column(Transfer_Receipt_Header__Transfer_to_Code_; "Transfer-to Code")
             {
             }
-            column(Transfer_Receipt_Header__Transfer_Order_No__;"Transfer Order No.")
+            column(Transfer_Receipt_Header__Transfer_Order_No__; "Transfer Order No.")
             {
             }
-            column(REC__Caption;REC__CaptionLbl)
+            column(REC__Caption; REC__CaptionLbl)
             {
             }
-            column(ManufacturerCaption;ManufacturerCaptionLbl)
+            column(ManufacturerCaption; ManufacturerCaptionLbl)
             {
             }
-            column(Receiving_ReportCaption;Receiving_ReportCaptionLbl)
+            column(Receiving_ReportCaption; Receiving_ReportCaptionLbl)
             {
             }
-            column(CurrReport_PAGENOCaption;CurrReport_PAGENOCaptionLbl)
+            column(CurrReport_PAGENOCaption; CurrReport_PAGENOCaptionLbl)
             {
             }
-            column(Transfer_Receipt_Header__No__Caption;Transfer_Receipt_Header__No__CaptionLbl)
+            column(Transfer_Receipt_Header__No__Caption; Transfer_Receipt_Header__No__CaptionLbl)
             {
             }
-            column(Transfer_Receipt_Header__Vessel_Name_Caption;FIELDCAPTION("Vessel Name"))
+            column(Transfer_Receipt_Header__Vessel_Name_Caption; FIELDCAPTION("Vessel Name"))
             {
             }
-            column(Transfer_Receipt_Header__Posting_Date_Caption;FIELDCAPTION("Posting Date"))
+            column(Transfer_Receipt_Header__Posting_Date_Caption; FIELDCAPTION("Posting Date"))
             {
             }
-            column(Transfer_Receipt_Header__Transfer_to_Code_Caption;FIELDCAPTION("Transfer-to Code"))
+            column(Transfer_Receipt_Header__Transfer_to_Code_Caption; FIELDCAPTION("Transfer-to Code"))
             {
             }
-            column(Transfer_Receipt_Header__Transfer_Order_No__Caption;FIELDCAPTION("Transfer Order No."))
+            column(Transfer_Receipt_Header__Transfer_Order_No__Caption; FIELDCAPTION("Transfer Order No."))
             {
             }
-            dataitem(DataItem4146;Table5747)
+            dataitem("Transfer Receipt Line"; "Transfer Receipt Line")
             {
-                DataItemLink = Document No.=FIELD(No.);
-                DataItemTableView = WHERE(Quantity=FILTER(<>0));
-                column(Transfer_Receipt_Line__Item_No__;"Item No.")
+                DataItemLink = "Document No." = FIELD("No.");
+                DataItemTableView = WHERE(Quantity = FILTER(<> 0));
+                column(Transfer_Receipt_Line__Item_No__; "Item No.")
                 {
                 }
-                column(Transfer_Receipt_Line__Units_per_Parcel_;"Units per Parcel")
+                column(Transfer_Receipt_Line__Units_per_Parcel_; "Units per Parcel")
                 {
                 }
-                column(TotalParcels;TotalParcels)
+                column(TotalParcels; TotalParcels)
                 {
-                    DecimalPlaces = 0:2;
+                    DecimalPlaces = 0 : 2;
                 }
-                column(EmptyString_Control1000000012;'__________')
-                {
-                }
-                column(EmptyString_Control1000000013;'________________________')
+                column(EmptyString_Control1000000012; '__________')
                 {
                 }
-                column(EmptyString_Control1000000014;'_________________')
+                column(EmptyString_Control1000000013; '________________________')
                 {
                 }
-                column(EmptyString_Control1102623000;'_____________________')
+                column(EmptyString_Control1000000014; '_________________')
                 {
                 }
-                column(Transfer_Receipt_Line__Source_PO_No__;"Source PO No.")
+                column(EmptyString_Control1102623000; '_____________________')
                 {
                 }
-                column(Nifast_Lot_No_Caption;Nifast_Lot_No_CaptionLbl)
+                column(Transfer_Receipt_Line__Source_PO_No__; "Source PO No.")
                 {
                 }
-                column(Bin_CodeCaption;Bin_CodeCaptionLbl)
+                column(Nifast_Lot_No_Caption; Nifast_Lot_No_CaptionLbl)
                 {
                 }
-                column(Mfg__Lot_No_Caption;Mfg__Lot_No_CaptionLbl)
+                column(Bin_CodeCaption; Bin_CodeCaptionLbl)
                 {
                 }
-                column(CtnsCaption;CtnsCaptionLbl)
+                column(Mfg__Lot_No_Caption; Mfg__Lot_No_CaptionLbl)
                 {
                 }
-                column(Total_CtnsCaption;Total_CtnsCaptionLbl)
+                column(CtnsCaption; CtnsCaptionLbl)
                 {
                 }
-                column(SNPCaption;SNPCaptionLbl)
+                column(Total_CtnsCaption; Total_CtnsCaptionLbl)
                 {
                 }
-                column(No_Caption;No_CaptionLbl)
+                column(SNPCaption; SNPCaptionLbl)
                 {
                 }
-                column(Transfer_Receipt_Line__Source_PO_No__Caption;FIELDCAPTION("Source PO No."))
+                column(No_Caption; No_CaptionLbl)
                 {
                 }
-                column(Transfer_Receipt_Line_Document_No_;"Document No.")
+                column(Transfer_Receipt_Line__Source_PO_No__Caption; FIELDCAPTION("Source PO No."))
                 {
                 }
-                column(Transfer_Receipt_Line_Line_No_;"Line No.")
+                column(Transfer_Receipt_Line_Document_No_; "Document No.")
                 {
                 }
-                dataitem(DataItem7209;Table32)
+                column(Transfer_Receipt_Line_Line_No_; "Line No.")
                 {
-                    DataItemLink = Item No.=FIELD(Item No.),
-                                   Document No.=FIELD(Document No.);
-                    DataItemTableView = SORTING(Source Type,Source No.,Entry Type,Item No.,Variant Code,Posting Date,QC Hold)
-                                        ORDER(Ascending);
-                    column(Item_Ledger_Entry__Mfg__Lot_No__;"Mfg. Lot No.")
+                }
+                dataitem("Item Ledger Entry"; "Item Ledger Entry")
+                {
+                    DataItemLink = "Item No." = FIELD("Item No."),
+                                   "Document No." = FIELD("Document No.");
+                    DataItemTableView = SORTING("Source Type", "Source No.", "Entry Type", "Item No.", "Variant Code", "Posting Date")//, "QC Hold") BC Upgrade                    
+                    ORDER(Ascending);
+                    column(Item_Ledger_Entry__Mfg__Lot_No__; "Mfg. Lot No.")
                     {
                     }
-                    column(Item_Ledger_Entry__Lot_No__;"Lot No.")
+                    column(Item_Ledger_Entry__Lot_No__; "Lot No.")
                     {
                     }
-                    column(Item_Ledger_Entry_Quantity;Quantity)
+                    column(Item_Ledger_Entry_Quantity; Quantity)
                     {
                     }
-                    column(Qty_Caption;Qty_CaptionLbl)
+                    column(Qty_Caption; Qty_CaptionLbl)
                     {
                     }
-                    column(Item_Ledger_Entry_Entry_No_;"Entry No.")
+                    column(Item_Ledger_Entry_Entry_No_; "Entry No.")
                     {
                     }
-                    column(Item_Ledger_Entry_Item_No_;"Item No.")
+                    column(Item_Ledger_Entry_Item_No_; "Item No.")
                     {
                     }
-                    column(Item_Ledger_Entry_Document_No_;"Document No.")
+                    column(Item_Ledger_Entry_Document_No_; "Document No.")
                     {
                     }
 
@@ -162,41 +162,41 @@ report 50073 "Receiving Report - Trans Rcpt"
                         //>>NIF MAK 083005
                         CALCFIELDS("Mfg. Lot No.");
                         IF "Mfg. Lot No." = '' THEN
-                          //CurrReport.SKIP;
+                            CurrReport.SKIP; //BC Upgrade UnComment this line for make no error
                         //<<NIF MAK 083005
                     end;
                 }
-                dataitem(LineFiller;Table2000000026)
+                dataitem(LineFiller; Integer)
                 {
                     DataItemTableView = SORTING(Number);
-                    column(EmptyString_Control1000000015;'__________')
+                    column(EmptyString_Control1000000015; '__________')
                     {
                     }
-                    column(EmptyString_Control1000000016;'________________________')
+                    column(EmptyString_Control1000000016; '________________________')
                     {
                     }
-                    column(EmptyString_Control1000000017;'_________________')
+                    column(EmptyString_Control1000000017; '_________________')
                     {
                     }
-                    column(EmptyString_Control1102623002;'_____________________')
+                    column(EmptyString_Control1102623002; '_____________________')
                     {
                     }
-                    column(LineFiller_Number;Number)
+                    column(LineFiller_Number; Number)
                     {
                     }
 
                     trigger OnPreDataItem()
                     begin
-                        SETRANGE(Number,1,BlankLines);
+                        SETRANGE(Number, 1, BlankLines);
                     end;
                 }
 
                 trigger OnAfterGetRecord()
                 begin
-                    IF "Units per Parcel"<>0 THEN
-                      TotalParcels := "Quantity (Base)"/"Units per Parcel"
+                    IF "Units per Parcel" <> 0 THEN
+                        TotalParcels := "Quantity (Base)" / "Units per Parcel"
                     ELSE
-                      TotalParcels := 0;
+                        TotalParcels := 0;
 
                     BlankLines := 5;    //Was 3
                 end;

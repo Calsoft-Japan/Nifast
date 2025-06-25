@@ -3,53 +3,51 @@ report 50095 "Sales Shipment NV"
     // NF1.00:CIS.NG  07-18-16 Upgrade Report to NAV 2016
     // NF1.00:CIS.NG  07-19-16 Fix the Date Format Issue - Make it MM/dd/yy
     DefaultLayout = RDLC;
-    RDLCLayout = './Sales Shipment NV.rdlc';
+    RDLCLayout = '.\RDLC\Sales Shipment NV.rdlc';
 
     Caption = 'Sales Shipment NV';
 
     dataset
     {
-        dataitem(DataItem3595;Table110)
+        dataitem("Sales Shipment Header"; "Sales Shipment Header")
         {
-            DataItemTableView = SORTING(No.);
+            DataItemTableView = SORTING("No.");
             PrintOnlyIfDetail = true;
-            RequestFilterFields = "No.","Sell-to Customer No.","Bill-to Customer No.","Ship-to Code","No. Printed";
+            RequestFilterFields = "No.", "Sell-to Customer No.", "Bill-to Customer No.", "Ship-to Code", "No. Printed";
             RequestFilterHeading = 'Sales Shipment';
-            column(No_SalesShptHeader;"No.")
+            column(No_SalesShptHeader; "No.")
             {
             }
-            dataitem(DataItem2502;Table111)
+            dataitem("Sales Shipment Line"; "Sales Shipment Line")
             {
-                DataItemLink = Document No.=FIELD(No.);
-                DataItemTableView = SORTING(Document No.,Line No.);
-                dataitem(SalesLineComments;Table44)
+                DataItemLink = "Document No." = FIELD("No.");
+                DataItemTableView = SORTING("Document No.", "Line No.");
+                dataitem(SalesLineComments; "Sales Comment Line")
                 {
-                    DataItemLink = No.=FIELD(Document No.),
-                                   Document Line No.=FIELD(Line No.);
-                    DataItemTableView = SORTING(Document Type,No.,Document Line No.,Line No.)
-                                        WHERE(Document Type=CONST(Shipment),
-                                              Print On Shipment=CONST(Yes));
+                    DataItemLink = "No." = FIELD("Document No."),
+                                   "Document Line No." = FIELD("Line No.");
+                    DataItemTableView = SORTING("Document Type", "No.", "Document Line No.", "Line No.")
+                                        WHERE("Document Type" = CONST(Shipment));//,"Print On Shipment"=CONST(Yes)); BC Upgrade
 
                     trigger OnAfterGetRecord()
                     begin
-                        WITH TempSalesShipmentLine DO BEGIN
-                          INIT;
-                          "Document No." := "Sales Shipment Header"."No.";
-                          "Line No." := HighestLineNo + 10;
-                          HighestLineNo := "Line No.";
-                        END;
+                        TempSalesShipmentLine.INIT;
+                        TempSalesShipmentLine."Document No." := "Sales Shipment Header"."No.";
+                        TempSalesShipmentLine."Line No." := HighestLineNo + 10;
+                        HighestLineNo := TempSalesShipmentLine."Line No.";
+
                         IF STRLEN(Comment) <= MAXSTRLEN(TempSalesShipmentLine.Description) THEN BEGIN
-                          TempSalesShipmentLine.Description := Comment;
-                          TempSalesShipmentLine."Description 2" := '';
+                            TempSalesShipmentLine.Description := Comment;
+                            TempSalesShipmentLine."Description 2" := '';
                         END ELSE BEGIN
-                          SpacePointer := MAXSTRLEN(TempSalesShipmentLine.Description) + 1;
-                          WHILE (SpacePointer > 1) AND (Comment[SpacePointer] <> ' ') DO
-                            SpacePointer := SpacePointer - 1;
-                          IF SpacePointer = 1 THEN
                             SpacePointer := MAXSTRLEN(TempSalesShipmentLine.Description) + 1;
-                          TempSalesShipmentLine.Description := COPYSTR(Comment,1,SpacePointer - 1);
-                          TempSalesShipmentLine."Description 2" :=
-                            COPYSTR(COPYSTR(Comment,SpacePointer + 1),1,MAXSTRLEN(TempSalesShipmentLine."Description 2"));
+                            WHILE (SpacePointer > 1) AND (Comment[SpacePointer] <> ' ') DO
+                                SpacePointer := SpacePointer - 1;
+                            IF SpacePointer = 1 THEN
+                                SpacePointer := MAXSTRLEN(TempSalesShipmentLine.Description) + 1;
+                            TempSalesShipmentLine.Description := COPYSTR(Comment, 1, SpacePointer - 1);
+                            TempSalesShipmentLine."Description 2" :=
+                              COPYSTR(COPYSTR(Comment, SpacePointer + 1), 1, MAXSTRLEN(TempSalesShipmentLine."Description 2"));
                         END;
                         TempSalesShipmentLine.INSERT;
                     end;
@@ -72,454 +70,449 @@ report 50095 "Sales Shipment NV"
                     TempSalesShipmentLineAsm.DELETEALL;
                 end;
             }
-            dataitem(DataItem8541;Table44)
+            dataitem("Sales Comment Line"; "Sales Comment Line")
             {
-                DataItemLink = No.=FIELD(No.);
-                DataItemTableView = SORTING(Document Type,No.,Document Line No.,Line No.)
-                                    WHERE(Document Type=CONST(Return Order),
-                                          Print On Shipment=CONST(Yes),
-                                          Document Line No.=CONST(0));
+                DataItemLink = "No." = FIELD("No.");
+                DataItemTableView = SORTING("Document Type", "No.", "Document Line No.", "Line No.")
+                                    WHERE("Document Type" = CONST("Return Order"),
+                                          //"Print On Shipment"=CONST(Yes), BC Upgrade
+                                          "Document Line No." = CONST(0));
 
                 trigger OnAfterGetRecord()
                 begin
-                    WITH TempSalesShipmentLine DO BEGIN
-                      INIT;
-                      "Document No." := "Sales Shipment Header"."No.";
-                      "Line No." := HighestLineNo + 1000;
-                      HighestLineNo := "Line No.";
-                    END;
+                    TempSalesShipmentLine.INIT;
+                    TempSalesShipmentLine."Document No." := "Sales Shipment Header"."No.";
+                    TempSalesShipmentLine."Line No." := HighestLineNo + 1000;
+                    HighestLineNo := TempSalesShipmentLine."Line No.";
+
                     IF STRLEN(Comment) <= MAXSTRLEN(TempSalesShipmentLine.Description) THEN BEGIN
-                      TempSalesShipmentLine.Description := Comment;
-                      TempSalesShipmentLine."Description 2" := '';
+                        TempSalesShipmentLine.Description := Comment;
+                        TempSalesShipmentLine."Description 2" := '';
                     END ELSE BEGIN
-                      SpacePointer := MAXSTRLEN(TempSalesShipmentLine.Description) + 1;
-                      WHILE (SpacePointer > 1) AND (Comment[SpacePointer] <> ' ') DO
-                        SpacePointer := SpacePointer - 1;
-                      IF SpacePointer = 1 THEN
                         SpacePointer := MAXSTRLEN(TempSalesShipmentLine.Description) + 1;
-                      TempSalesShipmentLine.Description := COPYSTR(Comment,1,SpacePointer - 1);
-                      TempSalesShipmentLine."Description 2" :=
-                        COPYSTR(COPYSTR(Comment,SpacePointer + 1),1,MAXSTRLEN(TempSalesShipmentLine."Description 2"));
+                        WHILE (SpacePointer > 1) AND (Comment[SpacePointer] <> ' ') DO
+                            SpacePointer := SpacePointer - 1;
+                        IF SpacePointer = 1 THEN
+                            SpacePointer := MAXSTRLEN(TempSalesShipmentLine.Description) + 1;
+                        TempSalesShipmentLine.Description := COPYSTR(Comment, 1, SpacePointer - 1);
+                        TempSalesShipmentLine."Description 2" :=
+                          COPYSTR(COPYSTR(Comment, SpacePointer + 1), 1, MAXSTRLEN(TempSalesShipmentLine."Description 2"));
                     END;
                     TempSalesShipmentLine.INSERT;
                 end;
 
                 trigger OnPreDataItem()
                 begin
-                    WITH TempSalesShipmentLine DO BEGIN
-                      INIT;
-                      "Document No." := "Sales Shipment Header"."No.";
-                      "Line No." := HighestLineNo + 1000;
-                      HighestLineNo := "Line No.";
-                    END;
+                    TempSalesShipmentLine.INIT;
+                    TempSalesShipmentLine."Document No." := "Sales Shipment Header"."No.";
+                    TempSalesShipmentLine."Line No." := HighestLineNo + 1000;
+                    HighestLineNo := TempSalesShipmentLine."Line No.";
+
                     TempSalesShipmentLine.INSERT;
                 end;
             }
-            dataitem(CopyLoop;Table2000000026)
+            dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
-                dataitem(PageLoop;Table2000000026)
+                dataitem(PageLoop; Integer)
                 {
                     DataItemTableView = SORTING(Number)
-                                        WHERE(Number=CONST(1));
-                    column(CompanyInformation_DocumentLogo;CompanyInformation."Document Logo")
+                                        WHERE(Number = CONST(1));
+                    column(CompanyInformation_DocumentLogo; CompanyInformation."Document Logo")
                     {
                     }
-                    column(CompanyInfo2Picture;CompanyInfo2.Picture)
+                    column(CompanyInfo2Picture; CompanyInfo2.Picture)
                     {
                     }
-                    column(CompanyInfo1Picture;CompanyInfo1.Picture)
+                    column(CompanyInfo1Picture; CompanyInfo1.Picture)
                     {
                     }
-                    column(CompanyInfoPicture;CompanyInfo3.Picture)
+                    column(CompanyInfoPicture; CompanyInfo3.Picture)
                     {
                     }
-                    column(CompanyAddress1;CompanyAddress[1])
+                    column(CompanyAddress1; CompanyAddress[1])
                     {
                     }
-                    column(CompanyAddress2;CompanyAddress[2])
+                    column(CompanyAddress2; CompanyAddress[2])
                     {
                     }
-                    column(CompanyAddress3;CompanyAddress[3])
+                    column(CompanyAddress3; CompanyAddress[3])
                     {
                     }
-                    column(CompanyAddress4;CompanyAddress[4])
+                    column(CompanyAddress4; CompanyAddress[4])
                     {
                     }
-                    column(CompanyAddress5;CompanyAddress[5])
+                    column(CompanyAddress5; CompanyAddress[5])
                     {
                     }
-                    column(CompanyAddress6;CompanyAddress[6])
+                    column(CompanyAddress6; CompanyAddress[6])
                     {
                     }
-                    column(CopyTxt;CopyTxt)
+                    column(CopyTxt; CopyTxt)
                     {
                     }
-                    column(BillToAddress1;BillToAddress[1])
+                    column(BillToAddress1; BillToAddress[1])
                     {
                     }
-                    column(BillToAddress2;BillToAddress[2])
+                    column(BillToAddress2; BillToAddress[2])
                     {
                     }
-                    column(BillToAddress3;BillToAddress[3])
+                    column(BillToAddress3; BillToAddress[3])
                     {
                     }
-                    column(BillToAddress4;BillToAddress[4])
+                    column(BillToAddress4; BillToAddress[4])
                     {
                     }
-                    column(BillToAddress5;BillToAddress[5])
+                    column(BillToAddress5; BillToAddress[5])
                     {
                     }
-                    column(BillToAddress6;BillToAddress[6])
+                    column(BillToAddress6; BillToAddress[6])
                     {
                     }
-                    column(BillToAddress7;BillToAddress[7])
+                    column(BillToAddress7; BillToAddress[7])
                     {
                     }
-                    column(ShipToAddress1;ShipToAddress[1])
+                    column(ShipToAddress1; ShipToAddress[1])
                     {
                     }
-                    column(ShipToAddress2;ShipToAddress[2])
+                    column(ShipToAddress2; ShipToAddress[2])
                     {
                     }
-                    column(ShipToAddress3;ShipToAddress[3])
+                    column(ShipToAddress3; ShipToAddress[3])
                     {
                     }
-                    column(ShipToAddress4;ShipToAddress[4])
+                    column(ShipToAddress4; ShipToAddress[4])
                     {
                     }
-                    column(ShipToAddress5;ShipToAddress[5])
+                    column(ShipToAddress5; ShipToAddress[5])
                     {
                     }
-                    column(ShipToAddress6;ShipToAddress[6])
+                    column(ShipToAddress6; ShipToAddress[6])
                     {
                     }
-                    column(ShipToAddress7;ShipToAddress[7])
+                    column(ShipToAddress7; ShipToAddress[7])
                     {
                     }
-                    column(BilltoCustNo_SalesShptHeader;"Sales Shipment Header"."Bill-to Customer No.")
+                    column(BilltoCustNo_SalesShptHeader; "Sales Shipment Header"."Bill-to Customer No.")
                     {
                     }
-                    column(ShipToCode_SalesShptHeader;"Sales Shipment Header"."Ship-to Code")
+                    column(ShipToCode_SalesShptHeader; "Sales Shipment Header"."Ship-to Code")
                     {
                     }
-                    column(SellToCustNo_SalesShptHeader;"Sales Shipment Header"."Sell-to Customer No.")
+                    column(SellToCustNo_SalesShptHeader; "Sales Shipment Header"."Sell-to Customer No.")
                     {
                     }
-                    column(ExtDocNo_SalesShptHeader;"Sales Shipment Header"."External Document No.")
+                    column(ExtDocNo_SalesShptHeader; "Sales Shipment Header"."External Document No.")
                     {
                     }
-                    column(YourRef_SalesShptHeader;"Sales Shipment Header"."Your Reference")
+                    column(YourRef_SalesShptHeader; "Sales Shipment Header"."Your Reference")
                     {
                     }
-                    column(OrderDate_SalesShptHeader;"Sales Shipment Header"."Order Date")
+                    column(OrderDate_SalesShptHeader; "Sales Shipment Header"."Order Date")
                     {
                     }
-                    column(OrderNo_SalesShptHeader;"Sales Shipment Header"."Order No.")
+                    column(OrderNo_SalesShptHeader; "Sales Shipment Header"."Order No.")
                     {
                     }
-                    column(Description_FreightCode;FreightCode.Description)
+                    column(Description_FreightCode; FreightCode.Description)
                     {
                     }
-                    column(SalesPurchPersonName;SalesPurchPerson.Name)
+                    column(SalesPurchPersonName; SalesPurchPerson.Name)
                     {
                     }
-                    column(Name_SalesPurchPerson2;SalesPurchPerson2.Name)
+                    column(Name_SalesPurchPerson2; SalesPurchPerson2.Name)
                     {
                     }
-                    column(ShptDate_SalesShptHeader;"Sales Shipment Header"."Shipment Date")
+                    column(ShptDate_SalesShptHeader; "Sales Shipment Header"."Shipment Date")
                     {
                     }
-                    column(CompanyAddress7;CompanyAddress[7])
+                    column(CompanyAddress7; CompanyAddress[7])
                     {
                     }
-                    column(CompanyAddress8;CompanyAddress[8])
+                    column(CompanyAddress8; CompanyAddress[8])
                     {
                     }
-                    column(BillToAddress8;BillToAddress[8])
+                    column(BillToAddress8; BillToAddress[8])
                     {
                     }
-                    column(ShipToAddress8;ShipToAddress[8])
+                    column(ShipToAddress8; ShipToAddress[8])
                     {
                     }
-                    column(ShipmentMethodDesc;ShipmentMethod.Description)
+                    column(ShipmentMethodDesc; ShipmentMethod.Description)
                     {
                     }
-                    column(PackageTrackingNoText;PackageTrackingNoText)
+                    column(PackageTrackingNoText; PackageTrackingNoText)
                     {
                     }
-                    column(ShippingAgentCodeText;ShippingAgentCodeText)
+                    column(ShippingAgentCodeText; ShippingAgentCodeText)
                     {
                     }
-                    column(ShippingAgentCodeLabel;ShippingAgentCodeLabel)
+                    column(ShippingAgentCodeLabel; ShippingAgentCodeLabel)
                     {
                     }
-                    column(PackageTrackingNoLabel;PackageTrackingNoLabel)
+                    column(PackageTrackingNoLabel; PackageTrackingNoLabel)
                     {
                     }
-                    column(TaxRegNo;TaxRegNo)
+                    column(TaxRegNo; TaxRegNo)
                     {
                     }
-                    column(TaxRegLabel;TaxRegLabel)
+                    column(TaxRegLabel; TaxRegLabel)
                     {
                     }
-                    column(CopyNo;CopyNo)
+                    column(CopyNo; CopyNo)
                     {
                     }
-                    column(PageLoopNumber;Number)
+                    column(PageLoopNumber; Number)
                     {
                     }
-                    column(BillCaption;BillCaptionLbl)
+                    column(BillCaption; BillCaptionLbl)
                     {
                     }
-                    column(ToCaption;ToCaptionLbl)
+                    column(ToCaption; ToCaptionLbl)
                     {
                     }
-                    column(CustomerIDCaption;CustomerIDCaptionLbl)
+                    column(CustomerIDCaption; CustomerIDCaptionLbl)
                     {
                     }
-                    column(PONumberCaption;PONumberCaptionLbl)
+                    column(PONumberCaption; PONumberCaptionLbl)
                     {
                     }
-                    column(SalesPersonCaption;SalesPersonCaptionLbl)
+                    column(SalesPersonCaption; SalesPersonCaptionLbl)
                     {
                     }
-                    column(ShipCaption;ShipCaptionLbl)
+                    column(ShipCaption; ShipCaptionLbl)
                     {
                     }
-                    column(ShipmentCaption;ShipmentCaptionLbl)
+                    column(ShipmentCaption; ShipmentCaptionLbl)
                     {
                     }
-                    column(ShipmentNumberCaption;ShipmentNumberCaptionLbl)
+                    column(ShipmentNumberCaption; ShipmentNumberCaptionLbl)
                     {
                     }
-                    column(ShipmentDateCaption;ShipmentDateCaptionLbl)
+                    column(ShipmentDateCaption; ShipmentDateCaptionLbl)
                     {
                     }
-                    column(PageCaption;PageCaptionLbl)
+                    column(PageCaption; PageCaptionLbl)
                     {
                     }
-                    column(ShipViaCaption;ShipViaCaptionLbl)
+                    column(ShipViaCaption; ShipViaCaptionLbl)
                     {
                     }
-                    column(FreightCodeCap;FreightCodeLbl)
+                    column(FreightCodeCap; FreightCodeLbl)
                     {
                     }
-                    column(PODateCaption;PODateCaptionLbl)
+                    column(PODateCaption; PODateCaptionLbl)
                     {
                     }
-                    column(ReferenceCaption;ReferenceCaptionLbl)
+                    column(ReferenceCaption; ReferenceCaptionLbl)
                     {
                     }
-                    column(InsideSalespersonCap;Inside_SalesPersonCaptionLbl)
+                    column(InsideSalespersonCap; Inside_SalesPersonCaptionLbl)
                     {
                     }
-                    column(OurOrderNoCaption;OurOrderNoCaptionLbl)
+                    column(OurOrderNoCaption; OurOrderNoCaptionLbl)
                     {
                     }
-                    column(PostingDate_SalesShipmentHeader;"Sales Shipment Header"."Posting Date")
+                    column(PostingDate_SalesShipmentHeader; "Sales Shipment Header"."Posting Date")
                     {
                     }
-                    column(PostingDateCap;PostingDateCap)
+                    column(PostingDateCap; PostingDateCap)
                     {
                     }
-                    dataitem(SalesShptLine;Table2000000026)
+                    dataitem(SalesShptLine; Integer)
                     {
                         DataItemTableView = SORTING(Number);
-                        column(SalesShptLineNumber;Number)
+                        column(SalesShptLineNumber; Number)
                         {
                         }
-                        column(No_TempSalesShipLine;TempSalesShipmentLine."No.")
+                        column(No_TempSalesShipLine; TempSalesShipmentLine."No.")
                         {
                         }
-                        column(DocumentNo_TempSalesShipLine;TempSalesShipmentLine."Document No.")
+                        column(DocumentNo_TempSalesShipLine; TempSalesShipmentLine."Document No.")
                         {
                         }
-                        column(LineNo_TempSalesShipLine;TempSalesShipmentLine."Line No.")
+                        column(LineNo_TempSalesShipLine; TempSalesShipmentLine."Line No.")
                         {
                         }
-                        column(TempSalesShptLineUOM;TempSalesShipmentLine."Unit of Measure")
+                        column(TempSalesShptLineUOM; TempSalesShipmentLine."Unit of Measure")
                         {
                         }
-                        column(TempSalesShptLineQy;TempSalesShipmentLine.Quantity)
+                        column(TempSalesShptLineQy; TempSalesShipmentLine.Quantity)
                         {
-                            DecimalPlaces = 0:5;
+                            DecimalPlaces = 0 : 5;
                         }
-                        column(CrossRefNo_TempSalesShipLine;TempSalesShipmentLine."Cross-Reference No.")
-                        {
-                        }
-                        column(OrderedQuantity;OrderedQuantity)
-                        {
-                            DecimalPlaces = 0:5;
-                        }
-                        column(BackOrderedQuantity;BackOrderedQuantity)
-                        {
-                            DecimalPlaces = 0:5;
-                        }
-                        column(TempSalesShptLineDesc;TempSalesShipmentLine.Description + ' ' + TempSalesShipmentLine."Description 2")
+                        column(CrossRefNo_TempSalesShipLine; TempSalesShipmentLine."Item Reference No.")//Cross- BC Upgrade
                         {
                         }
-                        column(TempSalesShptLineDesc2;TempSalesShipmentLine."Description 2")
+                        column(OrderedQuantity; OrderedQuantity)
+                        {
+                            DecimalPlaces = 0 : 5;
+                        }
+                        column(BackOrderedQuantity; BackOrderedQuantity)
+                        {
+                            DecimalPlaces = 0 : 5;
+                        }
+                        column(TempSalesShptLineDesc; TempSalesShipmentLine.Description + ' ' + TempSalesShipmentLine."Description 2")
                         {
                         }
-                        column(PackageTrackingText;PackageTrackingText)
-                        {
-                            DecimalPlaces = 0:5;
-                        }
-                        column(AsmHeaderExists;AsmHeaderExists)
+                        column(TempSalesShptLineDesc2; TempSalesShipmentLine."Description 2")
                         {
                         }
-                        column(PrintFooter;PrintFooter)
+                        column(PackageTrackingText; PackageTrackingText)
+                        {
+                            //DecimalPlaces = 0 : 5;
+                        }
+                        column(AsmHeaderExists; AsmHeaderExists)
                         {
                         }
-                        column(ItemNoCaption;ItemNoCaptionLbl)
+                        column(PrintFooter; PrintFooter)
                         {
                         }
-                        column(UnitCaption;UnitCaptionLbl)
+                        column(ItemNoCaption; ItemNoCaptionLbl)
                         {
                         }
-                        column(DescriptionCaption;DescriptionCaptionLbl)
+                        column(UnitCaption; UnitCaptionLbl)
                         {
                         }
-                        column(ShippedCaption;ShippedCaptionLbl)
+                        column(DescriptionCaption; DescriptionCaptionLbl)
                         {
                         }
-                        column(OrderedCaption;OrderedCaptionLbl)
+                        column(ShippedCaption; ShippedCaptionLbl)
                         {
                         }
-                        column(BackOrderedCaption;BackOrderedCaptionLbl)
+                        column(OrderedCaption; OrderedCaptionLbl)
                         {
                         }
-                        dataitem("Sales Line Comment Line";Table44)
+                        column(BackOrderedCaption; BackOrderedCaptionLbl)
                         {
-                            DataItemTableView = SORTING(Document Type,No.,Document Line No.,Line No.)
-                                                WHERE(Document Type=CONST(Shipment),
-                                                      Print On Shipment=CONST(Yes));
-                            column(DocumentType_SalesLineCommentLine;"Document Type")
+                        }
+                        dataitem("Sales Line Comment Line"; "Sales Comment Line")
+                        {
+                            DataItemTableView = SORTING("Document Type", "No.", "Document Line No.", "Line No.")
+                                                WHERE("Document Type" = CONST(Shipment));//,"Print On Shipment"=CONST(Yes)); BC Upgrade
+                            column(DocumentType_SalesLineCommentLine; "Document Type")
                             {
                             }
-                            column(No_SalesLineCommentLine;"No.")
+                            column(No_SalesLineCommentLine; "No.")
                             {
                             }
-                            column(LineNo_SalesLineCommentLine;"Line No.")
+                            column(LineNo_SalesLineCommentLine; "Line No.")
                             {
                             }
-                            column(DocumentLineNo_SalesLineCommentLine;"Document Line No.")
+                            column(DocumentLineNo_SalesLineCommentLine; "Document Line No.")
                             {
                             }
-                            column(Comment_SalesLineCommentLine;Comment)
+                            column(Comment_SalesLineCommentLine; Comment)
                             {
                             }
 
                             trigger OnPreDataItem()
                             begin
                                 //>>NIF
-                                SETRANGE("No.",TempSalesShipmentLine."Document No.");
-                                SETRANGE("Document Line No.",TempSalesShipmentLine."Line No.");
+                                SETRANGE("No.", TempSalesShipmentLine."Document No.");
+                                SETRANGE("Document Line No.", TempSalesShipmentLine."Line No.");
                                 //<<NIF
                             end;
                         }
-                        dataitem(AsmLoop;Table2000000026)
+                        dataitem(AsmLoop; Integer)
                         {
                             DataItemTableView = SORTING(Number);
-                            column(PostedAsmLineItemNo;BlanksForIndent + PostedAsmLine."No.")
+                            column(PostedAsmLineItemNo; BlanksForIndent + PostedAsmLine."No.")
                             {
                             }
-                            column(PostedAsmLineDescription;BlanksForIndent + PostedAsmLine.Description)
+                            column(PostedAsmLineDescription; BlanksForIndent + PostedAsmLine.Description)
                             {
                             }
-                            column(PostedAsmLineQuantity;PostedAsmLine.Quantity)
+                            column(PostedAsmLineQuantity; PostedAsmLine.Quantity)
                             {
-                                DecimalPlaces = 0:5;
+                                DecimalPlaces = 0 : 5;
                             }
-                            column(PostedAsmLineUOMCode;GetUnitOfMeasureDescr(PostedAsmLine."Unit of Measure Code"))
+                            column(PostedAsmLineUOMCode; GetUnitOfMeasureDescr(PostedAsmLine."Unit of Measure Code"))
                             {
-                                DecimalPlaces = 0:5;
+                                //DecimalPlaces = 0 : 5;
                             }
-                            column(Number_AsmLoop;Number)
+                            column(Number_AsmLoop; Number)
                             {
                             }
 
                             trigger OnAfterGetRecord()
                             begin
                                 IF Number = 1 THEN
-                                  PostedAsmLine.FINDSET
+                                    PostedAsmLine.FINDSET
                                 ELSE
-                                  PostedAsmLine.NEXT;
+                                    PostedAsmLine.NEXT;
                             end;
 
                             trigger OnPreDataItem()
                             begin
                                 IF NOT DisplayAssemblyInformation THEN
-                                  CurrReport.BREAK;
+                                    CurrReport.BREAK;
                                 IF NOT AsmHeaderExists THEN
-                                  CurrReport.BREAK;
-                                PostedAsmLine.SETRANGE("Document No.",PostedAsmHeader."No.");
-                                SETRANGE(Number,1,PostedAsmLine.COUNT);
+                                    CurrReport.BREAK;
+                                PostedAsmLine.SETRANGE("Document No.", PostedAsmHeader."No.");
+                                SETRANGE(Number, 1, PostedAsmLine.COUNT);
                             end;
                         }
 
                         trigger OnAfterGetRecord()
                         var
-                            SalesShipmentLine: Record "111";
+                            SalesShipmentLine: Record "Sales Shipment Line";
                         begin
                             OnLineNumber := OnLineNumber + 1;
 
-                            WITH TempSalesShipmentLine DO BEGIN
-                              IF OnLineNumber = 1 THEN
-                                FIND('-')
-                              ELSE
-                                NEXT;
+                            IF OnLineNumber = 1 THEN
+                                TempSalesShipmentLine.FIND('-')
+                            ELSE
+                                TempSalesShipmentLine.NEXT;
 
-                              OrderedQuantity := 0;
-                              BackOrderedQuantity := 0;
-                              IF "Order No." = '' THEN
-                                OrderedQuantity := Quantity
-                              ELSE
-                                IF OrderLine.GET(1,"Order No.","Order Line No.") THEN BEGIN
-                                  OrderedQuantity := OrderLine.Quantity;
-                                  BackOrderedQuantity := OrderLine."Outstanding Quantity";
+                            OrderedQuantity := 0;
+                            BackOrderedQuantity := 0;
+                            IF TempSalesShipmentLine."Order No." = '' THEN
+                                OrderedQuantity := TempSalesShipmentLine.Quantity
+                            ELSE
+                                IF OrderLine.GET(1, TempSalesShipmentLine."Order No.", TempSalesShipmentLine."Order Line No.") THEN BEGIN
+                                    OrderedQuantity := OrderLine.Quantity;
+                                    BackOrderedQuantity := OrderLine."Outstanding Quantity";
                                 END ELSE BEGIN
-                                  ReceiptLine.SETCURRENTKEY("Order No.","Order Line No.");
-                                  ReceiptLine.SETRANGE("Order No.","Order No.");
-                                  ReceiptLine.SETRANGE("Order Line No.","Order Line No.");
-                                  ReceiptLine.FIND('-');
-                                  REPEAT
-                                    OrderedQuantity := OrderedQuantity + ReceiptLine.Quantity;
-                                  UNTIL 0 = ReceiptLine.NEXT;
+                                    ReceiptLine.SETCURRENTKEY("Order No.", "Order Line No.");
+                                    ReceiptLine.SETRANGE("Order No.", TempSalesShipmentLine."Order No.");
+                                    ReceiptLine.SETRANGE("Order Line No.", TempSalesShipmentLine."Order Line No.");
+                                    ReceiptLine.FIND('-');
+                                    REPEAT
+                                        OrderedQuantity := OrderedQuantity + ReceiptLine.Quantity;
+                                    UNTIL 0 = ReceiptLine.NEXT;
                                 END;
 
-                              IF Type = 0 THEN BEGIN
+                            IF TempSalesShipmentLine.Type = 0 THEN BEGIN
                                 OrderedQuantity := 0;
                                 BackOrderedQuantity := 0;
-                                "No." := '';
-                                "Unit of Measure" := '';
-                                Quantity := 0;
-                              END ELSE
-                                IF Type = Type::"G/L Account" THEN
-                                  "No." := '';
+                                TempSalesShipmentLine."No." := '';
+                                TempSalesShipmentLine."Unit of Measure" := '';
+                                TempSalesShipmentLine.Quantity := 0;
+                            END ELSE
+                                IF TempSalesShipmentLine.Type = TempSalesShipmentLine.Type::"G/L Account" THEN
+                                    TempSalesShipmentLine."No." := '';
 
-                              PackageTrackingText := '';
-                              IF ("Package Tracking No." <> "Sales Shipment Header"."Package Tracking No.") AND
-                                 ("Package Tracking No." <> '') AND PrintPackageTrackingNos
-                              THEN
-                                PackageTrackingText := Text002 + ' ' + "Package Tracking No.";
+                            PackageTrackingText := '';
+                            IF (TempSalesShipmentLine."Package Tracking No." <> "Sales Shipment Header"."Package Tracking No.") AND
+                               (TempSalesShipmentLine."Package Tracking No." <> '') AND PrintPackageTrackingNos
+                            THEN
+                                PackageTrackingText := Text002 + ' ' + TempSalesShipmentLine."Package Tracking No.";
 
-                              IF DisplayAssemblyInformation THEN
-                                IF TempSalesShipmentLineAsm.GET("Document No.","Line No.") THEN BEGIN
-                                  SalesShipmentLine.GET("Document No.","Line No.");
-                                  AsmHeaderExists := SalesShipmentLine.AsmToShipmentExists(PostedAsmHeader);
+                            IF DisplayAssemblyInformation THEN
+                                IF TempSalesShipmentLineAsm.GET(TempSalesShipmentLine."Document No.", TempSalesShipmentLine."Line No.") THEN BEGIN
+                                    SalesShipmentLine.GET(TempSalesShipmentLine."Document No.", TempSalesShipmentLine."Line No.");
+                                    AsmHeaderExists := SalesShipmentLine.AsmToShipmentExists(PostedAsmHeader);
                                 END;
-                            END;
 
                             IF OnLineNumber = NumberOfLines THEN
-                              PrintFooter := TRUE;
+                                PrintFooter := TRUE;
                         end;
 
                         trigger OnPreDataItem()
                         begin
                             NumberOfLines := TempSalesShipmentLine.COUNT;
-                            SETRANGE(Number,1,NumberOfLines);
+                            SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;
                             PrintFooter := FALSE;
                         end;
@@ -530,22 +523,22 @@ report 50095 "Sales Shipment NV"
                 begin
                     CurrReport.PAGENO := 1;
                     IF CopyNo = NoLoops THEN BEGIN
-                      IF NOT CurrReport.PREVIEW THEN
-                        SalesShipmentPrinted.RUN("Sales Shipment Header");
-                      CurrReport.BREAK;
+                        IF NOT CurrReport.PREVIEW THEN
+                            SalesShipmentPrinted.RUN("Sales Shipment Header");
+                        CurrReport.BREAK;
                     END;
                     CopyNo := CopyNo + 1;
                     IF CopyNo = 1 THEN // Original
-                      CLEAR(CopyTxt)
+                        CLEAR(CopyTxt)
                     ELSE
-                      CopyTxt := Text000;
+                        CopyTxt := Text000;
                 end;
 
                 trigger OnPreDataItem()
                 begin
                     NoLoops := 1 + ABS(NoCopies);
                     IF NoLoops <= 0 THEN
-                      NoLoops := 1;
+                        NoLoops := 1;
                     CopyNo := 0;
                 end;
             }
@@ -553,72 +546,76 @@ report 50095 "Sales Shipment NV"
             trigger OnAfterGetRecord()
             begin
                 IF PrintCompany THEN
-                  IF RespCenter.GET("Responsibility Center") THEN BEGIN
-                    FormatAddress.RespCenter(CompanyAddress,RespCenter);
-                    CompanyInformation."Phone No." := RespCenter."Phone No.";
-                    CompanyInformation."Fax No." := RespCenter."Fax No.";
-                  END;
-                CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    IF RespCenter.GET("Responsibility Center") THEN BEGIN
+                        FormatAddress.RespCenter(CompanyAddress, RespCenter);
+                        CompanyInformation."Phone No." := RespCenter."Phone No.";
+                        CompanyInformation."Fax No." := RespCenter."Fax No.";
+                    END;
+
+                Language.Reset();//BC Upgrade 2025-06-23
+                Language.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language."Windows Language ID";//BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 IF "Salesperson Code" = '' THEN
-                  CLEAR(SalesPurchPerson)
+                    CLEAR(SalesPurchPerson)
                 ELSE
-                  SalesPurchPerson.GET("Salesperson Code");
+                    SalesPurchPerson.GET("Salesperson Code");
                 //>>NIF
                 IF "Inside Salesperson Code" = '' THEN
-                  CLEAR(SalesPurchPerson2)
+                    CLEAR(SalesPurchPerson2)
                 ELSE
-                  SalesPurchPerson2.GET("Inside Salesperson Code");
+                    SalesPurchPerson2.GET("Inside Salesperson Code");
                 //<<NIF
 
                 //>> RTT 09-20-05
                 IF NOT FreightCode.GET("Freight Code") THEN
-                  CLEAR(FreightCode);
+                    CLEAR(FreightCode);
                 //<< RTT 09-20-05
 
                 IF "Shipment Method Code" = '' THEN
-                  CLEAR(ShipmentMethod)
+                    CLEAR(ShipmentMethod)
                 ELSE
-                  ShipmentMethod.GET("Shipment Method Code");
+                    ShipmentMethod.GET("Shipment Method Code");
 
                 IF "Sell-to Customer No." = '' THEN BEGIN
-                  "Bill-to Name" := Text009;
-                  "Ship-to Name" := Text009;
+                    "Bill-to Name" := Text009;
+                    "Ship-to Name" := Text009;
                 END;
                 IF NOT Cust.GET("Sell-to Customer No.") THEN
-                  CLEAR(Cust);
+                    CLEAR(Cust);
 
-                FormatAddress.SalesShptBillTo(BillToAddress,"Sales Shipment Header");
-                FormatAddress.SalesShptShipTo(ShipToAddress,"Sales Shipment Header");
+                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, "Sales Shipment Header");
+                FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");
 
                 ShippingAgentCodeLabel := '';
                 ShippingAgentCodeText := '';
                 PackageTrackingNoLabel := '';
                 PackageTrackingNoText := '';
                 IF PrintPackageTrackingNos THEN BEGIN
-                  ShippingAgentCodeLabel := Text003;
-                  ShippingAgentCodeText := "Sales Shipment Header"."Shipping Agent Code";
-                  PackageTrackingNoLabel := Text001;
-                  PackageTrackingNoText := "Sales Shipment Header"."Package Tracking No.";
+                    ShippingAgentCodeLabel := Text003;
+                    ShippingAgentCodeText := "Sales Shipment Header"."Shipping Agent Code";
+                    PackageTrackingNoLabel := Text001;
+                    PackageTrackingNoText := "Sales Shipment Header"."Package Tracking No.";
                 END;
                 IF LogInteraction THEN
-                  IF NOT CurrReport.PREVIEW THEN
-                    SegManagement.LogDocument(
-                      5,"No.",0,0,DATABASE::Customer,"Sell-to Customer No.",
-                      "Salesperson Code","Campaign No.","Posting Description",'');
+                    IF NOT CurrReport.PREVIEW THEN
+                        SegManagement.LogDocument(
+                          5, "No.", 0, 0, DATABASE::Customer, "Sell-to Customer No.",
+                          "Salesperson Code", "Campaign No.", "Posting Description", '');
                 TaxRegNo := '';
                 TaxRegLabel := '';
                 IF "Tax Area Code" <> '' THEN BEGIN
-                  TaxArea.GET("Tax Area Code");
-                  CASE TaxArea."Country/Region" OF
-                    TaxArea."Country/Region"::US:
-                      ;
-                    TaxArea."Country/Region"::CA:
-                      BEGIN
-                        TaxRegNo := CompanyInformation."VAT Registration No.";
-                        TaxRegLabel := CompanyInformation.FIELDCAPTION("VAT Registration No.");
-                      END;
-                  END;
+                    TaxArea.GET("Tax Area Code");
+                    CASE TaxArea."Country/Region" OF
+                        TaxArea."Country/Region"::US:
+                            ;
+                        TaxArea."Country/Region"::CA:
+                            BEGIN
+                                TaxRegNo := CompanyInformation."VAT Registration No.";
+                                TaxRegLabel := CompanyInformation.FIELDCAPTION("VAT Registration No.");
+                            END;
+                    END;
                 END;
             end;
         }
@@ -635,24 +632,24 @@ report 50095 "Sales Shipment NV"
                 group(Options)
                 {
                     Caption = 'Options';
-                    field(NoCopies;NoCopies)
+                    field(NoCopies; NoCopies)
                     {
                         Caption = 'Number of Copies';
                     }
-                    field(PrintCompanyAddress;PrintCompany)
+                    field(PrintCompanyAddress; PrintCompany)
                     {
                         Caption = 'Print Company Address';
                     }
-                    field(PrintPackageTrackingNos;PrintPackageTrackingNos)
+                    field(PrintPackageTrackingNos; PrintPackageTrackingNos)
                     {
                         Caption = 'Print Package Tracking Nos.';
                     }
-                    field(LogInteraction;LogInteraction)
+                    field(LogInteraction; LogInteraction)
                     {
                         Caption = 'Log Interaction';
                         Enabled = LogInteractionEnable;
                     }
-                    field(DisplayAsmInfo;DisplayAssemblyInformation)
+                    field(DisplayAsmInfo; DisplayAssemblyInformation)
                     {
                         Caption = 'Show Assembly Components';
                     }
@@ -688,82 +685,82 @@ report 50095 "Sales Shipment NV"
         PrintCompany := TRUE; //>>NIF
 
         CASE SalesSetup."Logo Position on Documents" OF
-          SalesSetup."Logo Position on Documents"::"No Logo":
-            ;
-          SalesSetup."Logo Position on Documents"::Left:
-            BEGIN
-              CompanyInfo3.GET;
-              CompanyInfo3.CALCFIELDS(Picture);
-            END;
-          SalesSetup."Logo Position on Documents"::Center:
-            BEGIN
-              CompanyInfo1.GET;
-              CompanyInfo1.CALCFIELDS(Picture);
-            END;
-          SalesSetup."Logo Position on Documents"::Right:
-            BEGIN
-              CompanyInfo2.GET;
-              CompanyInfo2.CALCFIELDS(Picture);
-            END;
+            SalesSetup."Logo Position on Documents"::"No Logo":
+                ;
+            SalesSetup."Logo Position on Documents"::Left:
+                BEGIN
+                    CompanyInfo3.GET;
+                    CompanyInfo3.CALCFIELDS(Picture);
+                END;
+            SalesSetup."Logo Position on Documents"::Center:
+                BEGIN
+                    CompanyInfo1.GET;
+                    CompanyInfo1.CALCFIELDS(Picture);
+                END;
+            SalesSetup."Logo Position on Documents"::Right:
+                BEGIN
+                    CompanyInfo2.GET;
+                    CompanyInfo2.CALCFIELDS(Picture);
+                END;
         END;
     end;
 
     trigger OnPreReport()
     begin
         IF NOT CurrReport.USEREQUESTPAGE THEN
-          InitLogInteraction;
+            InitLogInteraction;
 
         CompanyInformation.GET;
         CompanyInformation.CALCFIELDS("Document Logo");    //>>NIF
         SalesSetup.GET;
 
         CASE SalesSetup."Logo Position on Documents" OF
-          SalesSetup."Logo Position on Documents"::"No Logo":
-            ;
-          SalesSetup."Logo Position on Documents"::Left:
-            CompanyInformation.CALCFIELDS(Picture);
-          SalesSetup."Logo Position on Documents"::Center:
-            BEGIN
-              CompanyInfo1.GET;
-              CompanyInfo1.CALCFIELDS(Picture);
-            END;
-          SalesSetup."Logo Position on Documents"::Right:
-            BEGIN
-              CompanyInfo2.GET;
-              CompanyInfo2.CALCFIELDS(Picture);
-            END;
+            SalesSetup."Logo Position on Documents"::"No Logo":
+                ;
+            SalesSetup."Logo Position on Documents"::Left:
+                CompanyInformation.CALCFIELDS(Picture);
+            SalesSetup."Logo Position on Documents"::Center:
+                BEGIN
+                    CompanyInfo1.GET;
+                    CompanyInfo1.CALCFIELDS(Picture);
+                END;
+            SalesSetup."Logo Position on Documents"::Right:
+                BEGIN
+                    CompanyInfo2.GET;
+                    CompanyInfo2.CALCFIELDS(Picture);
+                END;
         END;
 
         IF PrintCompany THEN
-          FormatAddress.Company(CompanyAddress,CompanyInformation)
+            FormatAddress.Company(CompanyAddress, CompanyInformation)
         ELSE
-          CLEAR(CompanyAddress);
+            CLEAR(CompanyAddress);
     end;
 
     var
         OrderedQuantity: Decimal;
         BackOrderedQuantity: Decimal;
-        ShipmentMethod: Record "10";
-        ReceiptLine: Record "111";
-        OrderLine: Record "37";
-        SalesPurchPerson: Record "13";
-        CompanyInformation: Record "79";
-        CompanyInfo1: Record "79";
-        CompanyInfo2: Record "79";
-        CompanyInfo3: Record "79";
-        CompanyInfo: Record "79";
-        SalesSetup: Record "311";
-        TempSalesShipmentLine: Record "111" temporary;
-        TempSalesShipmentLineAsm: Record "111" temporary;
-        RespCenter: Record "5714";
-        Language: Record "8";
-        TaxArea: Record "318";
-        Cust: Record "18";
-        PostedAsmHeader: Record "910";
-        PostedAsmLine: Record "911";
-        CompanyAddress: array [8] of Text[50];
-        BillToAddress: array [8] of Text[50];
-        ShipToAddress: array [8] of Text[50];
+        ShipmentMethod: Record "Shipment Method";
+        ReceiptLine: Record "Sales Shipment Line";
+        OrderLine: Record "Sales Line";
+        SalesPurchPerson: Record "Salesperson/Purchaser";
+        CompanyInformation: Record "Company Information";
+        CompanyInfo1: Record "Company Information";
+        CompanyInfo2: Record "Company Information";
+        CompanyInfo3: Record "Company Information";
+        CompanyInfo: Record "Company Information";
+        SalesSetup: Record "Sales & Receivables Setup";
+        TempSalesShipmentLine: Record "Sales Shipment Line" temporary;
+        TempSalesShipmentLineAsm: Record "Sales Shipment Line" temporary;
+        RespCenter: Record "Responsibility Center";
+        Language: Record Language;
+        TaxArea: Record "Tax Area";
+        Cust: Record Customer;
+        PostedAsmHeader: Record "Posted Assembly Header";
+        PostedAsmLine: Record "Posted Assembly Line";
+        CompanyAddress: array[8] of Text[50];
+        BillToAddress: array[8] of Text[50];
+        ShipToAddress: array[8] of Text[50];
         CopyTxt: Text[10];
         PrintCompany: Boolean;
         PrintFooter: Boolean;
@@ -774,15 +771,15 @@ report 50095 "Sales Shipment NV"
         OnLineNumber: Integer;
         HighestLineNo: Integer;
         SpacePointer: Integer;
-        SalesShipmentPrinted: Codeunit "314";
-        FormatAddress: Codeunit "365";
+        SalesShipmentPrinted: Codeunit "Sales Shpt.-Printed";
+        FormatAddress: Codeunit "Format Address";
         PackageTrackingText: Text[50];
         PrintPackageTrackingNos: Boolean;
         PackageTrackingNoText: Text[50];
         PackageTrackingNoLabel: Text[50];
         ShippingAgentCodeText: Text[50];
         ShippingAgentCodeLabel: Text[50];
-        SegManagement: Codeunit "5051";
+        SegManagement: Codeunit SegManagement;
         LogInteraction: Boolean;
         Text000: Label 'COPY';
         Text001: Label 'Tracking No.';
@@ -817,28 +814,28 @@ report 50095 "Sales Shipment NV"
         PostingDateCap: Label 'Posting Date';
         ReferenceCaptionLbl: Label 'Reference';
         ">>NIF": Integer;
-        FreightCode: Record "50000";
+        FreightCode: Record "Freight Code";
         FreightCodeLbl: Label 'Freight Code';
         Inside_SalesPersonCaptionLbl: Label 'Inside SalesPerson';
-        SalesPurchPerson2: Record "13";
+        SalesPurchPerson2: Record "Salesperson/Purchaser";
 
     procedure InitLogInteraction()
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(5) <> '';
+        LogInteraction := SegManagement.FindInteractionTemplateCode("Interaction Log Entry Document Type"::"Sales Shpt. Note") <> ''; //FindInteractTmplCode(5) <> ''; BC Upgrade
     end;
 
     procedure GetUnitOfMeasureDescr(UOMCode: Code[10]): Text[10]
     var
-        UnitOfMeasure: Record "204";
+        UnitOfMeasure: Record "Unit of Measure";
     begin
         IF NOT UnitOfMeasure.GET(UOMCode) THEN
-          EXIT(UOMCode);
+            EXIT(UOMCode);
         EXIT(UnitOfMeasure.Description);
     end;
 
     procedure BlanksForIndent(): Text[10]
     begin
-        EXIT(PADSTR('',2,' '));
+        EXIT(PADSTR('', 2, ' '));
     end;
 }
 

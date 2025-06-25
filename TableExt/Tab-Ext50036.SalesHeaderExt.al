@@ -96,5 +96,8 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
 
         field(50004; "Third Party Ship. Account No."; Code[20])//BC Upgrade 14000717->50004
         { }
+
+        field(50008; "Inside Salesperson Code"; Code[10])//BC Upgrade 14017617->50008
+        { }
     }
 }

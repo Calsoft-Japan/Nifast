@@ -2,124 +2,124 @@ report 50081 "Blocked Items"
 {
     // NF1.00:CIS.NU  09-15-15 Merged during upgrade
     DefaultLayout = RDLC;
-    RDLCLayout = './Blocked Items.rdlc';
+    RDLCLayout = '.\RDLC\Blocked Items.rdlc';
 
 
     dataset
     {
-        dataitem(DataItem8400;Table6505)
+        dataitem("Lot No. Information"; "Lot No. Information")
         {
-            DataItemTableView = SORTING(Item No.,Mfg. Lot No.)
-                                WHERE(Blocked=FILTER(Yes),
-                                      Inventory=FILTER(>0));
+            DataItemTableView = SORTING("Item No.", "Mfg. Lot No.")
+                                WHERE(Blocked = const(true),//FILTER(Yes) BC Upgrade
+                                      Inventory = FILTER(> 0));
             RequestFilterFields = "Item No.";
-            column(FORMAT_TODAY_0_4_;FORMAT(TODAY,0,4))
+            column(FORMAT_TODAY_0_4_; FORMAT(TODAY, 0, 4))
             {
             }
-            column(COMPANYNAME;COMPANYNAME)
+            column(COMPANYNAME; COMPANYNAME)
             {
             }
-            column(CurrReport_PAGENO;CurrReport.PAGENO)
+            column(CurrReport_PAGENO; CurrReport.PAGENO)
             {
             }
-            column(USERID;USERID)
+            column(USERID; USERID)
             {
             }
-            column(Lot_No__Information__Lot_No__Information__Inventory;"Lot No. Information".Inventory)
+            column(Lot_No__Information__Lot_No__Information__Inventory; "Lot No. Information".Inventory)
             {
-                DecimalPlaces = 0:0;
+                DecimalPlaces = 0 : 0;
             }
-            column(Lot_No__Information__Lot_No__Information___Mfg__Lot_No__;"Lot No. Information"."Mfg. Lot No.")
-            {
-            }
-            column(Lot_No__Information__Lot_No__Information___Lot_Creation_Date_;"Lot No. Information"."Lot Creation Date")
+            column(Lot_No__Information__Lot_No__Information___Mfg__Lot_No__; "Lot No. Information"."Mfg. Lot No.")
             {
             }
-            column(Lot_No__Information__Lot_No__Information__Blocked;"Lot No. Information".Blocked)
+            column(Lot_No__Information__Lot_No__Information___Lot_Creation_Date_; "Lot No. Information"."Lot Creation Date")
             {
             }
-            column(Lot_No__Information__Lot_No__Information___Lot_No__;"Lot No. Information"."Lot No.")
+            column(Lot_No__Information__Lot_No__Information__Blocked; "Lot No. Information".Blocked)
             {
             }
-            column(Lot_No__Information__Lot_No__Information___Item_No__;"Lot No. Information"."Item No.")
+            column(Lot_No__Information__Lot_No__Information___Lot_No__; "Lot No. Information"."Lot No.")
             {
             }
-            column(Lot_No__Information__Lot_No__Information___Inspection_Comments_;"Lot No. Information"."Inspection Comments")
+            column(Lot_No__Information__Lot_No__Information___Item_No__; "Lot No. Information"."Item No.")
             {
             }
-            column(Value_Entry___Cost_Amount__Actual__;"Value Entry"."Cost Amount (Actual)")
+            column(Lot_No__Information__Lot_No__Information___Inspection_Comments_; "Lot No. Information"."Inspection Comments")
             {
             }
-            column(Blocked_ItemsCaption;Blocked_ItemsCaptionLbl)
+            column(Value_Entry___Cost_Amount__Actual__; "Value Entry"."Cost Amount (Actual)")
             {
             }
-            column(CurrReport_PAGENOCaption;CurrReport_PAGENOCaptionLbl)
+            column(Blocked_ItemsCaption; Blocked_ItemsCaptionLbl)
             {
             }
-            column(Item_No_Caption;Item_No_CaptionLbl)
+            column(CurrReport_PAGENOCaption; CurrReport_PAGENOCaptionLbl)
             {
             }
-            column(Div_Caption;Div_CaptionLbl)
+            column(Item_No_Caption; Item_No_CaptionLbl)
             {
             }
-            column(Lot_No_Caption;Lot_No_CaptionLbl)
+            column(Div_Caption; Div_CaptionLbl)
             {
             }
-            column(BlockedCaption;BlockedCaptionLbl)
+            column(Lot_No_Caption; Lot_No_CaptionLbl)
             {
             }
-            column(Creation_DateCaption;Creation_DateCaptionLbl)
+            column(BlockedCaption; BlockedCaptionLbl)
             {
             }
-            column(Mfg__Lot_No_Caption;Mfg__Lot_No_CaptionLbl)
+            column(Creation_DateCaption; Creation_DateCaptionLbl)
             {
             }
-            column(Inspection_CommentsCaption;Inspection_CommentsCaptionLbl)
+            column(Mfg__Lot_No_Caption; Mfg__Lot_No_CaptionLbl)
             {
             }
-            column(CostCaption;CostCaptionLbl)
+            column(Inspection_CommentsCaption; Inspection_CommentsCaptionLbl)
             {
             }
-            column(ValueCaption;ValueCaptionLbl)
+            column(CostCaption; CostCaptionLbl)
             {
             }
-            column(InventoryCaption;InventoryCaptionLbl)
+            column(ValueCaption; ValueCaptionLbl)
             {
             }
-            column(Lot_No__Information_Variant_Code;"Variant Code")
+            column(InventoryCaption; InventoryCaptionLbl)
             {
             }
-            column(FilterString;FilterString)
+            column(Lot_No__Information_Variant_Code; "Variant Code")
             {
             }
-            dataitem(DataItem7209;Table32)
+            column(FilterString; FilterString)
             {
-                DataItemLink = Item No.=FIELD(Item No.),
-                               Lot No.=FIELD(Lot No.);
-                DataItemTableView = SORTING(Item No.,Variant Code,Open,Positive,Location Code,Posting Date,Expiration Date,Lot No.,Serial No.,QC Hold);
-                column(Item_Ledger_Entry__Global_Dimension_1_Code_;"Global Dimension 1 Code")
+            }
+            dataitem("Item Ledger Entry"; "Item Ledger Entry")
+            {
+                DataItemLink = "Item No." = FIELD("Item No."),
+                               "Lot No." = FIELD("Lot No.");
+                DataItemTableView = SORTING("Item No.", "Variant Code", Open, Positive, "Location Code", "Posting Date", "Expiration Date", "Lot No.", "Serial No.");//, "QC Hold"); BC Upgrade
+                column(Item_Ledger_Entry__Global_Dimension_1_Code_; "Global Dimension 1 Code")
                 {
                 }
-                column(Item_Ledger_Entry_Entry_No_;"Entry No.")
+                column(Item_Ledger_Entry_Entry_No_; "Entry No.")
                 {
                 }
-                column(Item_Ledger_Entry_Item_No_;"Item No.")
+                column(Item_Ledger_Entry_Item_No_; "Item No.")
                 {
                 }
-                column(Item_Ledger_Entry_Lot_No_;"Lot No.")
+                column(Item_Ledger_Entry_Lot_No_; "Lot No.")
                 {
                 }
-                dataitem(DataItem8894;Table5802)
+                dataitem("Value Entry"; "Value Entry")
                 {
-                    DataItemLink = Item Ledger Entry No.=FIELD(Entry No.);
-                    DataItemTableView = SORTING(Item No.,Item Ledger Entry Type,Posting Date,Location Code,Source No.);
-                    column(Value_Entry__Cost_Amount__Actual__;"Cost Amount (Actual)")
+                    DataItemLink = "Item Ledger Entry No." = FIELD("Entry No.");
+                    DataItemTableView = SORTING("Item No.", "Item Ledger Entry Type", "Posting Date", "Location Code", "Source No.");
+                    column(Value_Entry__Cost_Amount__Actual__; "Cost Amount (Actual)")
                     {
                     }
-                    column(Value_Entry_Entry_No_;"Entry No.")
+                    column(Value_Entry_Entry_No_; "Entry No.")
                     {
                     }
-                    column(Value_Entry_Item_Ledger_Entry_No_;"Item Ledger Entry No.")
+                    column(Value_Entry_Item_Ledger_Entry_No_; "Item Ledger Entry No.")
                     {
                     }
 
@@ -130,24 +130,24 @@ report 50081 "Blocked Items"
 
                     trigger OnPostDataItem()
                     begin
-                           CLEAR("Cost per Unit");
+                        CLEAR("Cost per Unit");
 
                         //>> NF1.00:CIS.NU 09-15-15
                         IF TotalCostValueEntry <> 0 THEN BEGIN
-                          ExcelBuf.NewRow;
-                          ExcelBuf.AddColumn("Item Ledger Entry"."Global Dimension 1 Code",FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Date);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'#,##0.00',ExcelBuf."Cell Type"::Number);
-                          ExcelBuf.AddColumn(TotalCostValueEntry,FALSE,'',FALSE,FALSE,FALSE,'#,##0.00',ExcelBuf."Cell Type"::Number);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-                          ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-                          ExcelBuf.NewRow;
+                            ExcelBuf.NewRow;
+                            ExcelBuf.AddColumn("Item Ledger Entry"."Global Dimension 1 Code", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Date);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '#,##0.00', ExcelBuf."Cell Type"::Number);
+                            ExcelBuf.AddColumn(TotalCostValueEntry, FALSE, '', FALSE, FALSE, FALSE, '#,##0.00', ExcelBuf."Cell Type"::Number);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                            ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+                            ExcelBuf.NewRow;
                         END;
                         //<< NF1.00:CIS.NU 09-15-15
                     end;
@@ -159,7 +159,7 @@ report 50081 "Blocked Items"
                         //Cost:="Lot No."
 
                         //END;
-                         CurrReport.CREATETOTALS("Cost Amount (Actual)");
+                        CurrReport.CREATETOTALS("Cost Amount (Actual)");
 
 
                         // Cost:="Value Entry"."Cost per Unit";
@@ -169,7 +169,7 @@ report 50081 "Blocked Items"
 
                 trigger OnPostDataItem()
                 begin
-                       Cost:="Value Entry"."Cost per Unit";
+                    Cost := "Value Entry"."Cost per Unit";
                 end;
             }
 
@@ -178,7 +178,7 @@ report 50081 "Blocked Items"
                 Div1 := "Item Ledger Entry"."Global Dimension 1 Code";
                 //>> NF1.00:CIS.NU 09-15-15
                 IF ExportToExcel THEN
-                  MakeExcelDataBody;
+                    MakeExcelDataBody;
                 //<< NF1.00:CIS.NU 09-15-15
             end;
 
@@ -186,7 +186,7 @@ report 50081 "Blocked Items"
             begin
                 //>> NF1.00:CIS.NU 09-15-15
                 IF ExportToExcel THEN
-                  CreateExcelWorkBook;
+                    CreateExcelWorkBook;
                 //<< NF1.00:CIS.NU 09-15-15
             end;
 
@@ -209,7 +209,7 @@ report 50081 "Blocked Items"
                 group(Options)
                 {
                     Caption = 'Options';
-                    field(ExportToExcel;ExportToExcel)
+                    field(ExportToExcel; ExportToExcel)
                     {
                         Caption = 'Export To Excel';
                     }
@@ -232,14 +232,14 @@ report 50081 "Blocked Items"
         //>> NF1.00:CIS.NU 09-15-15
         FilterString := "Lot No. Information".GETFILTERS;
         IF ExportToExcel THEN
-          MakeExcelDataInfo;
+            MakeExcelDataInfo;
         //<< NF1.00:CIS.NU 09-15-15
     end;
 
     var
         LastFieldNo: Integer;
         FooterPrinted: Boolean;
-        ExcelBuf: Record "370" temporary;
+        ExcelBuf: Record "Excel Buffer" temporary;
         ExportToExcel: Boolean;
         MainTitle: Text[30];
         Cost: Decimal;
@@ -271,24 +271,24 @@ report 50081 "Blocked Items"
     begin
         //>> NF1.00:CIS.NU 09-15-15
         ExcelBuf.SetUseInfoSheet;
-        ExcelBuf.AddInfoColumn(FORMAT(Text50000),FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddInfoColumn(COMPANYNAME,FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(FORMAT(Text50000), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(COMPANYNAME, FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
         ExcelBuf.NewRow;
-        ExcelBuf.AddInfoColumn(FORMAT(Text50001),FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddInfoColumn(REPORT::"Blocked Items",FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(FORMAT(Text50001), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(REPORT::"Blocked Items", FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
         ExcelBuf.NewRow;
-        ExcelBuf.AddInfoColumn(FORMAT(Text50002),FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddInfoColumn(Blocked_ItemsCaptionLbl,FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(FORMAT(Text50002), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(Blocked_ItemsCaptionLbl, FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
         ExcelBuf.NewRow;
-        ExcelBuf.AddInfoColumn(FORMAT(Text50003),FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddInfoColumn(USERID,FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(FORMAT(Text50003), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(USERID, FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
         ExcelBuf.NewRow;
-        ExcelBuf.AddInfoColumn(FORMAT(Text50004),FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddInfoColumn(TODAY,FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddInfoColumn(TIME,FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(FORMAT(Text50004), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(TODAY, FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(TIME, FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
         ExcelBuf.NewRow;
-        ExcelBuf.AddInfoColumn(FORMAT(Text50005),FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddInfoColumn(FilterString,FALSE,'',TRUE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(FORMAT(Text50005), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddInfoColumn(FilterString, FALSE, TRUE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
         ExcelBuf.ClearNewRow;
         MakeExcelDataHeader;
         //<< NF1.00:CIS.NU 09-15-15
@@ -298,18 +298,18 @@ report 50081 "Blocked Items"
     begin
         //>> NF1.00:CIS.NU 09-15-15
         ExcelBuf.NewRow;
-        ExcelBuf.AddColumn(Div_CaptionLbl,FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Item No."),FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Lot No."),FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION(Blocked),FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Lot Creation Date"),FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Mfg. Lot No."),FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION(Inventory),FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn(CostCaptionLbl,FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn(ValueCaptionLbl,FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn(Text50006,FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn(Text50007,FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Inspection Comments"),FALSE,'',TRUE,FALSE,TRUE,'',ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn(Div_CaptionLbl, FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Item No."), FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Lot No."), FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION(Blocked), FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Lot Creation Date"), FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Mfg. Lot No."), FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION(Inventory), FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn(CostCaptionLbl, FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn(ValueCaptionLbl, FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn(Text50006, FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn(Text50007, FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information".FIELDCAPTION("Inspection Comments"), FALSE, '', TRUE, FALSE, TRUE, '', ExcelBuf."Cell Type"::Text);
         //<< NF1.00:CIS.NU 09-15-15
     end;
 
@@ -317,25 +317,29 @@ report 50081 "Blocked Items"
     begin
         //>> NF1.00:CIS.NU 09-15-15
         ExcelBuf.NewRow;
-        ExcelBuf.AddColumn("Item Ledger Entry"."Global Dimension 1 Code",FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information"."Item No.",FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information"."Lot No.",FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information".Blocked,FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information"."Lot Creation Date",FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Date);
-        ExcelBuf.AddColumn("Lot No. Information"."Mfg. Lot No.",FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information".Inventory,FALSE,'',FALSE,FALSE,FALSE,'#,##0.00',ExcelBuf."Cell Type"::Number);
-        ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'#,##0.00',ExcelBuf."Cell Type"::Number);
-        ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn('',FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
-        ExcelBuf.AddColumn("Lot No. Information"."Inspection Comments",FALSE,'',FALSE,FALSE,FALSE,'',ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Item Ledger Entry"."Global Dimension 1 Code", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information"."Item No.", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information"."Lot No.", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information".Blocked, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information"."Lot Creation Date", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Date);
+        ExcelBuf.AddColumn("Lot No. Information"."Mfg. Lot No.", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information".Inventory, FALSE, '', FALSE, FALSE, FALSE, '#,##0.00', ExcelBuf."Cell Type"::Number);
+        ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '#,##0.00', ExcelBuf."Cell Type"::Number);
+        ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn('', FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
+        ExcelBuf.AddColumn("Lot No. Information"."Inspection Comments", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
         //<< NF1.00:CIS.NU 09-15-15
     end;
 
     local procedure CreateExcelWorkBook()
     begin
         //>> NF1.00:CIS.NU 09-15-15
-        ExcelBuf.CreateBookAndOpenExcel(Text50000,Text50002,COMPANYNAME,USERID);
+        // ExcelBuf.CreateBookAndOpenExcel(Text50000, Text50002, COMPANYNAME, USERID); BC Upgrade
+        ExcelBuf.CreateNewBook(Text50000);
+        ExcelBuf.WriteSheet(Text50002, COMPANYNAME, USERID);
+        ExcelBuf.CloseBook();
+        ExcelBuf.OpenExcel();
         ERROR('');
         //<< NF1.00:CIS.NU 09-15-15
     end;

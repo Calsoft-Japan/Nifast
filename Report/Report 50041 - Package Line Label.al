@@ -41,7 +41,7 @@ report 50041 "Package Line Label"
 
             trigger OnPreDataItem()
             begin
-                PackingStation.GetPackingStation;
+                //PackingStation.GetPackingStation;BC Upgrade can not do local file access
 
                 LabelHeader.GET(LabelHeader.Code);
 
@@ -139,14 +139,16 @@ report 50041 "Package Line Label"
         LabelLine: Record "Label Line";
         Package: Record Package;
         PostedPackage: Record "Posted Package";
+        /* BC Upgrade can not do local file access
         LabelMgt: Codeunit "14000841";
-        FieldValue: Codeunit "14000843";
+        FieldValue: Codeunit "14000843"; */
         Window: Dialog;
         NoOfCopies: Integer;
         "<<IST 7741>>": Integer;
         QtyToPrint: Decimal;
-        LabelMgtNIF: Codeunit "50017";
-        DotNETAutomationMgt: Codeunit "37031001";
+    /* BC Upgrade can not do local file access
+    LabelMgtNIF: Codeunit "50017";
+    DotNETAutomationMgt: Codeunit "37031001"; */
 
     procedure PrintPackageLine(Posted: Boolean)
     var
@@ -158,6 +160,7 @@ report 50041 "Package Line Label"
         "<<NIF_LV>>": Integer;
         OutputFileFTP: File;
     begin
+        /* BC Upgrade can not do local file access
         CLEAR(FieldValue);
         //>> NIF
         //FieldValue.Receive_14000601(Receive,0);
@@ -258,7 +261,7 @@ report 50041 "Package Line Label"
               PackingStation."Label Buffer File",
               STRSUBSTNO('%1 %2 Label', "Package Line".Type, "Package Line"."No."), 2,
               PackingStation."Std. Pack. Label Printer Port", PackingStation.Code,
-              NOT PackingStation."No Label Printer", PackingStation."Do Not Import Label File");
+              NOT PackingStation."No Label Printer", PackingStation."Do Not Import Label File"); */
     end;
 
     procedure LabelFormattingHelp()
