@@ -19,7 +19,7 @@ report 50073 "Receiving Report - Trans Rcpt"
             column(USERID; USERID)
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PAGENO)
+            column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
             {
             }
             column(TIME; TIME)

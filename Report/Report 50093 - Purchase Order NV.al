@@ -110,7 +110,7 @@ report 50093 "Purchase Order NV"
             column(Purchase_Header___Order_Date_; "Order Date")
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PAGENO)
+            column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
             {
             }
             column(CompanyAddress_7_; CompanyAddress[7])
@@ -338,7 +338,7 @@ report 50093 "Purchase Order NV"
                         column(TempPurchLine__Revision_No__; TempPurchLine."Revision No.")
                         {
                         }
-                        column(Transferred_to_page_____FORMAT_CurrReport_PAGENO___1_; 'Transferred to page ' + FORMAT(CurrReport.PAGENO + 1))
+                        column(Transferred_to_page_____FORMAT_CurrReport_PAGENO___1_; 'Transferred to page ')// + FORMAT(CurrReport.PAGENO + 1))BC Upgrade
                         {
                         }
                         column(AmountExclInvDisc_Control79; AmountExclInvDisc)
@@ -475,7 +475,7 @@ report 50093 "Purchase Order NV"
                             ELSE
                                 ItemNumberToPrint := TempPurchLine."No.";
 
-                            IF TempPurchLine.Type = 0 THEN BEGIN
+                            IF TempPurchLine.Type = TempPurchLine.Type::" " THEN BEGIN
                                 ItemNumberToPrint := '';
                                 TempPurchLine."Unit of Measure" := '';
                                 TempPurchLine.Amount := 0;
@@ -530,7 +530,7 @@ report 50093 "Purchase Order NV"
 
                         trigger OnPreDataItem()
                         begin
-                            CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempPurchLine.Amount, TempPurchLine."Amount Including VAT");
+                            //CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempPurchLine.Amount, TempPurchLine."Amount Including VAT");BC Upgrade
                             NumberOfLines := TempPurchLine.COUNT;
                             SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;
@@ -759,7 +759,7 @@ report 50093 "Purchase Order NV"
         SalesPurchPerson: Record "Salesperson/Purchaser";
         CompanyInformation: Record "Company Information";
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Vend: Record Vendor;
@@ -799,9 +799,9 @@ report 50093 "Purchase Order NV"
         Text007: Label 'Total Tax:';
         Text008: Label 'Tax:';
         UseExternalTaxEngine: Boolean;
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         ArchiveDocumentEnable: Boolean;
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
         ID: Code[50];
         TempPurchLine: Record "Purchase Line" temporary;

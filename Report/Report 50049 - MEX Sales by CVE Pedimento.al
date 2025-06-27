@@ -15,7 +15,7 @@ report 50049 "MEX Sales by CVE Pedimento"
             column(TIME; TIME)
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PAGENO)
+            column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
             {
             }
             column(FORMAT_TODAY_0_4_; FORMAT(TODAY, 0, 4))
@@ -122,7 +122,7 @@ report 50049 "MEX Sales by CVE Pedimento"
 
                     trigger OnPreDataItem()
                     begin
-                        CurrReport.CREATETOTALS(SalesAmount);
+                        //CurrReport.CREATETOTALS(SalesAmount);BC Upgrade
                         "Item Ledger Entry".SETRANGE("CVE Pedimento", TempCVEPedimento.Code);
                     end;
                 }
@@ -134,7 +134,7 @@ report 50049 "MEX Sales by CVE Pedimento"
 
                 trigger OnPreDataItem()
                 begin
-                    CurrReport.CREATETOTALS(SalesAmount);
+                    //CurrReport.CREATETOTALS(SalesAmount);BC Upgrade
                 end;
             }
 
@@ -152,7 +152,7 @@ report 50049 "MEX Sales by CVE Pedimento"
 
                 SETRANGE(Number, 1, TempCVEPedimento.COUNT);
                 d.OPEN('Now reading #1### #2#########');
-                CurrReport.CREATETOTALS(SalesAmount);
+                //CurrReport.CREATETOTALS(SalesAmount);BC Upgrade
             end;
         }
     }

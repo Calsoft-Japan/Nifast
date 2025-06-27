@@ -33,7 +33,7 @@ report 50007 "Sales Shpt. Packing List - NIF"
         {
             DataItemTableView = SORTING("No.");
             RequestFilterFields = "No.";
-            column(CurrReport_PAGENO; CurrReport.PAGENO)
+            column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
             {
             }
             column(Sales_Shipment_Header__Sales_Shipment_Header___External_Document_No__; "Sales Shipment Header"."External Document No.")

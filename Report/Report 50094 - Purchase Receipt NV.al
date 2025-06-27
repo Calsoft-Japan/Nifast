@@ -288,7 +288,7 @@ report 50094 "Purchase Receipt NV"
                                         UNTIL 0 = ReceiptLine.NEXT;
                                 END;
 
-                            IF Type = 0 THEN BEGIN
+                            IF Type = Type::" " THEN BEGIN
                                 ItemNumberToPrint := '';
                                 "Unit of Measure" := '';
                                 OrderedQuantity := 0;
@@ -315,7 +315,7 @@ report 50094 "Purchase Receipt NV"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1;BC Upgrade
 
                     IF CopyNo = NoLoops THEN BEGIN
                         IF NOT CurrReport.PREVIEW THEN
@@ -347,9 +347,9 @@ report 50094 "Purchase Receipt NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language.Reset();//BC Upgrade 2025-06-23
-                Language.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language."Windows Language ID";//BC Upgrade 2025-06-23
+                Language_t.Reset();//BC Upgrade 2025-06-23
+                Language_t.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_t."Windows Language ID";//BC Upgrade 2025-06-23
                 //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
 
@@ -453,7 +453,7 @@ report 50094 "Purchase Receipt NV"
         ReceiptLine: Record "Purch. Rcpt. Line";
         OrderLine: Record "Purchase Line";
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_t: Record Language;
         CompanyAddress: array[8] of Text[50];
         BuyFromAddress: array[8] of Text[50];
         ShipToAddress: array[8] of Text[50];
@@ -495,7 +495,7 @@ report 50094 "Purchase Receipt NV"
         BackOrderedCaptionLbl: Label 'Back Ordered';
         SegManagement: Codeunit SegManagement;
         LogInteraction: Boolean;
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
 }
 

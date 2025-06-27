@@ -467,7 +467,7 @@ report 50048 "MEX Virtual Invoice"
                 TempSalesHdr.DELETEALL;
                 CLEAR(i);
 
-                CurrReport.PAGENO := 1;
+                //CurrReport.PAGENO := 1;BC Upgrade
                 "Commercial Invoice MEX".GetInfo(Customer."No.", Customer.GETFILTER("Date Filter"), TRUE, TempSalesHdr);
                 "Commercial Invoice MEX".CALCSUMS("Line Amount", "Tax Amount", "Amount Incl Tax");
                 TotalLineAmt := "Commercial Invoice MEX"."Line Amount";

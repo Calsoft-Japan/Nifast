@@ -110,7 +110,7 @@ report 50050 "MEX Sales Credit Memo"
                     dataitem(SalesCrMemo; Integer)
                     {
                         DataItemTableView = SORTING(Number);
-                        column(STRSUBSTNO_Text001_CurrReport_PAGENO___1_; STRSUBSTNO(Text001, CurrReport.PAGENO - 1))
+                        column(STRSUBSTNO_Text001_CurrReport_PAGENO___1_; STRSUBSTNO(Text001, 1))//CurrReport.PAGENO - 1))BC Upgrade
                         {
                         }
                         column(TempSalesCreditMemoLine__Unit_of_Measure_; TempSalesCreditMemoLine."Unit of Measure")
@@ -130,7 +130,7 @@ report 50050 "MEX Sales Credit Memo"
                         column(TempSalesCreditMemoLine__No__________TempSalesCreditMemoLine_Description; TempSalesCreditMemoLine."No." + '  ' + TempSalesCreditMemoLine.Description)
                         {
                         }
-                        column(STRSUBSTNO_Text002_CurrReport_PAGENO___1_; STRSUBSTNO(Text002, CurrReport.PAGENO + 1))
+                        column(STRSUBSTNO_Text002_CurrReport_PAGENO___1_; STRSUBSTNO(Text002, 1))//CurrReport.PAGENO + 1))BC Upgrade
                         {
                         }
                         column(AmountExclInvDisc_Control79; AmountExclInvDisc)
@@ -192,7 +192,7 @@ report 50050 "MEX Sales Credit Memo"
                             ELSE
                                 TempSalesCreditMemoLine.NEXT;
 
-                            IF TempSalesCreditMemoLine.Type = 0 THEN BEGIN
+                            IF TempSalesCreditMemoLine.Type = TempSalesCreditMemoLine.Type::" " THEN BEGIN
                                 TempSalesCreditMemoLine."No." := '';
                                 TempSalesCreditMemoLine."Unit of Measure" := '';
                                 TempSalesCreditMemoLine.Amount := 0;
@@ -227,8 +227,7 @@ report 50050 "MEX Sales Credit Memo"
 
                         trigger OnPreDataItem()
                         begin
-                            CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempSalesCreditMemoLine.Amount, TempSalesCreditMemoLine."Amount Including VAT")
-                            ;
+                            //CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempSalesCreditMemoLine.Amount, TempSalesCreditMemoLine."Amount Including VAT");BC Upgrade
                             NumberOfLines := TempSalesCreditMemoLine.COUNT;
                             SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;
@@ -243,7 +242,7 @@ report 50050 "MEX Sales Credit Memo"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1;BC Upgrade
 
                     IF CopyNo = NoLoops THEN BEGIN
                         IF NOT CurrReport.PREVIEW THEN
@@ -276,9 +275,9 @@ report 50050 "MEX Sales Credit Memo"
                     END;
                 END;
 
-                Language.Reset();//BC Upgrade 2025-06-23
-                Language.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language."Windows Language ID";//BC Upgrade 2025-06-23
+                Language_T.Reset();//BC Upgrade 2025-06-23
+                Language_T.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
                 //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 //>>NIF 042006 RTT
@@ -487,7 +486,7 @@ report 50050 "MEX Sales Credit Memo"
         ShipmentLine: Record "Sales Shipment Line";
         TempSalesCreditMemoLine: Record "Sales Cr.Memo Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         CompanyAddress: array[8] of Text[50];
@@ -546,7 +545,7 @@ report 50050 "MEX Sales Credit Memo"
         mCustomer: Record Customer;
         mCountry: Record "Country/Region";
         Subtotal_CaptionLbl: Label 'Subtotal:';
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
 
     procedure InitLogInteraction()

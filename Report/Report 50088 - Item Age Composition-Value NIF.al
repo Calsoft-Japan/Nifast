@@ -223,7 +223,7 @@ report 50088 "Item Age Composition-Value NIF"
 
                 trigger OnPreDataItem()
                 begin
-                    CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[6], InvtValue[7], InvtValue[8], TotalInvtValue);//InvtValue BC Upgrade
+                    //CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[6], InvtValue[7], InvtValue[8], TotalInvtValue);//InvtValue BC Upgrade
                     //>> NIF 07-01-05 RTT
                     SETRANGE("Posting Date", 0D, AsOfDate);
                     //<< NIF 07-01-05 RTT
@@ -302,7 +302,7 @@ report 50088 "Item Age Composition-Value NIF"
 
             trigger OnPreDataItem()
             begin
-                CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[6], InvtValue[7], InvtValue[8], TotalInvtValue);//InvtValue BC Upgrade
+                //CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[6], InvtValue[7], InvtValue[8], TotalInvtValue);//InvtValue BC Upgrade
                 SETRANGE("Date Filter", 0D, AsOfDate);
 
                 //>> NIF 07-01-05 RTT
@@ -601,163 +601,147 @@ report 50088 "Item Age Composition-Value NIF"
         PostingDate: Date;
         LotNoInfo: Record "Lot No. Information";
     begin
-        WITH ItemLedgEntry DO BEGIN
-            // adjust remaining quantity
-            "Remaining Quantity" := Quantity;
-            IF Positive THEN BEGIN
-                ItemApplnEntry.RESET;
-                ItemApplnEntry.SETCURRENTKEY(
-                  "Inbound Item Entry No.", "Cost Application", "Outbound Item Entry No.");
-                ItemApplnEntry.SETRANGE("Inbound Item Entry No.", "Entry No.");
-                ItemApplnEntry.SETRANGE("Posting Date", 0D, AsOfDate);
-                ItemApplnEntry.SETFILTER("Outbound Item Entry No.", '<>%1', 0);
-                ItemApplnEntry.SETFILTER("Item Ledger Entry No.", '<>%1', "Entry No.");
-                IF ItemApplnEntry.FIND('-') THEN
-                    REPEAT
-                        IF ItemLedgEntry2.GET(ItemApplnEntry."Item Ledger Entry No.") AND
-                           (ItemLedgEntry2."Posting Date" <= AsOfDate)
-                        THEN
-                            "Remaining Quantity" := "Remaining Quantity" + ItemApplnEntry.Quantity;
-                    UNTIL ItemApplnEntry.NEXT = 0;
-            END ELSE BEGIN
-                ItemApplnEntry.RESET;
-                ItemApplnEntry.SETCURRENTKEY("Item Ledger Entry No.", "Outbound Item Entry No.", "Cost Application");
-                ItemApplnEntry.SETRANGE("Item Ledger Entry No.", "Entry No.");
-                ItemApplnEntry.SETRANGE("Outbound Item Entry No.", "Entry No.");
-                ItemApplnEntry.SETRANGE("Posting Date", 0D, AsOfDate);
-                IF ItemApplnEntry.FIND('-') THEN
-                    REPEAT
-                        IF ItemLedgEntry2.GET(ItemApplnEntry."Inbound Item Entry No.") AND
-                           (ItemLedgEntry2."Posting Date" <= AsOfDate)
-                        THEN
-                            "Remaining Quantity" := "Remaining Quantity" - ItemApplnEntry.Quantity;
-                    UNTIL ItemApplnEntry.NEXT = 0;
-            END;
-
-            // calculate adjusted cost of entry
-            ValueEntry.RESET;
-            ValueEntry.SETCURRENTKEY(
-              "Item Ledger Entry No.", "Expected Cost", "Document No.", "Partial Revaluation", "Entry Type", "Variance Type");
-            ValueEntry.SETRANGE("Item Ledger Entry No.", "Entry No.");
-            ValueEntry.SETRANGE("Posting Date", 0D, AsOfDate);
-            IF ValueEntry.FIND('-') THEN
+        // adjust remaining quantity
+        ItemLedgEntry."Remaining Quantity" := ItemLedgEntry.Quantity;
+        IF ItemLedgEntry.Positive THEN BEGIN
+            ItemApplnEntry.RESET;
+            ItemApplnEntry.SETCURRENTKEY(
+              "Inbound Item Entry No.", "Cost Application", "Outbound Item Entry No.");
+            ItemApplnEntry.SETRANGE("Inbound Item Entry No.", ItemLedgEntry."Entry No.");
+            ItemApplnEntry.SETRANGE("Posting Date", 0D, AsOfDate);
+            ItemApplnEntry.SETFILTER("Outbound Item Entry No.", '<>%1', 0);
+            ItemApplnEntry.SETFILTER("Item Ledger Entry No.", '<>%1', ItemLedgEntry."Entry No.");
+            IF ItemApplnEntry.FIND('-') THEN
                 REPEAT
-                    IF ValueEntry."Expected Cost" THEN BEGIN
-                        ExpectedValue := ExpectedValue + ValueEntry."Cost Amount (Expected)";
-                        ExpectedValueACY := ExpectedValueACY + ValueEntry."Cost Amount (Expected) (ACY)";
-                        IF ValuedQty = 0 THEN
-                            ValuedQty := ValueEntry."Valued Quantity";
-                    END ELSE BEGIN
-                        InvoicedQty := InvoicedQty + ValueEntry."Invoiced Quantity";
-                        InvoicedValue := InvoicedValue + ValueEntry."Cost Amount (Actual)";
-                        InvoicedValueACY := InvoicedValueACY + ValueEntry."Cost Amount (Actual) (ACY)";
-                    END;
-                UNTIL ValueEntry.NEXT = 0;
-            IF ValuedQty = 0 THEN BEGIN
-                ValuedQty := InvoicedQty;
-                ExpectedValue := 0;
-                ExpectedValueACY := 0;
-            END ELSE BEGIN
-                ExpectedValue := ExpectedValue * (ValuedQty - InvoicedQty) / ValuedQty;
-                ExpectedValueACY := ExpectedValueACY * (ValuedQty - InvoicedQty) / ValuedQty;
-            END;
-
-            //>>CIS.RAM
-            IF (ShowACY) AND
-               (("Document Type" IN ["Document Type"::"Purchase Receipt"]) OR
-               ("Entry Type" = "Entry Type"::Transfer))
-               AND
-               (GLSetup."Additional Reporting Currency" <> '')
-            THEN BEGIN
-                PostingDate := 0D;
-                LotNoInfo.RESET;
-                IF "Lot No." <> '' THEN
-                    //Item No.,Variant Code,Lot No.
-                    IF LotNoInfo.GET("Item No.", "Variant Code", "Lot No.") THEN
-                        PostingDate := LotNoInfo."Lot Creation Date";
-                IF PostingDate = 0D THEN
-                    PostingDate := "Posting Date";
-                //MESSAGE('BEFORE: %1\%2\%3',InvoicedValue,InvoicedValueACY,"Posting Date");
-                //InvoicedValueACY := CurrExchRate.ExchangeAmtLCYToFCY("Posting Date",GLSetup."Additional Reporting Currency",InvoicedValue,1);
-                InvoicedValueACY := CurrExchRate.ExchangeAmount(InvoicedValue, GLSetup."LCY Code", GLSetup."Additional Reporting Currency", PostingDate);
-                //MESSAGE('AFTER: %1\%2\%3',InvoicedValue,InvoicedValueACY,"Posting Date");
-            END;
-            //<<CIS.RAM
-
-            //>>NIF 020107
-            IF ValuedQty <> 0 THEN BEGIN
-                UnitCost := (InvoicedValue + ExpectedValue) / ValuedQty;
-                UnitCostACY := (InvoicedValueACY + ExpectedValueACY) / ValuedQty;
-            END ELSE BEGIN
-                UnitCost := 0;
-                UnitCostACY := 0;
-            END;
-            //<<NIF 020107
-            "Cost Amount (Actual)" := ROUND(InvoicedValue + ExpectedValue);
-            //x"Cost Amount (Actual) (ACY)" := ROUND(InvoicedValueACY + ExpectedValueACY,Currency."Amount Rounding Precision");
+                    IF ItemLedgEntry2.GET(ItemApplnEntry."Item Ledger Entry No.") AND
+                       (ItemLedgEntry2."Posting Date" <= AsOfDate)
+                    THEN
+                        ItemLedgEntry."Remaining Quantity" := ItemLedgEntry."Remaining Quantity" + ItemApplnEntry.Quantity;
+                UNTIL ItemApplnEntry.NEXT = 0;
+        END ELSE BEGIN
+            ItemApplnEntry.RESET;
+            ItemApplnEntry.SETCURRENTKEY("Item Ledger Entry No.", "Outbound Item Entry No.", "Cost Application");
+            ItemApplnEntry.SETRANGE("Item Ledger Entry No.", ItemLedgEntry."Entry No.");
+            ItemApplnEntry.SETRANGE("Outbound Item Entry No.", ItemLedgEntry."Entry No.");
+            ItemApplnEntry.SETRANGE("Posting Date", 0D, AsOfDate);
+            IF ItemApplnEntry.FIND('-') THEN
+                REPEAT
+                    IF ItemLedgEntry2.GET(ItemApplnEntry."Inbound Item Entry No.") AND
+                       (ItemLedgEntry2."Posting Date" <= AsOfDate)
+                    THEN
+                        ItemLedgEntry."Remaining Quantity" := ItemLedgEntry."Remaining Quantity" - ItemApplnEntry.Quantity;
+                UNTIL ItemApplnEntry.NEXT = 0;
         END;
+
+        // calculate adjusted cost of entry
+        ValueEntry.RESET;
+        ValueEntry.SETCURRENTKEY(
+          "Item Ledger Entry No.", "Expected Cost", "Document No.", "Partial Revaluation", "Entry Type", "Variance Type");
+        ValueEntry.SETRANGE("Item Ledger Entry No.", ItemLedgEntry."Entry No.");
+        ValueEntry.SETRANGE("Posting Date", 0D, AsOfDate);
+        IF ValueEntry.FIND('-') THEN
+            REPEAT
+                IF ValueEntry."Expected Cost" THEN BEGIN
+                    ExpectedValue := ExpectedValue + ValueEntry."Cost Amount (Expected)";
+                    ExpectedValueACY := ExpectedValueACY + ValueEntry."Cost Amount (Expected) (ACY)";
+                    IF ValuedQty = 0 THEN
+                        ValuedQty := ValueEntry."Valued Quantity";
+                END ELSE BEGIN
+                    InvoicedQty := InvoicedQty + ValueEntry."Invoiced Quantity";
+                    InvoicedValue := InvoicedValue + ValueEntry."Cost Amount (Actual)";
+                    InvoicedValueACY := InvoicedValueACY + ValueEntry."Cost Amount (Actual) (ACY)";
+                END;
+            UNTIL ValueEntry.NEXT = 0;
+        IF ValuedQty = 0 THEN BEGIN
+            ValuedQty := InvoicedQty;
+            ExpectedValue := 0;
+            ExpectedValueACY := 0;
+        END ELSE BEGIN
+            ExpectedValue := ExpectedValue * (ValuedQty - InvoicedQty) / ValuedQty;
+            ExpectedValueACY := ExpectedValueACY * (ValuedQty - InvoicedQty) / ValuedQty;
+        END;
+
+        //>>CIS.RAM
+        IF (ShowACY) AND
+           ((ItemLedgEntry."Document Type" IN [ItemLedgEntry."Document Type"::"Purchase Receipt"]) OR
+           (ItemLedgEntry."Entry Type" = ItemLedgEntry."Entry Type"::Transfer))
+           AND
+           (GLSetup."Additional Reporting Currency" <> '')
+        THEN BEGIN
+            PostingDate := 0D;
+            LotNoInfo.RESET;
+            IF ItemLedgEntry."Lot No." <> '' THEN
+                //Item No.,Variant Code,Lot No.
+                IF LotNoInfo.GET(ItemLedgEntry."Item No.", ItemLedgEntry."Variant Code", ItemLedgEntry."Lot No.") THEN
+                    PostingDate := LotNoInfo."Lot Creation Date";
+            IF PostingDate = 0D THEN
+                PostingDate := ItemLedgEntry."Posting Date";
+            //MESSAGE('BEFORE: %1\%2\%3',InvoicedValue,InvoicedValueACY,"Posting Date");
+            //InvoicedValueACY := CurrExchRate.ExchangeAmtLCYToFCY("Posting Date",GLSetup."Additional Reporting Currency",InvoicedValue,1);
+            InvoicedValueACY := CurrExchRate.ExchangeAmount(InvoicedValue, GLSetup."LCY Code", GLSetup."Additional Reporting Currency", PostingDate);
+            //MESSAGE('AFTER: %1\%2\%3',InvoicedValue,InvoicedValueACY,"Posting Date");
+        END;
+        //<<CIS.RAM
+
+        //>>NIF 020107
+        IF ValuedQty <> 0 THEN BEGIN
+            UnitCost := (InvoicedValue + ExpectedValue) / ValuedQty;
+            UnitCostACY := (InvoicedValueACY + ExpectedValueACY) / ValuedQty;
+        END ELSE BEGIN
+            UnitCost := 0;
+            UnitCostACY := 0;
+        END;
+        //<<NIF 020107
+        ItemLedgEntry."Cost Amount (Actual)" := ROUND(InvoicedValue + ExpectedValue);
+        //x"Cost Amount (Actual) (ACY)" := ROUND(InvoicedValueACY + ExpectedValueACY,Currency."Amount Rounding Precision");
+
     end;
 
     procedure CalcValueBucket()
     begin
-        WITH "Item Ledger Entry" DO BEGIN
-            FOR i := 1 TO 7 DO BEGIN
-                InvtQty[i] := 0;
-                InvtValue[i] := 0;
-            END;
-
-            TotalInvtQty := "Remaining Quantity";
-
-            //>>NIF 060807 RTT
-            /*
-            FOR i := 1 TO 7 DO
-              IF ("Posting Date" <= PeriodStartDate[i]) AND
-                ("Posting Date" > (PeriodStartDate[i + 1]))
-                THEN BEGIN
-
-                    IF ShowACY THEN
-                    InvtValue[i] := UnitCostACY * TotalInvtQty
-
-                    ELSE
-                    InvtValue[i] := UnitCost * TotalInvtQty;
-
-
-
-
-
-                    EXIT;
-                  END;
-            */
-            BasisDate := "Posting Date";
-            IF AgingOption = AgingOption::"Lot Creation Date" THEN
-                IF LotNoInfo.GET("Item No.", '', "Lot No.") THEN
-                    IF LotNoInfo."Lot Creation Date" <> 0D THEN
-                        BasisDate := LotNoInfo."Lot Creation Date";
-
-            FOR i := 1 TO 7 DO
-                IF (BasisDate <= PeriodStartDate[i]) AND
-                  (BasisDate > (PeriodStartDate[i + 1]))
-                  THEN BEGIN
-
-                    IF ShowACY THEN
-                        InvtValue[i] := UnitCostACY * TotalInvtQty
-
-                    ELSE
-                        InvtValue[i] := UnitCost * TotalInvtQty;
-
-
-
-
-
-
-                    EXIT;
-                END;
-
-            //<<NIF 060807 RTT
-
-
+        FOR i := 1 TO 7 DO BEGIN
+            InvtQty[i] := 0;
+            InvtValue[i] := 0;
         END;
 
+        TotalInvtQty := "Item Ledger Entry"."Remaining Quantity";
+
+        //>>NIF 060807 RTT
+        /*
+        FOR i := 1 TO 7 DO
+          IF ("Posting Date" <= PeriodStartDate[i]) AND
+            ("Posting Date" > (PeriodStartDate[i + 1]))
+            THEN BEGIN
+
+                IF ShowACY THEN
+                InvtValue[i] := UnitCostACY * TotalInvtQty
+
+                ELSE
+                InvtValue[i] := UnitCost * TotalInvtQty;
+
+                EXIT;
+              END;
+        */
+        BasisDate := "Item Ledger Entry"."Posting Date";
+        IF AgingOption = AgingOption::"Lot Creation Date" THEN
+            IF LotNoInfo.GET("Item Ledger Entry"."Item No.", '', "Item Ledger Entry"."Lot No.") THEN
+                IF LotNoInfo."Lot Creation Date" <> 0D THEN
+                    BasisDate := LotNoInfo."Lot Creation Date";
+
+        FOR i := 1 TO 7 DO
+            IF (BasisDate <= PeriodStartDate[i]) AND
+              (BasisDate > (PeriodStartDate[i + 1]))
+              THEN BEGIN
+
+                IF ShowACY THEN
+                    InvtValue[i] := UnitCostACY * TotalInvtQty
+                ELSE
+                    InvtValue[i] := UnitCost * TotalInvtQty;
+
+                EXIT;
+            END;
+
+        //<<NIF 060807 RTT
     end;
 
     local procedure MakeExcelInfo()

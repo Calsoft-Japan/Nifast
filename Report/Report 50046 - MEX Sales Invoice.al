@@ -69,7 +69,7 @@ report 50046 "MEX Sales Invoice"
             column(CompanyAddress_8_; CompanyAddress[8])
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PAGENO)
+            column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
             {
             }
             column(CompanyAddress_7_; CompanyAddress[7])
@@ -194,7 +194,7 @@ report 50046 "MEX Sales Invoice"
                         {
                             //DecimalPlaces = 2 : 5;
                         }
-                        column(STRSUBSTNO_Text001_CurrReport_PAGENO___1_; STRSUBSTNO(Text001, CurrReport.PAGENO - 1))
+                        column(STRSUBSTNO_Text001_CurrReport_PAGENO___1_; STRSUBSTNO(Text001, 1))//CurrReport.PAGENO - 1))
                         {
                         }
                         column(TempSalesInvoiceLine_Description; TempSalesInvoiceLine.Description)
@@ -230,7 +230,7 @@ report 50046 "MEX Sales Invoice"
                         {
                             //DecimalPlaces = 0 : 5;
                         }
-                        column(STRSUBSTNO_Text002_CurrReport_PAGENO___1_; STRSUBSTNO(Text002, CurrReport.PAGENO + 1))
+                        column(STRSUBSTNO_Text002_CurrReport_PAGENO___1_; STRSUBSTNO(Text002, 1))//CurrReport.PAGENO + 1))BC Upgrade
                         {
                         }
                         column(AmountExclInvDisc_Control79; AmountExclInvDisc)
@@ -356,10 +356,10 @@ report 50046 "MEX Sales Invoice"
                             IF (TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::Item) AND (TempSalesInvoiceLine."Item Reference No." = '') THEN//BC Upgrade
                                 TempSalesInvoiceLine."Item Reference No." := FindCrossRef(TempSalesInvoiceLine."No.", TempSalesInvoiceLine."Sell-to Customer No.");//BC Upgrade
                             //<< NIF 07-14-05 RTT
-                            IF TempSalesInvoiceLine.Type = 0 THEN BEGIN
+                            IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                 IF OnLineNumber < NumberOfLines THEN BEGIN
                                     NEXT;
-                                    IF TempSalesInvoiceLine.Type = 0 THEN BEGIN
+                                    IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                         DescriptionToPrint :=
                                           COPYSTR(DescriptionToPrint + ' ' + TempSalesInvoiceLine.Description + ' ' + TempSalesInvoiceLine."Description 2", 1, MAXSTRLEN(DescriptionToPrint));
                                         OnLineNumber := OnLineNumber + 1;
@@ -416,7 +416,7 @@ report 50046 "MEX Sales Invoice"
 
                         trigger OnPreDataItem()
                         begin
-                            CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempSalesInvoiceLine.Amount, TempSalesInvoiceLine."Amount Including VAT");
+                            //CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempSalesInvoiceLine.Amount, TempSalesInvoiceLine."Amount Including VAT");BC Upgrade
                             NumberOfLines := TempSalesInvoiceLine.COUNT;
                             SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;
@@ -431,7 +431,7 @@ report 50046 "MEX Sales Invoice"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1;BC Upgrade
 
                     IF CopyNo = NoLoops THEN BEGIN
                         IF NOT CurrReport.PREVIEW THEN
@@ -464,9 +464,9 @@ report 50046 "MEX Sales Invoice"
                     END;
                 END;
 
-                Language.Reset();//BC Upgrade 2025-06-23
-                Language.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language."Windows Language ID";//BC Upgrade 2025-06-23
+                Language_t.Reset();//BC Upgrade 2025-06-23
+                Language_t.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_t."Windows Language ID";//BC Upgrade 2025-06-23
                 //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 //>>NIF 042006 RTT
@@ -676,7 +676,7 @@ report 50046 "MEX Sales Invoice"
         ShipmentLine: Record "Sales Shipment Line";
         TempSalesInvoiceLine: Record "Sales Invoice Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_t: Record Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         CompanyAddress: array[8] of Text[50];
@@ -704,7 +704,7 @@ report 50046 "MEX Sales Invoice"
         Text001: Label 'Transferred from page %1';
         Text002: Label 'Transferred to page %1';
         LogInteraction: Boolean;
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
         TaxRegNo: Text[30];
         TaxRegLabel: Text[30];

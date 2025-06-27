@@ -7,7 +7,7 @@ report 50047 "MEX Receiving Summary"
 
     dataset
     {
-        dataitem(HSLoop; Integer)
+        dataitem(HSLoop_Line; Integer)
         {
             DataItemTableView = SORTING(Number);
             PrintOnlyIfDetail = true;
@@ -17,7 +17,7 @@ report 50047 "MEX Receiving Summary"
             column(TIME; TIME)
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PAGENO)
+            column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
             {
             }
             column(FORMAT_TODAY_0_4_; FORMAT(TODAY, 0, 4))
@@ -184,7 +184,7 @@ report 50047 "MEX Receiving Summary"
 
                     trigger OnPreDataItem()
                     begin
-                        CurrReport.CREATETOTALS(Qty, ExtCostLCY, Weight);
+                        //CurrReport.CREATETOTALS(Qty, ExtCostLCY, Weight);BC Upgrade
                     end;
                 }
 
@@ -200,7 +200,7 @@ report 50047 "MEX Receiving Summary"
 
                 trigger OnPreDataItem()
                 begin
-                    CurrReport.CREATETOTALS(Qty, ExtCostLCY, Weight);
+                    //CurrReport.CREATETOTALS(Qty, ExtCostLCY, Weight);BC Upgrade
 
                     SETRANGE("HS Tariff Code", TempHSCode.Code);
                 end;
@@ -216,7 +216,7 @@ report 50047 "MEX Receiving Summary"
 
             trigger OnPreDataItem()
             begin
-                CurrReport.CREATETOTALS(Qty, ExtCostLCY, Weight);
+                //CurrReport.CREATETOTALS(Qty, ExtCostLCY, Weight);BC Upgrade
 
                 SETRANGE(Number, 1, TempHSCode.COUNT);
                 TempPurchHdr.DELETEALL;

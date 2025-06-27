@@ -576,7 +576,7 @@ report 50056 "Sales Order NV"
                             ELSE
                                 TempSalesLine.NEXT;
 
-                            IF TempSalesLine.Type = 0 THEN BEGIN
+                            IF TempSalesLine.Type = TempSalesLine.Type::" " THEN BEGIN
                                 TempSalesLine."No." := '';
                                 TempSalesLine."Unit of Measure" := '';
                                 TempSalesLine."Line Amount" := 0;
@@ -642,7 +642,7 @@ report 50056 "Sales Order NV"
 
                         trigger OnPreDataItem()
                         begin
-                            CurrReport.CREATETOTALS(TaxLiable, TaxAmount, AmountExclInvDisc, TempSalesLine."Line Amount", TempSalesLine."Inv. Discount Amount");
+                            //CurrReport.CREATETOTALS(TaxLiable, TaxAmount, AmountExclInvDisc, TempSalesLine."Line Amount", TempSalesLine."Inv. Discount Amount");BC Upgrade
                             NumberOfLines := TempSalesLine.COUNT;
                             SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;
@@ -661,7 +661,7 @@ report 50056 "Sales Order NV"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1;BC Upgrade
 
                     IF CopyNo = NoLoops THEN BEGIN
                         IF NOT CurrReport.PREVIEW THEN
@@ -693,9 +693,9 @@ report 50056 "Sales Order NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language.Reset();//BC Upgrade 2025-06-23
-                Language.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language."Windows Language ID";//BC Upgrade 2025-06-23
+                Language_T.Reset();//BC Upgrade 2025-06-23
+                Language_T.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
                 //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 //>>NIF 052506 RTT
@@ -917,7 +917,7 @@ report 50056 "Sales Order NV"
         TempSalesLine: Record "Sales Line" temporary;
         TempSalesLineAsm: Record "Sales Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Cust: Record Customer;
@@ -969,9 +969,9 @@ report 50056 "Sales Order NV"
         PrevTaxPercent: Decimal;
         UseDate: Date;
         UseExternalTaxEngine: Boolean;
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         ArchiveDocumentEnable: Boolean;
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         AsmInfoExistsForLine: Boolean;

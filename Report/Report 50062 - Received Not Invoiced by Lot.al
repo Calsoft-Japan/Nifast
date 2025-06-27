@@ -172,8 +172,9 @@ report 50062 "Received Not Invoiced by Lot"
                     VesselName := PurchRcptHdr."Vessel Name";
                 END;
 
+                /* BC Upgrade
                 IF NOT FooterPrinted THEN
-                    LastFieldNo := CurrReport.TOTALSCAUSEDBY;
+                    LastFieldNo := CurrReport.TOTALSCAUSEDBY; */
                 //CurrReport.SHOWOUTPUT := NOT FooterPrinted; BC Upgrade
                 FooterPrinted := TRUE;
 

@@ -460,52 +460,51 @@ report 50068 "Custom Form"
                         begin
                             OnLineNumber := OnLineNumber + 1;
 
-                            WITH TempSalesShipmentLine DO BEGIN
-                                IF OnLineNumber = 1 THEN
-                                    FIND('-')
-                                ELSE
-                                    NEXT;
 
+                            IF OnLineNumber = 1 THEN
+                                TempSalesShipmentLine.FIND('-')
+                            ELSE
+                                TempSalesShipmentLine.NEXT;
+
+                            OrderedQuantity := 0;
+                            BackOrderedQuantity := 0;
+                            IF TempSalesShipmentLine."Order No." = '' THEN
+                                OrderedQuantity := TempSalesShipmentLine.Quantity
+                            ELSE
+                                IF OrderLine.GET(1, TempSalesShipmentLine."Order No.", TempSalesShipmentLine."Order Line No.") THEN BEGIN
+                                    OrderedQuantity := OrderLine.Quantity;
+                                    BackOrderedQuantity := OrderLine."Outstanding Quantity";
+                                END ELSE BEGIN
+                                    ReceiptLine.SETCURRENTKEY("Order No.", "Order Line No.");
+                                    ReceiptLine.SETRANGE("Order No.", TempSalesShipmentLine."Order No.");
+                                    ReceiptLine.SETRANGE("Order Line No.", TempSalesShipmentLine."Order Line No.");
+                                    ReceiptLine.FIND('-');
+                                    REPEAT
+                                        OrderedQuantity := OrderedQuantity + ReceiptLine.Quantity;
+                                    UNTIL 0 = ReceiptLine.NEXT;
+                                END;
+
+                            IF TempSalesShipmentLine.Type = TempSalesShipmentLine.Type::" " THEN BEGIN
                                 OrderedQuantity := 0;
                                 BackOrderedQuantity := 0;
-                                IF "Order No." = '' THEN
-                                    OrderedQuantity := Quantity
-                                ELSE
-                                    IF OrderLine.GET(1, "Order No.", "Order Line No.") THEN BEGIN
-                                        OrderedQuantity := OrderLine.Quantity;
-                                        BackOrderedQuantity := OrderLine."Outstanding Quantity";
-                                    END ELSE BEGIN
-                                        ReceiptLine.SETCURRENTKEY("Order No.", "Order Line No.");
-                                        ReceiptLine.SETRANGE("Order No.", "Order No.");
-                                        ReceiptLine.SETRANGE("Order Line No.", "Order Line No.");
-                                        ReceiptLine.FIND('-');
-                                        REPEAT
-                                            OrderedQuantity := OrderedQuantity + ReceiptLine.Quantity;
-                                        UNTIL 0 = ReceiptLine.NEXT;
-                                    END;
+                                TempSalesShipmentLine."No." := '';
+                                TempSalesShipmentLine."Unit of Measure" := '';
+                                TempSalesShipmentLine.Quantity := 0;
+                            END ELSE
+                                IF TempSalesShipmentLine.Type = TempSalesShipmentLine.Type::"G/L Account" THEN
+                                    TempSalesShipmentLine."No." := '';
 
-                                IF Type = 0 THEN BEGIN
-                                    OrderedQuantity := 0;
-                                    BackOrderedQuantity := 0;
-                                    "No." := '';
-                                    "Unit of Measure" := '';
-                                    Quantity := 0;
-                                END ELSE
-                                    IF Type = Type::"G/L Account" THEN
-                                        "No." := '';
+                            PackageTrackingText := '';
+                            IF (TempSalesShipmentLine."Package Tracking No." <> "Sales Shipment Header"."Package Tracking No.") AND
+                               (TempSalesShipmentLine."Package Tracking No." <> '') AND PrintPackageTrackingNos
+                            THEN
+                                PackageTrackingText := Text002 + ' ' + TempSalesShipmentLine."Package Tracking No.";
 
-                                PackageTrackingText := '';
-                                IF ("Package Tracking No." <> "Sales Shipment Header"."Package Tracking No.") AND
-                                   ("Package Tracking No." <> '') AND PrintPackageTrackingNos
-                                THEN
-                                    PackageTrackingText := Text002 + ' ' + "Package Tracking No.";
-
-                                IF DisplayAssemblyInformation THEN
-                                    IF TempSalesShipmentLineAsm.GET("Document No.", "Line No.") THEN BEGIN
-                                        SalesShipmentLine.GET("Document No.", "Line No.");
-                                        AsmHeaderExists := SalesShipmentLine.AsmToShipmentExists(PostedAsmHeader);
-                                    END;
-                            END;
+                            IF DisplayAssemblyInformation THEN
+                                IF TempSalesShipmentLineAsm.GET(TempSalesShipmentLine."Document No.", TempSalesShipmentLine."Line No.") THEN BEGIN
+                                    SalesShipmentLine.GET(TempSalesShipmentLine."Document No.", TempSalesShipmentLine."Line No.");
+                                    AsmHeaderExists := SalesShipmentLine.AsmToShipmentExists(PostedAsmHeader);
+                                END;
 
                             IF OnLineNumber = NumberOfLines THEN
                                 PrintFooter := TRUE;
@@ -523,7 +522,7 @@ report 50068 "Custom Form"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1;BC Upgrade
                     IF CopyNo = NoLoops THEN BEGIN
                         IF NOT CurrReport.PREVIEW THEN
                             SalesShipmentPrinted.RUN("Sales Shipment Header");
@@ -554,9 +553,9 @@ report 50068 "Custom Form"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language.Reset();//BC Upgrade 2025-06-23
-                Language.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language."Windows Language ID";//BC Upgrade 2025-06-23
+                Language_T.Reset();//BC Upgrade 2025-06-23
+                Language_T.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
                 //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 IF "Salesperson Code" = '' THEN
@@ -755,7 +754,7 @@ report 50068 "Custom Form"
         TempSalesShipmentLine: Record "Sales Shipment Line" temporary;
         TempSalesShipmentLineAsm: Record "Sales Shipment Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         TaxArea: Record "Tax Area";
         Cust: Record Customer;
         PostedAsmHeader: Record "Posted Assembly Header";
@@ -790,7 +789,7 @@ report 50068 "Custom Form"
         TaxRegNo: Text[30];
         TaxRegLabel: Text[30];
         Text009: Label 'VOID SHIPMENT';
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         AsmHeaderExists: Boolean;

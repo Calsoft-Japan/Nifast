@@ -488,7 +488,7 @@ report 50044 "MEX Sales Shipment"
                                 TempSalesShipmentLine."Item Reference No." := FindCrossRef(TempSalesShipmentLine."No.", TempSalesShipmentLine."Sell-to Customer No.");//Cross- BC Upgrade
                             //<<NIF 042006 RTT
 
-                            IF TempSalesShipmentLine.Type = 0 THEN BEGIN
+                            IF TempSalesShipmentLine.Type = TempSalesShipmentLine.Type::" " THEN BEGIN
                                 OrderedQuantity := 0;
                                 BackOrderedQuantity := 0;
                                 TempSalesShipmentLine."No." := '';
@@ -535,7 +535,7 @@ report 50044 "MEX Sales Shipment"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1;BC Upgrade
                     IF CopyNo = NoLoops THEN BEGIN
                         IF NOT CurrReport.PREVIEW THEN
                             SalesShipmentPrinted.RUN("Sales Shipment Header");
@@ -566,9 +566,9 @@ report 50044 "MEX Sales Shipment"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language.Reset();//BC Upgrade 2025-06-23
-                Language.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language."Windows Language ID";//BC Upgrade 2025-06-23
+                Language_T.Reset();//BC Upgrade 2025-06-23
+                Language_T.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
                 //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 IF "Salesperson Code" = '' THEN
@@ -777,7 +777,7 @@ report 50044 "MEX Sales Shipment"
         TempSalesShipmentLine: Record "Sales Shipment Line" temporary;
         TempSalesShipmentLineAsm: Record "Sales Shipment Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         TaxArea: Record "Tax Area";
         Cust: Record Customer;
         PostedAsmHeader: Record "Posted Assembly Header";
@@ -812,7 +812,7 @@ report 50044 "MEX Sales Shipment"
         TaxRegNo: Text[30];
         TaxRegLabel: Text[30];
         Text009: Label 'VOID SHIPMENT';
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         AsmHeaderExists: Boolean;

@@ -234,7 +234,7 @@ report 50087 "Item Age Composition - Qty NIF"
 
                 trigger OnPreDataItem()
                 begin
-                    CurrReport.CREATETOTALS(TotalInvtQty, InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], InvtQty[8]);//InvtQty BC Upgrade
+                    //CurrReport.CREATETOTALS(TotalInvtQty, InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], InvtQty[8]);//InvtQty BC Upgrade
                     //>> NIF 07-01-05 RTT
                     SETRANGE("Posting Date", 0D, AsOfDate);
                     //<< NIF 07-01-05 RTT
@@ -317,7 +317,7 @@ report 50087 "Item Age Composition - Qty NIF"
 
             trigger OnPreDataItem()
             begin
-                CurrReport.CREATETOTALS(TotalInvtQty, InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], InvtQty[8]);//InvtQty BC Upgrade
+                //CurrReport.CREATETOTALS(TotalInvtQty, InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], InvtQty[8]);//InvtQty BC Upgrade
                 //>> NIF 07-01-05 RTT
                 d.OPEN('Reading Item #1##################');
                 //<< NIF 07-01-05 RTT

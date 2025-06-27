@@ -19,7 +19,7 @@ report 50081 "Blocked Items"
             column(COMPANYNAME; COMPANYNAME)
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PAGENO)
+            column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
             {
             }
             column(USERID; USERID)
@@ -159,7 +159,7 @@ report 50081 "Blocked Items"
                         //Cost:="Lot No."
 
                         //END;
-                        CurrReport.CREATETOTALS("Cost Amount (Actual)");
+                        //CurrReport.CREATETOTALS("Cost Amount (Actual)");BC Upgrade
 
 
                         // Cost:="Value Entry"."Cost per Unit";

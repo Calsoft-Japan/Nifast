@@ -2,117 +2,123 @@ table 50029 "Vehicle Production"
 {
     fields
     {
-        field(1;"Customer No.";Code[20])
+        field(1; "Customer No."; Code[20])
         {
             // cleaned
         }
-        field(2;"Item No.";Code[20])
+        field(2; "Item No."; Code[20])
         {
             // cleaned
         }
-        field(3;Model;Code[50])
+        field(3; Model; Code[50])
         {
             // cleaned
         }
-        field(4;"EC Level";Code[30])
+        field(4; "EC Level"; Code[30])
         {
             // cleaned
         }
-        field(5;"Applicable Std";Text[50])
+        field(5; "Applicable Std"; Text[50])
         {
             // cleaned
         }
-        field(6;EMU;Decimal)
+        field(6; EMU; Decimal)
         {
             // cleaned
         }
-        field(7;OEM;Code[20])
+        field(7; OEM; Code[20])
         {
             // cleaned
         }
-        field(8;"Final Customer";Text[30])
+        field(8; "Final Customer"; Text[30])
         {
             // cleaned
         }
-        field(9;"Pieces Per Vehicle";Decimal)
+        field(9; "Pieces Per Vehicle"; Decimal)
         {
             // cleaned
         }
-        field(10;Per;Text[30])
+        field(10; Per; Text[30])
         {
             // cleaned
         }
-        field(11;SOP;Date)
+        field(11; SOP; Date)
         {
             // cleaned
         }
-        field(12;EOP;Date)
+        field(12; EOP; Date)
         {
             // cleaned
         }
-        field(13;Remarks;Text[250])
+        field(13; Remarks; Text[250])
         {
             // cleaned
         }
-        field(14;SNP;Decimal)
+        field(14; SNP; Decimal)
         {
             // cleaned
         }
-        field(15;Manufacturer;Code[50])
+        field(15; Manufacturer; Code[50])
         {
             // cleaned
         }
-        field(16;"Customer Name";Text[100])
+        field(16; "Customer Name"; Text[100])
         {
             // cleaned
         }
-        field(17;"Cross Reference No.";Code[30])
+        field(17; "Cross Reference No."; Code[30])
         {
             // cleaned
         }
-        field(18;"Flow Item";Code[20])
+        field(18; "Flow Item"; Code[20])
         {
             // cleaned
         }
-        field(19;"Div Code";Code[20])
+        field(19; "Div Code"; Code[20])
         {
             // cleaned
         }
-        field(20;Active;Boolean)
+        field(20; Active; Boolean)
         {
             // cleaned
         }
-        field(21;Selling;Decimal)
+        field(21; Selling; Decimal)
         {
             // cleaned
         }
-        field(22;Buying;Decimal)
+        field(22; Buying; Decimal)
         {
             // cleaned
         }
-        field(23;"Vendor No.";Code[20])
+        field(23; "Vendor No."; Code[20])
         {
             // cleaned
         }
-        field(24;"Vendor Name";Text[50])
+        field(24; "Vendor Name"; Text[50])
         {
             // cleaned
         }
-        field(25;"Remark-2";Text[250])
+        field(25; "Remark-2"; Text[250])
         {
             // cleaned
         }
-        field(26;"PPAP Approved";Boolean)
+        field(26; "PPAP Approved"; Boolean)
         {
             // cleaned
         }
-        field(27;"Revision No.";Code[20])
+        field(27; "Revision No."; Code[20])
         {
             // cleaned
         }
-        field(28;"PPAP Approved Date";Date)
+        field(28; "PPAP Approved Date"; Date)
         {
             // cleaned
         }
+    }
+
+    keys
+    {
+        key(RPTSort; "Customer No.", "Active", "Item No.", Model, "EMU", "Per")
+        { }
     }
 }

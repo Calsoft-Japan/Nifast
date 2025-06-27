@@ -453,7 +453,7 @@ report 50021 "Return Order Confirmation NV"
                                 "Sales Line"."No." := '';
                             END;
 
-                            TypeInt := "Sales Line".Type;
+                            TypeInt := "Sales Line".Type.AsInteger();
                             SalesLineLineNo := "Sales Line"."Line No.";
                             TotalSubTotal += "Sales Line"."Line Amount";
                             TotalInvoiceDiscountAmount -= "Sales Line"."Inv. Discount Amount";
@@ -477,7 +477,7 @@ report 50021 "Return Order Confirmation NV"
                                 CurrReport.BREAK;
                             SalesLine.SETRANGE("Line No.", 0, SalesLine."Line No.");
                             SETRANGE(Number, 1, SalesLine.COUNT);
-                            CurrReport.CREATETOTALS(SalesLine."Line Amount", SalesLine."Inv. Discount Amount");
+                            //CurrReport.CREATETOTALS(SalesLine."Line Amount", SalesLine."Inv. Discount Amount");BC Upgrade
                         end;
                     }
                     dataitem("Sales Comment Line"; "Sales Comment Line")
@@ -567,9 +567,7 @@ report 50021 "Return Order Confirmation NV"
                             IF VATAmount = 0 THEN
                                 CurrReport.BREAK;
                             SETRANGE(Number, 1, VATAmountLine.COUNT);
-                            CurrReport.CREATETOTALS(
-                              VATAmountLine."Line Amount", VATAmountLine."Inv. Disc. Base Amount",
-                              VATAmountLine."Invoice Discount Amount", VATAmountLine."VAT Base", VATAmountLine."VAT Amount");
+                            //CurrReport.CREATETOTALS(VATAmountLine."Line Amount", VATAmountLine."Inv. Disc. Base Amount",VATAmountLine."Invoice Discount Amount", VATAmountLine."VAT Base", VATAmountLine."VAT Amount");BC Upgrade
                         end;
                     }
                     dataitem(VATCounterLCY; Integer)
@@ -618,7 +616,7 @@ report 50021 "Return Order Confirmation NV"
                                 CurrReport.BREAK;
 
                             SETRANGE(Number, 1, VATAmountLine.COUNT);
-                            CurrReport.CREATETOTALS(VALVATBaseLCY, VALVATAmountLCY);
+                            //CurrReport.CREATETOTALS(VALVATBaseLCY, VALVATAmountLCY);BC Upgrade
 
                             IF GLSetup."LCY Code" = '' THEN
                                 VALSpecLCYHeader := Text007 + Text008
@@ -699,7 +697,7 @@ report 50021 "Return Order Confirmation NV"
                         CopyText := Text003;
                         OutputNo += 1;
                     END;
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1; BC Upgrade
 
                     TotalSubTotal := 0;
                     TotalInvoiceDiscountAmount := 0;
@@ -723,9 +721,9 @@ report 50021 "Return Order Confirmation NV"
 
             trigger OnAfterGetRecord()
             begin
-                Language.Reset();//BC Upgrade 2025-06-23
-                Language.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                Language_T.Reset();//BC Upgrade 2025-06-23
+                Language_T.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_T."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 CompanyInfo.GET;
                 CompanyInfo.CALCFIELDS("Document Logo");
@@ -887,7 +885,7 @@ report 50021 "Return Order Confirmation NV"
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         CurrExchRate: Record "Currency Exchange Rate";
         Cust: Record Customer;
         SalesCountPrinted: Codeunit "Sales-Printed";
@@ -928,7 +926,7 @@ report 50021 "Return Order Confirmation NV"
         TypeInt: Integer;
         SalesLineNo: Code[20];
         SalesLineLineNo: Integer;
-        [InDataSet]
+        //[InDataSet] BC Upgrade
         LogInteractionEnable: Boolean;
         TotalSubTotal: Decimal;
         TotalAmount: Decimal;

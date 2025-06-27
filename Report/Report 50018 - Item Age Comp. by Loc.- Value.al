@@ -332,7 +332,7 @@ report 50018 "Item Age Comp. by Loc.- Value"
 
                     trigger OnPreDataItem()
                     begin
-                        CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[61], InvtValue[7], InvtValue[8], TotalInvtValue);
+                        //CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[61], InvtValue[7], InvtValue[8], TotalInvtValue);BC Upgrade
                         TempItemLedgEntry.SETCURRENTKEY("Item No.", "Variant Code", Open, Positive, "Location Code");
                         TempItemLedgEntry.SETRANGE("Item No.", TempItem."No.");
                         TempItemLedgEntry.SETRANGE("Location Code", Location.Code);
@@ -413,7 +413,7 @@ report 50018 "Item Age Comp. by Loc.- Value"
 
                 trigger OnPreDataItem()
                 begin
-                    CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[61], InvtValue[7], InvtValue[8], TotalInvtValue);
+                    //CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[61], InvtValue[7], InvtValue[8], TotalInvtValue);BC Upgrade
                     SETRANGE(Number, 1, TempItem.COUNT);
                 end;
             }
@@ -430,8 +430,9 @@ report 50018 "Item Age Comp. by Loc.- Value"
                     ValuesExist := ((LocInvtValue[1] <> 0) OR (LocInvtValue[2] <> 0) OR (LocInvtValue[3] <> 0) OR (LocInvtValue[4] <> 0) OR
                                            (LocInvtValue[5] <> 0) OR (LocInvtValue[6] <> 0) OR (LocInvtValue[7] <> 0) OR (LocTotalInvtValue <> 0));
 
+                    /* BC Upgrade
                     IF NewPagePerLoc AND ValuesExist THEN
-                        CurrReport.NEWPAGE;
+                        CurrReport.NEWPAGE; */
                 end;
             }
 
@@ -469,7 +470,7 @@ report 50018 "Item Age Comp. by Loc.- Value"
             trigger OnPreDataItem()
             begin
                 d.OPEN('Reading Location #1##################');
-                CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[61], InvtValue[7], InvtValue[8], TotalInvtValue);
+                //CurrReport.CREATETOTALS(InvtValue[1], InvtValue[2], InvtValue[3], InvtValue[4], InvtValue[5], InvtValue[61], InvtValue[7], InvtValue[8], TotalInvtValue);BC Upgrade
             end;
         }
     }

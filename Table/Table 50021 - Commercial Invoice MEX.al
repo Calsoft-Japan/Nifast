@@ -76,6 +76,12 @@ table 50021 "Commercial Invoice MEX"
         }
     }
 
+    keys
+    {
+        key(RPTSort; "Virtural Operation No.", "Country of Origin", "Custom Agent License No.", "Customer Agent E/S", "Date of Entry", "Summary Entry No.", "Summary Entry Code")
+        { }
+    }
+
     procedure GetInfo(CustNo: Code[20]; DateFilter: Text[30]; ShowStatus: Boolean; var TempSalesHdr: Record "Sales Header" temporary)
     var
         SalesInvHdr: Record "Sales Invoice Header";

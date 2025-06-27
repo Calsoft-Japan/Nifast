@@ -614,7 +614,7 @@ report 50045 "Picking List - IST"
                     begin
                         //>>>ist
                         COPY("Warehouse Activity Line");
-                        CurrReport.CREATETOTALS("Qty. (Base)", "Qty. to Handle", "Total Parcels");
+                        //CurrReport.CREATETOTALS("Qty. (Base)", "Qty. to Handle", "Total Parcels");BC Upgrade
                         //<<
                         //>> NIF 07-06-05
                         IF STRPOS(COMPANYNAME, 'Canada') <> 0 THEN
@@ -764,7 +764,7 @@ report 50045 "Picking List - IST"
                 END;
 
                 //for multi-print
-                CurrReport.PAGENO := 1;
+                //CurrReport.PAGENO := 1;BC Upgrade
 
                 //<<
 

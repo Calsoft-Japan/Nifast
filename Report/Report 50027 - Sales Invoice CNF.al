@@ -235,7 +235,7 @@ report 50027 "Sales Invoice CNF"
                     column(Sales_Invoice_Header___Posting_Date_; FORMAT("Sales Invoice Header"."Posting Date"))
                     {
                     }
-                    column(CurrReport_PAGENO; CurrReport.PAGENO)
+                    column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
                     {
                     }
                     column(CompanyAddress_7_; CompanyAddress[7])
@@ -547,10 +547,10 @@ report 50027 "Sales Invoice CNF"
                                 END;
 
                             DescriptionToPrint := TempSalesInvoiceLine.Description + ' ' + TempSalesInvoiceLine."Description 2";
-                            IF TempSalesInvoiceLine.Type = 0 THEN BEGIN
+                            IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                 IF OnLineNumber < NumberOfLines THEN BEGIN
                                     TempSalesInvoiceLine.NEXT;
-                                    IF TempSalesInvoiceLine.Type = 0 THEN BEGIN
+                                    IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                         DescriptionToPrint :=
                                           COPYSTR(DescriptionToPrint + ' ' + TempSalesInvoiceLine.Description + ' ' + TempSalesInvoiceLine."Description 2", 1, MAXSTRLEN(DescriptionToPrint));
                                         OnLineNumber := OnLineNumber + 1;
@@ -628,7 +628,7 @@ report 50027 "Sales Invoice CNF"
 
                         trigger OnPreDataItem()
                         begin
-                            CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempSalesInvoiceLine.Amount, TempSalesInvoiceLine."Amount Including VAT");
+                            //CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempSalesInvoiceLine.Amount, TempSalesInvoiceLine."Amount Including VAT");BC Upgrade
                             NumberOfLines := TempSalesInvoiceLine.COUNT;
                             SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;
@@ -639,7 +639,7 @@ report 50027 "Sales Invoice CNF"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1;BC Upgrade
 
                     IF CopyNo = NoLoops THEN BEGIN
                         IF NOT CurrReport.PREVIEW THEN
@@ -671,9 +671,9 @@ report 50027 "Sales Invoice CNF"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language.Reset();//BC Upgrade 2025-06-24
-                Language.Get("Language Code");//BC Upgrade 2025-06-24
-                CurrReport.LANGUAGE := Language."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-24
+                Language_T.Reset();//BC Upgrade 2025-06-24
+                Language_T.Get("Language Code");//BC Upgrade 2025-06-24
+                CurrReport.LANGUAGE := Language_T."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-24
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)
@@ -910,7 +910,7 @@ report 50027 "Sales Invoice CNF"
         TempSalesInvoiceLine: Record "Sales Invoice Line" temporary;
         TempSalesInvoiceLineAsm: Record "Sales Invoice Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Cust: Record Customer;
@@ -956,7 +956,7 @@ report 50027 "Sales Invoice CNF"
         DocumentText: Text[20];
         USText000: Label 'INVOICE';
         USText001: Label 'PREPAYMENT REQUEST';
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         BillCaptionLbl: Label 'Bill';

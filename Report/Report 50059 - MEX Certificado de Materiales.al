@@ -265,10 +265,10 @@ report 50059 "MEX Certificado de Materiales"
                             END;
 
                             DescriptionToPrint := TempSalesInvoiceLine.Description + ' ' + TempSalesInvoiceLine."Description 2";
-                            IF TempSalesInvoiceLine.Type = 0 THEN BEGIN
+                            IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                 IF OnLineNumber < NumberOfLines THEN BEGIN
                                     NEXT;
-                                    IF TempSalesInvoiceLine.Type = 0 THEN BEGIN
+                                    IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                         DescriptionToPrint :=
                                           COPYSTR(DescriptionToPrint + ' ' + TempSalesInvoiceLine.Description + ' ' + TempSalesInvoiceLine."Description 2", 1, MAXSTRLEN(DescriptionToPrint));
                                         OnLineNumber := OnLineNumber + 1;
@@ -327,7 +327,7 @@ report 50059 "MEX Certificado de Materiales"
 
                         trigger OnPreDataItem()
                         begin
-                            CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempSalesInvoiceLine.Amount, TempSalesInvoiceLine."Amount Including VAT");
+                            //CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempSalesInvoiceLine.Amount, TempSalesInvoiceLine."Amount Including VAT");BC Upgrade
                             NumberOfLines := TempSalesInvoiceLine.COUNT;
                             SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;
@@ -342,7 +342,7 @@ report 50059 "MEX Certificado de Materiales"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1;BC Upgrade
 
                     IF CopyNo = NoLoops THEN BEGIN
                         IF NOT CurrReport.PREVIEW THEN
@@ -374,9 +374,9 @@ report 50059 "MEX Certificado de Materiales"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
                 END;
-                Language.Reset();//BC Upgrade 2025-06-23
-                Language.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language."Windows Language ID";//BC Upgrade 2025-06-23
+                Language_T.Reset();//BC Upgrade 2025-06-23
+                Language_T.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
                 //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 //>>NIF 042006 RTT
@@ -471,31 +471,31 @@ report 50059 "MEX Certificado de Materiales"
                     BrkIdx := 0;
                     PrevPrintOrder := 0;
                     PrevTaxPercent := 0;
-                    WITH TempSalesTaxAmtLine DO BEGIN
-                        RESET;
-                        SETCURRENTKEY("Print Order", "Tax Area Code for Key", "Tax Jurisdiction Code");
-                        IF FIND('-') THEN
-                            REPEAT
-                                IF ("Print Order" = 0) OR
-                                   ("Print Order" <> PrevPrintOrder) OR
-                                   ("Tax %" <> PrevTaxPercent)
-                                THEN BEGIN
-                                    BrkIdx := BrkIdx + 1;
-                                    IF BrkIdx > 1 THEN BEGIN
-                                        IF TaxArea."Country/Region" = TaxArea."Country/Region"::CA THEN
-                                            BreakdownTitle := Text006
-                                        ELSE
-                                            BreakdownTitle := Text003;
-                                    END;
-                                    IF BrkIdx > ARRAYLEN(BreakdownAmt) THEN BEGIN
-                                        BrkIdx := BrkIdx - 1;
-                                        BreakdownLabel[BrkIdx] := Text004;
-                                    END ELSE
-                                        BreakdownLabel[BrkIdx] := STRSUBSTNO("Print Description", "Tax %");
+
+                    TempSalesTaxAmtLine.RESET;
+                    TempSalesTaxAmtLine.SETCURRENTKEY("Print Order", "Tax Area Code for Key", "Tax Jurisdiction Code");
+                    IF TempSalesTaxAmtLine.FIND('-') THEN
+                        REPEAT
+                            IF (TempSalesTaxAmtLine."Print Order" = 0) OR
+                               (TempSalesTaxAmtLine."Print Order" <> PrevPrintOrder) OR
+                               (TempSalesTaxAmtLine."Tax %" <> PrevTaxPercent)
+                            THEN BEGIN
+                                BrkIdx := BrkIdx + 1;
+                                IF BrkIdx > 1 THEN BEGIN
+                                    IF TaxArea."Country/Region" = TaxArea."Country/Region"::CA THEN
+                                        BreakdownTitle := Text006
+                                    ELSE
+                                        BreakdownTitle := Text003;
                                 END;
-                                BreakdownAmt[BrkIdx] := BreakdownAmt[BrkIdx] + "Tax Amount";
-                            UNTIL NEXT = 0;
-                    END;
+                                IF BrkIdx > ARRAYLEN(BreakdownAmt) THEN BEGIN
+                                    BrkIdx := BrkIdx - 1;
+                                    BreakdownLabel[BrkIdx] := Text004;
+                                END ELSE
+                                    BreakdownLabel[BrkIdx] := STRSUBSTNO(TempSalesTaxAmtLine."Print Description", TempSalesTaxAmtLine."Tax %");
+                            END;
+                            BreakdownAmt[BrkIdx] := BreakdownAmt[BrkIdx] + TempSalesTaxAmtLine."Tax Amount";
+                        UNTIL NEXT = 0;
+
                     IF BrkIdx = 1 THEN BEGIN
                         CLEAR(BreakdownLabel);
                         CLEAR(BreakdownAmt);
@@ -595,7 +595,7 @@ report 50059 "MEX Certificado de Materiales"
         ShipmentLine: Record "Sales Shipment Line";
         TempSalesInvoiceLine: Record "Sales Invoice Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         CompanyAddress: array[8] of Text[50];
@@ -673,7 +673,7 @@ report 50059 "MEX Certificado de Materiales"
 
     procedure InitLogInteraction()
     begin
-        ///LogInteraction := SegManagement.FindInteractTmplCode(4) <> '';
+        //LogInteraction := SegManagement.FindInteractTmplCode(4) <> '';
     end;
 
 

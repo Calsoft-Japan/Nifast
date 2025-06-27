@@ -142,8 +142,9 @@ report 50063 "Shipped Not Invoiced by Lot"
                 ELSE
                     OrderNo := SalesShptHdr."Order No.";
 
+                /*BC Upgrade 
                 IF NOT FooterPrinted THEN
-                    LastFieldNo := CurrReport.TOTALSCAUSEDBY;
+                    LastFieldNo := CurrReport.TOTALSCAUSEDBY; */
                 //CurrReport.SHOWOUTPUT := NOT FooterPrinted; BC Upgrade
                 FooterPrinted := TRUE;
 

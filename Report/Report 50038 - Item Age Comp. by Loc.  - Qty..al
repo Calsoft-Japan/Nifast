@@ -180,7 +180,7 @@ report 50038 "Item Age Comp. by Loc.  - Qty."
 
                     trigger OnPreDataItem()
                     begin
-                        CurrReport.CREATETOTALS(TotalInvtQty, InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7]);//InvtQty BC Upgrade
+                        //CurrReport.CREATETOTALS(TotalInvtQty, InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7]);//InvtQty BC Upgrade
                         //>> NIF 07-01-05 RTT
                         SETRANGE("Location Code", Location.Code);
                         SETRANGE("Posting Date", 0D, AsOfDate);
@@ -196,7 +196,7 @@ report 50038 "Item Age Comp. by Loc.  - Qty."
 
                 trigger OnPreDataItem()
                 begin
-                    CurrReport.CREATETOTALS(TotalInvtQty, InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7]);//InvtQty BC Upgrade
+                    //CurrReport.CREATETOTALS(TotalInvtQty, InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7]);//InvtQty BC Upgrade
                 end;
             }
             dataitem(ItemLoop; Integer)
@@ -333,7 +333,7 @@ report 50038 "Item Age Comp. by Loc.  - Qty."
 
                     trigger OnPreDataItem()
                     begin
-                        CurrReport.CREATETOTALS(InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], TotalInvtQty);//InvtQty BC Upgrade
+                        //CurrReport.CREATETOTALS(InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], TotalInvtQty);//InvtQty BC Upgrade
                         TempItemLedgEntry.SETCURRENTKEY("Item No.", "Variant Code", Open, Positive, "Location Code");
                         TempItemLedgEntry.SETRANGE("Item No.", TempItem."No.");
                         TempItemLedgEntry.SETRANGE("Location Code", Location.Code);
@@ -422,7 +422,7 @@ report 50038 "Item Age Comp. by Loc.  - Qty."
 
                 trigger OnPreDataItem()
                 begin
-                    CurrReport.CREATETOTALS(InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], TotalInvtQty);//InvtQty BC Upgrade
+                    //CurrReport.CREATETOTALS(InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], TotalInvtQty);//InvtQty BC Upgrade
                     SETRANGE(Number, 1, TempItem.COUNT);
                 end;
             }
@@ -439,8 +439,9 @@ report 50038 "Item Age Comp. by Loc.  - Qty."
                     ValuesExist := ((LocInvtQty[1] <> 0) OR (LocInvtQty[2] <> 0) OR (LocInvtQty[3] <> 0) OR (LocInvtQty[4] <> 0) OR
                                            (LocInvtQty[5] <> 0) OR (LocInvtQty[6] <> 0) OR (LocInvtQty[7] <> 0) OR (LocTotalInvtQty <> 0));
 
+                    /* BC Upgrade
                     IF NewPagePerLoc AND ValuesExist THEN
-                        CurrReport.NEWPAGE;
+                        CurrReport.NEWPAGE; */
                 end;
             }
 
@@ -476,7 +477,7 @@ report 50038 "Item Age Comp. by Loc.  - Qty."
             trigger OnPreDataItem()
             begin
                 d.OPEN('Reading Location #1##################');
-                CurrReport.CREATETOTALS(InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], TotalInvtQty);//InvtQty BC Upgrade
+                //CurrReport.CREATETOTALS(InvtQty[1], InvtQty[2], InvtQty[3], InvtQty[4], InvtQty[5], InvtQty[6], InvtQty[7], TotalInvtQty);//InvtQty BC Upgrade
             end;
         }
     }

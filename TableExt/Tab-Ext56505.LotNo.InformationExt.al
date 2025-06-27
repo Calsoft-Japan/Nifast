@@ -140,4 +140,9 @@ tableextension 56505 "Lot No. Information Ext" extends "Lot No. Information"
         field(50000; "Lot Creation Date"; Date)//NV-Lot From 14018077->50000
         { }
     }
+    keys
+    {
+        key(RPTSort; "Mfg. Lot No.")
+        { }
+    }
 }

@@ -316,7 +316,7 @@ report 50092 "Purchase - Credit Memo NV"
                         begin
                             OnLineNumber := OnLineNumber + 1;
 
-                            IF Type = 0 THEN BEGIN
+                            IF Type = Type::" " THEN BEGIN
                                 ItemNumberToPrint := '';
                                 "Unit of Measure" := '';
                                 Amount := 0;
@@ -353,7 +353,7 @@ report 50092 "Purchase - Credit Memo NV"
 
                         trigger OnPreDataItem()
                         begin
-                            CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, Amount, "Amount Including VAT");
+                            //CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, Amount, "Amount Including VAT");BC Upgrade
                             NumberOfLines := COUNT;
                             OnLineNumber := 0;
                             PrintFooter := FALSE;
@@ -367,7 +367,7 @@ report 50092 "Purchase - Credit Memo NV"
 
                 trigger OnAfterGetRecord()
                 begin
-                    CurrReport.PAGENO := 1;
+                    //CurrReport.PAGENO := 1;BC Upgrade
 
                     IF CopyNo = NoLoops THEN BEGIN
                         IF NOT CurrReport.PREVIEW THEN
@@ -399,9 +399,9 @@ report 50092 "Purchase - Credit Memo NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language.Reset();//BC Upgrade 2025-06-23
-                Language.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language."Windows Language ID";//BC Upgrade 2025-06-23
+                Language_T.Reset();//BC Upgrade 2025-06-23
+                Language_T.Get("Language Code");//BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
                 //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 IF "Purchaser Code" = '' THEN
@@ -552,7 +552,7 @@ report 50092 "Purchase - Credit Memo NV"
         SalesPurchPerson: Record "Salesperson/Purchaser";
         CompanyInformation: Record "Company Information";
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Vend: Record Vendor;
@@ -588,7 +588,7 @@ report 50092 "Purchase - Credit Memo NV"
         Text007: Label 'Total Tax:';
         Text008: Label 'Sales Tax:';
         Text009: Label 'VOID CREDIT MEMO';
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
         ToCaptionLbl: Label 'To:';
         ApplytoTypeCaptionLbl: Label 'Apply to Type';

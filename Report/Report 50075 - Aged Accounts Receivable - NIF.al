@@ -39,7 +39,7 @@ report 50075 "Aged Accounts Receivable - NIF"
             column(CompanyInformation_Name; CompanyInformation.Name)
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PAGENO)
+            column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
             {
             }
             column(USERID; USERID)
@@ -615,7 +615,7 @@ report 50075 "Aged Accounts Receivable - NIF"
 
                 trigger OnPreDataItem()
                 begin
-                    CurrReport.CREATETOTALS(AmountDueToPrint, AmountDue[1], AmountDue[2], AmountDue[3], AmountDue[4], AmountDue[5], AmountDue[6], AmountDue[7]);//AmountDue BC Upgrade
+                    //CurrReport.CREATETOTALS(AmountDueToPrint, AmountDue[1], AmountDue[2], AmountDue[3], AmountDue[4], AmountDue[5], AmountDue[6], AmountDue[7]);//AmountDue BC Upgrade
                     SETRANGE(Number, 1, TempCustLedgEntry.COUNT);
                     TempCustLedgEntry.SETCURRENTKEY("Customer No.", "Posting Date");
                     CLEAR(CustTotAmountDue);
@@ -1105,31 +1105,29 @@ report 50075 "Aged Accounts Receivable - NIF"
 
     local procedure InsertTemp(var CustLedgEntry: Record "Cust. Ledger Entry")
     begin
-        WITH TempCustLedgEntry DO BEGIN
-            IF GET(CustLedgEntry."Entry No.") THEN
-                EXIT;
-            TempCustLedgEntry := CustLedgEntry;
-            /*
-            //>>CSI.RAM 02/07/2018
-            IF ShowARC THEN BEGIN
-              TempCustLedgEntry.CALCFIELDS("Remaining Amt. (LCY)");
-              MESSAGE('1-%1\%2',TempCustLedgEntry."Remaining Amount",TempCustLedgEntry."Remaining Amt. (LCY)");
-              IF TempCustLedgEntry."Currency Code" = GLSetup."LCY Code" THEN
-                TempCustLedgEntry."Remaining Amount" := ExchangeAmtLCYToFCY(TempCustLedgEntry."Posting Date",TempCustLedgEntry."Remaining Amount",FALSE)
-              ELSE
-                TempCustLedgEntry."Remaining Amount" := ExchangeAmtLCYToFCY(TempCustLedgEntry."Posting Date",TempCustLedgEntry."Remaining Amt. (LCY)",FALSE);
-              MESSAGE('2-%1',TempCustLedgEntry."Remaining Amount");
-            END;
-            //<<CSI.RAM 02/07/2018
-            */
-            CASE AgingMethod OF
-                AgingMethod::"Due Date":
-                    "Posting Date" := "Due Date";
-                AgingMethod::"Document Date":
-                    "Posting Date" := "Document Date";
-            END;
-            INSERT;
+        IF TempCustLedgEntry.GET(CustLedgEntry."Entry No.") THEN
+            EXIT;
+        TempCustLedgEntry := CustLedgEntry;
+        /*
+        //>>CSI.RAM 02/07/2018
+        IF ShowARC THEN BEGIN
+          TempCustLedgEntry.CALCFIELDS("Remaining Amt. (LCY)");
+          MESSAGE('1-%1\%2',TempCustLedgEntry."Remaining Amount",TempCustLedgEntry."Remaining Amt. (LCY)");
+          IF TempCustLedgEntry."Currency Code" = GLSetup."LCY Code" THEN
+            TempCustLedgEntry."Remaining Amount" := ExchangeAmtLCYToFCY(TempCustLedgEntry."Posting Date",TempCustLedgEntry."Remaining Amount",FALSE)
+          ELSE
+            TempCustLedgEntry."Remaining Amount" := ExchangeAmtLCYToFCY(TempCustLedgEntry."Posting Date",TempCustLedgEntry."Remaining Amt. (LCY)",FALSE);
+          MESSAGE('2-%1',TempCustLedgEntry."Remaining Amount");
         END;
+        //<<CSI.RAM 02/07/2018
+        */
+        CASE AgingMethod OF
+            AgingMethod::"Due Date":
+                TempCustLedgEntry."Posting Date" := TempCustLedgEntry."Due Date";
+            AgingMethod::"Document Date":
+                TempCustLedgEntry."Posting Date" := TempCustLedgEntry."Document Date";
+        END;
+        TempCustLedgEntry.INSERT;
 
     end;
 

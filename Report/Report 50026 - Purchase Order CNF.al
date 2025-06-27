@@ -128,7 +128,7 @@ report 50026 "Purchase Order CNF"
             column(Purchase_Header__Purchase_Header___Order_Date_; FORMAT("Purchase Header"."Order Date"))
             {
             }
-            column(CurrReport_PAGENO; CurrReport.PAGENO)
+            column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
             {
             }
             column(Purchase_Header__Purchase_Header___Requested_Receipt_Date_; FORMAT("Purchase Header"."Requested Receipt Date"))
@@ -340,7 +340,7 @@ report 50026 "Purchase Order CNF"
                         column(TempPurchLine__Revision_No__; TempPurchLine."Revision No.")
                         {
                         }
-                        column(Transferred_to_page_____FORMAT_CurrReport_PAGENO___1_; 'Transferred to page ' + FORMAT(CurrReport.PAGENO + 1))
+                        column(Transferred_to_page_____FORMAT_CurrReport_PAGENO___1_; 'Transferred to page ')// + FORMAT(CurrReport.PAGENO + 1))
                         {
                         }
                         column(AmountExclInvDisc_Control79; AmountExclInvDisc)
@@ -444,7 +444,7 @@ report 50026 "Purchase Order CNF"
                             ELSE
                                 ItemNumberToPrint := TempPurchLine."No.";
 
-                            IF TempPurchLine.Type = 0 THEN BEGIN
+                            IF TempPurchLine.Type = TempPurchLine.Type::" " THEN BEGIN
                                 ItemNumberToPrint := '';
                                 TempPurchLine."Unit of Measure" := '';
                                 TempPurchLine.Amount := 0;
@@ -483,7 +483,7 @@ report 50026 "Purchase Order CNF"
 
                         trigger OnPreDataItem()
                         begin
-                            CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempPurchLine.Amount, TempPurchLine."Amount Including VAT");
+                            //CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempPurchLine.Amount, TempPurchLine."Amount Including VAT");BC Upgrade
                             NumberOfLines := TempPurchLine.COUNT;
                             SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;
@@ -669,7 +669,7 @@ report 50026 "Purchase Order CNF"
         SalesPurchPerson: Record "Salesperson/Purchaser";
         CompanyInformation: Record "Company Information";
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+        Language_T: Record Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Vend: Record Vendor;
@@ -709,9 +709,9 @@ report 50026 "Purchase Order CNF"
         Text007: Label 'Total Tax:';
         Text008: Label 'Tax:';
         UseExternalTaxEngine: Boolean;
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         ArchiveDocumentEnable: Boolean;
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         LogInteractionEnable: Boolean;
         To_CaptionLbl: Label 'To:';
         Receive_ByCaptionLbl: Label 'Receive By';

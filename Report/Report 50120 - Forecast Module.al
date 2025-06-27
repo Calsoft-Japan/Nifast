@@ -1279,8 +1279,8 @@ report 50120 "Forecast Module"
 
                 trigger OnPreDataItem()
                 begin
-                    CurrReport.CREATETOTALS(ForecastQty2);
-                    CurrReport.CREATETOTALS(ForecastQty3);
+                    //CurrReport.CREATETOTALS(ForecastQty2);BC Upgrade
+                    //CurrReport.CREATETOTALS(ForecastQty3);BC Upgrade
                 end;
             }
             dataitem(PurchOrderLoop; Integer)
@@ -2710,7 +2710,7 @@ report 50120 "Forecast Module"
         ExportToExcel: Boolean;
         MainTitle: Text[30];
         Weekly90: Decimal;
-        [InDataSet]
+        //[InDataSet]BC Upgrade
         ShowDetails: Boolean;
         Daily42: Decimal;
         DayOnHand: Decimal;
@@ -2850,38 +2850,36 @@ report 50120 "Forecast Module"
         ItemApplnEntry: Record "Item Application Entry";
         ItemLedgEntry2: Record "Item Ledger Entry";
     begin
-        WITH ItemLedgEntry DO BEGIN
-            // adjust remaining quantity
-            "Remaining Quantity" := Quantity;
-            IF Positive THEN BEGIN
-                ItemApplnEntry.RESET;
-                ItemApplnEntry.SETCURRENTKEY(
-                  "Inbound Item Entry No.", "Cost Application", "Outbound Item Entry No.");
-                ItemApplnEntry.SETRANGE("Inbound Item Entry No.", "Entry No.");
-                ItemApplnEntry.SETRANGE("Posting Date", 0D, PeriodStartingDate[2] - 120);
-                ItemApplnEntry.SETFILTER("Outbound Item Entry No.", '<>%1', 0);
-                ItemApplnEntry.SETFILTER("Item Ledger Entry No.", '<>%1', "Entry No.");
-                IF ItemApplnEntry.FIND('-') THEN
-                    REPEAT
-                        IF ItemLedgEntry2.GET(ItemApplnEntry."Item Ledger Entry No.") AND
-                           (ItemLedgEntry2."Posting Date" <= PeriodStartingDate[2])
-                        THEN
-                            "Remaining Quantity" := "Remaining Quantity" + ItemApplnEntry.Quantity;
-                    UNTIL ItemApplnEntry.NEXT = 0;
-            END ELSE BEGIN
-                ItemApplnEntry.RESET;
-                ItemApplnEntry.SETCURRENTKEY("Item Ledger Entry No.", "Outbound Item Entry No.", "Cost Application");
-                ItemApplnEntry.SETRANGE("Item Ledger Entry No.", "Entry No.");
-                ItemApplnEntry.SETRANGE("Outbound Item Entry No.", "Entry No.");
-                ItemApplnEntry.SETRANGE("Posting Date", 0D, PeriodStartingDate[2] - 120);
-                IF ItemApplnEntry.FIND('-') THEN
-                    REPEAT
-                        IF ItemLedgEntry2.GET(ItemApplnEntry."Inbound Item Entry No.") AND
-                           (ItemLedgEntry2."Posting Date" <= PeriodStartingDate[2])
-                        THEN
-                            "Remaining Quantity" := "Remaining Quantity" - ItemApplnEntry.Quantity;
-                    UNTIL ItemApplnEntry.NEXT = 0;
-            END;
+        // adjust remaining quantity
+        ItemLedgEntry."Remaining Quantity" := ItemLedgEntry.Quantity;
+        IF ItemLedgEntry.Positive THEN BEGIN
+            ItemApplnEntry.RESET;
+            ItemApplnEntry.SETCURRENTKEY(
+              "Inbound Item Entry No.", "Cost Application", "Outbound Item Entry No.");
+            ItemApplnEntry.SETRANGE("Inbound Item Entry No.", ItemLedgEntry."Entry No.");
+            ItemApplnEntry.SETRANGE("Posting Date", 0D, PeriodStartingDate[2] - 120);
+            ItemApplnEntry.SETFILTER("Outbound Item Entry No.", '<>%1', 0);
+            ItemApplnEntry.SETFILTER("Item Ledger Entry No.", '<>%1', ItemLedgEntry."Entry No.");
+            IF ItemApplnEntry.FIND('-') THEN
+                REPEAT
+                    IF ItemLedgEntry2.GET(ItemApplnEntry."Item Ledger Entry No.") AND
+                       (ItemLedgEntry2."Posting Date" <= PeriodStartingDate[2])
+                    THEN
+                        ItemLedgEntry."Remaining Quantity" := ItemLedgEntry."Remaining Quantity" + ItemApplnEntry.Quantity;
+                UNTIL ItemApplnEntry.NEXT = 0;
+        END ELSE BEGIN
+            ItemApplnEntry.RESET;
+            ItemApplnEntry.SETCURRENTKEY("Item Ledger Entry No.", "Outbound Item Entry No.", "Cost Application");
+            ItemApplnEntry.SETRANGE("Item Ledger Entry No.", ItemLedgEntry."Entry No.");
+            ItemApplnEntry.SETRANGE("Outbound Item Entry No.", ItemLedgEntry."Entry No.");
+            ItemApplnEntry.SETRANGE("Posting Date", 0D, PeriodStartingDate[2] - 120);
+            IF ItemApplnEntry.FIND('-') THEN
+                REPEAT
+                    IF ItemLedgEntry2.GET(ItemApplnEntry."Inbound Item Entry No.") AND
+                       (ItemLedgEntry2."Posting Date" <= PeriodStartingDate[2])
+                    THEN
+                        ItemLedgEntry."Remaining Quantity" := ItemLedgEntry."Remaining Quantity" - ItemApplnEntry.Quantity;
+                UNTIL ItemApplnEntry.NEXT = 0;
         END;
     end;
 
