@@ -118,6 +118,10 @@ table 50029 "Vehicle Production"
 
     keys
     {
+        key(PK; "Customer No.", "Item No.", Model, EMU, Per)
+        {
+            Clustered = true;
+        }
         key(RPTSort; "Customer No.", "Active", "Item No.", Model, "EMU", "Per")
         { }
     }

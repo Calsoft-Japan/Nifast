@@ -90,6 +90,10 @@ table 50027 "Forecast Ledger Entry"
 
     keys
     {
+        key(PK; "Entry No.")
+        {
+            Clustered = true;
+        }
         key(RPTSort; "Customer No.", "Division Code")
         { }
     }

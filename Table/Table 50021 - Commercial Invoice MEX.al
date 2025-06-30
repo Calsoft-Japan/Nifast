@@ -78,6 +78,10 @@ table 50021 "Commercial Invoice MEX"
 
     keys
     {
+        key(PK; "Entry No.")
+        {
+            Clustered = true;
+        }
         key(RPTSort; "Virtural Operation No.", "Country of Origin", "Custom Agent License No.", "Customer Agent E/S", "Date of Entry", "Summary Entry No.", "Summary Entry Code")
         { }
     }
