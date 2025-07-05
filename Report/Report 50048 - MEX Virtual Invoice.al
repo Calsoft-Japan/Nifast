@@ -8,6 +8,7 @@ report 50048 "MEX Virtual Invoice"
     // SM 8/8/16
     // 1. Changed the caption of the Legend.
     // 2. Changed the caption on Global C/L (the Legend)
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Virtual Invoice.rdlc';
 

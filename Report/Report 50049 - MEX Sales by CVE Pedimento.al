@@ -2,6 +2,7 @@ report 50049 "MEX Sales by CVE Pedimento"
 {
     // NF1.00:CIS.NG  09-09-15 Merged during upgrade
     // CurrReport.SHOWOUTPUT(PrintDetail);
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Sales by CVE Pedimento.rdlc';
 

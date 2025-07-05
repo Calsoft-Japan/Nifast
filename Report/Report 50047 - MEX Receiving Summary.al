@@ -1,6 +1,7 @@
 report 50047 "MEX Receiving Summary"
 {
     // NF1.00:CIS.NG  09-04-15 Merged during upgrade
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Receiving Summary.rdlc';
 

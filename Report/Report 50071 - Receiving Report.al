@@ -2,6 +2,7 @@ report 50071 "Receiving Report"
 {
     // NF1.00:CIS.CM  09-09-15 Merged during upgrade
     // NF1.00:CIS.NG  07-25-16 Update Report to show MFG Lot No. in Report
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Receiving Report.rdlc';
 

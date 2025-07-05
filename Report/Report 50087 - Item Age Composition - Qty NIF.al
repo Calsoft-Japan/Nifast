@@ -37,6 +37,7 @@ report 50087 "Item Age Composition - Qty NIF"
     //   Item Ledger Entry, Footer (3) - OnPreSection
     //   Item Ledger Entry, Body (2) - OnPreSection
     //   Item, Footer (5) - OnPreSection
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Item Age Composition - Qty NIF.rdlc';
 

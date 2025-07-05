@@ -29,6 +29,7 @@ report 50045 "Picking List - IST"
     //                      -code at Warehouse Activity Header - OnAfterGetRecord()
     // 
     // SM.001- 8/24/16 swapped Ship to and Sold to on Purchase Return Orders
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Picking List - IST.rdlc';
 

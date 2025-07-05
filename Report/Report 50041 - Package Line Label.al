@@ -10,7 +10,7 @@ report 50041 "Package Line Label"
     // Date     Init   Proj   Desc
     // 04-26-05 RTT   #9978   code at PrintPackageLabel to handle print server
     // //<< NIF
-
+    ApplicationArea = All;
     ProcessingOnly = true;
 
     dataset

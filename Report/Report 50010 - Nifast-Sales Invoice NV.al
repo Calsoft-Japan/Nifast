@@ -674,9 +674,9 @@ report 50010 "Nifast-Sales Invoice NV"
                         //<<NIF
                     END;
 
-                Language_T.Reset();//BC Upgrade 2025-06-23
+                /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language_T."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_T."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)

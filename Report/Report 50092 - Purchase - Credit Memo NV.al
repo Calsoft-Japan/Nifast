@@ -3,6 +3,7 @@ report 50092 "Purchase - Credit Memo NV"
     // NF1.00:CIS.NG  07-18-16 Upgrade Report to NAV 2016
     // 
     // SM 001 8/9/16 changed left margin and right margin
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Purchase - Credit Memo NV.rdlc';
 
@@ -399,10 +400,10 @@ report 50092 "Purchase - Credit Memo NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language_T.Reset();//BC Upgrade 2025-06-23
+                /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
                 CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
-                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 IF "Purchaser Code" = '' THEN
                     CLEAR(SalesPurchPerson)

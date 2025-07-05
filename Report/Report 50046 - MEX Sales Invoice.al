@@ -7,6 +7,7 @@ report 50046 "MEX Sales Invoice"
     // 07-10-05 RTT           new field "Revision No."
     // 07-14-05 RTT           code at SalesInvLine-OAfterTGetRecord to zero out ordered qty
     // << NIF
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Sales Invoice.rdlc';
 
@@ -464,10 +465,10 @@ report 50046 "MEX Sales Invoice"
                     END;
                 END;
 
-                Language_t.Reset();//BC Upgrade 2025-06-23
+                /* Language_t.Reset();//BC Upgrade 2025-06-23
                 Language_t.Get("Language Code");//BC Upgrade 2025-06-23
                 CurrReport.LANGUAGE := Language_t."Windows Language ID";//BC Upgrade 2025-06-23
-                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 //>>NIF 042006 RTT
                 GetRemissionText();

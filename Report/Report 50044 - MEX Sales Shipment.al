@@ -5,6 +5,7 @@ report 50044 "MEX Sales Shipment"
     // >> NIF
     // 07-19-05  RTT  addded Cross-Reference No.
     // << NIF
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Sales Shipment.rdlc';
 
@@ -566,10 +567,10 @@ report 50044 "MEX Sales Shipment"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language_T.Reset();//BC Upgrade 2025-06-23
+                /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
                 CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
-                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)

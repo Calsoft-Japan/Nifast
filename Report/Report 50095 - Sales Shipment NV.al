@@ -2,6 +2,7 @@ report 50095 "Sales Shipment NV"
 {
     // NF1.00:CIS.NG  07-18-16 Upgrade Report to NAV 2016
     // NF1.00:CIS.NG  07-19-16 Fix the Date Format Issue - Make it MM/dd/yy
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Sales Shipment NV.rdlc';
 
@@ -552,10 +553,10 @@ report 50095 "Sales Shipment NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language_T.Reset();//BC Upgrade 2025-06-23
+                /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
                 CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
-                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)

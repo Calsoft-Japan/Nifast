@@ -1,6 +1,7 @@
 report 50073 "Receiving Report - Trans Rcpt"
 {
     // NF1.00:CIS.CM  09-15-15 Merged during upgrade
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Receiving Report - Trans Rcpt.rdlc';
 

@@ -1,6 +1,7 @@
 report 50090 "Purchase Invoice NV"
 {
     // NF1.00:CIS.NG  07-18-16 Upgrade Report to NAV 2016
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Purchase Invoice NV.rdlc';
 
@@ -428,10 +429,10 @@ report 50090 "Purchase Invoice NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language_T.Reset();//BC Upgrade 2025-06-23
+                /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
                 CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
-                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 IF "Purchaser Code" = '' THEN
                     CLEAR(SalesPurchPerson)

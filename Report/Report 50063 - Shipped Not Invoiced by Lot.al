@@ -17,6 +17,7 @@ report 50063 "Shipped Not Invoiced by Lot"
     // Bold      Boolean
     // Italic    Boolean
     // UnderLine Boolean
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Shipped Not Invoiced by Lot.rdlc';
 

@@ -37,6 +37,7 @@ report 50038 "Item Age Comp. by Loc.  - Qty."
     //   Item Ledger Entry, Footer (3) - OnPreSection
     //   Item Ledger Entry, Body (2) - OnPreSection
     //   Item, Footer (5) - OnPreSection
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Item Age Comp. by Loc.  - Qty..rdlc';
 

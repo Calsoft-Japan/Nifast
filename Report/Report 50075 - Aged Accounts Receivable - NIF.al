@@ -19,6 +19,7 @@ report 50075 "Aged Accounts Receivable - NIF"
     // CIS002 - CIS.RAM 01/15/2020 Added code to print credit limit in Reporting Currency
     // 
     // SM 03-03-20 Added two more brackets
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Aged Accounts Receivable - NIF.rdlc';
 

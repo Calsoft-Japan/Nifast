@@ -12,6 +12,7 @@ report 50056 "Sales Order NV"
     // istrtt 052506 new vars ASNValue and ASNCaption
     //               -added to Header section
     //               -code at Sales Header - OnAfterGetRecord()
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Sales Order NV.rdlc';
 
@@ -693,10 +694,10 @@ report 50056 "Sales Order NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language_T.Reset();//BC Upgrade 2025-06-23
+                /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
                 CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
-                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 //>>NIF 052506 RTT
                 PackingRule.GetPackingRule(0, "Sell-to Customer No.", "Ship-to Code");  //0=customer

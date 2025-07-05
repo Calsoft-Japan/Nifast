@@ -2,6 +2,7 @@ report 50078 "On Time Delivery"
 {
     // NF1.00:CIS.NG  08-05-16 Create New Report as we have in NAV 09 R2
     // NF2.00:CIS.RAM 02/14/17 Fixed the Recpt Line DataItemLink Value
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\On Time Delivery.rdlc';
 

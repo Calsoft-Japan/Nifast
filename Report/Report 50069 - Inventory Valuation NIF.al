@@ -1,5 +1,6 @@
 report 50069 "Inventory Valuation NIF"
 {
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Inventory Valuation NIF.rdlc';
     Caption = 'Inventory Valuation NIF';

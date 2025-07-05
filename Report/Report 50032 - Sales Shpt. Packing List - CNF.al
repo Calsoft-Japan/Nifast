@@ -24,6 +24,7 @@ report 50032 "Sales Shpt. Packing List - CNF"
     //               -added to Header section
     //               -code at Sales Shipment Header - OnAfterGetRecord()
     // <<IST
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Sales Shpt. Packing List - CNF.rdlc';
 

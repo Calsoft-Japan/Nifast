@@ -671,9 +671,9 @@ report 50027 "Sales Invoice CNF"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language_T.Reset();//BC Upgrade 2025-06-24
+                /* Language_T.Reset();//BC Upgrade 2025-06-24
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-24
-                CurrReport.LANGUAGE := Language_T."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-24
+                CurrReport.LANGUAGE := Language_T."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-24 */
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)

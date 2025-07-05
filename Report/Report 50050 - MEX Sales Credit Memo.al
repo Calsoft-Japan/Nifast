@@ -6,6 +6,7 @@ report 50050 "MEX Sales Credit Memo"
     // 07-10-05 RTT           new field "Revision No."
     // 07-14-05 RTT           code at SalesInvLine-OAfterTGetRecord to zero out ordered qty
     // << NIF
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Sales Credit Memo.rdlc';
 

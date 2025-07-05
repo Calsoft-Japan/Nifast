@@ -721,9 +721,9 @@ report 50021 "Return Order Confirmation NV"
 
             trigger OnAfterGetRecord()
             begin
-                Language_T.Reset();//BC Upgrade 2025-06-23
+                /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language_T."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                CurrReport.LANGUAGE := Language_T."Windows Language ID"; //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 CompanyInfo.GET;
                 CompanyInfo.CALCFIELDS("Document Logo");

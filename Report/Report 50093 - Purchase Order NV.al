@@ -4,6 +4,7 @@ report 50093 "Purchase Order NV"
     // NF1.00:CIS.NG  12-09-16 Updae the Hidden formula to print amount againts G/L Lines
     // 
     // SM.001 Fixed Margin and made the report narrower.
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Purchase Order NV.rdlc';
 

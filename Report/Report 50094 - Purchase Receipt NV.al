@@ -2,6 +2,7 @@ report 50094 "Purchase Receipt NV"
 {
     // NF1.00:CIS.NG  07-18-16 Upgrade Report to NAV 2016
     // SM.001 10/20/16 Changed Margin to 1cm on the left side
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Purchase Receipt NV.rdlc';
 
@@ -347,10 +348,10 @@ report 50094 "Purchase Receipt NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language_t.Reset();//BC Upgrade 2025-06-23
+                /* Language_t.Reset();//BC Upgrade 2025-06-23
                 Language_t.Get("Language Code");//BC Upgrade 2025-06-23
                 CurrReport.LANGUAGE := Language_t."Windows Language ID";//BC Upgrade 2025-06-23
-                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
 
                 IF "Purchaser Code" = '' THEN

@@ -7,6 +7,7 @@ report 50059 "MEX Certificado de Materiales"
     // 07-10-05 RTT           new field "Revision No."
     // 07-14-05 RTT           code at SalesInvLine-OAfterTGetRecord to zero out ordered qty
     // << NIF
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Certificado de Materiales.rdlc';
 
@@ -374,10 +375,10 @@ report 50059 "MEX Certificado de Materiales"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
                 END;
-                Language_T.Reset();//BC Upgrade 2025-06-23
+                /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
                 CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
-                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 //>>NIF 042006 RTT
                 GetRemissionText();

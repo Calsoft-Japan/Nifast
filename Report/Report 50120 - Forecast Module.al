@@ -24,6 +24,7 @@ report 50120 "Forecast Module"
     // 
     // SM 02-20-23 Standardize
     // SM 03-27-23 Eliminated
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Forecast Module.rdlc';
 

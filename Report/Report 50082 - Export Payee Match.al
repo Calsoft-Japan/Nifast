@@ -1,7 +1,7 @@
 report 50082 "Export Payee Match"
 {
     // NF1.00:CIS.NG    06/18/16 Create New Report to Export Payee Match File to Shared Directory and Upload to FTP
-
+    ApplicationArea = All;
     Caption = 'Export Payee Match';
     Permissions = TableData 270 = rm;
     ProcessingOnly = true;

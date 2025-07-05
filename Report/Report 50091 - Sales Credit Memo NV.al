@@ -1,6 +1,7 @@
 report 50091 "Sales Credit Memo NV"
 {
     // NF1.00:CIS.NG  07-18-16 Upgrade Report to NAV 2016
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Sales Credit Memo NV.rdlc';
 
@@ -560,10 +561,10 @@ report 50091 "Sales Credit Memo NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
 
-                Language_T.Reset();//BC Upgrade 2025-06-23
+                /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
                 CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
-                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
+                //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23 */
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)

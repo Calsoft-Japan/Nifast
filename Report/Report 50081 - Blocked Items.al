@@ -1,6 +1,7 @@
 report 50081 "Blocked Items"
 {
     // NF1.00:CIS.NU  09-15-15 Merged during upgrade
+    ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Blocked Items.rdlc';
 
