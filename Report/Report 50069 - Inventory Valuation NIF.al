@@ -174,18 +174,22 @@ report 50069 "Inventory Valuation NIF"
                     Caption = 'Options';
                     field(AsOfDate; AsOfDate)
                     {
+                        ApplicationArea = All;
                         Caption = 'As Of Date';
                     }
                     field(ShowVariants; ShowVariants)
                     {
+                        ApplicationArea = All;
                         Caption = 'Breakdown by Variants';
                     }
                     field(BreakdownByLocation; ShowLocations)
                     {
+                        ApplicationArea = All;
                         Caption = 'Breakdown by Location';
                     }
                     field(UseAdditionalReportingCurrency; ShowACY)
                     {
+                        ApplicationArea = All;
                         Caption = 'Use Additional Reporting Currency';
                     }
                 }

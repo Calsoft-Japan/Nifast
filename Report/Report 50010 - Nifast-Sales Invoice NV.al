@@ -804,23 +804,28 @@ report 50010 "Nifast-Sales Invoice NV"
                     Caption = 'Options';
                     field(NoCopies; NoCopies)
                     {
+                        ApplicationArea = All;
                         Caption = 'Number of Copies';
                     }
                     field(PrintCompanyAddress; PrintCompany)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Company Address';
                     }
                     field(LogInteraction; LogInteraction)
                     {
+                        ApplicationArea = All;
                         Caption = 'Log Interaction';
                         Enabled = LogInteractionEnable;
                     }
                     field(DisplayAsmInfo; DisplayAssemblyInformation)
                     {
+                        ApplicationArea = All;
                         Caption = 'Show Assembly Components';
                     }
                     field("Show the PSH Numbers"; ShowDetails)
                     {
+                        ApplicationArea = All;
                         Caption = 'Show the PSH Numbers';
                     }
                 }

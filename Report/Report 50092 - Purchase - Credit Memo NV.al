@@ -500,14 +500,17 @@ report 50092 "Purchase - Credit Memo NV"
                     Caption = 'Options';
                     field(NumberOfCopies; NoCopies)
                     {
+                        ApplicationArea = All;
                         Caption = 'Number of Copies';
                     }
                     field(PrintCompanyAddress; PrintCompany)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Company Address';
                     }
                     field(LogInteraction; LogInteraction)
                     {
+                        ApplicationArea = All;
                         Caption = 'Log Interaction';
                         Enabled = LogInteractionEnable;
                     }

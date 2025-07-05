@@ -106,6 +106,7 @@ report 50078 "On Time Delivery"
                     Caption = 'Option';
                     field(ExportToExcel; ExportToExcel)
                     {
+                        ApplicationArea = All;
                         Caption = 'Export To Excel';
                     }
                 }

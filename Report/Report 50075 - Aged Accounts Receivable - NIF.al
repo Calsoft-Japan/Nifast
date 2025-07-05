@@ -794,6 +794,7 @@ report 50075 "Aged Accounts Receivable - NIF"
                     Caption = 'Options';
                     field(AgedAsOf; PeriodEndingDate[1])
                     {
+                        ApplicationArea = All;
                         Caption = 'Aged as of';
 
                         trigger OnValidate()
@@ -804,6 +805,7 @@ report 50075 "Aged Accounts Receivable - NIF"
                     }
                     field(AgedBy; AgingMethod)
                     {
+                        ApplicationArea = All;
                         Caption = 'Aged by';
                         OptionCaption = 'Trans Date,Due Date,Document Date';
 
@@ -817,6 +819,7 @@ report 50075 "Aged Accounts Receivable - NIF"
                     }
                     field("LengthOfAgingPeriods-1"; PeriodCalculation[1])
                     {
+                        ApplicationArea = All;
                         Caption = 'Length of Aging Periods - 1';
                         //DateFormula = true; BC Upgrade
                         trigger OnValidate()
@@ -827,6 +830,7 @@ report 50075 "Aged Accounts Receivable - NIF"
                     }
                     field("LengthOfAgingPeriods-2"; PeriodCalculation[2])
                     {
+                        ApplicationArea = All;
                         Caption = 'Length of Aging Periods - 2';
                         //DateFormula = true; BC Upgrade
 
@@ -838,6 +842,7 @@ report 50075 "Aged Accounts Receivable - NIF"
                     }
                     field("LengthOfAgingPeriods-3"; PeriodCalculation[3])
                     {
+                        ApplicationArea = All;
                         Caption = 'Length of Aging Periods - 3';
                         //DateFormula = true; BC Upgrade
 
@@ -849,6 +854,7 @@ report 50075 "Aged Accounts Receivable - NIF"
                     }
                     field("LengthOfAgingPeriods-4"; PeriodCalculation[4])
                     {
+                        ApplicationArea = All;
                         Caption = 'Length of Aging Periods - 4';
                         //DateFormula = true; BC Upgrade
 
@@ -860,10 +866,12 @@ report 50075 "Aged Accounts Receivable - NIF"
                     }
                     field("LengthOfAgingPeriods-5"; PeriodCalculation[5])
                     {
+                        ApplicationArea = All;
                         Caption = 'Length of Aging Periods - 5';
                     }
                     field(ShowOnlyOverDueBy; ShowOnlyOverDueBy)
                     {
+                        ApplicationArea = All;
                         Caption = 'Show If Overdue By';
                         //DateFormula = true; BC Upgrade
 
@@ -877,6 +885,7 @@ report 50075 "Aged Accounts Receivable - NIF"
                     }
                     field(ShowAllForOverdue; ShowAllForOverdue)
                     {
+                        ApplicationArea = All;
                         Caption = 'Show All for Overdue Customer';
 
                         trigger OnValidate()
@@ -889,19 +898,23 @@ report 50075 "Aged Accounts Receivable - NIF"
                     }
                     field(PrintAmountsInVendorsCurrency; PrintAmountsInLocal)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Amounts in Customer''s Currency';
                         MultiLine = true;
                     }
                     field(PrintDetail; PrintDetail)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Detail';
                     }
                     field(PrintToExcel; PrintToExcel)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print to Excel';
                     }
                     field(ShowARC; ShowARC)
                     {
+                        ApplicationArea = All;
                         Caption = 'Show Additional Reporting Currency';
                     }
                 }

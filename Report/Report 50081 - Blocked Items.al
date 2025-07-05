@@ -212,6 +212,7 @@ report 50081 "Blocked Items"
                     Caption = 'Options';
                     field(ExportToExcel; ExportToExcel)
                     {
+                        ApplicationArea = All;
                         Caption = 'Export To Excel';
                     }
                 }

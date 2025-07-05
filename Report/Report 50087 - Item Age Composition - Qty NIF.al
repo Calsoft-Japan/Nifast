@@ -353,10 +353,12 @@ report 50087 "Item Age Composition - Qty NIF"
                     Caption = 'Options';
                     field("As of Date"; PeriodStartDate[2])
                     {
+                        ApplicationArea = All;
                         Caption = 'As of Date';
                     }
                     field("Period Length[1]"; PeriodLength[1])
                     {
+                        ApplicationArea = All;
                         Caption = 'Period Length[1]';
 
                         trigger OnValidate()
@@ -367,6 +369,7 @@ report 50087 "Item Age Composition - Qty NIF"
                     }
                     field("Period Length[2]"; PeriodLength[2])
                     {
+                        ApplicationArea = All;
                         Caption = 'Period Length[2]';
 
                         trigger OnValidate()
@@ -377,6 +380,7 @@ report 50087 "Item Age Composition - Qty NIF"
                     }
                     field("Period Length[3]"; PeriodLength[3])
                     {
+                        ApplicationArea = All;
                         Caption = 'Period Length[3]';
 
                         trigger OnValidate()
@@ -387,6 +391,7 @@ report 50087 "Item Age Composition - Qty NIF"
                     }
                     field("Period Length[4]"; PeriodLength[4])
                     {
+                        ApplicationArea = All;
                         Caption = 'Period Length[4]';
 
                         trigger OnValidate()
@@ -397,6 +402,7 @@ report 50087 "Item Age Composition - Qty NIF"
                     }
                     field("Period Length[5]"; PeriodLength[5])
                     {
+                        ApplicationArea = All;
                         Caption = 'Period Length[5]';
 
                         trigger OnValidate()
@@ -407,14 +413,17 @@ report 50087 "Item Age Composition - Qty NIF"
                     }
                     field("Print Detail"; PrintDetail)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Detail';
                     }
                     field("Export to Excel"; ExportToExcel)
                     {
+                        ApplicationArea = All;
                         Caption = 'Export to Excel';
                     }
                     field("Aged by:"; AgingOption)
                     {
+                        ApplicationArea = All;
                         Caption = 'Aged by:';
                     }
                 }

@@ -170,6 +170,7 @@ report 50049 "MEX Sales by CVE Pedimento"
                     Caption = 'Options';
                     field(PrintDetail; PrintDetail)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Detail';
                     }
                 }

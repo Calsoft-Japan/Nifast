@@ -265,6 +265,7 @@ report 50047 "MEX Receiving Summary"
                     Caption = 'Options';
                     field(PrintDetail; PrintDetail)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Detail';
                     }
                 }

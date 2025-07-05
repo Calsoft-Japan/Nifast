@@ -90,6 +90,7 @@ report 50082 "Export Payee Match"
                     Caption = 'Option';
                     field("For Testing"; ForTesting_gBln)
                     {
+                        ApplicationArea = All;
                         Caption = 'For Testing';
                     }
                 }

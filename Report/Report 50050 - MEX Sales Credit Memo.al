@@ -431,14 +431,17 @@ report 50050 "MEX Sales Credit Memo"
                     Caption = 'Options';
                     field(NoCopies; NoCopies)
                     {
+                        ApplicationArea = All;
                         Caption = 'Number of Copies';
                     }
                     field(PrintCompany; PrintCompany)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Company Address';
                     }
                     field(LogInteraction; LogInteraction)
                     {
+                        ApplicationArea = All;
                         Caption = 'Log Interaction';
                         Enabled = LogInteractionEnable;
                     }

@@ -531,14 +531,17 @@ report 50059 "MEX Certificado de Materiales"
                     Caption = 'Options';
                     field(NoCopies; NoCopies)
                     {
+                        ApplicationArea = All;
                         Caption = 'Number of Copies';
                     }
                     field(PrintCompany; PrintCompany)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Company Address';
                     }
                     field(LogInteraction; LogInteraction)
                     {
+                        ApplicationArea = All;
                         Caption = 'Log Interaction';
                     }
                 }

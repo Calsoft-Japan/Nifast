@@ -621,14 +621,17 @@ report 50046 "MEX Sales Invoice"
                     Caption = 'Options';
                     field(NoCopies; NoCopies)
                     {
+                        ApplicationArea = All;
                         Caption = 'Number of Copies';
                     }
                     field(PrintCompanyAddress; PrintCompany)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Company Address';
                     }
                     field(LogInteraction; LogInteraction)
                     {
+                        ApplicationArea = All;
                         Caption = 'Log Interaction';
                         Enabled = LogInteractionEnable;
                     }

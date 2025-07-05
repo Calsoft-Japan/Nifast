@@ -2553,26 +2553,32 @@ report 50120 "Forecast Module"
                     Caption = 'Options';
                     field(PeriodStartingDate; PeriodStartingDate[2])
                     {
+                        ApplicationArea = All;
                         Caption = 'Starting Date';
                     }
                     field(PeriodCalculation; PeriodCalculation)
                     {
+                        ApplicationArea = All;
                         Caption = 'Length of Period';
                     }
                     field(ExportToExcel; ExportToExcel)
                     {
+                        ApplicationArea = All;
                         Caption = 'Export To Excel';
                     }
                     field(ShowDetails; ShowDetails)
                     {
+                        ApplicationArea = All;
                         Caption = 'Customer, Sales, Purhcase Details';
                     }
                     field(ShowDetailDetroit; ShowDetailDetroit)
                     {
+                        ApplicationArea = All;
                         Caption = 'Cross Ref. Info.';
                     }
                     field(ShowAge; ShowAge)
                     {
+                        ApplicationArea = All;
                         Caption = 'Show Inventory Age';
                         Visible = false;
                     }

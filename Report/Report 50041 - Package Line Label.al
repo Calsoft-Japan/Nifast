@@ -108,15 +108,18 @@ report 50041 "Package Line Label"
                 {
                     field("Number of Copies"; NoOfCopies)
                     {
+                        ApplicationArea = All;
                         Caption = 'Number of Copies';
                     }
                     field("Label Code"; LabelHeader.Code)
                     {
+                        ApplicationArea = All;
                         Caption = 'Label Code';
                         TableRelation = "Label Header" WHERE("Label Usage" = CONST("Receive Line"));
                     }
                     field("Quantity to Print"; QtyToPrint)
                     {
+                        ApplicationArea = All;
                         Caption = 'Quantity to Print';
                     }
                 }

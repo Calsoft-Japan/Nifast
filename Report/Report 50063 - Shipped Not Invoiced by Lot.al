@@ -209,6 +209,7 @@ report 50063 "Shipped Not Invoiced by Lot"
                 {
                     field("Export to Excel"; ExportToExcel)
                     {
+                        ApplicationArea = All;
                         Caption = 'Export to Excel';
                     }
                 }

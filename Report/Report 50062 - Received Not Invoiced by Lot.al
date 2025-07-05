@@ -245,6 +245,7 @@ report 50062 "Received Not Invoiced by Lot"
                 {
                     field("Export to Excel"; ExportToExcel)
                     {
+                        ApplicationArea = All;
                         Caption = 'Export to Excel';
                     }
                 }

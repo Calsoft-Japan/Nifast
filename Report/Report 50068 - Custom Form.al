@@ -636,23 +636,28 @@ report 50068 "Custom Form"
                     Caption = 'Options';
                     field(NoCopies; NoCopies)
                     {
+                        ApplicationArea = All;
                         Caption = 'Number of Copies';
                     }
                     field(PrintCompanyAddress; PrintCompany)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Company Address';
                     }
                     field(PrintPackageTrackingNos; PrintPackageTrackingNos)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Package Tracking Nos.';
                     }
                     field(LogInteraction; LogInteraction)
                     {
+                        ApplicationArea = All;
                         Caption = 'Log Interaction';
                         Enabled = LogInteractionEnable;
                     }
                     field(DisplayAsmInfo; DisplayAssemblyInformation)
                     {
+                        ApplicationArea = All;
                         Caption = 'Show Assembly Components';
                     }
                 }

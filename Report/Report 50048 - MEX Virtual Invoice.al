@@ -604,6 +604,7 @@ report 50048 "MEX Virtual Invoice"
                 {
                     field("Export To Excel"; ExportToExcel)
                     {
+                        ApplicationArea = All;
                         Caption = 'Export To Excel';
                     }
                 }

@@ -669,14 +669,17 @@ report 50093 "Purchase Order NV"
                     Caption = 'Options';
                     field(NumberOfCopies; NoCopies)
                     {
+                        ApplicationArea = All;
                         Caption = 'Number of Copies';
                     }
                     field(PrintCompanyAddress; PrintCompany)
                     {
+                        ApplicationArea = All;
                         Caption = 'Print Company Address';
                     }
                     field(ArchiveDocument; ArchiveDocument)
                     {
+                        ApplicationArea = All;
                         Caption = 'Archive Document';
                         Enabled = ArchiveDocumentEnable;
 
@@ -688,6 +691,7 @@ report 50093 "Purchase Order NV"
                     }
                     field(LogInteraction; LogInteraction)
                     {
+                        ApplicationArea = All;
                         Caption = 'Log Interaction';
                         Enabled = LogInteractionEnable;
 
@@ -699,10 +703,12 @@ report 50093 "Purchase Order NV"
                     }
                     field(Disclaimer; Disclaimer)
                     {
+                        ApplicationArea = All;
                         Caption = 'Disclaimer';
                     }
                     field("Shipment Term"; TennOnly)
                     {
+                        ApplicationArea = All;
                         Caption = 'Shipment Term';
                     }
                 }
