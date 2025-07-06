@@ -279,8 +279,8 @@ report 50050 "MEX Sales Credit Memo"
                 END;
 
                 Language_T.Reset();//BC Upgrade 2025-06-23
-                Language_T.Get("Language Code");//BC Upgrade 2025-06-23
-                CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
+                if Language_T.Get("Language Code") then//BC Upgrade 2025-06-23
+                    CurrReport.LANGUAGE := Language_T."Windows Language ID";//BC Upgrade 2025-06-23
                 //Language.GetLanguageID("Language Code"); BC Upgrade 2025-06-23
 
                 //>>NIF 042006 RTT
