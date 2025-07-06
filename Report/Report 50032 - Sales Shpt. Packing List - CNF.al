@@ -27,6 +27,8 @@ report 50032 "Sales Shpt. Packing List - CNF"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Sales Shpt. Packing List - CNF.rdlc';
+    Caption = 'Sales Shipment Packing List - CNF';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset

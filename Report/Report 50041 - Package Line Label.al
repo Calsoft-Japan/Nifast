@@ -12,6 +12,8 @@ report 50041 "Package Line Label"
     // //<< NIF
     ApplicationArea = All;
     ProcessingOnly = true;
+    Caption = 'Package Line Label';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

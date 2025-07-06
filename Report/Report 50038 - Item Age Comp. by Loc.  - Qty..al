@@ -42,6 +42,7 @@ report 50038 "Item Age Comp. by Loc.  - Qty."
     RDLCLayout = '.\RDLC\Item Age Comp. by Loc.  - Qty..rdlc';
 
     Caption = 'Item Age Comp. by Loc.  - Qty.';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

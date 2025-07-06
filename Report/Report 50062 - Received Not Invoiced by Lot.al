@@ -22,6 +22,7 @@ report 50062 "Received Not Invoiced by Lot"
     RDLCLayout = '.\RDLC\Received Not Invoiced by Lot.rdlc';
 
     Caption = 'Received Not Invoiced by Lot';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

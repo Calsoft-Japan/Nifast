@@ -9,6 +9,7 @@ report 50093 "Purchase Order NV"
     RDLCLayout = '.\RDLC\Purchase Order NV.rdlc';
 
     Caption = 'Purchase Order NV';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

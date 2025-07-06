@@ -6,6 +6,7 @@ report 50091 "Sales Credit Memo NV"
     RDLCLayout = '.\RDLC\Sales Credit Memo NV.rdlc';
 
     Caption = 'Sales Credit Memo NV';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

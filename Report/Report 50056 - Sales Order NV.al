@@ -17,6 +17,7 @@ report 50056 "Sales Order NV"
     RDLCLayout = '.\RDLC\Sales Order NV.rdlc';
 
     Caption = 'Sales Order NV';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

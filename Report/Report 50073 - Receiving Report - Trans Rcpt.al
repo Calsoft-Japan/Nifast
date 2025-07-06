@@ -4,6 +4,8 @@ report 50073 "Receiving Report - Trans Rcpt"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Receiving Report - Trans Rcpt.rdlc';
+    Caption = 'Receiving Report - Transfer Receipt';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset

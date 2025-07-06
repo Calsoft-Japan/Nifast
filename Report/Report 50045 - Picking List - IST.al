@@ -34,6 +34,7 @@ report 50045 "Picking List - IST"
     RDLCLayout = '.\RDLC\Picking List - IST.rdlc';
 
     Caption = 'Picking List';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

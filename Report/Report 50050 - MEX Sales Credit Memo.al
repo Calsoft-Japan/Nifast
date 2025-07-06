@@ -9,6 +9,8 @@ report 50050 "MEX Sales Credit Memo"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Sales Credit Memo.rdlc';
+    Caption = 'MEX Sales Credit Memo';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset

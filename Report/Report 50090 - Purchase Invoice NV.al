@@ -6,6 +6,7 @@ report 50090 "Purchase Invoice NV"
     RDLCLayout = '.\RDLC\Purchase Invoice NV.rdlc';
 
     Caption = 'Purchase Invoice NV';
+    UsageCategory = ReportsAndAnalysis;
     PreviewMode = Normal;
 
     dataset

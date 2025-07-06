@@ -7,6 +7,7 @@ report 50094 "Purchase Receipt NV"
     RDLCLayout = '.\RDLC\Purchase Receipt NV.rdlc';
 
     Caption = 'Purchase Receipt NV';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

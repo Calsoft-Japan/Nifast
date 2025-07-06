@@ -20,6 +20,8 @@ report 50063 "Shipped Not Invoiced by Lot"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Shipped Not Invoiced by Lot.rdlc';
+    Caption = 'Shipped Not Invoiced by Lot';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset

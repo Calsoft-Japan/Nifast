@@ -10,6 +10,7 @@ report 50044 "MEX Sales Shipment"
     RDLCLayout = '.\RDLC\MEX Sales Shipment.rdlc';
 
     Caption = 'MEX Sales Shipment';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

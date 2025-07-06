@@ -24,6 +24,7 @@ report 50075 "Aged Accounts Receivable - NIF"
     RDLCLayout = '.\RDLC\Aged Accounts Receivable - NIF.rdlc';
 
     Caption = 'Aged Accounts Receivable - NIF';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

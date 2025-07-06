@@ -13,6 +13,7 @@ report 50048 "MEX Virtual Invoice"
     RDLCLayout = '.\RDLC\MEX Virtual Invoice.rdlc';
 
     Caption = 'MEX Virtual Invoice';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

@@ -42,6 +42,7 @@ report 50087 "Item Age Composition - Qty NIF"
     RDLCLayout = '.\RDLC\Item Age Composition - Qty NIF.rdlc';
 
     Caption = 'Item Age Composition - Qty NIF';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

@@ -27,6 +27,8 @@ report 50120 "Forecast Module"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Forecast Module.rdlc';
+    Caption = 'Forecast Module';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset

@@ -5,6 +5,8 @@ report 50078 "On Time Delivery"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\On Time Delivery.rdlc';
+    Caption = 'On-Time Delivery Report';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset

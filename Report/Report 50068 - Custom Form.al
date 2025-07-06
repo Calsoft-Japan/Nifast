@@ -7,6 +7,7 @@ report 50068 "Custom Form"
     RDLCLayout = '.\RDLC\Custom Form.rdlc';
 
     Caption = 'Sales Shipment NV';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

@@ -5,6 +5,7 @@ report 50082 "Export Payee Match"
     Caption = 'Export Payee Match';
     Permissions = TableData 270 = rm;
     ProcessingOnly = true;
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

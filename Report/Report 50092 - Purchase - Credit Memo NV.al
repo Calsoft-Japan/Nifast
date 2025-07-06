@@ -8,6 +8,8 @@ report 50092 "Purchase - Credit Memo NV"
     RDLCLayout = '.\RDLC\Purchase - Credit Memo NV.rdlc';
 
     Caption = 'Purchase - Credit Memo NV';
+    UsageCategory = ReportsAndAnalysis;
+
 
     dataset
     {

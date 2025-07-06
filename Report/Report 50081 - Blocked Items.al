@@ -4,6 +4,8 @@ report 50081 "Blocked Items"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\Blocked Items.rdlc';
+    Caption = 'Blocked Items Report';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset

@@ -7,6 +7,7 @@ report 50095 "Sales Shipment NV"
     RDLCLayout = '.\RDLC\Sales Shipment NV.rdlc';
 
     Caption = 'Sales Shipment NV';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

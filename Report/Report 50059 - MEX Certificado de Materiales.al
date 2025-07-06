@@ -10,6 +10,8 @@ report 50059 "MEX Certificado de Materiales"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Certificado de Materiales.rdlc';
+    Caption = 'CERTIFICADO DE MATERIALES';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset

@@ -10,6 +10,8 @@ report 50046 "MEX Sales Invoice"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Sales Invoice.rdlc';
+    Caption = 'MEX Sales Invoice';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset
@@ -359,14 +361,14 @@ report 50046 "MEX Sales Invoice"
                             //<< NIF 07-14-05 RTT
                             IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                 IF OnLineNumber < NumberOfLines THEN BEGIN
-                                    NEXT;
+                                    TempSalesInvoiceLine.NEXT;
                                     IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                         DescriptionToPrint :=
                                           COPYSTR(DescriptionToPrint + ' ' + TempSalesInvoiceLine.Description + ' ' + TempSalesInvoiceLine."Description 2", 1, MAXSTRLEN(DescriptionToPrint));
                                         OnLineNumber := OnLineNumber + 1;
                                         SalesInvLine.NEXT;
                                     END ELSE
-                                        NEXT(-1);
+                                        TempSalesInvoiceLine.NEXT(-1);
                                 END;
                                 TempSalesInvoiceLine."No." := '';
                                 TempSalesInvoiceLine."Unit of Measure" := '';
@@ -418,6 +420,10 @@ report 50046 "MEX Sales Invoice"
                         trigger OnPreDataItem()
                         begin
                             //CurrReport.CREATETOTALS(TaxLiable, AmountExclInvDisc, TempSalesInvoiceLine.Amount, TempSalesInvoiceLine."Amount Including VAT");BC Upgrade
+                            TempSalesInvoiceLine.RESET;
+                            TempSalesInvoiceLine.SETRANGE("Document No.", "Sales Invoice Header"."No.");
+                            TempSalesInvoiceLine.FindFirst();
+
                             NumberOfLines := TempSalesInvoiceLine.COUNT;
                             SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;

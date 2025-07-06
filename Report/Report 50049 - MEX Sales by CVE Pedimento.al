@@ -5,6 +5,8 @@ report 50049 "MEX Sales by CVE Pedimento"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Sales by CVE Pedimento.rdlc';
+    Caption = 'MEX Sales by CVE Pedimento';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset

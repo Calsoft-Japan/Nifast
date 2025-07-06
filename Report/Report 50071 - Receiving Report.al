@@ -7,6 +7,7 @@ report 50071 "Receiving Report"
     RDLCLayout = '.\RDLC\Receiving Report.rdlc';
 
     Caption = 'Receiving Report';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

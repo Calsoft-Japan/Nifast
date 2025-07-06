@@ -4,6 +4,8 @@ report 50047 "MEX Receiving Summary"
     ApplicationArea = All;
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\MEX Receiving Summary.rdlc';
+    Caption = 'MEX Receiving Summary';
+    UsageCategory = ReportsAndAnalysis;
 
 
     dataset
@@ -175,7 +177,7 @@ report 50047 "MEX Receiving Summary"
                             UNTIL ValueEntry.NEXT = 0;
                         END;
 
-                        ItemLedgEntry.CALCFIELDS("Mfg. Lot No.");
+                        //ItemLedgEntry.CALCFIELDS("Mfg. Lot No.");BC Upgrade
                         ExtCostLCY := CostAmtEptValueEntry;
                         //<< NF1.00:CIS.NG 09-04-15
 
