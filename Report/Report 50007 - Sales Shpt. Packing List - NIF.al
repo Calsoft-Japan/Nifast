@@ -438,7 +438,7 @@ report 50007 "Sales Shpt. Packing List - NIF"
 
     requestpage
     {
-
+        SaveValues = true;
         layout
         {
         }

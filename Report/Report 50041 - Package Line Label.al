@@ -101,7 +101,7 @@ report 50041 "Package Line Label"
 
     requestpage
     {
-
+        SaveValues = true;
         layout
         {
             area(content)

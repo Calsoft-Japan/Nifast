@@ -534,7 +534,7 @@ report 50032 "Sales Shpt. Packing List - CNF"
 
     requestpage
     {
-
+        SaveValues = true;
         layout
         {
         }

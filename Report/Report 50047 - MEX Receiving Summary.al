@@ -257,7 +257,7 @@ report 50047 "MEX Receiving Summary"
 
     requestpage
     {
-
+        SaveValues = true;
         layout
         {
             area(content)

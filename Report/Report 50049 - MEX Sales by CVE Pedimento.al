@@ -162,7 +162,8 @@ report 50049 "MEX Sales by CVE Pedimento"
 
     requestpage
     {
-
+        SaveValues = true;
+        Caption = 'MEX Sales by CVE Pedimento';
         layout
         {
             area(content)

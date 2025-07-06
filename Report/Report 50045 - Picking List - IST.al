@@ -818,7 +818,7 @@ report 50045 "Picking List - IST"
 
     requestpage
     {
-
+        SaveValues = true;
         layout
         {
         }
