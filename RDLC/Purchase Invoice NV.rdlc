@@ -125,8 +125,7 @@ Cstr(Fields!OrderNo_PurchInvHeader.Value) + Chr(177) +
 Cstr(Fields!PODateCaption.Value) + Chr(177) + 
 Cstr(FORMAT(Fields!OrderDate_PurchInvHeader.Value,"MM/dd/yy")) + Chr(177) + 
 Cstr(Fields!DueDateCaption.Value) + Chr(177) + 
-Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy")) + Chr(177) + 
-Convert.ToBase64String(Fields!CompanyInformation__Document_Logo_.Value)
+Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy")) 
 , 1)</Hidden>
                           </Visibility>
                           <Style>
@@ -2589,14 +2588,14 @@ Convert.ToBase64String(Fields!CompanyInformation__Document_Logo_.Value)
             </Textbox>
             <Image Name="CompanyInformation__Document_Logo_1">
               <Source>Database</Source>
-              <Value>=Code.GetData(54,1)</Value>
+              <Value>=Convert.ToBase64String(First(Fields!CompanyInformation__Document_Logo_.Value, "DataSet_Result"))</Value>
               <MIMEType>image/bmp</MIMEType>
               <Top>0.00529cm</Top>
               <Height>3.74cm</Height>
               <Width>5.61cm</Width>
               <ZIndex>29</ZIndex>
               <Visibility>
-                <Hidden>=IIF(ISNOTHING(Code.GetData(54,1)) = TRUE,TRUE,FALSE)</Hidden>
+                <Hidden>=IIF(Code.IsEmpty(First(Fields!CompanyInformation__Document_Logo_.Value, "DataSet_Result")) = TRUE,TRUE,FALSE)</Hidden>
               </Visibility>
               <Style>
                 <Border>
@@ -3507,7 +3506,14 @@ Public Function SetData(NewData as Object,Group as integer)
   Return True
 End Function
 
-
+Public Function IsEmpty(value as Object) as boolean
+  On Error Resume Next
+  If Convert.ToBase64String(Value) = "" then
+      Return True
+  Else
+      Return False
+  End If
+End Function
 
 </Code>
   <Language>=User!Language</Language>

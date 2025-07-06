@@ -993,7 +993,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
               <Width>5.25cm</Width>
               <ZIndex>18</ZIndex>
               <Visibility>
-                <Hidden>=iif(IsNothing(fields!CompanyInformation__Document_Logo_.Value) = TRUE,TRUE,FALSE)</Hidden>
+                <Hidden>=iif(Code.IsEmpty(First(fields!CompanyInformation__Document_Logo_.Value, "DataSet_Result")) = TRUE,TRUE,FALSE)</Hidden>
               </Visibility>
               <Style>
                 <Border>
@@ -1363,6 +1363,15 @@ Public Function SetData(NewData as Object,Group as integer)
       Data1 = NewData
   End If
   Return True
+End Function
+
+Public Function IsEmpty(value as Object) as boolean
+  On Error Resume Next
+  If Convert.ToBase64String(Value) = "" then
+      Return True
+  Else
+      Return False
+  End If
 End Function
 </Code>
   <Language>=User!Language</Language>

@@ -76,7 +76,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <Visibility>
-                            <Hidden>=Code.SetData(Convert.ToBase64String(Fields!DocLogo_CompanyInformation.Value) + Chr(177) +
+                            <Hidden>=Code.SetData("" + Chr(177) +
 Cstr(Fields!CompanyAddr1.Value) + Chr(177) + 
 Cstr(Fields!CompanyAddr2.Value) + Chr(177) +
 Cstr(Fields!CompanyAddr3.Value) + Chr(177) +
@@ -1729,14 +1729,14 @@ Cstr(FORMAT(Fields!OrderDate_PurchRcptHeader.Value,"MM/dd/yy"))
             </Textbox>
             <Image Name="CompanyInformation__Document_Logo_1">
               <Source>Database</Source>
-              <Value>=Code.GetData(1,1)</Value>
+              <Value>=Convert.ToBase64String(First(Fields!DocLogo_CompanyInformation.Value, "DataSet_Result"))</Value>
               <MIMEType>image/bmp</MIMEType>
               <Sizing>Clip</Sizing>
               <Height>3.74cm</Height>
               <Width>5.61cm</Width>
               <ZIndex>27</ZIndex>
               <Visibility>
-                <Hidden>=IIF(IsNothing(Code.GetData(1,1)) = TRUE,TRUE,FALSE)</Hidden>
+                <Hidden>=IIF(Code.IsEmpty(First(Fields!DocLogo_CompanyInformation.Value, "DataSet_Result")) = TRUE,TRUE,FALSE)</Hidden>
               </Visibility>
               <Style>
                 <Border>
@@ -2382,7 +2382,17 @@ Public Function SetData(NewData as Object,Group as integer)
       Data1 = NewData
   End If
    Return True
-End Function</Code>
+End Function
+
+Public Function IsEmpty(value as Object) as boolean
+  On Error Resume Next
+  If Convert.ToBase64String(Value) = "" then
+      Return True
+  Else
+      Return False
+  End If
+End Function
+</Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
