@@ -163,7 +163,7 @@ report 50073 "Receiving Report - Trans Rcpt"
                     trigger OnAfterGetRecord()
                     begin
                         //>>NIF MAK 083005
-                        CALCFIELDS("Mfg. Lot No.");
+                        //CALCFIELDS("Mfg. Lot No.");BC Upgrade
                         IF "Mfg. Lot No." = '' THEN
                             CurrReport.SKIP; //BC Upgrade UnComment this line for make no error
                         //<<NIF MAK 083005

@@ -181,7 +181,7 @@ report 50071 "Receiving Report"
                     begin
                         //>>NF1.00:CIS.NG  07-25-16
                         //  //>>NIF MAK 083005
-                        CALCFIELDS("Mfg. Lot No.");
+                        //CALCFIELDS("Mfg. Lot No.");BC Upgrade
                         //  IF "Mfg. Lot No." = '' THEN
                         //    CurrReport.SKIP;
                         //  //<<NIF MAK 083005
