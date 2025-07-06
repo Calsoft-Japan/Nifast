@@ -1621,8 +1621,8 @@ report 50120 "Forecast Module"
 
                 trigger OnAfterGetRecord()
                 begin
-
-
+                    if "Lot Creation Date" = 0D then//BC Upgrade
+                        "Lot Creation Date" := DMY2Date(1, 1, Date2DMY(TODAY, 3));//BC Upgrade
                     Over := TODAY - "Lot Creation Date";
                     IF (ExportToExcel) AND ((Over > 180) OR (Blocked)) THEN BEGIN
                         MakeExcelLotInfoBody_lFnc;
