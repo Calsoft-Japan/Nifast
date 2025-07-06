@@ -270,14 +270,14 @@ report 50059 "MEX Certificado de Materiales"
                             DescriptionToPrint := TempSalesInvoiceLine.Description + ' ' + TempSalesInvoiceLine."Description 2";
                             IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                 IF OnLineNumber < NumberOfLines THEN BEGIN
-                                    NEXT;
+                                    TempSalesInvoiceLine.NEXT;
                                     IF TempSalesInvoiceLine.Type = TempSalesInvoiceLine.Type::" " THEN BEGIN
                                         DescriptionToPrint :=
                                           COPYSTR(DescriptionToPrint + ' ' + TempSalesInvoiceLine.Description + ' ' + TempSalesInvoiceLine."Description 2", 1, MAXSTRLEN(DescriptionToPrint));
                                         OnLineNumber := OnLineNumber + 1;
                                         SalesInvLine.NEXT;
                                     END ELSE
-                                        NEXT(-1);
+                                        TempSalesInvoiceLine.NEXT(-1);
                                 END;
                                 TempSalesInvoiceLine."No." := '';
                                 TempSalesInvoiceLine."Unit of Measure" := '';
