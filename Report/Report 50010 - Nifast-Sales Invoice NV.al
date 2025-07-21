@@ -98,6 +98,7 @@ report 50010 "Nifast-Sales Invoice NV"
                     TempSalesInvoiceLineAsm.DELETEALL;
                 end;
             }
+            /* Comment out to hide comment lines in the report.
             dataitem(DataItem8541; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -142,7 +143,7 @@ report 50010 "Nifast-Sales Invoice NV"
 
                     TempSalesInvoiceLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -246,10 +247,10 @@ report 50010 "Nifast-Sales Invoice NV"
                     column(CurrReport_PAGENO; 1)//CurrReport.PAGENO)
                     {
                     }
-                    column(CompanyAddress_7_; CompanyAddress[7])
+                    column(CompanyAddress_7_; 'Phone: ' + CompanyInformation."Phone No.")//CompanyAddress[7])
                     {
                     }
-                    column(CompanyAddress_8_; CompanyAddress[8])
+                    column(CompanyAddress_8_; 'Fax: ' + CompanyInformation."Fax No.")//CompanyAddress[8])
                     {
                     }
                     column(BillToAddress_8_; BillToAddress[8])

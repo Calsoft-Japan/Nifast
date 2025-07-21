@@ -274,6 +274,8 @@ report 50021 "Return Order Confirmation NV"
                         }
                         column(Qty_SalesLine; "Sales Line".Quantity)
                         {
+                            AutoFormatType = 0;
+                            DecimalPlaces = 0;
                         }
                         column(UnitofMeasure_SalesLine; "Sales Line"."Unit of Measure")
                         {
@@ -480,6 +482,7 @@ report 50021 "Return Order Confirmation NV"
                             //CurrReport.CREATETOTALS(SalesLine."Line Amount", SalesLine."Inv. Discount Amount");BC Upgrade
                         end;
                     }
+                    /*  Comment out to hide comment lines in the report.
                     dataitem("Sales Comment Line"; "Sales Comment Line")
                     {
                         DataItemLink = "Document Type" = FIELD("Document Type"),
@@ -493,7 +496,7 @@ report 50021 "Return Order Confirmation NV"
                         column(TextComment; TextComment)
                         {
                         }
-                    }
+                    } */
                     dataitem(VATCounter; Integer)
                     {
                         DataItemTableView = SORTING(Number);

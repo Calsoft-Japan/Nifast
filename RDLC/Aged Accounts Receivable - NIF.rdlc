@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -20,7 +20,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value EvaluationMode="Auto">=First(Fields!Customer_TABLECAPTION__________FilterString.Value)</Value>
+                    <Value>=First(Fields!Customer_TABLECAPTION__________FilterString.Value)</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -46,7 +46,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value EvaluationMode="Auto">=First(Fields!Control11Caption.Value)</Value>
+                    <Value>=First(Fields!Control11Caption.Value)</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -73,7 +73,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value EvaluationMode="Auto">=First(Fields!Aged_byCaption.Value)</Value>
+                    <Value>=First(Fields!Aged_byCaption.Value)</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -96,7 +96,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value EvaluationMode="Auto">=First(Fields!DateTitle.Value)</Value>
+                    <Value>=First(Fields!DateTitle.Value)</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -163,7 +163,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!CompanyInformation_Name.Value</Value>
+                                  <Value>=Fields!CompanyInformation_Name.Value</Value>
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -194,7 +194,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!SubTitle.Value</Value>
+                                  <Value>=Fields!SubTitle.Value</Value>
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -225,7 +225,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Aged_Accounts_ReceivableCaption.Value</Value>
+                                  <Value>=Fields!Aged_Accounts_ReceivableCaption.Value</Value>
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -256,7 +256,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!CurrReport_PAGENOCaption.Value</Value>
+                                  <Value>=Fields!CurrReport_PAGENOCaption.Value</Value>
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -287,7 +287,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -325,7 +325,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -357,7 +357,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Max(Fields!ColumnHeadHead.Value)</Value>
+                                  <Value>=Max(Fields!ColumnHeadHead.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -389,7 +389,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -423,7 +423,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Customer__No__Caption.Value)</Value>
+                                  <Value>=First(Fields!Customer__No__Caption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -451,7 +451,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Customer_NameCaption.Value)</Value>
+                                  <Value>=First(Fields!Customer_NameCaption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -479,7 +479,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Credit_LimitCaption.Value)</Value>
+                                  <Value>=First(Fields!Credit_LimitCaption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -511,7 +511,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!AmountDueToPrint_Control74Caption.Value)</Value>
+                                  <Value>=First(Fields!AmountDueToPrint_Control74Caption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -540,7 +540,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Max(Fields!ColumnHead_1_.Value)</Value>
+                                  <Value>=Max(Fields!ColumnHead_1_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -572,7 +572,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!ColumnHead_2_.Value)</Value>
+                                  <Value>=First(Fields!ColumnHead_2_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -604,7 +604,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!ColumnHead_3_.Value)</Value>
+                                  <Value>=Last(Fields!ColumnHead_3_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -636,7 +636,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!ColumnHead_4_.Value)</Value>
+                                  <Value>=First(Fields!ColumnHead_4_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -668,7 +668,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!ColumnHead_5_.Value)</Value>
+                                  <Value>=First(Fields!ColumnHead_5_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -700,7 +700,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -735,7 +735,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Customer__No__Caption_Control22.Value)</Value>
+                                  <Value>=First(Fields!Customer__No__Caption_Control22.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -763,7 +763,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!NameCaption.Value)</Value>
+                                  <Value>=First(Fields!NameCaption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -791,7 +791,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!DocumentCaption.Value)</Value>
+                                  <Value>=First(Fields!DocumentCaption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -823,7 +823,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -850,7 +850,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Max(Fields!ColumnHeadHead.Value)</Value>
+                                  <Value>=Max(Fields!ColumnHeadHead.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -882,7 +882,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -915,7 +915,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!ShortDateTitle.Value)</Value>
+                                  <Value>=First(Fields!ShortDateTitle.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -943,7 +943,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Cust__Ledger_Entry__DescriptionCaption.Value)</Value>
+                                  <Value>=First(Fields!Cust__Ledger_Entry__DescriptionCaption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -971,7 +971,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Cust__Ledger_Entry___Document_Type_Caption.Value)</Value>
+                                  <Value>=First(Fields!Cust__Ledger_Entry___Document_Type_Caption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1000,7 +1000,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Cust__Ledger_Entry___Document_No__Caption.Value)</Value>
+                                  <Value>=First(Fields!Cust__Ledger_Entry___Document_No__Caption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1031,7 +1031,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!AmountDueToPrint_Control63Caption.Value)</Value>
+                                  <Value>=First(Fields!AmountDueToPrint_Control63Caption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1060,7 +1060,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!ColumnHead_1_.Value)</Value>
+                                  <Value>=First(Fields!ColumnHead_1_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1092,7 +1092,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!ColumnHead_2_.Value)</Value>
+                                  <Value>=First(Fields!ColumnHead_2_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1124,7 +1124,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!ColumnHead_3_.Value)</Value>
+                                  <Value>=First(Fields!ColumnHead_3_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1156,7 +1156,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!ColumnHead_4_.Value)</Value>
+                                  <Value>=First(Fields!ColumnHead_4_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1188,7 +1188,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!ColumnHead_5_.Value)</Value>
+                                  <Value>=First(Fields!ColumnHead_5_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1220,7 +1220,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Cust__Ledger_Entry___Currency_Code_Caption.Value)</Value>
+                                  <Value>=First(Fields!Cust__Ledger_Entry___Currency_Code_Caption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1254,7 +1254,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Customer__No__.Value</Value>
+                                  <Value>=Fields!Customer__No__.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1284,7 +1284,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Customer_Name.Value</Value>
+                                  <Value>=Fields!Customer_Name.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1314,7 +1314,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Customer__Phone_No__Caption.Value</Value>
+                                  <Value>=Fields!Customer__Phone_No__Caption.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1344,7 +1344,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Customer__Phone_No__.Value</Value>
+                                  <Value>=Fields!Customer__Phone_No__.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1374,7 +1374,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Customer_ContactCaption.Value</Value>
+                                  <Value>=Fields!Customer_ContactCaption.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1406,7 +1406,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!Customer_Contact.Value</Value>
+                                      <Value>=Fields!Customer_Contact.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -1433,7 +1433,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=IIF(Fields!Control1020000Caption.Value="Control1020000Caption","",Fields!Control1020000Caption.Value)</Value>
+                                      <Value>=IIF(Fields!Control1020000Caption.Value="Control1020000Caption","",Fields!Control1020000Caption.Value)</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -1481,7 +1481,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!OverLimitDescription.Value</Value>
+                                  <Value>=Fields!OverLimitDescription.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1512,7 +1512,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1540,7 +1540,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!BlockedDescription.Value</Value>
+                                  <Value>=Fields!BlockedDescription.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1570,7 +1570,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1597,7 +1597,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!PaymentTermsLbl.Value</Value>
+                                  <Value>=Parameters!PaymentTermsLbl.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1632,7 +1632,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PaymentTermsCode_Customer.Value</Value>
+                                  <Value>=Fields!PaymentTermsCode_Customer.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1661,7 +1661,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">="( " &amp; Fields!DueDateCalculation_Customer.Value &amp; " )"</Value>
+                                  <Value>="( " &amp; Fields!DueDateCalculation_Customer.Value &amp; " )"</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1690,7 +1690,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1721,7 +1721,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!AgingDate.Value</Value>
+                                  <Value>=Fields!AgingDate.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>d</Format>
@@ -1751,7 +1751,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Cust__Ledger_Entry__Description.Value</Value>
+                                  <Value>=Fields!Cust__Ledger_Entry__Description.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1779,7 +1779,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Cust__Ledger_Entry___Document_Type_.Value</Value>
+                                  <Value>=Fields!Cust__Ledger_Entry___Document_Type_.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1805,7 +1805,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Cust__Ledger_Entry___Document_No__.Value</Value>
+                                  <Value>=Fields!Cust__Ledger_Entry___Document_No__.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1836,7 +1836,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!AmountDueToPrint.Value</Value>
+                                  <Value>=Fields!AmountDueToPrint.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDueToPrint_Control63Format.Value</Format>
@@ -1867,7 +1867,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!AmountDue_1_.Value</Value>
+                                  <Value>=Fields!AmountDue_1_.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_1__Control64Format.Value</Format>
@@ -1896,7 +1896,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!AmountDue_2_.Value</Value>
+                                  <Value>=Fields!AmountDue_2_.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_2__Control65Format.Value</Format>
@@ -1925,7 +1925,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!AmountDue_3_.Value</Value>
+                                  <Value>=Fields!AmountDue_3_.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_3__Control66Format.Value</Format>
@@ -1954,7 +1954,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!AmountDue_4_.Value</Value>
+                                  <Value>=Fields!AmountDue_4_.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_4__Control67Format.Value</Format>
@@ -1983,7 +1983,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!AmountDue_5_.Value</Value>
+                                  <Value>=Fields!AmountDue_5_.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_4__Control67Format.Value</Format>
@@ -2012,7 +2012,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Cust__Ledger_Entry___Currency_Code_.Value</Value>
+                                  <Value>=Fields!Cust__Ledger_Entry___Currency_Code_.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2045,7 +2045,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2087,7 +2087,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Customer__No___Control80.Value</Value>
+                                  <Value>=Fields!Customer__No___Control80.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2122,7 +2122,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Total_Amount_DueCaption.Value</Value>
+                                  <Value>=Fields!Total_Amount_DueCaption.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2156,7 +2156,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!CreditLimitToPrint.Value</Value>
+                                  <Value>=Fields!CreditLimitToPrint.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2192,7 +2192,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Sum(Fields!AmountDueToPrint.Value)</Value>
+                                  <Value>=Sum(Fields!AmountDueToPrint.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDueToPrint_Control81Format.Value</Format>
@@ -2225,7 +2225,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Sum(Fields!AmountDue_1_.Value)</Value>
+                                  <Value>=Sum(Fields!AmountDue_1_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_1__Control82Format.Value</Format>
@@ -2257,7 +2257,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Sum(Fields!AmountDue_2_.Value)</Value>
+                                  <Value>=Sum(Fields!AmountDue_2_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_2__Control83Format.Value</Format>
@@ -2289,7 +2289,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Sum(Fields!AmountDue_3_.Value)</Value>
+                                  <Value>=Sum(Fields!AmountDue_3_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_3__Control84Format.Value</Format>
@@ -2321,7 +2321,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Sum(Fields!AmountDue_4_.Value)</Value>
+                                  <Value>=Sum(Fields!AmountDue_4_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_4__Control85Format.Value</Format>
@@ -2353,7 +2353,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Sum(Fields!AmountDue_5_.Value)</Value>
+                                  <Value>=Sum(Fields!AmountDue_5_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_4__Control85Format.Value</Format>
@@ -2421,7 +2421,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2452,7 +2452,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=IIF(Fields!Control1020001Caption.Value ="Control1020001Caption","",Fields!Control1020001Caption.Value)</Value>
+                                  <Value>=IIF(Fields!Control1020001Caption.Value ="Control1020001Caption","",Fields!Control1020001Caption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2488,7 +2488,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Credit_Limit_Caption.Value)</Value>
+                                  <Value>=First(Fields!Credit_Limit_Caption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2522,7 +2522,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!CreditLimitToPrint.Value)</Value>
+                                  <Value>=First(Fields!CreditLimitToPrint.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDueToPrint_Control81Format.Value</Format>
@@ -2559,7 +2559,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!PercentString_1_.Value)</Value>
+                                  <Value>=Last(Fields!PercentString_1_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_1__Control82Format.Value</Format>
@@ -2591,7 +2591,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!PercentString_2_.Value)</Value>
+                                  <Value>=Last(Fields!PercentString_2_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_2__Control83Format.Value</Format>
@@ -2623,7 +2623,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!PercentString_3_.Value)</Value>
+                                  <Value>=Last(Fields!PercentString_3_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_3__Control84Format.Value</Format>
@@ -2655,7 +2655,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!PercentString_4_.Value)</Value>
+                                  <Value>=Last(Fields!PercentString_4_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_4__Control85Format.Value</Format>
@@ -2687,7 +2687,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!PercentString_5.Value)</Value>
+                                  <Value>=Last(Fields!PercentString_5.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=Fields!AmountDue_4__Control85Format.Value</Format>
@@ -2718,7 +2718,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2754,7 +2754,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2801,7 +2801,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -3007,7 +3007,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3041,7 +3041,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=IIF(Code.CalcTotalBalance(LAST(Fields!GrandTotalBalanceDue_.Value),
+                                  <Value>=IIF(Code.CalcTotalBalance(LAST(Fields!GrandTotalBalanceDue_.Value),
                                 LAST(Fields!GrandBalanceDue_1_.Value),
                                 LAST(Fields!GrandBalanceDue_2_.Value),
                                 LAST(Fields!GrandBalanceDue_3_.Value),
@@ -3079,7 +3079,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3104,7 +3104,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=First(Fields!Control47Caption.Value)</Value>
+                                  <Value>=First(Fields!Control47Caption.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -3132,7 +3132,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -3162,7 +3162,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!GrandTotalBalanceDue_.Value)</Value>
+                                  <Value>=Last(Fields!GrandTotalBalanceDue_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=First(Fields!TotalBalanceDue__Format.Value)</Format>
@@ -3192,7 +3192,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!GrandBalanceDue_1_.Value)</Value>
+                                  <Value>=Last(Fields!GrandBalanceDue_1_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=First(Fields!BalanceDue___1_Format.Value)</Format>
@@ -3221,7 +3221,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!GrandBalanceDue_2_.Value)</Value>
+                                  <Value>=Last(Fields!GrandBalanceDue_2_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=First(Fields!BalanceDue___2_Format.Value)</Format>
@@ -3250,7 +3250,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!GrandBalanceDue_3_.Value)</Value>
+                                  <Value>=Last(Fields!GrandBalanceDue_3_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=First(Fields!BalanceDue___3_Format.Value)</Format>
@@ -3279,7 +3279,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!GrandBalanceDue_4_.Value)</Value>
+                                  <Value>=Last(Fields!GrandBalanceDue_4_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=First(Fields!BalanceDue___4_Format.Value)</Format>
@@ -3308,7 +3308,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!GrandBalanceDue_5_.Value)</Value>
+                                  <Value>=Last(Fields!GrandBalanceDue_5_.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <Format>=First(Fields!BalanceDue___4_Format.Value)</Format>
@@ -3341,7 +3341,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3371,7 +3371,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue1()))</Value>
+                                  <Value>=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue1()))</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -3401,7 +3401,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue2()))</Value>
+                                  <Value>=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue2()))</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -3431,7 +3431,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue3()))</Value>
+                                  <Value>=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue3()))</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -3461,7 +3461,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue4()))</Value>
+                                  <Value>=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue4()))</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -3491,7 +3491,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue5()))</Value>
+                                  <Value>=FormatPercent(Code.CalcPct(Code.GetTotalBalance(), Code.GetTotalBalanceDue5()))</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -3557,7 +3557,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value EvaluationMode="Auto">=First(Fields!FilterString2.Value)</Value>
+                    <Value>=First(Fields!FilterString2.Value)</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -3595,7 +3595,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=ReportItems!CurrReport_PAGENOCaption.Value</Value>
+                      <Value>=ReportItems!CurrReport_PAGENOCaption.Value</Value>
                       <Style>
                         <FontSize>7pt</FontSize>
                       </Style>
@@ -3620,7 +3620,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=ReportItems!Aged_Accounts_ReceivableCaption.Value</Value>
+                      <Value>=ReportItems!Aged_Accounts_ReceivableCaption.Value</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -3643,7 +3643,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=ReportItems!SubTitle.Value</Value>
+                      <Value>=ReportItems!SubTitle.Value</Value>
                       <Style>
                         <FontSize>7pt</FontSize>
                       </Style>
@@ -3666,7 +3666,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=ReportItems!CompanyInformation_Name.Value</Value>
+                      <Value>=ReportItems!CompanyInformation_Name.Value</Value>
                       <Style>
                         <FontSize>7pt</FontSize>
                       </Style>
@@ -3689,7 +3689,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Globals!ExecutionTime</Value>
+                      <Value>=Globals!ExecutionTime</Value>
                       <Style>
                         <FontSize>7pt</FontSize>
                         <Format>MMMM dd yyyy hh:mm tt</Format>
@@ -3715,7 +3715,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=User!UserID</Value>
+                      <Value>=User!UserID</Value>
                       <Style>
                         <FontSize>7pt</FontSize>
                       </Style>
@@ -3741,7 +3741,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Globals!PageNumber</Value>
+                      <Value>=Globals!PageNumber</Value>
                       <Style>
                         <FontSize>7pt</FontSize>
                       </Style>
@@ -3786,6 +3786,19 @@
       <Prompt>PaymentTermsLbl</Prompt>
     </ReportParameter>
   </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>PaymentTermsLbl</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""

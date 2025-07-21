@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -49,7 +49,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -89,7 +89,7 @@ Cstr(Fields!Sales_Cr_Memo_Header___No______________Sales_Cr_Memo_Header___Mex__F
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -131,7 +131,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -157,7 +157,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -183,7 +183,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -209,7 +209,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -239,7 +239,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesCreditMemoLine__No__________TempSalesCreditMemoLine_Description.Value</Value>
+                                  <Value>=Fields!TempSalesCreditMemoLine__No__________TempSalesCreditMemoLine_Description.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -263,7 +263,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!TempSalesCreditMemoLine_Quantity.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!TempSalesCreditMemoLine_Quantity.Value)</Value>
                                   <Style>
                                     <Format>=Fields!TempSalesCreditMemoLine_QuantityFormat.Value</Format>
                                   </Style>
@@ -289,7 +289,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesCreditMemoLine__Unit_of_Measure_.Value</Value>
+                                  <Value>=Fields!TempSalesCreditMemoLine__Unit_of_Measure_.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -313,7 +313,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!UnitPriceToPrint.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!UnitPriceToPrint.Value)</Value>
                                   <Style>
                                     <Format>=Fields!UnitPriceToPrintFormat.Value</Format>
                                   </Style>
@@ -337,7 +337,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!AmountExclInvDisc.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!AmountExclInvDisc.Value)</Value>
                                   <Style>
                                     <Format>=Fields!AmountExclInvDiscFormat.Value</Format>
                                   </Style>
@@ -364,7 +364,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PrintFooter.Value</Value>
+                                  <Value>=Fields!PrintFooter.Value</Value>
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -397,7 +397,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Sales_Line_Comment_Line_Comment.Value</Value>
+                                  <Value>=Fields!Sales_Line_Comment_Line_Comment.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -510,7 +510,6 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>0cm</Top>
             <Height>0.92538cm</Height>
             <Width>20.37cm</Width>
             <Style />
@@ -532,7 +531,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,1)</Value>
+                      <Value>=Code.GetData(1,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -555,7 +554,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(2,1)</Value>
+                      <Value>=Code.GetData(2,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -579,7 +578,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,1)</Value>
+                      <Value>=Code.GetData(3,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -603,7 +602,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(4,1)</Value>
+                      <Value>=Code.GetData(4,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -627,7 +626,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(8,1)</Value>
+                      <Value>=Code.GetData(8,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -653,7 +652,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(5,1)</Value>
+                      <Value>=Code.GetData(5,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -677,7 +676,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(6,1)</Value>
+                      <Value>=Code.GetData(6,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -701,7 +700,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(7,1)</Value>
+                      <Value>=Code.GetData(7,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -737,7 +736,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Code.GetData(6,2))</Value>
+                      <Value>=CDec(Code.GetData(6,2))</Value>
                       <Style>
                         <Format>=Code.GetData(7,2)</Format>
                       </Style>
@@ -765,7 +764,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,2)</Value>
+                      <Value>=Code.GetData(3,2)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -788,7 +787,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Code.GetData(5,2))</Value>
+                      <Value>=CDec(Code.GetData(5,2))</Value>
                       <Style>
                         <Format>=Code.GetData(7,2)</Format>
                       </Style>
@@ -817,7 +816,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(2,2)</Value>
+                      <Value>=Code.GetData(2,2)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -844,7 +843,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Code.GetData(4,2))</Value>
+                      <Value>=CDec(Code.GetData(4,2))</Value>
                       <Style>
                         <Format>=Code.GetData(7,2)</Format>
                       </Style>
@@ -855,7 +854,6 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0cm</Top>
               <Left>16.17cm</Left>
               <Height>0.423cm</Height>
               <Width>3.15cm</Width>
@@ -873,7 +871,7 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,2)</Value>
+                      <Value>=Code.GetData(1,2)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -882,7 +880,6 @@ Cstr(Fields!TempSalesCreditMemoLine__Amount_Including_VAT_Format.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0cm</Top>
               <Left>14.07cm</Left>
               <Height>0.423cm</Height>
               <Width>2.1cm</Width>

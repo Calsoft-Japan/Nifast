@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -69,7 +69,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -162,7 +162,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -190,7 +190,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!CopyNo.Value</Value>
+                                  <Value>=Fields!CopyNo.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -222,7 +222,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -251,7 +251,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -280,7 +280,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -309,7 +309,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -338,7 +338,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -367,7 +367,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -396,7 +396,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -425,7 +425,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -454,7 +454,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -482,7 +482,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -515,7 +515,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!ItemNoCaption.Value</Value>
+                                  <Value>=Fields!ItemNoCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -540,7 +540,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -566,7 +566,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!DescriptionCaption.Value</Value>
+                                  <Value>=Fields!DescriptionCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -591,7 +591,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -618,7 +618,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!CrossRefNoLbl.Value</Value>
+                                  <Value>=Parameters!CrossRefNoLbl.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -643,7 +643,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -667,7 +667,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!UnitCaption.Value</Value>
+                                  <Value>=Fields!UnitCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -692,7 +692,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -716,7 +716,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!ShippedCaption.Value</Value>
+                                  <Value>=Fields!ShippedCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -743,7 +743,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -771,7 +771,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!OrderedCaption.Value</Value>
+                                  <Value>=Fields!OrderedCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -798,7 +798,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -826,7 +826,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!BackOrderedCaption.Value</Value>
+                                  <Value>=Fields!BackOrderedCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -858,7 +858,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -889,7 +889,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -921,7 +921,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -953,7 +953,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -985,7 +985,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1017,7 +1017,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1049,7 +1049,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1081,7 +1081,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1113,7 +1113,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1147,7 +1147,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1181,7 +1181,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1215,7 +1215,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1249,7 +1249,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1287,7 +1287,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!No_TempSalesShipLine.Value</Value>
+                                  <Value>=Fields!No_TempSalesShipLine.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1314,7 +1314,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1343,7 +1343,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesShptLineDesc.Value &amp; " " &amp; Fields!TempSalesShptLineDesc2.Value</Value>
+                                  <Value>=Fields!TempSalesShptLineDesc.Value &amp; " " &amp; Fields!TempSalesShptLineDesc2.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1368,7 +1368,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1397,7 +1397,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!CrossRefNo_TempSalesShipLine.Value</Value>
+                                  <Value>=Fields!CrossRefNo_TempSalesShipLine.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1422,7 +1422,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1447,7 +1447,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesShptLineUOM.Value</Value>
+                                  <Value>=Fields!TempSalesShptLineUOM.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1472,7 +1472,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1501,7 +1501,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!TempSalesShptLineQy.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!TempSalesShptLineQy.Value)</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <Format>=Fields!TempSalesShptLineQyFormat.Value</Format>
@@ -1528,7 +1528,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1557,7 +1557,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!OrderedQuantity.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!OrderedQuantity.Value)</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <Format>=Fields!OrderedQuantityFormat.Value</Format>
@@ -1583,7 +1583,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1612,7 +1612,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!BackOrderedQuantity.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!BackOrderedQuantity.Value)</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <Format>=Fields!BackOrderedQuantityFormat.Value</Format>
@@ -1644,7 +1644,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1680,7 +1680,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1708,7 +1708,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PackageTrackingText.Value</Value>
+                                  <Value>=Fields!PackageTrackingText.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1749,7 +1749,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1777,7 +1777,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1806,7 +1806,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Comment_SalesLineCommentLine.Value</Value>
+                                  <Value>=Fields!Comment_SalesLineCommentLine.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1847,7 +1847,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PostedAsmLineItemNo.Value</Value>
+                                  <Value>=Fields!PostedAsmLineItemNo.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1874,7 +1874,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1903,7 +1903,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PostedAsmLineDescription.Value</Value>
+                                  <Value>=Fields!PostedAsmLineDescription.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1927,7 +1927,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1956,7 +1956,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -1981,7 +1981,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -2006,7 +2006,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PostedAsmLineUOMCode.Value</Value>
+                                  <Value>=Fields!PostedAsmLineUOMCode.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                   </Style>
@@ -2034,7 +2034,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2063,7 +2063,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!PostedAsmLineQuantity.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!PostedAsmLineQuantity.Value)</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <Format>=Fields!PostedAsmLineQuantityFormat.Value</Format>
@@ -2088,7 +2088,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2115,7 +2115,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2142,7 +2142,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2169,7 +2169,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2199,7 +2199,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=last(Fields!PrintFooter.Value)</Value>
+                                  <Value>=last(Fields!PrintFooter.Value)</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2393,7 +2393,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+                      <Value>=Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2416,7 +2416,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(55,1)</Value>
+                      <Value>=Code.GetData(55,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2438,7 +2438,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(28,1)</Value>
+                      <Value>=Code.GetData(28,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2462,7 +2462,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(29,1)</Value>
+                      <Value>=Code.GetData(29,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2486,7 +2486,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(58,1)</Value>
+                      <Value>=Code.GetData(58,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2508,7 +2508,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(56,1)</Value>
+                      <Value>=Code.GetData(56,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2530,7 +2530,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(50,1)</Value>
+                      <Value>=Code.GetData(50,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2552,7 +2552,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(52,1)</Value>
+                      <Value>=Code.GetData(52,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2574,7 +2574,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(11,1)</Value>
+                      <Value>=Code.GetData(11,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2598,7 +2598,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(40,1)</Value>
+                      <Value>=Code.GetData(40,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2622,7 +2622,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(60,1)</Value>
+                      <Value>=Code.GetData(60,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2644,7 +2644,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(27,1)</Value>
+                      <Value>=Code.GetData(27,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2666,7 +2666,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(57,1)</Value>
+                      <Value>=Code.GetData(57,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2688,7 +2688,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(51,1)</Value>
+                      <Value>=Code.GetData(51,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2710,7 +2710,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(9,1)</Value>
+                      <Value>=Code.GetData(9,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2732,7 +2732,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(10,1)</Value>
+                      <Value>=Code.GetData(10,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2754,7 +2754,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(20,1)</Value>
+                      <Value>=Code.GetData(20,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2776,7 +2776,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(21,1)</Value>
+                      <Value>=Code.GetData(21,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2798,7 +2798,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(53,1)</Value>
+                      <Value>=Code.GetData(53,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2820,7 +2820,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(38,1)</Value>
+                      <Value>=Code.GetData(38,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2842,7 +2842,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(39,1)</Value>
+                      <Value>=Code.GetData(39,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2864,7 +2864,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(30,1)</Value>
+                      <Value>=Code.GetData(30,1)</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -2891,7 +2891,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(31,1)</Value>
+                      <Value>=Code.GetData(31,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2915,7 +2915,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(32,1)</Value>
+                      <Value>=Code.GetData(32,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2939,7 +2939,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(33,1)</Value>
+                      <Value>=Code.GetData(33,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2963,7 +2963,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(49,1)</Value>
+                      <Value>=Code.GetData(49,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2985,7 +2985,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(23,1)</Value>
+                      <Value>=Code.GetData(23,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3007,7 +3007,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(24,1)</Value>
+                      <Value>=Code.GetData(24,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3029,7 +3029,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(48,1)</Value>
+                      <Value>=Code.GetData(48,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3051,7 +3051,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(54,1)</Value>
+                      <Value>=Code.GetData(54,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3073,7 +3073,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(19,1)</Value>
+                      <Value>=Code.GetData(19,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3095,7 +3095,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(7,1)</Value>
+                      <Value>=Code.GetData(7,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3136,7 +3136,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,1)</Value>
+                      <Value>=Code.GetData(1,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3159,7 +3159,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(2,1)</Value>
+                      <Value>=Code.GetData(2,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3183,7 +3183,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,1)</Value>
+                      <Value>=Code.GetData(3,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3207,7 +3207,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(4,1)</Value>
+                      <Value>=Code.GetData(4,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3231,7 +3231,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(5,1)</Value>
+                      <Value>=Code.GetData(5,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3255,7 +3255,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(6,1)</Value>
+                      <Value>=Code.GetData(6,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3279,7 +3279,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(37,1)</Value>
+                      <Value>=Code.GetData(37,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3303,7 +3303,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(12,1)</Value>
+                      <Value>=Code.GetData(12,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3325,7 +3325,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(13,1)</Value>
+                      <Value>=Code.GetData(13,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3347,7 +3347,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(14,1)</Value>
+                      <Value>=Code.GetData(14,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3369,7 +3369,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(15,1)</Value>
+                      <Value>=Code.GetData(15,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3391,7 +3391,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(16,1)</Value>
+                      <Value>=Code.GetData(16,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3413,7 +3413,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(17,1)</Value>
+                      <Value>=Code.GetData(17,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3435,7 +3435,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(18,1)</Value>
+                      <Value>=Code.GetData(18,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3457,7 +3457,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(41,1)</Value>
+                      <Value>=Code.GetData(41,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3479,7 +3479,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(42,1)</Value>
+                      <Value>=Code.GetData(42,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3501,7 +3501,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(43,1)</Value>
+                      <Value>=Code.GetData(43,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3523,7 +3523,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(44,1)</Value>
+                      <Value>=Code.GetData(44,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3545,7 +3545,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(45,1)</Value>
+                      <Value>=Code.GetData(45,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3567,7 +3567,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(46,1)</Value>
+                      <Value>=Code.GetData(46,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3589,7 +3589,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(47,1)</Value>
+                      <Value>=Code.GetData(47,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3611,7 +3611,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(25,1)</Value>
+                      <Value>=Code.GetData(25,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3635,7 +3635,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(26,1)</Value>
+                      <Value>=Code.GetData(26,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3657,7 +3657,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(59,1)</Value>
+                      <Value>=Code.GetData(59,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3679,7 +3679,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(34,1)</Value>
+                      <Value>=Code.GetData(34,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3703,7 +3703,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(35,1)</Value>
+                      <Value>=Code.GetData(35,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3727,7 +3727,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(8,1)</Value>
+                      <Value>=Code.GetData(8,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3751,7 +3751,7 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(22,1)</Value>
+                      <Value>=Code.GetData(22,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3798,6 +3798,19 @@ Cstr(Fields!Name_SalesPurchPerson2.Value),1)</Hidden>
       <Prompt>CrossRefNoLbl</Prompt>
     </ReportParameter>
   </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>CrossRefNoLbl</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""

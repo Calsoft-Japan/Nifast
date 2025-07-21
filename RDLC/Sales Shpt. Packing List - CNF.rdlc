@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>48c2b385-6e01-4d26-8eb2-f07e8772930a</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -38,7 +37,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!ShipCaption.Value</Value>
+                                          <Value>=Fields!ShipCaption.Value</Value>
                                           <Style>
                                             <FontWeight>Bold</FontWeight>
                                           </Style>
@@ -64,7 +63,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!To_Caption.Value</Value>
+                                          <Value>=Fields!To_Caption.Value</Value>
                                           <Style>
                                             <FontWeight>Bold</FontWeight>
                                           </Style>
@@ -92,7 +91,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!ShipToAddress_1_.Value</Value>
+                                          <Value>=Fields!ShipToAddress_1_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -119,7 +118,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!ShipToAddress_2_.Value</Value>
+                                          <Value>=Fields!ShipToAddress_2_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -146,7 +145,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!ShipToAddress_3_.Value</Value>
+                                          <Value>=Fields!ShipToAddress_3_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -173,7 +172,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!ShipToAddress_4_.Value</Value>
+                                          <Value>=Fields!ShipToAddress_4_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -200,7 +199,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!ShipToAddress_5_.Value</Value>
+                                          <Value>=Fields!ShipToAddress_5_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -227,7 +226,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!ShipToAddress_6_.Value</Value>
+                                          <Value>=Fields!ShipToAddress_6_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -254,7 +253,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!SoldCaption.Value</Value>
+                                          <Value>=Fields!SoldCaption.Value</Value>
                                           <Style>
                                             <FontWeight>Bold</FontWeight>
                                           </Style>
@@ -282,7 +281,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!To_Caption.Value</Value>
+                                          <Value>=Fields!To_Caption.Value</Value>
                                           <Style>
                                             <FontWeight>Bold</FontWeight>
                                           </Style>
@@ -311,7 +310,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!BillToAddress_1_.Value</Value>
+                                          <Value>=Fields!BillToAddress_1_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -338,7 +337,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!BillToAddress_2_.Value</Value>
+                                          <Value>=Fields!BillToAddress_2_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -365,7 +364,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!BillToAddress_3_.Value</Value>
+                                          <Value>=Fields!BillToAddress_3_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -392,7 +391,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!BillToAddress_4_.Value</Value>
+                                          <Value>=Fields!BillToAddress_4_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -419,7 +418,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!BillToAddress_5_.Value</Value>
+                                          <Value>=Fields!BillToAddress_5_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -446,7 +445,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!BillToAddress_6_.Value</Value>
+                                          <Value>=Fields!BillToAddress_6_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -547,7 +546,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Total_Packages_Caption.Value</Value>
+                                          <Value>=Fields!Total_Packages_Caption.Value</Value>
                                           <Style>
                                             <FontWeight>Bold</FontWeight>
                                           </Style>
@@ -577,7 +576,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!PostedPkgCount.Value</Value>
+                                          <Value>=Fields!PostedPkgCount.Value</Value>
                                           <Style>
                                             <Format>=Fields!PostedPkgCountFormat.Value</Format>
                                           </Style>
@@ -609,7 +608,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Posted_Package__Packing_Date_Caption.Value</Value>
+                                          <Value>=Fields!Posted_Package__Packing_Date_Caption.Value</Value>
                                           <Style>
                                             <FontWeight>Bold</FontWeight>
                                           </Style>
@@ -641,7 +640,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Posted_Package__Packing_Date_.Value</Value>
+                                          <Value>=Fields!Posted_Package__Packing_Date_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -697,7 +696,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Package_No_Caption.Value</Value>
+                                          <Value>=Fields!Package_No_Caption.Value</Value>
                                           <Style>
                                             <FontWeight>Bold</FontWeight>
                                           </Style>
@@ -728,7 +727,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Posted_Package__No__.Value</Value>
+                                          <Value>=Fields!Posted_Package__No__.Value</Value>
                                           <Style>
                                             <FontWeight>Bold</FontWeight>
                                           </Style>
@@ -760,7 +759,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Posted_Package__Shipping_Agent_Code_Caption.Value</Value>
+                                          <Value>=Fields!Posted_Package__Shipping_Agent_Code_Caption.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -790,7 +789,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Posted_Package__Shipping_Agent_Code_.Value</Value>
+                                          <Value>=Fields!Posted_Package__Shipping_Agent_Code_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -820,7 +819,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Sales_Shipment_Header___Shipment_Method_Code_Caption.Value</Value>
+                                          <Value>=Fields!Sales_Shipment_Header___Shipment_Method_Code_Caption.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -850,7 +849,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Sales_Shipment_Header___Shipment_Method_Code_.Value</Value>
+                                          <Value>=Fields!Sales_Shipment_Header___Shipment_Method_Code_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -880,7 +879,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Closed_by_Packing_StationCaption.Value</Value>
+                                          <Value>=Fields!Closed_by_Packing_StationCaption.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -910,7 +909,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Posted_Package__Closed_by_Packing_Station_Code_.Value</Value>
+                                          <Value>=Fields!Posted_Package__Closed_by_Packing_Station_Code_.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -940,7 +939,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Posted_Package__External_Tracking_No__Caption.Value</Value>
+                                          <Value>=Fields!Posted_Package__External_Tracking_No__Caption.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -970,7 +969,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Posted_Package__External_Tracking_No__.Value</Value>
+                                          <Value>=Fields!Posted_Package__External_Tracking_No__.Value</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -1000,7 +999,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Posted_Package__Calculation_Weight_.Value</Value>
+                                          <Value>=Fields!Posted_Package__Calculation_Weight_.Value</Value>
                                           <Style>
                                             <Format>=Fields!Posted_Package__Calculation_Weight_Format.Value</Format>
                                           </Style>
@@ -1032,7 +1031,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!TypeCaption.Value</Value>
+                                          <Value>=Fields!TypeCaption.Value</Value>
                                           <Style>
                                             <FontSize>8pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
@@ -1064,7 +1063,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!No_Caption.Value</Value>
+                                          <Value>=Fields!No_Caption.Value</Value>
                                           <Style>
                                             <FontSize>8pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
@@ -1096,7 +1095,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!DescriptionCaption.Value</Value>
+                                          <Value>=Fields!DescriptionCaption.Value</Value>
                                           <Style>
                                             <FontSize>8pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
@@ -1128,7 +1127,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!QuantityCaption.Value</Value>
+                                          <Value>=Fields!QuantityCaption.Value</Value>
                                           <Style>
                                             <FontSize>8pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
@@ -1160,7 +1159,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!UOMCaption.Value</Value>
+                                          <Value>=Fields!UOMCaption.Value</Value>
                                           <Style>
                                             <FontSize>8pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
@@ -1192,7 +1191,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!PacksCaption.Value</Value>
+                                          <Value>=Fields!PacksCaption.Value</Value>
                                           <Style>
                                             <FontSize>8pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
@@ -1224,7 +1223,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!SNPCaption.Value</Value>
+                                          <Value>=Fields!SNPCaption.Value</Value>
                                           <Style>
                                             <FontSize>8pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
@@ -1256,7 +1255,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">=Fields!Lot_No_Caption.Value</Value>
+                                          <Value>=Fields!Lot_No_Caption.Value</Value>
                                           <Style>
                                             <FontSize>8pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
@@ -1289,7 +1288,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">Weight</Value>
+                                          <Value>Weight</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -1315,7 +1314,7 @@ Cstr(Fields!ASNValue.Value)
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Auto">KG</Value>
+                                          <Value>KG</Value>
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
@@ -1387,7 +1386,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!Type_SalesShipmentLine.Value</Value>
+                                                    <Value>=Fields!Type_SalesShipmentLine.Value</Value>
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -1417,7 +1416,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!UseNo.Value</Value>
+                                                    <Value>=Fields!UseNo.Value</Value>
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -1447,7 +1446,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!Description_SalesShipmentLine.Value</Value>
+                                                    <Value>=Fields!Description_SalesShipmentLine.Value</Value>
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -1477,7 +1476,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!Quantity_SalesShipmentLine.Value</Value>
+                                                    <Value>=Fields!Quantity_SalesShipmentLine.Value</Value>
                                                     <Style>
                                                       <Format>=Fields!Quantity_SalesShipmentLineFormat.Value</Format>
                                                     </Style>
@@ -1509,7 +1508,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!UnitofMeasureCode_SalesShipmentLine.Value</Value>
+                                                    <Value>=Fields!UnitofMeasureCode_SalesShipmentLine.Value</Value>
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -1539,7 +1538,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Format(Fields!Packs.Value,Fields!PacksFormat.Value) &amp; VBCRLF &amp; Format(Fields!UnitsPerParcel.Value,Fields!UnitsPerParcelFormat.Value)</Value>
+                                                    <Value>=Format(Fields!Packs.Value,Fields!PacksFormat.Value) &amp; VBCRLF &amp; Format(Fields!UnitsPerParcel.Value,Fields!UnitsPerParcelFormat.Value)</Value>
                                                     <Style>
                                                       <Format>=Fields!PacksFormat.Value</Format>
                                                     </Style>
@@ -1571,7 +1570,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -1601,7 +1600,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -1638,7 +1637,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!Cross_Reference_No__Caption.Value</Value>
+                                                        <Value>=Fields!Cross_Reference_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -1669,7 +1668,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!CrossReferenceNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!CrossReferenceNo_SalesShipmentLine.Value</Value>
                                                         <Style />
                                                       </TextRun>
                                                     </TextRuns>
@@ -1698,7 +1697,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!Customer_PO_No_Caption.Value</Value>
+                                                        <Value>=Fields!Customer_PO_No_Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -1730,7 +1729,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!ExternalDocumentNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!ExternalDocumentNo_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -1780,7 +1779,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -1816,7 +1815,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!Certificate_No_Caption.Value</Value>
+                                                        <Value>=Fields!Certificate_No_Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -1848,7 +1847,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!CertificateNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!CertificateNo_SalesShipmentLine.Value</Value>
                                                         <Style />
                                                       </TextRun>
                                                     </TextRuns>
@@ -1877,7 +1876,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!SalesShptLine__Ran_No__Caption.Value</Value>
+                                                        <Value>=Fields!SalesShptLine__Ran_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -1909,7 +1908,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!RanNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!RanNo_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -1940,7 +1939,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!SalesShptLine__Release_No__Caption.Value</Value>
+                                                        <Value>=Fields!SalesShptLine__Release_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -1972,7 +1971,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!ReleaseNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!ReleaseNo_SalesShipmentLine.Value</Value>
                                                         <Style />
                                                       </TextRun>
                                                     </TextRuns>
@@ -2028,7 +2027,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!Drawing_No__Caption.Value</Value>
+                                                        <Value>=Fields!Drawing_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -2060,7 +2059,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!DrawingNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!DrawingNo_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -2091,7 +2090,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!SalesShptLine__Revision_No__Caption.Value</Value>
+                                                        <Value>=Fields!SalesShptLine__Revision_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -2123,7 +2122,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!RevisionNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!RevisionNo_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -2154,7 +2153,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!SalesShptLine__Revision_Date_Caption.Value</Value>
+                                                        <Value>=Fields!SalesShptLine__Revision_Date_Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -2186,7 +2185,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!RevisionDate_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!RevisionDate_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -2242,7 +2241,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2271,7 +2270,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2300,7 +2299,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2329,7 +2328,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2358,7 +2357,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2387,7 +2386,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2416,7 +2415,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2445,7 +2444,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2479,7 +2478,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!Type_SalesShipmentLine.Value</Value>
+                                                    <Value>=Fields!Type_SalesShipmentLine.Value</Value>
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2509,7 +2508,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!UseNo.Value</Value>
+                                                    <Value>=Fields!UseNo.Value</Value>
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2539,7 +2538,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!UseDescription.Value</Value>
+                                                    <Value>=Fields!UseDescription.Value</Value>
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2568,7 +2567,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!UseQuantity.Value</Value>
+                                                    <Value>=Fields!UseQuantity.Value</Value>
                                                     <Style>
                                                       <Format>=Fields!UseQuantityFormat.Value</Format>
                                                     </Style>
@@ -2599,7 +2598,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!UnitofMeasureCode_SalesShipmentLine.Value</Value>
+                                                    <Value>=Fields!UnitofMeasureCode_SalesShipmentLine.Value</Value>
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2629,7 +2628,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Microsoft.VisualBasic.Strings.Format(Fields!Packs.Value, Fields!PacksFormat.Value) &amp; Microsoft.VisualBasic.Constants.VBCRLF &amp; Microsoft.VisualBasic.Strings.Format(Fields!UnitsPerParcel.Value, Fields!UnitsPerParcelFormat.Value)</Value>
+                                                    <Value>=Microsoft.VisualBasic.Strings.Format(Fields!Packs.Value, Fields!PacksFormat.Value) &amp; Microsoft.VisualBasic.Constants.VBCRLF &amp; Microsoft.VisualBasic.Strings.Format(Fields!UnitsPerParcel.Value, Fields!UnitsPerParcelFormat.Value)</Value>
                                                     <Style>
                                                       <Format>=Fields!PacksFormat.Value</Format>
                                                     </Style>
@@ -2661,7 +2660,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto">=Fields!LotNo_ItemEntryRelation.Value</Value>
+                                                    <Value>=Fields!LotNo_ItemEntryRelation.Value</Value>
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2690,7 +2689,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -2726,7 +2725,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!Cross_Reference_No__Caption.Value</Value>
+                                                        <Value>=Fields!Cross_Reference_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -2757,7 +2756,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!CrossReferenceNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!CrossReferenceNo_SalesShipmentLine.Value</Value>
                                                         <Style />
                                                       </TextRun>
                                                     </TextRuns>
@@ -2786,7 +2785,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!Customer_PO_No_Caption.Value</Value>
+                                                        <Value>=Fields!Customer_PO_No_Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -2818,7 +2817,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!ExternalDocumentNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!ExternalDocumentNo_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -2849,7 +2848,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!Mfg_Lot_No_Lbl.Value</Value>
+                                                        <Value>=Fields!Mfg_Lot_No_Lbl.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -2879,7 +2878,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!MfgLotNo_LotNoInfo.Value</Value>
+                                                        <Value>=Fields!MfgLotNo_LotNoInfo.Value</Value>
                                                         <Style />
                                                       </TextRun>
                                                     </TextRuns>
@@ -2935,7 +2934,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!Certificate_No_Caption.Value</Value>
+                                                        <Value>=Fields!Certificate_No_Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -2967,7 +2966,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!CertificateNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!CertificateNo_SalesShipmentLine.Value</Value>
                                                         <Style />
                                                       </TextRun>
                                                     </TextRuns>
@@ -2996,7 +2995,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!SalesShptLine__Ran_No__Caption.Value</Value>
+                                                        <Value>=Fields!SalesShptLine__Ran_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -3028,7 +3027,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!RanNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!RanNo_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -3059,7 +3058,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!SalesShptLine__Release_No__Caption.Value</Value>
+                                                        <Value>=Fields!SalesShptLine__Release_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -3091,7 +3090,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!ReleaseNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!ReleaseNo_SalesShipmentLine.Value</Value>
                                                         <Style />
                                                       </TextRun>
                                                     </TextRuns>
@@ -3147,7 +3146,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!Drawing_No__Caption.Value</Value>
+                                                        <Value>=Fields!Drawing_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -3179,7 +3178,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!DrawingNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!DrawingNo_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -3210,7 +3209,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!SalesShptLine__Revision_No__Caption.Value</Value>
+                                                        <Value>=Fields!SalesShptLine__Revision_No__Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -3242,7 +3241,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!RevisionNo_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!RevisionNo_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -3273,7 +3272,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!SalesShptLine__Revision_Date_Caption.Value</Value>
+                                                        <Value>=Fields!SalesShptLine__Revision_Date_Caption.Value</Value>
                                                         <Style>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -3305,7 +3304,7 @@ Cstr(Fields!ASNValue.Value)
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value EvaluationMode="Auto">=Fields!RevisionDate_SalesShipmentLine.Value</Value>
+                                                        <Value>=Fields!RevisionDate_SalesShipmentLine.Value</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                         </Style>
@@ -3361,7 +3360,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3390,7 +3389,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3419,7 +3418,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3448,7 +3447,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3477,7 +3476,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3506,7 +3505,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3535,7 +3534,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3564,7 +3563,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3598,7 +3597,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3637,7 +3636,7 @@ Cstr(Fields!ASNValue.Value)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Auto" />
+                                                    <Value />
                                                     <Style />
                                                   </TextRun>
                                                 </TextRuns>
@@ -3868,7 +3867,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Globals!PageNumber</Value>
+                      <Value>=Globals!PageNumber</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -3891,7 +3890,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(16,1)</Value>
+                      <Value>=Code.GetData(16,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3917,7 +3916,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(17,1)</Value>
+                      <Value>=Code.GetData(17,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3941,7 +3940,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(6,1)</Value>
+                      <Value>=Code.GetData(6,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3963,7 +3962,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(5,1)</Value>
+                      <Value>=Code.GetData(5,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3985,7 +3984,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(4,1)</Value>
+                      <Value>=Code.GetData(4,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4007,7 +4006,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,1)</Value>
+                      <Value>=Code.GetData(3,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4029,7 +4028,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(9,1)</Value>
+                      <Value>=Code.GetData(9,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -4055,7 +4054,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(10,1)</Value>
+                      <Value>=Code.GetData(10,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4079,7 +4078,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(11,1)</Value>
+                      <Value>=Code.GetData(11,1)</Value>
                       <Style>
                         <FontFamily>BC C39 3 to 1 Narrow</FontFamily>
                         <FontSize>30pt</FontSize>
@@ -4104,7 +4103,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(7,1)</Value>
+                      <Value>=Code.GetData(7,1)</Value>
                       <Style>
                         <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -4131,7 +4130,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(8,1)</Value>
+                      <Value>=Code.GetData(8,1)</Value>
                       <Style>
                         <FontSize>9pt</FontSize>
                       </Style>
@@ -4155,7 +4154,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(14,1)</Value>
+                      <Value>=Code.GetData(14,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -4181,7 +4180,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(15,1)</Value>
+                      <Value>=Code.GetData(15,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4205,7 +4204,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(12,1)</Value>
+                      <Value>=Code.GetData(12,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -4231,7 +4230,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(13,1)</Value>
+                      <Value>=Code.GetData(13,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4255,7 +4254,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,1)</Value>
+                      <Value>=Code.GetData(1,1)</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -4281,7 +4280,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(2,1)</Value>
+                      <Value>=Code.GetData(2,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -4335,7 +4334,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(19,1)</Value>
+                      <Value>=Code.GetData(19,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -4364,7 +4363,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(20,1)</Value>
+                      <Value>=Code.GetData(20,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4392,7 +4391,7 @@ Cstr(Fields!ASNValue.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=First(Fields!CompanyInfo_Name2.Value, "DataSet_Result")</Value>
+                      <Value>=First(Fields!CompanyInfo_Name2.Value, "DataSet_Result")</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -37,7 +37,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -61,7 +61,6 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -73,7 +72,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -104,7 +103,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!RemisionNoCaption.Value</Value>
+                                  <Value>=Parameters!RemisionNoCaption.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -127,7 +126,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesInvoiceLine__Shipment_No__.Value</Value>
+                                  <Value>=Fields!TempSalesInvoiceLine__Shipment_No__.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -153,7 +152,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!NumeroNiFastCaption.Value</Value>
+                                  <Value>=Parameters!NumeroNiFastCaption.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -176,7 +175,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesInvoiceLine__No__.Value</Value>
+                                  <Value>=Fields!TempSalesInvoiceLine__No__.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -202,7 +201,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!NumeroClienteCaption.Value</Value>
+                                  <Value>=Parameters!NumeroClienteCaption.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -225,7 +224,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesInvoiceLine__Cross_Reference_No__.Value</Value>
+                                  <Value>=Fields!TempSalesInvoiceLine__Cross_Reference_No__.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -251,7 +250,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!DescriptionCaption.Value</Value>
+                                  <Value>=Parameters!DescriptionCaption.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -272,7 +271,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesInvoiceLine_Description.Value</Value>
+                                  <Value>=Fields!TempSalesInvoiceLine_Description.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -298,7 +297,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!CantidadCaption.Value</Value>
+                                  <Value>=Parameters!CantidadCaption.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -321,7 +320,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!TempSalesInvoiceLine_Quantity.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!TempSalesInvoiceLine_Quantity.Value)</Value>
                                   <Style>
                                     <Format>=Fields!TempSalesInvoiceLine_QuantityFormat.Value</Format>
                                   </Style>
@@ -349,7 +348,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!EspecTerminadoCaption.Value</Value>
+                                  <Value>=Parameters!EspecTerminadoCaption.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -372,7 +371,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!mItem__Material_Type_.Value</Value>
+                                  <Value>=Fields!mItem__Material_Type_.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -398,7 +397,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!EspecMaterialesUtilizadosCaption.Value</Value>
+                                  <Value>=Parameters!EspecMaterialesUtilizadosCaption.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -421,7 +420,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!mItem__Material_Finish_.Value</Value>
+                                  <Value>=Fields!mItem__Material_Finish_.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -448,7 +447,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!LOTE_______Lot_No__.Value</Value>
+                                  <Value>=Fields!LOTE_______Lot_No__.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -540,7 +539,6 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>0cm</Top>
             <Left>2.1cm</Left>
             <Height>3.807cm</Height>
             <Width>14.49cm</Width>
@@ -563,7 +561,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,1)</Value>
+                      <Value>=Code.GetData(1,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -572,7 +570,6 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0cm</Top>
               <Left>5.67cm</Left>
               <Height>0.423cm</Height>
               <Width>7.35cm</Width>
@@ -586,7 +583,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Parameters!Header_2_Caption.Value</Value>
+                      <Value>=Parameters!Header_2_Caption.Value</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                       </Style>
@@ -610,7 +607,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Parameters!Header_1_Caption.Value</Value>
+                      <Value>=Parameters!Header_1_Caption.Value</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                       </Style>
@@ -634,7 +631,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Parameters!ReportCaption.Value</Value>
+                      <Value>=Parameters!ReportCaption.Value</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -646,7 +643,6 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0cm</Top>
               <Left>13.65cm</Left>
               <Height>2.538cm</Height>
               <Width>6.51cm</Width>
@@ -661,7 +657,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Parameters!OrdenDeCompraCaption.Value</Value>
+                      <Value>=Parameters!OrdenDeCompraCaption.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -685,7 +681,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(11,1)</Value>
+                      <Value>=Code.GetData(11,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -707,7 +703,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(10,1)</Value>
+                      <Value>=Code.GetData(10,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -731,7 +727,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Parameters!ClienteCaption.Value</Value>
+                      <Value>=Parameters!ClienteCaption.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -753,7 +749,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(12,1)</Value>
+                      <Value>=Code.GetData(12,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -775,7 +771,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(8,1)</Value>
+                      <Value>=Code.GetData(8,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -799,7 +795,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(7,1)</Value>
+                      <Value>=Code.GetData(7,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -823,7 +819,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Parameters!FacturaCaption.Value</Value>
+                      <Value>=Parameters!FacturaCaption.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -847,7 +843,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(9,1)</Value>
+                      <Value>=Code.GetData(9,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -869,7 +865,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(6,1)</Value>
+                      <Value>=Code.GetData(6,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -893,7 +889,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(5,1)</Value>
+                      <Value>=Code.GetData(5,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -917,7 +913,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(4,1)</Value>
+                      <Value>=Code.GetData(4,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -941,7 +937,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,1)</Value>
+                      <Value>=Code.GetData(3,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -965,7 +961,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(2,1)</Value>
+                      <Value>=Code.GetData(2,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -987,8 +983,6 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
               <Source>Database</Source>
               <Value>=Convert.ToBase64String(fields!CompanyInformation__Document_Logo_.Value)</Value>
               <MIMEType>image/bmp</MIMEType>
-              <Top>0cm</Top>
-              <Left>0cm</Left>
               <Height>2.961cm</Height>
               <Width>5.25cm</Width>
               <ZIndex>18</ZIndex>
@@ -1024,7 +1018,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Parameters!CargoCaption.Value</Value>
+                      <Value>=Parameters!CargoCaption.Value</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                       </Style>
@@ -1053,7 +1047,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Parameters!FirmaCaption.Value</Value>
+                      <Value>=Parameters!FirmaCaption.Value</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                       </Style>
@@ -1083,7 +1077,7 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Parameters!FecheCaption.Value</Value>
+                      <Value>=Parameters!FecheCaption.Value</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                       </Style>
@@ -1315,6 +1309,94 @@ Cstr(Fields!tDayText_________tMonText_________tYrText.Value),1)</Hidden>
       <Prompt>FecheCaption</Prompt>
     </ReportParameter>
   </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>16</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>ReportCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>Header_1_Caption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>Header_2_Caption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>FacturaCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>ClienteCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>OrdenDeCompraCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>RemisionNoCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>7</RowIndex>
+          <ParameterName>NumeroNiFastCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>8</RowIndex>
+          <ParameterName>NumeroClienteCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>9</RowIndex>
+          <ParameterName>DescriptionCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>10</RowIndex>
+          <ParameterName>CantidadCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>11</RowIndex>
+          <ParameterName>EspecTerminadoCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>12</RowIndex>
+          <ParameterName>EspecMaterialesUtilizadosCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>13</RowIndex>
+          <ParameterName>FirmaCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>14</RowIndex>
+          <ParameterName>CargoCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>15</RowIndex>
+          <ParameterName>FecheCaption</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""

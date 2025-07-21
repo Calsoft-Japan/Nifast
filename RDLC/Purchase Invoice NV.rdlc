@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -63,7 +63,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -139,7 +139,6 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -151,7 +150,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -180,7 +179,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -209,7 +208,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -238,7 +237,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -267,7 +266,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -295,7 +294,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -323,7 +322,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -352,7 +351,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -381,7 +380,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>#ff0000</Color>
                                     <NumeralLanguage>ar</NumeralLanguage>
@@ -411,7 +410,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>#ff0000</Color>
                                     <NumeralLanguage>ar</NumeralLanguage>
@@ -445,7 +444,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!ItemNoCaption.Value</Value>
+                                  <Value>=Fields!ItemNoCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -472,7 +471,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -498,7 +497,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!DescriptionCaption.Value</Value>
+                                  <Value>=Fields!DescriptionCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -524,7 +523,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -550,7 +549,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!UnitCaption.Value</Value>
+                                  <Value>=Fields!UnitCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -576,7 +575,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -604,7 +603,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!QuantityCaption.Value</Value>
+                                  <Value>=Fields!QuantityCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -632,7 +631,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -660,7 +659,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!UnitPriceCaption.Value</Value>
+                                  <Value>=Fields!UnitPriceCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -688,7 +687,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -716,7 +715,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TotalPriceCaption.Value + " "</Value>
+                                  <Value>=Fields!TotalPriceCaption.Value + " "</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -749,7 +748,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -776,7 +775,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -804,7 +803,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -832,7 +831,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -860,7 +859,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -888,7 +887,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -918,7 +917,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -948,7 +947,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -978,7 +977,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1008,7 +1007,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1037,7 +1036,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1071,7 +1070,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!ItemNumberToPrint.Value</Value>
+                                  <Value>=Fields!ItemNumberToPrint.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1097,7 +1096,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1122,7 +1121,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Description_PurchInvLine.Value</Value>
+                                  <Value>=Fields!Description_PurchInvLine.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1146,7 +1145,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1174,7 +1173,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!UnitofMeasure_PurchInvLine.Value</Value>
+                                  <Value>=Fields!UnitofMeasure_PurchInvLine.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1201,7 +1200,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1231,7 +1230,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!Quantity_PurchInvLine.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!Quantity_PurchInvLine.Value)</Value>
                                   <Style>
                                     <Format>n2</Format>
                                   </Style>
@@ -1262,7 +1261,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1289,7 +1288,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!UnitPriceToPrint.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!UnitPriceToPrint.Value)</Value>
                                   <Style>
                                     <Format>=Fields!UnitPriceToPrintFormat.Value</Format>
                                   </Style>
@@ -1317,7 +1316,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1344,7 +1343,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!AmountExclInvDisc.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!AmountExclInvDisc.Value)</Value>
                                   <Style>
                                     <Format>=Fields!AmountExclInvDiscFormat.Value</Format>
                                   </Style>
@@ -1377,7 +1376,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Format(Fields!Date_PurchCommentLine.Value,"dd/MM/yy")</Value>
+                                  <Value>=Format(Fields!Date_PurchCommentLine.Value,"dd/MM/yy")</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1408,7 +1407,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1439,7 +1438,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Comment_PurchLineCommentLine.Value</Value>
+                                  <Value>=Fields!Comment_PurchLineCommentLine.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -1483,7 +1482,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -1517,7 +1516,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -1545,7 +1544,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -1573,7 +1572,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -1601,7 +1600,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -1629,7 +1628,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -1656,7 +1655,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Cstr(Last(Fields!GTAmountExclInvDiscDEC.Value))+Chr(177)+
+                                  <Value>=Cstr(Last(Fields!GTAmountExclInvDiscDEC.Value))+Chr(177)+
  Cstr(Last(Fields!InvoiceDiscount.Value))+Chr(177)+
  Cstr(Last(Fields!PrintFooter.Value))</Value>
                                   <Style>
@@ -1690,7 +1689,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -1717,7 +1716,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!TaxAmount.Value)</Value>
+                                  <Value>=Last(Fields!TaxAmount.Value)</Value>
                                   <Style>
                                     <Format>=First(Fields!AmountIncludingVATAmountFormat.Value)</Format>
                                     <Color>Red</Color>
@@ -1748,7 +1747,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -1775,7 +1774,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Last(Fields!TotalAmtIncVAT.Value)</Value>
+                                  <Value>=Last(Fields!TotalAmtIncVAT.Value)</Value>
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -1916,7 +1915,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Globals!PageNumber</Value>
+                      <Value>=Globals!PageNumber</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1939,7 +1938,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(7,1)</Value>
+                      <Value>=Code.GetData(7,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1963,7 +1962,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(8,1)</Value>
+                      <Value>=Code.GetData(8,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1987,7 +1986,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(18,1)</Value>
+                      <Value>=Code.getData(18,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2009,7 +2008,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(43,1)</Value>
+                      <Value>=Code.GetData(43,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2031,7 +2030,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(20,1)</Value>
+                      <Value>=Code.GetData(20,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2053,7 +2052,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(24,1)</Value>
+                      <Value>=Code.GetData(24,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2075,7 +2074,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(49,1)</Value>
+                      <Value>=Code.GetData(49,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2102,7 +2101,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(51,1)</Value>
+                      <Value>=Code.GetData(51,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2126,7 +2125,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(53,1)</Value>
+                      <Value>=Code.GetData(53,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2150,7 +2149,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(10,1)</Value>
+                      <Value>=Code.getData(10,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2172,7 +2171,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(21,1)</Value>
+                      <Value>=Code.GetData(21,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2197,7 +2196,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(31,1)</Value>
+                      <Value>=Code.GetData(31,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2221,7 +2220,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(25,1)</Value>
+                      <Value>=Code.GetData(25,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2246,7 +2245,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(46,1)</Value>
+                      <Value>=Code.GetData(46,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2268,7 +2267,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(34,1)</Value>
+                      <Value>=Code.GetData(34,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2290,7 +2289,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(35,1)</Value>
+                      <Value>=Code.GetData(35,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2315,7 +2314,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(27,1)</Value>
+                      <Value>=Code.GetData(27,1)</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -2342,7 +2341,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(28,1)</Value>
+                      <Value>=Code.GetData(28,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2366,7 +2365,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(30,1)</Value>
+                      <Value>=Code.GetData(30,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2390,7 +2389,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(32,1)</Value>
+                      <Value>=Code.GetData(32,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2414,7 +2413,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(19,1)</Value>
+                      <Value>=Code.GetData(19,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2436,7 +2435,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(23,1)</Value>
+                      <Value>=Code.GetData(23,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2458,7 +2457,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(48,1)</Value>
+                      <Value>=Code.GetData(48,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2480,7 +2479,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(9,1)</Value>
+                      <Value>=Code.getData(9,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2502,7 +2501,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(44,1)</Value>
+                      <Value>=Code.GetData(44,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2524,7 +2523,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(50,1)</Value>
+                      <Value>=Code.GetData(50,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2546,7 +2545,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(29,1)</Value>
+                      <Value>=Code.GetData(29,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2570,7 +2569,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(45,1)</Value>
+                      <Value>=Code.GetData(45,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2612,7 +2611,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,1)</Value>
+                      <Value>=Code.GetData(1,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2636,7 +2635,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(2,1)</Value>
+                      <Value>=Code.GetData(2,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2660,7 +2659,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,1)</Value>
+                      <Value>=Code.GetData(3,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2684,7 +2683,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(4,1)</Value>
+                      <Value>=Code.GetData(4,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2708,7 +2707,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(5,1)</Value>
+                      <Value>=Code.GetData(5,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2732,7 +2731,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(6,1)</Value>
+                      <Value>=Code.GetData(6,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2756,7 +2755,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(33,1)</Value>
+                      <Value>=Code.GetData(33,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2778,7 +2777,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(11,1)</Value>
+                      <Value>=Code.getData(11,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2800,7 +2799,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(12,1)</Value>
+                      <Value>=Code.getData(12,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2822,7 +2821,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(13,1)</Value>
+                      <Value>=Code.getData(13,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2844,7 +2843,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(47,1)</Value>
+                      <Value>=Code.GetData(47,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2866,7 +2865,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(14,1)</Value>
+                      <Value>=Code.getData(14,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2888,7 +2887,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(16,1)</Value>
+                      <Value>=Code.getData(16,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2910,7 +2909,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(17,1)</Value>
+                      <Value>=Code.getData(17,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2932,7 +2931,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(22,1)</Value>
+                      <Value>=Code.GetData(22,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2956,7 +2955,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(36,1)</Value>
+                      <Value>=Code.GetData(36,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2978,7 +2977,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(37,1)</Value>
+                      <Value>=Code.GetData(37,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3000,7 +2999,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(38,1)</Value>
+                      <Value>=Code.GetData(38,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3022,7 +3021,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(39,1)</Value>
+                      <Value>=Code.GetData(39,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3044,7 +3043,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(40,1)</Value>
+                      <Value>=Code.GetData(40,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3066,7 +3065,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(41,1)</Value>
+                      <Value>=Code.GetData(41,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3088,7 +3087,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(42,1)</Value>
+                      <Value>=Code.GetData(42,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3110,7 +3109,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(26,1)</Value>
+                      <Value>=Code.GetData(26,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3134,7 +3133,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.getData(15,1)</Value>
+                      <Value>=Code.getData(15,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3156,7 +3155,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(52,1)</Value>
+                      <Value>=Code.GetData(52,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3189,7 +3188,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Fields!InvDiscCaption.Value</Value>
+                      <Value>=Fields!InvDiscCaption.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3216,7 +3215,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Cstr(Choose(2,Split(Cstr(ReportItems!AAmountAmountExclInvDisc.Value),Chr(177)))))</Value>
+                      <Value>=CDec(Cstr(Choose(2,Split(Cstr(ReportItems!AAmountAmountExclInvDisc.Value),Chr(177)))))</Value>
                       <Style>
                         <Format>=Fields!BreakdownAmt2Format.Value</Format>
                       </Style>
@@ -3245,7 +3244,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Fields!SubtotalCaption.Value</Value>
+                      <Value>=Fields!SubtotalCaption.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3272,7 +3271,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Cstr(Choose(1,Split(Cstr(ReportItems!AAmountAmountExclInvDisc.Value),Chr(177)))))</Value>
+                      <Value>=CDec(Cstr(Choose(1,Split(Cstr(ReportItems!AAmountAmountExclInvDisc.Value),Chr(177)))))</Value>
                       <Style>
                         <Format>=Fields!AmountExclInvDiscFormat.Value</Format>
                       </Style>
@@ -3301,7 +3300,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Fields!TotalTaxLabel.Value</Value>
+                      <Value>=Fields!TotalTaxLabel.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3329,7 +3328,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=ReportItems!VATAmountExclInvDisc.Value</Value>
+                      <Value>=ReportItems!VATAmountExclInvDisc.Value</Value>
                       <Style>
                         <Format>=Fields!BreakdownAmt3Format.Value</Format>
                       </Style>
@@ -3358,7 +3357,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Fields!TotalCaption.Value</Value>
+                      <Value>=Fields!TotalCaption.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3386,7 +3385,7 @@ Cstr(FORMAT(Fields!Purch__Inv__Header___Due_Date_.Value,"MM/dd/yy"))
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=ReportItems!VAT.Value</Value>
+                      <Value>=ReportItems!VAT.Value</Value>
                       <Style>
                         <Format>=Fields!BreakdownAmt4Format.Value</Format>
                       </Style>

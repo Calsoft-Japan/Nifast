@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>62063e57-2b3f-45df-b6de-b5c498b40e22</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -52,7 +51,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -84,7 +83,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -171,7 +170,7 @@ Cstr(FORMAT(Fields!Purchase_Header___Requested_Receipt_Date_.Value,"MM/dd/yy"))
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -226,7 +225,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -254,7 +253,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -288,7 +287,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Item_No_Caption.Value</Value>
+                                  <Value>=Fields!Item_No_Caption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -319,7 +318,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!SNPCaption.Value</Value>
+                                  <Value>=Fields!SNPCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -350,7 +349,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!Cartons_Lbl.Value</Value>
+                                  <Value>=Parameters!Cartons_Lbl.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -381,7 +380,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!Quantity_Lbl.Value</Value>
+                                  <Value>=Parameters!Quantity_Lbl.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -412,7 +411,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!UnitPrice_Lbl.Value</Value>
+                                  <Value>=Parameters!UnitPrice_Lbl.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -443,7 +442,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Parameters!PricePer_Lbl.Value</Value>
+                                  <Value>=Parameters!PricePer_Lbl.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -474,7 +473,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Total_PriceCaption.Value</Value>
+                                  <Value>=Fields!Total_PriceCaption.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -525,7 +524,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value EvaluationMode="Auto" />
+                                                <Value />
                                                 <Style />
                                               </TextRun>
                                             </TextRuns>
@@ -554,7 +553,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value EvaluationMode="Auto">=Fields!DescriptionCaption.Value</Value>
+                                                <Value>=Fields!DescriptionCaption.Value</Value>
                                                 <Style>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
@@ -620,7 +619,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!ItemNumberToPrint.Value</Value>
+                                  <Value>=Fields!ItemNumberToPrint.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -649,7 +648,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!TempPurchLine__Units_per_Parcel_.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!TempPurchLine__Units_per_Parcel_.Value)</Value>
                                   <Style>
                                     <Format>=Fields!TempPurchLine__Units_per_Parcel_Format.Value</Format>
                                   </Style>
@@ -680,7 +679,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!Packs.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!Packs.Value)</Value>
                                   <Style>
                                     <Format>=Fields!PacksFormat.Value</Format>
                                   </Style>
@@ -711,7 +710,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.Blankzero(Fields!TempPurchLine_Quantity.Value)</Value>
+                                  <Value>=Code.Blankzero(Fields!TempPurchLine_Quantity.Value)</Value>
                                   <Style>
                                     <Format>=Fields!TempPurchLine_QuantityFormat.Value</Format>
                                   </Style>
@@ -742,7 +741,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!UnitPriceToPrint.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!UnitPriceToPrint.Value)</Value>
                                   <Style>
                                     <Format>=Fields!UnitPriceToPrintFormat.Value</Format>
                                   </Style>
@@ -773,7 +772,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempPurchLine_AltPriceUOM.Value</Value>
+                                  <Value>=Fields!TempPurchLine_AltPriceUOM.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -802,7 +801,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!AmountExclInvDisc.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!AmountExclInvDisc.Value)</Value>
                                   <Style>
                                     <Format>=Fields!AmountExclInvDiscFormat.Value</Format>
                                   </Style>
@@ -837,7 +836,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempPurchLine_Description_________TempPurchLine__Description_2_.Value</Value>
+                                  <Value>=Fields!TempPurchLine_Description_________TempPurchLine__Description_2_.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -879,7 +878,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=FORMAT(Fields!PurchLineCommentLine_Date.Value,"MM/dd/yy")</Value>
+                                  <Value>=FORMAT(Fields!PurchLineCommentLine_Date.Value,"MM/dd/yy")</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -907,7 +906,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PurchLineCommentLine_Comment.Value</Value>
+                                  <Value>=Fields!PurchLineCommentLine_Comment.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -978,7 +977,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1007,7 +1006,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1036,7 +1035,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1065,7 +1064,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1094,7 +1093,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1123,7 +1122,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1157,7 +1156,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!RespCommentText_1.Value</Value>
+                                  <Value>=Fields!RespCommentText_1.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1190,7 +1189,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1219,7 +1218,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1253,7 +1252,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!RespCommentText_2.Value</Value>
+                                  <Value>=Fields!RespCommentText_2.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1286,7 +1285,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1315,7 +1314,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1349,7 +1348,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!RespCommentText_3.Value</Value>
+                                  <Value>=Fields!RespCommentText_3.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1382,7 +1381,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1411,7 +1410,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1445,7 +1444,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!RespCommentText_4.Value</Value>
+                                  <Value>=Fields!RespCommentText_4.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1478,7 +1477,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1507,7 +1506,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1541,7 +1540,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!RespCommentText_5.Value</Value>
+                                  <Value>=Fields!RespCommentText_5.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1574,7 +1573,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1603,7 +1602,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1636,7 +1635,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!PrintFooter.Value</Value>
+                                  <Value>=Fields!PrintFooter.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1666,7 +1665,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1694,7 +1693,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1722,7 +1721,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1750,7 +1749,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1778,7 +1777,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1806,7 +1805,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -1841,7 +1840,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=CDec(Code.GetData(5,2))</Value>
+                                      <Value>=CDec(Code.GetData(5,2))</Value>
                                       <Style>
                                         <Format>=Code.GetData(19,2)</Format>
                                       </Style>
@@ -1865,7 +1864,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=CDec(Code.GetData(4,2))</Value>
+                                      <Value>=CDec(Code.GetData(4,2))</Value>
                                       <Style>
                                         <Format>=Code.GetData(18,2)</Format>
                                       </Style>
@@ -1891,7 +1890,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=CDec(Code.GetData(2,2))</Value>
+                                      <Value>=CDec(Code.GetData(2,2))</Value>
                                       <Style>
                                         <Format>=Code.GetData(17,2)</Format>
                                       </Style>
@@ -1917,7 +1916,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(1,2)</Value>
+                                      <Value>=Code.GetData(1,2)</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -1940,7 +1939,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(3,2)</Value>
+                                      <Value>=Code.GetData(3,2)</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -1963,7 +1962,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(15,2)</Value>
+                                      <Value>=Code.GetData(15,2)</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -1987,7 +1986,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(14,2)</Value>
+                                      <Value>=Code.GetData(14,2)</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -2011,7 +2010,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(13,2)</Value>
+                                      <Value>=Code.GetData(13,2)</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -2034,7 +2033,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=CDec(Code.GetData(7,2))</Value>
+                                      <Value>=CDec(Code.GetData(7,2))</Value>
                                       <Style>
                                         <Format>=Code.GetData(21,2)</Format>
                                       </Style>
@@ -2060,7 +2059,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=CDec(Code.GetData(6,2))</Value>
+                                      <Value>=CDec(Code.GetData(6,2))</Value>
                                       <Style>
                                         <Format>=Code.GetData(20,2)</Format>
                                       </Style>
@@ -2304,7 +2303,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2348,7 +2347,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">="The  product  identified  herein  represents  the  product  that  Nifast intends to purchase. No substitutions are acceptable unless authorized by" + vbCrlf +
+                                  <Value>="The  product  identified  herein  represents  the  product  that  Nifast intends to purchase. No substitutions are acceptable unless authorized by" + vbCrlf +
 "Nifast. Partial shipments can only be made with Nifast authorization. Acceptance of this order constitutes acceptance of its terms,  conditions," + vbCrlf +
 "and specifications.  Please confirm this purchase order with  your signature and return it  on this form or separate correspondence.  Lack  of  a" + vbCrlf +
 "'confirming' within 3 business days constitutes acceptance of these terms."</Value>
@@ -2390,7 +2389,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2424,7 +2423,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2505,7 +2504,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2539,7 +2538,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">In the event that there are multiple purchase orders scheduled to ship within a 15 day period of each other, please contact Nifast for shipping instructions.   Shipments of multiple purchase orders on the same day must be shipped on a single bill of lading. Failure to do so may result in the additional freight costs being charged back to the supplier.</Value>
+                                  <Value>In the event that there are multiple purchase orders scheduled to ship within a 15 day period of each other, please contact Nifast for shipping instructions.   Shipments of multiple purchase orders on the same day must be shipped on a single bill of lading. Failure to do so may result in the additional freight costs being charged back to the supplier.</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -2577,7 +2576,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2612,7 +2611,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=CDec(Code.GetData(8,2))</Value>
+                                      <Value>=CDec(Code.GetData(8,2))</Value>
                                       <Style>
                                         <Format>=Code.GetData(22,2)</Format>
                                       </Style>
@@ -2623,7 +2622,6 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>0cm</Top>
                               <Left>17.01001cm</Left>
                               <Height>0.423cm</Height>
                               <Width>3.15cm</Width>
@@ -2637,7 +2635,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(16,2)</Value>
+                                      <Value>=Code.GetData(16,2)</Value>
                                       <Style>
                                         <Format>=First(Fields!TempPurchLine_Amount___TaxLiableFormat.Value)</Format>
                                       </Style>
@@ -2648,7 +2646,6 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>0cm</Top>
                               <Left>15.85501cm</Left>
                               <Height>0.423cm</Height>
                               <Width>1.155cm</Width>
@@ -2663,7 +2660,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=First(Fields!PH_CurrCode.Value)</Value>
+                                      <Value>=First(Fields!PH_CurrCode.Value)</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -2672,7 +2669,6 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>0cm</Top>
                               <Left>14.59501cm</Left>
                               <Height>0.423cm</Height>
                               <Width>1.26cm</Width>
@@ -2687,7 +2683,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(10,2)</Value>
+                                      <Value>=Code.GetData(10,2)</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -2730,7 +2726,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(11,2)</Value>
+                                      <Value>=Code.GetData(11,2)</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
@@ -2755,7 +2751,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(12,2)</Value>
+                                      <Value>=Code.GetData(12,2)</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
@@ -2780,7 +2776,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Code.GetData(9,2)</Value>
+                                      <Value>=Code.GetData(9,2)</Value>
                                       <Style>
                                         <FontSize>8pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
@@ -2845,7 +2841,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">By acceptance of this purchase order, you are accepting the Nifast Purchase Order Terms and Conditions which are available on the Nifast Corporation website at http://nifast.com/benefits/PO_Terms_and_Conditions-Nifast.pdf.</Value>
+                                      <Value>By acceptance of this purchase order, you are accepting the Nifast Purchase Order Terms and Conditions which are available on the Nifast Corporation website at http://nifast.com/benefits/PO_Terms_and_Conditions-Nifast.pdf.</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -3104,7 +3100,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(22,1)</Value>
+                      <Value>=Code.GetData(22,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3125,7 +3121,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(32,1)</Value>
+                      <Value>=Code.GetData(32,1)</Value>
                       <Style>
                         <FontFamily>BC C39 3 to 1 Narrow</FontFamily>
                         <FontSize>45pt</FontSize>
@@ -3150,7 +3146,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(27,1)</Value>
+                      <Value>=Code.GetData(27,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3172,7 +3168,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(18,1)</Value>
+                      <Value>=Code.GetData(18,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3196,7 +3192,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(8,1)</Value>
+                      <Value>=Code.GetData(8,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3220,7 +3216,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(50,1)</Value>
+                      <Value>=Code.GetData(50,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3242,7 +3238,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(7,1)</Value>
+                      <Value>=Code.GetData(7,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3266,7 +3262,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(33,1)</Value>
+                      <Value>=Code.GetData(33,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3290,7 +3286,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(32,1)</Value>
+                      <Value>=Code.GetData(32,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3314,7 +3310,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(52,1)</Value>
+                      <Value>=Code.GetData(52,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3338,7 +3334,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(24,1)</Value>
+                      <Value>=Code.GetData(24,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3360,7 +3356,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(21,1)</Value>
+                      <Value>=Code.GetData(21,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3382,7 +3378,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(48,1)</Value>
+                      <Value>=Code.GetData(48,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3406,7 +3402,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(19,1)</Value>
+                      <Value>=Code.GetData(19,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3430,7 +3426,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(16,1)</Value>
+                      <Value>=Code.GetData(16,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3454,7 +3450,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(30,1)</Value>
+                      <Value>=Code.GetData(30,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3478,7 +3474,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(45,1)</Value>
+                      <Value>=Code.GetData(45,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3502,7 +3498,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(17,1)</Value>
+                      <Value>=Code.GetData(17,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3526,7 +3522,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(47,1)</Value>
+                      <Value>=Code.GetData(47,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3550,7 +3546,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(37,1)</Value>
+                      <Value>=Code.GetData(37,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3574,7 +3570,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(36,1)</Value>
+                      <Value>=Code.GetData(36,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3598,7 +3594,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(46,1)</Value>
+                      <Value>=Code.GetData(46,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3622,7 +3618,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(29,1)</Value>
+                      <Value>=Code.GetData(29,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3646,7 +3642,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(28,1)</Value>
+                      <Value>=Code.GetData(28,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3670,7 +3666,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(26,1)</Value>
+                      <Value>=Code.GetData(26,1)</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -3696,7 +3692,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(51,1)</Value>
+                      <Value>=Code.GetData(51,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3718,7 +3714,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(31,1)</Value>
+                      <Value>=Code.GetData(31,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3740,7 +3736,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(6,1)</Value>
+                      <Value>=Code.GetData(6,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3764,7 +3760,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(5,1)</Value>
+                      <Value>=Code.GetData(5,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3788,7 +3784,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(11,1)</Value>
+                      <Value>=Code.GetData(11,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3810,7 +3806,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(10,1)</Value>
+                      <Value>=Code.GetData(10,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3832,7 +3828,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(9,1)</Value>
+                      <Value>=Code.GetData(9,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3854,7 +3850,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,1)</Value>
+                      <Value>=Code.GetData(1,1)</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -3898,7 +3894,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Globals!PageNumber &amp;  " of "  &amp; Globals!TotalPages</Value>
+                      <Value>=Globals!PageNumber &amp;  " of "  &amp; Globals!TotalPages</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3925,7 +3921,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(4,1)</Value>
+                      <Value>=Code.GetData(4,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3949,7 +3945,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,1)</Value>
+                      <Value>=Code.GetData(3,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3973,7 +3969,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(2,1)</Value>
+                      <Value>=Code.GetData(2,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3997,7 +3993,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(12,1)</Value>
+                      <Value>=Code.GetData(12,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4019,7 +4015,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(42,1)</Value>
+                      <Value>=Code.GetData(42,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4041,7 +4037,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(41,1)</Value>
+                      <Value>=Code.GetData(41,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4063,7 +4059,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(40,1)</Value>
+                      <Value>=Code.GetData(40,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4085,7 +4081,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(53,1)</Value>
+                      <Value>=Code.GetData(53,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4109,7 +4105,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(44,1)</Value>
+                      <Value>=Code.GetData(44,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4131,7 +4127,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(43,1)</Value>
+                      <Value>=Code.GetData(43,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4153,7 +4149,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(15,1)</Value>
+                      <Value>=Code.GetData(15,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4175,7 +4171,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(14,1)</Value>
+                      <Value>=Code.GetData(14,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4197,7 +4193,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(13,1)</Value>
+                      <Value>=Code.GetData(13,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4219,7 +4215,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(39,1)</Value>
+                      <Value>=Code.GetData(39,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4241,7 +4237,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(38,1)</Value>
+                      <Value>=Code.GetData(38,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4263,7 +4259,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(23,1)</Value>
+                      <Value>=Code.GetData(23,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4287,7 +4283,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(25,1)</Value>
+                      <Value>=Code.GetData(25,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4309,7 +4305,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(49,1)</Value>
+                      <Value>=Code.GetData(49,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -4333,7 +4329,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(20,1)</Value>
+                      <Value>=Code.GetData(20,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -4357,7 +4353,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(54,1)</Value>
+                      <Value>=Code.GetData(54,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -4440,6 +4436,34 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
       <Prompt>PricePer_Lbl</Prompt>
     </ReportParameter>
   </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>4</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Cartons_Lbl</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>Quantity_Lbl</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>UnitPrice_Lbl</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>PricePer_Lbl</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""

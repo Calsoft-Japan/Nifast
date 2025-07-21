@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -54,7 +54,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Parameters!OnTimeDeliveryReportCaptionLbl.Value</Value>
+                                      <Value>=Parameters!OnTimeDeliveryReportCaptionLbl.Value</Value>
                                       <Style>
                                         <FontSize>14pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
@@ -81,7 +81,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!TODAY.Value</Value>
+                                      <Value>=Fields!TODAY.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -109,7 +109,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Right(User!UserID, Len(User!UserID) - 
+                                      <Value>=Right(User!UserID, Len(User!UserID) - 
 InStr(User!UserID, "\"))</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
@@ -167,7 +167,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!No_Vendor.Value</Value>
+                                      <Value>=Fields!No_Vendor.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
@@ -195,7 +195,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!Name_Vendor.Value</Value>
+                                      <Value>=Fields!Name_Vendor.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
@@ -251,7 +251,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Parameters!QuantityCaptionLbl.Value</Value>
+                                      <Value>=Parameters!QuantityCaptionLbl.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -277,7 +277,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Parameters!ExpectedCaptionLbl.Value</Value>
+                                      <Value>=Parameters!ExpectedCaptionLbl.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -306,7 +306,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Parameters!ActualRecCaptionLbl.Value</Value>
+                                      <Value>=Parameters!ActualRecCaptionLbl.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -335,7 +335,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Parameters!DiffNegativemeansDELAYCaptionLbl.Value</Value>
+                                      <Value>=Parameters!DiffNegativemeansDELAYCaptionLbl.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -388,7 +388,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!No_PurchRcptHeader.Value</Value>
+                                      <Value>=Fields!No_PurchRcptHeader.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -414,7 +414,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!OrderNo_PurchRcptHeader.Value</Value>
+                                      <Value>=Fields!OrderNo_PurchRcptHeader.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -465,7 +465,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -490,7 +490,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -515,7 +515,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -540,7 +540,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -565,7 +565,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -590,7 +590,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -615,7 +615,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -645,7 +645,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -673,7 +673,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -701,7 +701,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -729,7 +729,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -757,7 +757,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -785,7 +785,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -813,7 +813,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -848,7 +848,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!No_PurchRcptLine.Value</Value>
+                                      <Value>=Fields!No_PurchRcptLine.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -875,7 +875,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!Quantity_PurchRcptLine.Value</Value>
+                                      <Value>=Fields!Quantity_PurchRcptLine.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                         <Format>=Fields!Quantity_PurchRcptLineFormat.Value</Format>
@@ -903,7 +903,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!ExpectedReceiptDate_PurchRcptLine.Value</Value>
+                                      <Value>=Fields!ExpectedReceiptDate_PurchRcptLine.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -933,7 +933,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!PostingDate_PurchRcptLine.Value</Value>
+                                      <Value>=Fields!PostingDate_PurchRcptLine.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -962,7 +962,7 @@ InStr(User!UserID, "\"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Auto">=Fields!Dif.Value</Value>
+                                      <Value>=Fields!Dif.Value</Value>
                                       <Style>
                                         <FontSize>7pt</FontSize>
                                       </Style>
@@ -1013,7 +1013,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1038,7 +1038,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1063,7 +1063,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1088,7 +1088,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1113,7 +1113,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1138,7 +1138,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1163,7 +1163,7 @@ InStr(User!UserID, "\"))</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1317,6 +1317,39 @@ InStr(User!UserID, "\"))</Value>
       <Prompt>OnTimeDeliveryReportCaptionLbl</Prompt>
     </ReportParameter>
   </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>5</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>QuantityCaptionLbl</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>ExpectedCaptionLbl</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>ActualRecCaptionLbl</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>DiffNegativemeansDELAYCaptionLbl</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>OnTimeDeliveryReportCaptionLbl</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""

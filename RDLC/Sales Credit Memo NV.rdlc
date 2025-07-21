@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>46e820e3-b29c-49bb-9305-d46d994d8e31</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -74,7 +73,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -165,7 +164,7 @@ Cstr(Fields!TaxRegNo.Value)))</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -196,7 +195,7 @@ Cstr(Fields!TaxRegNo.Value)))</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -227,7 +226,7 @@ Cstr(Fields!TaxRegNo.Value)))</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -255,7 +254,7 @@ Cstr(Fields!TaxRegNo.Value)))</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Cstr(Fields!AmountSubjecttoSalesTaxCaption.Value) + Chr(177) + 
+                                  <Value>=Cstr(Fields!AmountSubjecttoSalesTaxCaption.Value) + Chr(177) + 
 Cstr(LAST(Fields!AmountSubjectToSalesTax.Value)) + Chr(177) + 
 Cstr(LAST(Fields!AmountExemptFromSalesTax.Value)) + Chr(177) + 
 Cstr(Fields!BreakdownTitle.Value) + Chr(177) + 
@@ -312,7 +311,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -340,7 +339,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -368,7 +367,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -398,7 +397,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=last(Fields!PrintFooter.Value)</Value>
+                                  <Value>=last(Fields!PrintFooter.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -431,7 +430,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -459,7 +458,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -487,7 +486,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -515,7 +514,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <Color>Red</Color>
                                   </Style>
@@ -542,7 +541,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TaxLiableFormat.Value+ Chr(177)
+                                  <Value>=Fields!TaxLiableFormat.Value+ Chr(177)
 +Fields!TempSalesCrMemoLineAmtTaxLiableFormat.Value + Chr(177)
 +Fields!BreakdownAmt1Format.Value + Chr(177)
 +Fields!BreakdownAmt2Format.Value + Chr(177)
@@ -583,7 +582,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!ItemNoCaption.Value</Value>
+                                  <Value>=Fields!ItemNoCaption.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -612,7 +611,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -641,7 +640,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!DescriptionCaption.Value</Value>
+                                  <Value>=Fields!DescriptionCaption.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -674,7 +673,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -703,7 +702,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!UnitCaption.Value</Value>
+                                  <Value>=Fields!UnitCaption.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -733,7 +732,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -762,7 +761,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!QuantityCaption.Value</Value>
+                                  <Value>=Fields!QuantityCaption.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -792,7 +791,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -821,7 +820,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!UnitPriceCaption.Value</Value>
+                                  <Value>=Fields!UnitPriceCaption.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -851,7 +850,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -879,7 +878,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TotalPriceCaption.Value</Value>
+                                  <Value>=Fields!TotalPriceCaption.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -915,7 +914,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -958,7 +957,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -993,7 +992,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1039,7 +1038,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1077,7 +1076,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesCrMemoLineNo.Value</Value>
+                                  <Value>=Fields!TempSalesCrMemoLineNo.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                   </Style>
@@ -1105,7 +1104,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1135,7 +1134,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesCrMemoLineDesc.Value</Value>
+                                  <Value>=Fields!TempSalesCrMemoLineDesc.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                   </Style>
@@ -1167,7 +1166,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1197,7 +1196,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!TempSalesCrMemoLineUOM.Value</Value>
+                                  <Value>=Fields!TempSalesCrMemoLineUOM.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                   </Style>
@@ -1226,7 +1225,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1256,7 +1255,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!TempSalesCrMemoLineQty.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!TempSalesCrMemoLineQty.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <Format>=Fields!TempSalesCrMemoLineQtyFormat.Value</Format>
@@ -1286,7 +1285,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1316,7 +1315,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!UnitPriceToPrint.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!UnitPriceToPrint.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <Format>=Fields!UnitPriceToPrintFormat.Value</Format>
@@ -1346,7 +1345,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1375,7 +1374,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Code.BlankZero(Fields!AmountExclInvDisc.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!AmountExclInvDisc.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <Format>=Fields!AmountExclInvDiscFormat.Value</Format>
@@ -1411,7 +1410,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                   </Style>
@@ -1439,7 +1438,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1469,7 +1468,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Comment_SalesCommentLine.Value</Value>
+                                  <Value>=Fields!Comment_SalesCommentLine.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                   </Style>
@@ -1648,7 +1647,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Globals!PageNumber</Value>
+                      <Value>=Globals!PageNumber</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1674,7 +1673,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,35)</Value>
+                      <Value>=Code.GetData(1,35)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1698,7 +1697,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,7)</Value>
+                      <Value>=Code.GetData(1,7)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1722,7 +1721,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,8)</Value>
+                      <Value>=Code.GetData(1,8)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1746,7 +1745,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,19)</Value>
+                      <Value>=Code.GetData(1,19)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1768,7 +1767,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,48)</Value>
+                      <Value>=Code.GetData(1,48)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1790,7 +1789,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,25)</Value>
+                      <Value>=Code.GetData(1,25)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1814,7 +1813,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,27)</Value>
+                      <Value>=Code.GetData(1,27)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1836,7 +1835,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,40)</Value>
+                      <Value>=Code.GetData(1,40)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1860,7 +1859,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,55)</Value>
+                      <Value>=Code.GetData(1,55)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1882,7 +1881,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,56)</Value>
+                      <Value>=Code.GetData(1,56)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1904,7 +1903,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,52)</Value>
+                      <Value>=Code.GetData(1,52)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1926,7 +1925,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,9)</Value>
+                      <Value>=Code.GetData(1,9)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1948,7 +1947,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,10)</Value>
+                      <Value>=Code.GetData(1,10)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1970,7 +1969,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,49)</Value>
+                      <Value>=Code.GetData(1,49)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -1992,7 +1991,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,23)</Value>
+                      <Value>=Code.GetData(1,23)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2014,7 +2013,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,24)</Value>
+                      <Value>=Code.GetData(1,24)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2036,7 +2035,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,20)</Value>
+                      <Value>=Code.GetData(1,20)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2058,7 +2057,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,21)</Value>
+                      <Value>=Code.GetData(1,21)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2080,7 +2079,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,50)</Value>
+                      <Value>=Code.GetData(1,50)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2102,7 +2101,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,38)</Value>
+                      <Value>=Code.GetData(1,38)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2124,7 +2123,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,39)</Value>
+                      <Value>=Code.GetData(1,39)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2146,7 +2145,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,30)</Value>
+                      <Value>=Code.GetData(1,30)</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -2173,7 +2172,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,31)</Value>
+                      <Value>=Code.GetData(1,31)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2197,7 +2196,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,32)</Value>
+                      <Value>=Code.GetData(1,32)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2221,7 +2220,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,33)</Value>
+                      <Value>=Code.GetData(1,33)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2245,7 +2244,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,34)</Value>
+                      <Value>=Code.GetData(1,34)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2269,7 +2268,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,22)</Value>
+                      <Value>=Code.GetData(1,22)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2291,7 +2290,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,54)</Value>
+                      <Value>=Code.GetData(1,54)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2313,7 +2312,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,11)</Value>
+                      <Value>=Code.GetData(1,11)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2353,7 +2352,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,1)</Value>
+                      <Value>=Code.GetData(1,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2376,7 +2375,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,2)</Value>
+                      <Value>=Code.GetData(1,2)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2400,7 +2399,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,3)</Value>
+                      <Value>=Code.GetData(1,3)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2424,7 +2423,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,4)</Value>
+                      <Value>=Code.GetData(1,4)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2448,7 +2447,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,5)</Value>
+                      <Value>=Code.GetData(1,5)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2472,7 +2471,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,6)</Value>
+                      <Value>=Code.GetData(1,6)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2496,7 +2495,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,37)</Value>
+                      <Value>=Code.GetData(1,37)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2520,7 +2519,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,12)</Value>
+                      <Value>=Code.GetData(1,12)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2542,7 +2541,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,13)</Value>
+                      <Value>=Code.GetData(1,13)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2564,7 +2563,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,14)</Value>
+                      <Value>=Code.GetData(1,14)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2586,7 +2585,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,15)</Value>
+                      <Value>=Code.GetData(1,15)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2608,7 +2607,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,16)</Value>
+                      <Value>=Code.GetData(1,16)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2630,7 +2629,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,17)</Value>
+                      <Value>=Code.GetData(1,17)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2652,7 +2651,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,18)</Value>
+                      <Value>=Code.GetData(1,18)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2674,7 +2673,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,53)</Value>
+                      <Value>=Code.GetData(1,53)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2698,7 +2697,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,28)</Value>
+                      <Value>=Code.GetData(1,28)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2722,7 +2721,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,29)</Value>
+                      <Value>=Code.GetData(1,29)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2744,7 +2743,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,41)</Value>
+                      <Value>=Code.GetData(1,41)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2766,7 +2765,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,42)</Value>
+                      <Value>=Code.GetData(1,42)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2788,7 +2787,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,43)</Value>
+                      <Value>=Code.GetData(1,43)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2810,7 +2809,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,44)</Value>
+                      <Value>=Code.GetData(1,44)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2832,7 +2831,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,45)</Value>
+                      <Value>=Code.GetData(1,45)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2854,7 +2853,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,46)</Value>
+                      <Value>=Code.GetData(1,46)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2876,7 +2875,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,47)</Value>
+                      <Value>=Code.GetData(1,47)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2898,7 +2897,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,26)</Value>
+                      <Value>=Code.GetData(1,26)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2920,7 +2919,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(1,51)</Value>
+                      <Value>=Code.GetData(1,51)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -2950,7 +2949,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Code.GetData(3,14))</Value>
+                      <Value>=CDec(Code.GetData(3,14))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <Format>=Code.GetFormatForFooter(8)</Format>
@@ -2980,7 +2979,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(CDec(Code.GetData(3,17)))</Value>
+                      <Value>=CDec(CDec(Code.GetData(3,17)))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -3012,7 +3011,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Code.GetData(3,16))</Value>
+                      <Value>=CDec(Code.GetData(3,16))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <Format>=Code.GetFormatForFooter(9)</Format>
@@ -3043,7 +3042,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Code.GetData(3,13))</Value>
+                      <Value>=CDec(Code.GetData(3,13))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <Format>=Code.GetFormatForFooter(10)</Format>
@@ -3075,7 +3074,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,20).ToString()</Value>
+                      <Value>=Code.GetData(3,20).ToString()</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -3106,7 +3105,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,15)</Value>
+                      <Value>=Code.GetData(3,15)</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3136,7 +3135,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,21).ToString()</Value>
+                      <Value>=Code.GetData(3,21).ToString()</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3166,7 +3165,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,22).ToString()</Value>
+                      <Value>=Code.GetData(3,22).ToString()</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3196,7 +3195,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.BlankZero(CDec(Code.GetData(3,12)))</Value>
+                      <Value>=Code.BlankZero(CDec(Code.GetData(3,12)))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <Format>=Code.GetFormatForFooter(6)</Format>
@@ -3227,7 +3226,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.BlankZero(CDec(Code.GetData(3,8)))</Value>
+                      <Value>=Code.BlankZero(CDec(Code.GetData(3,8)))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <Format>=Code.GetFormatForFooter(4)</Format>
@@ -3258,7 +3257,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.BlankZero(CDec(Code.GetData(3,10)))</Value>
+                      <Value>=Code.BlankZero(CDec(Code.GetData(3,10)))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <Format>=Code.GetFormatForFooter(5)</Format>
@@ -3289,7 +3288,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.BlankZero(CDec(Code.GetData(3,6)))</Value>
+                      <Value>=Code.BlankZero(CDec(Code.GetData(3,6)))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <Format>=Code.GetFormatForFooter(3)</Format>
@@ -3320,7 +3319,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,11)</Value>
+                      <Value>=Code.GetData(3,11)</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3350,7 +3349,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,7)</Value>
+                      <Value>=Code.GetData(3,7)</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3380,7 +3379,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,9)</Value>
+                      <Value>=Code.GetData(3,9)</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3410,7 +3409,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,5)</Value>
+                      <Value>=Code.GetData(3,5)</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3440,7 +3439,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,4)</Value>
+                      <Value>=Code.GetData(3,4)</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3470,7 +3469,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Code.GetData(3,3))</Value>
+                      <Value>=CDec(Code.GetData(3,3))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <Format>=Code.GetFormatForFooter(2)</Format>
@@ -3501,7 +3500,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Code.GetData(3,23).ToString()</Value>
+                      <Value>=Code.GetData(3,23).ToString()</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3531,7 +3530,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=CDec(Code.GetData(3,2))</Value>
+                      <Value>=CDec(Code.GetData(3,2))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <Format>=iif(false, Code.SetFormatForFooter(ReportItems!FormatFooter.Value), Code.GetFormatForFooter(1))</Format>
@@ -3562,7 +3561,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=IIF(false, Code.SetFooterData(ReportItems!FooterInfor.Value), Code.GetData(3,1))</Value>
+                      <Value>=IIF(false, Code.SetFooterData(ReportItems!FooterInfor.Value), Code.GetData(3,1))</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                       </Style>
@@ -3574,7 +3573,6 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>textbox1</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>0.33896cm</Left>
               <Height>0.87cm</Height>
               <Width>3.23104cm</Width>
@@ -3596,7 +3594,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto" />
+                      <Value />
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3621,7 +3619,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto" />
+                      <Value />
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -3647,7 +3645,7 @@ Cstr(Fields!AmountExemptfromSalesTaxCaption.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">=Fields!Currency_Code_SalesCrMemoHeader.Value</Value>
+                      <Value>=Fields!Currency_Code_SalesCrMemoHeader.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
