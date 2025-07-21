@@ -9772,7 +9772,13 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
               <Height>0.423cm</Height>
               <Width>0.98188cm</Width>
               <ZIndex>24</ZIndex>
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
               <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
                 <VerticalAlign>Middle</VerticalAlign>
               </Style>
             </Textbox>
@@ -9796,7 +9802,13 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
               <Height>0.423cm</Height>
               <Width>1.08771cm</Width>
               <ZIndex>25</ZIndex>
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
               <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
                 <VerticalAlign>Middle</VerticalAlign>
               </Style>
             </Textbox>
