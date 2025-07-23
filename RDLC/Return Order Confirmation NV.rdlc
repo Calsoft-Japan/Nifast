@@ -9910,6 +9910,12 @@ End Function
         <Field Name="LineDimensionsCaption">
           <DataField>LineDimensionsCaption</DataField>
         </Field>
+        <Field Name="Comment_SalesCommentLine">
+          <DataField>Comment_SalesCommentLine</DataField>
+        </Field>
+        <Field Name="TextComment">
+          <DataField>TextComment</DataField>
+        </Field>
         <Field Name="VATAmtLineVATBase">
           <DataField>VATAmtLineVATBase</DataField>
         </Field>
