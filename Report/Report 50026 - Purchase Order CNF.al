@@ -516,6 +516,8 @@ report 50026 "Purchase Order CNF"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tmpRecPurcHeader: Record "Purchase Header" temporary;
             begin
                 //>> IST 06-21-05
                 IF PrintCompany THEN BEGIN
@@ -553,8 +555,10 @@ report 50026 "Purchase Order CNF"
                     CLEAR(ShipmentMethod)
                 ELSE
                     ShipmentMethod.GET("Shipment Method Code");
-
-                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header");
+                tmpRecPurcHeader := "Purchase Header";
+                tmpRecPurcHeader."Buy-from Contact" := '';
+                //FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header");
+                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, tmpRecPurcHeader);
                 //>> IST 09-21-05
                 FormatAddress.PurchHeaderShipTo(ShipToAddress, "Purchase Header");
                 IF (Vend.GET("Purchase Header"."Buy-from Vendor No.")) AND (BuyFromAddress[8] = '') THEN BEGIN
