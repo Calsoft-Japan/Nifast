@@ -2492,7 +2492,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
       <Width>20.16002cm</Width>
       <Page>
         <PageHeader>
-          <Height>10.99368cm</Height>
+          <Height>11.3641cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2669,7 +2669,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>7.58112cm</Top>
+              <Top>7.99387cm</Top>
               <Left>1.77921cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -2691,7 +2691,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>7.6164cm</Top>
+              <Top>7.9974cm</Top>
               <Left>11.55cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -2761,7 +2761,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>9.72468cm</Top>
+              <Top>10.04218cm</Top>
               <Left>3.15cm</Left>
               <Height>0.423cm</Height>
               <Width>5.04cm</Width>
@@ -2783,7 +2783,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>10.57068cm</Top>
+              <Top>10.88818cm</Top>
               <Left>14.7cm</Left>
               <Height>0.423cm</Height>
               <Width>5.04cm</Width>
@@ -2805,7 +2805,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>8.45568cm</Top>
+              <Top>8.77318cm</Top>
               <Left>4.1025cm</Left>
               <Height>0.423cm</Height>
               <Width>5.04cm</Width>
@@ -2829,7 +2829,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>8.45568cm</Top>
+              <Top>8.77318cm</Top>
               <Left>0.21cm</Left>
               <Height>0.423cm</Height>
               <Width>3.8925cm</Width>
@@ -2901,7 +2901,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>8.45568cm</Top>
+              <Top>8.77318cm</Top>
               <Left>10.92cm</Left>
               <Height>0.423cm</Height>
               <Width>3.57cm</Width>
@@ -2925,7 +2925,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>9.72468cm</Top>
+              <Top>10.04218cm</Top>
               <Left>10.92cm</Left>
               <Height>0.423cm</Height>
               <Width>3.57cm</Width>
@@ -2949,7 +2949,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>8.87868cm</Top>
+              <Top>9.19618cm</Top>
               <Left>0.21cm</Left>
               <Height>0.423cm</Height>
               <Width>2.73cm</Width>
@@ -2973,7 +2973,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>9.30168cm</Top>
+              <Top>9.61918cm</Top>
               <Left>0.21cm</Left>
               <Height>0.423cm</Height>
               <Width>2.73cm</Width>
@@ -2997,7 +2997,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>10.14768cm</Top>
+              <Top>10.46518cm</Top>
               <Left>0.21cm</Left>
               <Height>0.423cm</Height>
               <Width>2.73cm</Width>
@@ -3021,7 +3021,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>10.57068cm</Top>
+              <Top>10.88818cm</Top>
               <Left>0.21cm</Left>
               <Height>0.423cm</Height>
               <Width>2.73cm</Width>
@@ -3045,7 +3045,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>10.14768cm</Top>
+              <Top>10.46518cm</Top>
               <Left>10.92cm</Left>
               <Height>0.423cm</Height>
               <Width>3.57cm</Width>
@@ -3523,13 +3523,10 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                 </Paragraph>
               </Paragraphs>
               <Top>5.42412cm</Top>
-              <Left>9.214cm</Left>
+              <Left>1.77921cm</Left>
               <Height>0.423cm</Height>
-              <Width>1.05739cm</Width>
+              <Width>7.36329cm</Width>
               <ZIndex>37</ZIndex>
-              <Visibility>
-                <Hidden>true</Hidden>
-              </Visibility>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3550,7 +3547,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>5.46612cm</Top>
+              <Top>5.87887cm</Top>
               <Left>1.77921cm</Left>
               <Height>0.423cm</Height>
               <Width>7.36329cm</Width>
@@ -3572,7 +3569,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>5.9244cm</Top>
+              <Top>6.33715cm</Top>
               <Left>1.77921cm</Left>
               <Height>0.423cm</Height>
               <Width>7.36329cm</Width>
@@ -3594,7 +3591,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>6.31212cm</Top>
+              <Top>6.72487cm</Top>
               <Left>1.77921cm</Left>
               <Height>0.423cm</Height>
               <Width>7.36329cm</Width>
@@ -3616,7 +3613,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>6.73512cm</Top>
+              <Top>7.14787cm</Top>
               <Left>1.77921cm</Left>
               <Height>0.423cm</Height>
               <Width>7.36329cm</Width>
@@ -3638,7 +3635,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>7.15812cm</Top>
+              <Top>7.57087cm</Top>
               <Left>1.77921cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -3660,7 +3657,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>8.45568cm</Top>
+              <Top>8.77318cm</Top>
               <Left>14.7cm</Left>
               <Height>0.423cm</Height>
               <Width>5.25cm</Width>
@@ -3682,7 +3679,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>9.72468cm</Top>
+              <Top>10.04218cm</Top>
               <Left>14.7cm</Left>
               <Height>0.423cm</Height>
               <Width>5.25cm</Width>
@@ -3727,13 +3724,10 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                 </Paragraph>
               </Paragraphs>
               <Top>5.4594cm</Top>
-              <Left>10.44778cm</Left>
+              <Left>11.55cm</Left>
               <Height>0.423cm</Height>
-              <Width>0.92366cm</Width>
+              <Width>6.3cm</Width>
               <ZIndex>46</ZIndex>
-              <Visibility>
-                <Hidden>true</Hidden>
-              </Visibility>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3754,7 +3748,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>5.5014cm</Top>
+              <Top>5.8824cm</Top>
               <Left>11.55cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -3776,7 +3770,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>5.9244cm</Top>
+              <Top>6.3054cm</Top>
               <Left>11.55cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -3798,7 +3792,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>6.3474cm</Top>
+              <Top>6.7284cm</Top>
               <Left>11.55cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -3820,7 +3814,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>6.7704cm</Top>
+              <Top>7.1514cm</Top>
               <Left>11.55cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -3842,7 +3836,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>7.1934cm</Top>
+              <Top>7.5744cm</Top>
               <Left>11.55cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -3866,7 +3860,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>8.87868cm</Top>
+              <Top>9.19618cm</Top>
               <Left>3.15cm</Left>
               <Height>0.423cm</Height>
               <Width>5.04cm</Width>
@@ -3888,7 +3882,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>9.30168cm</Top>
+              <Top>9.61918cm</Top>
               <Left>3.15cm</Left>
               <Height>0.423cm</Height>
               <Width>5.04cm</Width>
@@ -3912,7 +3906,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>10.14768cm</Top>
+              <Top>10.46518cm</Top>
               <Left>3.15cm</Left>
               <Height>0.423cm</Height>
               <Width>2.1cm</Width>
@@ -3936,7 +3930,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>10.57068cm</Top>
+              <Top>10.88818cm</Top>
               <Left>3.15cm</Left>
               <Height>0.423cm</Height>
               <Width>2.52cm</Width>
@@ -3958,7 +3952,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>10.14768cm</Top>
+              <Top>10.46518cm</Top>
               <Left>14.7cm</Left>
               <Height>0.423cm</Height>
               <Width>5.04cm</Width>
@@ -3982,7 +3976,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>9.72468cm</Top>
+              <Top>10.04218cm</Top>
               <Left>0.21cm</Left>
               <Height>0.423cm</Height>
               <Width>2.73cm</Width>
@@ -4006,7 +4000,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>10.57068cm</Top>
+              <Top>10.88818cm</Top>
               <Left>10.92cm</Left>
               <Height>0.423cm</Height>
               <Width>3.57cm</Width>
@@ -4047,7 +4041,6 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox38</rd:DefaultName>
-              <Top>0.08316cm</Top>
               <Height>3.71952cm</Height>
               <Width>1.68cm</Width>
               <ZIndex>60</ZIndex>
@@ -4076,7 +4069,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox50</rd:DefaultName>
-              <Top>9.05507cm</Top>
+              <Top>9.37257cm</Top>
               <Left>14.7cm</Left>
               <Height>0.52944cm</Height>
               <Width>2.5cm</Width>
@@ -4104,7 +4097,7 @@ Cstr(Fields!SalesPurchPerson2_Name.Value)
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox29</rd:DefaultName>
-              <Top>9.05412cm</Top>
+              <Top>9.37162cm</Top>
               <Left>10.92cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
