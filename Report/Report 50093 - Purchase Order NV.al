@@ -133,7 +133,7 @@ report 50093 "Purchase Order NV"
             column(Purchase_Header___No________; '*' + "No." + '*')
             {
             }
-            column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+            column(CompanyInformation__Document_Logo_; CompanyInformation.Picture)// "Document Logo")
             {
             }
             column(ShippingAgent_Name; ShippingAgent.Name)
@@ -248,6 +248,7 @@ report 50093 "Purchase Order NV"
                     TempPurchLine.DELETEALL;
                 end;
             }
+            /* BC Upgrade No need show any comment line in report===================
             dataitem("Purch. Comment Line"; "Purch. Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -282,7 +283,7 @@ report 50093 "Purchase Order NV"
                     cntPurchCommentLine: Record "Purch. Comment Line";
                 begin
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -459,6 +460,8 @@ report 50093 "Purchase Order NV"
                                 PurchLineCommentLine.SETRANGE("No.", TempPurchLine."Document No.");
                                 //PurchLineCommentLine.SETRANGE("Doc. Line No.",TempPurchLine."Line No.");  //NF1.00:CIS.CM 09-29-15-O
                                 PurchLineCommentLine.SETRANGE("Document Line No.", TempPurchLine."Line No.");  //NF1.00:CIS.CM 09-29-15-N
+
+                                PurchLineCommentLine.SETRANGE("Document Line No.", -11);//BC Upgrade Skip all comment lines
                             end;
                         }
 
@@ -649,6 +652,7 @@ report 50093 "Purchase Order NV"
             begin
                 CompanyInformation.GET('');
                 CompanyInformation.CALCFIELDS("Document Logo");
+                CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
                 IF PrintCompany THEN
                     FormatAddress.Company(CompanyAddress, CompanyInformation)
                 ELSE

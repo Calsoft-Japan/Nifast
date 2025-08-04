@@ -197,7 +197,7 @@ report 50090 "Purchase Invoice NV"
                     column(Purch__Inv__Header___Due_Date_; "Purch. Inv. Header"."Due Date")
                     {
                     }
-                    column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+                    column(CompanyInformation__Document_Logo_; CompanyInformation.Picture) //"Document Logo")
                     {
                     }
                     dataitem("Purch. Inv. Line"; "Purch. Inv. Line")
@@ -582,6 +582,7 @@ report 50090 "Purchase Invoice NV"
     begin
         CompanyInformation.GET('');
         CompanyInformation.CALCFIELDS("Document Logo");
+        CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
     end;
 
     var

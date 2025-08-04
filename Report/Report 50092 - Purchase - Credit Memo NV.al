@@ -46,7 +46,7 @@ report 50092 "Purchase - Credit Memo NV"
                     column(CompanyAddress6; CompanyAddress[6])
                     {
                     }
-                    column(DocumentLogo_CompanyInformation; CompanyInformation."Document Logo")
+                    column(DocumentLogo_CompanyInformation; CompanyInformation.Picture)// "Document Logo")
                     {
                     }
                     column(CopyTxt; CopyTxt)
@@ -549,6 +549,7 @@ report 50092 "Purchase - Credit Memo NV"
     begin
         CompanyInformation.GET('');
         CompanyInformation.CALCFIELDS("Document Logo");
+        CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
     end;
 
     var

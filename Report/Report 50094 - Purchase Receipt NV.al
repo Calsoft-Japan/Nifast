@@ -45,7 +45,7 @@ report 50094 "Purchase Receipt NV"
                     column(CompanyAddr6; CompanyAddress[6])
                     {
                     }
-                    column(DocLogo_CompanyInformation; CompanyInformation."Document Logo")
+                    column(DocLogo_CompanyInformation; CompanyInformation.Picture)// "Document Logo")
                     {
                     }
                     column(CopyTxt; CopyTxt)
@@ -449,6 +449,7 @@ report 50094 "Purchase Receipt NV"
     begin
         CompanyInformation.GET('');
         CompanyInformation.CALCFIELDS("Document Logo");  //>>NIF
+        CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
     end;
 
     var

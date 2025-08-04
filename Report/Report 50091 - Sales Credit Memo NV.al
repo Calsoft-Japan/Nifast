@@ -23,6 +23,8 @@ report 50091 "Sales Credit Memo NV"
             {
                 DataItemLink = "Document No." = FIELD("No.");
                 DataItemTableView = SORTING("Document No.", "Line No.");
+
+                /* BC Upgrade No need show any comment line in report===================
                 dataitem(SalesLineComments; "Sales Comment Line")
                 {
                     DataItemLink = "No." = FIELD("Document No."),
@@ -52,7 +54,7 @@ report 50091 "Sales Credit Memo NV"
                         END;
                         TempSalesCrMemoLine.INSERT;
                     end;
-                }
+                } */
 
                 trigger OnAfterGetRecord()
                 begin
@@ -67,6 +69,7 @@ report 50091 "Sales Credit Memo NV"
                     TempSalesCrMemoLine.DELETEALL;
                 end;
             }
+            /* BC Upgrade No need show any comment line in report===================
             dataitem("Sales Comment Line"; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -107,7 +110,7 @@ report 50091 "Sales Credit Memo NV"
 
                     TempSalesCrMemoLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -211,7 +214,7 @@ report 50091 "Sales Credit Memo NV"
                     column(DocDate_SalesCrMemoHeader; "Sales Cr.Memo Header"."Document Date")
                     {
                     }
-                    column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+                    column(CompanyInformation__Document_Logo_; CompanyInformation.Picture)// "Document Logo")
                     {
                     }
                     column(CompanyAddress7; CompanyAddress[7])
@@ -461,6 +464,8 @@ report 50091 "Sales Credit Memo NV"
                                 SETRANGE("No.", TempSalesCrMemoLine."Document No.");
                                 SETRANGE("Document Line No.", TempSalesCrMemoLine."Line No.");
                                 //<< NIF
+
+                                SETRANGE("Document Line No.", -11);//BC Upgrade Skip all comment lines
                             end;
                         }
 
@@ -715,6 +720,7 @@ report 50091 "Sales Credit Memo NV"
     begin
         CompanyInformation.GET;
         CompanyInformation.CALCFIELDS("Document Logo");   //>> NIF
+        CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
         SalesSetup.GET;
 
         CASE SalesSetup."Logo Position on Documents" OF
