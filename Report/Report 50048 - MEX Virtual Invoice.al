@@ -463,6 +463,7 @@ report 50048 "MEX Virtual Invoice"
             var
                 CommercialInvoiceMEX: Record "Commercial Invoice MEX";
                 MexExportPediment: Record "Mex Export Pediment";
+                tempCust: Record Customer temporary;
             begin
                 CLEAR(InvoiceNoArray);
                 CLEAR(InvoiceDateArray);
@@ -485,8 +486,9 @@ report 50048 "MEX Virtual Invoice"
                         InvoiceDateArray[i] := TempSalesHdr."Posting Date";
                     UNTIL TempSalesHdr.NEXT = 0;
 
-
-                FormatAddr.Customer(BillToAddress, Customer);
+                tempCust := Customer;
+                tempCust.Contact := '';
+                FormatAddr.Customer(BillToAddress, tempCust);//Customer); BC Upgrade
                 IF Customer."Pitex/Maquila No." <> '' THEN BEGIN
                     BillToAddress[8] := 'PITEX/' + Customer."Pitex/Maquila No.";
                     COMPRESSARRAY(BillToAddress);

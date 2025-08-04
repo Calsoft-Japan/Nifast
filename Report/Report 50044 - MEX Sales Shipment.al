@@ -45,6 +45,7 @@ report 50044 "MEX Sales Shipment"
                     TempSalesShipmentLineAsm.DELETEALL;
                 end;
             }
+            /* BC Upgrade No need show any comment line in report===================
             dataitem(SalesLineComments; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -73,7 +74,7 @@ report 50044 "MEX Sales Shipment"
                     END;
                     TempSalesShipmentLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -90,7 +91,7 @@ report 50044 "MEX Sales Shipment"
                     column(CompanyInfoPicture; CompanyInformation.Picture)
                     {
                     }
-                    column(DocumentLogo_CompanyInformation; CompanyInformation."Document Logo")
+                    column(DocumentLogo_CompanyInformation; CompanyInformation.Picture)//"Document Logo")
                     {
                     }
                     column(CompanyAddress1; CompanyAddress[1])
@@ -400,6 +401,8 @@ report 50044 "MEX Sales Shipment"
                                 SETRANGE("No.", TempSalesShipmentLine."Document No.");
                                 //SETRANGE("Doc. Line No.",TempSalesShipmentLine."Line No.");  //NF1.00:CIS.CM 09-29-15-O
                                 SETRANGE("Document Line No.", TempSalesShipmentLine."Line No.");  //NF1.00:CIS.CM 09-29-15-N
+
+                                SETRANGE("Document Line No.", -11); //BC Upgrade Skip all the comment lines to avoid show up in report
                             end;
                         }
                         dataitem(AsmLoop; Integer)
@@ -560,6 +563,8 @@ report 50044 "MEX Sales Shipment"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempSalesShpHdr: Record "Sales Shipment Header" temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -600,8 +605,11 @@ report 50044 "MEX Sales Shipment"
                 IF NOT Cust.GET("Sell-to Customer No.") THEN
                     CLEAR(Cust);
 
-                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, "Sales Shipment Header");//BC Upgarde
-                FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");
+                tempSalesShpHdr := "Sales Shipment Header";
+                tempSalesShpHdr."Bill-to Contact" := '';
+                tempSalesShpHdr."Ship-to Contact" := '';
+                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, tempSalesShpHdr);//"Sales Shipment Header");//BC Upgarde
+                FormatAddress.SalesShptShipTo(ShipToAddress, tempSalesShpHdr);//"Sales Shipment Header");
 
                 ShippingAgentCodeLabel := '';
                 ShippingAgentCodeText := '';
@@ -638,6 +646,7 @@ report 50044 "MEX Sales Shipment"
             begin
                 CompanyInformation.GET;
                 CompanyInformation.CALCFIELDS("Document Logo");
+                CompanyInformation.CALCFIELDS(Picture);
                 IF PrintCompany THEN BEGIN
                     //FormatAddress.Company(CompanyAddress,CompanyInformation);
 

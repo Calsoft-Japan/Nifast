@@ -101,6 +101,7 @@ report 50056 "Sales Order NV"
                     TempSalesLineAsm.DELETEALL;
                 end;
             }
+            /*  BC Upgrade No need show any comment line in report===================
             dataitem("Sales Comment Line"; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -145,7 +146,7 @@ report 50056 "Sales Order NV"
                     //TempSalesLine.INSERT;
                     //<< NF1.00:CIS.NU  09-15-15
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -162,7 +163,7 @@ report 50056 "Sales Order NV"
                     column(CompanyInfoPicture; CompanyInfo3.Picture)
                     {
                     }
-                    column(DocumentLogo_CompanyInfo; CompanyInformation."Document Logo")
+                    column(DocumentLogo_CompanyInfo; CompanyInformation.Picture)//"Document Logo")
                     {
                     }
                     column(CompanyAddress1; CompanyAddress[1])
@@ -517,6 +518,8 @@ report 50056 "Sales Order NV"
                                 SETRANGE("No.", TempSalesLine."Document No.");
                                 //SETRANGE("Doc. Line No.",TempSalesLine."Line No.");  //NF1.00:CIS.CM 09-29-15-O
                                 SETRANGE("Document Line No.", TempSalesLine."Line No.");  //NF1.00:CIS.CM 09-29-15-N
+
+                                SETRANGE("Document Line No.", -11);//BC Upgrade Skip all comment lines
                             end;
                         }
                         dataitem(AsmLoop; Integer)
@@ -687,6 +690,8 @@ report 50056 "Sales Order NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempSalesHdr: Record "Sales Header";
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -742,8 +747,11 @@ report 50056 "Sales Order NV"
                 IF NOT Cust.GET("Sell-to Customer No.") THEN
                     CLEAR(Cust);
 
-                FormatAddress.SalesHeaderSellTo(BillToAddress, "Sales Header");
-                FormatAddress.SalesHeaderShipTo(ShipToAddress, BillToAddress, "Sales Header");//BC Upgrade
+                tempSalesHdr := "Sales Header";
+                tempSalesHdr."Sell-to Contact" := '';
+                tempSalesHdr."Ship-to Contact" := '';
+                FormatAddress.SalesHeaderSellTo(BillToAddress, tempSalesHdr);//"Sales Header");
+                FormatAddress.SalesHeaderShipTo(ShipToAddress, BillToAddress, tempSalesHdr);//"Sales Header");//BC Upgrade
 
                 IF NOT CurrReport.PREVIEW THEN BEGIN
                     IF ArchiveDocument THEN
@@ -902,6 +910,7 @@ report 50056 "Sales Order NV"
                 END;
         END;
         CompanyInformation.CALCFIELDS("Document Logo");
+        CompanyInformation.CALCFIELDS(Picture);
         IF PrintCompany THEN BEGIN
             FormatAddress.Company(CompanyAddress, CompanyInformation)
         END ELSE

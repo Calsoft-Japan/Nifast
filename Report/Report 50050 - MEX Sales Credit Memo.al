@@ -38,6 +38,7 @@ report 50050 "MEX Sales Credit Memo"
                     TempSalesCreditMemoLine.DELETEALL;
                 end;
             }
+            /*  BC Upgrade No need show any comment line in report===================
             dataitem("Sales Comment Line"; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -66,7 +67,7 @@ report 50050 "MEX Sales Credit Memo"
                     END;
                     TempSalesCreditMemoLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -183,6 +184,8 @@ report 50050 "MEX Sales Credit Memo"
                                 SETRANGE("No.", TempSalesCreditMemoLine."Document No.");
                                 //SETRANGE("Doc. Line No.",TempSalesCreditMemoLine."Line No.");  //NF1.00:CIS.CM 09-29-15-O
                                 SETRANGE("Document Line No.", TempSalesCreditMemoLine."Line No.");  //NF1.00:CIS.CM 09-29-15-N
+
+                                SETRANGE("Document Line No.", -11);//BC Upgrade Skip all comment lines
                             end;
                         }
 

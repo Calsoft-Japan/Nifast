@@ -24,7 +24,7 @@ report 50059 "MEX Certificado de Materiales"
             column(Sales_Invoice_Header_No_; "No.")
             {
             }
-            column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+            column(CompanyInformation__Document_Logo_; CompanyInformation.Picture)// "Document Logo")
             {
             }
             dataitem("Sales Invoice Line"; "Sales Invoice Line")
@@ -46,6 +46,7 @@ report 50059 "MEX Certificado de Materiales"
                     TempSalesInvoiceLine.DELETEALL;
                 end;
             }
+            /* BC Upgrade No need show any comment line in report===================
             dataitem("Sales Comment Line"; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -74,7 +75,7 @@ report 50059 "MEX Certificado de Materiales"
                     END;
                     TempSalesInvoiceLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -510,6 +511,7 @@ report 50059 "MEX Certificado de Materiales"
             begin
                 CompanyInformation.GET;
                 CompanyInformation.CALCFIELDS("Document Logo");
+                CompanyInformation.CALCFIELDS(Picture);
                 IF PrintCompany THEN BEGIN
                     //FormatAddress.Company(CompanyAddress,CompanyInformation);
                     //FormatAddress.NifastMexCompanySlsDocs(CompanyAddress, CompanyInformation);   //NIF MAK 050206 BC Upgrade

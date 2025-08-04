@@ -24,6 +24,7 @@ report 50068 "Custom Form"
             {
                 DataItemLink = "Document No." = FIELD("No.");
                 DataItemTableView = SORTING("Document No.", "Line No.");
+                /* BC Upgrade No need show any comment line in report===================
                 dataitem(SalesLineComments; "Sales Comment Line")
                 {
                     DataItemLink = "No." = FIELD("Document No."),
@@ -53,7 +54,7 @@ report 50068 "Custom Form"
                         END;
                         TempSalesShipmentLine.INSERT;
                     end;
-                }
+                } */
 
                 trigger OnAfterGetRecord()
                 begin
@@ -72,6 +73,7 @@ report 50068 "Custom Form"
                     TempSalesShipmentLineAsm.DELETEALL;
                 end;
             }
+            /* BC Upgrade No need show any comment line in report===================
             dataitem("Sales Comment Line"; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -112,7 +114,7 @@ report 50068 "Custom Form"
 
                     TempSalesShipmentLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -120,7 +122,7 @@ report 50068 "Custom Form"
                 {
                     DataItemTableView = SORTING(Number)
                                         WHERE(Number = CONST(1));
-                    column(CompanyInformation_DocumentLogo; CompanyInformation."Document Logo")
+                    column(CompanyInformation_DocumentLogo; CompanyInformation.Picture)//"Document Logo")
                     {
                     }
                     column(CompanyInfo2Picture; CompanyInfo2.Picture)
@@ -414,6 +416,8 @@ report 50068 "Custom Form"
                                 SETRANGE("No.", TempSalesShipmentLine."Document No.");
                                 SETRANGE("Document Line No.", TempSalesShipmentLine."Line No.");
                                 //<<NIF
+
+                                SETRANGE("Document Line No.", -11);//BC Upgrade Skip all comment lines
                             end;
                         }
                         dataitem(AsmLoop; Integer)
@@ -720,6 +724,7 @@ report 50068 "Custom Form"
 
         CompanyInformation.GET;
         CompanyInformation.CALCFIELDS("Document Logo");    //>>NIF
+        CompanyInformation.CALCFIELDS(Picture);
         SalesSetup.GET;
 
         CASE SalesSetup."Logo Position on Documents" OF
