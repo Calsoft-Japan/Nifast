@@ -559,6 +559,8 @@ report 50091 "Sales Credit Memo NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempScrMemoHdr: Record "Sales Cr.Memo Header" temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -589,8 +591,11 @@ report 50091 "Sales Credit Memo NV"
                     "Ship-to Name" := Text009;
                 END;
 
-                FormatAddress.SalesCrMemoBillTo(BillToAddress, "Sales Cr.Memo Header");
-                FormatAddress.SalesCrMemoShipTo(ShipToAddress, BillToAddress, "Sales Cr.Memo Header");//BC Upgrade
+                tempScrMemoHdr := "Sales Cr.Memo Header";
+                tempScrMemoHdr."Bill-to Contact" := '';
+                tempScrMemoHdr."Ship-to Contact" := '';
+                FormatAddress.SalesCrMemoBillTo(BillToAddress, tempScrMemoHdr);//"Sales Cr.Memo Header");
+                FormatAddress.SalesCrMemoShipTo(ShipToAddress, BillToAddress, tempScrMemoHdr);//"Sales Cr.Memo Header");//BC Upgrade
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN
                         SegManagement.LogDocument(

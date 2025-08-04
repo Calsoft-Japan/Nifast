@@ -579,6 +579,7 @@ report 50093 "Purchase Order NV"
             var
                 tLastArrayUsed: Integer;
                 tCurrArrayPosition: Integer;
+                tempPurHdr: Record "Purchase Header" temporary;
             begin
 
                 //>> IST 06-21-05
@@ -637,8 +638,11 @@ report 50093 "Purchase Order NV"
                 ELSE
                     ShipmentMethod.GET("Shipment Method Code");
 
-                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header");
-                FormatAddress.PurchHeaderShipTo(ShipToAddress, "Purchase Header");
+                tempPurHdr := "Purchase Header";
+                tempPurHdr."Buy-from Contact" := '';
+                tempPurHdr."Ship-to Contact" := '';
+                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, tempPurHdr);//"Purchase Header"); BC Upgrade
+                FormatAddress.PurchHeaderShipTo(ShipToAddress, tempPurHdr);//"Purchase Header");
                 //>> RTT 09-21-05
                 IF (Vend.GET("Purchase Header"."Buy-from Vendor No.")) THEN
                     IF Vend."Fax No." <> '' THEN BEGIN

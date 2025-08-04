@@ -341,6 +341,8 @@ report 50094 "Purchase Receipt NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempPurRcptHdr: Record "Purch. Rcpt. Header" temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -370,8 +372,11 @@ report 50094 "Purchase Receipt NV"
                     "Ship-to Name" := Text009;
                 END;
 
-                FormatAddress.PurchRcptBuyFrom(BuyFromAddress, "Purch. Rcpt. Header");
-                FormatAddress.PurchRcptShipTo(ShipToAddress, "Purch. Rcpt. Header");
+                tempPurRcptHdr := "Purch. Rcpt. Header";
+                tempPurRcptHdr."Buy-from Contact" := '';
+                tempPurRcptHdr."Ship-to Contact" := '';
+                FormatAddress.PurchRcptBuyFrom(BuyFromAddress, tempPurRcptHdr);//"Purch. Rcpt. Header"); BC Upgrade
+                FormatAddress.PurchRcptShipTo(ShipToAddress, tempPurRcptHdr);//"Purch. Rcpt. Header");
 
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN

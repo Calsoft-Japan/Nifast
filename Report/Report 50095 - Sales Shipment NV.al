@@ -550,6 +550,8 @@ report 50095 "Sales Shipment NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempSShtHdr: Record "Sales Shipment Header" temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -591,8 +593,11 @@ report 50095 "Sales Shipment NV"
                 IF NOT Cust.GET("Sell-to Customer No.") THEN
                     CLEAR(Cust);
 
-                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, "Sales Shipment Header");
-                FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");
+                tempSShtHdr := "Sales Shipment Header";
+                tempSShtHdr."Bill-to Contact" := '';
+                tempSShtHdr."Ship-to Contact" := '';
+                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, tempSShtHdr);//"Sales Shipment Header");
+                FormatAddress.SalesShptShipTo(ShipToAddress, tempSShtHdr);//"Sales Shipment Header");BC Upgrade
 
                 ShippingAgentCodeLabel := '';
                 ShippingAgentCodeText := '';
