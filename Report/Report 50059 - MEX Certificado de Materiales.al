@@ -372,10 +372,13 @@ report 50059 "MEX Certificado de Materiales"
             trigger OnAfterGetRecord()
             var
                 tempSInvHdr: Record "Sales Invoice Header" temporary;
+                tempResCenter: Record "Responsibility Center" temporary;
             begin
                 IF PrintCompany THEN BEGIN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
-                        FormatAddress.RespCenter(CompanyAddress, RespCenter);
+                        tempResCenter := RespCenter;
+                        tempResCenter.Contact := '';
+                        FormatAddress.RespCenter(CompanyAddress, tempResCenter);//RespCenter); BC Upgrade
                         CompanyInformation."Phone No." := RespCenter."Phone No.";
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;

@@ -10,6 +10,106 @@
       <rd:DataSourceID>f13df911-0b1c-4895-be44-18030fb14fc3</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="CompanyInformation_Name">
+          <DataField>CompanyInformation_Name</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO">
+          <DataField>CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="STRSUBSTNO_Text003_AsOfDate_">
+          <DataField>STRSUBSTNO_Text003_AsOfDate_</DataField>
+        </Field>
+        <Field Name="ShowVariants">
+          <DataField>ShowVariants</DataField>
+        </Field>
+        <Field Name="ShowLocations">
+          <DataField>ShowLocations</DataField>
+        </Field>
+        <Field Name="ShowACY">
+          <DataField>ShowACY</DataField>
+        </Field>
+        <Field Name="STRSUBSTNO_Text006_Currency_Description_">
+          <DataField>STRSUBSTNO_Text006_Currency_Description_</DataField>
+        </Field>
+        <Field Name="Item_TABLECAPTION__________ItemFilter">
+          <DataField>Item_TABLECAPTION__________ItemFilter</DataField>
+        </Field>
+        <Field Name="ItemFilter">
+          <DataField>ItemFilter</DataField>
+        </Field>
+        <Field Name="STRSUBSTNO_Text004_InvPostingGroup_TABLECAPTION_InvPostingGroup_Code_InvPostingGroup_Description_">
+          <DataField>STRSUBSTNO_Text004_InvPostingGroup_TABLECAPTION_InvPostingGroup_Code_InvPostingGroup_Description_</DataField>
+        </Field>
+        <Field Name="Item__Inventory_Posting_Group_">
+          <DataField>Item__Inventory_Posting_Group_</DataField>
+        </Field>
+        <Field Name="Grouping">
+          <DataField>Grouping</DataField>
+        </Field>
+        <Field Name="Item__No__">
+          <DataField>Item__No__</DataField>
+        </Field>
+        <Field Name="Item_Description">
+          <DataField>Item_Description</DataField>
+        </Field>
+        <Field Name="Item__Base_Unit_of_Measure_">
+          <DataField>Item__Base_Unit_of_Measure_</DataField>
+        </Field>
+        <Field Name="Item__Costing_Method_">
+          <DataField>Item__Costing_Method_</DataField>
+        </Field>
+        <Field Name="STRSUBSTNO_Text005_InvPostingGroup_TABLECAPTION_InvPostingGroup_Code_InvPostingGroup_Description_">
+          <DataField>STRSUBSTNO_Text005_InvPostingGroup_TABLECAPTION_InvPostingGroup_Code_InvPostingGroup_Description_</DataField>
+        </Field>
+        <Field Name="Inventory_ValuationCaption">
+          <DataField>Inventory_ValuationCaption</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENOCaption">
+          <DataField>CurrReport_PAGENOCaption</DataField>
+        </Field>
+        <Field Name="InventoryValue_Control34Caption">
+          <DataField>InventoryValue_Control34Caption</DataField>
+        </Field>
+        <Field Name="Item_Ledger_Entry__Remaining_Quantity_Caption">
+          <DataField>Item_Ledger_Entry__Remaining_Quantity_Caption</DataField>
+        </Field>
+        <Field Name="UnitCost_Control33Caption">
+          <DataField>UnitCost_Control33Caption</DataField>
+        </Field>
+        <Field Name="Total_Inventory_ValueCaption">
+          <DataField>Total_Inventory_ValueCaption</DataField>
+        </Field>
+        <Field Name="RowLabel">
+          <DataField>RowLabel</DataField>
+        </Field>
+        <Field Name="RemainingQty">
+          <DataField>RemainingQty</DataField>
+        </Field>
+        <Field Name="RemainingQtyFormat">
+          <DataField>RemainingQtyFormat</DataField>
+        </Field>
+        <Field Name="InventoryValue">
+          <DataField>InventoryValue</DataField>
+        </Field>
+        <Field Name="InventoryValueFormat">
+          <DataField>InventoryValueFormat</DataField>
+        </Field>
+        <Field Name="VariantCode">
+          <DataField>VariantCode</DataField>
+        </Field>
+        <Field Name="LocationCode">
+          <DataField>LocationCode</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -21,7 +121,7 @@
                   <Width>0.70866in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.65354in</Width>
+                  <Width>2.2441in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.64961in</Width>
@@ -1711,7 +1811,7 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.49961in</Top>
             <Height>2.47737in</Height>
-            <Width>5.96458in</Width>
+            <Width>6.55514in</Width>
             <Style />
           </Tablix>
           <Textbox Name="Item_TABLECAPTION__________ItemFilter">
@@ -2072,104 +2172,4 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>94c11547-6cb7-43af-ae59-eea56a8dda23</rd:ReportID>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="CompanyInformation_Name">
-          <DataField>CompanyInformation_Name</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENO">
-          <DataField>CurrReport_PAGENO</DataField>
-        </Field>
-        <Field Name="STRSUBSTNO_Text003_AsOfDate_">
-          <DataField>STRSUBSTNO_Text003_AsOfDate_</DataField>
-        </Field>
-        <Field Name="ShowVariants">
-          <DataField>ShowVariants</DataField>
-        </Field>
-        <Field Name="ShowLocations">
-          <DataField>ShowLocations</DataField>
-        </Field>
-        <Field Name="ShowACY">
-          <DataField>ShowACY</DataField>
-        </Field>
-        <Field Name="STRSUBSTNO_Text006_Currency_Description_">
-          <DataField>STRSUBSTNO_Text006_Currency_Description_</DataField>
-        </Field>
-        <Field Name="Item_TABLECAPTION__________ItemFilter">
-          <DataField>Item_TABLECAPTION__________ItemFilter</DataField>
-        </Field>
-        <Field Name="ItemFilter">
-          <DataField>ItemFilter</DataField>
-        </Field>
-        <Field Name="STRSUBSTNO_Text004_InvPostingGroup_TABLECAPTION_InvPostingGroup_Code_InvPostingGroup_Description_">
-          <DataField>STRSUBSTNO_Text004_InvPostingGroup_TABLECAPTION_InvPostingGroup_Code_InvPostingGroup_Description_</DataField>
-        </Field>
-        <Field Name="Item__Inventory_Posting_Group_">
-          <DataField>Item__Inventory_Posting_Group_</DataField>
-        </Field>
-        <Field Name="Grouping">
-          <DataField>Grouping</DataField>
-        </Field>
-        <Field Name="Item__No__">
-          <DataField>Item__No__</DataField>
-        </Field>
-        <Field Name="Item_Description">
-          <DataField>Item_Description</DataField>
-        </Field>
-        <Field Name="Item__Base_Unit_of_Measure_">
-          <DataField>Item__Base_Unit_of_Measure_</DataField>
-        </Field>
-        <Field Name="Item__Costing_Method_">
-          <DataField>Item__Costing_Method_</DataField>
-        </Field>
-        <Field Name="STRSUBSTNO_Text005_InvPostingGroup_TABLECAPTION_InvPostingGroup_Code_InvPostingGroup_Description_">
-          <DataField>STRSUBSTNO_Text005_InvPostingGroup_TABLECAPTION_InvPostingGroup_Code_InvPostingGroup_Description_</DataField>
-        </Field>
-        <Field Name="Inventory_ValuationCaption">
-          <DataField>Inventory_ValuationCaption</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENOCaption">
-          <DataField>CurrReport_PAGENOCaption</DataField>
-        </Field>
-        <Field Name="InventoryValue_Control34Caption">
-          <DataField>InventoryValue_Control34Caption</DataField>
-        </Field>
-        <Field Name="Item_Ledger_Entry__Remaining_Quantity_Caption">
-          <DataField>Item_Ledger_Entry__Remaining_Quantity_Caption</DataField>
-        </Field>
-        <Field Name="UnitCost_Control33Caption">
-          <DataField>UnitCost_Control33Caption</DataField>
-        </Field>
-        <Field Name="Total_Inventory_ValueCaption">
-          <DataField>Total_Inventory_ValueCaption</DataField>
-        </Field>
-        <Field Name="RowLabel">
-          <DataField>RowLabel</DataField>
-        </Field>
-        <Field Name="RemainingQty">
-          <DataField>RemainingQty</DataField>
-        </Field>
-        <Field Name="RemainingQtyFormat">
-          <DataField>RemainingQtyFormat</DataField>
-        </Field>
-        <Field Name="InventoryValue">
-          <DataField>InventoryValue</DataField>
-        </Field>
-        <Field Name="InventoryValueFormat">
-          <DataField>InventoryValueFormat</DataField>
-        </Field>
-        <Field Name="VariantCode">
-          <DataField>VariantCode</DataField>
-        </Field>
-        <Field Name="LocationCode">
-          <DataField>LocationCode</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>
