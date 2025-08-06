@@ -5,6 +5,7 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         field(50000; "Contract Note No."; Code[20])
         {
             DataClassification = ToBeClassified;
+            TableRelation = "4X Contract"."No.";
         }
         field(50001; "Exchange Contract No."; Code[20])
         {
@@ -25,6 +26,7 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         {
             DataClassification = ToBeClassified;
             Description = '#10044';
+            TableRelation = "Shipping Vessels";
         }
         field(50010; "Drawing No."; Code[30])
         {
@@ -33,6 +35,22 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         field(50011; "Revision No."; Code[20])
         {
             DataClassification = ToBeClassified;
+            TableRelation = if (Type = const(Item)) "Cust./Item Drawing2"."Revision No." where("Item No." = field("No."),
+                                                                                              "Customer No." = filter(''));
+
+            trigger OnLookup();
+            begin
+                if (Type = Type::Item) and ("No." <> '') then
+                    NVM.LookupDrawingRevision("No.", "Revision No.", "Drawing No.", "Revision Date");
+            end;
+
+            trigger OnValidate();
+            begin
+                if "Revision No." = '' then begin
+                    "Drawing No." := '';
+                    "Revision Date" := 0D;
+                end;
+            end;
         }
         field(50012; "Revision Date"; Date)
         {
@@ -69,15 +87,176 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         field(52000; "Country of Origin Code"; Code[10])
         {
             DataClassification = ToBeClassified;
+            TableRelation = "Standard Text";
         }
         field(52010; Manufacturer; Code[50])
         {
             DataClassification = ToBeClassified;
+            TableRelation = Manufacturer.Name;
         }
 
         field(50003; "Alt. Price"; Decimal)//14017672->50003 BC Upgrade 
         { }
         field(50004; "Alt. Price UOM"; Decimal)//14017673->50004 BC Upgrade 
         { }
+        modify("Qty. to Invoice")
+        {
+            trigger OnAfterValidate()
+            begin
+
+                //>>NV4.33.01 08-20-04 RTT
+                // set Qty. to Invoice on Item Tracking
+                if CurrFieldNo <> 0 then  //NG-N System Make the Qty Zero on CM Post
+                    UpdateItemTrackingLines(Rec);
+                //<<NV4.33.01 08-20-04 RTT
+            end;
+        }
     }
+    keys
+    {
+        key(SEESHIP; "Document Type", "Document No.", Type, "No.", "Variant Code", "Drop Shipment", "Location Code")
+        {
+            SumIndexFields = "Qty. to Receive (Base)", "Outstanding Qty. (Base)", "Return Qty. to Ship (Base)";
+            MaintainSIFTIndex = false;
+        }
+    }
+    procedure CheckParcelQty(var OrderQty: Decimal): Boolean;
+    var
+        Item: Record 27;
+        OrderMultiple: Decimal;
+        ParcelOrderQty: Decimal;
+        ConfirmTxt1: Label 'Item %1 has a Standard Net Pack of %2 .\', Comment = '%1%2';
+        ConfirmTxt2: Label 'A quantity of %3 %7 would create an even Pack quantity of %4.\\', Comment = '%3%7%4';
+        ConfirmTxt3: Label 'Do you want to change the quantity from %5 to %6?', Comment = '%5%6';
+    begin
+        //function passes and returns qty through variable
+        //also returns TRUE if qty was changed
+        //if qty is zero, exit
+        if OrderQty <= 1 then
+            exit;
+
+        //if no "Units per Parcel", then exit
+        if "Units per Parcel" = 0 then
+            exit;
+
+        Item.GET("No.");
+        OrderMultiple := "Units per Parcel";
+
+        //if multiple divides qty cleanly, exit
+        if OrderQty mod OrderMultiple = 0 then
+            exit;
+
+        //otherwise, propose new qty
+        ParcelOrderQty := ((OrderQty div OrderMultiple) + 1) * OrderMultiple;
+
+        //exit if not confirmed
+        if not CONFIRM(
+          STRSUBSTNO(ConfirmTxt1 +
+                     ConfirmTxt2 +
+                     ConfirmTxt3,
+                         Item."No.", OrderMultiple,
+                            ParcelOrderQty, ParcelOrderQty div OrderMultiple,
+                               OrderQty, ParcelOrderQty, Item."Base Unit of Measure"))
+             then
+            exit;
+
+
+        //if confirmed, pass back new quantity
+        OrderQty := ParcelOrderQty;
+
+        exit(true);
+    end;
+
+    procedure UpdateItemTrackingLines(PurchLine: Record 39);
+    var
+        TrackingSpecification: Record "Tracking Specification";
+        TrackingSpecificationTmp: Record "Tracking Specification" temporary;
+        Item: Record Item;
+        ReservePurchLine: Codeunit "Purch. Line-Reserve";
+        ItemTrackingForm: Page "Item Tracking Lines";
+        ModifyRecord: Boolean;
+        QtyToInvoice: Decimal;
+        RemQtyToInvoice: Decimal;
+        LastEntryNo: Integer;
+    begin
+        if PurchLine.Type <> PurchLine.Type::Item then
+            exit;
+
+        Item.GET("No.");
+        if Item."Item Tracking Code" = '' then
+            exit;
+
+        CLEAR(ReservePurchLine);
+        CLEAR(ItemTrackingForm);
+        CLEAR(ModifyRecord);
+        CLEAR(LastEntryNo);
+        ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+        ItemTrackingForm.SetSource(
+           TrackingSpecification, PurchLine."Expected Receipt Date");
+        ItemTrackingForm.NVOpenForm;
+
+        CLEAR(ReservePurchLine);
+        CLEAR(ItemTrackingForm);
+        ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+        ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
+
+        ItemTrackingForm.NVOpenForm;
+        TrackingSpecificationTmp.RESET();
+        TrackingSpecificationTmp.DELETEALL();
+        TrackingSpecificationTmp := TrackingSpecification;
+        ItemTrackingForm.NVGetRecords(TrackingSpecificationTmp);
+
+        if not TrackingSpecificationTmp.FIND('-') then
+            exit;
+
+        RemQtyToInvoice := PurchLine."Qty. to Invoice (Base)";
+
+        repeat
+            if RemQtyToInvoice >
+              (TrackingSpecificationTmp."Quantity (Base)" - TrackingSpecificationTmp."Quantity Invoiced (Base)") then begin
+                QtyToInvoice := TrackingSpecificationTmp."Quantity (Base)";
+                RemQtyToInvoice := RemQtyToInvoice -
+                      (TrackingSpecificationTmp."Quantity (Base)" - TrackingSpecificationTmp."Quantity Invoiced (Base)");
+            end
+            else begin
+                QtyToInvoice := RemQtyToInvoice;
+                RemQtyToInvoice := 0;
+            end;
+
+            TrackingSpecificationTmp."Qty. to Invoice (Base)" := QtyToInvoice;
+            TrackingSpecificationTmp."Qty. to Invoice" := QtyToInvoice;
+            ItemTrackingForm.NVModifyRecord(TrackingSpecificationTmp);
+
+        until (TrackingSpecificationTmp.NEXT() = 0);
+
+        ItemTrackingForm.NVCloseForm;
+    end;
+
+    procedure UpdateUSDValue();
+    var
+        CurrExchRate: Record "Currency Exchange Rate";
+        PurchHeader: Record "Purchase Header";
+        Vendor: Record Vendor;
+        MXNValue: Decimal;
+    begin
+        //NF1.00:CIS.RAM FOREX
+        PurchHeader.GET("Document Type", "Document No.");
+        Vendor.GET(PurchHeader."Pay-to Vendor No.");
+        if Vendor."3 Way Currency Adjmt." then begin
+            "USD Value" := 0;
+            PurchHeader.TESTFIELD("Currency Factor");
+            MXNValue := 0;
+            MXNValue := CurrExchRate.ExchangeAmtFCYToLCY(
+                  GetDate(), "Currency Code",
+                  "Amount Including VAT", PurchHeader."Currency Factor");
+            "USD Value" := CurrExchRate.ExchangeAmtFCYToFCY(
+                  GetDate(), '', 'USD',
+                  MXNValue);
+        end;
+        //NF1.00:CIS.RAM FOREX
+    end;
+
+    var
+        NVM: Codeunit 50021;
+        SoftBlockError: Text[80];
 }

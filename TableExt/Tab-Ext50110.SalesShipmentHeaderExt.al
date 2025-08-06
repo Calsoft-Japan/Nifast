@@ -5,6 +5,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
         field(50000; "Freight Code"; Code[10])
         {
             // cleaned
+            TableRelation = "Freight Code";
         }
         field(50003; "ASN Ship-to Code"; Code[30])
         {
@@ -13,6 +14,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
         field(50005; "Model Year"; Code[10])
         {
             // cleaned
+            TableRelation = "Customer Model Year".Code where("Customer No." = field("Sell-to Customer No."));
         }
         field(50006; "SCAC Code"; Code[10])
         {
@@ -33,6 +35,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
         field(51000; "Blanket Order No."; Code[20])
         {
             Editable = false;
+            TableRelation = "Sales Header"."No." where("Document Type" = const("Blanket Order"));
         }
         field(52000; "Mex. Factura No."; Code[20])
         {
