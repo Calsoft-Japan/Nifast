@@ -1,4 +1,4 @@
-codeunit 50002 TAB5766Subscribers
+codeunit 50152 TAB5766Subscribers
 {
     [EventSubscriber(ObjectType::Table, Database::"Warehouse Activity Header", OnBeforeSortWhseDoc, '', false, false)]
     local procedure "Warehouse Activity Header_OnBeforeSortWhseDoc"(var WarehouseActivityHeader: Record "Warehouse Activity Header"; var IsHandled: Boolean)

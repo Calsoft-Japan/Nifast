@@ -1,4 +1,4 @@
-codeunit 50000 TAB90Subscribers
+codeunit 50150 TAB90Subscribers
 {
     [EventSubscriber(ObjectType::Table, Database::"BOM Component", OnBeforeValidateAgainstRecursion, '', false, false)]
     local procedure "BOM Component_OnBeforeValidateAgainstRecursion"(var Sender: Record "BOM Component"; ItemNo: Code[20]; var IsHandled: Boolean; var BOMComponent: Record "BOM Component")

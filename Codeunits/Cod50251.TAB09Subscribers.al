@@ -1,4 +1,4 @@
-codeunit 50040 Table09
+codeunit 50251 Table09
 {
     trigger OnRun()
     begin

@@ -1,4 +1,4 @@
-codeunit 50001 TAB121Subscribers
+codeunit 50151 TAB121Subscribers
 {
     [EventSubscriber(ObjectType::Table, Database::"Purch. Rcpt. Line", OnBeforeInsertInvLineFromRcptLineBeforeInsertTextLine, '', false, false)]
     local procedure "Purch. Rcpt. Line_OnBeforeInsertInvLineFromRcptLineBeforeInsertTextLine"(var PurchRcptLine: Record "Purch. Rcpt. Line"; var PurchLine: Record "Purchase Line"; var NextLineNo: Integer; var Handled: Boolean)

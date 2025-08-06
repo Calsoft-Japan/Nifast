@@ -1,4 +1,4 @@
-codeunit 50004 TAB39Subscribers
+codeunit 50154 TAB39Subscribers
 {
     [EventSubscriber(ObjectType::Table, Database::"Purchase Line", OnAfterInsertEvent, '', false, false)]
     local procedure "Purchase Line_OnAfterInsertEvent"(var Rec: Record "Purchase Line")
