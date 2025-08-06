@@ -1,5 +1,6 @@
 tableextension 50091 "User Setup Ext" extends "User Setup"
 {
+    // version NAVW17.00,SE0.52.16,NV4.35,4X,NIF0.015,NIF.N15.C9IN.001
     fields
     {
         field(50000; "Approve BankContract"; Boolean)
@@ -25,8 +26,9 @@ tableextension 50091 "User Setup Ext" extends "User Setup"
         field(51000; "Default Resp. Ctr."; Code[10])
         {
             // cleaned
+            TableRelation = "Responsibility Center";
         }
-
+        //TODO
         field(50002; "E-Signature"; Blob) //Move from User to here. BC Upgrade 2025-06-23
         {
             Caption = 'E-Signature';
@@ -35,5 +37,6 @@ tableextension 50091 "User Setup Ext" extends "User Setup"
         {
             Caption = 'PO Authority';
         }
+        //TODO
     }
 }

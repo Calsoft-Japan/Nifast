@@ -2,185 +2,221 @@ tableextension 50017 "G/L Entry Ext" extends "G/L Entry"
 {
     fields
     {
-        field(50000;"Contract Note No.";Code[20])
+        field(50000; "Contract Note No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Description = 'NIF';
         }
-        field(50001;"Exchange Contract No.";Code[20])
+        field(50001; "Exchange Contract No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Description = 'NIF';
         }
-        field(50002;"4X Currency Rate";Decimal)
+        field(50002; "4X Currency Rate"; Decimal)
         {
             DataClassification = ToBeClassified;
             Description = 'NIF';
         }
-        field(50003;"4X Amount JPY";Decimal)
+        field(50003; "4X Amount JPY"; Decimal)
         {
             DataClassification = ToBeClassified;
             Description = 'NIF';
         }
-        field(50004;"USD Value";Decimal)
+        field(50004; "USD Value"; Decimal)
         {
             DataClassification = ToBeClassified;
             Description = 'Forex';
         }
-        field(50005;"Currency Code of Customer";Code[10])
+        field(50005; "Currency Code of Customer"; Code[10])
         {
+            CalcFormula = Lookup(Customer."Currency Code" WHERE("No." = FIELD("Source No.")));
             Description = 'Currency Code of Customer';
+            FieldClass = FlowField;
         }
-        field(50006;"Currency Code of Vendor";Code[10])
+        field(50006; "Currency Code of Vendor"; Code[10])
         {
+            CalcFormula = Lookup(Vendor."Currency Code" WHERE("No." = FIELD("Source No.")));
             Description = 'Currency Code of Vendor';
+            FieldClass = FlowField;
         }
-        field(55000;"XML - UUID";Code[36])
+        field(55000; "XML - UUID"; Code[36])
         {
-            Caption = 'UUID';
+            CaptionML = ENU = 'UUID',
+                        ESP = 'UUID';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55010;"XML - Invoice Folio";Code[50])
+        field(55010; "XML - Invoice Folio"; Code[50])
         {
-            Caption = 'Invoice Folio';
+            CaptionML = ENU = 'Invoice Folio',
+                        ESP = 'Folio Factura';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55020;"XML - Certified No";Text[20])
+        field(55020; "XML - Certified No"; Text[20])
         {
-            Caption = 'Certified No';
+            CaptionML = ENU = 'Certified No',
+                        ESP = 'Núm. Certificado';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55030;"XML - SAT Certified No";Text[20])
+        field(55030; "XML - SAT Certified No"; Text[20])
         {
-            Caption = 'SAT Certified No';
+            CaptionML = ENU = 'SAT Certified No',
+                        ESP = 'Núm Certificado SAT';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55040;"XML - Date/Time Stamped";Text[50])
+        field(55040; "XML - Date/Time Stamped"; Text[50])
         {
-            Caption = 'Date/Time Stamped';
+            CaptionML = ENU = 'Date/Time Stamped',
+                        ESP = 'Fecha/Hora Timbrado';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55050;"XML - VAT Registration No";Code[13])
+        field(55050; "XML - VAT Registration No"; Code[13])
         {
-            Caption = 'VAT Registration No';
+            CaptionML = ENU = 'VAT Registration No',
+                        ESP = 'RFC';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55051;"XML - VAT Receptor";Code[13])
+        field(55051; "XML - VAT Receptor"; Code[13])
         {
-            Caption = 'VAT Registration No';
+            CaptionML = ENU = 'VAT Registration No',
+                        ESP = 'RFC';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55060;"XML - Total Invoice";Decimal)
+        field(55060; "XML - Total Invoice"; Decimal)
         {
-            Caption = 'Total Invoice';
+            CaptionML = ENU = 'Total Invoice',
+                        ESP = 'Total Factura';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55070;"XML - Payment Method";Code[50])
+        field(55070; "XML - Payment Method"; Code[50])
         {
-            Caption = 'Payment Method';
+            CaptionML = ENU = 'Payment Method',
+                        ESP = 'Método de Pago';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55080;"XML - Currency";Code[50])
+        field(55080; "XML - Currency"; Code[50])
         {
-            Caption = 'Currency';
+            CaptionML = ENU = 'Currency',
+                        ESP = 'Moneda';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55090;"XML - Currency Factor";Decimal)
+        field(55090; "XML - Currency Factor"; Decimal)
         {
-            Caption = 'Currency Factor';
+            CaptionML = ENU = 'Currency Factor',
+                        ESP = 'Tipo de Cambio';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55100;"Pymt - Payment Method";Code[10])
+        field(55100; "Pymt - Payment Method"; Code[10])
         {
-            Caption = 'SAT - Payment Method';
+            CaptionML = ENU = 'SAT - Payment Method',
+                        ESP = 'SAT - Método Pago';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55105;"Pymt - Bank Source Code";Code[20])
+        field(55105; "Pymt - Bank Source Code"; Code[20])
         {
-            Caption = 'SAT - Bank Source';
+            CaptionML = ENU = 'SAT - Bank Source',
+                        ESP = 'SAT - Banco Origen';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55110;"Pymt - Bank Source Account";Code[30])
+        field(55110; "Pymt - Bank Source Account"; Code[30])
         {
-            Caption = 'SAT - Bank Account Source';
+            CaptionML = ENU = 'SAT - Bank Account Source',
+                        ESP = 'SAT - Cuenta Banco Origen';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55115;"Pymt - Bank Source Foreign";Boolean)
+        field(55115; "Pymt - Bank Source Foreign"; Boolean)
         {
-            Caption = 'SAT - Source Is Foreign';
+            CaptionML = ENU = 'SAT - Source Is Foreign',
+                        ESP = 'SAT - Origen Es Extranjero';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55120;"Pymt - Bank Target Code";Code[10])
+        field(55120; "Pymt - Bank Target Code"; Code[10])
         {
-            Caption = 'SAT - Bank Target';
+            CaptionML = ENU = 'SAT - Bank Target',
+                        ESP = 'SAT - Banco Destino';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55125;"Pymt - Bank Target Account";Code[30])
+        field(55125; "Pymt - Bank Target Account"; Code[30])
         {
-            Caption = 'SAT- Bank Target Account ';
+            CaptionML = ENU = 'SAT- Bank Target Account ',
+                        ESP = 'SAT - Cuenta Banco Destino';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55130;"Pymt - Bank Target Foreign";Boolean)
+        field(55130; "Pymt - Bank Target Foreign"; Boolean)
         {
-            Caption = 'SAT - Target Is Foreign';
+            CaptionML = ENU = 'SAT - Target Is Foreign',
+                        ESP = 'SAT - Destino Es Extranjero';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55135;"Pymt - Currency Code";Code[10])
+        field(55135; "Pymt - Currency Code"; Code[10])
         {
-            Caption = 'SAT - Currency';
+            CaptionML = ENU = 'SAT - Currency',
+                        ESP = 'SAT - Moneda';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55140;"Pymt - Currency Factor";Decimal)
+        field(55140; "Pymt - Currency Factor"; Decimal)
         {
-            Caption = 'SAT - Currency Factor';
+            CaptionML = ENU = 'SAT - Currency Factor',
+                        ESP = 'SAT - Tipo Cambio';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55145;"Pymt - Beneficiary";Text[150])
+        field(55145; "Pymt - Beneficiary"; Text[150])
         {
-            Caption = 'SAT - Beneficiary';
+            CaptionML = ENU = 'SAT - Beneficiary',
+                        ESP = 'SAT - Beneficiario';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(55150;"Pymt - VAT Beneficiary";Code[13])
+        field(55150; "Pymt - VAT Beneficiary"; Code[13])
         {
-            Caption = 'SAT - VAT Benecifiary';
+            CaptionML = ENU = 'SAT - VAT Benecifiary',
+                        ESP = 'SAT - RFC Beneficiario';
             DataClassification = ToBeClassified;
             Description = 'CE 1.2';
         }
-        field(70000;"Original Posting Date";Date)
+        field(70000; "Original Posting Date"; Date)
         {
             DataClassification = ToBeClassified;
             Description = 'Consolidation';
         }
-        field(70001;"Original Entry No.";Integer)
+        field(70001; "Original Entry No."; Integer)
         {
             DataClassification = ToBeClassified;
             Description = 'Consolidation';
         }
-        field(70002;"Original Transaction No.";Integer)
+        field(70002; "Original Transaction No."; Integer)
         {
             DataClassification = ToBeClassified;
             Description = 'Consolidation';
         }
+    }
+    keys
+    {
+        key(Key15; "Close Income Statement Dim. ID")
+        {
+        }
+        /*  key(Key16; "Exchange Contract No.", "Document Type")
+         {
+             SumIndexFields = "4X Amount JPY";
+         } */
     }
 }
