@@ -5,6 +5,7 @@ tableextension 50121 "Purch. Rcpt. Line Ext" extends "Purch. Rcpt. Line"
         field(50000; "Contract Note No."; Code[20])
         {
             // cleaned
+            TableRelation = "4X Contract"."No.";
         }
         field(50001; "Exchange Contract No."; Code[20])
         {
@@ -55,20 +56,27 @@ tableextension 50121 "Purch. Rcpt. Line Ext" extends "Purch. Rcpt. Line"
         }
         field(52000; "Country of Origin Code"; Code[10])
         {
-            // cleaned
+            TableRelation = "Country/Region";
         }
         field(52010; Manufacturer; Code[50])
         {
-            // cleaned
+            TableRelation = Manufacturer;
         }
         field(60000; "HS Tariff Code"; Code[10])
         {
+            CalcFormula = Lookup(Item."HS Tariff Code" WHERE("No." = FIELD("No.")));
             Editable = false;
+            FieldClass = FlowField;
+            TableRelation = "HS Tariff Code";
         }
     }
 
     keys
     {
         key(RPTSort; Type, "No.") { }
+        key(Key50000; "Document No.", Type, "Location Code", "Buy-from Vendor No.", "Order No.")
+        { }
+        key(Key50001; "No.", "Order No.", "Expected Receipt Date")
+        { }
     }
 }
