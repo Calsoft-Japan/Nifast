@@ -1,13 +1,13 @@
-codeunit 50044 TAB5767
-{
-    trigger OnRun()
-    begin
+// codeunit 50044 TAB5767
+// {
+//     trigger OnRun()
+//     begin
 
-    end;
-
-
+//     end;
 
 
-    var
-        myInt: Integer;
-}
+
+
+//     var
+//         myInt: Integer;
+// }
