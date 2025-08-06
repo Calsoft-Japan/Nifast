@@ -1,4 +1,4 @@
-codeunit 50003 TAB38Subscribers
+codeunit 50153 TAB38Subscribers
 {
     var
         SalesRelease: Codeunit "Release Sales Document";
