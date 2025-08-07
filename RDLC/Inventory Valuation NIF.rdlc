@@ -576,6 +576,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Item_Description">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -592,6 +593,9 @@
                           </Paragraphs>
                           <rd:DefaultName>Item_Description</rd:DefaultName>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -895,6 +899,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Item_Description3">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -911,6 +916,9 @@
                           </Paragraphs>
                           <rd:DefaultName>Item_Description</rd:DefaultName>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
