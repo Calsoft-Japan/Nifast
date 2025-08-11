@@ -594,11 +594,11 @@ report 50068 "Custom Form"
                 IF NOT Cust.GET("Sell-to Customer No.") THEN
                     CLEAR(Cust);
 
-                tempSShtHdr := "Sales Shipment Header";
+                /* tempSShtHdr := "Sales Shipment Header";
                 tempSShtHdr."Bill-to Contact" := '';
-                tempSShtHdr."Ship-to Contact" := '';
-                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, tempSShtHdr);//"Sales Shipment Header");//BC Upgrade
-                FormatAddress.SalesShptShipTo(ShipToAddress, tempSShtHdr);//"Sales Shipment Header");
+                tempSShtHdr."Ship-to Contact" := ''; */
+                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, "Sales Shipment Header");//BC Upgrade tempSShtHdr);//
+                FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");//tempSShtHdr);
 
                 ShippingAgentCodeLabel := '';
                 ShippingAgentCodeText := '';

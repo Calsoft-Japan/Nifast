@@ -4695,6 +4695,9 @@ End Function
         <Field Name="CompanyAddress_7_">
           <DataField>CompanyAddress_7_</DataField>
         </Field>
+        <Field Name="CompanyAddress_8_">
+          <DataField>CompanyAddress_8_</DataField>
+        </Field>
         <Field Name="ShipmentMethod_Description">
           <DataField>ShipmentMethod_Description</DataField>
         </Field>

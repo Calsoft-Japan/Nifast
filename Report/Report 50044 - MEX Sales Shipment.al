@@ -605,11 +605,11 @@ report 50044 "MEX Sales Shipment"
                 IF NOT Cust.GET("Sell-to Customer No.") THEN
                     CLEAR(Cust);
 
-                tempSalesShpHdr := "Sales Shipment Header";
+                /* tempSalesShpHdr := "Sales Shipment Header";
                 tempSalesShpHdr."Bill-to Contact" := '';
-                tempSalesShpHdr."Ship-to Contact" := '';
-                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, tempSalesShpHdr);//"Sales Shipment Header");//BC Upgarde
-                FormatAddress.SalesShptShipTo(ShipToAddress, tempSalesShpHdr);//"Sales Shipment Header");
+                tempSalesShpHdr."Ship-to Contact" := ''; */
+                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, "Sales Shipment Header");//BC Upgarde tempSalesShpHdr);//
+                FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");//tempSalesShpHdr);//
 
                 ShippingAgentCodeLabel := '';
                 ShippingAgentCodeText := '';

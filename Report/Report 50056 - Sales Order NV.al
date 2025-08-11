@@ -750,8 +750,8 @@ report 50056 "Sales Order NV"
                 tempSalesHdr := "Sales Header";
                 tempSalesHdr."Sell-to Contact" := '';
                 tempSalesHdr."Ship-to Contact" := '';
-                FormatAddress.SalesHeaderSellTo(BillToAddress, tempSalesHdr);//"Sales Header");
-                FormatAddress.SalesHeaderShipTo(ShipToAddress, BillToAddress, tempSalesHdr);//"Sales Header");//BC Upgrade
+                FormatAddress.SalesHeaderSellTo(BillToAddress, "Sales Header");//tempSalesHdr);
+                FormatAddress.SalesHeaderShipTo(ShipToAddress, BillToAddress, "Sales Header");//BC Upgrade tempSalesHdr);//
 
                 IF NOT CurrReport.PREVIEW THEN BEGIN
                     IF ArchiveDocument THEN

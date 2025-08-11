@@ -118,6 +118,9 @@ report 50093 "Purchase Order NV"
             column(CompanyAddress_7_; CompanyAddress[7])
             {
             }
+            column(CompanyAddress_8_; CompanyAddress[8])
+            {
+            }
             column(ShipmentMethod_Description; ShipmentMethod.Description)
             {
             }

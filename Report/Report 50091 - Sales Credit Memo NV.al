@@ -591,11 +591,11 @@ report 50091 "Sales Credit Memo NV"
                     "Ship-to Name" := Text009;
                 END;
 
-                tempScrMemoHdr := "Sales Cr.Memo Header";
+                /* tempScrMemoHdr := "Sales Cr.Memo Header";
                 tempScrMemoHdr."Bill-to Contact" := '';
-                tempScrMemoHdr."Ship-to Contact" := '';
-                FormatAddress.SalesCrMemoBillTo(BillToAddress, tempScrMemoHdr);//"Sales Cr.Memo Header");
-                FormatAddress.SalesCrMemoShipTo(ShipToAddress, BillToAddress, tempScrMemoHdr);//"Sales Cr.Memo Header");//BC Upgrade
+                tempScrMemoHdr."Ship-to Contact" := ''; */
+                FormatAddress.SalesCrMemoBillTo(BillToAddress, "Sales Cr.Memo Header");//tempScrMemoHdr);
+                FormatAddress.SalesCrMemoShipTo(ShipToAddress, BillToAddress, "Sales Cr.Memo Header");//BC Upgrade tempScrMemoHdr);//
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN
                         SegManagement.LogDocument(

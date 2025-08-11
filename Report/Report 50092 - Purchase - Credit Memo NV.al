@@ -419,11 +419,11 @@ report 50092 "Purchase - Credit Memo NV"
                     "Ship-to Name" := Text009;
                 END;
 
-                tempPurCrHdr := "Purch. Cr. Memo Hdr.";
+                /* tempPurCrHdr := "Purch. Cr. Memo Hdr.";
                 tempPurCrHdr."Pay-to Contact" := '';
-                tempPurCrHdr."Ship-to Contact" := '';
-                FormatAddress.PurchCrMemoPayTo(BuyFromAddress, tempPurCrHdr);//"Purch. Cr. Memo Hdr.");BC Upgrade
-                FormatAddress.PurchCrMemoShipTo(ShipToAddress, tempPurCrHdr);//"Purch. Cr. Memo Hdr.");
+                tempPurCrHdr."Ship-to Contact" := ''; */
+                FormatAddress.PurchCrMemoPayTo(BuyFromAddress, "Purch. Cr. Memo Hdr.");//BC Upgrade tempPurCrHdr);
+                FormatAddress.PurchCrMemoShipTo(ShipToAddress, "Purch. Cr. Memo Hdr.");//tempPurCrHdr);
 
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN

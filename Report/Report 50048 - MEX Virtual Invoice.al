@@ -487,7 +487,7 @@ report 50048 "MEX Virtual Invoice"
                     UNTIL TempSalesHdr.NEXT = 0;
 
                 tempCust := Customer;
-                tempCust.Contact := '';
+                tempCust.Contact := Customer."Fax No.";
                 FormatAddr.Customer(BillToAddress, tempCust);//Customer); BC Upgrade
                 IF Customer."Pitex/Maquila No." <> '' THEN BEGIN
                     BillToAddress[8] := 'PITEX/' + Customer."Pitex/Maquila No.";
@@ -583,6 +583,10 @@ report 50048 "MEX Virtual Invoice"
                 CompanyInformation.GET('');
                 //FormatAddr.NifastMexCompanySlsDocs(CompanyAddress, CompanyInformation);//BC Upgrade
                 FormatAddr.Company(CompanyAddress, CompanyInformation);//BC Upgrade
+                CompanyAddress[4] := '';
+                CompanyAddress[8] := '';
+                CompanyAddress[6] := 'Fax: ' + CompanyInformation."Fax No.";
+                CompanyAddress[7] := '';
 
                 //>> NF1.00:CIS.SP 09-04-15
                 IF ExportToExcel THEN BEGIN
