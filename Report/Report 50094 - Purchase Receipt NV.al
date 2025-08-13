@@ -375,8 +375,14 @@ report 50094 "Purchase Receipt NV"
                 tempPurRcptHdr := "Purch. Rcpt. Header";
                 tempPurRcptHdr."Buy-from Contact" := '';
                 tempPurRcptHdr."Ship-to Contact" := '';
-                FormatAddress.PurchRcptBuyFrom(BuyFromAddress, tempPurRcptHdr);//"Purch. Rcpt. Header"); BC Upgrade
-                FormatAddress.PurchRcptShipTo(ShipToAddress, tempPurRcptHdr);//"Purch. Rcpt. Header");
+                if "Responsibility Center" = 'MPD' then begin
+                    FormatAddress.PurchRcptBuyFrom(BuyFromAddress, "Purch. Rcpt. Header"); //BC Upgrade tempPurRcptHdr);
+                    FormatAddress.PurchRcptShipTo(ShipToAddress, tempPurRcptHdr);//"Purch. Rcpt. Header");
+                end
+                else begin
+                    FormatAddress.PurchRcptBuyFrom(BuyFromAddress, tempPurRcptHdr);
+                    FormatAddress.PurchRcptShipTo(ShipToAddress, tempPurRcptHdr);//"Purch. Rcpt. Header");
+                end;
 
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN

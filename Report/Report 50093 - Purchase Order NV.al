@@ -595,9 +595,6 @@ report 50093 "Purchase Order NV"
                 END;
 
 
-
-
-
                 //>> RTT 09-21-05
                 IF RespCenter.GET("Responsibility Center") THEN
                     GetRespComments;
@@ -641,10 +638,11 @@ report 50093 "Purchase Order NV"
                 ELSE
                     ShipmentMethod.GET("Shipment Method Code");
 
+                CompanyAddress[5] := '';//BC Upgrade no need shown country code
                 tempPurHdr := "Purchase Header";
                 tempPurHdr."Buy-from Contact" := '';
                 tempPurHdr."Ship-to Contact" := '';
-                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, tempPurHdr);//"Purchase Header"); BC Upgrade
+                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header"); //BC Upgrade tempPurHdr);
                 FormatAddress.PurchHeaderShipTo(ShipToAddress, tempPurHdr);//"Purchase Header");
                 //>> RTT 09-21-05
                 IF (Vend.GET("Purchase Header"."Buy-from Vendor No.")) THEN
