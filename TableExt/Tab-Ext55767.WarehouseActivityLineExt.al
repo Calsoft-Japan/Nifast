@@ -44,7 +44,7 @@ tableextension 55767 "Warehouse Activity Line Ext" extends "Warehouse Activity L
     trigger OnBeforeInsert()
     begin
         //>>PFC
-        GetAssignedID;
+        GetAssignedID();
         //<<PFC
     end;
 

@@ -6,12 +6,11 @@ codeunit 50205 Tab111Subscriber
         IsHandled := true;
 
         IF (SalesShipmentLine.Type <> SalesShipmentLine.Type::" ") AND TempSalesLine.GET(TempSalesLine."Document Type"::Order, SalesShipmentLine."Order No.", SalesShipmentLine."Order Line No.")
-      THEN BEGIN
+      THEN
             IF (SalesHeader."Document Type" <> TempSalesLine."Document Type"::Order) OR
                (SalesHeader."No." <> TempSalesLine."Document No.")
             THEN
                 SalesHeader.GET(TempSalesLine."Document Type"::Order, SalesShipmentLine."Order No.");
-        end;
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Shipment Line", OnInsertInvLineFromShptLineOnBeforeAssigneSalesLine, '', false, false)]

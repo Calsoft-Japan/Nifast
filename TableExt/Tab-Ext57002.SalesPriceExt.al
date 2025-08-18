@@ -6,8 +6,6 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
         modify("Item No.")
         {
             trigger OnAfterValidate()
-            var
-                myInt: Integer;
             begin
                 //>>NV 091905 DRS  $09966 #10100
                 IF "Contract No." <> '' THEN BEGIN
@@ -19,10 +17,28 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
                     "Starting Date" := Contract."Starting Date";
                     "Ending Date" := Contract."Ending Date";
                     "Minimum Quantity" := 1;
+                    //TODO
+                    /*   "Contract Customer No." := Contract."Customer No.";
+                      "Contract Ship-to Code" := Contract."Ship-to Code";
+                      "Contract Location Code" := Contract."Location Code";
+                      "Contract Ship Location Code" := Contract."Shipping Location Code";
+                      "ContractSelling Location Code" := Contract."Selling Location Code";
+                      IF Contract."External Document No." <> '' THEN
+                          "External Document No." := Contract."External Document No."; */
+                    //TODO
                     VALIDATE("Unit of Measure Code", Item."Sales Unit of Measure");
                     "Allow Invoice Disc." := FALSE;
                     "Allow Line Disc." := FALSE;
                 END;
+                //TODO
+                /*   IF "Item No." <> '' THEN
+                      CALCFIELDS("Item Description");
+                  //<<NV 011206 RTT  $10571 #10571
+                  "FB Order Type" := Contract."FB Order Type";
+                  "Replenishment Method" := Contract."Default Repl. Method";
+                  "Method of Fullfillment" := Contract."Def. Method of Fullfillment"; */
+                //TODO
+                //<<NV 011206 RTT  $10571 #10571
             end;
         }
         field(50000; "Customer Cross Ref No."; Code[30])
@@ -70,11 +86,165 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
         { }
         field(50006; "Customer Bin"; Code[20])//NV 14017662->50006 BC Upgrade
         { }
+        //TODO
+        /*   field(14017614; "Alt. Price"; Decimal)
+          {
+              Description = 'NV';
+              Editable = false;
+          }
+          field(14017615; "Alt. Price UOM"; Code[10])
+          {
+              Description = 'NV';
+              Editable = false;
+          }
+          field(14017618; "External Document No."; Code[20])
+          {
+              Description = 'NV';
+          }
+          field(14017645; "Contract No."; Code[20])
+          {
+              Description = 'NV';
+              TableRelation = "Price Contract";
+          }
+          field(14017646; "Item Description"; Text[50])
+          {
+              CalcFormula = Lookup(Item.Description WHERE("No." = FIELD("Item No.")));
+              Description = 'NV';
+              Editable = false;
+              FieldClass = FlowField;
+          }
+          field(14017647; "Est. Usage"; Decimal)
+          {
+              DecimalPlaces = 0 : 5;
+              Description = 'NV';
+          }
+          field(14017648; Comments; Boolean)
+          {
+              CalcFormula = Exist("Sales Price Comment Line" WHERE("Item No." = FIELD("Item No."),
+                                                                    "Sales Type" = FIELD("Sales Type"),
+                                                                    "Sales Code" = FIELD("Sales Code"),
+                                                                    "Starting Date" = FIELD("Starting Date"),
+                                                                    "Currency Code" = FIELD("Currency Code"),
+                                                                    "Variant Code" = FIELD("Variant Code"),
+                                                                    "Unit of Measure Code" = FIELD("Unit of Measure Code"),
+                                                                   "Minimum Quantity" = FIELD("Minimum Quantity"),
+                                                                    "Contract No." = FIELD("Contract No.")));
+              Description = 'NV';
+              Editable = false;
+              Enabled = false;
+              FieldClass = FlowField;
+          }
+          field(14017649; "Contract Customer No."; Code[20])
+          {
+              Description = 'NV';
+          }
+          field(14017650; "Contract Ship-to Code"; Code[10])
+          {
+              Description = 'NV';
+          }
+          field(14017651; "Contract Location Code"; Code[10])
+          {
+              Description = 'NV';
+              TableRelation = Location WHERE("Use As In"-Transit=CONST(No),
+                                              "Rework Location"=CONST(No));
+          }
+          field(14017652; "Actual Usage"; Decimal)
+          {
+              CalcFormula = - Sum("Item Ledger Entry".Quantity WHERE("Contract No." = FIELD("Contract No."),
+                                                                     "Item No." = FIELD("Item No."),
+                                                                     "Entry Type" = CONST(Sale)));
+              DecimalPlaces = 0 : 5;
+              Description = 'NV';
+              Editable = false;
+              FieldClass = FlowField;
+          }
+          field(14017653; "Method of Fullfillment"; Option)
+          {
+              Description = 'NV';
+              OptionCaption = 'Standard,FillBill';
+              OptionMembers = Standard,FillBill;
+          }
+          field(14017654; "Min. Qty. on Hand"; Decimal)
+          {
+              DecimalPlaces = 0 : 5;
+              Description = 'NV';
+          }
+          field(14017655; "Initial Stocking Qty."; Decimal)
+          {
+              DecimalPlaces = 0 : 5;
+              Description = 'NV';
+          }
+          field(14017656; "Blanket Orders"; Boolean)
+          {
+              CalcFormula = Exist("Sales Line" WHERE("Document Type" = CONST("Blanket Order"),
+                                                      "Contract No." = FIELD("Contract No."),
+                                                      Type = CONST(Item),
+                                                      "No." = FIELD("Item No.")));
+              Description = 'NV';
+              Editable = false;
+              FieldClass = FlowField;
+          }
+          field(14017657; "Contract Ship Location Code"; Code[10])
+          {
+              Description = 'NV';
+              TableRelation = Location WHERE("Use As In"-Transit=CONST(No),
+                                              "Rework Location"=CONST(No));
+          }
+          field(14017658; "Replenishment Method"; Option)
+          {
+              Caption = 'Replenishment Method';
+              Description = 'NV';
+              OptionCaption = '" ,Automatic,Manual"';
+              OptionMembers = " ",Automatic,Manual;
+          }
+          field(14017659; "Reorder Quantity"; Decimal)
+          {
+              DecimalPlaces = 0 : 5;
+              Description = 'NV';
+          }
+          field(14017660; "Max. Quantity"; Decimal)
+          {
+              DecimalPlaces = 0 : 5;
+              Description = 'NV';
+          }
+          field(14017661; "Min. Quantity"; Decimal)
+          {
+              DecimalPlaces = 0 : 5;
+              Description = 'NV';
+          }
+          field(14017662; "Customer Bin"; Code[20])
+          {
+              Description = 'NV';
+          }
+          field(14017663; "ContractSelling Location Code"; Code[10])
+          {
+              Description = 'NV';
+              TableRelation = Location WHERE("Use As In"-Transit=CONST(No),
+                                              "Rework Location"=CONST(No));
+          }
+          field(37015330; "FB Tags"; Boolean)
+          {
+              CalcFormula = Exist("FB Tag" WHERE("Customer No." = FIELD("Contract Customer No."),
+                                                  "Ship-to Code" = FIELD("Contract Ship-to Code"),
+                                                  "Item No." = FIELD("Item No."),
+                                                  "Variant Code" = FIELD("Variant Code"),
+                                                  "Unit of Measure Code" = FIELD("Unit of Measure Code"),
+                                                  "Contract No." = FIELD("Contract No.")));
+              Description = 'NV';
+              Editable = false;
+              FieldClass = FlowField;
+          }
+          field(37015331; "FB Order Type"; Option)
+          {
+              Description = 'NV';
+              OptionCaption = '" ,Consigned,Non-Consigned"';
+              OptionMembers = " ",Consigned,"Non-Consigned";
+          } */
+        //TODO
     }
     var
-        ">>GV_NV": Integer;
         Contract: Record 50110;
-
+    //">>GV_NV": Integer;
     trigger OnDelete()
     begin
         //>>NV 092805 DRS  $09966 #10100
@@ -97,6 +267,26 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
     BEGIN
     END;
 
+    PROCEDURE GetAltUOM();
+    VAR
+    // ItemUOM: Record 5404;
+    BEGIN
+        //TODO
+        /*  ItemUOM.RESET;
+         ItemUOM.SETRANGE("Item No.", "Item No.");
+         ItemUOM.SETRANGE("Sales Qty Alt.", TRUE);
+         IF ItemUOM.FIND('-') THEN BEGIN
+             "Alt. Price UOM" := ItemUOM."Sales Price Per Alt.";
+             IF ItemUOM."Sales Price Per Alt." <> '' THEN BEGIN
+                 ItemUOM.RESET;
+                 ItemUOM.GET("Item No.", ItemUOM."Sales Price Per Alt.");
+                 "Alt. Price" := "Unit Price" * ItemUOM."Qty. per Unit of Measure";
+
+             END;
+         END; */
+        //TODO
+    END;
+
     PROCEDURE ShowLineComments();
     BEGIN
         //>> NF1.00:CIS.CM 09-29-15
@@ -113,5 +303,25 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
         //LineCommentSheet.SETTABLEVIEW(LineCommentLine);
         //LineCommentSheet.RUNMODAL;
         //<< NF1.00:CIS.CM 09-29-15
+    END;
+
+    PROCEDURE ShowBlanketOrders();
+    VAR
+    /* SalesLine: Record 37;
+    SalesLines: Page 516; */
+    BEGIN
+        //TODO
+        /*  CALCFIELDS("Blanket Orders");
+         IF NOT "Blanket Orders" THEN
+             EXIT;
+         SalesLine.SETRANGE("Document Type", SalesLine."Document Type"::"Blanket Order");
+         SalesLine.SETRANGE(Type, SalesLine.Type::Item);
+         SalesLine.SETRANGE("No.", "Item No.");
+         SalesLine.SETRANGE("Contract No.", "Contract No.");
+
+         CLEAR(SalesLines);
+         SalesLines.SETTABLEVIEW(SalesLine);
+         SalesLines.RUNMODAL; */
+        //TODO
     END;
 }

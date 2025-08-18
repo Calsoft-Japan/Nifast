@@ -18,6 +18,47 @@ tableextension 50115 "Sales Cr.Memo Line Ext" extends "Sales Cr.Memo Line"
             Caption = 'National';
             Description = 'AKK1606.01';
         }
+        //TODO
+        /*   field(14017611; "Order Date"; Date)
+          {
+              Description = 'NV';
+          }
+          field(14017615; "Salesperson Code"; Code[10])
+          {
+              Description = 'NV';
+              TableRelation = "Salesperson/Purchaser".Code WHERE(Sales = CONST(Yes));
+          }
+          field(14017616; "Inside Salesperson Code"; Code[10])
+          {
+              Description = 'NV';
+              TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(Yes));
+          }
+          field(14017618; "External Document No."; Code[20])
+          {
+              Description = 'NV';
+          }
+          field(14017633; "Line Comment"; Boolean)
+          {
+              Description = 'NF1.00:CIS.CM 09-29-15';
+              Editable = false;
+              Enabled = false;
+              FieldClass = FlowField;
+          }
+          field(14017645; "Contract No."; Code[20])
+          {
+              Description = 'NV';
+              TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
+          }
+          field(14017752; "Ship-to Code"; Code[10])
+          {
+              Description = 'NV';
+          }
+          field(14017756; "Item Group Code"; Code[10])
+          {
+              Description = 'NF1.00:CIS.CM 09-29-15';
+          }
+   */
+        //TODO
     }
     keys
     {

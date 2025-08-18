@@ -11,6 +11,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
             field("Buy-from Vendor Name 2"; Rec."Buy-from Vendor Name 2")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Buy-from Vendor Name 2 field.';
             }
         }
         moveafter("Buy-from Post Code"; "Buy-from Country/Region Code", "Buy-from Contact No.")
@@ -26,6 +27,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
             {
                 ApplicationArea = All;
                 Editable = FALSE;
+                ToolTip = 'Specifies the value of the Contract Note No. field.';
             }
         }
         moveafter("Contract Note No."; "Quote No.", "Vendor Order No.", "Vendor Shipment No.")
@@ -34,6 +36,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
             field("Assembly Order No."; Rec."Assembly Order No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Assembly Order No. field.';
             }
         }
         moveafter("Job Queue Status"; "No. of Archived Versions")
@@ -42,6 +45,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
             field("Pay-to Name 2"; Rec."Pay-to Name 2")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Pay-to Name 2 field.';
             }
         }
         moveafter("Pay-to Post Code"; "Pay-to Country/Region Code", "Pay-to Contact No.")
@@ -56,10 +60,12 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
             field("Sail-on Date"; Rec."Sail-on Date")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Sail-on Date field.';
             }
             field("Vessel Name"; Rec."Vessel Name")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Vessel Name field.';
             }
         }
         moveafter("Expected Receipt Date"; "Ship-to UPS Zone")
@@ -68,49 +74,58 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
             field("Ship by Date"; Rec."Ship by Date")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Ship by Date field.';
             }
             field("Patente Orignal"; rec."Patente Orignal")
             {
                 ApplicationArea = All;
                 Visible = "Patente OrignalVisible";
+                ToolTip = 'Specifies the value of the Patente Orignal field.';
             }
             field("Aduana E/S"; Rec."Aduana E/S")
             {
                 ApplicationArea = All;
                 Visible = "Aduana E/SVisible";
+                ToolTip = 'Specifies the value of the Aduana E/S field.';
             }
             field("Pediment No."; Rec."Pediment No.")
             {
                 ApplicationArea = All;
                 Visible = "Pediment No.Visible";
+                ToolTip = 'Specifies the value of the Pediment No. field.';
             }
             field("CVE Pedimento"; Rec."CVE Pedimento")
             {
                 ApplicationArea = All;
                 Visible = "CVE PedimentoVisible";
+                ToolTip = 'Specifies the value of the CVE Pedimento field.';
             }
             field("Fecha de entrada"; Rec."Fecha de entrada")
             {
                 ApplicationArea = All;
                 Visible = "Fecha de entradaVisible";
+                ToolTip = 'Specifies the value of the Fecha de entrada field.';
             }
             field("Tipo Cambio (USD)"; Rec."Tipo Cambio (USD)")
             {
                 ApplicationArea = All;
                 Visible = "Tipo Cambio (USD)Visible";
                 Editable = "Tipo Cambio (USD)Editable";
+                ToolTip = 'Specifies the value of the Tipo Cambio (USD) field.';
             }
             field("Tipo Cambio (JPY)"; rec."Tipo Cambio (JPY)")
             {
                 ApplicationArea = All;
                 Visible = "Tipo Cambio (JPY)Visible";
                 Editable = "Tipo Cambio (JPY)Editable";
+                ToolTip = 'Specifies the value of the Tipo Cambio (JPY) field.';
             }
             field("Currency Factor"; rec."Currency Factor")
             {
                 ApplicationArea = All;
                 DecimalPlaces = 0 : 5;
                 Visible = "Currency FactorVisible";
+                ToolTip = 'Specifies the value of the Currency Factor field.';
             }
         }
         moveafter("Area"; "Entry Point")
@@ -119,26 +134,156 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
             field("Entry/Exit No."; rec."Entry/Exit No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Entry/Exit No. field.';
             }
             field("Entry/Exit Date"; rec."Entry/Exit Date")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Entry/Exit Date field.';
+            }
+        }
+        addafter(Prepayment)
+        {
+            group(EDI_)
+            {
+                Caption = 'EDI';
+                /* field("EDI Order"; Rec."EDI Order")
+                {
+                    ToolTip = 'Specifies the value of the EDI Order field.';
+                    ApplicationArea = All;
+                }
+                field("EDI Internal Doc. No."; Rec."EDI Internal Doc. No.")
+                {
+                    Importance = Promoted;
+                    ToolTip = 'Specifies the value of the EDI Internal Doc. No. field.';
+                    ApplicationArea = All;
+                }
+                field("EDI PO Generated"; Rec."EDI PO Generated")
+                {
+                    ToolTip = 'Specifies the value of the EDI PO Generated field.';
+                    ApplicationArea = All;
+                }
+                field("EDI PO Gen. Date"; Rec."EDI PO Gen. Date")
+                {
+                    Importance = Promoted;
+                    ToolTip = 'Specifies the value of the EDI PO Gen. Date field.';
+                    ApplicationArea = All;
+                }
+                field("EDI Released"; Rec."EDI Released")
+                {
+                    ToolTip = 'Specifies the value of the EDI Released field.';
+                    ApplicationArea = All;
+                }
+                field("EDI Ship Adv. Gen."; Rec."EDI Ship Adv. Gen.")
+                {
+                    ToolTip = 'Specifies the value of the EDI Ship Adv. Gen. field.';
+                    ApplicationArea = All;
+                }
+                field("EDI Ship Adv. Gen Date"; Rec."EDI Ship Adv. Gen Date")
+                {
+                    ToolTip = 'Specifies the value of the EDI Ship Adv. Gen Date field.';
+                    ApplicationArea = All;
+                }
+                field("E-Mail Confirmation Handled"; Rec."E-Mail Confirmation Handled")
+                {
+                    ToolTip = 'Specifies the value of the E-Mail Confirmation Handled field.';
+                    ApplicationArea = All;
+                }
+                field("EDI Trade Partner"; Rec."EDI Trade Partner")
+                {
+                    ToolTip = 'Specifies the value of the EDI Trade Partner field.';
+                    ApplicationArea = All;
+                }
+                field("EDI Buy-from Code"; Rec."EDI Buy-from Code")
+                {
+                    ToolTip = 'Specifies the value of the EDI Buy-from Code field.';
+                    ApplicationArea = All;
+                }*/
             }
         }
     }
     actions
     {
+        addafter("Co&mments")
+        {
+            /*  action("E-&Mail List")
+             {
+                 Caption = 'E-&Mail List';
+
+                 trigger OnAction();
+                 var
+                     EMailListEntry: Record 14000908;
+                 begin
+                     EMailListEntry.RESET;
+                     EMailListEntry.SETRANGE("Table ID", DATABASE::"Purchase Header");
+                     EMailListEntry.SETRANGE(Type, "Document Type");
+                     EMailListEntry.SETRANGE(Code, "No.");
+                     PAGE.RUNMODAL(PAGE::"E-Mail List Entries", EMailListEntry);
+                 end;
+             } */
+        }
+        addafter("O&rder")
+        {
+            group(EDI)
+            {
+                Caption = 'EDI';
+                /*  action("EDI Receive Elements")
+                 {
+                     Caption = 'EDI Receive Elements';
+                     ToolTip = 'Executes the EDI Receive Elements action.';
+
+                     trigger OnAction();
+                     var
+                         EDIIntegration: Codeunit 14000363;
+                     begin
+                         TESTFIELD("EDI Order");
+
+                         EDIIntegration.ViewRecElements("EDI Internal Doc. No.");
+                     end;
+                 }
+                 action("EDI Associated Receive Documents")
+                 {
+                     Caption = 'EDI Associated Receive Documents';
+                     ToolTip = 'Executes the EDI Associated Receive Documents action.';
+
+                     trigger OnAction();
+                     var
+                         EDIDocumentStatus: Codeunit 14000379;
+                     begin
+                         CLEAR(EDIDocumentStatus);
+                         EDIDocumentStatus.PurchOrderAssocChangeDoc(Rec);
+                     end;
+                 }
+             }
+             group("E-Ship")
+             {
+                 Caption = 'E-Ship';
+                 action(Receives)
+                 {
+                     Caption = 'Receives';
+                     RunObject = Page 14000608;
+                     RunPageLink = "Source Type" = CONST(38),
+                                   "Source Subtype" = FIELD("Document Type"),
+                                   "Source ID" = FIELD("No.");
+                     RunPageView = SORTING("Source Type", "Source Subtype", "Source ID");
+                     ToolTip = 'Executes the Receives action.';
+                 }*/
+            }
+        }
         addfirst("F&unctions")
         {
             action("&Lot Entry")
             {
+                Image = List;
                 CaptionML = ENU = '&Lot Entry';
+                ApplicationArea = All;
+                ToolTip = 'Executes the &Lot Entry action.';
                 trigger OnAction()
                 VAR
                     LotEntry: Record 50002;
                 BEGIN
                     LotEntry.GetPurchLines(LotEntry."Document Type"::"Purchase Order", Rec."No.");
-                    COMMIT;
+                    COMMIT();
                     LotEntry.SETRANGE("Document Type", LotEntry."Document Type"::"Purchase Order");
                     LotEntry.SETRANGE("Document No.", Rec."No.");
                     PAGE.RUNMODAL(0, LotEntry);
@@ -146,17 +291,99 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
                 end;
             }
         }
+        addafter("Send Intercompany Purchase Order")
+        {
+            /*   action("E-Mail Confirmation")
+              {
+                  Caption = 'E-Mail Confirmation';
+                  ToolTip = 'Executes the E-Mail Confirmation action.';
+
+                  trigger OnAction();
+                  var
+                      EMailMgt: Codeunit 14000903;
+                  begin
+                      TESTFIELD("E-Mail Confirmation Handled", FALSE);
+
+                      EMailMgt.SendPurchaseConfirmation(Rec, TRUE, FALSE);
+                  end;
+              } */
+        }
+        addafter(Action186)
+        {
+            /*
+            group("E-Ship")
+            {
+                Caption = 'E-Ship';
+                action("Fast Receive")
+                {
+                    Caption = 'Fast Receive';
+                    ShortCutKey = 'Alt+F11';
+                    ToolTip = 'Executes the Fast Receive action.';
+
+                    trigger OnAction();
+                    var
+                        FastReceiveLine: Record 14000609;
+                    begin
+                        FastReceiveLine.RESET;
+                        FastReceiveLine.SETRANGE("Source Type", DATABASE::"Purchase Header");
+                        FastReceiveLine.SETRANGE("Source Subtype", "Document Type");
+                        FastReceiveLine.SETRANGE("Source ID", "No.");
+                        PAGE.RUNMODAL(PAGE::"Fast Receive Order", FastReceiveLine);
+                    end;
+                }
+            }
+             group(EDI_)
+            {
+                Caption = 'EDI';
+                action("Send EDI Purchase Order")
+                {
+                    Caption = 'Send EDI Purchase Order';
+                    Image = SendElectronicDocument;
+                    ToolTip = 'Executes the Send EDI Purchase Order action.';
+
+                    trigger OnAction();
+                    var
+                        EDIIntegration: Codeunit 14000363;
+                    begin
+                        EDIIntegration.SendPurchaseOrder(Rec);
+                    end;
+                }
+                action(Trace)
+                {
+                    Caption = 'Trace';
+                    Image = Trace;
+                    ToolTip = 'Executes the Trace action.';
+
+                    trigger OnAction();
+                    var
+                        EDITrace: Page 14002386;
+                    begin
+
+                        CLEAR(EDITrace);
+                        EDITrace.SetDoc("EDI Internal Doc. No.");
+                        EDITrace.RUNMODAL;
+                    end;
+                }
+            }*/
+        }
+
         addbefore(Approval)
         {
             action("PO Comment Import")
             {
+                Image = Import;
                 CaptionML = ENU = 'PO Comment Import';
                 RunObject = XMLport 50016;
+                ApplicationArea = All;
+                ToolTip = 'Executes the PO Comment Import action.';
             }
             action("PO Import")
             {
+                Image = Import;
                 CaptionML = ENU = 'PO Import';
-                RunObject = XMLport 50015
+                RunObject = XMLport 50015;
+                ApplicationArea = All;
+                ToolTip = 'Executes the PO Import action.';
             }
         }
         modify(Post)
@@ -166,7 +393,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
                 //-AKK1606.01--
                 wPedido := Rec."No.";
                 wTipoDoc := Rec."Document Type";
-                fValida;
+                fValida();
                 //+AKK1606.01++
             end;
         }
@@ -177,19 +404,19 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
                 //-AKK1606.01--
                 wPedido := Rec."No.";
                 wTipoDoc := Rec."Document Type";
-                fValida;
+                fValida();
                 //+AKK1606.01++
             end;
         }
     }
     var
-        "//AKK1606.01--": Integer;
+        // "//AKK1606.01--": Integer;
         wPedido: Code[20];
         //wTipoDoc: Option Quote,"Order",Invoice,"Credit Memo","Blanket Order","Return Order";
         wTipoDoc: Enum "Purchase Document Type";
-        "//AKK1606.01++": Integer;
+        // "//AKK1606.01++": Integer;
         StyeExpr: Text;
-        ReopenButtonVsible: Boolean;
+        //ReopenButtonVsible: Boolean;
         "Patente OrignalVisible": Boolean;
         "Aduana E/SVisible": Boolean;
         "Pediment No.Visible": Boolean;
@@ -215,7 +442,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
 
     trigger OnAfterGetRecord()
     begin
-        OnAfterGetCurrRecord_;
+        OnAfterGetCurrRecord_();
         //>> NIF 03-23-06 RTT
         IF Rec."Currency Code" <> 'USD' THEN
             StyeExpr := 'StrongAccent'
@@ -226,13 +453,13 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        OnAfterGetCurrRecord_
+        OnAfterGetCurrRecord_();
     end;
 
     LOCAL PROCEDURE OnAfterGetCurrRecord_();
     VAR
-        NIF_LV: Integer;
         GLSetup: Record 98;
+    //NIF_LV: Integer;
     BEGIN
         xRec := Rec;
         //>>NIF 040406 RTT #10775
@@ -247,7 +474,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
             "Tipo Cambio (JPY)Visible" := FALSE;
             "Currency FactorVisible" := FALSE;
         END ELSE BEGIN
-            GLSetup.GET;
+            GLSetup.GET();
             "Tipo Cambio (USD)Editable" := Rec."Currency Code" <> GLSetup."LCY Code";
             "Tipo Cambio (JPY)Editable" := (rec."Currency Code" <> GLSetup."LCY Code") AND (rec."Currency Code" <> GLSetup."Additional Reporting Currency");
         END;
@@ -256,7 +483,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
 
     PROCEDURE fValida();
     VAR
-        rLineas: Record 39;
+    // rLineas: Record 39;
     BEGIN
         //   //-AKK1606.01--
         //   {

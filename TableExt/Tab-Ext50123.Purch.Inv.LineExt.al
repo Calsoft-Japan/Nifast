@@ -57,6 +57,19 @@ tableextension 50123 "Purch. Inv. Line Ext" extends "Purch. Inv. Line"
             // cleaned
             TableRelation = Manufacturer;
         }
+        //TODO
+        /*   field(14017633; "Line Comment"; Boolean)
+          {
+              Description = 'NF1.00:CIS.NG 10-10-15';
+              Editable = false;
+              Enabled = false;
+              FieldClass = FlowField;
+          }
+          field(14017756; "Item Group Code"; Code[10])
+          {
+              Description = 'NF1.00:CIS.CM 09-29-15';
+          } */
+        //TODO
     }
     keys
     {

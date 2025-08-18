@@ -29,6 +29,23 @@ tableextension 50091 "User Setup Ext" extends "User Setup"
             TableRelation = "Responsibility Center";
         }
         //TODO
+        /* field(14017621; "Default Location Code"; Code[10])
+        {
+            Description = 'NV-Lot';
+            TableRelation = Location;
+        } 
+           field(14018070;"Edit QC Hold - On";Boolean)
+        {
+            Description = 'NV-Lot';
+        }
+        field(14018071;"Edit QC Hold - Off";Boolean)
+        {
+            Description = 'NV-Lot';
+        }
+        */
+        //TODO
+
+        //TODO
         field(50002; "E-Signature"; Blob) //Move from User to here. BC Upgrade 2025-06-23
         {
             Caption = 'E-Signature';

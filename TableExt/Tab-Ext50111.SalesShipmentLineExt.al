@@ -139,6 +139,62 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
             Caption = 'National';
             Description = 'AKK1606.01';
         }
+        //TODO
+        /*   field(14017611; "Order Date"; Date)
+          {
+              Description = 'NV';
+          }
+          field(14017615; "Salesperson Code"; Code[10])
+          {
+              Description = 'NV';
+              TableRelation = "Salesperson/Purchaser".Code WHERE("Sales" = CONST(Yes));
+          }
+          field(14017616; "Inside Salesperson Code"; Code[10])
+          {
+              Description = 'NV';
+              TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(Yes));
+          }
+          field(14017618; "External Document No."; Code[20])
+          {
+              Description = 'NV';
+          }
+          field(14017633; "Line Comment"; Boolean)
+          {
+              Description = 'NF1.00:CIS.CM 09-29-15';
+              Editable = false;
+              Enabled = false;
+              FieldClass = FlowField;
+          }
+          field(14017645; "Contract No."; Code[20])
+          {
+              Description = 'NV';
+              TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
+          }
+          field(14017752; "Ship-to Code"; Code[10])
+          {
+              Description = 'NV';
+          }
+          field(14017756; "Item Group Code"; Code[10])
+          {
+              Description = 'NF1.00:CIS.CM 09-29-15';
+          }
+          field(37015330; "FB Order No."; Code[20])
+          {
+              Description = 'NV';
+          }
+          field(37015331; "FB Line No."; Integer)
+          {
+              Description = 'NV';
+          }
+          field(37015332; "FB Tag No."; Code[20])
+          {
+              Description = 'NV';
+          }
+          field(37015333; "FB Customer Bin"; Code[20])
+          {
+              Description = 'NV';
+          } */
+        //TODO
     }
     keys
     {
@@ -159,23 +215,27 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
 
     PROCEDURE ShowSpecialFields();
     VAR
-        SalesShptLine: Record 111;
-        SpecialFields: Page 50007;
+    // SalesShptLine: Record 111;
+    // SpecialFields: Page 50007;
     BEGIN
-        IF (Type <> Type::Item) OR ("No." = '') THEN
-            EXIT;
-        SalesShptLine.SETRANGE("Document No.", "Document No.");
-        SalesShptLine.SETRANGE("Line No.", "Line No.");
-        SpecialFields.SETTABLEVIEW(SalesShptLine);
-        SpecialFields.RUN;
+        //TODO
+        /*  IF (Type <> Type::Item) OR ("No." = '') THEN
+             EXIT;
+         SalesShptLine.SETRANGE("Document No.", "Document No.");
+         SalesShptLine.SETRANGE("Line No.", "Line No.");
+         SpecialFields.SETTABLEVIEW(SalesShptLine);
+         SpecialFields.RUN; */
+        //TODO
     END;
 
     PROCEDURE ShowItemTrackingLines_gFnc(VAR TempItemLedgEntry_vRecTmp: Record 32 temporary);
     VAR
-        ItemTrackingMgt: Codeunit 6500;
+       // ItemTrackingMgt: Codeunit 6500;
     BEGIN
-        //>> NF1.00:CIS.NG    09/12/16
-        ItemTrackingMgt.CallPostedItemTrackingForm_gFnc(DATABASE::"Sales Shipment Line", 0, "Document No.", '', 0, "Line No.", TempItemLedgEntry_vRecTmp);
-        //<< NF1.00:CIS.NG    09/12/16
+        //TODO
+        /*  //>> NF1.00:CIS.NG    09/12/16
+         ItemTrackingMgt.CallPostedItemTrackingForm_gFnc(DATABASE::"Sales Shipment Line", 0, "Document No.", '', 0, "Line No.", TempItemLedgEntry_vRecTmp);
+         //<< NF1.00:CIS.NG    09/12/16 */
+        //TODO
     END;
 }

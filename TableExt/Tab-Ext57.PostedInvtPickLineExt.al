@@ -1,5 +1,22 @@
 tableextension 57357 "Posted Invt. Pick Line Ext" extends "Posted Invt. Pick Line"
 {
+    fields
+    {
+        //TODO
+        /* field(14017999; "License Plate No."; Code[20])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        } */
+        //TODO
+    }
+    keys
+    {
+        //TODO
+        /*   key(Key1; "License Plate No.")
+          {
+          } */
+        //TODO
+    }
     PROCEDURE ShowRegisteredActivityDoc();
     VAR
         RegisteredWhseActivHeader: Record 5772;
@@ -7,7 +24,7 @@ tableextension 57357 "Posted Invt. Pick Line Ext" extends "Posted Invt. Pick Lin
     BEGIN
         RegisteredWhseActivHeader.SETRANGE("No.", "No.");
         RegisteredPickCard.SETTABLEVIEW(RegisteredWhseActivHeader);
-        RegisteredPickCard.RUNMODAL;
+        RegisteredPickCard.RunModal();
     END;
 
     PROCEDURE ShowWhseEntries(RegisterDate: Date);
@@ -20,7 +37,7 @@ tableextension 57357 "Posted Invt. Pick Line Ext" extends "Posted Invt. Pick Lin
         WhseEntry.SETRANGE("Registering Date", RegisterDate);
         WhseEntry.SETRANGE("Reference Document", WhseEntry."Reference Document"::Pick);
         WhseEntries.SETTABLEVIEW(WhseEntry);
-        WhseEntries.RUNMODAL;
+        WhseEntries.RunModal();
     END;
 
 }

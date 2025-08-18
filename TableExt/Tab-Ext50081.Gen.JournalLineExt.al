@@ -5,13 +5,10 @@ tableextension 50081 "Gen. Journal Line Ext" extends "Gen. Journal Line"
         modify("Account No.")
         {
             trigger OnBeforeValidate()
-            var
-                myInt: Integer;
             begin
                 //SM 3/11/21-DEPT CODE auto enter
-                IF "Account No." = '877' THEN BEGIN
+                IF "Account No." = '877' THEN
                     "Shortcut Dimension 2 Code" := 'USUAL';
-                END;
                 //SM 3/11/21-DEPT CODE aut enter
             end;
         }
@@ -25,7 +22,7 @@ tableextension 50081 "Gen. Journal Line Ext" extends "Gen. Journal Line"
                 IF ("Account Type" = "Account Type"::Vendor) AND
                    ("Account No." <> '')
                 THEN BEGIN
-                    Vendor.RESET;
+                    Vendor.RESET();
                     Vendor.GET("Account No.");
                     IF Vendor."3 Way Currency Adjmt." THEN
                         VALIDATE(Amount);
@@ -220,12 +217,12 @@ tableextension 50081 "Gen. Journal Line Ext" extends "Gen. Journal Line"
         }
     }
     Var
-        CustLedgEntry: Record 21;
-        VendLedgEntry: Record 25;
-        NVM: Codeunit 50021;
-        SoftBlockError: Text[80];
-        ">>IST": Integer;
-        SpotRate: Decimal;
+    /*         CustLedgEntry: Record 21;
+            VendLedgEntry: Record 25;
+            //NVM: Codeunit 50021;
+            SoftBlockError: Text[80];
+            ">>IST": Integer;
+            SpotRate: Decimal; */
 
     trigger OnAfterDelete()
     var
@@ -234,36 +231,36 @@ tableextension 50081 "Gen. Journal Line Ext" extends "Gen. Journal Line"
         //>>FOREX
         IF "3-Way Applied" THEN
             IF CONFIRM('If you delete 3-way adjustment entry, all corresponding entries will be deleted') THEN BEGIN
-                "3WayGenJnlLine".RESET;
+                "3WayGenJnlLine".RESET();
                 "3WayGenJnlLine".SETRANGE("Journal Template Name", "Journal Template Name");
                 "3WayGenJnlLine".SETRANGE("Journal Batch Name", "Journal Batch Name");
                 "3WayGenJnlLine".SETRANGE("3-Way Line applied to", "Line No.");
-                IF "3WayGenJnlLine".FINDSET THEN
+                IF "3WayGenJnlLine".FINDSET() THEN
                     REPEAT
-                        "3WayGenJnlLine".DELETE;
-                    UNTIL "3WayGenJnlLine".NEXT = 0;
+                        "3WayGenJnlLine".DELETE();
+                    UNTIL "3WayGenJnlLine".NEXT() = 0;
             END ELSE
                 ERROR('User terminated delete of record');
 
         IF "3-Way Line applied to" <> 0 THEN
             IF CONFIRM('If you delete 3-way adjustment entry, all corresponding entries will be deleted') THEN BEGIN
-                "3WayGenJnlLine".RESET;
+                "3WayGenJnlLine".RESET();
                 "3WayGenJnlLine".SETRANGE("Journal Template Name", "Journal Template Name");
                 "3WayGenJnlLine".SETRANGE("Journal Batch Name", "Journal Batch Name");
                 "3WayGenJnlLine".SETRANGE("3-Way Line applied to", "3-Way Line applied to");
-                IF "3WayGenJnlLine".FINDSET THEN
+                IF "3WayGenJnlLine".FINDSET() THEN
                     REPEAT
                         IF "3WayGenJnlLine"."Line No." <> "Line No." THEN
-                            "3WayGenJnlLine".DELETE;
-                    UNTIL "3WayGenJnlLine".NEXT = 0;
+                            "3WayGenJnlLine".DELETE();
+                    UNTIL "3WayGenJnlLine".NEXT() = 0;
 
-                "3WayGenJnlLine".RESET;
+                "3WayGenJnlLine".RESET();
                 "3WayGenJnlLine".SETRANGE("Journal Template Name", "Journal Template Name");
                 "3WayGenJnlLine".SETRANGE("Journal Batch Name", "Journal Batch Name");
                 "3WayGenJnlLine".SETRANGE("Line No.", "3-Way Line applied to");
-                IF "3WayGenJnlLine".FINDSET THEN BEGIN
+                IF "3WayGenJnlLine".FINDSET() THEN BEGIN
                     "3WayGenJnlLine"."3-Way Applied" := FALSE;
-                    "3WayGenJnlLine".MODIFY;
+                    "3WayGenJnlLine".MODIFY();
                 END;
             END ELSE
                 ERROR('User terminated delete of record');
@@ -276,43 +273,45 @@ tableextension 50081 "Gen. Journal Line Ext" extends "Gen. Journal Line"
 
     PROCEDURE Check4XContract();
     VAR
-        Bank4XContract: Record 50010;
-        LText50000: Label 'There is not enough remaining to cover this line\Do you want to split this line ?';
-        LText50001: Label 'Select another Contract or use SPOT';
-        LText50002: Label 'The Amount avaliable on Exchange Contract No. %1 has already been used in this journal';
+    /*  Bank4XContract: Record 50010;
+     LText50000: Label 'There is not enough remaining to cover this line\Do you want to split this line ?';
+     LText50001: Label 'Select another Contract or use SPOT';
+     LText50002: Label 'The Amount avaliable on Exchange Contract No. %1 has already been used in this journal', Comment = '%1=Bank4XContract."No."'; */
     BEGIN
-        IF Bank4XContract.GET("Exchange Contract No.") THEN BEGIN
-            Bank4XContract.CALCFIELDS(JournalAmount);
-            IF Bank4XContract.JournalAmount = Bank4XContract.AmountYen THEN
-                ERROR(LText50002, Bank4XContract."No.");
+        //TODO
+        /*   IF Bank4XContract.GET("Exchange Contract No.") THEN BEGIN
+              Bank4XContract.CALCFIELDS(JournalAmount);
+              IF Bank4XContract.JournalAmount = Bank4XContract.AmountYen THEN
+                  ERROR(LText50002, Bank4XContract."No.");
 
-            IF (Bank4XContract.JournalAmount + Amount) > Bank4XContract.AmountYen THEN BEGIN
-                IF NOT CONFIRM(LText50000, FALSE) THEN
-                    ERROR(LText50001);
+              IF (Bank4XContract.JournalAmount + Amount) > Bank4XContract.AmountYen THEN BEGIN
+                  IF NOT CONFIRM(LText50000, FALSE) THEN
+                      ERROR(LText50001);
 
-                SplitLine(Bank4XContract);
-            END;
-        END;
+                  SplitLine(Bank4XContract);
+              END;
+          END; */
+        //TODO
     END;
 
     PROCEDURE SplitLine(VAR Bank4XContract: Record 50010);
     VAR
-        TempRec: Record 81;
+        GenJnlLine: Record 81;
         _Amount: Decimal;
     BEGIN
         //Modify line to split
 
-        LOCKTABLE;
-        TempRec.COPY(Rec);
+        LOCKTABLE();
+        GenJnlLine.COPY(Rec);
         _Amount := Amount;
         Amount := Bank4XContract.RemainingAmount;
         /////////////MODIFY;
 
         //Insert new line after split
-        TempRec.Amount := _Amount - Amount;
-        TempRec."Line No." := "Line No." + 5111;    ///10000;
-        TempRec."Exchange Contract No." := 'SPOT';
-        TempRec.INSERT;
+        GenJnlLine.Amount := _Amount - Amount;
+        GenJnlLine."Line No." := "Line No." + 5111;    ///10000;
+        GenJnlLine."Exchange Contract No." := 'SPOT';
+        GenJnlLine.INSERT();
 
         /*  //MAK NOTES from 060805
          { There was an error when inserting lines in this function.The first error stemmed
@@ -329,5 +328,4 @@ tableextension 50081 "Gen. Journal Line Ext" extends "Gen. Journal Line"
            on the original "seed" line number.
          } */
     END;
-
 }

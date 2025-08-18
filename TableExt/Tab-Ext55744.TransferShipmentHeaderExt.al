@@ -18,6 +18,16 @@ tableextension 55744 "Transfer Shipment Header Ext" extends "Transfer Shipment H
         {
             Editable = false;
         }
+        //TODO
+        /*   field(14017930; "Rework No."; Code[20])
+          {
+              Description = 'NF1.00:CIS.CM 09-29-15';
+          }
+          field(37015330; "FB Order No."; Code[20])
+          {
+              Description = 'NV-FB';
+          } */
+        //TODO
     }
 
 }

@@ -7,7 +7,7 @@ tableextension 55741 "Transfer Line Ext" extends "Transfer Line"
         {
             trigger OnAfterValidate()
             begin
-                GetPostedAssOrder;  //NF1.00:CIS.NG  10/06/15
+                GetPostedAssOrder();  //NF1.00:CIS.NG  10/06/15
             end;
         }
         field(50000; "Total Parcels"; Decimal)
@@ -102,7 +102,71 @@ tableextension 55741 "Transfer Line Ext" extends "Transfer Line"
 
         field(50001; "FB Order No."; Code[20])//NV-FB 37015330->50001 BC Upgrade
         { }
+
+        //TODO
+        /*  field(14017999; "License Plate No."; Code[20])
+         {
+             Description = 'NF1.00:CIS.NG  10-10-15';
+             Editable = false;
+         }
+         field(37015330; "FB Order No."; Code[20])
+         {
+             Description = 'NV-FB';
+         }
+         field(37015331; "FB Line No."; Integer)
+         {
+             Description = 'NV-FB';
+         }
+         field(37015332; "FB Tag No."; Code[20])
+         {
+             Description = 'NV-FB';
+         }
+         field(37015333; "FB Customer Bin"; Code[20])
+         {
+             Description = 'NV-FB';
+         }
+  */
+        //TODO
     }
+
+    PROCEDURE CalcEShipWhseOutstQtyBase(LocationPacking: Boolean; LocationCode: Code[10]) QtyBase: Decimal;
+    VAR
+    //TransferLine: Record 5741;
+    BEGIN
+        //TODO
+        /*  QtyBase := 0;
+
+         TransferLine.COPY(Rec);
+         IF LocationPacking THEN
+             TransferLine.SETRANGE("Transfer-from Code", LocationCode);
+         IF TransferLine.FIND('-') THEN
+             REPEAT
+                 TransferLine.CALCFIELDS("E-Ship Invt. Outst. Qty (Base)");
+                 IF (TransferLine."Qty. to Ship (Base)" = 0) OR
+                    (TransferLine."E-Ship Invt. Outst. Qty (Base)" <> 0)
+                 THEN BEGIN
+                     TransferLine.CALCFIELDS(
+                       "E-Ship Whse. Outst. Qty (Base)", "E-Ship Whse. Ship. Qty (Base)");
+                     QtyBase :=
+                       QtyBase +
+                       TransferLine."E-Ship Whse. Outst. Qty (Base)" +
+                       TransferLine."E-Ship Whse. Ship. Qty (Base)" +
+                       TransferLine."E-Ship Invt. Outst. Qty (Base)";
+                 END;
+             UNTIL TransferLine.NEXT = 0; */
+        //TODO
+    END;
+
+    PROCEDURE UpdateWeight();
+    BEGIN
+        //TODO
+        /*  "Line Gross Weight" := Quantity * "Gross Weight";
+         "Line Net Weight" := Quantity * "Net Weight";
+         "Outstanding Gross Weight" := "Outstanding Quantity" * "Gross Weight";
+         "Outstanding Net Weight" := "Outstanding Quantity" * "Net Weight";
+         "In-Transit Gross Weight" := "Qty. in Transit" * "Gross Weight"; */
+        //TODO
+    END;
 
     LOCAL PROCEDURE GetPostedAssOrder();
     VAR
@@ -110,15 +174,15 @@ tableextension 55741 "Transfer Line Ext" extends "Transfer Line"
         TransHeader: Record "Transfer Header";
     BEGIN
         //>> NF1.00:CIS.NG  10/06/15
-        PostedAssemblyHeader.RESET;
+        PostedAssemblyHeader.RESET();
         PostedAssemblyHeader.SETRANGE("Item No.", "Item No.");
         PostedAssemblyHeader.SETFILTER("Transfer Order No.", '=%1', '');
-        IF PostedAssemblyHeader.FINDLAST THEN BEGIN
+        IF PostedAssemblyHeader.FINDLAST() THEN BEGIN
             TransHeader := GetTransferHeader();
             TransHeader."Posted Assembly Order No." := PostedAssemblyHeader."No.";
-            TransHeader.MODIFY;
+            TransHeader.MODIFY();
             PostedAssemblyHeader."Transfer Order No." := "Document No.";
-            PostedAssemblyHeader.MODIFY;
+            PostedAssemblyHeader.MODIFY();
         END;
         //<< NF1.00:CIS.NG  10/06/15
     END;

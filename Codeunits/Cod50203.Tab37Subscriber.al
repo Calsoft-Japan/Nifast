@@ -1,12 +1,13 @@
 codeunit 50203 Tab37Subscriber
 {
     var
-        SalesSetup: Record "Sales & Receivables Setup";
-        NIFItemCrossRef : Record "Item Reference";
+        //  SalesSetup: Record "Sales & Receivables Setup";
+        NIFItemCrossRef: Record "Item Reference";
         SingleInstanceCu: Codeunit SingleInstance;
-        NVM: Codeunit 50021;
-        SalesSetupRead: Boolean;
-        SalesLineCurrentFieldNo: Integer;
+        //TODO
+        // NVM: Codeunit 50021;
+        //TODO
+        //SalesSetupRead: Boolean;
         EDITemp: Boolean;
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnAfterInitHeaderDefaults, '', false, false)]
@@ -20,15 +21,35 @@ codeunit 50203 Tab37Subscriber
         SalesLine."Storage Location" := Item."Country/Region of Origin Code";
         //SM 001 3/13/17 Canada request. Kanban No. and Country of Origin auto fill end
 
+
         //-AKK1606-- PEDIMENTOS
         SalesLine."Entry/Exit No." := SalesHeader."Entry/Exit No.";
         SalesLine."Entry/Exit Date" := SalesHeader."Entry/Exit Date";
         //+AKK1606++ PEDIMENTOS
 
+        //TODO
+        /*   //>>NIF GOLIVE 082905 MAK
+          SalesLine."External Document No." := SalesHeader."External Document No.";
+          //<<NIF GOLIVE 082905 MAK
+   */
+        //TODO
+
         //>>NIF #10076 07-06-05 RTT
         SalesLine."Model Year" := SalesHeader."Model Year";
         //<<NIF #10076 07-06-05 RTT
 
+        //TODO
+        /*   //>>NV
+          SalesLine."Order Date" := SalesHeader."Order Date";
+          SalesLine."Salesperson Code" := SalesHeader."Salesperson Code";
+          //<<NV
+          //>> NV #9752 get Contract No. if Item
+          IF (SalesLine.Type = SalesLine.Type::Item) AND (SalesLine."No." <> '') THEN
+              SalesLine."Contract No." := SalesHeader."Contract No."
+          ELSE
+              SalesLine."Contract No." := '';
+          //<< NV #9752 */
+        //TODO
     end;
 
     [EventSubscriber(ObjectType::Table, database::"Sales Line", OnAfterAssignItemValues, '', false, false)]
@@ -38,10 +59,12 @@ codeunit 50203 Tab37Subscriber
         SalesLine.National := Item.National;
         //+AKK1606++ PEDIMENTOS
 
+        //TODO
+        /*  //>> NIF 06-29-05 RTT
+         NVM.GetActiveDrawingRevision(Item."No.", SalesLine."Revision No.", SalesLine."Drawing No.", SalesLine."Revision Date");
+         //<< NIF 06-29-05 RTT  */
+        //TODO
 
-        //>> NIF 06-29-05 RTT
-        NVM.GetActiveDrawingRevision(Item."No.", SalesLine."Revision No.", SalesLine."Drawing No.", SalesLine."Revision Date");
-        //<< NIF 06-29-05 RTT
         //>> NIF 12-13-05 MAK
         IF Item."Net Weight" = 0 THEN
             MESSAGE('Item %1 does not have a net weight!', SalesLine."No.");
@@ -66,8 +89,6 @@ codeunit 50203 Tab37Subscriber
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnValidateNoOnAfterUpdateUnitPrice, '', false, false)]
     local procedure OnValidateNoOnAfterUpdateUnitPrice(var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line"; var TempSalesLine: Record "Sales Line" temporary)
-    var
-        SalesPrice: Record "Sales Price";
     begin
         //>> NIF 05-05-06 MAK
         IF STRPOS(COMPANYNAME, 'Mexi') <> 0 THEN BEGIN
@@ -92,7 +113,7 @@ codeunit 50203 Tab37Subscriber
 
         // >> EDI
         //SalesHeader.GET("Document Type","Document No.");
-        SalesLine.GetSalesHeader;
+        SalesLine.GetSalesHeader();
         // << EDI
     end;
 
@@ -114,7 +135,7 @@ codeunit 50203 Tab37Subscriber
     local procedure OnBeforeCheckShipmentDateBeforeWorkDate(var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line"; var HasBeenShown: Boolean; var IsHandled: Boolean)
     var
         CurrFieldNo: Integer;
-        Text014: Label '%1 %2 is before work date %3';
+        Text014: Label '%1 %2 is before work date %3', Comment = '%1=SalesLine.FieldCaption("Shipment Date"),%2=SalesLine."Shipment Date",%3=WorkDate()';
     begin
         IsHandled := true;
 
@@ -133,7 +154,7 @@ codeunit 50203 Tab37Subscriber
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnValidateQuantityOnAfterCalcBaseQty, '', false, false)]
     local procedure OnValidateQuantityOnAfterCalcBaseQty(var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line")
     var
-        NoOfCartons: Integer;
+    // NoOfCartons: Integer;
     begin
         //>> NIF #10069 RTT 06-01-05
         IF ((SalesLine."Document Type" = SalesLine."Document Type"::Quote) OR (SalesLine."Document Type" = SalesLine."Document Type"::Order)) AND
@@ -149,90 +170,139 @@ codeunit 50203 Tab37Subscriber
 
     end;
 
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnValidateQuantityOnAfterInitQty, '', false, false)]
+    local procedure OnValidateQuantityOnAfterInitQty(var SalesLine: Record "Sales Line"; var xSalesLine: Record "Sales Line"; CurrentFieldNo: Integer; var IsHandled: Boolean)
+    begin
+        SingleInstanceCu.SetSalesLineCurrentFieldNo(CurrentFieldNo);
+    end;
+
+
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnValidateQuantityOnBeforeValidateQtyToAssembleToOrder, '', false, false)]
     local procedure OnValidateQuantityOnBeforeValidateQtyToAssembleToOrder(var SalesLine: Record "Sales Line"; StatusCheckSuspended: Boolean; var IsHandled: Boolean)
     var
         Item: Record Item;
+        CurrentFieldNo: Integer;
     begin
+        SingleInstanceCu.GetSalesLineCurrentFieldNo(CurrentFieldNo);
+
+        //>>PFC
+        SalesLine.GetAltUOM();
+        SalesLine.GetAltPrice(CurrentFieldNo);
+        //<<PFC
+
+        Clear(SingleInstanceCu);
+
         //>>CIS.RAM 10/23/20
-        Item := SalesLine.GetItem;
+        Item := SalesLine.GetItem();
         IF Item."Carton Weight" = 0 THEN
             MESSAGE('Item %1 does not have a Carton Weight!\You will need to manually update the Box Weight', SalesLine."No.")
-        ELSE BEGIN
+        ELSE
             //IF "Quantity (Base)" MOD Item."Units per Parcel" <> 0 THEN
             //  MESSAGE('Line Qty. does not match Carton Qty.\You will need to manually update the Box Weight')
             //ELSE
             //  "Box Weight" := Item."Carton Weight" * ("Quantity (Base)"/Item."Units per Parcel");
             SalesLine."Box Weight" := Item."Carton Weight";
-        END;
         //<<CIS.RAM 10/23/20
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnAfterInitOutstanding, '', false, false)]
+    local procedure OnAfterInitOutstanding(var SalesLine: Record "Sales Line")
+    begin
+        //>>NV
+        SalesLine.UpdateWeight();
+        //<<NV
+    end;
+
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnBeforeInitQtyToShip, '', false, false)]
     local procedure OnBeforeInitQtyToShip(var SalesLine: Record "Sales Line"; FieldNo: Integer; var IsHandled: Boolean)
     begin
+        //TODO
+        /*  IsHandled := true;
+         // >> Shipping
+         // Qty. to Ship has been set to zero for not accidentially shipping the line when posting.
+         // This is not a Shipping Specific problem but and general "Feature" in Navision
+         // "Qty. to Ship" := "Outstanding Quantity";
+         // "Qty. to Ship (Base)" := "Outstanding Qty. (Base)";
+         IF SalesLine."Drop Shipment" THEN BEGIN
+             SalesSetup.GET();
+             IF SalesSetup."Blank Drop Shipm. Qty. to Ship" AND (FieldNo <> SalesLine.FIELDNO("Qty. to Ship"))
+             THEN BEGIN
+                 SalesLine."Qty. to Ship" := 0;
+                 SalesLine."Qty. to Ship (Base)" := 0;
+             END ELSE BEGIN
+                 SalesLine."Qty. to Ship" := SalesLine."Outstanding Quantity";
+                 SalesLine."Qty. to Ship (Base)" := SalesLine."Outstanding Qty. (Base)";
+             END;
+         END ELSE BEGIN
+             SalesLine."Qty. to Ship" := SalesLine."Outstanding Quantity";
+             SalesLine."Qty. to Ship (Base)" := SalesLine."Outstanding Qty. (Base)";
+         END;
 
-        // >> Shipping
-        // Qty. to Ship has been set to zero for not accidentially shipping the line when posting.
-        // This is not a Shipping Specific problem but and general "Feature" in Navision
-        // "Qty. to Ship" := "Outstanding Quantity";
-        // "Qty. to Ship (Base)" := "Outstanding Qty. (Base)";
-        IF SalesLine."Drop Shipment" THEN BEGIN
-            SalesSetup.GET;
-            IF SalesSetup."Blank Drop Shipm. Qty. to Ship" AND (FieldNo <> SalesLine.FIELDNO("Qty. to Ship"))
-            THEN BEGIN
-                SalesLine."Qty. to Ship" := 0;
-                SalesLine."Qty. to Ship (Base)" := 0;
-            END ELSE BEGIN
-                SalesLine."Qty. to Ship" := SalesLine."Outstanding Quantity";
-                SalesLine."Qty. to Ship (Base)" := SalesLine."Outstanding Qty. (Base)";
-            END;
-        END ELSE BEGIN
-            SalesLine."Qty. to Ship" := SalesLine."Outstanding Quantity";
-            SalesLine."Qty. to Ship (Base)" := SalesLine."Outstanding Qty. (Base)";
-        END;
-        // << Shipping
+         SalesLine."Std. Pack Qty. to Ship" := CalcStdPackQty("Qty. to Ship (Base)");
+         SalesLine."Package Qty. to Ship" := CalcPackageQty("Std. Pack Qty. to Ship");
+         // << Shipping
 
-        SalesLine.CheckServItemCreation();
+         SalesLine.CheckServItemCreation();
 
-        SalesLine.InitQtyToInvoice();
+         SalesLine.InitQtyToInvoice(); */
+        //TODO
     end;
 
-    local procedure GetSalesSetup()
+    /*  local procedure GetSalesSetup()
+     begin
+         if not SalesSetupRead then
+             SalesSetup.Get();
+         SalesSetupRead := true;
+     end; */
+
+    [EventSubscriber(ObjectType::Table, database::"Sales Line", OnAfterUpdateAmountsDone, '', false, false)]
+    local procedure OnAfterUpdateAmountsDone(var SalesLine: Record "Sales Line"; var xSalesLine: Record "Sales Line"; CurrentFieldNo: Integer)
     begin
-        if not SalesSetupRead then
-            SalesSetup.Get();
-        SalesSetupRead := true;
+        //TODO
+        /*  // >> NV
+         SalesLine."Net Unit Price" := 0;
+         IF SalesLine.Quantity <> 0 THEN
+             SalesLine."Net Unit Price" := SalesLineSalesLine.."Line Amount" / Quantity;
+         SalesLine."Line Cost" := "Unit Cost (LCY)" * Quantity;
+
+         SalesLine.GetAltPrice(CurrentFieldNo);
+         // << PFC JAM
+
+         //<<NV */
+        //TODO
     end;
 
     [EventSubscriber(ObjectType::Table, database::"Sales Line", OnBeforeCheckItemAvailable, '', false, false)]
     local procedure OnBeforeCheckItemAvailable(var SalesLine: Record "Sales Line"; CalledByFieldNo: Integer; var IsHandled: Boolean; CurrentFieldNo: Integer; xSalesLine: Record "Sales Line"; SalesHeader: Record "Sales Header")
     var
-        ItemCheckAvail: Codeunit "Item-Check Avail.";
-        CalledByDateField: Boolean;
+    /*  ItemCheckAvail: Codeunit "Item-Check Avail.";
+     CalledByDateField: Boolean; */
     begin
-        IsHandled := true;
+        //TODO
+        /*   IsHandled := true;
 
-        if SalesLine."Shipment Date" = 0D then begin
-            SalesLine.GetSalesHeader();
-            if SalesHeader."Shipment Date" <> 0D then
-                SalesLine.Validate("Shipment Date", SalesHeader."Shipment Date")
-            else
-                SalesLine.Validate("Shipment Date", WorkDate());
-        end;
+          if SalesLine."Shipment Date" = 0D then begin
+              SalesLine.GetSalesHeader();
+              if SalesHeader."Shipment Date" <> 0D then
+                  SalesLine.Validate("Shipment Date", SalesHeader."Shipment Date")
+              else
+                  SalesLine.Validate("Shipment Date", WorkDate());
+          end;
 
-        if ((CalledByFieldNo = CurrentFieldNo) or (CalledByFieldNo = SalesLine.FieldNo("Shipment Date"))) and GuiAllowed and
-           (SalesLine."Document Type" in [SalesLine."Document Type"::Order, SalesLine."Document Type"::Invoice]) and
-           (SalesLine.Type = SalesLine.Type::Item) and (SalesLine."No." <> '') and
-           (SalesLine."Outstanding Quantity" > 0) and
-           (SalesLine."Job Contract Entry No." = 0) and
-           not SalesLine."Special Order" then BEGIN
-            CalledByDateField :=
-              CalledByFieldNo IN [SalesLine.FIELDNO("Shipment Date"), SalesLine.FIELDNO("Requested Delivery Date"), SalesLine.FIELDNO("Promised Delivery Date"),
-                                  SalesLine.FIELDNO("Planned Shipment Date"), SalesLine.FIELDNO("Planned Delivery Date")];
-            IF ItemCheckAvail.SalesLineCheck(SalesLine, CalledByDateField) THEN
-                ItemCheckAvail.RaiseUpdateInterruptedError();
-        end;
+          if ((CalledByFieldNo = CurrentFieldNo) or (CalledByFieldNo = SalesLine.FieldNo("Shipment Date"))) and GuiAllowed and
+             (SalesLine."Document Type" in [SalesLine."Document Type"::Order, SalesLine."Document Type"::Invoice]) and
+             (SalesLine.Type = SalesLine.Type::Item) and (SalesLine."No." <> '') and
+             (SalesLine."Outstanding Quantity" > 0) and
+             (SalesLine."Job Contract Entry No." = 0) and
+             not SalesLine."Special Order" then BEGIN
+              CalledByDateField :=
+                CalledByFieldNo IN [SalesLine.FIELDNO("Shipment Date"), SalesLine.FIELDNO("Requested Delivery Date"), SalesLine.FIELDNO("Promised Delivery Date"),
+                                    SalesLine.FIELDNO("Planned Shipment Date"), SalesLine.FIELDNO("Planned Delivery Date")];
+              IF ItemCheckAvail.SalesLineCheck(SalesLine, CalledByDateField) THEN
+                  ItemCheckAvail.RaiseUpdateInterruptedError();
+          end; */
+        //TODO
     end;
 
     [EventSubscriber(ObjectType::Table, database::"Sales Line", OnBeforeCreateDim, '', false, false)]
@@ -265,6 +335,8 @@ codeunit 50203 Tab37Subscriber
     [EventSubscriber(ObjectType::Table, database::"Sales Line", OnAfterGetUnitCost, '', false, false)]
     local procedure OnAfterGetUnitCost(var SalesLine: Record "Sales Line"; Item: Record Item)
     begin
+        //CIS.RAM 09/10/2017 Reopened following four lines of code
+        //>> WC AVG COST FIX
         // {
         //       IF (Item."Costing Method" <> Item."Costing Method"::Average) AND
         //         (Item."Costing Method" <> Item."Costing Method"::FIFO) AND

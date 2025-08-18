@@ -16,5 +16,32 @@ tableextension 55747 "Transfer Receipt Line Ext" extends "Transfer Receipt Line"
         {
             // cleaned
         }
+        //TODO
+        /*  field(14017930; "Rework No."; Code[20])
+         {
+             Description = 'NF1.00:CIS.CM 09-29-15';
+         }
+         field(14017999; "License Plate No."; Code[20])
+         {
+             Description = 'NF1.00:CIS.NG  10-10-15';
+             Editable = false;
+         }
+         field(37015330; "FB Order No."; Code[20])
+         {
+             Description = 'NV-FB';
+         }
+         field(37015331; "FB Line No."; Integer)
+         {
+             Description = 'NV-FB';
+         }
+         field(37015332; "FB Tag No."; Code[20])
+         {
+             Description = 'NV-FB';
+         }
+         field(37015333; "FB Customer Bin"; Code[20])
+         {
+             Description = 'NV-FB';
+         } */
+        //TODO
     }
 }

@@ -4,9 +4,12 @@ codeunit 50202 Tab27Subscriber
     local procedure OnBeforeOnInsert(var Item: Record Item; var IsHandled: Boolean; xRecItem: Record Item)
     begin
         //>> NIF 06-08-05 RTT
-        GetInvtSetup;
+        GetInvtSetup();
         Item.VALIDATE("Item Tracking Code", InventorySetup."Def. Item Tracking Code");
         Item.VALIDATE("Lot Nos.", InventorySetup."Def. Lot Nos.");
+        //TODO
+        //Item.VALIDATE("E-Ship Tracking Code", InventorySetup."Def. E-ship Tracking Code");
+        //TODO
         //<< NIF 06-08-05 RTT
     end;
 
@@ -19,6 +22,6 @@ codeunit 50202 Tab27Subscriber
     end;
 
     var
-        HasInvtSetup: Boolean;
         InventorySetup: Record "Inventory Setup";
+        HasInvtSetup: Boolean;
 }

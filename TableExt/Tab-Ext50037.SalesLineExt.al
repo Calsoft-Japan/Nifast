@@ -12,17 +12,19 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         {
             trigger OnAfterValidate()
             var
-                SalesSetup: Record "Sales & Receivables Setup";
+            //   SalesSetup: Record "Sales & Receivables Setup";
             begin
-                // Shipping
-                // Qty. to Ship has been set to zero for not accidentially shipping the line when posting.
-                // This is not a Shipping Specific problem but and general "Feature" in Navision
-                IF "Drop Shipment" THEN BEGIN
-                    SalesSetup.GET;
-                    IF SalesSetup."Blank Drop Shipm. Qty. to Ship" THEN
-                        VALIDATE("Qty. to Ship", 0);
-                END;
-                // Shipping
+                //TODO
+                /*   // Shipping
+                  // Qty. to Ship has been set to zero for not accidentially shipping the line when posting.
+                  // This is not a Shipping Specific problem but and general "Feature" in Navision
+                  IF "Drop Shipment" THEN BEGIN
+                      SalesSetup.GET();
+                      IF SalesSetup."Blank Drop Shipm. Qty. to Ship" THEN
+                          VALIDATE("Qty. to Ship", 0);
+                  END;
+                  // Shipping */
+                //TODO
             end;
         }
         modify("Blanket Order Line No.")
@@ -42,17 +44,24 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         {
             trigger OnAfterValidate()
             var
-                Res: Record Resource;
+            // Res: Record Resource;
             begin
-                case Type of
-                    Type::Resource:
-                        begin
-                            Res.GET("No.");
-                            "Gross Weight" := Res."Gross Weight";
-                            "Net Weight" := Res."Net Weight";
-                            "Unit Volume" := Res."Unit Volume";
-                        End;
-                end;
+                //TODO
+                /*   // << Shipping
+                  CASE Type OF
+                      Type::Item:
+                          Rec."Dimmed Weight" := Item."Dimmed Weight" * "Qty. per Unit of Measure";
+                      Type::Resource:
+                          BEGIN
+                              Res.GET("No.");
+                              "Gross Weight" := Res."Gross Weight";
+                              "Net Weight" := Res."Net Weight";
+                              "Dimmed Weight" := Res."Dimmed Weight";
+                              "Unit Volume" := Res."Unit Volume";
+                          END;
+                  END;
+                  // >> Shipping */
+                //TODO
             end;
         }
         field(50000; "EDI Line No."; Integer)
@@ -172,17 +181,180 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         {
             Description = 'CIS.Ram IoT';
         }
+        //TODO
+        /* field(14017611; "Order Date"; Date)
+        {
+            Description = 'NV - FB';
+        }
+        field(14017615; "Salesperson Code"; Code[10])
+        {
+            Description = 'NV - FB';
+            TableRelation = "Salesperson/Purchaser".Code WHERE(Sales = CONST(Yes));
+        }
+        field(14017616; "Inside Salesperson Code"; Code[10])
+        {
+            Description = 'NV - FB';
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(Yes));
+        }
+        field(14017618; "External Document No."; Code[20])
+        {
+            Description = 'NV - FB';
+        }
+        field(14017633; "Line Comment"; Boolean)
+        {
+            Description = 'NF1.00:CIS.NG 10-10-15';
+            Editable = false;
+            Enabled = false;
+            FieldClass = FlowField;
+            InitValue = false;
+        }
+        field(14017645; "Contract No."; Code[20])
+        {
+            Description = 'NV - FB';
+            TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
+
+            trigger OnValidate();
+            var
+                SalesHeadr: Record "Sales Header";
+            begin
+
+                IF ("Contract No." <> xRec."Contract No.") THEN BEGIN
+                    //contract must either be blank, or match that of header
+                    IF "Contract No." <> '' THEN BEGIN
+                        SalesHeadr := GetSalesHeader();
+                        TESTFIELD("Contract No.", SalesHeadr."Contract No.");
+                    END;
+
+                    UpdateUnitPrice(FIELDNO("Contract No."));
+                END;
+            end;
+        }
+        field(14017752; "Ship-to Code"; Code[10])
+        {
+            Description = 'NV - FB';
+        }
+        field(14017756; "Item Group Code"; Code[10])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(37015330; "FB Order No."; Code[20])
+        {
+            Description = 'NV - FB';
+        }
+        field(37015331; "FB Line No."; Integer)
+        {
+            Description = 'NV - FB';
+        }
+        field(37015332; "FB Tag No."; Code[20])
+        {
+            Description = 'NV - FB';
+        }
+        field(37015333; "FB Customer Bin"; Code[20])
+        {
+            Description = 'NV - FB';
+        } */
+        //TODO
     }
 
     Var
-        ShippingAgent: Record 291;
-        SalesSetup: Record 311;
-        NVM: Codeunit 50021;
-        NIFItemCrossRef: Record 5777;
-        SalesPrice: Record 7002;
+        /*  ShippingAgent: Record 291;
+         SalesSetup: Record 311;
+         NIFItemCrossRef: Record 5777;
+         NVM: Codeunit 50021;
+         SalesPrice: Record 7002; */
         RunFromEDI: Boolean;
         EDITemp: Boolean;
-        Text14000701: Label 'Packages already exist for this line.';
+    // Text14000701: Label 'Packages already exist for this line.';
+
+    PROCEDURE CalcStdPackQty(Qty: Decimal): Decimal;
+    BEGIN
+        //TODO
+        /*  IF "Qty. per Std. Pack" <> 0 THEN
+             EXIT(ROUND(Qty / "Qty. per Std. Pack", 0.00001))
+         ELSE
+             EXIT(0); */
+        //TODO
+    END;
+
+    PROCEDURE CalcPackageQty(Qty: Decimal): Decimal;
+    BEGIN
+        //TODO
+        /*   IF "Std. Packs per Package" <> 0 THEN
+              EXIT(ROUND(Qty / "Std. Packs per Package", 0.00001))
+          ELSE
+              EXIT(0); */
+        //TODO
+    END;
+
+    PROCEDURE CalcEShipWhseOutstQtyBase(LocationPacking: Boolean; LocationCode: Code[10]) QtyBase: Decimal;
+    VAR
+    //   SalesLine: Record 37;
+    BEGIN
+        //TODO
+        /* QtyBase := 0;
+
+        SalesLine.COPY(Rec);
+        IF LocationPacking THEN
+            SalesLine.SETRANGE("Location Code", LocationCode);
+        IF SalesLine.FIND('-') THEN
+            REPEAT
+                SalesLine.CALCFIELDS("E-Ship Invt. Outst. Qty (Base)");
+                //>> NF1.00:CIS.NG    10/12/16
+                //IF (SalesLine."Qty. to Ship (Base)" = 0) OR (SalesLine."E-Ship Invt. Outst. Qty (Base)"<> 0)
+                IF (SalesLine."Qty. to Ship (Base)" = 0) AND (SalesLine."E-Ship Invt. Outst. Qty (Base)" <> 0)
+                //<< NF1.00:CIS.NG    10/12/16
+                THEN BEGIN
+                    SalesLine.CALCFIELDS(
+                      "E-Ship Whse. Outst. Qty (Base)", "E-Ship Whse. Ship. Qty (Base)");
+                    QtyBase :=
+                      QtyBase +
+                      SalesLine."E-Ship Whse. Outst. Qty (Base)" + SalesLine."E-Ship Whse. Ship. Qty (Base)" +
+                      SalesLine."E-Ship Invt. Outst. Qty (Base)";
+                END;
+            UNTIL SalesLine.NEXT = 0; */
+        //TODO
+    END;
+
+    //TODO
+    /*   LOCAL PROCEDURE UpdateRequiredShippingAgent();
+     VAR
+     RequiredShippingAgent: Record 14000722;
+    ShippingAgent: Record 291;
+    EShipAgentService: Record 14000708; 
+     BEGIN
+           IF NOT Pack THEN
+              EXIT;
+
+          CLEAR(RequiredShippingAgent);
+          IF NOT RequiredShippingAgent.GET(Type, "No.", SalesHeader."Shipping Agent Code")
+          THEN BEGIN
+              RequiredShippingAgent.RESET;
+              RequiredShippingAgent.SETRANGE(Type, Type);
+              RequiredShippingAgent.SETRANGE(Code, "No.");
+              RequiredShippingAgent.SETRANGE("Use for All Shipping Agents", TRUE);
+              IF NOT RequiredShippingAgent.FIND('-') THEN
+                ;
+          END;
+
+          IF RequiredShippingAgent."Shipping Agent Code" <> '' THEN BEGIN
+              GetSalesHeader;
+
+              VALIDATE("Required Shipping Agent Code", RequiredShippingAgent."Shipping Agent Code");
+              ShippingAgent.GET("Required Shipping Agent Code");
+              CASE TRUE OF
+                  EShipAgentService.InternationalShipment(ShippingAgent, SalesHeader."Ship-to Country/Region Code"):
+                      VALIDATE("Required E-Ship Agent Service", RequiredShippingAgent."Required Int. Ship. Agent Serv");
+                  EShipAgentService.UPSCanadianShipment(ShippingAgent, SalesHeader."Ship-to Country/Region Code"):
+                      VALIDATE("Required E-Ship Agent Service", RequiredShippingAgent."Req. UPS CA Ship. Agent Serv.");
+                  EShipAgentService.UPSPuertoRicoShipment(ShippingAgent, SalesHeader."Ship-to Country/Region Code"):
+                      VALIDATE("Required E-Ship Agent Service", RequiredShippingAgent."Req. UPS PR Ship. Agent Serv.");
+                  ELSE
+                      VALIDATE("Required E-Ship Agent Service", RequiredShippingAgent."Required Dom. Ship. Agent Serv");
+              END;
+              VALIDATE("Allow Other Ship. Agent/Serv.", RequiredShippingAgent."Allow Other Service");
+          END;
+     END; */
+    //TODO
 
     PROCEDURE SetRunFromEDI(EDI: Boolean);
     BEGIN
@@ -204,22 +376,32 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         // << EDI
     END;
 
+    PROCEDURE AllowInWarehousePosting(): Boolean;
+    BEGIN
+        //TODO
+        // EXIT("Shipping Charge" OR ((Type = Type::Resource) AND Pack));
+        //TODO
+    END;
+
+
     PROCEDURE "<<NIF fcn>>"();
     BEGIN
     END;
 
     PROCEDURE ShowSpecialFields();
     VAR
-        SalesLine: Record 37;
-        Specialfields: Page 50006;
+    // SalesLine: Record 37;
+    // Specialfields: Page 50006;
     BEGIN
-        IF (Type <> Type::Item) OR ("No." = '') THEN
-            EXIT;
-        SalesLine.SETRANGE("Document Type", "Document Type");
-        SalesLine.SETRANGE("Document No.", "Document No.");
-        SalesLine.SETRANGE("Line No.", "Line No.");
-        Specialfields.SETTABLEVIEW(SalesLine);
-        Specialfields.RUN;
+        //TODO
+        /*  IF (Type <> Type::Item) OR ("No." = '') THEN
+             EXIT;
+         SalesLine.SETRANGE("Document Type", "Document Type");
+         SalesLine.SETRANGE("Document No.", "Document No.");
+         SalesLine.SETRANGE("Line No.", "Line No.");
+         Specialfields.SETTABLEVIEW(SalesLine);
+         Specialfields.RUN; */
+        //TODO
     END;
 
     PROCEDURE CheckParcelQty(VAR OrderQty: Decimal): Boolean;
@@ -227,6 +409,9 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         Item: Record 27;
         OrderMultiple: Decimal;
         ParcelOrderQty: Decimal;
+        TextConst001: Label 'Item %1 has a Standard Net Pack of %2 .\', Comment = '%1=ItemNo.,%2=OrderMultiple';
+        TextConst002: Label 'A quantity of %3 %7 would create an even Pack quantity of %4.\\', Comment = '%3=ParcleOrderQty,%7=ItemBaseUnitOfMeasure,%4=ParcelOrderQty DIV OrderMultiple';
+        TextConst003: Label 'Do you want to change the quantity from %5 to %6?', Comment = '%5=OrderQty,%6=ParcelOrderQty';
     BEGIN
         //function passes and returns qty through variable
         //also returns TRUE if qty was changed
@@ -249,17 +434,15 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         ParcelOrderQty := ((OrderQty DIV OrderMultiple) + 1) * OrderMultiple;
 
         //exit if not confirmed
-        IF GUIALLOWED THEN BEGIN  //NF1.00:CIS.NG  10/30/15
+        IF GUIALLOWED THEN  //NF1.00:CIS.NG  10/30/15
             IF NOT CONFIRM(
-              STRSUBSTNO('Item %1 has a Standard Net Pack of %2 .\' +
-                         'A quantity of %3 %7 would create an even Pack quantity of %4.\\' +
-                         'Do you want to change the quantity from %5 to %6?',
+              STRSUBSTNO(TextConst001 + TextConst002 + TextConst003,
                              Item."No.", OrderMultiple,
                                 ParcelOrderQty, ParcelOrderQty DIV OrderMultiple,
                                    OrderQty, ParcelOrderQty, Item."Base Unit of Measure"))
                  THEN
                 EXIT;
-        END;  //NF1.00:CIS.NG  10/30/15
+        //NF1.00:CIS.NG  10/30/15
 
         //if confirmed, pass back new quantity
         OrderQty := ParcelOrderQty;
@@ -290,11 +473,122 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             "Unit Cost" :=
               ROUND(
                 CurrExchRate.ExchangeAmtLCYToFCY(
-                  GetDate, SalesHeader."Currency Code",
+                  GetDate(), SalesHeader."Currency Code",
                   "Unit Cost (LCY)", SalesHeader."Currency Factor"),
                   Currency."Unit-Amount Rounding Precision")
         END ELSE
             "Unit Cost" := "Unit Cost (LCY)";
+    END;
+
+    PROCEDURE InsertLineComments();
+    VAR
+    // CommentLine: Record 97;
+    BEGIN
+        //TODO
+        /*  CommentLine.SETRANGE("Table Name", CommentLine."Table Name"::Item);
+         CommentLine.SETRANGE("No.", "No.");
+         CommentLine.SETRANGE("Include in Sales Orders", TRUE);
+         IF CommentLine.FIND('-') THEN
+             REPEAT
+             //>> NF1.00:CIS.CM 09-29-15
+             //SalesLineCommentLine.INIT;
+             //SalesLineCommentLine."Document Type" := "Document Type";
+             //SalesLineCommentLine."No." := "Document No.";
+             //SalesLineCommentLine."Doc. Line No." := "Line No.";
+             //SalesLineCommentLine."Line No." := CommentLine."Line No.";
+             //SalesLineCommentLine.Code := CommentLine.Code;
+             //SalesLineCommentLine.Comment := CommentLine.Comment;
+             //SalesLineCommentLine."Print On Quote" := CommentLine."Print On Sales Quote";
+             //SalesLineCommentLine."Print On Pick Ticket" := CommentLine."Print On Pick Ticket";
+             //SalesLineCommentLine."Print On Order Confirmation" := CommentLine."Print On Order Confirmation";
+             //SalesLineCommentLine."Print On Shipment" := CommentLine."Print On Shipment";
+             //SalesLineCommentLine."Print On Invoice" := CommentLine."Print On Sales Invoice";
+             //SalesLineCommentLine.INSERT(TRUE);
+             //<< NF1.00:CIS.CM 09-29-15
+             UNTIL CommentLine.NEXT() = 0; */
+        //TODO
+    END;
+
+    PROCEDURE CheckIfLineComments(): Boolean;
+    VAR
+    // CommentLine: Record 97;
+    BEGIN
+        //TODO
+        /*  CommentLine.SETRANGE("Table Name", CommentLine."Table Name"::Item);
+         CommentLine.SETRANGE("No.", "No.");
+         CommentLine.SETRANGE("Include in Sales Orders", TRUE);
+         EXIT(CommentLine.FIND('-')); */
+        //TODO
+    END;
+
+    PROCEDURE GetAltUOM();
+    VAR
+    // ItemUOMRec: Record 5404;
+    BEGIN
+        //TODO
+        /*  IF "Quantity (Base)" = 0 THEN EXIT;
+         ItemUOMRec.RESET;
+         ItemUOMRec.SETRANGE("Item No.", "No.");
+         ItemUOMRec.SETRANGE("Sales Qty Alt.", TRUE);
+
+         IF NOT ItemUOMRec.ISEMPTY THEN BEGIN
+             ItemUOMRec.FIND('-');
+
+             //>> NIF 03/17/0
+             IF ItemUOMRec."Alt. Base Qty." < 1 THEN
+                 "Alt. Quantity" := "Quantity (Base)" / ItemUOMRec."Qty. per Unit of Measure"
+             ELSE
+                 //<< NIF
+                 "Alt. Quantity" := "Quantity (Base)" * ItemUOMRec."Alt. Base Qty.";
+             "Alt. Qty. UOM" := ItemUOMRec.Code;
+             "Alt. Price UOM" := ItemUOMRec."Sales Price Per Alt.";
+             //>> NIF 06-21-05
+             //use current uom if existing one is blank
+             //END
+         END ELSE BEGIN
+             "Alt. Quantity" := "Quantity (Base)" * "Qty. per Unit of Measure";
+             "Alt. Qty. UOM" := "Unit of Measure Code";
+             "Alt. Price UOM" := "Unit of Measure Code";
+         END;
+         //<< NIF 06-21-05 */
+        //TODO
+    END;
+
+    PROCEDURE GetAltPrice(CalledByFieldNo: Integer);
+    VAR
+    //  ItemUOMRec: Record 5404;
+    BEGIN
+        //TODO
+        /*    //>> NIF RTT 04-25-05
+           //if alt. price was entered, then do not recalc
+           IF (CalledByFieldNo = FIELDNO("Alt. Price")) THEN
+               EXIT;
+           //<< NIF RTT 04-25-05
+
+           IF "Alt. Price UOM" = '' THEN EXIT;
+           ItemUOMRec.GET("No.", "Alt. Price UOM");
+           IF ItemUOMRec."Alt. Base Qty." <> 0 THEN BEGIN
+               "Alt. Price" := ROUND("Net Unit Price" / ItemUOMRec."Alt. Base Qty.", 0.01, '>');
+               "Alt. Sales Cost" := ROUND("Unit Cost" / ItemUOMRec."Alt. Base Qty.", 0.01, '>');
+               //>> NIF 06-12-05
+               //  END;
+           END
+           ELSE BEGIN
+               "Alt. Price" := ROUND("Net Unit Price" / ItemUOMRec."Qty. per Unit of Measure", 0.01, '>');
+               "Alt. Sales Cost" := ROUND("Unit Cost" / ItemUOMRec."Qty. per Unit of Measure", 0.01, '>');
+           END;
+           //<< NIF 06-12-05 */
+        //TODO
+    END;
+
+    PROCEDURE UpdateWeight();
+    BEGIN
+        //TODO
+        /*  "Line Gross Weight" := Quantity * "Gross Weight";
+         "Line Net Weight" := Quantity * "Net Weight";
+         "Outstanding Gross Weight" := "Outstanding Quantity" * "Gross Weight";
+         "Outstanding Net Weight" := "Outstanding Quantity" * "Net Weight"; */
+        //TODO
     END;
 
     PROCEDURE ShowVendor();
@@ -303,12 +597,11 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         Item: Record 27;
     BEGIN
         //>> NF1.00:CIS.NG 09-01-15
-        IF (Type = Type::Item) AND ("No." <> '') THEN BEGIN
+        IF (Type = Type::Item) AND ("No." <> '') THEN
             IF Item.GET("No.") AND (Item."Vendor No." <> '') THEN BEGIN
                 Vendor.SETRANGE("No.", Item."Vendor No.");
                 PAGE.RUN(PAGE::"Vendor Card", Vendor);
             END;
-        END;
         //<< NF1.00:CIS.NG 09-01-15
     END;
 
@@ -355,5 +648,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
     BEGIN
         EXIT(Type <> Type::" ");
     END;
+
+
 
 }

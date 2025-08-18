@@ -8,6 +8,7 @@ pageextension 50055 "Purch. Invoice Subform Ext" extends "Purch. Invoice Subform
             field(National; Rec.National)
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the National field.';
             }
         }
         addafter(Description)
@@ -15,6 +16,7 @@ pageextension 50055 "Purch. Invoice Subform Ext" extends "Purch. Invoice Subform
             field("Contract Note No."; Rec."Contract Note No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Contract Note No. field.';
             }
         }
         addafter("Invoice Disc. Pct.")
@@ -22,6 +24,7 @@ pageextension 50055 "Purch. Invoice Subform Ext" extends "Purch. Invoice Subform
             field("USD Value"; Rec."USD Value")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the USD Value field.';
             }
         }
         moveafter(ShortcutDimCode8; "Description 2")
@@ -30,10 +33,12 @@ pageextension 50055 "Purch. Invoice Subform Ext" extends "Purch. Invoice Subform
             field("Entry/Exit Date"; Rec."Entry/Exit Date")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Entry/Exit Date field.';
             }
             field("Entry/Exit No."; Rec."Entry/Exit No.")
             {
                 ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Entry/Exit No. field.';
             }
         }
     }
@@ -45,6 +50,7 @@ pageextension 50055 "Purch. Invoice Subform Ext" extends "Purch. Invoice Subform
             {
                 CaptionML = ENU = 'Calc Tax WithHolding';
                 Image = Calculate;
+                ToolTip = 'Executes the Calc. Tax Withholding action.';
                 trigger OnAction()
                 BEGIN
                     //AKK1607.01---
@@ -57,9 +63,9 @@ pageextension 50055 "Purch. Invoice Subform Ext" extends "Purch. Invoice Subform
     var
         WithHoldings: Codeunit 50024;
 
-    LOCAL PROCEDURE LineCommentOnPush();
-    BEGIN
-        rec.ShowLineComments;
-    END;
+    /*   LOCAL PROCEDURE LineCommentOnPush();
+      BEGIN
+          rec.ShowLineComments();
+      END; */
 
 }
