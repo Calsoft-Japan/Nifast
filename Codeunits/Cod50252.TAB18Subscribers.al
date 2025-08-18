@@ -9,7 +9,7 @@ codeunit 50252 "Tab18Sub"
     local procedure OnAfterDeleteRelatedData(Customer: Record Customer)
     begin
         //>>NIF 06-13-06  RTT      #11033
-        Cust.RESET;
+        Cust.RESET();
         Cust.SETCURRENTKEY("Master Customer No.");
         Cust.SETRANGE("Master Customer No.", Customer."No.");
         Cust.SETFILTER("No.", '<>%1', Customer."No.");

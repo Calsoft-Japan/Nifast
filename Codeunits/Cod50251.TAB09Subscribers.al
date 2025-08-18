@@ -10,7 +10,7 @@ codeunit 50251 Table09
     begin
         //>> NF1.00:CIS.NG    10/05/16
         //>> IST 052305 DPC #9806
-        VendorLedgerEntry."Contract Note No." := GenJournalLine."Contract Note No.";
+        // VendorLedgerEntry."Contract Note No." := GenJournalLine."Contract Note No.";
         VendorLedgerEntry."Exchange Contract No." := GenJournalLine."Exchange Contract No.";
         //<< IST 052305 DPC #9806
         //<< NF1.00:CIS.NG    10/05/16

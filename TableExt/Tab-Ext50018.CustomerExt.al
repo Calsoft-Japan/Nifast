@@ -22,22 +22,22 @@ tableextension 50018 "Customer Ext" extends "Customer"
         {
             DataClassification = ToBeClassified;
             Description = 'NIF';
-            TableRelation = "Mex Export Pediment"."Pedimento Virtual No." WHERE("Customer No." = FIELD("No."));
+            TableRelation = "Mex Export Pediment"."Pedimento Virtual No." where("Customer No." = field("No."));
         }
         field(50004; "Due Date Calculation"; DateFormula)
         {
             Description = 'NIF';
             FieldClass = FlowField;
-            CalcFormula = Lookup("Payment Terms"."Due Date Calculation" WHERE("Code" = FIELD("Payment Terms Code")));
+            CalcFormula = lookup("Payment Terms"."Due Date Calculation" where("Code" = field("Payment Terms Code")));
         }
         field(50005; "Default Model Year"; Code[10])
         {
             Description = 'NIF';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = Lookup("Customer Model Year".Code WHERE("Customer No." = FIELD("No."),
-                                                                Default = CONST(True)));
-            TableRelation = "Customer Model Year".Code WHERE("Customer No." = FIELD("No."));
+            CalcFormula = lookup("Customer Model Year".Code where("Customer No." = field("No."),
+                                                                Default = const(true)));
+            TableRelation = "Customer Model Year".Code where("Customer No." = field("No."));
         }
         field(50006; "SCAC Code"; Code[10])
         {
@@ -79,21 +79,21 @@ tableextension 50018 "Customer Ext" extends "Customer"
             Description = 'NIF';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = Count(Customer WHERE("Master Customer No." = FIELD("Master Customer No.")));
+            CalcFormula = count(Customer where("Master Customer No." = field("Master Customer No.")));
         }
         field(50102; "Master Customer Name"; Text[100])
         {
             Description = 'NIF';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = Lookup(Customer.Name WHERE("No." = FIELD("Master Customer No.")));
+            CalcFormula = lookup(Customer.Name where("No." = field("Master Customer No.")));
         }
         field(50500; "Original No."; Code[30])
         {
             Description = 'NIF';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = Lookup("NIF Cross Reference"."Orig. No." WHERE(Type = FILTER(Customer)));
+            CalcFormula = lookup("NIF Cross Reference"."Orig. No." where(Type = filter(Customer)));
 
         }
         field(60000; "Port of Discharge"; Text[50])
@@ -136,11 +136,11 @@ tableextension 50018 "Customer Ext" extends "Customer"
             trigger OnAfterValidate()
             begin
                 // >> Shipping
-                IF "Country/Region Code" <> xRec."Country/Region Code" THEN
-                    IF "Shipping Agent Code" <> '' THEN BEGIN
+                if "Country/Region Code" <> xRec."Country/Region Code" then
+                    if "Shipping Agent Code" <> '' then begin
                         xRec."Shipping Agent Code" := '';
-                        VALIDATE("Shipping Agent Code");
-                    END;
+                        this.VALIDATE("Shipping Agent Code");
+                    end;
                 // << Shipping
             end;
         }
@@ -162,153 +162,145 @@ tableextension 50018 "Customer Ext" extends "Customer"
 
     end;
 
-    // PROCEDURE MasterAmount(CalcType: 'Balance Balance (LCY),Balance Due,Balance Due (LCY),Outstanding Orders (LCY),Shipped Not Invoiced (LCY)'): Decimal;
-    // VAR
-    //     Cust: Record 18;
-    //     FilterString: Text[1024];
-    //     TotalAmount: Decimal;
-    //     UseAmount: Decimal;
-    // BEGIN
-    //     IF "Master Customer No." = '' THEN
-    //         EXIT;     //JRR
+    procedure MasterAmount(CalcType: Option Balance,"Balance (LCY)","Balance Due","Balance Due (LCY)","Outstanding Orders (LCY)","Shipped Not Invoiced (LCY)"): Decimal;
+    var
+        Cust: Record Customer;
+        TotalAmount: Decimal;
+        UseAmount: Decimal;
+    begin
+        if "Master Customer No." = '' then
+            exit;     //JRR
 
-    //     Cust.SETCURRENTKEY("Master Customer No.");
-    //     COPYFILTER("Date Filter", Cust."Date Filter");
-    //     COPYFILTER("Global Dimension 1 Filter", Cust."Global Dimension 1 Filter");
-    //     COPYFILTER("Global Dimension 2 Filter", Cust."Global Dimension 2 Filter");
-    //     COPYFILTER("Currency Filter", Cust."Currency Filter");
+        Cust.SETCURRENTKEY("Master Customer No.");
+        this.COPYFILTER("Date Filter", Cust."Date Filter");
+        this.COPYFILTER("Global Dimension 1 Filter", Cust."Global Dimension 1 Filter");
+        this.COPYFILTER("Global Dimension 2 Filter", Cust."Global Dimension 2 Filter");
+        this.COPYFILTER("Currency Filter", Cust."Currency Filter");
 
-    //     Cust.SETFILTER("No.", BuildMasterFilterString());
-    //     Cust.FIND('-');
-    //     REPEAT
-    //         CASE CalcType OF
-    //             CalcType::Balance:
-    //                 BEGIN          //0
-    //                     Cust.CALCFIELDS(Balance);
-    //                     UseAmount := Cust.Balance;
-    //                 END;
-    //             CalcType::"Balance (LCY)":
-    //                 BEGIN  //1
-    //                     Cust.CALCFIELDS("Balance (LCY)");
-    //                     UseAmount := Cust."Balance (LCY)";
-    //                 END;
-    //             CalcType::"Balance Due":
-    //                 BEGIN    //2
-    //                     Cust.CALCFIELDS("Balance Due");
-    //                     UseAmount := Cust."Balance Due";
-    //                 END;
-    //             CalcType::"Balance Due (LCY)":
-    //                 BEGIN    //3
-    //                     Cust.CALCFIELDS("Balance Due (LCY)");
-    //                     UseAmount := Cust."Balance Due (LCY)";
-    //                 END;
-    //             CalcType::"Outstanding Orders (LCY)":
-    //                 BEGIN     //4
+        Cust.SETFILTER("No.", this.BuildMasterFilterString());
+        Cust.FIND('-');
+        repeat
+            case CalcType of
+                CalcType::Balance:
+                    begin          //0
+                        Cust.CALCFIELDS(Balance);
+                        UseAmount := Cust.Balance;
+                    end;
+                CalcType::"Balance (LCY)":
+                    begin  //1
+                        Cust.CALCFIELDS("Balance (LCY)");
+                        UseAmount := Cust."Balance (LCY)";
+                    end;
+                CalcType::"Balance Due":
+                    begin    //2
+                        Cust.CALCFIELDS("Balance Due");
+                        UseAmount := Cust."Balance Due";
+                    end;
+                CalcType::"Balance Due (LCY)":
+                    begin    //3
+                        Cust.CALCFIELDS("Balance Due (LCY)");
+                        UseAmount := Cust."Balance Due (LCY)";
+                    end;
+                CalcType::"Outstanding Orders (LCY)":
+                    UseAmount := this.CalcReleaseOrderOutAmt(Cust);
 
-    //                     //WC1.01.Begin
-    //                     //Cust.CALCFIELDS("Outstanding Orders (LCY)");
-    //                     //UseAmount := Cust."Outstanding Orders (LCY)";
-    //                     //WC1.01.End
-    //                     UseAmount := CalcReleaseOrderOutAmt(Cust);
+                CalcType::"Shipped Not Invoiced (LCY)":
+                    begin   //5
+                        Cust.CALCFIELDS("Shipped Not Invoiced (LCY)");
+                        UseAmount := Cust."Shipped Not Invoiced (LCY)";
+                    end;
+            end;
 
-    //                 END;
-    //             CalcType::"Shipped Not Invoiced (LCY)":
-    //                 BEGIN   //5
-    //                     Cust.CALCFIELDS("Shipped Not Invoiced (LCY)");
-    //                     UseAmount := Cust."Shipped Not Invoiced (LCY)";
-    //                 END;
-    //         END;
+            TotalAmount := TotalAmount + UseAmount;
+        until Cust.NEXT() = 0;
 
-    //         TotalAmount := TotalAmount + UseAmount;
-    //     UNTIL Cust.NEXT = 0;
+        exit(TotalAmount);
+    end;
 
-    //     EXIT(TotalAmount);
-    // END;//TO dO
-
-    PROCEDURE BuildMasterFilterString(): Text[1024];
-    VAR
+    procedure BuildMasterFilterString(): Text[1024];
+    var
+        Cust: Record Customer;
         FilterString: Text[1024];
-        Cust: Record 18;
-    BEGIN
-        IF "Master Customer No." = '' THEN
-            EXIT("No.");
+    begin
+        if "Master Customer No." = '' then
+            exit("No.");
 
         Cust.SETCURRENTKEY("Master Customer No.");
         Cust.SETRANGE("Master Customer No.", "Master Customer No.");
-        IF Cust.ISEMPTY THEN
-            EXIT("No.");
+        if Cust.ISEMPTY then
+            exit("No.");
 
         Cust.FIND('-');
-        REPEAT
-            IF FilterString = '' THEN
+        repeat
+            if FilterString = '' then
                 FilterString := Cust."No."
-            ELSE
+            else
                 FilterString := FilterString + '|' + Cust."No.";
-        UNTIL Cust.NEXT = 0;
+        until Cust.NEXT() = 0;
 
-        EXIT(FilterString);
-    END;
+        exit(FilterString);
+    end;
 
-    PROCEDURE "Master Credit Limit"(): Decimal;
-    VAR
+    procedure "Master Credit Limit"(): Decimal;
+    var
+        Cust: Record Customer;
+    begin
+        if not Cust.GET("Master Customer No.") then
+            exit("Credit Limit (LCY)")
+        else
+            exit(Cust."Credit Limit (LCY)");
+    end;
+
+    procedure ShowMasterCustomerList();
+    var
         Cust: Record 18;
-    BEGIN
-        IF NOT Cust.GET("Master Customer No.") THEN
-            EXIT("Credit Limit (LCY)")
-        ELSE
-            EXIT(Cust."Credit Limit (LCY)");
-    END;
-
-    PROCEDURE ShowMasterCustomerList();
-    VAR
-        Cust: Record 18;
-    BEGIN
-        IF "Master Customer No." = '' THEN
+    begin
+        if "Master Customer No." = '' then
             Cust.SETRANGE("No.", "No.")
-        ELSE
-            Cust.SETFILTER("No.", BuildMasterFilterString());
+        else
+            Cust.SETFILTER("No.", this.BuildMasterFilterString());
 
         //  PAGE.RUN(PAGE::"Master Customer List",Cust); TODO
-    END;
+    end;
 
-    PROCEDURE CalcReleaseOrderOutAmt(LcCust: Record 18): Decimal;
-    VAR
+    procedure CalcReleaseOrderOutAmt(LcCust: Record 18): Decimal;
+    var
         SalesHeader: Record 36;
         SalesLine: Record 37;
         OustandingAmt: Decimal;
-    BEGIN
+    begin
         //WC1.01.Begin
         OustandingAmt := 0;
         CLEAR(SalesHeader);
         SalesHeader.SETRANGE("Document Type", SalesHeader."Document Type"::Order);
         SalesHeader.SETFILTER("Bill-to Customer No.", LcCust."No.");
         //SalesHeader.SETRANGE(Status,SalesHeader.Status::Released);
-        IF SalesHeader.FIND('-') THEN
-            REPEAT
-                IF (SONO = SalesHeader."No.") THEN BEGIN
+        if SalesHeader.FIND('-') then
+            repeat
+                if (SONO = SalesHeader."No.") then begin
                     CLEAR(SalesLine);
                     SalesLine.SETRANGE("Document Type", SalesHeader."Document Type");
                     SalesLine.SETRANGE("Document No.", SalesHeader."No.");
                     SalesLine.CALCSUMS("Outstanding Amount (LCY)");
                     OustandingAmt += SalesLine."Outstanding Amount (LCY)";
-                END ELSE BEGIN
-                    IF SalesHeader.Status = SalesHeader.Status::Released THEN BEGIN
+                end else
+                    if SalesHeader.Status = SalesHeader.Status::Released then begin
                         CLEAR(SalesLine);
                         SalesLine.SETRANGE("Document Type", SalesHeader."Document Type");
                         SalesLine.SETRANGE("Document No.", SalesHeader."No.");
                         SalesLine.CALCSUMS("Outstanding Amount (LCY)");
                         OustandingAmt += SalesLine."Outstanding Amount (LCY)";
-                    END;
-                END;
-            UNTIL SalesHeader.NEXT = 0;
-        EXIT(OustandingAmt);
-        //WC1.01.End
-    END;
+                    end;
 
-    PROCEDURE GetCurrentSO(LcSONo: Code[20]);
-    BEGIN
+            until SalesHeader.NEXT = 0;
+        exit(OustandingAmt);
+        //WC1.01.End
+    end;
+
+    procedure GetCurrentSO(LcSONo: Code[20]);
+    begin
         SONO := LcSONo;
-    END;
+    end;
 
 
 
