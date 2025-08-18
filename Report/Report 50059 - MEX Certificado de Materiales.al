@@ -427,11 +427,14 @@ report 50059 "MEX Certificado de Materiales"
                 ELSE
                     SalesPurchPerson2.GET("Inside Salesperson Code");
 
+                FormatAddress.SalesInvBillTo(BillToAddress, "Sales Invoice Header");
+                FormatAddress.SalesInvShipTo(ShipToAddress, BillToAddress, "Sales Invoice Header");//BC Upgrade
+                /* 
                 tempSInvHdr := "Sales Invoice Header";
                 tempSInvHdr."Bill-to Contact" := '';
                 tempSInvHdr."Ship-to Contact" := '';
                 FormatAddress.SalesInvBillTo(BillToAddress, tempSInvHdr);//"Sales Invoice Header");
-                FormatAddress.SalesInvShipTo(ShipToAddress, BillToAddress, tempSInvHdr);//"Sales Invoice Header");//BC Upgrade
+                FormatAddress.SalesInvShipTo(ShipToAddress, BillToAddress, tempSInvHdr);//"Sales Invoice Header");//BC Upgrade */
 
                 IF "Payment Terms Code" = '' THEN
                     CLEAR(PaymentTerms)

@@ -372,6 +372,9 @@ report 50094 "Purchase Receipt NV"
                     "Ship-to Name" := Text009;
                 END;
 
+                FormatAddress.PurchRcptBuyFrom(BuyFromAddress, "Purch. Rcpt. Header");
+                FormatAddress.PurchRcptShipTo(ShipToAddress, "Purch. Rcpt. Header");
+                /* 
                 tempPurRcptHdr := "Purch. Rcpt. Header";
                 tempPurRcptHdr."Buy-from Contact" := '';
                 tempPurRcptHdr."Ship-to Contact" := '';
@@ -382,7 +385,7 @@ report 50094 "Purchase Receipt NV"
                 else begin
                     FormatAddress.PurchRcptBuyFrom(BuyFromAddress, tempPurRcptHdr);
                     FormatAddress.PurchRcptShipTo(ShipToAddress, tempPurRcptHdr);//"Purch. Rcpt. Header");
-                end;
+                end; */
 
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN

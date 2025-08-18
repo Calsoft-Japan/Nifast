@@ -597,13 +597,16 @@ report 50095 "Sales Shipment NV"
                 tempSShtHdr."Bill-to Contact" := '';
                 tempSShtHdr."Ship-to Contact" := '';
 
+                FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, "Sales Shipment Header");
+                FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");//BC Upgrade 
+                /* 
                 if "Responsibility Center" = 'MPD' then begin
                     FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, tempSShtHdr);
                     FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");
                 end else begin
                     FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, "Sales Shipment Header");// tempSShtHdr);
                     FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");//"Sales Shipment Header");BC Upgrade 
-                end;
+                end; */
 
                 ShippingAgentCodeLabel := '';
                 ShippingAgentCodeText := '';

@@ -700,11 +700,14 @@ report 50027 "Sales Invoice CNF"
                 IF "Prepayment Invoice" THEN
                     DocumentText := USText001;
 
+                FormatAddress.SalesInvBillTo(BillToAddress, "Sales Invoice Header");
+                FormatAddress.SalesInvShipTo(ShipToAddress, ShipToAddress, "Sales Invoice Header");//ShipToAddress BC Upgrade
+                /* 
                 tempSInvHdr := "Sales Invoice Header";
                 tempSInvHdr."Bill-to Contact" := '';
                 tempSInvHdr."Ship-to Contact" := '';
                 FormatAddress.SalesInvBillTo(BillToAddress, tempSInvHdr);//"Sales Invoice Header");
-                FormatAddress.SalesInvShipTo(ShipToAddress, ShipToAddress, tempSInvHdr);//"Sales Invoice Header");//ShipToAddress BC Upgrade
+                FormatAddress.SalesInvShipTo(ShipToAddress, ShipToAddress, tempSInvHdr);//"Sales Invoice Header");//ShipToAddress BC Upgrade */
 
                 IF "Payment Terms Code" = '' THEN
                     CLEAR(PaymentTerms)

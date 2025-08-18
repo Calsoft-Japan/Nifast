@@ -457,11 +457,14 @@ report 50090 "Purchase Invoice NV"
                     "Ship-to Name" := Text009;
                 END;
 
+                FormatAddress.PurchInvPayTo(BuyFromAddress, "Purch. Inv. Header");//BC Upgrade
+                FormatAddress.PurchInvShipTo(ShipToAddress, "Purch. Inv. Header");
+                /* 
                 tempPurInvHdr := "Purch. Inv. Header";
                 tempPurInvHdr."Pay-to Contact" := '';
                 tempPurInvHdr."Ship-to Contact" := '';
                 FormatAddress.PurchInvPayTo(BuyFromAddress, tempPurInvHdr);//"Purch. Inv. Header");BC Upgrade
-                FormatAddress.PurchInvShipTo(ShipToAddress, tempPurInvHdr);//"Purch. Inv. Header");
+                FormatAddress.PurchInvShipTo(ShipToAddress, tempPurInvHdr);//"Purch. Inv. Header"); */
 
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN

@@ -556,10 +556,13 @@ report 50026 "Purchase Order CNF"
                 ELSE
                     ShipmentMethod.GET("Shipment Method Code");
 
+
+                /* 
                 tmpRecPurcHeader := "Purchase Header";
-                tmpRecPurcHeader."Buy-from Contact" := '';
-                //FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header");
-                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, tmpRecPurcHeader);
+                tmpRecPurcHeader."Buy-from Contact" := '';                
+                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, tmpRecPurcHeader); */
+
+                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header");
                 //>> IST 09-21-05
                 FormatAddress.PurchHeaderShipTo(ShipToAddress, "Purchase Header");
                 IF (Vend.GET("Purchase Header"."Buy-from Vendor No.")) AND (BuyFromAddress[8] = '') THEN BEGIN

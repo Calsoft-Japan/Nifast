@@ -639,11 +639,15 @@ report 50093 "Purchase Order NV"
                     ShipmentMethod.GET("Shipment Method Code");
 
                 CompanyAddress[5] := '';//BC Upgrade no need shown country code
+
+                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header"); //BC Upgrade 
+                FormatAddress.PurchHeaderShipTo(ShipToAddress, "Purchase Header");
+                /* 
                 tempPurHdr := "Purchase Header";
                 tempPurHdr."Buy-from Contact" := '';
                 tempPurHdr."Ship-to Contact" := '';
                 FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header"); //BC Upgrade tempPurHdr);
-                FormatAddress.PurchHeaderShipTo(ShipToAddress, tempPurHdr);//"Purchase Header");
+                FormatAddress.PurchHeaderShipTo(ShipToAddress, tempPurHdr);//"Purchase Header"); */
                 //>> RTT 09-21-05
                 IF (Vend.GET("Purchase Header"."Buy-from Vendor No.")) THEN
                     IF Vend."Fax No." <> '' THEN BEGIN
