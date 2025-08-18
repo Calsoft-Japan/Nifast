@@ -93,18 +93,18 @@ codeunit 50253 Tabe38
             POComments.SETRANGE("Document Type", Purchaseheader."Document Type");
             POComments.SETRANGE("No.", Purchaseheader."No.");
             IF POComments.FIND('-') THEN BEGIN
-                POComments.DELETEALL;
+                POComments.DELETEALL();
                 MESSAGE(NIFText001 + NIFText002 + NIFText003);
             END;
         END;
 
         IF VendComments.FIND('-') THEN
             REPEAT
-                POComments.INIT;
+                POComments.INIT();
                 POComments."Document Type" := Purchaseheader."Document Type";
                 POComments."No." := Purchaseheader."No.";
                 POComments."Line No." := LineNo;
-                POComments.Date := WORKDATE;
+                POComments.Date := WORKDATE();
                 POComments.Code := VendComments.Code;
                 POComments.Comment := VendComments.Comment;
                 // POComments."Print On Quote" := VendComments."Print On Purch. Quote";
@@ -114,7 +114,7 @@ codeunit 50253 Tabe38
                 // POComments."Print On Put Away" := FALSE;
                 POComments.INSERT(TRUE);
                 LineNo := LineNo + 100;
-            UNTIL VendComments.NEXT = 0;
+            UNTIL VendComments.NEXT() = 0;
     END;
 
 
@@ -147,21 +147,21 @@ codeunit 50253 Tabe38
     begin
         //NF1.00:CIS.NG    23/08/16
         CLEAR(RespCenter);
-        IF (PurchaseHeader."Responsibility Center" <> '') THEN BEGIN
-            IF (RespCenter.GET(PurchaseHeader."Responsibility Center")) AND
-              (PurchaseHeader."Sell-to Customer No." = '') THEN BEGIN
-                PurchaseHeader."Ship-to Name" := RespCenter.Name;
-                PurchaseHeader."Ship-to Name 2" := RespCenter."Name 2";
-                PurchaseHeader."Ship-to Address" := RespCenter.Address;
-                PurchaseHeader."Ship-to Address 2" := RespCenter."Address 2";
-                PurchaseHeader."Ship-to City" := RespCenter.City;
-                PurchaseHeader."Ship-to Post Code" := RespCenter."Post Code";
-                PurchaseHeader."Ship-to County" := RespCenter.County;
-                PurchaseHeader."Ship-to Country/Region Code" := RespCenter."Country/Region Code";
-                PurchaseHeader."Ship-to Contact" := RespCenter.Contact;
-            END;
 
-        end;
+        IF PurchaseHeader."Responsibility Center" <> '' THEN
+            IF RespCenter.GET(PurchaseHeader."Responsibility Center") THEN
+                IF PurchaseHeader."Sell-to Customer No." = '' THEN BEGIN
+                    PurchaseHeader."Ship-to Name" := RespCenter.Name;
+                    PurchaseHeader."Ship-to Name 2" := RespCenter."Name 2";
+                    PurchaseHeader."Ship-to Address" := RespCenter.Address;
+                    PurchaseHeader."Ship-to Address 2" := RespCenter."Address 2";
+                    PurchaseHeader."Ship-to City" := RespCenter.City;
+                    PurchaseHeader."Ship-to Post Code" := RespCenter."Post Code";
+                    PurchaseHeader."Ship-to County" := RespCenter.County;
+                    PurchaseHeader."Ship-to Country/Region Code" := RespCenter."Country/Region Code";
+                    PurchaseHeader."Ship-to Contact" := RespCenter.Contact;
+                END;
+
 
     end;
 
