@@ -24,26 +24,31 @@ codeunit 50254 Tab83
     end;
 
 
-    PROCEDURE TestItemSoftBlock(ItemJournalLine: record "Item Journal Line");
-    BEGIN
-        CASE ItemJournalLine."Entry Type" OF
+    procedure TestItemSoftBlock(ItemJournalLine: Record "Item Journal Line")
+    var
+        SoftBlockError: Text[250];
+    begin
+        case ItemJournalLine."Entry Type" of
             ItemJournalLine."Entry Type"::Sale:
-                BEGIN
-                    IF NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 0, SoftBlockError) THEN
-                        ERROR(SoftBlockError);
-                END;
+                begin
+                    if NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 0, SoftBlockError) then
+                        Error(SoftBlockError);
+                end;
+
             ItemJournalLine."Entry Type"::Purchase:
-                BEGIN
-                    IF NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 1, SoftBlockError) THEN
-                        ERROR(SoftBlockError);
-                END;
+                begin
+                    if NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 1, SoftBlockError) then
+                        Error(SoftBlockError);
+                end;
+
             ItemJournalLine."Entry Type"::Transfer:
-                BEGIN
-                    IF NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 2, SoftBlockError) THEN
-                        ERROR(SoftBlockError);
-                END;
-        END;
-    END;
+                begin
+                    if NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 2, SoftBlockError) then
+                        Error(SoftBlockError);
+                end;
+        end;
+    end;
+
 
     var
         NVM: Codeunit 50021;
