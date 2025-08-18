@@ -256,6 +256,52 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         //NF1.00:CIS.RAM FOREX
     end;
 
+    procedure CheckIfLineComments(): Boolean;
+    var
+        CommentLine: Record "Comment Line";
+    begin
+        CommentLine.SETRANGE("Table Name", CommentLine."Table Name"::Item);
+        CommentLine.SETRANGE("No.", "No.");
+        //CommentLine.SETRANGE("Include in Purchase Orders", TRUE); //TODO
+        exit(not CommentLine.IsEmpty());
+    end;
+
+    procedure DeleteLineComments();
+    begin
+        //>> NF1.00:CIS.CM 09-29-15
+        //PurchLineCommentLine.RESET;
+        //PurchLineCommentLine.SETRANGE("Document Type","Document Type");
+        //PurchLineCommentLine.SETRANGE("No.","Document No.");
+        //PurchLineCommentLine.SETRANGE("Doc. Line No.","Line No.");
+        //PurchLineCommentLine.DELETEALL;
+        //>> NF1.00:CIS.CM 09-29-15
+    end;
+
+    procedure InsertLineComments();
+    var
+        CommentLine: Record 97;
+    begin
+        CommentLine.SETRANGE("Table Name", CommentLine."Table Name"::Item);
+        CommentLine.SETRANGE("No.", "No.");
+        //CommentLine.SETRANGE("Include in Purchase Orders", true); //TODO
+        if CommentLine.FIND('-') then
+            repeat
+            //>> NF1.00:CIS.CM 09-29-15
+            //PurchLineCommentLine.INIT;
+            //PurchLineCommentLine."Document Type" := "Document Type";
+            //PurchLineCommentLine."No." := "Document No.";
+            //PurchLineCommentLine."Doc. Line No." := "Line No.";
+            //PurchLineCommentLine."Line No." := CommentLine."Line No.";
+            //PurchLineCommentLine.Code := CommentLine.Code;
+            //PurchLineCommentLine.Comment := CommentLine.Comment;
+            //PurchLineCommentLine."Print On Order" := CommentLine."Print On Purch. Order";
+            //PurchLineCommentLine."Print On Receipt" := CommentLine."Print On Receipt";
+            //PurchLineCommentLine."Print On Invoice" := CommentLine."Print On Purch. Invoice";
+            //PurchLineCommentLine.INSERT(TRUE);
+            //>> NF1.00:CIS.CM 09-29-15
+            until CommentLine.NEXT() = 0;
+    end;
+
     var
         NVM: Codeunit 50021;
         SoftBlockError: Text[80];
