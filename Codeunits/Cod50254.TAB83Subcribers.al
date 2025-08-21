@@ -30,29 +30,26 @@ codeunit 50254 Tab83
     begin
         case ItemJournalLine."Entry Type" of
             ItemJournalLine."Entry Type"::Sale:
-                begin
-                    if NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 0, SoftBlockError) then
-                        Error(SoftBlockError);
-                end;
+
+                if NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 0, SoftBlockError) then
+                    Error(SoftBlockError);
 
             ItemJournalLine."Entry Type"::Purchase:
-                begin
-                    if NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 1, SoftBlockError) then
-                        Error(SoftBlockError);
-                end;
+
+                if NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 1, SoftBlockError) then
+                    Error(SoftBlockError);
 
             ItemJournalLine."Entry Type"::Transfer:
-                begin
-                    if NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 2, SoftBlockError) then
-                        Error(SoftBlockError);
-                end;
+
+                if NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 2, SoftBlockError) then
+                    Error(SoftBlockError);
         end;
     end;
 
 
     var
         NVM: Codeunit 50021;
-        SoftBlockError: Text[80];
+        
 
 
 

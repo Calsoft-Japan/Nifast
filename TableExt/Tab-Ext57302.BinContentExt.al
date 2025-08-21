@@ -18,4 +18,5 @@ tableextension 57302 BinContentExt extends "Bin Content"
         end else
             CartonQty := 0;
     end;
+    
 }

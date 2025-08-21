@@ -20,6 +20,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 ApplicationArea = All;
                 CaptionML = ENU = 'Create Purchase Order';
                 ToolTip = 'Specifies the the creation of purchase order';
+                Image = Purchase;
                 trigger OnAction()
                 var
                     PurchLines: Record 39;
@@ -207,7 +208,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 PromotedCategory = Process;
                 trigger OnAction()
                 BEGIN
-                    Rec.CreateInvtPutAwayPick;
+                    Rec.CreateInvtPutAwayPick();
                 END;
 
             }
@@ -349,16 +350,16 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
 
 
     var
-        EDIIntegration: Codeunit 14000363;
 
         NVM: Codeunit 50021;
+        EDIIntegration: Codeunit 14000363;
+        ReleaseSalesDoc: Codeunit "Release Sales Document";
+        wNo: Code[20];
 
         wNoCte: Code[20];
         wNoSerie: Code[20];
-        wNo: Code[20];
-        wTipoDoc: Option Quote,Order,Invoice,"Credit Memo","Blanket Order","Return Order";
         OrderAmount_gDec: Decimal;
         OrderWeight_gDec: Decimal;
-        ReleaseSalesDoc: Codeunit "Release Sales Document";
+        wTipoDoc: Option Quote,Order,Invoice,"Credit Memo","Blanket Order","Return Order";
 
 }

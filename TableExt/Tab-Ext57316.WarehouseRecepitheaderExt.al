@@ -1,4 +1,4 @@
-tableextension 57355 "Warehouse Recepit Header Ext" extends "Warehouse Receipt Header"
+tableextension 57316 "Warehouse Recepit Header Ext" extends "Warehouse Receipt Header"
 {
     fields
     {
@@ -12,11 +12,11 @@ tableextension 57355 "Warehouse Recepit Header Ext" extends "Warehouse Receipt H
     }
     PROCEDURE UpdateWhseRecLines(ChangedFieldName: Text[100]);
     VAR
-        LinesExist: Boolean;
         WhseRecLine: Record 7317;
+    // LinesExist: Boolean;
     BEGIN
         //PFC
-        WhseRecLine.RESET;
+        WhseRecLine.RESET();
         WhseRecLine.SETRANGE("No.", "No.");
 
         IF WhseRecLine.FIND('-') THEN
@@ -29,7 +29,7 @@ tableextension 57355 "Warehouse Recepit Header Ext" extends "Warehouse Receipt H
                             WhseRecLine."Assignment Time" := "Assignment Time";
                         END;
                 END;
-                WhseRecLine.MODIFY;
-            UNTIL WhseRecLine.NEXT = 0;
+                WhseRecLine.MODIFY();
+            UNTIL WhseRecLine.NEXT() = 0;
     END;
 }

@@ -1,4 +1,4 @@
-codeunit 50255 Page5510Subcriber
+codeunit 50255 Page6510Subcriber
 {
     [EventSubscriber(ObjectType::page, 6510, 'OnSetSourceSpecOnAfterAssignCurrentEntryStatus', '', True, false)]
     local procedure OnSetSourceSpecOnAfterAssignCurrentEntryStatus(var TrackingSpecification: Record "Tracking Specification"; var CurrentEntryStatus: Option; ItemTrackingCode: Record "Item Tracking Code"; var InsertIsBlocked: Boolean)
@@ -50,10 +50,22 @@ codeunit 50255 Page5510Subcriber
         //<< NIF #9851 RTT 03-22-05
     end;
 
+    [EventSubscriber(ObjectType::page, 6510, 'OnAfterCreateReservEntryFor', '', True, false)]
+    local procedure OnAfterCreateReservEntryFor(var OldTrackingSpecification: Record "Tracking Specification"; var NewTrackingSpecification: Record "Tracking Specification"; var CreateReservEntry: Codeunit "Create Reserv. Entry")
+    begin
+        //>> NIF #9851 RTT 03-22-05
+        OldTrackingSpecification."Mfg. Lot No." := NewTrackingSpecification."Mfg. Lot No.";
+        //<< NIF #9851 RTT 03-22-05
+    end;
+
+
+
 
 
 
     var
         MfgLotNoVisible: Boolean;
+
+        test: Record 7316
 
 }

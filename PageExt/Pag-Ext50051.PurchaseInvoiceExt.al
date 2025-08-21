@@ -28,7 +28,7 @@ pageextension 50051 "Purchase Invoice Ext" extends "Purchase Invoice"
                 //-AKK1606.01--
                 wPedido := rec."No.";
                 wTipoDoc := rec."Document Type";
-                fValida;
+                fValida();
                 //+AKK1606.01++
             end;
         }

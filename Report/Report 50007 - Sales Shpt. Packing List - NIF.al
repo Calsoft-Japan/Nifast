@@ -319,13 +319,13 @@ report 50007 "Sales Shpt. Packing List - NIF"
                     begin
                         //>> RTT 06-14-05
                         IF "Cross Reference No." = '' THEN BEGIN
-                            ItemCrossRef.RESET;
+                            ItemCrossRef.RESET();
                             ItemCrossRef.SETRANGE("Reference Type", ItemCrossRef."Reference Type"::Customer);// BC Upgrade 2025-06-23
                             ItemCrossRef.SETRANGE("Reference Type No.", "Posted Package"."Ship-to No.");// BC Upgrade 2025-06-23
                             // ItemCrossRef.SETRANGE("Cross-Reference Type", ItemCrossRef."Cross-Reference Type"::Customer); BC Upgrade 2025-06-23
                             // ItemCrossRef.SETRANGE("Cross-Reference Type No.", "Posted Package"."Ship-to No."); BC Upgrade 2025-06-23
                             ItemCrossRef.SETRANGE("Item No.", "No.");
-                            IF NOT ItemCrossRef.FIND('-') THEN
+                            IF NOT ItemCrossRef.FindFirst() THEN
                                 CLEAR(ItemCrossRef);
                             "Cross Reference No." := ItemCrossRef."Reference No.";//"Cross-Reference No."; BC Upgrade 2025-06-23
                         END;
