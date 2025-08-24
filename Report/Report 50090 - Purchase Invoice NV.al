@@ -197,7 +197,7 @@ report 50090 "Purchase Invoice NV"
                     column(Purch__Inv__Header___Due_Date_; "Purch. Inv. Header"."Due Date")
                     {
                     }
-                    column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+                    column(CompanyInformation__Document_Logo_; CompanyInformation.Picture) //"Document Logo")
                     {
                     }
                     dataitem("Purch. Inv. Line"; "Purch. Inv. Line")
@@ -422,6 +422,8 @@ report 50090 "Purchase Invoice NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempPurInvHdr: Record "Purch. Inv. Header" temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -455,8 +457,14 @@ report 50090 "Purchase Invoice NV"
                     "Ship-to Name" := Text009;
                 END;
 
-                FormatAddress.PurchInvPayTo(BuyFromAddress, "Purch. Inv. Header");
+                FormatAddress.PurchInvPayTo(BuyFromAddress, "Purch. Inv. Header");//BC Upgrade
                 FormatAddress.PurchInvShipTo(ShipToAddress, "Purch. Inv. Header");
+                /* 
+                tempPurInvHdr := "Purch. Inv. Header";
+                tempPurInvHdr."Pay-to Contact" := '';
+                tempPurInvHdr."Ship-to Contact" := '';
+                FormatAddress.PurchInvPayTo(BuyFromAddress, tempPurInvHdr);//"Purch. Inv. Header");BC Upgrade
+                FormatAddress.PurchInvShipTo(ShipToAddress, tempPurInvHdr);//"Purch. Inv. Header"); */
 
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN
@@ -582,6 +590,7 @@ report 50090 "Purchase Invoice NV"
     begin
         CompanyInformation.GET('');
         CompanyInformation.CALCFIELDS("Document Logo");
+        CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
     end;
 
     var

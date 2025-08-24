@@ -20,7 +20,7 @@ report 50026 "Purchase Order CNF"
             column(POAuthority_User; UserSetup."PO Authority")
             {
             }
-            column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+            column(CompanyInformation__Document_Logo_; CompanyInformation.Picture)//."Document Logo")
             {
             }
             column(CompanyAddress_1_; CompanyAddress[1])
@@ -516,6 +516,8 @@ report 50026 "Purchase Order CNF"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tmpRecPurcHeader: Record "Purchase Header" temporary;
             begin
                 //>> IST 06-21-05
                 IF PrintCompany THEN BEGIN
@@ -554,6 +556,12 @@ report 50026 "Purchase Order CNF"
                 ELSE
                     ShipmentMethod.GET("Shipment Method Code");
 
+
+                /* 
+                tmpRecPurcHeader := "Purchase Header";
+                tmpRecPurcHeader."Buy-from Contact" := '';                
+                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, tmpRecPurcHeader); */
+
                 FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header");
                 //>> IST 09-21-05
                 FormatAddress.PurchHeaderShipTo(ShipToAddress, "Purchase Header");
@@ -568,6 +576,7 @@ report 50026 "Purchase Order CNF"
             begin
                 CompanyInformation.GET('');
                 CompanyInformation.CALCFIELDS("Document Logo");
+                CompanyInformation.CalcFields(Picture);//BC Upgrade
                 IF PrintCompany THEN
                     FormatAddress.Company(CompanyAddress, CompanyInformation)
                 ELSE

@@ -40,7 +40,7 @@ report 50021 "Return Order Confirmation NV"
                 {
                     DataItemTableView = SORTING(Number)
                                         WHERE(Number = CONST(1));
-                    column(CompanyInfoDocumentLogo; CompanyInfo."Document Logo")
+                    column(CompanyInfoDocumentLogo; CompanyInfo.Picture)// "Document Logo")BC Upgrade
                     {
                     }
                     column(ReturnOrderConfirmCopyText; STRSUBSTNO(Text004, CopyText))
@@ -728,6 +728,8 @@ report 50021 "Return Order Confirmation NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                temSalesHeader: Record "Sales Header" temporary;
             begin
                 /* Language_T.Reset();//BC Upgrade 2025-06-23
                 Language_T.Get("Language Code");//BC Upgrade 2025-06-23
@@ -735,6 +737,7 @@ report 50021 "Return Order Confirmation NV"
 
                 CompanyInfo.GET;
                 CompanyInfo.CALCFIELDS("Document Logo");
+                CompanyInfo.CALCFIELDS(Picture);
 
                 IF RespCenter.GET("Responsibility Center") THEN BEGIN
                     FormatAddr.RespCenter(CompanyAddr, RespCenter);
@@ -770,11 +773,15 @@ report 50021 "Return Order Confirmation NV"
                     TotalInclVATText := STRSUBSTNO(Text002, "Currency Code");
                     TotalExclVATText := STRSUBSTNO(Text006, "Currency Code");
                 END;
-                FormatAddr.SalesHeaderBillTo(CustAddr, "Sales Header");
+
+                temSalesHeader := "Sales Header";
+                temSalesHeader."Bill-to Contact" := '';
+                FormatAddr.SalesHeaderBillTo(CustAddr, temSalesHeader);//"Sales Header"); BC Upgrade
                 IF NOT Cust.GET("Bill-to Customer No.") THEN
                     CLEAR(Cust);
 
-                FormatAddr.SalesHeaderShipTo(ShipToAddr, CustAddr, "Sales Header");//BC Upgrade Add new Parameter CustAddr 2025-06-23
+                temSalesHeader."Ship-to Contact" := '';
+                FormatAddr.SalesHeaderShipTo(ShipToAddr, CustAddr, temSalesHeader);//"Sales Header");//BC Upgrade Add new Parameter CustAddr 2025-06-23
                 ShowShippingAddr := "Sell-to Customer No." <> "Bill-to Customer No.";
                 FOR i := 1 TO ARRAYLEN(ShipToAddr) DO
                     IF ShipToAddr[i] <> CustAddr[i] THEN

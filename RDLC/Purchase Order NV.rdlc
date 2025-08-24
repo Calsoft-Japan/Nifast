@@ -146,7 +146,8 @@ Cstr(Fields!Purchase_Header___Your_Reference_.Value) + Chr(177) +
 Cstr(Fields!SalesPurchPerson_Name.Value) + Chr(177) + 
 Cstr(Fields!CompanyInformation__Phone_No__.Value) + Chr(177) + 
 Cstr(Fields!Purchase_Header___Buy_from_Vendor_No__.Value)  + Chr(177) + 
-Cstr(FORMAT(Fields!Purchase_Header___Requested_Receipt_Date_.Value,"MM/dd/yy"))
+Cstr(FORMAT(Fields!Purchase_Header___Requested_Receipt_Date_.Value,"MM/dd/yy")) + Chr(177) + 
+Cstr(Fields!CompanyAddress_8_.Value)
 , 1)</Hidden>
                           </Visibility>
                           <Style>
@@ -772,7 +773,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!TempPurchLine_AltPriceUOM.Value</Value>
+                                  <Value>=Code.BlankZero(Fields!TempPurchLine_AltPriceUOM.Value)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3134,9 +3135,9 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 </Paragraph>
               </Paragraphs>
               <Top>2.86864cm</Top>
-              <Left>5.565cm</Left>
+              <Left>7.20217cm</Left>
               <Height>1.269cm</Height>
-              <Width>14.28cm</Width>
+              <Width>12.64283cm</Width>
               <ZIndex>1</ZIndex>
               <Style />
             </Textbox>
@@ -4384,6 +4385,30 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 </Border>
               </Style>
             </Line>
+            <Textbox Name="CompanyAddress_7_2">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Code.GetData(55,1)</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>2.93919cm</Top>
+              <Left>1.785cm</Left>
+              <Height>0.423cm</Height>
+              <Width>7.35cm</Width>
+              <ZIndex>56</ZIndex>
+              <Style>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style />
         </PageHeader>
@@ -4669,6 +4694,9 @@ End Function
         </Field>
         <Field Name="CompanyAddress_7_">
           <DataField>CompanyAddress_7_</DataField>
+        </Field>
+        <Field Name="CompanyAddress_8_">
+          <DataField>CompanyAddress_8_</DataField>
         </Field>
         <Field Name="ShipmentMethod_Description">
           <DataField>ShipmentMethod_Description</DataField>

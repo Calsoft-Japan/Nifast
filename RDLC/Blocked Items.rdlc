@@ -18,10 +18,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.5cm</Width>
+                  <Width>0.99729cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.5cm</Width>
+                  <Width>2.00271cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.5cm</Width>
@@ -715,6 +715,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Lot_No__Information__Lot_No__Information___Item_No__">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -732,6 +733,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>0.075cm</PaddingRight>
@@ -744,6 +748,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Lot_No__Information__Lot_No__Information___Lot_No__">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -761,6 +766,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>0.075cm</PaddingLeft>
                             <PaddingRight>0.075cm</PaddingRight>
@@ -790,6 +798,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>0.075cm</PaddingLeft>
                             <PaddingRight>0.075cm</PaddingRight>
@@ -802,6 +813,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Lot_No__Information__Lot_No__Information___Lot_Creation_Date_">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -832,6 +844,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Lot_No__Information__Lot_No__Information___Mfg__Lot_No__">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -861,6 +874,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Lot_No__Information__Lot_No__Information__Inventory">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -940,6 +954,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Lot_No__Information__Lot_No__Information___Inspection_Comments_">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>

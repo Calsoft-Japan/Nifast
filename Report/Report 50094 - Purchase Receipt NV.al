@@ -45,7 +45,7 @@ report 50094 "Purchase Receipt NV"
                     column(CompanyAddr6; CompanyAddress[6])
                     {
                     }
-                    column(DocLogo_CompanyInformation; CompanyInformation."Document Logo")
+                    column(DocLogo_CompanyInformation; CompanyInformation.Picture)// "Document Logo")
                     {
                     }
                     column(CopyTxt; CopyTxt)
@@ -341,6 +341,8 @@ report 50094 "Purchase Receipt NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempPurRcptHdr: Record "Purch. Rcpt. Header" temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -372,6 +374,18 @@ report 50094 "Purchase Receipt NV"
 
                 FormatAddress.PurchRcptBuyFrom(BuyFromAddress, "Purch. Rcpt. Header");
                 FormatAddress.PurchRcptShipTo(ShipToAddress, "Purch. Rcpt. Header");
+                /* 
+                tempPurRcptHdr := "Purch. Rcpt. Header";
+                tempPurRcptHdr."Buy-from Contact" := '';
+                tempPurRcptHdr."Ship-to Contact" := '';
+                if "Responsibility Center" = 'MPD' then begin
+                    FormatAddress.PurchRcptBuyFrom(BuyFromAddress, "Purch. Rcpt. Header"); //BC Upgrade tempPurRcptHdr);
+                    FormatAddress.PurchRcptShipTo(ShipToAddress, tempPurRcptHdr);//"Purch. Rcpt. Header");
+                end
+                else begin
+                    FormatAddress.PurchRcptBuyFrom(BuyFromAddress, tempPurRcptHdr);
+                    FormatAddress.PurchRcptShipTo(ShipToAddress, tempPurRcptHdr);//"Purch. Rcpt. Header");
+                end; */
 
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN
@@ -449,6 +463,7 @@ report 50094 "Purchase Receipt NV"
     begin
         CompanyInformation.GET('');
         CompanyInformation.CALCFIELDS("Document Logo");  //>>NIF
+        CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
     end;
 
     var

@@ -24,6 +24,7 @@ report 50095 "Sales Shipment NV"
             {
                 DataItemLink = "Document No." = FIELD("No.");
                 DataItemTableView = SORTING("Document No.", "Line No.");
+                /* BC Upgrade No need show any comment line in report===================
                 dataitem(SalesLineComments; "Sales Comment Line")
                 {
                     DataItemLink = "No." = FIELD("Document No."),
@@ -53,7 +54,7 @@ report 50095 "Sales Shipment NV"
                         END;
                         TempSalesShipmentLine.INSERT;
                     end;
-                }
+                } */
 
                 trigger OnAfterGetRecord()
                 begin
@@ -72,6 +73,7 @@ report 50095 "Sales Shipment NV"
                     TempSalesShipmentLineAsm.DELETEALL;
                 end;
             }
+            /* BC Upgrade No need show any comment line in report===================
             dataitem("Sales Comment Line"; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -112,7 +114,7 @@ report 50095 "Sales Shipment NV"
 
                     TempSalesShipmentLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -120,7 +122,7 @@ report 50095 "Sales Shipment NV"
                 {
                     DataItemTableView = SORTING(Number)
                                         WHERE(Number = CONST(1));
-                    column(CompanyInformation_DocumentLogo; CompanyInformation."Document Logo")
+                    column(CompanyInformation_DocumentLogo; CompanyInformation.Picture)//"Document Logo")
                     {
                     }
                     column(CompanyInfo2Picture; CompanyInfo2.Picture)
@@ -414,6 +416,8 @@ report 50095 "Sales Shipment NV"
                                 SETRANGE("No.", TempSalesShipmentLine."Document No.");
                                 SETRANGE("Document Line No.", TempSalesShipmentLine."Line No.");
                                 //<<NIF
+
+                                SETRANGE("Document Line No.", -11);//BC Upgrade Skip all comment lines
                             end;
                         }
                         dataitem(AsmLoop; Integer)
@@ -546,6 +550,8 @@ report 50095 "Sales Shipment NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempSShtHdr: Record "Sales Shipment Header" temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -587,8 +593,20 @@ report 50095 "Sales Shipment NV"
                 IF NOT Cust.GET("Sell-to Customer No.") THEN
                     CLEAR(Cust);
 
+                tempSShtHdr := "Sales Shipment Header";
+                tempSShtHdr."Bill-to Contact" := '';
+                tempSShtHdr."Ship-to Contact" := '';
+
                 FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, "Sales Shipment Header");
-                FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");
+                FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");//BC Upgrade 
+                /* 
+                if "Responsibility Center" = 'MPD' then begin
+                    FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, tempSShtHdr);
+                    FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");
+                end else begin
+                    FormatAddress.SalesShptBillTo(BillToAddress, ShipToAddress, "Sales Shipment Header");// tempSShtHdr);
+                    FormatAddress.SalesShptShipTo(ShipToAddress, "Sales Shipment Header");//"Sales Shipment Header");BC Upgrade 
+                end; */
 
                 ShippingAgentCodeLabel := '';
                 ShippingAgentCodeText := '';
@@ -719,6 +737,7 @@ report 50095 "Sales Shipment NV"
 
         CompanyInformation.GET;
         CompanyInformation.CALCFIELDS("Document Logo");    //>>NIF
+        CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
         SalesSetup.GET;
 
         CASE SalesSetup."Logo Position on Documents" OF

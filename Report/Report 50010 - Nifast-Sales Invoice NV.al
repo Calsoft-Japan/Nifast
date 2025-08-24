@@ -292,7 +292,7 @@ report 50010 "Nifast-Sales Invoice NV"
                     column(SalesSetup__Remit_To_Description_; SalesSetup."Remit-To Description")
                     {
                     }
-                    column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+                    column(CompanyInformation__Document_Logo_; CompanyInformation.Picture)//"Document Logo") BC Upgrade
                     {
                     }
                     column(BillCaption; BillCaptionLbl)
@@ -664,6 +664,8 @@ report 50010 "Nifast-Sales Invoice NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempSInvHdr: Record "Sales Invoice Header" temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -698,8 +700,11 @@ report 50010 "Nifast-Sales Invoice NV"
                 IF "Prepayment Invoice" THEN
                     DocumentText := USText001;
 
-                FormatAddress.SalesInvBillTo(BillToAddress, "Sales Invoice Header");
-                FormatAddress.SalesInvShipTo(ShipToAddress, ShipToAddress, "Sales Invoice Header");//ShipToAddress BC Upgrade
+                tempSInvHdr := "Sales Invoice Header";
+                tempSInvHdr."Bill-to Contact" := '';
+                tempSInvHdr."Ship-to Contact" := '';
+                FormatAddress.SalesInvBillTo(BillToAddress, tempSInvHdr);//"Sales Invoice Header");
+                FormatAddress.SalesInvShipTo(ShipToAddress, ShipToAddress, tempSInvHdr);//"Sales Invoice Header");//ShipToAddress BC Upgrade
 
                 IF "Payment Terms Code" = '' THEN
                     CLEAR(PaymentTerms)
@@ -868,6 +873,7 @@ report 50010 "Nifast-Sales Invoice NV"
 
         CompanyInformation.GET;
         CompanyInformation.CALCFIELDS("Document Logo");
+        CompanyInformation.CALCFIELDS(Picture);
         SalesSetup.GET;
 
         CASE SalesSetup."Logo Position on Documents" OF

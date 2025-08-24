@@ -118,6 +118,9 @@ report 50093 "Purchase Order NV"
             column(CompanyAddress_7_; CompanyAddress[7])
             {
             }
+            column(CompanyAddress_8_; CompanyAddress[8])
+            {
+            }
             column(ShipmentMethod_Description; ShipmentMethod.Description)
             {
             }
@@ -133,7 +136,7 @@ report 50093 "Purchase Order NV"
             column(Purchase_Header___No________; '*' + "No." + '*')
             {
             }
-            column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+            column(CompanyInformation__Document_Logo_; CompanyInformation.Picture)// "Document Logo")
             {
             }
             column(ShippingAgent_Name; ShippingAgent.Name)
@@ -248,6 +251,7 @@ report 50093 "Purchase Order NV"
                     TempPurchLine.DELETEALL;
                 end;
             }
+            /* BC Upgrade No need show any comment line in report===================
             dataitem("Purch. Comment Line"; "Purch. Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -282,7 +286,7 @@ report 50093 "Purchase Order NV"
                     cntPurchCommentLine: Record "Purch. Comment Line";
                 begin
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -459,6 +463,8 @@ report 50093 "Purchase Order NV"
                                 PurchLineCommentLine.SETRANGE("No.", TempPurchLine."Document No.");
                                 //PurchLineCommentLine.SETRANGE("Doc. Line No.",TempPurchLine."Line No.");  //NF1.00:CIS.CM 09-29-15-O
                                 PurchLineCommentLine.SETRANGE("Document Line No.", TempPurchLine."Line No.");  //NF1.00:CIS.CM 09-29-15-N
+
+                                PurchLineCommentLine.SETRANGE("Document Line No.", -11);//BC Upgrade Skip all comment lines
                             end;
                         }
 
@@ -576,6 +582,7 @@ report 50093 "Purchase Order NV"
             var
                 tLastArrayUsed: Integer;
                 tCurrArrayPosition: Integer;
+                tempPurHdr: Record "Purchase Header" temporary;
             begin
 
                 //>> IST 06-21-05
@@ -586,9 +593,6 @@ report 50093 "Purchase Order NV"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
                 END;
-
-
-
 
 
                 //>> RTT 09-21-05
@@ -634,8 +638,16 @@ report 50093 "Purchase Order NV"
                 ELSE
                     ShipmentMethod.GET("Shipment Method Code");
 
-                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header");
+                CompanyAddress[5] := '';//BC Upgrade no need shown country code
+
+                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header"); //BC Upgrade 
                 FormatAddress.PurchHeaderShipTo(ShipToAddress, "Purchase Header");
+                /* 
+                tempPurHdr := "Purchase Header";
+                tempPurHdr."Buy-from Contact" := '';
+                tempPurHdr."Ship-to Contact" := '';
+                FormatAddress.PurchHeaderBuyFrom(BuyFromAddress, "Purchase Header"); //BC Upgrade tempPurHdr);
+                FormatAddress.PurchHeaderShipTo(ShipToAddress, tempPurHdr);//"Purchase Header"); */
                 //>> RTT 09-21-05
                 IF (Vend.GET("Purchase Header"."Buy-from Vendor No.")) THEN
                     IF Vend."Fax No." <> '' THEN BEGIN
@@ -649,6 +661,7 @@ report 50093 "Purchase Order NV"
             begin
                 CompanyInformation.GET('');
                 CompanyInformation.CALCFIELDS("Document Logo");
+                CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
                 IF PrintCompany THEN
                     FormatAddress.Company(CompanyAddress, CompanyInformation)
                 ELSE
