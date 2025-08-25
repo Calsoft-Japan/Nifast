@@ -5,6 +5,7 @@ tableextension 50317 "Payable Vendor Ledger Entry Ex" extends "Payable Vendor Le
         field(50000; "Contract Note No."; Code[20])
         {
             // cleaned
+            TableRelation = "4X Contract"."No.";
         }
         field(50001; "Exchange Contract No."; Code[20])
         {

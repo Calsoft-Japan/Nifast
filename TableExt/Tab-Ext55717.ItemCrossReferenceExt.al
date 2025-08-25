@@ -54,29 +54,74 @@ tableextension 55717 "Item Cross Reference Ext" extends "Item Reference"//"Item 
         {
             // cleaned
         }
-        field(50015; "Customer Name"; Text[50])
+        field(50015; "Customer Name"; Text[100])
         {
             // cleaned
+            CalcFormula = lookup(Customer.Name where("No." = field("Reference Type No.")));
+            FieldClass = FlowField;
+            TableRelation = Customer.Name where("No." = field("Reference Type No."));
         }
-        field(50016; "Div Code"; Code[10])
+        field(50016; "Div Code"; Code[20])
         {
             // cleaned
+            CalcFormula = lookup(Customer."Global Dimension 1 Code" where("No." = field("Reference Type No.")));
+            FieldClass = FlowField;
         }
         field(50017; Manufacturer; Code[50])
         {
             // cleaned
+            CalcFormula = lookup(Item."Manufacturer Code" where("No." = field("Item No.")));
+            FieldClass = FlowField;
+            Editable = false;
         }
         field(50018; SNP; Decimal)
         {
             // cleaned
+            CalcFormula = lookup(Item."Units per Parcel" where("No." = field("Item No.")));
+            FieldClass = FlowField;
+            Editable = false;
         }
         field(50019; "Unit Cost"; Decimal)
         {
             // cleaned
+            CalcFormula = lookup(Item."Unit Cost" where("No." = field("Item No.")));
+            FieldClass = FlowField;
+            Editable = false;
         }
         field(50020; "Unit Price"; Decimal)
         {
             // cleaned
+            CalcFormula = lookup(Item."Unit Price" where("No." = field("Item No.")));
+            FieldClass = FlowField;
         }
     }
+
+    procedure CrossRefName(): Text[100];
+    var
+        Item: Record 27;
+        Customer: Record 18;
+        Vendor: Record 23;
+    begin
+        case "Reference Type" of
+            "Reference Type"::Customer:
+                begin
+                    if not Customer.GET("Reference Type No.") then
+                        Clear(Customer);
+                    exit(Customer.Name);
+                end;
+
+            "Reference Type"::Vendor:
+                begin
+                    if not Vendor.GET("Reference Type No.") then
+                        Clear(Vendor);
+                    exit(Vendor.Name);
+                end;
+
+            else begin
+                if not Item.GET("Item No.") then
+                    Clear(Item);
+                exit(Item.Description);
+            end;
+        end;
+    end;
 }
