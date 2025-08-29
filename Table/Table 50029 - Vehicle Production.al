@@ -118,11 +118,26 @@ table 50029 "Vehicle Production"
 
     keys
     {
-        key(PK; "Customer No.", "Item No.", Model, EMU, Per)
+        key(Key1; "Customer No.", Active, "Item No.", Model, EMU, Per)
         {
-            Clustered = true;
         }
-        key(RPTSort; "Customer No.", "Active", "Item No.", Model, "EMU", "Per")
-        { }
+        key(Key2; Model)
+        {
+        }
+        key(Key3; SOP)
+        {
+        }
+        key(Key4; EOP)
+        {
+        }
+        key(Key5; "Pieces Per Vehicle", "Item No.", Per)
+        {
+        }
+        key(Key6; "Item No.", Model, "EC Level", "Applicable Std", "Pieces Per Vehicle")
+        {
+        }
+        key(Key7; "Pieces Per Vehicle")
+        {
+        }
     }
 }

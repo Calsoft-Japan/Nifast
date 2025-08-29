@@ -25,10 +25,8 @@ table 50022 "Mex Export Pediment"
     }
     keys
     {
-        key(PK; "Pedimento Virtual No.")
+        key(Key1; "Pedimento Entry No.", "Pedimento Virtual No.")
         {
-            Clustered = true;
         }
-        key(RPTSort; "Pedimento Entry No.", "Pedimento Virtual No.") { }
     }
 }
