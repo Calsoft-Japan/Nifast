@@ -486,9 +486,9 @@ report 50048 "MEX Virtual Invoice"
                         InvoiceDateArray[i] := TempSalesHdr."Posting Date";
                     UNTIL TempSalesHdr.NEXT = 0;
 
-                tempCust := Customer;
-                tempCust.Contact := Customer."Fax No.";
-                FormatAddr.Customer(BillToAddress, tempCust);//Customer); BC Upgrade
+                //tempCust := Customer;
+                //tempCust.Contact := Customer."Fax No.";
+                FormatAddr.Customer(BillToAddress, Customer);//tempCust); BC Upgrade
                 IF Customer."Pitex/Maquila No." <> '' THEN BEGIN
                     BillToAddress[8] := 'PITEX/' + Customer."Pitex/Maquila No.";
                     COMPRESSARRAY(BillToAddress);
