@@ -8,7 +8,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
             trigger OnValidate()
             begin
                 //>>IST 052005 DPC #9806
-                PurchLine.RESET;
+                PurchLine.RESET();
                 PurchLine.SETRANGE("Document Type", "Document Type");
                 PurchLine.SETRANGE("Document No.", "No.");
                 PurchLine.SETFILTER(Quantity, '<>%1', 0);
@@ -52,7 +52,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
             Description = '#10044';
             trigger OnValidate()
             begin
-                PurchLine.RESET;
+                PurchLine.RESET();
                 PurchLine.SETRANGE("Document Type", "Document Type");
                 PurchLine.SETRANGE("Document No.", "No.");
                 PurchLine.SETFILTER(Quantity, '<>%1', 0);
@@ -257,7 +257,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
     end;
 
     var
-        ShippingAgent: Record 291;
+        
         SuspendStatusChk_gBln: Boolean;
         SoftBlockError: Text[80];
         PurchRep: Record 13;

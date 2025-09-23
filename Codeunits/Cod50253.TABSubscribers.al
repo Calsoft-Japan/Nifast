@@ -5,6 +5,33 @@ codeunit 50253 Tabe38
 
     end;
 
+    // [EventSubscriber(ObjectType::Table, 38, 'OnBeforeDeleteRecordInApprovalRequest', '', True, false)]
+    // local procedure OnBeforeDeleteRecordInApprovalRequest(var PurchaseHeader: Record "Purchase Header"; var IsHandled: Boolean)
+    // begin
+    //     // >> Shipping
+    //     IF PurchaseHeader."Document Type" IN [PurchaseHeader."Document Type"::"Credit Memo", "Document Type"::"Return Order"] THEN BEGIN
+    //         Package.RESET;
+    //         Package.SETCURRENTKEY("Source Type", "Source Subtype", "Source ID");
+    //         Package.SETRANGE("Source Type", DATABASE::"Purchase Header");
+    //         Package.SETRANGE("Source Subtype", "Document Type");
+    //         Package.SETRANGE("Source ID", "No.");
+    //         Package.DELETEALL(TRUE);
+    //     END;
+
+    //     IF "Document Type" IN ["Document Type"::Order, "Document Type"::Invoice] THEN BEGIN
+    //         ReceiveHeader.RESET;
+    //         ReceiveHeader.SETCURRENTKEY("Source Type", "Source Subtype", "Source ID");
+    //         ReceiveHeader.SETRANGE("Source Type", DATABASE::"Purchase Header");
+    //         ReceiveHeader.SETRANGE("Source Subtype", "Document Type");
+    //         ReceiveHeader.SETRANGE("Source ID", "No.");
+    //         ReceiveHeader.DELETEALL(TRUE);
+    //     END;
+
+    //     DeleteShippingAgentOptionPage;
+    //     // << Shipping
+    // end;
+
+
 
     [EventSubscriber(ObjectType::Table, 38, 'OnAfterCheckBuyFromVendor', '', True, false)]
     local procedure OnAfterCheckBuyFromVendor(var PurchaseHeader: Record "Purchase Header"; xPurchaseHeader: Record "Purchase Header"; Vendor: Record Vendor)

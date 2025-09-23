@@ -42,7 +42,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 CaptionML = ENU = 'E-&Mail List';
                 Promoted = true;
                 Image = Email;
-                ToolTip = '';
+                ToolTip = 'Email List';
                 trigger OnAction()
                 var
 

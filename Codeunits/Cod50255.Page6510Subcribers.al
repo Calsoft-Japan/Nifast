@@ -58,14 +58,7 @@ codeunit 50255 Page6510Subcriber
         //<< NIF #9851 RTT 03-22-05
     end;
 
-
-
-
-
-
     var
         MfgLotNoVisible: Boolean;
-
-        test: Record 7316
 
 }

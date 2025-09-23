@@ -72,7 +72,7 @@ tableextension 50083 "Item Journal Line Ext" extends "Item Journal Line"
         {
             trigger OnBeforeValidate()
             begin
-                IF ("Entry Type" <= "Entry Type"::Transfer) AND (Quantity <> 0) THEN
+                IF (rec."Entry Type" <= rec."Entry Type"::Transfer) AND (Quantity <> 0) THEN
                     TESTFIELD("Item No.");
 
             end;
@@ -106,20 +106,17 @@ tableextension 50083 "Item Journal Line Ext" extends "Item Journal Line"
     BEGIN
         CASE ItemJournalLine."Entry Type" OF
             ItemJournalLine."Entry Type"::Sale:
-                BEGIN
-                    IF NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 0, SoftBlockError) THEN
-                        ERROR(SoftBlockError);
-                END;
+
+                IF NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 0, SoftBlockError) THEN
+                    ERROR(SoftBlockError);
             ItemJournalLine."Entry Type"::Purchase:
-                BEGIN
-                    IF NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 1, SoftBlockError) THEN
-                        ERROR(SoftBlockError);
-                END;
+
+                IF NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 1, SoftBlockError) THEN
+                    ERROR(SoftBlockError);
             ItemJournalLine."Entry Type"::Transfer:
-                BEGIN
-                    IF NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 2, SoftBlockError) THEN
-                        ERROR(SoftBlockError);
-                END;
+
+                IF NVM.CheckSoftBlock(2, ItemJournalLine."Item No.", ItemJournalLine."Location Code", ItemJournalLine."Variant Code", 2, SoftBlockError) THEN
+                    ERROR(SoftBlockError);
         END;
     END;
 
@@ -145,10 +142,10 @@ tableextension 50083 "Item Journal Line Ext" extends "Item Journal Line"
         IF (ReservationEntry_lRec.ISEMPTY) AND ("PIJ Lot No." = '') THEN
             EXIT;
 
-        IF ReservationEntry_lRec.FINDFIRST THEN
+        IF ReservationEntry_lRec.FINDFIRST() THEN
             LotNo_lCod := ReservationEntry_lRec."Lot No.";
 
-        ReservationEntry_lRec.DELETEALL;
+        ReservationEntry_lRec.DELETEALL();
 
         IF "PIJ Lot No." <> '' THEN
             LotNo_lCod := "PIJ Lot No."
@@ -170,14 +167,14 @@ tableextension 50083 "Item Journal Line Ext" extends "Item Journal Line"
         END;
 
 
-        ReservationEntry_lRec.RESET;
-        ReservationEntry_lRec.INIT;
+        ReservationEntry_lRec.RESET();
+        ReservationEntry_lRec.INIT();
         ReservationEntry_lRec."Item No." := "Item No.";
         ReservationEntry_lRec."Location Code" := "Location Code";
         ReservationEntry_lRec."Quantity (Base)" := Multipiler_lInt * "Quantity (Base)";
         ReservationEntry_lRec."Reservation Status" := ReservationEntry_lRec."Reservation Status"::Prospect;
         ReservationEntry_lRec.Description := Description;
-        ReservationEntry_lRec."Creation Date" := TODAY;
+        ReservationEntry_lRec."Creation Date" := TODAY();
         ReservationEntry_lRec."Source Type" := 83;
 
         IF "Entry Type" = "Entry Type"::"Positive Adjmt." THEN BEGIN
@@ -192,7 +189,7 @@ tableextension 50083 "Item Journal Line Ext" extends "Item Journal Line"
         ReservationEntry_lRec."Source Batch Name" := "Journal Batch Name";
         ReservationEntry_lRec."Source Ref. No." := "Line No.";
 
-        ReservationEntry_lRec."Created By" := USERID;
+        ReservationEntry_lRec."Created By" := USERID();
 
         ReservationEntry_lRec."Qty. per Unit of Measure" := "Qty. per Unit of Measure";
         ReservationEntry_lRec.Quantity := Multipiler_lInt * Quantity;
