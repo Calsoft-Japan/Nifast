@@ -23,7 +23,7 @@ codeunit 50053 CU5313Subscriber
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Put-away", OnAfterWhseActivHeaderInsert, '', false, false)]
     local procedure OnAfterWhseActivHeaderInsert(var WarehouseActivityHeader: Record "Warehouse Activity Header")
     begin
-        //SingleInstanceCU.SetWarehouseActivityHeader(WarehouseActivityHeader);//Balu
+        SingleInstanceCU.SetWarehouseActivityHeader(WarehouseActivityHeader);
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Put-away", OnBeforeWhseActivLineInsert, '', false, false)]
@@ -31,7 +31,7 @@ codeunit 50053 CU5313Subscriber
     var
         WarehouseActivityHeader: Record "Warehouse Activity Header";
     begin
-        //SingleInstanceCU.GetWarehouseActivityHeader(WarehouseActivityHeader);//Balu
+        SingleInstanceCU.GetWarehouseActivityHeader(WarehouseActivityHeader);
 
         //TODO
         /*  //>>PFC
@@ -161,7 +161,7 @@ codeunit 50053 CU5313Subscriber
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Put-away", OnBeforeCode, '', false, false)]
     local procedure OnBeforeCode(var PostedWhseReceiptLine: Record "Posted Whse. Receipt Line")
     begin
-        //SingleInstanceCU.SetPostedWhseReceiptLine(PostedWhseReceiptLine);//Balu
+        SingleInstanceCU.SetPostedWhseReceiptLine(PostedWhseReceiptLine);
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Put-away", OnBeforeGetPutAwayTemplate, '', false, false)]
@@ -169,7 +169,7 @@ codeunit 50053 CU5313Subscriber
     var
         PostedWhseReceiptLine: Record "Posted Whse. Receipt Line";
     begin
-        //SingleInstanceCU.GetPostedWhseReceiptLine(PostedWhseReceiptLine);//Balu
+        SingleInstanceCU.GetPostedWhseReceiptLine(PostedWhseReceiptLine);
 
         //TODO
         /*    // >> NV - 09/09/03 MV

@@ -119,7 +119,7 @@ codeunit 50050 CU22Subscriber
              ItemLedgerEntry2.SETRANGE("QC Hold", FALSE);
          //<<< NV */
         //TODO
-        //SingleInstanceCu.SetItemLedgerEntry(ItemLedgerEntry2);//Balu
+        SingleInstanceCu.SetItemLedgerEntry(ItemLedgerEntry2);
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", OnApplyItemLedgEntryOnBeforeOldItemLedgEntryModify, '', false, false)]
@@ -127,7 +127,7 @@ codeunit 50050 CU22Subscriber
     var
         ItemLedgEntry2: Record "Item Ledger Entry";
     begin
-        //SingleInstanceCu.GetItemLedgerEntry(ItemLedgEntry2);//Balu
+        SingleInstanceCu.GetItemLedgerEntry(ItemLedgEntry2);
 
         //-AKK1606.01--
         IF ItemLedgerEntry."Entry Type" = ItemLedgerEntry."Entry Type"::Transfer THEN BEGIN
@@ -196,7 +196,7 @@ codeunit 50050 CU22Subscriber
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", OnBeforeInsertApplEntry, '', false, false)]
     local procedure OnBeforeInsertApplEntry(var ItemLedgEntryNo: Integer; var InboundItemEntry: Integer; var OutboundItemEntry: Integer; var TransferedFromEntryNo: Integer; var PostingDate: Date; var Quantity: Decimal; var CostToApply: Boolean; var IsHandled: Boolean)
     begin
-        //SingleInstanceCu.SetInboundandOutboundItemEntry(InboundItemEntry, OutboundItemEntry);//balu
+        SingleInstanceCu.SetInboundandOutboundItemEntry(InboundItemEntry, OutboundItemEntry);
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", OnBeforeItemApplnEntryInsert, '', false, false)]
@@ -204,7 +204,7 @@ codeunit 50050 CU22Subscriber
     var
         InboundItemEntry, OutboundItemEntry : Integer;
     begin
-        //SingleInstanceCu.GetInboundandOutboundItemEntry(InboundItemEntry, OutboundItemEntry);//Balu
+        SingleInstanceCu.GetInboundandOutboundItemEntry(InboundItemEntry, OutboundItemEntry);
         /*    //-AKK1606.01--
          {
          IF TransferedFromEntryNo <> 0 THEN
