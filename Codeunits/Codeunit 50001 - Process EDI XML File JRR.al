@@ -19,17 +19,17 @@ codeunit 50001 "Process EDI XML File JRR"
 
     trigger OnRun()
     begin
-        pString :=UPPERCASE(Rec."Parameter String");
+        pString := UPPERCASE(Rec."Parameter String");
         ProcessAll(FALSE);
     end;
 
     var
-        SalesHeader: Record "36";
-        EDISetup: Record "14002367";
-        MyFile: Record "2000000022";
+        SalesHeader: Record 36;
+        EDISetup: Record 14002367;
+        MyFile: Record 2000000022;
         SourceFile: File;
         Ins: InStream;
-        ImportEDISalesOrder: XMLport "50000";
+        ImportEDISalesOrder: XMLport 50000;
         FOLDER_NOT_FOUND: Label 'Could not find folder %1';
         DOCNAME: Label '%1.XML';
         INVALID_XML_DOCTYPE: Label 'The DOCTYPE element in the XML document returned an invalid value';
@@ -58,8 +58,8 @@ codeunit 50001 "Process EDI XML File JRR"
         BCCEmail: Label '';
         LastUsedLineNo: Integer;
         SUPPORTUSER: Label 'Nifast Support';
-        JobQueueEnt: Record "472";
-        ImportEDIForecast: XMLport "50001";
+        JobQueueEnt: Record 472;
+        ImportEDIForecast: XMLport 50001;
         Sourcepath: Text[250];
         Errorpath: Text[250];
         Successpath: Text[250];
@@ -72,11 +72,11 @@ codeunit 50001 "Process EDI XML File JRR"
 
     procedure ProcessAll(parShowMsg: Boolean)
     var
-        EDISalesOrderImportLog: Record "50031";
+        EDISalesOrderImportLog: Record 50031;
     begin
         IF GUIALLOWED THEN BEGIN
-          IF NOT CONFIRM(CONFIRM_MSG,TRUE) THEN
-            EXIT;
+            IF NOT CONFIRM(CONFIRM_MSG, TRUE) THEN
+                EXIT;
         END;
         CLEAR(Sourcepath);
         CLEAR(Errorpath);
@@ -86,34 +86,34 @@ codeunit 50001 "Process EDI XML File JRR"
 
         MyFile.RESET;
         //MyFile.SETRANGE(Path,EDISetup."XML Source Document Folder");
-        MyFile.SETRANGE(Path,Sourcepath);
-        MyFile.SETRANGE("Is a file",TRUE);
-        MyFile.SETFILTER(Name,'@*.xml');
+        MyFile.SETRANGE(Path, Sourcepath);
+        MyFile.SETRANGE("Is a file", TRUE);
+        MyFile.SETFILTER(Name, '@*.xml');
         IF MyFile.FINDSET THEN BEGIN
-          IF GUIALLOWED THEN
-            Window.OPEN(DIALOG_TEXT1 + DIALOG_TEXT2);
+            IF GUIALLOWED THEN
+                Window.OPEN(DIALOG_TEXT1 + DIALOG_TEXT2);
 
 
-          EDISalesOrderImportLog.RESET;
-          IF EDISalesOrderImportLog.FINDLAST THEN
-            LastUsedLineNo := EDISalesOrderImportLog."Entry No.";
+            EDISalesOrderImportLog.RESET;
+            IF EDISalesOrderImportLog.FINDLAST THEN
+                LastUsedLineNo := EDISalesOrderImportLog."Entry No.";
 
-          REPEAT
-            IF pString = 'SALESORDER' THEN       //jrr
-              ProcessEDISalesOrderIn       // ***************
-            ELSE
-              ProcessEDIForecastIn;
-          UNTIL MyFile.NEXT = 0;
+            REPEAT
+                IF pString = 'SALESORDER' THEN       //jrr
+                    ProcessEDISalesOrderIn       // ***************
+                ELSE
+                    ProcessEDIForecastIn;
+            UNTIL MyFile.NEXT = 0;
 
-          IF GUIALLOWED THEN
-            Window.CLOSE;
+            IF GUIALLOWED THEN
+                Window.CLOSE;
 
-          SendStatusEmail;
-          IF parShowMsg THEN
-            ShowMessage();
+            SendStatusEmail;
+            IF parShowMsg THEN
+                ShowMessage();
         END ELSE BEGIN
-          IF GUIALLOWED THEN
-            MESSAGE(NOTHING_MSG);
+            IF GUIALLOWED THEN
+                MESSAGE(NOTHING_MSG);
         END;
     end;
 
@@ -128,46 +128,46 @@ codeunit 50001 "Process EDI XML File JRR"
         EDISetup.GET;
         //jrr start
         IF pString = 'SALESORDER' THEN BEGIN
-           EDISetup.TESTFIELD("XML Source Document Folder");
-           Sourcepath :=EDISetup."XML Source Document Folder";
-           BackSlashstr := COPYSTR(Sourcepath,STRLEN(Sourcepath),1);   //'\');
-           IF BackSlashstr <> '\' THEN
-              Sourcepath := Sourcepath + '\';
-           Frompos :=STRPOS(Sourcepath,'Source');
-           Errorpath := DELSTR(Sourcepath, Frompos, 6);
-           Errorpath :=INSSTR(Errorpath,'Error',Frompos);
-           Successpath := DELSTR(Sourcepath, Frompos, 6);
-           Successpath := INSSTR(Successpath,'Success',Frompos);
+            EDISetup.TESTFIELD("XML Source Document Folder");
+            Sourcepath := EDISetup."XML Source Document Folder";
+            BackSlashstr := COPYSTR(Sourcepath, STRLEN(Sourcepath), 1);   //'\');
+            IF BackSlashstr <> '\' THEN
+                Sourcepath := Sourcepath + '\';
+            Frompos := STRPOS(Sourcepath, 'Source');
+            Errorpath := DELSTR(Sourcepath, Frompos, 6);
+            Errorpath := INSSTR(Errorpath, 'Error', Frompos);
+            Successpath := DELSTR(Sourcepath, Frompos, 6);
+            Successpath := INSSTR(Successpath, 'Success', Frompos);
         END ELSE BEGIN
-           EDISetup.TESTFIELD("XML Forecast Folder");     //("XML Error Folder");
-           Sourcepath := EDISetup."XML Forecast Folder";
-           BackSlashstr := COPYSTR(Sourcepath,STRLEN(Sourcepath),1);   //'\');
-           IF BackSlashstr <> '\' THEN
-           Sourcepath := Sourcepath + '\';
-           Frompos :=STRPOS(Sourcepath,'Forecast');
-           Errorpath := DELSTR(Sourcepath, Frompos, 8);
-           Errorpath :=INSSTR(Errorpath,'Error',Frompos);
-           Successpath := DELSTR(Sourcepath, Frompos, 8);
-           Successpath := INSSTR(Successpath,'Success',Frompos);
+            EDISetup.TESTFIELD("XML Forecast Folder");     //("XML Error Folder");
+            Sourcepath := EDISetup."XML Forecast Folder";
+            BackSlashstr := COPYSTR(Sourcepath, STRLEN(Sourcepath), 1);   //'\');
+            IF BackSlashstr <> '\' THEN
+                Sourcepath := Sourcepath + '\';
+            Frompos := STRPOS(Sourcepath, 'Forecast');
+            Errorpath := DELSTR(Sourcepath, Frompos, 8);
+            Errorpath := INSSTR(Errorpath, 'Error', Frompos);
+            Successpath := DELSTR(Sourcepath, Frompos, 8);
+            Successpath := INSSTR(Successpath, 'Success', Frompos);
         END;
-        
+
         IF Sourcepath = '' THEN
-           ERROR('Sourcepath is blank. Checkit');
-        
+            ERROR('Sourcepath is blank. Checkit');
+
         /*
         IF NOT EDISetup."Delete XML on Success" THEN
           EDISetup.TESTFIELD("XML Success Folder");
         */
         //jrr end
-        
+
         // check folders         //jrr
         IF NOT ValidateDirectoryPath(Errorpath) THEN   //EDISetup."XML Error Folder") THEN
-          ERROR(FOLDER_NOT_FOUND,Errorpath);  //EDISetup."XML Error Folder");
+            ERROR(FOLDER_NOT_FOUND, Errorpath);  //EDISetup."XML Error Folder");
         IF NOT ValidateDirectoryPath(Sourcepath) THEN   //EDISetup."XML Source Document Folder") THEN
-          ERROR(FOLDER_NOT_FOUND,Sourcepath);  //EDISetup."XML Source Document Folder");
+            ERROR(FOLDER_NOT_FOUND, Sourcepath);  //EDISetup."XML Source Document Folder");
         IF NOT EDISetup."Delete XML on Success" THEN BEGIN
-          IF NOT ValidateDirectoryPath(Successpath) THEN   //EDISetup."XML Success Folder") THEN
-            ERROR(FOLDER_NOT_FOUND,Successpath);   //EDISetup."XML Success Folder");
+            IF NOT ValidateDirectoryPath(Successpath) THEN   //EDISetup."XML Success Folder") THEN
+                ERROR(FOLDER_NOT_FOUND, Successpath);   //EDISetup."XML Success Folder");
         END;
 
     end;
@@ -175,22 +175,22 @@ codeunit 50001 "Process EDI XML File JRR"
     procedure AddToDocNos(parDocNo: Code[20])
     begin
         IF DocNos = '' THEN
-          DocNos := parDocNo
+            DocNos := parDocNo
         ELSE
-          DocNos += '|' + parDocNo;
+            DocNos += '|' + parDocNo;
     end;
 
     procedure ShowMessage()
     begin
         IF DocNos = '' THEN
-          DocNos := '***';
+            DocNos := '***';
         IF GUIALLOWED THEN
-          MESSAGE(STATUS_MSG,FORMAT(SuccessCount),DocNos,FORMAT(ErrorCount));
+            MESSAGE(STATUS_MSG, FORMAT(SuccessCount), DocNos, FORMAT(ErrorCount));
     end;
 
     procedure ProcessEDISalesOrderIn()
     var
-        EDISalesOrderImportLog: Record "50031";
+        EDISalesOrderImportLog: Record 50031;
         LastDocNo_lCod: Code[250];
     begin
         // refresh the instream and import the XML into the EDI Sales Order tables
@@ -199,7 +199,7 @@ codeunit 50001 "Process EDI XML File JRR"
         CLEAR(SourceFile);
 
         IF GUIALLOWED THEN
-          Window.UPDATE(1,MyFile.Name);
+            Window.UPDATE(1, MyFile.Name);
 
         SourceFile.TEXTMODE(TRUE);
         SourceFile.OPEN(MyFile.Path + MyFile.Name);
@@ -207,49 +207,49 @@ codeunit 50001 "Process EDI XML File JRR"
         CLEAR(ImportEDISalesOrder);
         ImportEDISalesOrder.SETSOURCE(Ins);
         IF ImportEDISalesOrder.IMPORT THEN BEGIN
-          SuccessCount += 1;
-          LastDocNo_lCod := ImportEDISalesOrder.GetOrderNo;
-          AddToDocNos(LastDocNo_lCod);
-          IF EDISetup."Delete XML on Success" THEN BEGIN
-            SourceFile.CLOSE;
-            ERASE(MyFile.Path + MyFile.Name);
-          END ELSE BEGIN
-            SourceFile.CLOSE;
-            FILE.COPY(MyFile.Path + MyFile.Name,EDISetup."XML Success Folder" + MyFile.Name);
-            ERASE(MyFile.Path + MyFile.Name);
-          END;
+            SuccessCount += 1;
+            LastDocNo_lCod := ImportEDISalesOrder.GetOrderNo;
+            AddToDocNos(LastDocNo_lCod);
+            IF EDISetup."Delete XML on Success" THEN BEGIN
+                SourceFile.CLOSE;
+                ERASE(MyFile.Path + MyFile.Name);
+            END ELSE BEGIN
+                SourceFile.CLOSE;
+                FILE.COPY(MyFile.Path + MyFile.Name, EDISetup."XML Success Folder" + MyFile.Name);
+                ERASE(MyFile.Path + MyFile.Name);
+            END;
 
-          EDISalesOrderImportLog.RESET;
-          CLEAR(EDISalesOrderImportLog);
-          EDISalesOrderImportLog."Entry No." := GetLastEntryNo;
-          EDISalesOrderImportLog."File Name" := MyFile.Name;
-          EDISalesOrderImportLog."Import Date" := TODAY;
-          EDISalesOrderImportLog."Import Time" := TIME;
-          EDISalesOrderImportLog."Import By" := USERID;
-          EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Success;
-          EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod,1,250);
-          EDISalesOrderImportLog.INSERT;
+            EDISalesOrderImportLog.RESET;
+            CLEAR(EDISalesOrderImportLog);
+            EDISalesOrderImportLog."Entry No." := GetLastEntryNo;
+            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            EDISalesOrderImportLog."Import Date" := TODAY;
+            EDISalesOrderImportLog."Import Time" := TIME;
+            EDISalesOrderImportLog."Import By" := USERID;
+            EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Success;
+            EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
+            EDISalesOrderImportLog.INSERT;
 
-          COMMIT; // to retain all good values, in case other files fail
+            COMMIT; // to retain all good values, in case other files fail
         END ELSE BEGIN
-          ErrorCount += 1;
+            ErrorCount += 1;
 
-          SourceFile.CLOSE;
-          FILE.COPY(MyFile.Path + MyFile.Name,Errorpath + MyFile.Name); //EDISetup."XML Error Folder"
-          ERASE(MyFile.Path + MyFile.Name);
+            SourceFile.CLOSE;
+            FILE.COPY(MyFile.Path + MyFile.Name, Errorpath + MyFile.Name); //EDISetup."XML Error Folder"
+            ERASE(MyFile.Path + MyFile.Name);
 
-          EDISalesOrderImportLog.RESET;
-          CLEAR(EDISalesOrderImportLog);
-          EDISalesOrderImportLog."Entry No." := GetLastEntryNo;
-          EDISalesOrderImportLog."File Name" := MyFile.Name;
-          EDISalesOrderImportLog."Import Date" := TODAY;
-          EDISalesOrderImportLog."Import Time" := TIME;
-          EDISalesOrderImportLog."Import By" := USERID;
-          EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Error;
-          EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod,1,250);
-          EDISalesOrderImportLog."Error Detail" := COPYSTR(GETLASTERRORTEXT,1,250);
-          EDISalesOrderImportLog.INSERT;
-          SendErrorEmail(EDISalesOrderImportLog);
+            EDISalesOrderImportLog.RESET;
+            CLEAR(EDISalesOrderImportLog);
+            EDISalesOrderImportLog."Entry No." := GetLastEntryNo;
+            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            EDISalesOrderImportLog."Import Date" := TODAY;
+            EDISalesOrderImportLog."Import Time" := TIME;
+            EDISalesOrderImportLog."Import By" := USERID;
+            EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Error;
+            EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
+            EDISalesOrderImportLog."Error Detail" := COPYSTR(GETLASTERRORTEXT, 1, 250);
+            EDISalesOrderImportLog.INSERT;
+            SendErrorEmail(EDISalesOrderImportLog);
         END;
     end;
 
@@ -258,187 +258,325 @@ codeunit 50001 "Process EDI XML File JRR"
         SystemDirectoryServer_lDnt: DotNet Directory0;
     begin
         IF SystemDirectoryServer_lDnt.Exists(FileDirectory_iTxt) THEN
-          EXIT(TRUE)
+            EXIT(TRUE)
         ELSE
-          EXIT(FALSE);
+            EXIT(FALSE);
     end;
 
     local procedure GetLastEntryNo(): Integer
     var
-        EDISalesOrderImportLog: Record "50031";
+        EDISalesOrderImportLog: Record 50031;
     begin
         EDISalesOrderImportLog.RESET;
         IF EDISalesOrderImportLog.FINDLAST THEN
-          EXIT(EDISalesOrderImportLog."Entry No." + 1)
+            EXIT(EDISalesOrderImportLog."Entry No." + 1)
         ELSE
-          EXIT(1);
+            EXIT(1);
     end;
 
-    local procedure SendErrorEmail(EDISalesOrderImportLog: Record "50031")
+    // local procedure SendErrorEmail(EDISalesOrderImportLog: Record 50031)
+    // var
+    //     SMTPMail: Codeunit 400;
+    //     SMTPMailSetup: Record 409;
+    //     EmailTo: Text[1024];
+    //     EmailCC: Text[1024];
+    //     EmailBCC: Text[1024];
+    // begin
+    //     IF NOT EDISetup."Send Email on Error" THEN
+    //       EXIT;
+
+    //     EDISetup.TESTFIELD("Email Title");
+    //     EDISetup.TESTFIELD("Email Subject");
+
+    //     SMTPMailSetup.GET;
+    //     IF SMTPMailSetup.Authentication = SMTPMailSetup.Authentication::Basic THEN
+    //       SMTPMailSetup.TESTFIELD("User ID");
+
+    //     GetEmailAddress('SalesOrder_EDI',EmailTo,EmailCC,EmailBCC);
+
+    //     SMTPMail.CreateMessage(EDISetup."Email Title",SMTPMailSetup."User ID",EmailTo,EDISetup."Email Subject",EMAIL_TEXT1,TRUE);
+
+    //     IF EmailCC <> '' THEN
+    //       SMTPMail.AddCC(EmailCC);
+
+    //     IF EmailBCC <> '' THEN
+    //       SMTPMail.AddBCC(EmailBCC);
+
+    //     SMTPMail.AppendBody('<BR/>');
+
+    //     SMTPMail.AppendBody('<H4 Style="color:Blue">');
+    //     SMTPMail.AppendBody(EMAIL_TEXT2);
+    //     SMTPMail.AppendBody('</H4>');
+
+    //     SMTPMail.AppendBody('<table width="100%"><tr><td>');
+    //     SMTPMail.AppendBody('<table cellpadding="0" cellspacing="0" style="border:0.3px solid black;" align="left" width="100%">');
+
+    //     TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Entry No."),FORMAT(EDISalesOrderImportLog."Entry No."));
+    //     TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("File Name"),EDISalesOrderImportLog."File Name");
+    //     TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Import Date"),FORMAT(EDISalesOrderImportLog."Import Date"));
+    //     TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Import Time"),FORMAT(EDISalesOrderImportLog."Import Time"));
+    //     IF GUIALLOWED THEN
+    //       TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Import By"),EDISalesOrderImportLog."Import By")
+    //     ELSE
+    //       TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Import By"),SUPPORTUSER);
+
+    //     TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION(Status),FORMAT(EDISalesOrderImportLog.Status));
+    //     TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Error Detail"),EDISalesOrderImportLog."Error Detail");
+    //     SMTPMail.AppendBody('</table>');
+
+    //     SMTPMail.AppendBody('<BR/>');
+    //     SMTPMail.AppendBody('<BR/>');
+
+    //     SMTPMail.AppendBody('<table><tr><td>');
+    //     SMTPMail.AppendBody(EMAIL_TEXT3);
+    //     SMTPMail.AppendBody('</td></tr><tr><td>');
+    //     SMTPMail.AppendBody(STRSUBSTNO(EMAIL_TEXT4,COMPANYNAME));
+    //     SMTPMail.AppendBody('</td></tr></table></td></tr></table>');
+
+    //     SMTPMail.Send;
+    // end;
+
+    // local procedure SendStatusEmail()
+    // var
+    //     SMTPMail: Codeunit 400;
+    //     SMTPMailSetup: Record 409;
+    //     EmailTo: Text[1024];
+    //     EmailCC: Text[1024];
+    //     EmailBCC: Text[1024];
+    //     EDISalesOrderImportLog: Record 50031;
+    //     FileCount: Integer;
+    // begin
+    //     IF NOT EDISetup."Send Email on Error" THEN
+    //       EXIT;
+
+    //     IF SuccessCount = 0 THEN
+    //       EXIT;
+
+    //     IF SuccessCount + ErrorCount = 0 THEN
+    //       EXIT;
+
+    //     EDISetup.TESTFIELD("Email Title");
+    //     EDISetup.TESTFIELD("Email Subject");
+
+    //     SMTPMailSetup.GET;
+    //     IF SMTPMailSetup.Authentication = SMTPMailSetup.Authentication::Basic THEN
+    //       SMTPMailSetup.TESTFIELD("User ID");
+
+    //     GetEmailAddress('StatusEmail_EDI',EmailTo,EmailCC,EmailBCC);
+
+    //     SMTPMail.CreateMessage(EDISetup."Email Title",SMTPMailSetup."User ID",EmailTo,EDISetup."Email Subject",EMAIL_TEXT1,TRUE);
+
+    //     IF EmailCC <> '' THEN
+    //       SMTPMail.AddCC(EmailCC);
+
+    //     IF EmailBCC <> '' THEN
+    //       SMTPMail.AddBCC(EmailBCC);
+
+    //     SMTPMail.AppendBody('<BR/>');
+
+    //     SMTPMail.AppendBody('<H4 Style="color:Blue">');
+    //     SMTPMail.AppendBody(STRSUBSTNO(EMAIL_TEXT6,FORMAT(SuccessCount)));
+    //     SMTPMail.AppendBody('<BR/>');
+    //     SMTPMail.AppendBody(STRSUBSTNO(EMAIL_TEXT7,FORMAT(ErrorCount)));
+    //     SMTPMail.AppendBody('</H4>');
+
+    //     SMTPMail.AppendBody('<table width="100%"><tr><td>');
+    //     SMTPMail.AppendBody('<table cellpadding="0" cellspacing="0" style="border:0.3px solid black;" align="left" width="100%">');
+
+    //     FileCount := 0;
+    //     EDISalesOrderImportLog.RESET;
+    //     EDISalesOrderImportLog.SETFILTER("Entry No.",'>%1',LastUsedLineNo);
+    //     IF EDISalesOrderImportLog.FINDSET THEN BEGIN
+    //       TableBodyAppendResultHdr(SMTPMail);
+    //       REPEAT
+    //         FileCount += 1;
+    //         TableBodyAppendResult(SMTPMail,FileCount,EDISalesOrderImportLog."File Name",FORMAT(EDISalesOrderImportLog.Status),EDISalesOrderImportLog."Sales Orders");
+    //       UNTIL EDISalesOrderImportLog.NEXT = 0;
+    //     END;
+
+    //     SMTPMail.AppendBody('</table>');
+
+    //     SMTPMail.AppendBody('<BR/>');
+    //     SMTPMail.AppendBody('<BR/>');
+
+    //     SMTPMail.AppendBody('<table><tr><td>');
+    //     SMTPMail.AppendBody(EMAIL_TEXT3);
+    //     SMTPMail.AppendBody('</td></tr><tr><td>');
+    //     SMTPMail.AppendBody(STRSUBSTNO(EMAIL_TEXT4,COMPANYNAME));
+    //     SMTPMail.AppendBody('</td></tr></table></td></tr></table>');
+
+    //     SMTPMail.Send;
+    // end;
+
+    // local procedure TableBodyAppend(var SMTP_vCdu: Codeunit 400;Caption_iTxt: Text;Value_iTxt: Text)
+    // begin
+    //     SMTP_vCdu.AppendBody('<tr><td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="30%">'+ Caption_iTxt +'</td>');
+    //     SMTP_vCdu.AppendBody('<td Style="border:0.3px solid Black;padding:0px 0px 0px 10px" align="left" Width="70%">' + Value_iTxt +'</td></TR>');
+    // end;
+
+    // local procedure TableBodyAppendResultHdr(var SMTP_vCdu: Codeunit 400)
+    // begin
+    //     SMTP_vCdu.AppendBody('<tr><td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="5%">'+ 'Sr No.' +'</td>');
+    //     SMTP_vCdu.AppendBody('<td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="65%">'+ 'File Name' +'</td>');
+    //     SMTP_vCdu.AppendBody('<td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="15%">'+ 'Status' +'</td>');
+    //     SMTP_vCdu.AppendBody('<td Style="border:0.3px solid Black;font-weight:bold;padding:0px 0px 0px 10px" align="left" Width="15%">' + 'Sales Order' +'</td></TR>');
+    // end;
+
+    // local procedure TableBodyAppendResult(var SMTP_vCdu: Codeunit 400;SrNo_iInt: Integer;FileName_iTxt: Text;Status_iTxt: Text;SalesOrder_iTxt: Text)
+    // begin
+    //     SMTP_vCdu.AppendBody('<tr><td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="5%">'+ FORMAT(SrNo_iInt) +'</td>');
+    //     SMTP_vCdu.AppendBody('<td align="left" Style="border:0.3px solid black;padding:0px 0px 0px 10px"  Width="65%">'+ FileName_iTxt +'</td>');
+    //     SMTP_vCdu.AppendBody('<td align="left" Style="border:0.3px solid black;padding:0px 0px 0px 10px"  Width="15%">'+ Status_iTxt +'</td>');
+    //     SMTP_vCdu.AppendBody('<td Style="border:0.3px solid Black;padding:0px 0px 0px 10px" align="left" Width="15%">' + SalesOrder_iTxt +'</td></TR>');
+    // end;
+
+    local procedure SendErrorEmail(EDISalesOrderImportLog: Record 50031)
     var
-        SMTPMail: Codeunit "400";
-        SMTPMailSetup: Record "409";
+        EmailMessage: Codeunit "Email Message";
+        Email: Codeunit Email;
         EmailTo: Text[1024];
         EmailCC: Text[1024];
         EmailBCC: Text[1024];
+        BodyBuilder: TextBuilder;
+        CompanyNameTxt: Text;
     begin
-        IF NOT EDISetup."Send Email on Error" THEN
-          EXIT;
+        if not EDISetup."Send Email on Error" then
+            exit;
 
-        EDISetup.TESTFIELD("Email Title");
-        EDISetup.TESTFIELD("Email Subject");
+        EDISetup.TestField("Email Title");
+        EDISetup.TestField("Email Subject");
 
-        SMTPMailSetup.GET;
-        IF SMTPMailSetup.Authentication = SMTPMailSetup.Authentication::Basic THEN
-          SMTPMailSetup.TESTFIELD("User ID");
+        GetEmailAddress('SalesOrder_EDI', EmailTo, EmailCC, EmailBCC);
 
-        GetEmailAddress('SalesOrder_EDI',EmailTo,EmailCC,EmailBCC);
+        // Build HTML body
+        BodyBuilder.Append('<html><body>');
+        BodyBuilder.Append('<h4 style="color:Blue;">');
+        BodyBuilder.Append(EMAIL_TEXT2);
+        BodyBuilder.Append('</h4><br/>');
+        BodyBuilder.Append('<table width="100%" style="border-collapse: collapse;">');
+        BodyBuilder.Append('<tr><th style="border:1px solid black;">Field</th><th style="border:1px solid black;">Value</th></tr>');
 
-        SMTPMail.CreateMessage(EDISetup."Email Title",SMTPMailSetup."User ID",EmailTo,EDISetup."Email Subject",EMAIL_TEXT1,TRUE);
+        TableBodyAppend(BodyBuilder, EDISalesOrderImportLog.FieldCaption("Entry No."), Format(EDISalesOrderImportLog."Entry No."));
+        TableBodyAppend(BodyBuilder, EDISalesOrderImportLog.FieldCaption("File Name"), EDISalesOrderImportLog."File Name");
+        TableBodyAppend(BodyBuilder, EDISalesOrderImportLog.FieldCaption("Import Date"), Format(EDISalesOrderImportLog."Import Date"));
+        TableBodyAppend(BodyBuilder, EDISalesOrderImportLog.FieldCaption("Import Time"), Format(EDISalesOrderImportLog."Import Time"));
+        if GUIAllowed then
+            TableBodyAppend(BodyBuilder, EDISalesOrderImportLog.FieldCaption("Import By"), EDISalesOrderImportLog."Import By")
+        else
+            TableBodyAppend(BodyBuilder, EDISalesOrderImportLog.FieldCaption("Import By"), SUPPORTUSER);
 
-        IF EmailCC <> '' THEN
-          SMTPMail.AddCC(EmailCC);
+        TableBodyAppend(BodyBuilder, EDISalesOrderImportLog.FieldCaption(Status), Format(EDISalesOrderImportLog.Status));
+        TableBodyAppend(BodyBuilder, EDISalesOrderImportLog.FieldCaption("Error Detail"), EDISalesOrderImportLog."Error Detail");
 
-        IF EmailBCC <> '' THEN
-          SMTPMail.AddBCC(EmailBCC);
+        BodyBuilder.Append('</table><br/><br/>');
+        BodyBuilder.Append(EMAIL_TEXT3 + '<br/>');
+        CompanyNameTxt := CompanyName;
+        BodyBuilder.Append(StrSubstNo(EMAIL_TEXT4, CompanyNameTxt));
+        BodyBuilder.Append('</body></html>');
 
-        SMTPMail.AppendBody('<BR/>');
+        //  Create message with To, CC, and BCC
+        EmailMessage.Create(
+            EDISetup."Email Subject",
+            EmailTo,
+            EmailCC,
+            EmailBCC,
+            BodyBuilder.ToText(),
+            true
+        );
 
-        SMTPMail.AppendBody('<H4 Style="color:Blue">');
-        SMTPMail.AppendBody(EMAIL_TEXT2);
-        SMTPMail.AppendBody('</H4>');
-
-        SMTPMail.AppendBody('<table width="100%"><tr><td>');
-        SMTPMail.AppendBody('<table cellpadding="0" cellspacing="0" style="border:0.3px solid black;" align="left" width="100%">');
-
-        TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Entry No."),FORMAT(EDISalesOrderImportLog."Entry No."));
-        TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("File Name"),EDISalesOrderImportLog."File Name");
-        TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Import Date"),FORMAT(EDISalesOrderImportLog."Import Date"));
-        TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Import Time"),FORMAT(EDISalesOrderImportLog."Import Time"));
-        IF GUIALLOWED THEN
-          TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Import By"),EDISalesOrderImportLog."Import By")
-        ELSE
-          TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Import By"),SUPPORTUSER);
-
-        TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION(Status),FORMAT(EDISalesOrderImportLog.Status));
-        TableBodyAppend(SMTPMail,EDISalesOrderImportLog.FIELDCAPTION("Error Detail"),EDISalesOrderImportLog."Error Detail");
-        SMTPMail.AppendBody('</table>');
-
-        SMTPMail.AppendBody('<BR/>');
-        SMTPMail.AppendBody('<BR/>');
-
-        SMTPMail.AppendBody('<table><tr><td>');
-        SMTPMail.AppendBody(EMAIL_TEXT3);
-        SMTPMail.AppendBody('</td></tr><tr><td>');
-        SMTPMail.AppendBody(STRSUBSTNO(EMAIL_TEXT4,COMPANYNAME));
-        SMTPMail.AppendBody('</td></tr></table></td></tr></table>');
-
-        SMTPMail.Send;
+        // Send using configured account/scenario
+        Email.Send(EmailMessage, Enum::"Email Scenario"::Default);
     end;
+
 
     local procedure SendStatusEmail()
     var
-        SMTPMail: Codeunit "400";
-        SMTPMailSetup: Record "409";
+        EmailMessage: Codeunit "Email Message";
+        Email: Codeunit Email;
         EmailTo: Text[1024];
         EmailCC: Text[1024];
         EmailBCC: Text[1024];
-        EDISalesOrderImportLog: Record "50031";
+        EDISalesOrderImportLog: Record 50031;
         FileCount: Integer;
+        BodyBuilder: TextBuilder;
+        CompanyNameTxt: Text;
     begin
-        IF NOT EDISetup."Send Email on Error" THEN
-          EXIT;
+        if not EDISetup."Send Email on Error" then
+            exit;
 
-        IF SuccessCount = 0 THEN
-          EXIT;
+        if (SuccessCount = 0) or (SuccessCount + ErrorCount = 0) then
+            exit;
 
-        IF SuccessCount + ErrorCount = 0 THEN
-          EXIT;
+        EDISetup.TestField("Email Title");
+        EDISetup.TestField("Email Subject");
 
-        EDISetup.TESTFIELD("Email Title");
-        EDISetup.TESTFIELD("Email Subject");
+        GetEmailAddress('StatusEmail_EDI', EmailTo, EmailCC, EmailBCC);
 
-        SMTPMailSetup.GET;
-        IF SMTPMailSetup.Authentication = SMTPMailSetup.Authentication::Basic THEN
-          SMTPMailSetup.TESTFIELD("User ID");
-
-        GetEmailAddress('StatusEmail_EDI',EmailTo,EmailCC,EmailBCC);
-
-        SMTPMail.CreateMessage(EDISetup."Email Title",SMTPMailSetup."User ID",EmailTo,EDISetup."Email Subject",EMAIL_TEXT1,TRUE);
-
-        IF EmailCC <> '' THEN
-          SMTPMail.AddCC(EmailCC);
-
-        IF EmailBCC <> '' THEN
-          SMTPMail.AddBCC(EmailBCC);
-
-        SMTPMail.AppendBody('<BR/>');
-
-        SMTPMail.AppendBody('<H4 Style="color:Blue">');
-        SMTPMail.AppendBody(STRSUBSTNO(EMAIL_TEXT6,FORMAT(SuccessCount)));
-        SMTPMail.AppendBody('<BR/>');
-        SMTPMail.AppendBody(STRSUBSTNO(EMAIL_TEXT7,FORMAT(ErrorCount)));
-        SMTPMail.AppendBody('</H4>');
-
-        SMTPMail.AppendBody('<table width="100%"><tr><td>');
-        SMTPMail.AppendBody('<table cellpadding="0" cellspacing="0" style="border:0.3px solid black;" align="left" width="100%">');
+        // Build HTML Body
+        BodyBuilder.Append('<html><body>');
+        BodyBuilder.Append('<h4 style="color:Blue;">');
+        BodyBuilder.Append(StrSubstNo(EMAIL_TEXT6, Format(SuccessCount)) + '<br/>');
+        BodyBuilder.Append(StrSubstNo(EMAIL_TEXT7, Format(ErrorCount)));
+        BodyBuilder.Append('</h4><br/>');
+        BodyBuilder.Append('<table width="100%" style="border-collapse: collapse;">');
+        BodyBuilder.Append('<tr><th style="border:1px solid black;">Sr No.</th><th style="border:1px solid black;">File Name</th><th style="border:1px solid black;">Status</th><th style="border:1px solid black;">Sales Order</th></tr>');
 
         FileCount := 0;
-        EDISalesOrderImportLog.RESET;
-        EDISalesOrderImportLog.SETFILTER("Entry No.",'>%1',LastUsedLineNo);
-        IF EDISalesOrderImportLog.FINDSET THEN BEGIN
-          TableBodyAppendResultHdr(SMTPMail);
-          REPEAT
-            FileCount += 1;
-            TableBodyAppendResult(SMTPMail,FileCount,EDISalesOrderImportLog."File Name",FORMAT(EDISalesOrderImportLog.Status),EDISalesOrderImportLog."Sales Orders");
-          UNTIL EDISalesOrderImportLog.NEXT = 0;
-        END;
+        EDISalesOrderImportLog.Reset();
+        EDISalesOrderImportLog.SetFilter("Entry No.", '>%1', LastUsedLineNo);
+        if EDISalesOrderImportLog.FindSet() then begin
+            repeat
+                FileCount += 1;
+                TableBodyAppendResult(BodyBuilder, FileCount, EDISalesOrderImportLog."File Name", Format(EDISalesOrderImportLog.Status), EDISalesOrderImportLog."Sales Orders");
+            until EDISalesOrderImportLog.Next() = 0;
+        end;
 
-        SMTPMail.AppendBody('</table>');
+        BodyBuilder.Append('</table><br/><br/>');
+        BodyBuilder.Append(EMAIL_TEXT3 + '<br/>');
+        CompanyNameTxt := CompanyName;
+        BodyBuilder.Append(StrSubstNo(EMAIL_TEXT4, CompanyNameTxt));
+        BodyBuilder.Append('</body></html>');
 
-        SMTPMail.AppendBody('<BR/>');
-        SMTPMail.AppendBody('<BR/>');
+        //  Create message with To, CC, and BCC
+        EmailMessage.Create(
+            EDISetup."Email Subject",
+            EmailTo,
+            EmailCC,
+            EmailBCC,
+            BodyBuilder.ToText(),
+            true
+        );
 
-        SMTPMail.AppendBody('<table><tr><td>');
-        SMTPMail.AppendBody(EMAIL_TEXT3);
-        SMTPMail.AppendBody('</td></tr><tr><td>');
-        SMTPMail.AppendBody(STRSUBSTNO(EMAIL_TEXT4,COMPANYNAME));
-        SMTPMail.AppendBody('</td></tr></table></td></tr></table>');
-
-        SMTPMail.Send;
+        Email.Send(EmailMessage, Enum::"Email Scenario"::Default);
     end;
 
-    local procedure TableBodyAppend(var SMTP_vCdu: Codeunit "400";Caption_iTxt: Text;Value_iTxt: Text)
+
+    // ---------- Helper Methods ----------
+
+    local procedure TableBodyAppend(var BodyBuilder: TextBuilder; CaptionTxt: Text; ValueTxt: Text)
     begin
-        SMTP_vCdu.AppendBody('<tr><td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="30%">'+ Caption_iTxt +'</td>');
-        SMTP_vCdu.AppendBody('<td Style="border:0.3px solid Black;padding:0px 0px 0px 10px" align="left" Width="70%">' + Value_iTxt +'</td></TR>');
+        BodyBuilder.Append('<tr><td style="border:1px solid black;font-weight:bold;padding:5px;">' + CaptionTxt + '</td>');
+        BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + ValueTxt + '</td></tr>');
     end;
 
-    local procedure TableBodyAppendResultHdr(var SMTP_vCdu: Codeunit "400")
+    local procedure TableBodyAppendResult(var BodyBuilder: TextBuilder; SrNo: Integer; FileName: Text; Status: Text; SalesOrder: Text)
     begin
-        SMTP_vCdu.AppendBody('<tr><td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="5%">'+ 'Sr No.' +'</td>');
-        SMTP_vCdu.AppendBody('<td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="65%">'+ 'File Name' +'</td>');
-        SMTP_vCdu.AppendBody('<td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="15%">'+ 'Status' +'</td>');
-        SMTP_vCdu.AppendBody('<td Style="border:0.3px solid Black;font-weight:bold;padding:0px 0px 0px 10px" align="left" Width="15%">' + 'Sales Order' +'</td></TR>');
+        BodyBuilder.Append('<tr><td style="border:1px solid black;padding:5px;">' + Format(SrNo) + '</td>');
+        BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + FileName + '</td>');
+        BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + Status + '</td>');
+        BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + SalesOrder + '</td></tr>');
     end;
 
-    local procedure TableBodyAppendResult(var SMTP_vCdu: Codeunit "400";SrNo_iInt: Integer;FileName_iTxt: Text;Status_iTxt: Text;SalesOrder_iTxt: Text)
-    begin
-        SMTP_vCdu.AppendBody('<tr><td align="left" Style="border:0.3px solid black;font-weight:bold;padding:0px 0px 0px 10px"  Width="5%">'+ FORMAT(SrNo_iInt) +'</td>');
-        SMTP_vCdu.AppendBody('<td align="left" Style="border:0.3px solid black;padding:0px 0px 0px 10px"  Width="65%">'+ FileName_iTxt +'</td>');
-        SMTP_vCdu.AppendBody('<td align="left" Style="border:0.3px solid black;padding:0px 0px 0px 10px"  Width="15%">'+ Status_iTxt +'</td>');
-        SMTP_vCdu.AppendBody('<td Style="border:0.3px solid Black;padding:0px 0px 0px 10px" align="left" Width="15%">' + SalesOrder_iTxt +'</td></TR>');
-    end;
 
     local procedure FormatMailDate(Date_iDte: Date): Text
     begin
-        EXIT(FORMAT(Date_iDte,0,'<Day,2>/<Month,2>/<Year>'));
+        EXIT(FORMAT(Date_iDte, 0, '<Day,2>/<Month,2>/<Year>'));
     end;
 
-    procedure GetEmailAddress(ReportName: Text[30];var pTo: Text[1024];var pCC: Text[1024];var pBCC: Text[1024])
+    procedure GetEmailAddress(ReportName: Text[30]; var pTo: Text[1024]; var pCC: Text[1024]; var pBCC: Text[1024])
     begin
         IF ReportName = '' THEN
-          ERROR('You must specify Report Name!');
+            ERROR('You must specify Report Name!');
 
         CLEAR(pTo);
         CLEAR(pCC);
@@ -446,36 +584,36 @@ codeunit 50001 "Process EDI XML File JRR"
 
         //jrr 071716
 
-        IF STRPOS(COMPANYNAME,'CORPORATION') > 0 THEN
-           pTo := To_NUSA
-        ELSE IF STRPOS(COMPANYNAME,'Canada') > 0  THEN
-           pTo := To_NC1 + To_NC2
+        IF STRPOS(COMPANYNAME, 'CORPORATION') > 0 THEN
+            pTo := To_NUSA
+        ELSE IF STRPOS(COMPANYNAME, 'Canada') > 0 THEN
+            pTo := To_NC1 + To_NC2
         ELSE
-           pTo := ToEmail;
+            pTo := ToEmail;
 
         //jrr 071716
 
         CASE ReportName OF
-          'SalesOrder_EDI':
-            BEGIN
-        //        pTo  := ToEmail;
-                pCC  := CCEmail;
-                pBCC := BCCEmail;
-            END;
-          'StatusEmail_EDI':
-            BEGIN
-        //        pTo  := ToEmail;
-                pCC  := CCEmail;
-                pBCC := BCCEmail;
-            END;
-          ELSE
-            ERROR('Report Name %1 does not find in switch case',ReportName);
+            'SalesOrder_EDI':
+                BEGIN
+                    //        pTo  := ToEmail;
+                    pCC := CCEmail;
+                    pBCC := BCCEmail;
+                END;
+            'StatusEmail_EDI':
+                BEGIN
+                    //        pTo  := ToEmail;
+                    pCC := CCEmail;
+                    pBCC := BCCEmail;
+                END;
+            ELSE
+                ERROR('Report Name %1 does not find in switch case', ReportName);
         END;
     end;
 
     procedure ProcessEDIForecastIn()
     var
-        EDISalesOrderImportLog: Record "50031";
+        EDISalesOrderImportLog: Record 50031;
         LastDocNo_lCod: Code[250];
     begin
         // refresh the instream and import the XML into the EDI Sales Order tables
@@ -484,7 +622,7 @@ codeunit 50001 "Process EDI XML File JRR"
         CLEAR(SourceFile);
 
         IF GUIALLOWED THEN
-          Window.UPDATE(1,MyFile.Name);
+            Window.UPDATE(1, MyFile.Name);
 
         SourceFile.TEXTMODE(TRUE);
         SourceFile.OPEN(MyFile.Path + MyFile.Name);
@@ -492,49 +630,49 @@ codeunit 50001 "Process EDI XML File JRR"
         CLEAR(ImportEDIForecast);   //ImportEDISalesOrder);
         ImportEDIForecast.SETSOURCE(Ins);
         IF ImportEDIForecast.IMPORT THEN BEGIN
-          SuccessCount += 1;
-        //jrr  LastDocNo_lCod := ImportEDIForecast.GetOrderNo;
-          AddToDocNos(LastDocNo_lCod);
-          IF EDISetup."Delete XML on Success" THEN BEGIN
-            SourceFile.CLOSE;
-            ERASE(MyFile.Path + MyFile.Name);
-          END ELSE BEGIN
-            SourceFile.CLOSE;
-            FILE.COPY(MyFile.Path + MyFile.Name,Successpath + MyFile.Name); //EDISetup."XML Success Folder"
-            ERASE(MyFile.Path + MyFile.Name);
-          END;
+            SuccessCount += 1;
+            //jrr  LastDocNo_lCod := ImportEDIForecast.GetOrderNo;
+            AddToDocNos(LastDocNo_lCod);
+            IF EDISetup."Delete XML on Success" THEN BEGIN
+                SourceFile.CLOSE;
+                ERASE(MyFile.Path + MyFile.Name);
+            END ELSE BEGIN
+                SourceFile.CLOSE;
+                FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name); //EDISetup."XML Success Folder"
+                ERASE(MyFile.Path + MyFile.Name);
+            END;
 
-          EDISalesOrderImportLog.RESET;
-          CLEAR(EDISalesOrderImportLog);
-          EDISalesOrderImportLog."Entry No." := GetLastEntryNo;
-          EDISalesOrderImportLog."File Name" := MyFile.Name;
-          EDISalesOrderImportLog."Import Date" := TODAY;
-          EDISalesOrderImportLog."Import Time" := TIME;
-          EDISalesOrderImportLog."Import By" := USERID;
-          EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Success;
-          EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod,1,250);
-          EDISalesOrderImportLog.INSERT;
+            EDISalesOrderImportLog.RESET;
+            CLEAR(EDISalesOrderImportLog);
+            EDISalesOrderImportLog."Entry No." := GetLastEntryNo;
+            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            EDISalesOrderImportLog."Import Date" := TODAY;
+            EDISalesOrderImportLog."Import Time" := TIME;
+            EDISalesOrderImportLog."Import By" := USERID;
+            EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Success;
+            EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
+            EDISalesOrderImportLog.INSERT;
 
-          COMMIT; // to retain all good values, in case other files fail
+            COMMIT; // to retain all good values, in case other files fail
         END ELSE BEGIN
-          ErrorCount += 1;
+            ErrorCount += 1;
 
-          SourceFile.CLOSE;
-          FILE.COPY(MyFile.Path + MyFile.Name,Errorpath + MyFile.Name);  //EDISetup."XML Error Folder"
-          ERASE(MyFile.Path + MyFile.Name);
+            SourceFile.CLOSE;
+            FILE.COPY(MyFile.Path + MyFile.Name, Errorpath + MyFile.Name);  //EDISetup."XML Error Folder"
+            ERASE(MyFile.Path + MyFile.Name);
 
-          EDISalesOrderImportLog.RESET;
-          CLEAR(EDISalesOrderImportLog);
-          EDISalesOrderImportLog."Entry No." := GetLastEntryNo;
-          EDISalesOrderImportLog."File Name" := MyFile.Name;
-          EDISalesOrderImportLog."Import Date" := TODAY;
-          EDISalesOrderImportLog."Import Time" := TIME;
-          EDISalesOrderImportLog."Import By" := USERID;
-          EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Error;
-          EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod,1,250);
-          EDISalesOrderImportLog."Error Detail" := COPYSTR(GETLASTERRORTEXT,1,250);
-          EDISalesOrderImportLog.INSERT;
-          SendErrorEmail(EDISalesOrderImportLog);
+            EDISalesOrderImportLog.RESET;
+            CLEAR(EDISalesOrderImportLog);
+            EDISalesOrderImportLog."Entry No." := GetLastEntryNo;
+            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            EDISalesOrderImportLog."Import Date" := TODAY;
+            EDISalesOrderImportLog."Import Time" := TIME;
+            EDISalesOrderImportLog."Import By" := USERID;
+            EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Error;
+            EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
+            EDISalesOrderImportLog."Error Detail" := COPYSTR(GETLASTERRORTEXT, 1, 250);
+            EDISalesOrderImportLog.INSERT;
+            SendErrorEmail(EDISalesOrderImportLog);
         END;
     end;
 }

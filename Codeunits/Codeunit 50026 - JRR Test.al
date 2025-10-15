@@ -7,10 +7,10 @@ codeunit 50026 "JRR Test"
 
     trigger OnRun()
     var
-        WHE: Record "7312";
-        PH: Record "38";
-        prl: Record "121";
-        Loc: Record "14";
+        WHE: Record 7312;
+        PH: Record 38;
+        prl: Record 121;
+        Loc: Record 14;
     begin
         IF Loc.GET('ROMECON') THEN BEGIN
         Loc."Use As In-Transit" := TRUE;

@@ -30,7 +30,7 @@ codeunit 50025 "Test BTApp"
 
     trigger OnRun()
     var
-        LabelHeader: Record "14000841";
+        LabelHeader: Record 14000841;
         UsePrinterName: Text[250];
     begin
 
@@ -41,25 +41,25 @@ codeunit 50025 "Test BTApp"
     end;
 
     var
-        PackingStation: Record "14000709";
-        ReceiveStation: Record "14000608";
-        TempLabelValue: Record "50006" temporary;
+        PackingStation: Record 14000709;
+        ReceiveStation: Record 14000608;
+        TempLabelValue: Record 50006 temporary;
         FormatPath: Text[250];
-        SalesHeader: Record "36";
-        SalesLine: Record "37";
-        ItemCrossRef: Record "5717";
+        SalesHeader: Record 36;
+        SalesLine: Record 37;
+        ItemCrossRef: Record 5717;
         SalesHeaderLoaded: Boolean;
         SalesLineLoaded: Boolean;
         ItemCrossRefLoaded: Boolean;
-        TempSalesLine: Record "37" temporary;
-        TempItemCrossRef: Record "5717" temporary;
+        TempSalesLine: Record 37 temporary;
+        TempItemCrossRef: Record 5717 temporary;
         LotInfoLoaded: Boolean;
-        TempLotNoInfo: Record "6505" temporary;
-        TempSalesHeader: Record "36" temporary;
+        TempLotNoInfo: Record 6505 temporary;
+        TempSalesHeader: Record 36 temporary;
         BtApplication: Automation ;
         BtFormat: Automation ;
-        BtFormats: Automation ;
-        BtSubstrings: Automation ;
+      //  BtFormats: Automation ;
+        //BtSubstrings: Automation ;
 
     local procedure GetPackingStation()
     begin
@@ -75,10 +75,10 @@ codeunit 50025 "Test BTApp"
 
     procedure TestPrintPackageLabel(LabelHeaderCode: Code[10])
     var
-        LabelHeader: Record "14000841";
-        LabelLine: Record "14000842";
-        LabelElement: Record "14000844";
-        "Field": Record "2000000041";
+        LabelHeader: Record 14000841;
+        LabelLine: Record 14000842;
+        LabelElement: Record 14000844;
+        "Field": Record 2000000041;
         OutputFile: File;
         ValuesEntered: Integer;
         ReturnCode: Integer;
@@ -88,7 +88,7 @@ codeunit 50025 "Test BTApp"
         ElementValue: array [10] of Text[250];
         "<<NIF_LV>>": Integer;
         OutputFileFTP: File;
-        LabelContent: Record "50006";
+        LabelContent: Record 50006;
         Preview: Boolean;
         PrintSel: Integer;
         UsePrinterName: Text[250];
@@ -151,11 +151,11 @@ codeunit 50025 "Test BTApp"
         LabelPrint(LabelHeader,UsePrinterName,Preview,1);
     end;
 
-    procedure PromptReceiveLineLabel(ReceiveLine: Record "14000602";QuantityAdded: Decimal;QuantityBaseAdded: Decimal;ManualPrinting: Boolean)
+    procedure PromptReceiveLineLabel(ReceiveLine: Record 14000602;QuantityAdded: Decimal;QuantityBaseAdded: Decimal;ManualPrinting: Boolean)
     var
-        ReceiveRule: Record "14000612";
-        ReceiveLineLabel: Report "14000847";
-        ReceiveLineRequest: Page "50037";
+        ReceiveRule: Record 14000612;
+        ReceiveLineLabel: Report 14000847;
+        ReceiveLineRequest: Page 50037;
     begin
         IF ReceiveLine.Type <> ReceiveLine.Type::Item THEN
           EXIT;
@@ -190,11 +190,11 @@ codeunit 50025 "Test BTApp"
         END;
     end;
 
-    procedure PrintReceiveLineLabel(Receive: Record "14000601";"Receive Line": Record "14000602";LabelHeaderCode: Code[10];UseQty: Decimal;NoCopies: Integer)
+    procedure PrintReceiveLineLabel(Receive: Record 14000601;"Receive Line": Record 14000602;LabelHeaderCode: Code[10];UseQty: Decimal;NoCopies: Integer)
     var
-        Item: Record "27";
-        LabelHeader: Record "14000841";
-        LabelContent: Record "50006";
+        Item: Record 27;
+        LabelHeader: Record 14000841;
+        LabelContent: Record 50006;
     begin
         CLEAR(Item);
         IF ("Receive Line".Type = "Receive Line".Type::Item) AND ("Receive Line"."No." <> '') THEN
@@ -246,11 +246,11 @@ codeunit 50025 "Test BTApp"
         LabelPrint(LabelHeader,ReceiveStation."Printer Name",FALSE,NoCopies);   //FALSE=No Preview
     end;
 
-    procedure PromptPackageLineLabel(Package: Record "14000701";PackageLine: Record "14000702";QuantityAdded: Decimal;QuantityBaseAdded: Decimal;ManualPrinting: Boolean)
+    procedure PromptPackageLineLabel(Package: Record 14000701;PackageLine: Record 14000702;QuantityAdded: Decimal;QuantityBaseAdded: Decimal;ManualPrinting: Boolean)
     var
-        PackingRule: Record "14000715";
-        PackageLineLabel: Report "50041";
-        PackageLineRequest: Page "50038";
+        PackingRule: Record 14000715;
+        PackageLineLabel: Report 50041;
+        PackageLineRequest: Page 50038;
     begin
         IF PackageLine.Type <> PackageLine.Type::Item THEN
           EXIT;
@@ -287,16 +287,16 @@ codeunit 50025 "Test BTApp"
         END;
     end;
 
-    procedure PrintPackageLineLabel(Package: Record "14000701";"Package Line": Record "14000702";LabelHeaderCode: Code[10];UseQty: Decimal;NoCopies: Integer)
+    procedure PrintPackageLineLabel(Package: Record 14000701;"Package Line": Record 14000702;LabelHeaderCode: Code[10];UseQty: Decimal;NoCopies: Integer)
     var
-        Item: Record "27";
-        LabelHeader: Record "14000841";
-        LabelContent: Record "50006";
-        SalesLine: Record "37";
-        ItemCrossRef: Record "5717";
-        SalesHeader: Record "36";
-        NoSeriesMgt: Codeunit "396";
-        PackingRule: Record "14000715";
+        Item: Record 27;
+        LabelHeader: Record 14000841;
+        LabelContent: Record 50006;
+        SalesLine: Record 37;
+        ItemCrossRef: Record 5717;
+        SalesHeader: Record 36;
+        NoSeriesMgt: Codeunit 396;
+        PackingRule: Record 14000715;
     begin
         CLEAR(Item);
 
@@ -634,19 +634,19 @@ codeunit 50025 "Test BTApp"
         LabelPrint(LabelHeader,PackingStation."Printer Name",FALSE,NoCopies);   //FALSE=No Preview
     end;
 
-    procedure PrintPackageLabel(Package: Record "14000701";LabelHeaderCode: Code[10];NoCopies: Integer;Posted: Boolean;UseLineNo: Integer;UseQty: Decimal)
+    procedure PrintPackageLabel(Package: Record 14000701;LabelHeaderCode: Code[10];NoCopies: Integer;Posted: Boolean;UseLineNo: Integer;UseQty: Decimal)
     var
-        Item: Record "27";
-        LabelHeader: Record "14000841";
-        LabelContent: Record "50006";
-        SalesLine: Record "37";
-        ItemCrossRef: Record "5717";
-        SalesHeader: Record "36";
-        NoSeriesMgt: Codeunit "396";
-        TempPackageLine: Record "14000702" temporary;
-        "Package Line": Record "14000702";
-        PackingRule: Record "14000715";
-        MasterLabelReqForm: Page "50060";
+        Item: Record 27;
+        LabelHeader: Record 14000841;
+        LabelContent: Record 50006;
+        SalesLine: Record 37;
+        ItemCrossRef: Record 5717;
+        SalesHeader: Record 36;
+        NoSeriesMgt: Codeunit 396;
+        TempPackageLine: Record 14000702 temporary;
+        "Package Line": Record 14000702;
+        PackingRule: Record 14000715;
+        MasterLabelReqForm: Page 50060;
     begin
         CLEAR(Item);
         TempLabelValue.RESET;
@@ -1003,13 +1003,13 @@ codeunit 50025 "Test BTApp"
         LabelPrint(LabelHeader,PackingStation."Printer Name",FALSE,NoCopies);   //FALSE=No Preview
     end;
 
-    procedure PrintContractLineLabel(ContractLine: Record "7002";LabelHeaderCode: Code[10];NoCopies: Integer;UsePackingStation: Boolean)
+    procedure PrintContractLineLabel(ContractLine: Record 7002;LabelHeaderCode: Code[10];NoCopies: Integer;UsePackingStation: Boolean)
     var
-        LabelHeader: Record "14000841";
-        LabelContent: Record "50006";
-        ContractHeader: Record "50110";
-        ItemCrossRef: Record "5717";
-        PackingRule: Record "14000715";
+        LabelHeader: Record 14000841;
+        LabelContent: Record 50006;
+        ContractHeader: Record 50110;
+        ItemCrossRef: Record 5717;
+        PackingRule: Record 14000715;
     begin
         TempLabelValue.RESET;
         TempLabelValue.DELETEALL;
@@ -1087,10 +1087,10 @@ codeunit 50025 "Test BTApp"
           LabelPrint(LabelHeader,ReceiveStation."Printer Name",FALSE,NoCopies);   //FALSE=No Preview
     end;
 
-    procedure LabelPrint(LabelHeader: Record "14000841";PrinterName: Text[250];Preview: Boolean;NoCopies: Integer)
+    procedure LabelPrint(LabelHeader: Record 14000841;PrinterName: Text[250];Preview: Boolean;NoCopies: Integer)
     var
         i: Integer;
-        NoSeriesMgt: Codeunit "396";
+        NoSeriesMgt: Codeunit 396;
     begin
         //CLEAR(BtApplication);
         //CLEAR(BtFormat);
@@ -1165,10 +1165,10 @@ codeunit 50025 "Test BTApp"
           CLEAR(LotInfoLoaded);
     end;
 
-    procedure LoadSalesHeader(Package: Record "14000701";PackageLine: Record "14000702")
+    procedure LoadSalesHeader(Package: Record 14000701;PackageLine: Record 14000702)
     var
-        SalesShptLine: Record "111";
-        SalesShptHdr: Record "110";
+        SalesShptLine: Record 111;
+        SalesShptHdr: Record 110;
     begin
         //>>IST 012609 CCL $12797 #12797
         //IF NOT SalesHeader.GET(SalesHeader."Document Type"::Order,PackageLine."Sales Order No.") THEN
@@ -1191,9 +1191,9 @@ codeunit 50025 "Test BTApp"
         SalesHeaderLoaded := TRUE;
     end;
 
-    procedure LoadSalesLine(Package: Record "14000701";PackageLine: Record "14000702")
+    procedure LoadSalesLine(Package: Record 14000701;PackageLine: Record 14000702)
     var
-        SalesShptLine: Record "111";
+        SalesShptLine: Record 111;
     begin
         //>>IST 012609 CCL $12797 #12797
         //IF NOT SalesLine.GET(SalesLine."Document Type"::Order,PackageLine."Sales Order No.",PackageLine."Order Line No.") THEN
@@ -1218,9 +1218,9 @@ codeunit 50025 "Test BTApp"
         SalesLineLoaded := TRUE;
     end;
 
-    procedure LoadItemCrossRef(Package: Record "14000701";PackageLine: Record "14000702")
+    procedure LoadItemCrossRef(Package: Record 14000701;PackageLine: Record 14000702)
     var
-        ItemCrossRef: Record "5717";
+        ItemCrossRef: Record 5717;
     begin
         //if not an item or valid cross reference, then exit
         IF (PackageLine.Type<>PackageLine.Type::Item) OR
@@ -1248,9 +1248,9 @@ codeunit 50025 "Test BTApp"
         ItemCrossRefLoaded := TRUE;
     end;
 
-    procedure LoadLotNoInfo(Package: Record "14000701";PackageLine: Record "14000702")
+    procedure LoadLotNoInfo(Package: Record 14000701;PackageLine: Record 14000702)
     var
-        LotNoInfo: Record "6505";
+        LotNoInfo: Record 6505;
     begin
         //if not an item or lot is blank, then exit
         IF (PackageLine.Type<>PackageLine.Type::Item) OR (PackageLine."Lot No."='') THEN
@@ -1270,10 +1270,10 @@ codeunit 50025 "Test BTApp"
         LotInfoLoaded := TRUE;
     end;
 
-    procedure SummarizePackage(Package: Record "14000701";var TempPackageLine: Record "14000702" temporary;UseLineNo: Integer)
+    procedure SummarizePackage(Package: Record 14000701;var TempPackageLine: Record 14000702 temporary;UseLineNo: Integer)
     var
-        PackageLine: Record "14000702";
-        PackageLine2: Record "14000702";
+        PackageLine: Record 14000702;
+        PackageLine2: Record 14000702;
     begin
         PackageLine.RESET;
         PackageLine.SETRANGE("Package No.",Package."No.");
@@ -1302,10 +1302,10 @@ codeunit 50025 "Test BTApp"
           UNTIL PackageLine.NEXT=0;
     end;
 
-    procedure SummarizePostedPackage(Package: Record "14000701";var TempPackageLine: Record "14000702" temporary;UseLineNo: Integer)
+    procedure SummarizePostedPackage(Package: Record 14000701;var TempPackageLine: Record 14000702 temporary;UseLineNo: Integer)
     var
-        PostedPackageLine: Record "14000705";
-        PostedPackageLine2: Record "14000705";
+        PostedPackageLine: Record 14000705;
+        PostedPackageLine2: Record 14000705;
     begin
         PostedPackageLine.RESET;
         PostedPackageLine.SETRANGE("Package No.",Package."No.");
@@ -1334,16 +1334,16 @@ codeunit 50025 "Test BTApp"
           UNTIL PostedPackageLine.NEXT=0;
     end;
 
-    procedure PrintLabelsFromPick(WhseActvHdr: Record "5766")
+    procedure PrintLabelsFromPick(WhseActvHdr: Record 5766)
     var
-        Package: Record "14000701";
-        PackageLine: Record "14000702";
+        Package: Record 14000701;
+        PackageLine: Record 14000702;
         LabelHeaderCode: Code[10];
         NoCopies: Integer;
         UseQty: Decimal;
         SNP: Decimal;
-        Item: Record "27";
-        PackingRule: Record "14000715";
+        Item: Record 27;
+        PackingRule: Record 14000715;
     begin
 
         CreatePackageFromPick(WhseActvHdr);
@@ -1376,17 +1376,17 @@ codeunit 50025 "Test BTApp"
         Package.DELETE(TRUE);
     end;
 
-    procedure PrintLabelsFromPostedPick(PostedInvtPickHdr: Record "7342")
+    procedure PrintLabelsFromPostedPick(PostedInvtPickHdr: Record 7342)
     var
         LabelHeaderCode: Code[10];
         NoCopies: Integer;
         UseQty: Decimal;
         SNP: Decimal;
-        Item: Record "27";
-        PackingRule: Record "14000715";
-        Package: Record "14000701";
-        PackageLine: Record "14000702";
-        PostedInvtPickLine: Record "7343";
+        Item: Record 27;
+        PackingRule: Record 14000715;
+        Package: Record 14000701;
+        PackageLine: Record 14000702;
+        PostedInvtPickLine: Record 7343;
         UsePkgNo: Code[20];
     begin
         UsePkgNo := PostedInvtPickHdr."No." +'[R]';
@@ -1424,18 +1424,18 @@ codeunit 50025 "Test BTApp"
         Package.DELETE(TRUE);
     end;
 
-    procedure PrintLabelsFromPickLine(WhseActvLine: Record "5767")
+    procedure PrintLabelsFromPickLine(WhseActvLine: Record 5767)
     var
-        Package: Record "14000701";
-        PackageLine: Record "14000702";
+        Package: Record 14000701;
+        PackageLine: Record 14000702;
         LabelHeaderCode: Code[10];
         NoCopies: Integer;
         UseQty: Decimal;
         SNP: Decimal;
-        Item: Record "27";
-        PackingRule: Record "14000715";
-        WhseActvHdr: Record "5766";
-        LabelMgt: Codeunit "14000841";
+        Item: Record 27;
+        PackingRule: Record 14000715;
+        WhseActvHdr: Record 5766;
+        LabelMgt: Codeunit 14000841;
     begin
 
         CreatePackageFromPickLine(WhseActvLine);
@@ -1473,18 +1473,18 @@ codeunit 50025 "Test BTApp"
         Package.DELETE(TRUE);
     end;
 
-    procedure PrintLabelsFromPostedPickLine(PostedInvtPickLine: Record "7343")
+    procedure PrintLabelsFromPostedPickLine(PostedInvtPickLine: Record 7343)
     var
-        Package: Record "14000701";
-        PackageLine: Record "14000702";
+        Package: Record 14000701;
+        PackageLine: Record 14000702;
         LabelHeaderCode: Code[10];
         NoCopies: Integer;
         UseQty: Decimal;
         SNP: Decimal;
-        Item: Record "27";
-        PackingRule: Record "14000715";
-        WhseActvHdr: Record "5766";
-        LabelMgt: Codeunit "14000841";
+        Item: Record 27;
+        PackingRule: Record 14000715;
+        WhseActvHdr: Record 5766;
+        LabelMgt: Codeunit 14000841;
         UsePkgNo: Code[20];
     begin
 
@@ -1519,13 +1519,13 @@ codeunit 50025 "Test BTApp"
         Package.DELETE(TRUE);
     end;
 
-    procedure CreatePackageFromPick(WhseActvHdr: Record "5766")
+    procedure CreatePackageFromPick(WhseActvHdr: Record 5766)
     var
-        WhseActvLine: Record "5767";
-        PackageMgt: Codeunit "14000702";
-        PackingControl: Record "14000717" temporary;
-        Package: Record "14000701";
-        SalesSetup: Record "311";
+        WhseActvLine: Record 5767;
+        PackageMgt: Codeunit 14000702;
+        PackingControl: Record 14000717 temporary;
+        Package: Record 14000701;
+        SalesSetup: Record 311;
     begin
         //make sure sales setup allows
         SalesSetup.GET;
@@ -1571,13 +1571,13 @@ codeunit 50025 "Test BTApp"
           END;
     end;
 
-    procedure CreatePackageFromPickLine(WhseActvLine: Record "5767")
+    procedure CreatePackageFromPickLine(WhseActvLine: Record 5767)
     var
-        PackageMgt: Codeunit "14000702";
-        PackingControl: Record "14000717" temporary;
-        Package: Record "14000701";
-        SalesSetup: Record "311";
-        WhseActvHdr: Record "5766";
+        PackageMgt: Codeunit 14000702;
+        PackingControl: Record 14000717 temporary;
+        Package: Record 14000701;
+        SalesSetup: Record 311;
+        WhseActvHdr: Record 5766;
     begin
         //<< used to print single line of labels >>
 
@@ -1617,19 +1617,19 @@ codeunit 50025 "Test BTApp"
         Package.TotalNetWeight;
     end;
 
-    procedure CreatePackageFromRegPick(PostedInvtPickHdr: Record "7342")
+    procedure CreatePackageFromRegPick(PostedInvtPickHdr: Record 7342)
     var
-        PostedInvtPickLine: Record "7343";
-        PackageMgt: Codeunit "14000702";
-        PackingControl: Record "14000717" temporary;
-        Package: Record "14000701";
-        PostedPackage: Record "14000704";
-        PostedPackageLine: Record "14000705";
-        PackageLine: Record "14000702";
-        SalesShptHdr: Record "110";
-        Shipping: Codeunit "14000701";
+        PostedInvtPickLine: Record 7343;
+        PackageMgt: Codeunit 14000702;
+        PackingControl: Record 14000717 temporary;
+        Package: Record 14000701;
+        PostedPackage: Record 14000704;
+        PostedPackageLine: Record 14000705;
+        PackageLine: Record 14000702;
+        SalesShptHdr: Record 110;
+        Shipping: Codeunit 14000701;
         Summary: Boolean;
-        PackingRule: Record "14000715";
+        PackingRule: Record 14000715;
     begin
         //delete, recreate package
         IF PostedPackage.GET(PostedInvtPickHdr."No.") THEN
@@ -1724,19 +1724,19 @@ codeunit 50025 "Test BTApp"
         Package.DELETE(TRUE);
     end;
 
-    procedure CreatePackageFromSalesShpt(SalesShptHdr: Record "110";Summary: Boolean)
+    procedure CreatePackageFromSalesShpt(SalesShptHdr: Record 110;Summary: Boolean)
     var
-        SalesShptLine: Record "111";
-        PackageMgt: Codeunit "14000702";
-        PackingControl: Record "14000717" temporary;
-        Package: Record "14000701";
-        PostedPackage: Record "14000704";
-        PostedPackageLine: Record "14000705";
-        PackageLine: Record "14000702";
-        Shipping: Codeunit "14000701";
-        ItemEntryRelation: Record "6507";
-        ItemLedgeEntry: Record "32";
-        PostedInvtPickHdr: Record "7342";
+        SalesShptLine: Record 111;
+        PackageMgt: Codeunit 14000702;
+        PackingControl: Record 14000717 temporary;
+        Package: Record 14000701;
+        PostedPackage: Record 14000704;
+        PostedPackageLine: Record 14000705;
+        PackageLine: Record 14000702;
+        Shipping: Codeunit 14000701;
+        ItemEntryRelation: Record 6507;
+        ItemLedgeEntry: Record 32;
+        PostedInvtPickHdr: Record 7342;
     begin
         //if a posted pick exists for this shipment, with a posted package, then exit
         PostedInvtPickHdr.SETRANGE("Source No.",SalesShptHdr."No.");
@@ -1839,16 +1839,16 @@ codeunit 50025 "Test BTApp"
         Package.DELETE(TRUE);
     end;
 
-    procedure CreatePackageFromRegPickLine(PostedInvtPickLine: Record "7343";UsePkgNo: Code[20])
+    procedure CreatePackageFromRegPickLine(PostedInvtPickLine: Record 7343;UsePkgNo: Code[20])
     var
-        PackageMgt: Codeunit "14000702";
-        PackingControl: Record "14000717" temporary;
-        Package: Record "14000701";
-        PackageLine: Record "14000702";
-        SalesShptHdr: Record "110";
-        Shipping: Codeunit "14000701";
-        PackingRule: Record "14000715";
-        PostedInvtPickHdr: Record "7342";
+        PackageMgt: Codeunit 14000702;
+        PackingControl: Record 14000717 temporary;
+        Package: Record 14000701;
+        PackageLine: Record 14000702;
+        SalesShptHdr: Record 110;
+        Shipping: Codeunit 14000701;
+        PackingRule: Record 14000715;
+        PostedInvtPickHdr: Record 7342;
     begin
         //delete, recreate package
         PostedInvtPickHdr.GET(PostedInvtPickLine."No.");
@@ -1880,13 +1880,13 @@ codeunit 50025 "Test BTApp"
           END;
     end;
 
-    procedure GetPackagePickNo(PackageHdr: Record "14000701";PackageLine: Record "14000702") PickNo: Code[20]
+    procedure GetPackagePickNo(PackageHdr: Record 14000701;PackageLine: Record 14000702) PickNo: Code[20]
     var
-        SalesLine: Record "37";
-        WhseActvLine: Record "5767";
-        WhseActvHdr: Record "5766";
-        PostedInvtPickHdr: Record "7342";
-        PostedInvtPickLine: Record "7343";
+        SalesLine: Record 37;
+        WhseActvLine: Record 5767;
+        WhseActvHdr: Record 5766;
+        PostedInvtPickHdr: Record 7342;
+        PostedInvtPickLine: Record 7343;
     begin
         //if have shipment no., then is posted
         //CCL012609  IF PackageHdr."Sales Shipment No."<>'' THEN BEGIN

@@ -12,11 +12,11 @@ codeunit 70002 "Misc JRR"
 
     trigger OnRun()
     var
-        PIL: Record "123";
+        PIL: Record 123;
         reccnt: Integer;
-        SalesShptLine: Record "111";
-        PostedPackageLine: Record "14000705";
-        PurLn: Record "39";
+        SalesShptLine: Record 111;
+        PostedPackageLine: Record 14000705;
+        PurLn: Record 39;
         pPath: Text[100];
         pName: Text[100];
         DetStr: Text[3];
@@ -163,12 +163,12 @@ codeunit 70002 "Misc JRR"
     end;
 
     var
-        ILE: Record "32";
-        VE: Record "5802";
-        WE: Record "7312";
-        Item: Record "27";
-        IAE: Record "339";
-        ACE: Record "5804";
-        SIH: Record "112";
+        ILE: Record 32;
+        VE: Record 5802;
+        WE: Record 7312;
+        Item: Record 27;
+        IAE: Record 339;
+        ACE: Record 5804;
+        SIH: Record 112;
 }
 

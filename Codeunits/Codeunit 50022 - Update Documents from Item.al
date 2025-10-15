@@ -11,9 +11,9 @@ codeunit 50022 "Update Documents from Item"
     trigger OnRun()
     var
         ">>NIF_LV": Integer;
-        Item: Record "27";
-        SalesLine: Record "37";
-        PurchLine: Record "39";
+        Item: Record 27;
+        SalesLine: Record 37;
+        PurchLine: Record 39;
         d: Dialog;
     begin
         IF NOT CONFIRM('Do you want to update Sales and Purchase line\'+

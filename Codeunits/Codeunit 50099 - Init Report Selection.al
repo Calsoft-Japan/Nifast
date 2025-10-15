@@ -17,7 +17,7 @@ codeunit 50099 "Init Report Selection"
 
     local procedure BaseInitReportSelection()
     var
-        ReportSelections: Record "77";
+        ReportSelections: Record 77;
     begin
         WITH ReportSelections DO BEGIN
           RESET;
@@ -85,7 +85,7 @@ codeunit 50099 "Init Report Selection"
 
     local procedure CanadaInitReportSelection()
     var
-        ReportSelections: Record "77";
+        ReportSelections: Record 77;
     begin
         WITH ReportSelections DO BEGIN
           RESET;
@@ -153,7 +153,7 @@ codeunit 50099 "Init Report Selection"
 
     local procedure MexicanaInitReportSelection()
     var
-        ReportSelections: Record "77";
+        ReportSelections: Record 77;
     begin
         WITH ReportSelections DO BEGIN
           RESET;
@@ -221,7 +221,7 @@ codeunit 50099 "Init Report Selection"
 
     local procedure CorporateInitReportSelection()
     var
-        ReportSelections: Record "77";
+        ReportSelections: Record 77;
     begin
         WITH ReportSelections DO BEGIN
           RESET;
@@ -289,7 +289,7 @@ codeunit 50099 "Init Report Selection"
 
     local procedure InsertRepSelection(ReportUsage: Integer;Sequence: Code[10];ReportID: Integer)
     var
-        ReportSelections: Record "77";
+        ReportSelections: Record 77;
     begin
         ReportSelections.INIT;
         ReportSelections.Usage := ReportUsage;

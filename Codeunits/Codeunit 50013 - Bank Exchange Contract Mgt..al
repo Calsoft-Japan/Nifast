@@ -16,9 +16,9 @@ codeunit 50013 "Bank Exchange Contract Mgt."
 
     procedure SuggestTotalJPY("Contract No.": Code[20]) TotalAmount: Decimal
     var
-        PurchHeader: Record "38";
-        PurchLine: Record "39";
-        MasterHeader: Record "50011";
+        PurchHeader: Record 38;
+        PurchLine: Record 39;
+        MasterHeader: Record 50011;
     begin
         //MasterHeader.SETRANGE(Total, "Contract No."); //NF1.00:CIS.NG  11-04-15
         MasterHeader.SETRANGE("Contract Note No.", "Contract No."); //NF1.00:CIS.NG  11-04-15

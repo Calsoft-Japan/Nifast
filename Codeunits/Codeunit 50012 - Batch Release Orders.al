@@ -23,8 +23,8 @@ codeunit 50012 "Batch Release Orders"
     end;
 
     var
-        BatchRelease: Codeunit "415";
-        PurchHeader: Record "38";
+        BatchRelease: Codeunit 415;
+        PurchHeader: Record 38;
         TEXT001: Label 'All Purchase Orders Released';
         TEXT002: Label 'Nothing to Release';
 }

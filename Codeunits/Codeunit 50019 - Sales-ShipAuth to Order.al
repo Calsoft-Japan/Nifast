@@ -4,7 +4,7 @@ codeunit 50019 "Sales-ShipAuth to Order"
 
     trigger OnRun()
     var
-        Cust: Record "18";
+        Cust: Record 18;
     begin
 
         Cust.GET("Sell-to Customer No.");
@@ -62,15 +62,15 @@ codeunit 50019 "Sales-ShipAuth to Order"
         Text001: Label 'It has to be closed before an Order can be made.\';
         Text002: Label 'Do you wish to close this Opportunity now?';
         Text003: Label 'Wizard Aborted';
-        ShipAuthorizationLine: Record "50016";
-        SalesLine: Record "37";
-        SalesOrderHeader: Record "36";
+        ShipAuthorizationLine: Record 50016;
+        SalesLine: Record 37;
+        SalesOrderHeader: Record 36;
         HideValidationDialog: Boolean;
         Text004: Label 'The Opportunity has not been closed. The program has aborted making the Order.';
         NextLineNo: Integer;
         PurchOrderNo: Code[20];
 
-    procedure GetSalesOrderHeader(var SalesHeader2: Record "36")
+    procedure GetSalesOrderHeader(var SalesHeader2: Record 36)
     begin
         SalesHeader2 := SalesOrderHeader;
     end;

@@ -264,23 +264,23 @@ codeunit 50030 ConsolidationExp
     end;
 
     var
-        BusUnit: Record "220";
-        ConsolidGLAcc: Record "15";
-        ConsolidGLEntry: Record "17";
-        ConsolidDimSetEntry: Record "480";
-        ConsolidCurrExchRate: Record "330";
-        TempSubsidGLAcc: Record "15" temporary;
-        TempSubsidGLEntry: Record "17" temporary;
-        TempSubsidDimBuf: Record "360" temporary;
-        TempSubsidCurrExchRate: Record "330" temporary;
-        TempSelectedDim: Record "369" temporary;
-        GenJnlLine: Record "81";
-        TempGenJnlLine: Record "81" temporary;
-        TempDimBufIn: Record "360" temporary;
-        TempDimBufOut: Record "360" temporary;
-        DimBufMgt: Codeunit "411";
-        DimMgt: Codeunit "408";
-        TempGLEntry: Record "17" temporary;
+        BusUnit: Record 220;
+        ConsolidGLAcc: Record 15;
+        ConsolidGLEntry: Record 17;
+        ConsolidDimSetEntry: Record 480;
+        ConsolidCurrExchRate: Record 330;
+        TempSubsidGLAcc: Record 15 temporary;
+        TempSubsidGLEntry: Record 17 temporary;
+        TempSubsidDimBuf: Record 360 temporary;
+        TempSubsidCurrExchRate: Record 330 temporary;
+        TempSelectedDim: Record 369 temporary;
+        GenJnlLine: Record 81;
+        TempGenJnlLine: Record 81 temporary;
+        TempDimBufIn: Record 360 temporary;
+        TempDimBufOut: Record 360 temporary;
+        DimBufMgt: Codeunit 411;
+        DimMgt: Codeunit 408;
+        TempGLEntry: Record 17 temporary;
         Window: Dialog;
         GLDocNo: Code[20];
         ProductVersion: Code[10];
@@ -365,7 +365,7 @@ codeunit 50030 ConsolidationExp
           ERROR(Text000);
     end;
 
-    procedure SetSelectedDim(var SelectedDim: Record "369")
+    procedure SetSelectedDim(var SelectedDim: Record 369)
     begin
         TempSelectedDim.RESET;
         TempSelectedDim.DELETEALL;
@@ -396,7 +396,7 @@ codeunit 50030 ConsolidationExp
         EndingDate := NewEndingDate;
     end;
 
-    procedure InsertGLAccount(NewGLAccount: Record "15")
+    procedure InsertGLAccount(NewGLAccount: Record 15)
     begin
         TempSubsidGLAcc.INIT;
         TempSubsidGLAcc."No." := NewGLAccount."No.";
@@ -406,7 +406,7 @@ codeunit 50030 ConsolidationExp
         TempSubsidGLAcc.INSERT;
     end;
 
-    procedure InsertGLEntry(NewGLEntry: Record "17"): Integer
+    procedure InsertGLEntry(NewGLEntry: Record 17): Integer
     var
         NextEntryNo: Integer;
     begin
@@ -426,7 +426,7 @@ codeunit 50030 ConsolidationExp
         EXIT(NextEntryNo);
     end;
 
-    procedure InsertEntryDim(NewDimBuf: Record "360";GLEntryNo: Integer)
+    procedure InsertEntryDim(NewDimBuf: Record 360;GLEntryNo: Integer)
     begin
         IF TempSubsidDimBuf.GET(NewDimBuf."Table ID",GLEntryNo,NewDimBuf."Dimension Code") THEN BEGIN
           IF NewDimBuf."Dimension Value Code" <> TempSubsidDimBuf."Dimension Value Code" THEN
@@ -441,7 +441,7 @@ codeunit 50030 ConsolidationExp
         END;
     end;
 
-    procedure InsertExchRate(NewCurrExchRate: Record "330")
+    procedure InsertExchRate(NewCurrExchRate: Record 330)
     begin
         TempSubsidCurrExchRate.INIT;
         TempSubsidCurrExchRate."Currency Code" := NewCurrExchRate."Currency Code";
@@ -501,7 +501,7 @@ codeunit 50030 ConsolidationExp
 
     procedure ImportFromXML(FileName: Text)
     var
-        Consolidation: XMLport "1";
+        Consolidation: XMLport 1;
         InputFile: File;
         InputStream: InStream;
     begin
@@ -528,7 +528,7 @@ codeunit 50030 ConsolidationExp
 
     procedure ExportToXML(FileName: Text)
     var
-        Consolidation: XMLport "1";
+        Consolidation: XMLport 1;
         OutputFile: File;
         OutputStream: OutStream;
     begin
@@ -606,7 +606,7 @@ codeunit 50030 ConsolidationExp
 
     local procedure ReadSourceCodeSetup()
     var
-        SourceCodeSetup: Record "242";
+        SourceCodeSetup: Record 242;
     begin
         SourceCodeSetup.GET;
         ConsolidSourceCode := SourceCodeSetup.Consolidation;
@@ -637,10 +637,10 @@ codeunit 50030 ConsolidationExp
 
     local procedure ClearPreviousConsolidation()
     var
-        TempGLAccount: Record "15" temporary;
-        AnalysisView: Record "363";
-        TempAnalysisView: Record "363" temporary;
-        AnalysisViewEntry: Record "365";
+        TempGLAccount: Record 15 temporary;
+        AnalysisView: Record 363;
+        TempAnalysisView: Record 363 temporary;
+        AnalysisViewEntry: Record 365;
         AnalysisViewFound: Boolean;
     begin
         ClearAmountArray;
@@ -779,7 +779,7 @@ codeunit 50030 ConsolidationExp
 
     local procedure TestGLAccounts()
     var
-        AccountToTest: Record "15";
+        AccountToTest: Record 15;
     begin
         // First test within the Subsidiary Chart of Accounts
         AccountToTest := TempSubsidGLAcc;
@@ -971,8 +971,8 @@ codeunit 50030 ConsolidationExp
 
     local procedure PostBalanceAdjustment(GLAccNo: Code[20];AmountToPost: Decimal)
     var
-        TempDimSetEntry2: Record "480" temporary;
-        DimValue: Record "349";
+        TempDimSetEntry2: Record 480 temporary;
+        DimValue: Record 349;
     begin
         GenJnlLine.Amount :=
           ROUND(
@@ -1014,7 +1014,7 @@ codeunit 50030 ConsolidationExp
         END;
     end;
 
-    local procedure UpdateTempGLEntry(var GLEntry: Record "17")
+    local procedure UpdateTempGLEntry(var GLEntry: Record 17)
     var
         DimEntryNo: Integer;
         Found: Boolean;
@@ -1054,10 +1054,10 @@ codeunit 50030 ConsolidationExp
         END;
     end;
 
-    local procedure CreateAndPostGenJnlLine(GenJnlLine: Record "81";var GLEntry: Record "17";var DimBuf: Record "360";PostDebit: Boolean)
+    local procedure CreateAndPostGenJnlLine(GenJnlLine: Record 81;var GLEntry: Record 17;var DimBuf: Record 360;PostDebit: Boolean)
     var
-        TempDimSetEntry2: Record "480" temporary;
-        DimValue: Record "349";
+        TempDimSetEntry2: Record 480 temporary;
+        DimValue: Record 349;
         ConsolidAmount: Decimal;
         AmountToPost: Decimal;
         AdjustAmount: Decimal;
@@ -1273,7 +1273,7 @@ codeunit 50030 ConsolidationExp
         TranslatedAmount := ROUND(AmountToTranslate / HistoricalCurrencyFactor);
     end;
 
-    local procedure GenJnlPostLineTmp(var GenJnlLine: Record "81")
+    local procedure GenJnlPostLineTmp(var GenJnlLine: Record 81)
     begin
         NextLineNo := NextLineNo + 1;
         TempGenJnlLine := GenJnlLine;
@@ -1287,7 +1287,7 @@ codeunit 50030 ConsolidationExp
 
     local procedure GenJnlPostLineFinally()
     var
-        GenJnlPostLine: Codeunit "12";
+        GenJnlPostLine: Codeunit 12;
     begin
         TempGenJnlLine.SETCURRENTKEY("Journal Template Name","Journal Batch Name","Posting Date");
         IF TempGenJnlLine.FINDSET THEN
@@ -1342,7 +1342,7 @@ codeunit 50030 ConsolidationExp
         EXIT(TempSubsidGLAcc.COUNT);
     end;
 
-    procedure Get1stSubsidGLAcc(var GlAccount: Record "15"): Boolean
+    procedure Get1stSubsidGLAcc(var GlAccount: Record 15): Boolean
     begin
         TempSubsidGLAcc.RESET;
         IF TempSubsidGLAcc.FINDFIRST THEN BEGIN
@@ -1354,7 +1354,7 @@ codeunit 50030 ConsolidationExp
         EXIT(FALSE);
     end;
 
-    procedure GetNxtSubsidGLAcc(var GLAccount: Record "15"): Boolean
+    procedure GetNxtSubsidGLAcc(var GLAccount: Record 15): Boolean
     begin
         IF TempSubsidGLAcc.NEXT <> 0 THEN BEGIN
           GLAccount := TempSubsidGLAcc;
@@ -1375,7 +1375,7 @@ codeunit 50030 ConsolidationExp
         END;
     end;
 
-    procedure Get1stSubsidGLEntry(var GLEntry: Record "17"): Boolean
+    procedure Get1stSubsidGLEntry(var GLEntry: Record 17): Boolean
     begin
         ConsolidatingClosingDate :=
           (StartingDate = EndingDate) AND
@@ -1406,7 +1406,7 @@ codeunit 50030 ConsolidationExp
         END;
     end;
 
-    procedure GetNxtSubsidGLEntry(var GLEntry: Record "17"): Boolean
+    procedure GetNxtSubsidGLEntry(var GLEntry: Record 17): Boolean
     begin
         WITH TempSubsidGLEntry DO BEGIN
           IF NEXT <> 0 THEN BEGIN
@@ -1435,7 +1435,7 @@ codeunit 50030 ConsolidationExp
         EXIT(0);
     end;
 
-    procedure Get1stGenJnlLine(var GenJnlLine: Record "81"): Boolean
+    procedure Get1stGenJnlLine(var GenJnlLine: Record 81): Boolean
     begin
         IF TestMode THEN BEGIN
           TempGenJnlLine.SETCURRENTKEY("Journal Template Name","Journal Batch Name","Posting Date");
@@ -1448,7 +1448,7 @@ codeunit 50030 ConsolidationExp
         EXIT(FALSE);
     end;
 
-    procedure GetNxtGenJnlLine(var GenJnlLine: Record "81"): Boolean
+    procedure GetNxtGenJnlLine(var GenJnlLine: Record 81): Boolean
     begin
         IF TestMode THEN BEGIN
           IF TempGenJnlLine.NEXT <> 0 THEN BEGIN
@@ -1462,8 +1462,8 @@ codeunit 50030 ConsolidationExp
 
     procedure UpdateBUForExRates(MonthEndDate: Date)
     var
-        CompanyRec: Record "79";
-        BusUnitRec: Record "220";
+        CompanyRec: Record 79;
+        BusUnitRec: Record 220;
         CurrencyCode3: Code[10];
         Date3: Date;
         CurrencyFactor: Decimal;
@@ -1512,7 +1512,7 @@ codeunit 50030 ConsolidationExp
 
     procedure InitValues(pCurrencyCode: Code[10];pCurrencyFactor: Decimal;pDate: Date)
     var
-        CurrExchRate: Record "330";
+        CurrExchRate: Record 330;
         CurrencyCode: Code[10];
         RefExchRate2: Decimal;
         Fix: Option Currency,"Relational Currency",Both;
@@ -1585,8 +1585,8 @@ codeunit 50030 ConsolidationExp
 
     local procedure ReadGLSetup()
     var
-        GLSetup: Record "98";
-        SourceCodeSetup: Record "242";
+        GLSetup: Record 98;
+        SourceCodeSetup: Record 242;
     begin
         //\\ RAM ---01
         GLSetup.GET;
@@ -1607,8 +1607,8 @@ codeunit 50030 ConsolidationExp
 
     procedure HasgotLocalGlobalDim(GLAcc: Code[20];var LoclDimArray: Code[20]): Boolean
     var
-        DefDim: Record "352";
-        Dimension: Record "348";
+        DefDim: Record 352;
+        Dimension: Record 348;
         j: Integer;
     begin
 

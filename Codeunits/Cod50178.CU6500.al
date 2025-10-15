@@ -9,9 +9,9 @@ codeunit 50178 CU_6500
     // end;
 
 
-    PROCEDURE AssistEditLotSerialNo2(VAR LotEntry: Record 50002 TEMPORARY; SearchForSupply: Boolean; CurrentSignFactor: Integer; LookupMode: 'Serial No.,Lot No.'; MaxQuantity: Decimal): Boolean;
+    PROCEDURE AssistEditLotSerialNo2(VAR LotEntry: Record 50002 TEMPORARY; SearchForSupply: Boolean; CurrentSignFactor: Integer; LookupMode: Option "Serial No.","Lot No."; MaxQuantity: Decimal): Boolean;
     VAR
-        ItemLedgEntry: Record 32;
+        ItemLedgEntry: Record 32; 
         ReservEntry: Record 337;
         TempReservEntry: Record 337 TEMPORARY;
         TempEntrySummary: Record 338 TEMPORARY;
@@ -105,7 +105,7 @@ codeunit 50178 CU_6500
                     TempReservEntry."Expiration Date" := ItemLedgEntry."Expiration Date";
                     TempReservEntry."Expected Receipt Date" := 0D
                 END ELSE
-                    TempReservEntry."Shipment Date" := 12319999D;
+                    TempReservEntry."Shipment Date" := 99991231D;
                 IF InsertRec THEN
                     TempReservEntry.INSERT();
             UNTIL ItemLedgEntry.NEXT() = 0;

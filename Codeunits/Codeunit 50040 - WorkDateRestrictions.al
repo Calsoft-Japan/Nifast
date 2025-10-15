@@ -14,7 +14,7 @@ codeunit 50040 WorkDateRestrictions
     end;
 
     var
-        [WithEvents]
+       // [WithEvents]
         Timer: DotNet Timer;
         recUserSetup: Record "91";
 

@@ -15,7 +15,7 @@ codeunit 80000 setdate
     end;
 
     var
-        VenRec: Record "23";
-        Itemrec: Record "27";
+        VenRec: Record 23;
+        Itemrec: Record 27;
 }
 

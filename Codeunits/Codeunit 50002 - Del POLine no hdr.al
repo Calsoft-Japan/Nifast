@@ -11,6 +11,6 @@ codeunit 50002 "Del POLine no hdr"
     end;
 
     var
-        POline: Record "39";
+        POline: Record 39;
 }
 

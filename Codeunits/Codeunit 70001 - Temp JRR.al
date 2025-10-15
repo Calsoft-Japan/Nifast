@@ -6,7 +6,7 @@ codeunit 70001 "Temp JRR"
 
     trigger OnRun()
     var
-        sp: Record "7002";
+        sp: Record 7002;
         cntint: Integer;
         OutputFileName: Text[250];
         SourceFile: File;
@@ -15,8 +15,8 @@ codeunit 70001 "Temp JRR"
         InputFileName: Text[250];
         TestFile: File;
         MyOutstream: OutStream;
-        SIH: Record "112";
-        WHE: Record "7312";
+        SIH: Record 112;
+        WHE: Record 7312;
     begin
          IF WHE.GET(147349) THEN  BEGIN     //-1000
             WHE.Quantity :=0;
@@ -177,10 +177,10 @@ codeunit 70001 "Temp JRR"
     end;
 
     var
-        DCLE: Record "379";
-        CLE: Record "21";
-        GLE: Record "17";
-        ILE: Record "32";
-        VLE: Record "25";
+        DCLE: Record 379;
+        CLE: Record 21;
+        GLE: Record 17;
+        ILE: Record 32;
+        VLE: Record 25;
 }
 

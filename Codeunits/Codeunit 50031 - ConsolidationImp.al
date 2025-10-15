@@ -15,12 +15,12 @@ codeunit 50031 ConsolidationImp
     end;
 
     var
-        Company: Record "2000000006";
+        Company: Record 2000000006;
         CurrMEndDate: Date;
         MonthEndDate: Date;
         GlobelControlCompany: Text[50];
-        NoSeries: Record "308";
-        LastNoSeriesLine: Record "309";
+        NoSeries: Record 308;
+        LastNoSeriesLine: Record 309;
         WarningNoSeriesCode: Code[10];
         TryNoSeriesCode: Code[10];
         "DocumentNo.": Code[20];
@@ -45,12 +45,12 @@ codeunit 50031 ConsolidationImp
         Text50001: Label 'The system is not able to assign document no.';
         Text50002: Label 'No. Series %1 is not available.';
         Text50003: Label 'Eliminate';
-        BusinessUnitEliminate: Record "220";
+        BusinessUnitEliminate: Record 220;
         LastErrorEntryNo: Integer;
         filename: Text[1024];
         Err006: Label 'The G/L Account %1 doesn''t have the offset account defined.';
-        CurrExchRate: Record "330";
-        GLSetup: Record "98";
+        CurrExchRate: Record 330;
+        GLSetup: Record 98;
         CurrencyCode: Code[10];
         CurrencyCode2: Code[10];
         CurrentExchRate: Decimal;
@@ -105,7 +105,7 @@ codeunit 50031 ConsolidationImp
 
     procedure GetNextNo(NoSeriesCode: Code[10];SeriesDate: Date;ModifySeries: Boolean;GlobelComName: Text[50]): Code[20]
     var
-        NoSeriesLine: Record "309";
+        NoSeriesLine: Record 309;
     begin
         NoSeriesLine.CHANGECOMPANY(GlobelComName);
         NoSeries.CHANGECOMPANY(GlobelComName);
@@ -177,7 +177,7 @@ codeunit 50031 ConsolidationImp
         EXIT(NoSeriesLine."Last No. Used");
     end;
 
-    procedure SetNoSeriesLineFilter(var NoSeriesLine: Record "309";NoSeriesCode: Code[10];StartDate: Date)
+    procedure SetNoSeriesLineFilter(var NoSeriesLine: Record 309;NoSeriesCode: Code[10];StartDate: Date)
     begin
         IF StartDate = 0D THEN
           StartDate := WORKDATE;
@@ -298,8 +298,8 @@ codeunit 50031 ConsolidationImp
 
     procedure UpdateAllAnalysisViews()
     var
-        UpdateAnalysisView: Codeunit "410";
-        AnalysisView: Record "363";
+        UpdateAnalysisView: Codeunit 410;
+        AnalysisView: Record 363;
     begin
         //Deleted local vars as compared to NAV 2009 //RAM - Check It
         //\\RAM ---01
@@ -339,11 +339,11 @@ codeunit 50031 ConsolidationImp
         //\\ RAM +++01
     end;
 
-    procedure UpdateElimination(precBusninessUnit: Record "220";Consolidationsetupcode: Code[20];CurrCompany: Text[100])
+    procedure UpdateElimination(precBusninessUnit: Record 220;Consolidationsetupcode: Code[20];CurrCompany: Text[100])
     var
-        GLEntry: Record "17";
-        NewGLEntry: Record "17";
-        GLAccount: Record "15";
+        GLEntry: Record 17;
+        NewGLEntry: Record 17;
+        GLAccount: Record 15;
         LastEntryNo: Integer;
         EnteredLoop: Boolean;
     begin
@@ -486,7 +486,7 @@ codeunit 50031 ConsolidationImp
 
     procedure GetLastEntryNo(): Integer
     var
-        lrecGLEntry: Record "17";
+        lrecGLEntry: Record 17;
     begin
         lrecGLEntry.FINDLAST;
         EXIT(lrecGLEntry."Entry No.");
@@ -494,14 +494,14 @@ codeunit 50031 ConsolidationImp
 
     procedure RunAllConsolidation()
     var
-        NASImportDatabase: Codeunit "50001";
-        BusinessUnit: Record "220";
-        NASFileConsolidate: Codeunit "50002";
+        NASImportDatabase: Codeunit 50001;
+        BusinessUnit: Record 220;
+        NASFileConsolidate: Codeunit 50002;
         FromEntryNo: Integer;
         ToEntryNo: Integer;
-        GLReg: Record "45";
+        GLReg: Record 45;
         LastGLRegNo: Integer;
-        SourceCodeSetup: Record "242";
+        SourceCodeSetup: Record 242;
     begin
         //\\ RAM ---01
         //Deleted some local vars as compared to NAV 2009 //RAM - Check It
@@ -659,8 +659,8 @@ codeunit 50031 ConsolidationImp
 
     procedure UpdateBUForExRates()
     var
-        CompanyRec: Record "2000000006";
-        BusUnitRec: Record "220";
+        CompanyRec: Record 2000000006;
+        BusUnitRec: Record 220;
     begin
 
         BusUnitRec.RESET;

@@ -82,26 +82,26 @@ codeunit 50010 "Exchange Contract Management"
     end;
 
     var
-        PurchHeader: Record "38";
-        PurchPost: Codeunit "90";
-        PurchInvoiceSumLine: Record "50012";
-        ExcContractHeader: Record "50011";
-        PostPO: Codeunit "90";
+        PurchHeader: Record 38;
+        PurchPost: Codeunit 90;
+        PurchInvoiceSumLine: Record 50012;
+        ExcContractHeader: Record 50011;
+        PostPO: Codeunit 90;
         Increment: Integer;
-        TPurchLine: Record "39" temporary;
-        PurchLine: Record "39";
+        TPurchLine: Record 39 temporary;
+        PurchLine: Record 39;
         MessageText: Text[250];
         ManWarning: Boolean;
         TEXT001: Label 'Not All Journal Lines Could be Posted\Please select Purchase Orders to use for remaining lines.';
         TEXT002: Label 'All Journal lines Posted';
-        PurchLine2: Record "39";
-        ExcSumLine: Record "50012";
-        ExcSumHeader: Record "50013";
+        PurchLine2: Record 39;
+        ExcSumLine: Record 50012;
+        ExcSumHeader: Record 50013;
         TEXT003: Label 'Please Manually Select another Exchange Contract or Specify a Spot Rate';
         TEXT004: Label 'Spot Rates Updated';
         TEXT005: Label 'No Lines to Post';
-        TPurchHeader: Record "38" temporary;
-        MasterHeader: Record "50011";
+        TPurchHeader: Record 38 temporary;
+        MasterHeader: Record 50011;
         TEXT006: Label 'Can''t add Spot Rates';
 
     procedure PostPurchOrder()
@@ -160,7 +160,7 @@ codeunit 50010 "Exchange Contract Management"
             ManWarning := TRUE;
     end;
 
-    procedure PostLine(PurchLineToPost: Record "39")
+    procedure PostLine(PurchLineToPost: Record 39)
     begin
         ERROR('Not Working');  //NG-N
         PurchLine2.INIT;
@@ -282,7 +282,7 @@ codeunit 50010 "Exchange Contract Management"
 
     procedure UpdateExchContract("ExchContract No.": Code[20])
     var
-        ExchContract: Record "50010";
+        ExchContract: Record 50010;
     begin
         ERROR('Not Working');  //NG-N
         IF ExchContract.GET("ExchContract No.") THEN BEGIN

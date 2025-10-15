@@ -67,16 +67,16 @@ codeunit 50021 "NewVision Management_New"
     var
         RFDebugFileName: Label 'C:\RFDebug.TXT';
         ">>NIF_GV": Integer;
-        LotBinContentAlloc: Record "50001" temporary;
-        TempLotNoInfo: Record "6505" temporary;
-        DimMgt_gCdu: Codeunit "408";
-        TempDimSetEntry: Record "480" temporary;
+        LotBinContentAlloc: Record 50001 temporary;
+        TempLotNoInfo: Record 6505 temporary;
+        DimMgt_gCdu: Codeunit 408;
+        TempDimSetEntry: Record 480 temporary;
         "-NIF1.01-": Integer;
         AppliesToEntryNoGbl: Integer;
 
     procedure CheckPermission(Permission: Integer): Boolean
     var
-        UserSetup: Record "91";
+        UserSetup: Record 91;
     begin
         IF UserSetup.GET(USERID) THEN BEGIN
          CASE Permission OF
@@ -96,7 +96,7 @@ codeunit 50021 "NewVision Management_New"
         Max_GPP: Decimal;
         GPP: Decimal;
         cString: Text[120];
-        GenPostingGroup: Record "252";
+        GenPostingGroup: Record 252;
         GPOption: Option Warning,Override,Denied;
     begin
         Min_GPP:=0;
@@ -193,69 +193,69 @@ codeunit 50021 "NewVision Management_New"
     begin
     end;
 
-    procedure LostSaleQuote(Quote: Record "36")
-    var
-        QuoteLines: Record "37";
-        ReasonCode: Record "231";
-    begin
-        //>> NF1.00:CIS.CM 09-29-15
-        //CLEAR(LostSalesHeader);
-        //LostSalesHeader.INIT;
-        //LostSalesHeader.TRANSFERFIELDS(Quote);
-        //LostSalesHeader."Reason Code" := '';
-        //IF LostSalesHeader.INSERT THEN BEGIN
-        // QuoteLines.SETRANGE("Document Type",Quote."Document Type");
-        // QuoteLines.SETRANGE("Document No.",Quote."No.");
-        // IF QuoteLines.FIND('-') THEN REPEAT
-        //  LostSalesLine.INIT;
-        //  LostSalesLine.TRANSFERFIELDS(QuoteLines);
-        //  LostSalesLine.INSERT;
-        // UNTIL QuoteLines.NEXT=0;
-        // COMMIT;
-        // IF ACTION::LookupOK=PAGE.RUNMODAL(0,ReasonCode) THEN BEGIN
-        //  LostSalesHeader."Reason Code" := ReasonCode.Code;
-        //  LostSalesHeader.MODIFY;
-        // END;
-        //END;
-        //<< NF1.00:CIS.CM 09-29-15
-    end;
+    // procedure LostSaleQuote(Quote: Record 36)
+    // var
+    //     QuoteLines: Record 37;
+    //     ReasonCode: Record 231;
+    // begin
+    //     //>> NF1.00:CIS.CM 09-29-15
+    //     //CLEAR(LostSalesHeader);
+    //     //LostSalesHeader.INIT;
+    //     //LostSalesHeader.TRANSFERFIELDS(Quote);
+    //     //LostSalesHeader."Reason Code" := '';
+    //     //IF LostSalesHeader.INSERT THEN BEGIN
+    //     // QuoteLines.SETRANGE("Document Type",Quote."Document Type");
+    //     // QuoteLines.SETRANGE("Document No.",Quote."No.");
+    //     // IF QuoteLines.FIND('-') THEN REPEAT
+    //     //  LostSalesLine.INIT;
+    //     //  LostSalesLine.TRANSFERFIELDS(QuoteLines);
+    //     //  LostSalesLine.INSERT;
+    //     // UNTIL QuoteLines.NEXT=0;
+    //     // COMMIT;
+    //     // IF ACTION::LookupOK=PAGE.RUNMODAL(0,ReasonCode) THEN BEGIN
+    //     //  LostSalesHeader."Reason Code" := ReasonCode.Code;
+    //     //  LostSalesHeader.MODIFY;
+    //     // END;
+    //     //END;
+    //     //<< NF1.00:CIS.CM 09-29-15
+    // end;
 
-    procedure LostSaleOrder("Order": Record "36")
-    var
-        OrderLines: Record "37";
-        ReasonCode: Record "231";
-    begin
-        //>> NF1.00:CIS.CM 09-29-15
-        //CLEAR(LostSalesHeader);
-        //LostSalesHeader.INIT;
-        //LostSalesHeader.TRANSFERFIELDS(Order);
-        //LostSalesHeader."Reason Code" := '';
-        //IF LostSalesHeader.INSERT THEN BEGIN
-        // OrderLines.SETRANGE("Document Type",Order."Document Type");
-        // OrderLines.SETRANGE("Document No.",Order."No.");
-        // IF OrderLines.FIND('-') THEN REPEAT
-        //  LostSalesLine.INIT;
-        //  LostSalesLine.TRANSFERFIELDS(OrderLines);
-        //  LostSalesLine.INSERT;
-        // UNTIL OrderLines.NEXT=0;
-        // COMMIT;
-        // IF ACTION::LookupOK=PAGE.RUNMODAL(0,ReasonCode) THEN BEGIN
-        //  LostSalesHeader."Reason Code" := ReasonCode.Code;
-        //  LostSalesHeader.MODIFY;
-        // END;
-        //END;
-        //<< NF1.00:CIS.CM 09-29-15
-    end;
+    // procedure LostSaleOrder("Order": Record "36")
+    // var
+    //     OrderLines: Record "37";
+    //     ReasonCode: Record "231";
+    // begin
+    //     //>> NF1.00:CIS.CM 09-29-15
+    //     //CLEAR(LostSalesHeader);
+    //     //LostSalesHeader.INIT;
+    //     //LostSalesHeader.TRANSFERFIELDS(Order);
+    //     //LostSalesHeader."Reason Code" := '';
+    //     //IF LostSalesHeader.INSERT THEN BEGIN
+    //     // OrderLines.SETRANGE("Document Type",Order."Document Type");
+    //     // OrderLines.SETRANGE("Document No.",Order."No.");
+    //     // IF OrderLines.FIND('-') THEN REPEAT
+    //     //  LostSalesLine.INIT;
+    //     //  LostSalesLine.TRANSFERFIELDS(OrderLines);
+    //     //  LostSalesLine.INSERT;
+    //     // UNTIL OrderLines.NEXT=0;
+    //     // COMMIT;
+    //     // IF ACTION::LookupOK=PAGE.RUNMODAL(0,ReasonCode) THEN BEGIN
+    //     //  LostSalesHeader."Reason Code" := ReasonCode.Code;
+    //     //  LostSalesHeader.MODIFY;
+    //     // END;
+    //     //END;
+    //     //<< NF1.00:CIS.CM 09-29-15
+    // end;
 
-    procedure CheckNVGranule(Granule: Text[100]): Boolean
-    begin
-        //EXIT(NVL.CheckNVLicense(Granule));  // NF1.00:CIS.CM 09-29-15
-    end;
+    // procedure CheckNVGranule(Granule: Text[100]): Boolean
+    // begin
+    //     //EXIT(NVL.CheckNVLicense(Granule));  // NF1.00:CIS.CM 09-29-15
+    // end;
 
-    procedure CheckCreditAutoHoldHeader(SalesHeader: Record "36"): Boolean
+    procedure CheckCreditAutoHoldHeader(SalesHeader: Record 36): Boolean
     var
-        SRSetup: Record "311";
-        Cust: Record "18";
+        SRSetup: Record 311;
+        Cust: Record 18;
         CustCreditAmountUSD: Decimal;
         OverDays: Boolean;
     begin
@@ -274,12 +274,12 @@ codeunit 50021 "NewVision Management_New"
              (Cust."Credit Limit (LCY)" <> 0));
     end;
 
-    procedure CheckCreditAutoHoldLine(SalesLine: Record "37"): Boolean
+    procedure CheckCreditAutoHoldLine(SalesLine: Record 37): Boolean
     var
-        SRSetup: Record "311";
-        Cust: Record "18";
+        SRSetup: Record 311;
+        Cust: Record 18;
         CustCreditAmountUSD: Decimal;
-        SalesLine2: Record "37";
+        SalesLine2: Record 37;
     begin
         SRSetup.GET;
         IF NOT SRSetup."Auto Credit Hold" THEN EXIT(FALSE);
@@ -297,12 +297,12 @@ codeunit 50021 "NewVision Management_New"
              (Cust."Credit Limit (LCY)" <> 0));
     end;
 
-    procedure UpdateSalesLineInfo(SalesLine: Record "37";var LDec: array [20] of Decimal;var LDate: array [10] of Date;var LineItem: Record "27";var LocationItem: Record "27")
+    procedure UpdateSalesLineInfo(SalesLine: Record 37;var LDec: array [20] of Decimal;var LDate: array [10] of Date;var LineItem: Record 27;var LocationItem: Record 27)
     var
-        SalesLineTotal: Record "37";
-        ILE: Record "32";
-        AvailToPromise: Codeunit "5790";
-        CompanyInfo: Record "79";
+        SalesLineTotal: Record 37;
+        ILE: Record 32;
+        AvailToPromise: Codeunit 5790;
+        CompanyInfo: Record 79;
         GrossReq: Decimal;
         SchedRcpt: Decimal;
     begin
@@ -393,71 +393,71 @@ codeunit 50021 "NewVision Management_New"
 
     end;
 
-    procedure UpdatePurchaseLineInfo(PurchLine: Record "39";var LDec: array [20] of Decimal;var LDate: array [10] of Date;var LineItem: Record "27";var LocationItem: Record "27")
-    var
-        PurchLineTotal: Record "39";
-        ILE: Record "32";
-    begin
-        CLEAR(LDec);
-        CLEAR(LDate);
-        CLEAR(LocationItem);
-        CLEAR(LineItem);
-        // LDate array:
-        // 1 LastPurchDate
+    // procedure UpdatePurchaseLineInfo(PurchLine: Record "39";var LDec: array [20] of Decimal;var LDate: array [10] of Date;var LineItem: Record "27";var LocationItem: Record "27")
+    // var
+    //     PurchLineTotal: Record "39";
+    //     ILE: Record "32";
+    // begin
+    //     CLEAR(LDec);
+    //     CLEAR(LDate);
+    //     CLEAR(LocationItem);
+    //     CLEAR(LineItem);
+    //     // LDate array:
+    //     // 1 LastPurchDate
         
-        // LDec array:
-        // 1 LastPurchPrice
-        // 2 AvailableQty
-        // 3 OrderAmount
-        // 4 OrderWeight
-        // 5 ReceiveAmount
-        // 6 InvoiceAmount
-        PurchLineTotal.SETRANGE("Document Type",PurchLine."Document Type");
-        PurchLineTotal.SETRANGE("Document No.",PurchLine."Document No.");
-        PurchLineTotal.CALCSUMS("Line Amount","Line Gross Weight","Line Amount to Receive","Line Amount to Invoice");
-        LDec[3] := PurchLineTotal."Line Amount";
-        LDec[4] := PurchLineTotal."Line Gross Weight";
-        LDec[5] := PurchLineTotal."Line Amount to Receive";
-        LDec[6] := PurchLineTotal."Line Amount to Invoice";
-        IF (PurchLine.Type=PurchLine.Type::Item) AND (PurchLine."No."<>'') THEN BEGIN
-          ILE.SETCURRENTKEY("Entry Type","Item No.","Variant Code","Source Type","Source No.","Posting Date");
-          ILE.SETRANGE("Item No.",PurchLine."No.");
-          ILE.SETRANGE("Variant Code",PurchLine."Variant Code");
-          ILE.SETRANGE("Entry Type",ILE."Entry Type"::Purchase);
-          ILE.SETRANGE("Source Type",ILE."Source Type"::Vendor);
-          ILE.SETRANGE("Source No.",PurchLine."Buy-from Vendor No.");
-          ILE.SETFILTER("Invoiced Quantity",'<>%1',0);
-          IF ILE.FIND('+') THEN  BEGIN
-            LDate[1] := ILE."Posting Date";
-            ILE.CALCFIELDS("Cost Amount (Actual)");
-            LDec[1] := (ABS(ILE."Cost Amount (Actual)")/ABS(ILE."Invoiced Quantity"));
-          END;
-          LineItem.RESET;
-          LineItem.GET(PurchLine."No.");
-          LineItem.SETRANGE("No.",PurchLine."No.");
-          IF PurchLine."Variant Code" <> '' THEN LineItem.SETRANGE("Variant Filter",PurchLine."Variant Code");
-          LineItem.SETRANGE("Date Filter",0D,WORKDATE);
-        //>>NV4.30 02.16.04 JWW: Changed following to use new ItemQtyAvailable() for standardization
-        /*
-          LineItem.CALCFIELDS(Inventory,"Qty. on Sales Order","Qty. on Purch. Order",
-                              "Qty. in Transit","Qty. on Prod. Kit","Qty. on Prod. Kit Lines",
-                              "Qty. on Prod. Order","Qty. on Component Lines");
-          LDec[2] := LineItem.Inventory-LineItem."Qty. on Sales Order"+
-                     LineItem."Qty. on Purch. Order"+LineItem."Qty. on Prod. Kit"-
-                     LineItem."Qty. on Prod. Kit Lines"+LineItem."Qty. on Prod. Order"-
-                     LineItem."Qty. on Component Lines";
-        */
-          LDec[2] := ItemQtyAvailable(PurchLine."No.",PurchLine."Variant Code");
-        //<<NV4.30 02.16.04 JWW: Changed following to use new ItemQtyAvailable() for standardization
-          LocationItem.RESET;
-          LocationItem.GET(PurchLine."No.");
-          LocationItem.COPYFILTERS(LineItem);
-          IF PurchLine."Location Code" <> '' THEN
-            LocationItem.SETRANGE("Location Filter",PurchLine."Location Code");
-          LocationItem.CALCFIELDS(Inventory);
-        END;
+    //     // LDec array:
+    //     // 1 LastPurchPrice
+    //     // 2 AvailableQty
+    //     // 3 OrderAmount
+    //     // 4 OrderWeight
+    //     // 5 ReceiveAmount
+    //     // 6 InvoiceAmount
+    //     PurchLineTotal.SETRANGE("Document Type",PurchLine."Document Type");
+    //     PurchLineTotal.SETRANGE("Document No.",PurchLine."Document No.");
+    //     PurchLineTotal.CALCSUMS("Line Amount","Line Gross Weight","Line Amount to Receive","Line Amount to Invoice");
+    //     LDec[3] := PurchLineTotal."Line Amount";
+    //     LDec[4] := PurchLineTotal."Line Gross Weight";
+    //     LDec[5] := PurchLineTotal."Line Amount to Receive";
+    //     LDec[6] := PurchLineTotal."Line Amount to Invoice";
+    //     IF (PurchLine.Type=PurchLine.Type::Item) AND (PurchLine."No."<>'') THEN BEGIN
+    //       ILE.SETCURRENTKEY("Entry Type","Item No.","Variant Code","Source Type","Source No.","Posting Date");
+    //       ILE.SETRANGE("Item No.",PurchLine."No.");
+    //       ILE.SETRANGE("Variant Code",PurchLine."Variant Code");
+    //       ILE.SETRANGE("Entry Type",ILE."Entry Type"::Purchase);
+    //       ILE.SETRANGE("Source Type",ILE."Source Type"::Vendor);
+    //       ILE.SETRANGE("Source No.",PurchLine."Buy-from Vendor No.");
+    //       ILE.SETFILTER("Invoiced Quantity",'<>%1',0);
+    //       IF ILE.FIND('+') THEN  BEGIN
+    //         LDate[1] := ILE."Posting Date";
+    //         ILE.CALCFIELDS("Cost Amount (Actual)");
+    //         LDec[1] := (ABS(ILE."Cost Amount (Actual)")/ABS(ILE."Invoiced Quantity"));
+    //       END;
+    //       LineItem.RESET;
+    //       LineItem.GET(PurchLine."No.");
+    //       LineItem.SETRANGE("No.",PurchLine."No.");
+    //       IF PurchLine."Variant Code" <> '' THEN LineItem.SETRANGE("Variant Filter",PurchLine."Variant Code");
+    //       LineItem.SETRANGE("Date Filter",0D,WORKDATE);
+    //     //>>NV4.30 02.16.04 JWW: Changed following to use new ItemQtyAvailable() for standardization
+    //     /*
+    //       LineItem.CALCFIELDS(Inventory,"Qty. on Sales Order","Qty. on Purch. Order",
+    //                           "Qty. in Transit","Qty. on Prod. Kit","Qty. on Prod. Kit Lines",
+    //                           "Qty. on Prod. Order","Qty. on Component Lines");
+    //       LDec[2] := LineItem.Inventory-LineItem."Qty. on Sales Order"+
+    //                  LineItem."Qty. on Purch. Order"+LineItem."Qty. on Prod. Kit"-
+    //                  LineItem."Qty. on Prod. Kit Lines"+LineItem."Qty. on Prod. Order"-
+    //                  LineItem."Qty. on Component Lines";
+    //     */
+    //       LDec[2] := ItemQtyAvailable(PurchLine."No.",PurchLine."Variant Code");
+    //     //<<NV4.30 02.16.04 JWW: Changed following to use new ItemQtyAvailable() for standardization
+    //       LocationItem.RESET;
+    //       LocationItem.GET(PurchLine."No.");
+    //       LocationItem.COPYFILTERS(LineItem);
+    //       IF PurchLine."Location Code" <> '' THEN
+    //         LocationItem.SETRANGE("Location Filter",PurchLine."Location Code");
+    //       LocationItem.CALCFIELDS(Inventory);
+    //     END;
 
-    end;
+    // end;
 
     procedure CheckSoftBlock(Type: Option Customer,Vendor,Item;"Code 1": Code[20];"Code 2": Code[20];"Code 3": Code[20];"Transaction ID": Integer;var ErrorMessage: Text[80]) Deny: Boolean
     begin
@@ -789,11 +789,11 @@ codeunit 50021 "NewVision Management_New"
         //<< NF1.00:CIS.CM 09-29-15
     end;
 
-    procedure DropShipPOfromSO(SalesHeader: Record "36"): Boolean
+    procedure DropShipPOfromSO(SalesHeader: Record 36): Boolean
     var
-        PurchHeader: Record "38";
-        PurchLine: Record "39";
-        SalesLine: Record "37";
+        PurchHeader: Record 38;
+        PurchLine: Record 39;
+        SalesLine: Record 37;
         OldVendor: Code[20];
         NewPO: Boolean;
     begin
@@ -909,7 +909,7 @@ codeunit 50021 "NewVision Management_New"
 
     procedure TestPermission(TableID: Integer): Boolean
     var
-        PermissionRange: Record "2000000044";
+        PermissionRange: Record 2000000044;
     begin
         PermissionRange.SETRANGE("Object Type",PermissionRange."Object Type"::TableData);
         PermissionRange.SETRANGE(From,0,TableID);
@@ -919,9 +919,9 @@ codeunit 50021 "NewVision Management_New"
 
     procedure ItemQtyAvailable(ItemNo: Code[20];VariantCode: Code[10]) ReturnValue: Decimal
     var
-        Item: Record "27";
-        AvailToPromise: Codeunit "5790";
-        CompanyInfo: Record "79";
+        Item: Record 27;
+        AvailToPromise: Codeunit 5790;
+        CompanyInfo: Record 79;
         GrossReq: Decimal;
         SchedRcpt: Decimal;
     begin
@@ -955,11 +955,11 @@ codeunit 50021 "NewVision Management_New"
         END;
     end;
 
-    procedure LocItemQtyAvailable(var LocationItem: Record "27";LocCode: Code[10];ItemNo: Code[20];VariantCode: Code[10]) ReturnValue: Integer
+    procedure LocItemQtyAvailable(var LocationItem: Record 27;LocCode: Code[10];ItemNo: Code[20];VariantCode: Code[10]) ReturnValue: Integer
     var
-        Item: Record "27";
-        AvailToPromise: Codeunit "5790";
-        CompanyInfo: Record "79";
+        Item: Record 27;
+        AvailToPromise: Codeunit 5790;
+        CompanyInfo: Record 79;
         GrossReq: Decimal;
         SchedRcpt: Decimal;
     begin
@@ -982,12 +982,12 @@ codeunit 50021 "NewVision Management_New"
     begin
     end;
 
-    procedure CreateWhseShptTrkgLines(var WhseShptLine: Record "7321")
+    procedure CreateWhseShptTrkgLines(var WhseShptLine: Record 7321)
     var
-        SalesLine: Record "37";
-        Item: Record "27";
-        TempLotBinContent: Record "50001" temporary;
-        ItemTracking: Record "6502";
+        SalesLine: Record 37;
+        Item: Record 27;
+        TempLotBinContent: Record 50001 temporary;
+        ItemTracking: Record 6502;
     begin
         //get item, exit if no tracking
         Item.GET(WhseShptLine."Item No.");
@@ -1016,14 +1016,14 @@ codeunit 50021 "NewVision Management_New"
 
     procedure RemoveItemTrackingLines(SourceType: Integer;SourceSubType: Integer;SourceNo: Code[20];SourceLineNo: Integer)
     var
-        Item: Record "27";
-        SalesLine: Record "37";
-        TransferLine: Record "5741";
-        TrackingSpecification: Record "336";
-        TrackingSpecificationTmp: Record "336" temporary;
-        ItemTrackingForm: Page "6510";
-        ReserveSalesLine: Codeunit "99000832";
-        ReserveTransferLine: Codeunit "99000836";
+        Item: Record 27;
+        SalesLine: Record 37;
+        TransferLine: Record 5741;
+        TrackingSpecification: Record 336;
+        TrackingSpecificationTmp: Record 336 temporary;
+        ItemTrackingForm: Page 6510;
+        ReserveSalesLine: Codeunit 99000832;
+        ReserveTransferLine: Codeunit 99000836;
         LastEntryNo: Integer;
         LinesInserted: Boolean;
         ModifyRecord: Boolean;
@@ -1034,8 +1034,8 @@ codeunit 50021 "NewVision Management_New"
         SecondSourceQtyArray: array [3] of Decimal;
         WhseShipQtyBase: Decimal;
         WhsePickQtyBase: Decimal;
-        PurchLine: Record "39";
-        ReservePurchLine: Codeunit "99000834";
+        PurchLine: Record 39;
+        ReservePurchLine: Codeunit 99000834;
     begin
         //clear vars
         CLEAR(ReserveSalesLine);
@@ -1136,12 +1136,12 @@ codeunit 50021 "NewVision Management_New"
 
     procedure AddItemTrackingLines(SourceType: Integer;SourceSubType: Integer;SourceNo: Code[20];SourceLineNo: Integer;var TempLotBinContent: Record "50001" temporary)
     var
-        Item: Record "27";
-        TrackingSpecification: Record "336";
-        TrackingSpecificationTmp: Record "336" temporary;
-        ItemTrackingForm: Page "6510";
-        ReserveSalesLine: Codeunit "99000832";
-        ReserveTransferLine: Codeunit "99000836";
+        Item: Record 27;
+        TrackingSpecification: Record 336;
+        TrackingSpecificationTmp: Record 336 temporary;
+        ItemTrackingForm: Page 6510;
+        ReserveSalesLine: Codeunit 99000832;
+        ReserveTransferLine: Codeunit 99000836;
         LastEntryNo: Integer;
         LinesInserted: Boolean;
         ModifyRecord: Boolean;
@@ -1154,13 +1154,13 @@ codeunit 50021 "NewVision Management_New"
         LineQtyToShip: Decimal;
         QtyAvailableBase: Decimal;
         QtyOnOrder: Decimal;
-        LotNoInfo: Record "6505";
-        SalesLine: Record "37";
-        TransferLine: Record "5741";
-        PurchLine: Record "39";
-        ReservePurchLine: Codeunit "99000834";
-        Location: Record "14";
-        WMSMgt: Codeunit "7302";
+        LotNoInfo: Record 6505;
+        SalesLine: Record 37;
+        TransferLine: Record 5741;
+        PurchLine: Record 39;
+        ReservePurchLine: Codeunit 99000834;
+        Location: Record 14;
+        WMSMgt: Codeunit 7302;
         LineReservedQty: Decimal;
     begin
         //exit if no lots found
@@ -1429,7 +1429,7 @@ codeunit 50021 "NewVision Management_New"
 
     procedure GetBinTypeFilter(Type: Option Receive,Ship,"Put Away",Pick): Text[1024]
     var
-        BinType: Record "7303";
+        BinType: Record 7303;
         "Filter": Text[1024];
     begin
         WITH BinType DO BEGIN
@@ -1455,17 +1455,17 @@ codeunit 50021 "NewVision Management_New"
 
     procedure SuggestLotEntryLines(DocType: Integer;DocNo: Code[20];var LotEntry: Record "50002")
     var
-        Item: Record "27";
-        TempLotBinContent: Record "50001" temporary;
+        Item: Record 27;
+        TempLotBinContent: Record 50001 temporary;
         SourceType: Integer;
         SourceNo: Code[20];
         SourceSubtype: Integer;
         SourceLineNo: Integer;
-        TempLotEntry: Record "50002" temporary;
-        LotEntry2: Record "50002";
-        PurchSetup: Record "312";
-        NoSeriesMgt: Codeunit "396";
-        Location: Record "14";
+        TempLotEntry: Record 50002 temporary;
+        LotEntry2: Record 50002;
+        PurchSetup: Record 312;
+        NoSeriesMgt: Codeunit 396;
+        Location: Record 14;
     begin
         //read lines into temp table
         TempLotEntry.DELETEALL;
@@ -1605,16 +1605,16 @@ codeunit 50021 "NewVision Management_New"
         END;
     end;
 
-    procedure ClearLotEntryLines(DocType: Integer;DocNo: Code[20];var LotEntry: Record "50002")
+    procedure ClearLotEntryLines(DocType: Integer;DocNo: Code[20];var LotEntry: Record 50002)
     var
-        Item: Record "27";
-        TempLotBinContent: Record "50001" temporary;
+        Item: Record 27;
+        TempLotBinContent: Record 50001 temporary;
         SourceType: Integer;
         SourceNo: Code[20];
         SourceSubtype: Integer;
         SourceLineNo: Integer;
-        TempLotEntry: Record "50002" temporary;
-        LotEntry2: Record "50002";
+        TempLotEntry: Record 50002 temporary;
+        LotEntry2: Record 50002;
     begin
         //read lines into temp table
         TempLotEntry.DELETEALL;
@@ -1708,12 +1708,12 @@ codeunit 50021 "NewVision Management_New"
     begin
     end;
 
-    procedure CreateWhseShptItemTrkgLines(var WhseShptLine: Record "7321")
+    procedure CreateWhseShptItemTrkgLines(var WhseShptLine: Record 7321)
     var
-        SalesLine: Record "37";
-        Item: Record "27";
-        TempLotBinContent: Record "50001" temporary;
-        ItemTracking: Record "6502";
+        SalesLine: Record 37;
+        Item: Record 27;
+        TempLotBinContent: Record 50001 temporary;
+        ItemTracking: Record 6502;
     begin
         //get item, exit if no tracking
         Item.GET(WhseShptLine."Item No.");
@@ -1738,15 +1738,15 @@ codeunit 50021 "NewVision Management_New"
 
     procedure ClearWhseItemTrackingLines(SourceType: Integer;SourceNo: Code[20];SourceLineNo: Integer)
     var
-        Item: Record "27";
+        Item: Record 27;
         LinesInserted: Boolean;
         ModifyRecord: Boolean;
         LotNoToSet: Code[20];
         WarrantyDateToSet: Date;
         ExpirationDateToSet: Date;
         LineQty: Decimal;
-        WhseItemTrkgLines: Record "6550";
-        WhseShptLine: Record "7321";
+        WhseItemTrkgLines: Record 6550;
+        WhseShptLine: Record 7321;
     begin
         //get warehouse shipment line
         WhseShptLine.GET(SourceNo,SourceLineNo);
@@ -1777,12 +1777,12 @@ codeunit 50021 "NewVision Management_New"
 
     procedure AddWhseItemTrackingLines(SourceType: Integer;SourceSubType: Integer;SourceNo: Code[20];SourceLineNo: Integer;var TempLotBinContent: Record "50001" temporary)
     var
-        Item: Record "27";
-        TrackingSpecification: Record "336";
-        TrackingSpecificationTmp: Record "336" temporary;
-        ItemTrackingForm: Page "6510";
-        ReserveSalesLine: Codeunit "99000832";
-        ReserveTransferLine: Codeunit "99000836";
+        Item: Record 27;
+        TrackingSpecification: Record 336;
+        TrackingSpecificationTmp: Record 336 temporary;
+        ItemTrackingForm: Page 6510;
+        ReserveSalesLine: Codeunit 99000832;
+        ReserveTransferLine: Codeunit 99000836;
         LastEntryNo: Integer;
         LinesInserted: Boolean;
         ModifyRecord: Boolean;
@@ -1795,12 +1795,12 @@ codeunit 50021 "NewVision Management_New"
         LineQtyToPick: Integer;
         QtyAvailableBase: Decimal;
         QtyOnOrder: Decimal;
-        LotNoInfo: Record "6505";
-        SalesLine: Record "37";
-        TransferLine: Record "5741";
-        WhseItemTrkgLines: Record "6550";
+        LotNoInfo: Record 6505;
+        SalesLine: Record 37;
+        TransferLine: Record 5741;
+        WhseItemTrkgLines: Record 6550;
         UseEntryNo: Integer;
-        WhseShptLine: Record "7321";
+        WhseShptLine: Record 7321;
     begin
 
         //exit if no lots found
@@ -1954,14 +1954,14 @@ codeunit 50021 "NewVision Management_New"
 
     procedure LotHistory(ItemNo: Code[20];LotNo: Code[20];var Bins: array [50,50] of Text[30]): Integer
     var
-        LotNoInfo: Record "6505";
-        BinContentBuffer: Record "7330" temporary;
+        LotNoInfo: Record 6505;
+        BinContentBuffer: Record 7330 temporary;
         i: Integer;
-        Bin: Record "7354";
-        BinContent: Record "7302";
-        ItemTrackingCode: Record "6502";
+        Bin: Record 7354;
+        BinContent: Record 7302;
+        ItemTrackingCode: Record 6502;
         ItemType: Option "Item No.","Lot No.";
-        Item: Record "27";
+        Item: Record 27;
     begin
         //check to see if Item No. was entered
         IF Item.GET(LotNo) THEN
@@ -2026,10 +2026,10 @@ codeunit 50021 "NewVision Management_New"
     begin
     end;
 
-    procedure ApplyWhseEntry(var WhseEntry: Record "7312")
+    procedure ApplyWhseEntry(var WhseEntry: Record 7312)
     var
-        WhseEntry2: Record "7312";
-        Item: Record "27";
+        WhseEntry2: Record 7312;
+        Item: Record 27;
         SearchDirection: Code[1];
         ApplyQty: Decimal;
         ApplyBySerialNo: Boolean;
@@ -2153,7 +2153,7 @@ codeunit 50021 "NewVision Management_New"
 
     procedure LookupDrawingRevision(ItemNo: Code[20];var RevNo: Code[20];var DrawNo: Code[30];var RevDate: Date)
     var
-        CustItemDrawing: Record "50142";
+        CustItemDrawing: Record 50142;
     begin
         IF ItemNo='' THEN
           EXIT;
@@ -2170,7 +2170,7 @@ codeunit 50021 "NewVision Management_New"
 
     procedure GetActiveDrawingRevision(ItemNo: Code[20];var RevNo: Code[20];var DrawNo: Code[30];var RevDate: Date)
     var
-        CustItemDrawing: Record "50142";
+        CustItemDrawing: Record 50142;
     begin
 
         CustItemDrawing.SETRANGE("Item No.",ItemNo);
@@ -2190,7 +2190,7 @@ codeunit 50021 "NewVision Management_New"
           END;
     end;
 
-    procedure UpdateLotBinContentAlloc(var LotBinContent: Record "50001" temporary;QtyToAdd: Decimal)
+    procedure UpdateLotBinContentAlloc(var LotBinContent: Record 50001 temporary;QtyToAdd: Decimal)
     begin
         WITH LotBinContent DO
           BEGIN
@@ -2205,14 +2205,14 @@ codeunit 50021 "NewVision Management_New"
           END;
     end;
 
-    procedure GetLotBinContentsNonBin(var Item: Record "27";DeleteBinContents: Boolean;InsertQty: Boolean;var TempLotBinContent: Record "50001" temporary)
+    procedure GetLotBinContentsNonBin(var Item: Record 27;DeleteBinContents: Boolean;InsertQty: Boolean;var TempLotBinContent: Record 50001 temporary)
     var
-        LotNoInfo: Record "6505";
-        WhseEntry: Record "7312";
-        Bin: Record "7354";
-        ItemUnitOfMeasure: Record "5404";
-        BinContent: Record "7302";
-        Location: Record "14";
+        LotNoInfo: Record 6505;
+        WhseEntry: Record 7312;
+        Bin: Record 7354;
+        ItemUnitOfMeasure: Record 5404;
+        BinContent: Record 7302;
+        Location: Record 14;
     begin
         IF DeleteBinContents THEN
          TempLotBinContent.DELETEALL;
@@ -2252,9 +2252,9 @@ codeunit 50021 "NewVision Management_New"
 
     procedure GetUserDefaultDims(FromLoc: Code[10];ToLoc: Code[10];var Dim1: Code[20];var Dim2: Code[20])
     var
-        UserSetup: Record "91";
-        RespCenter: Record "5714";
-        PackingStation: Record "14000709";
+        UserSetup: Record 91;
+        RespCenter: Record 5714;
+        PackingStation: Record 14000709;
     begin
         IF NOT UserSetup.GET(USERID) THEN
           CLEAR(UserSetup);
@@ -2311,34 +2311,34 @@ codeunit 50021 "NewVision Management_New"
 
     procedure CreateMovementReclass(ItemNo: Code[20];var ToLotNo: Code[20];ToLocCode: Code[20];ToBinCode: Code[20];FromLotNo: Code[20];FromLocCode: Code[20];FromBinCode: Code[20];MfgLotNo: Text[30];UserIDCode: Code[50];Qty: Decimal;var ErrorMsg: Text[30]): Boolean
     var
-        ToBin: Record "7354";
-        FromBin: Record "7354";
-        FromWhseJnlLine: Record "7311";
-        ToWhseJnlLine: Record "7311";
-        Item: Record "27";
-        FromLocation: Record "14";
-        ToLocation: Record "14";
-        LotNoInfo: Record "6505";
-        LotNoInfo2: Record "6505";
-        ToLotNoInfo: Record "6505";
-        BinContentBuffer: Record "7330" temporary;
-        WhseJnlRegisterLine: Codeunit "7301";
-        WhseEmp: Record "7301";
-        ItemTrackingCode: Record "6502";
+        ToBin: Record 7354;
+        FromBin: Record 7354;
+        FromWhseJnlLine: Record 7311;
+        ToWhseJnlLine: Record 7311;
+        Item: Record 27;
+        FromLocation: Record 14;
+        ToLocation: Record 14;
+        LotNoInfo: Record 6505;
+        LotNoInfo2: Record 6505;
+        ToLotNoInfo: Record 6505;
+        BinContentBuffer: Record 7330 temporary;
+        WhseJnlRegisterLine: Codeunit 7301;
+        WhseEmp: Record 7301;
+        ItemTrackingCode: Record 6502;
         ItemType: Option "Item No.","Lot No.";
-        BinContent: Record "7302";
-        ItemJnlLine: Record "83";
-        ItemJnlPostLine: Codeunit "22";
-        DimMgt: Codeunit "408";
-        ReservEntry: Record "337";
+        BinContent: Record 7302;
+        ItemJnlLine: Record 83;
+        ItemJnlPostLine: Codeunit 22;
+        DimMgt: Codeunit 408;
+        ReservEntry: Record 337;
         UseEntryNo: Integer;
-        NoSeriesMgt: Codeunit "396";
-        GLSetup: Record "98";
-        TempItemJnlDimSetEntry: Record "480" temporary;
-        TempItemJnlDimSetEntry2: Record "480" temporary;
-        TempILEDimSetEntry: Record "480" temporary;
-        DimensionMgt: Codeunit "408";
-        ItemLedgerEntry: Record "32";
+        NoSeriesMgt: Codeunit 396;
+        GLSetup: Record 98;
+        TempItemJnlDimSetEntry: Record 480 temporary;
+        TempItemJnlDimSetEntry2: Record 480 temporary;
+        TempILEDimSetEntry: Record 480 temporary;
+        DimensionMgt: Codeunit 408;
+        ItemLedgerEntry: Record 32;
         ItemJnlDimSetFound: Boolean;
     begin
         //valid from lot
@@ -2710,25 +2710,25 @@ codeunit 50021 "NewVision Management_New"
 
     procedure CreateMovementLoc(ItemNo: Code[20];LotNo: Code[20];ToLocCode: Code[20];ToBinCode: Code[20];FromLocCode: Code[20];FromBinCode: Code[20];UserIDCode: Code[50];Qty: Decimal;var ErrorMsg: Text[30]): Boolean
     var
-        ToBin: Record "7354";
-        FromBin: Record "7354";
-        FromWhseJnlLine: Record "7311";
-        ToWhseJnlLine: Record "7311";
-        Item: Record "27";
-        Location: Record "14";
-        LotNoInfo: Record "6505";
-        BinContentBuffer: Record "7330" temporary;
-        WhseJnlRegisterLine: Codeunit "7301";
-        WhseEmp: Record "7301";
-        ItemTrackingCode: Record "6502";
+        ToBin: Record 7354;
+        FromBin: Record 7354;
+        FromWhseJnlLine: Record 7311;
+        ToWhseJnlLine: Record 7311;
+        Item: Record 27;
+        Location: Record 14;
+        LotNoInfo: Record 6505;
+        BinContentBuffer: Record 7330 temporary;
+        WhseJnlRegisterLine: Codeunit 7301;
+        WhseEmp: Record 7301;
+        ItemTrackingCode: Record 6502;
         ItemType: Option "Item No.","Lot No.";
-        BinContent: Record "7302";
-        ItemJnlLine: Record "83";
-        ItemJnlPostLine: Codeunit "22";
-        DimMgt: Codeunit "408";
-        ReservEntry: Record "337";
+        BinContent: Record 7302;
+        ItemJnlLine: Record 83;
+        ItemJnlPostLine: Codeunit 22;
+        DimMgt: Codeunit 408;
+        ReservEntry: Record 337;
         UseEntryNo: Integer;
-        GLSetup: Record "98";
+        GLSetup: Record 98;
         UseDim1: Code[20];
         UseDim2: Code[20];
     begin
@@ -3082,18 +3082,18 @@ codeunit 50021 "NewVision Management_New"
 
     procedure CreateMovement(ItemNo: Code[20];LotNo: Code[20];ToBinCode: Code[20];FromLocCode: Code[20];FromBinCode: Code[20];UserIDCode: Code[50];Qty: Decimal;var ErrorMsg: Text[30]): Boolean
     var
-        ToBin: Record "7354";
-        FromBin: Record "7354";
-        WhseJnlLine: Record "7311";
-        Item: Record "27";
-        Location: Record "14";
-        LotNoInfo: Record "6505";
-        BinContentBuffer: Record "7330" temporary;
-        WhseJnlRegisterLine: Codeunit "7301";
-        WhseEmp: Record "7301";
-        ItemTrackingCode: Record "6502";
+        ToBin: Record 7354;
+        FromBin: Record 7354;
+        WhseJnlLine: Record 7311;
+        Item: Record 27;
+        Location: Record 14;
+        LotNoInfo: Record 6505;
+        BinContentBuffer: Record 7330 temporary;
+        WhseJnlRegisterLine: Codeunit 7301;
+        WhseEmp: Record 7301;
+        ItemTrackingCode: Record 6502;
         ItemType: Option "Item No.","Lot No.";
-        BinContent: Record "7302";
+        BinContent: Record 7302;
     begin
         //check to see if item was entered
         IF LotNo='' THEN
@@ -3286,9 +3286,9 @@ codeunit 50021 "NewVision Management_New"
 
     procedure CreateSKU(ItemNo: Code[20];LocationCode: Code[10];VariantCode: Code[10]): Boolean
     var
-        StockkeepingUnit: Record "5700";
-        Location: Record "14";
-        Item2: Record "27";
+        StockkeepingUnit: Record 5700;
+        Location: Record 14;
+        Item2: Record 27;
     begin
         IF Location.GET(LocationCode) AND Location."Use As In-Transit" THEN
          EXIT(FALSE);
@@ -3344,7 +3344,7 @@ codeunit 50021 "NewVision Management_New"
         //<<NF1.00:CIS.NG  10-12-15
     end;
 
-    procedure UpdateDimSetEntry_gFnc(var DimSetEntry_vRec: Record "480" temporary;DimensionCode_iCod: Code[20];DimensionValue_iCod: Code[20]): Boolean
+    procedure UpdateDimSetEntry_gFnc(var DimSetEntry_vRec: Record 480 temporary;DimensionCode_iCod: Code[20];DimensionValue_iCod: Code[20]): Boolean
     begin
         //>>NF1.00:CIS.NG  10-12-15
         WITH DimSetEntry_vRec DO BEGIN
@@ -3369,7 +3369,7 @@ codeunit 50021 "NewVision Management_New"
         //<<NF1.00:CIS.NG  10-12-15
     end;
 
-    procedure GetDimensionSetID_gFnc(var DimSetEntry_vRecTmp: Record "480" temporary) DimSetID: Integer
+    procedure GetDimensionSetID_gFnc(var DimSetEntry_vRecTmp: Record 480 temporary) DimSetID: Integer
     begin
         //>>NF1.00:CIS.NG  10-12-15
         DimSetID := DimMgt_gCdu.GetDimensionSetID(DimSetEntry_vRecTmp);

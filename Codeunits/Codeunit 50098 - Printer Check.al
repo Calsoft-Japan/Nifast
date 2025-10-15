@@ -14,7 +14,7 @@ codeunit 50098 "Printer Check"
 
     local procedure GetPrintName_gFnc(PrinterName_iTxt: Text): Text
     var
-        Printer_lRec: Record "2000000039";
+        Printer_lRec: Record 2000000039;
         RedirectedPos_lInt: Integer;
         SliptPrinterName_lTxt: Text;
     begin

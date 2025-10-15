@@ -23,12 +23,12 @@ codeunit 50133 "FB Management"
     end;
 
     var
-        Item: Record "27";
-        NVV: Codeunit "50132";
+        Item: Record 27;
+        NVV: Codeunit 50132;
 
-    procedure CalcAvailabilityLine(var FBLine: Record "50137";AllLocations: Boolean): Decimal
+    procedure CalcAvailabilityLine(var FBLine: Record 50137;AllLocations: Boolean): Decimal
     var
-        AvailableToPromise: Codeunit "5790";
+        AvailableToPromise: Codeunit 5790;
         GrossRequirement: Decimal;
         ScheduledReceipt: Decimal;
         PeriodType: Option Day,Week,Month,Quarter,Year;
@@ -72,16 +72,16 @@ codeunit 50133 "FB Management"
         PAGE.RUNMODAL(PAGE::"Item Card",Item);
     end;
 
-    procedure LoadFBOrders(FBImportLog: Record "50138")
+    procedure LoadFBOrders(FBImportLog: Record 50138)
     var
-        FBHeader: Record "50136";
-        FBLine: Record "50137";
-        PriceContract: Record "50110";
-        FBTag: Record "50134";
+        FBHeader: Record 50136;
+        FBLine: Record 50137;
+        PriceContract: Record 50110;
+        FBTag: Record 50134;
         FoundTag: Boolean;
-        SalesPrice: Record "7002";
-        ItemCrossRef: Record "5717";
-        LotInfo: Record "6505";
+        SalesPrice: Record 7002;
+        ItemCrossRef: Record 5717;
+        LotInfo: Record 6505;
         SalesPriceFound: Boolean;
         NeedQty: Decimal;
         Window: Dialog;
@@ -396,7 +396,7 @@ codeunit 50133 "FB Management"
 
     procedure WriteMessage(FileName: Code[200];FBOrderNo: Code[20];SalesOrderNo: Code[20];FileNo: Code[20];RecordNo: Integer;SourceCode: Code[10];SetStatus: Option New,Errors,Processed;Msg: Text[250])
     var
-        FBMessages: Record "50135";
+        FBMessages: Record 50135;
     begin
         CLEAR(FBMessages);
         FBMessages.INIT;
@@ -411,12 +411,12 @@ codeunit 50133 "FB Management"
         FBMessages.INSERT(TRUE);
     end;
 
-    procedure PostTagJnl(var TagJnlLine: Record "50141")
+    procedure PostTagJnl(var TagJnlLine: Record 50141)
     var
-        ImportDataLog: Record "50138";
+        ImportDataLog: Record 50138;
         Window: Dialog;
         DocNo: Code[20];
-        NoSeriesMgt: Codeunit "396";
+        NoSeriesMgt: Codeunit 396;
     begin
         TagJnlLine.TESTFIELD("No. Series");
         TagJnlLine.TESTFIELD("Customer No.");
@@ -475,14 +475,14 @@ codeunit 50133 "FB Management"
           Window.CLOSE;
     end;
 
-    procedure CheckName(CurrentJnlBatchName: Code[10];var FBTagJnlLine: Record "50141")
+    procedure CheckName(CurrentJnlBatchName: Code[10];var FBTagJnlLine: Record 50141)
     var
-        FBTagJnlBatch: Record "50140";
+        FBTagJnlBatch: Record 50140;
     begin
         FBTagJnlBatch.GET(CurrentJnlBatchName);
     end;
 
-    procedure SetName(CurrentJnlBatchName: Code[10];var FBTagJnlLine: Record "50141")
+    procedure SetName(CurrentJnlBatchName: Code[10];var FBTagJnlLine: Record 50141)
     begin
         FBTagJnlLine.FILTERGROUP := 2;
         FBTagJnlLine.SETRANGE("Journal Batch Name",CurrentJnlBatchName);
@@ -490,9 +490,9 @@ codeunit 50133 "FB Management"
         IF FBTagJnlLine.FIND('-') THEN;
     end;
 
-    procedure LookupName(var CurrentJnlBatchName: Code[10];var FBTagJnlLine: Record "50141"): Boolean
+    procedure LookupName(var CurrentJnlBatchName: Code[10];var FBTagJnlLine: Record 50141): Boolean
     var
-        FBTagJnlBatch: Record "50140";
+        FBTagJnlBatch: Record 50140;
     begin
         COMMIT;
         FBTagJnlBatch.Name := FBTagJnlLine.GETRANGEMAX("Journal Batch Name");
@@ -505,9 +505,9 @@ codeunit 50133 "FB Management"
         END;
     end;
 
-    procedure OpenJnl(var CurrentJnlBatchName: Code[10];var FBTagJnlLine: Record "50141")
+    procedure OpenJnl(var CurrentJnlBatchName: Code[10];var FBTagJnlLine: Record 50141)
     var
-        FBTagJnlBatch: Record "50140";
+        FBTagJnlBatch: Record 50140;
     begin
         IF NOT FBTagJnlBatch.GET(CurrentJnlBatchName) THEN BEGIN
           IF NOT FBTagJnlBatch.FIND('-') THEN BEGIN
@@ -525,9 +525,9 @@ codeunit 50133 "FB Management"
         FBTagJnlLine.FILTERGROUP := 0;
     end;
 
-    procedure ProcessFBOrder(var FBHeader: Record "50136")
+    procedure ProcessFBOrder(var FBHeader: Record 50136)
     var
-        FBLine: Record "50137";
+        FBLine: Record 50137;
     begin
         //>> NIF 01-12-06 #10566
         CheckFBOrderLines(FBHeader);
@@ -571,12 +571,12 @@ codeunit 50133 "FB Management"
         UNTIL FBHeader.NEXT = 0;
     end;
 
-    local procedure CreateSalesOrder(var FBHeader: Record "50136";var FBLine: Record "50137";Release: Boolean;Ship: Boolean)
+    local procedure CreateSalesOrder(var FBHeader: Record 50136;var FBLine: Record 50137;Release: Boolean;Ship: Boolean)
     var
-        SalesHeader: Record "36";
-        SalesLine: Record "37";
-        ReleaseSalesDoc: Codeunit "414";
-        SalesPost: Codeunit "80";
+        SalesHeader: Record 36;
+        SalesLine: Record 37;
+        ReleaseSalesDoc: Codeunit 414;
+        SalesPost: Codeunit 80;
         LineNo: Integer;
     begin
         SalesHeader.INIT;
@@ -673,14 +673,14 @@ codeunit 50133 "FB Management"
 
     end;
 
-    local procedure CreateTransferOrder(var FBHeader: Record "50136";var FBLine: Record "50137";Release: Boolean)
+    local procedure CreateTransferOrder(var FBHeader: Record 50136;var FBLine: Record 50137;Release: Boolean)
     var
-        TransferHeader: Record "5740";
-        TransferLine: Record "5741";
-        ReleaseTransferDoc: Codeunit "5708";
+        TransferHeader: Record 5740;
+        TransferLine: Record 5741;
+        ReleaseTransferDoc: Codeunit 5708;
         LineNo: Integer;
         ">>NIF_LV": Integer;
-        Contract: Record "50110";
+        Contract: Record 50110;
     begin
         TransferHeader.INIT;
         TransferHeader."No." := '';
@@ -749,10 +749,10 @@ codeunit 50133 "FB Management"
 
     end;
 
-    local procedure CreateReqLine(var FBHeader: Record "50136";var FBLine: Record "50137")
+    local procedure CreateReqLine(var FBHeader: Record 50136;var FBLine: Record 50137)
     var
-        FBSetup: Record "50133";
-        ReqLine: Record "246";
+        FBSetup: Record 50133;
+        ReqLine: Record 246;
         LineNo: Integer;
     begin
         FBSetup.GET();
@@ -791,11 +791,11 @@ codeunit 50133 "FB Management"
     begin
     end;
 
-    procedure CheckFBOrderLines(FBHeader: Record "50136")
+    procedure CheckFBOrderLines(FBHeader: Record 50136)
     var
-        FBLine: Record "50137";
-        PriceContract: Record "50110";
-        SalesPrice: Record "7002";
+        FBLine: Record 50137;
+        PriceContract: Record 50110;
+        SalesPrice: Record 7002;
     begin
         FBLine.SETRANGE("Document No.",FBHeader."No.");
         IF FBLine.FIND('-') THEN
@@ -820,7 +820,7 @@ codeunit 50133 "FB Management"
           UNTIL FBLine.NEXT=0;
     end;
 
-    procedure GetContractLine(var SalesPrice: Record "7002";FBLine: Record "50137"): Boolean
+    procedure GetContractLine(var SalesPrice: Record 7002;FBLine: Record 50137): Boolean
     begin
         SalesPrice.SETRANGE("Item No.",FBLine."Item No.");
         SalesPrice.SETRANGE("Variant Code",FBLine."Variant Code");

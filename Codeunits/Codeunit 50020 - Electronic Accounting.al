@@ -6,10 +6,10 @@ codeunit 50020 "Electronic Accounting"
     end;
 
     var
-        FileManagement: Codeunit "419";
-        TempBlob: Record "99008535" temporary;
-        ElectronicAccSetup: Record "50035";
-        XMLDOMManagement: Codeunit "6224";
+        FileManagement: Codeunit 419;
+        TempBlob: Record 99008535 temporary;
+        ElectronicAccSetup: Record 50035;
+        XMLDOMManagement: Codeunit 6224;
         WebClientErr: Label 'The import is not supported on the webclient.';
         NamespaceTxt: Label 'www.sat.gob.mx/esquemas/ContabilidadE/1_1/', Locked=true;
         NamespaceW3Txt: Label 'http://www.w3.org/2001/XMLSchema-instance', Locked=true;
@@ -28,7 +28,7 @@ codeunit 50020 "Electronic Accounting"
     begin
     end;
 
-    procedure ImportXMLToSalesInvHeader(var SalesInvHeader: Record "112")
+    procedure ImportXMLToSalesInvHeader(var SalesInvHeader: Record 112)
     var
         ServerFileName: Text;
         ClientFileName: Text;
@@ -47,7 +47,7 @@ codeunit 50020 "Electronic Accounting"
         Payment: Code[50];
         Currency: Code[50];
         CurrencyFactor: Decimal;
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         ElectronicAccSetup.FIND('-');
         IF FileManagement.IsWebClient THEN
@@ -109,7 +109,7 @@ codeunit 50020 "Electronic Accounting"
         UpdateDocsRelatedToSalesInvHeader(SalesInvHeader);
     end;
 
-    procedure ImportXMLToSalesCrMHeader(var SalesCrMHeader: Record "114")
+    procedure ImportXMLToSalesCrMHeader(var SalesCrMHeader: Record 114)
     var
         ServerFileName: Text;
         ClientFileName: Text;
@@ -169,11 +169,11 @@ codeunit 50020 "Electronic Accounting"
         UpdateDocsRelatedToSalesCrMHeader(SalesCrMHeader);
     end;
 
-    procedure ExportXMLFromSalesInvHeader(SalesInvHeader: Record "112")
+    procedure ExportXMLFromSalesInvHeader(SalesInvHeader: Record 112)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNameXMl: Label 'XML File.xml';
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         IF SalesInvXMLData.GET(SalesInvHeader."No.") THEN BEGIN
            SalesInvXMLData.CALCFIELDS(XML);
@@ -186,7 +186,7 @@ codeunit 50020 "Electronic Accounting"
         END ELSE MESSAGE(FieldEmpty);
     end;
 
-    procedure ExportXMLFromSalesCrMHeader(SalesCrMHeader: Record "114")
+    procedure ExportXMLFromSalesCrMHeader(SalesCrMHeader: Record 114)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNameXMl: Label 'XML File.xml';
@@ -200,15 +200,15 @@ codeunit 50020 "Electronic Accounting"
         END ELSE MESSAGE(FieldEmpty);
     end;
 
-    procedure DeleteFileFromSalesInvHeader(var SalesInvHeader: Record "112")
+    procedure DeleteFileFromSalesInvHeader(var SalesInvHeader: Record 112)
     var
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         IF SalesInvXMLData.GET(SalesInvHeader."No.") THEN  SalesInvXMLData.DELETE;
         UpdateDocsRelatedToSalesInvHeader(SalesInvHeader);
     end;
 
-    procedure DeleteFileFromSalesCrMHeader(var SalesCrMHeader: Record "114")
+    procedure DeleteFileFromSalesCrMHeader(var SalesCrMHeader: Record 114)
     begin
         SalesCrMHeader."XML - UUID"                := '';
         SalesCrMHeader."XML - Invoice Folio"       := '';
@@ -228,7 +228,7 @@ codeunit 50020 "Electronic Accounting"
         UpdateDocsRelatedToSalesCrMHeader(SalesCrMHeader);
     end;
 
-    procedure ImportXMLToPurchInvHeader(var PurchInvHeader: Record "122")
+    procedure ImportXMLToPurchInvHeader(var PurchInvHeader: Record 122)
     var
         ServerFileName: Text;
         ClientFileName: Text;
@@ -287,7 +287,7 @@ codeunit 50020 "Electronic Accounting"
         UpdateDocsRelatedToPurchInvHeader(PurchInvHeader);
     end;
 
-    procedure ImportXMLToPurchCrMHeader(var PurchCrMHeader: Record "124")
+    procedure ImportXMLToPurchCrMHeader(var PurchCrMHeader: Record 124)
     var
         ServerFileName: Text;
         ClientFileName: Text;
@@ -347,7 +347,7 @@ codeunit 50020 "Electronic Accounting"
         UpdateDocRelatedToPurchCrMHeader(PurchCrMHeader);
     end;
 
-    procedure ExportXMLFromPurchInvHeader(PurchInvHeader: Record "122")
+    procedure ExportXMLFromPurchInvHeader(PurchInvHeader: Record 122)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNameXMl: Label 'XML File.xml';
@@ -361,7 +361,7 @@ codeunit 50020 "Electronic Accounting"
         END ELSE MESSAGE(FieldEmpty);
     end;
 
-    procedure ExportXMLFromPurchCrMHeader(PurchCrMHeader: Record "124")
+    procedure ExportXMLFromPurchCrMHeader(PurchCrMHeader: Record 124)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNameXMl: Label 'XML File.xml';
@@ -375,7 +375,7 @@ codeunit 50020 "Electronic Accounting"
         END ELSE MESSAGE(FieldEmpty);
     end;
 
-    procedure DeleteFileFromPurchInvHeader(var PurchInvHeader: Record "122")
+    procedure DeleteFileFromPurchInvHeader(var PurchInvHeader: Record 122)
     begin
         PurchInvHeader."XML - UUID"                := '';
         PurchInvHeader."XML - Invoice Folio"       := '';
@@ -395,7 +395,7 @@ codeunit 50020 "Electronic Accounting"
         UpdateDocsRelatedToPurchInvHeader(PurchInvHeader);
     end;
 
-    procedure DeleteFileFromPurchCrMHeader(var PurchCrMHeader: Record "124")
+    procedure DeleteFileFromPurchCrMHeader(var PurchCrMHeader: Record 124)
     begin
         PurchCrMHeader."XML - UUID"                := '';
         PurchCrMHeader."XML - Invoice Folio"       := '';
@@ -415,14 +415,14 @@ codeunit 50020 "Electronic Accounting"
         UpdateDocRelatedToPurchCrMHeader(PurchCrMHeader);
     end;
 
-    procedure ImportPDFToSalesInvHeader(var SalesInvHeader: Record "112")
+    procedure ImportPDFToSalesInvHeader(var SalesInvHeader: Record 112)
     var
         ServerFileName: Text;
         ClientFileName: Text;
         WebClientErr: Label 'The import is not supported on the webclient.';
         ImportFailedErr: Label 'The import failed. The PDF  document is not a valid electronic invoice.';
         FileDialogTxt: Label 'Import PDF';
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         IF FileManagement.IsWebClient THEN
            ERROR(WebClientErr);
@@ -442,7 +442,7 @@ codeunit 50020 "Electronic Accounting"
         END;
     end;
 
-    procedure ImportPDFToSalesCrMHeader(var SalesCrMHeader: Record "114")
+    procedure ImportPDFToSalesCrMHeader(var SalesCrMHeader: Record 114)
     var
         ServerFileName: Text;
         ClientFileName: Text;
@@ -461,11 +461,11 @@ codeunit 50020 "Electronic Accounting"
         SalesCrMHeader.MODIFY;
     end;
 
-    procedure ExportPDFFromSalesInvHeader(SalesInvHeader: Record "112")
+    procedure ExportPDFFromSalesInvHeader(SalesInvHeader: Record 112)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNamePDF: Label 'PDF File.pdf';
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         IF SalesInvXMLData.GET(SalesInvHeader) THEN BEGIN
            TempBlob.INIT;
@@ -478,7 +478,7 @@ codeunit 50020 "Electronic Accounting"
         END ELSE MESSAGE(FieldEmpty);
     end;
 
-    procedure ExportPDFFromSalesCrMHeader(SalesCrMHeader: Record "114")
+    procedure ExportPDFFromSalesCrMHeader(SalesCrMHeader: Record 114)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNamePDF: Label 'PDF File.pdf';
@@ -492,7 +492,7 @@ codeunit 50020 "Electronic Accounting"
         END ELSE MESSAGE(FieldEmpty);
     end;
 
-    procedure ImportPDFToPurchInvHeader(var PurchInvHeader: Record "122")
+    procedure ImportPDFToPurchInvHeader(var PurchInvHeader: Record 122)
     var
         ServerFileName: Text;
         ClientFileName: Text;
@@ -511,7 +511,7 @@ codeunit 50020 "Electronic Accounting"
         PurchInvHeader.MODIFY;
     end;
 
-    procedure ImportPDFToPurchCrMHeader(var PurchCrMHeader: Record "124")
+    procedure ImportPDFToPurchCrMHeader(var PurchCrMHeader: Record 124)
     var
         ServerFileName: Text;
         ClientFileName: Text;
@@ -530,7 +530,7 @@ codeunit 50020 "Electronic Accounting"
         PurchCrMHeader.MODIFY;
     end;
 
-    procedure ExportPDFFromPurchInvHeader(PurchInvHeader: Record "122")
+    procedure ExportPDFFromPurchInvHeader(PurchInvHeader: Record 122)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNamePDF: Label 'PDF File.pdf';
@@ -544,7 +544,7 @@ codeunit 50020 "Electronic Accounting"
         END ELSE MESSAGE(FieldEmpty);
     end;
 
-    procedure ExportPDFFromPurchCrmHeader(PurchCrMHeader: Record "124")
+    procedure ExportPDFFromPurchCrmHeader(PurchCrMHeader: Record 124)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNamePDF: Label 'PDF File.pdf';
@@ -640,25 +640,25 @@ codeunit 50020 "Electronic Accounting"
 
     local procedure FindUUID(UUID: Code[36])
     var
-        PurchHeader: Record "38";
-        PurchInvHeader: Record "122";
-        PurchCrMHeader: Record "124";
+        PurchHeader: Record 38;
+        PurchInvHeader: Record 122;
+        PurchCrMHeader: Record 124;
         Err_UUID_P: Label 'UUID %1 already assigned at purchase document %2';
         Err_UUID_PInv: Label 'UUID %1 already assigned at  purchase invoice %2';
         Err_UUID_PCrM: Label 'UUID %1 already assigned at Pruchase Credit Memo %2';
-        GLEntry: Record "17";
-        VendLedgEntry: Record "25";
-        SalesHeader: Record "36";
-        SalesInvHeader: Record "112";
-        SalesCrMHeader: Record "114";
-        CustLedgEntry: Record "21";
+        GLEntry: Record 17;
+        VendLedgEntry: Record 25;
+        SalesHeader: Record 36;
+        SalesInvHeader: Record 112;
+        SalesCrMHeader: Record 114;
+        CustLedgEntry: Record 21;
         Err_UUID_VLedger: Label 'UUID %1 already assigned at Vendor entry no %2';
         Err_UUID_GL: Label 'UUID %1 already assigned at account entry no %2';
         Err_UUID_V: Label 'UUID %1 already assigned at sales document %2';
         Err_UUID_VInv: Label 'UUID %1 already assigned at sales invoice %2';
         Err_UUID_VCrM: Label 'UUID %1 already assigned at sales credit memo %2';
         Err_UUID_CLedger: Label 'UUID %1 already assigned at customer entry no %2';
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         PurchInvHeader.RESET;
         PurchCrMHeader.RESET;
@@ -693,11 +693,11 @@ codeunit 50020 "Electronic Accounting"
 
     local procedure ValidateRFC(RFC: Code[13];No: Code[20];Doc: Integer)
     var
-        Vendor: Record "23";
-        CompanyInformation: Record "79";
+        Vendor: Record 23;
+        CompanyInformation: Record 79;
         EmisorError: Label 'The RFC from Vendor %1 in the XML File: %2 \is not match whit RFC in NAV: %3.';
         ReceptorError: Label 'The RFC from Company in the XML File: %1\is not math whit the RFC in NAV: %2.';
-        Customer: Record "18";
+        Customer: Record 18;
         Err_SalesRc: Label 'VAT %1 it doesn''t match with VAT %2  registered by customer %3';
         Err_SalesEm_PurchRc: Label 'VAT %1  it doesn''t match with VAT %2 registered to company';
         Err_PurchEm: Label 'VAT %1 it doesn''t match with VAT %2 registered to vendor %3';
@@ -721,7 +721,7 @@ codeunit 50020 "Electronic Accounting"
 
     local procedure ValidateAmount(DocAmount: Decimal;FileAmount: Decimal)
     var
-        GeneralLedgerSetup: Record "50035";
+        GeneralLedgerSetup: Record 50035;
         plusAmount: Decimal;
         eText001: Label 'The amount in the document %1 does not match with the amount in XMl file %2.';
         minAmount: Decimal;
@@ -735,7 +735,7 @@ codeunit 50020 "Electronic Accounting"
 
     local procedure ValidateDate(DocDate: Date;FileDate: Date)
     var
-        GeneralLedgerSetup: Record "98";
+        GeneralLedgerSetup: Record 98;
         eText001: Label 'The Date in the document %1 does not match with the Date in XMl file %2.';
     begin
         GeneralLedgerSetup.GET;
@@ -760,28 +760,28 @@ codeunit 50020 "Electronic Accounting"
     begin
     end;
 
-    procedure PurchInvHeaderHavePDF(PurchInv: Record "122") result: Boolean
+    procedure PurchInvHeaderHavePDF(PurchInv: Record 122) result: Boolean
     begin
         IF PurchInv.PDF.HASVALUE THEN EXIT(TRUE);
         EXIT(FALSE);
     end;
 
-    procedure PurchCrMemoHdrHavePDF(PurchCrMemo: Record "124") result: Boolean
+    procedure PurchCrMemoHdrHavePDF(PurchCrMemo: Record 124) result: Boolean
     begin
         IF PurchCrMemo.PDF.HASVALUE THEN EXIT(TRUE);
         EXIT(FALSE);
     end;
 
-    procedure SalesInvHeaderHavePDF(SalesInvHeader: Record "112") result: Boolean
+    procedure SalesInvHeaderHavePDF(SalesInvHeader: Record 112) result: Boolean
     var
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         IF SalesInvXMLData.GET(SalesInvHeader."No.") THEN
            IF SalesInvXMLData.PDF.HASVALUE THEN EXIT(TRUE);
         EXIT(FALSE);
     end;
 
-    procedure SalesCrMemoHdrHavePDF(SalesCrMemoHdr: Record "114") result: Boolean
+    procedure SalesCrMemoHdrHavePDF(SalesCrMemoHdr: Record 114) result: Boolean
     begin
         IF SalesCrMemoHdr.PDF.HASVALUE THEN EXIT(TRUE);
         EXIT(FALSE);
@@ -791,7 +791,7 @@ codeunit 50020 "Electronic Accounting"
     begin
     end;
 
-    procedure TransferGenJnlLineToDtldCVLedgEntryBuf(GenJnlLine: Record "81";var DtldCVLedgEntryBuf: Record "383")
+    procedure TransferGenJnlLineToDtldCVLedgEntryBuf(GenJnlLine: Record 81;var DtldCVLedgEntryBuf: Record 383)
     begin
         DtldCVLedgEntryBuf."XML - UUID"                := GenJnlLine."XML - UUID";
         DtldCVLedgEntryBuf."XML - Invoice Folio"       := GenJnlLine."XML - Invoice Folio";
@@ -806,7 +806,7 @@ codeunit 50020 "Electronic Accounting"
         DtldCVLedgEntryBuf."XML - Currency Factor"     := GenJnlLine."XML - Currency Factor";
     end;
 
-    procedure TrasnferCVLedgEntryBufToCustLedgEntry(CVLedgEntryBuf: Record "382";var CutLedgEntry: Record "21")
+    procedure TrasnferCVLedgEntryBufToCustLedgEntry(CVLedgEntryBuf: Record 382;var CutLedgEntry: Record 21)
     begin
         CutLedgEntry."XML - UUID"                := CVLedgEntryBuf."XML - UUID";
         CutLedgEntry."XML - Invoice Folio"       := CVLedgEntryBuf."XML - Invoice Folio";
@@ -821,7 +821,7 @@ codeunit 50020 "Electronic Accounting"
         CutLedgEntry."XML - Currency Factor"     := CVLedgEntryBuf."XML - Currency Factor";
     end;
 
-    procedure TransferGenJnlLineToCustLedgEntry(GenJnlLine: Record "81";var CustLedgEntry: Record "21")
+    procedure TransferGenJnlLineToCustLedgEntry(GenJnlLine: Record 81;var CustLedgEntry: Record 21)
     begin
         CustLedgEntry."XML - UUID"                := GenJnlLine."XML - UUID";
         CustLedgEntry."XML - Invoice Folio"       := GenJnlLine."XML - Invoice Folio";
@@ -836,7 +836,7 @@ codeunit 50020 "Electronic Accounting"
         CustLedgEntry."XML - Currency Factor"     := GenJnlLine."XML - Currency Factor";
     end;
 
-    procedure TransferGenJnlLineToGLEntry(GenJnlLine: Record "81";var GLEntry: Record "17")
+    procedure TransferGenJnlLineToGLEntry(GenJnlLine: Record 81;var GLEntry: Record 17)
     begin
         GLEntry."XML - UUID"                 := GenJnlLine."XML - UUID";
         GLEntry."XML - Invoice Folio"        := GenJnlLine."XML - Invoice Folio";
@@ -862,7 +862,7 @@ codeunit 50020 "Electronic Accounting"
         GLEntry."Pymt - VAT Beneficiary"     := GenJnlLine."Pymt - VAT Beneficiary";
     end;
 
-    procedure TransferGenJnlLineToVendLedgEntry(GenJnlLine: Record "81";var VendLedgEntry: Record "25")
+    procedure TransferGenJnlLineToVendLedgEntry(GenJnlLine: Record 81;var VendLedgEntry: Record 25)
     begin
         VendLedgEntry."XML - UUID"                := GenJnlLine."XML - UUID";
         VendLedgEntry."XML - Invoice Folio"       := GenJnlLine."XML - Invoice Folio";
@@ -877,9 +877,9 @@ codeunit 50020 "Electronic Accounting"
         VendLedgEntry."XML - Currency Factor"     := GenJnlLine."XML - Currency Factor";
     end;
 
-    local procedure TransSalesInvToCustLedgEntry(SalesinvHeader: Record "112";var CustLedgEntry: Record "21")
+    local procedure TransSalesInvToCustLedgEntry(SalesinvHeader: Record 112;var CustLedgEntry: Record 21)
     var
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         IF SalesInvXMLData.GET(SalesinvHeader."No.") THEN BEGIN
            CustLedgEntry."XML - UUID"                := SalesInvXMLData."XML - UUID";
@@ -897,9 +897,9 @@ codeunit 50020 "Electronic Accounting"
         END;
     end;
 
-    local procedure TransSalesInvToDtldCustLedgEntry(SalesinvHeader: Record "112";var DtldCustLedgEntry: Record "379")
+    local procedure TransSalesInvToDtldCustLedgEntry(SalesinvHeader: Record 112;var DtldCustLedgEntry: Record 379)
     var
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         IF SalesInvXMLData.GET(SalesinvHeader."No.") THEN BEGIN
            DtldCustLedgEntry."XML - UUID"                := SalesInvXMLData."XML - UUID";
@@ -917,9 +917,9 @@ codeunit 50020 "Electronic Accounting"
         END;
     end;
 
-    local procedure TransSalesInvToGLEntry(SalesInvHeader: Record "112";var GLEntry: Record "17")
+    local procedure TransSalesInvToGLEntry(SalesInvHeader: Record 112;var GLEntry: Record 17)
     var
-        SalesInvXMLData: Record "50036";
+        SalesInvXMLData: Record 50036;
     begin
         IF SalesInvXMLData.GET(SalesInvHeader."No.") THEN BEGIN
            GLEntry."XML - UUID"                := SalesInvXMLData."XML - UUID";
@@ -937,11 +937,11 @@ codeunit 50020 "Electronic Accounting"
         END;
     end;
 
-    local procedure UpdateDocsRelatedToSalesInvHeader(SalesInvHeader: Record "112")
+    local procedure UpdateDocsRelatedToSalesInvHeader(SalesInvHeader: Record 112)
     var
-        GLEntry: Record "17";
-        DtldCustLedgEntry: Record "379";
-        CustLedgEntry: Record "21";
+        GLEntry: Record 17;
+        DtldCustLedgEntry: Record 379;
+        CustLedgEntry: Record 21;
     begin
         CustLedgEntry.GET(SalesInvHeader."Cust. Ledger Entry No.");
         TransSalesInvToCustLedgEntry(SalesInvHeader,CustLedgEntry);
@@ -969,7 +969,7 @@ codeunit 50020 "Electronic Accounting"
             UNTIL GLEntry.NEXT =0;
     end;
 
-    local procedure TransSalesCrMToCustLedgEntry(SalesCrMHeader: Record "114";var CustLedgEntry: Record "21")
+    local procedure TransSalesCrMToCustLedgEntry(SalesCrMHeader: Record 114;var CustLedgEntry: Record 21)
     begin
         CustLedgEntry."XML - UUID"                := SalesCrMHeader."XML - UUID";
         CustLedgEntry."XML - Invoice Folio"       := SalesCrMHeader."XML - Invoice Folio";
@@ -985,11 +985,11 @@ codeunit 50020 "Electronic Accounting"
         CustLedgEntry.MODIFY;
     end;
 
-    local procedure TransSalesCrMToDtldCustLedgEntry(SalesCrMHeader: Record "114";var DtldCustLedgEntry: Record "379")
+    local procedure TransSalesCrMToDtldCustLedgEntry(SalesCrMHeader: Record 114;var DtldCustLedgEntry: Record 379)
     var
-        VendLedgEntry: Record "25";
-        DtldVendLedgEntry: Record "380";
-        GLEntry: Record "17";
+        VendLedgEntry: Record 25;
+        DtldVendLedgEntry: Record 380;
+        GLEntry: Record 17;
     begin
         DtldCustLedgEntry."XML - UUID"                := SalesCrMHeader."XML - UUID";
         DtldCustLedgEntry."XML - Invoice Folio"       := SalesCrMHeader."XML - Invoice Folio";
@@ -1005,7 +1005,7 @@ codeunit 50020 "Electronic Accounting"
         DtldCustLedgEntry.MODIFY;
     end;
 
-    local procedure TransSalesCrMToGLEntry(SalesCrMHeader: Record "114";var GLEntry: Record "17")
+    local procedure TransSalesCrMToGLEntry(SalesCrMHeader: Record 114;var GLEntry: Record 17)
     begin
         GLEntry."XML - UUID"                := SalesCrMHeader."XML - UUID";
         GLEntry."XML - Invoice Folio"       := SalesCrMHeader."XML - Invoice Folio";
@@ -1021,11 +1021,11 @@ codeunit 50020 "Electronic Accounting"
         GLEntry.MODIFY;
     end;
 
-    local procedure UpdateDocsRelatedToSalesCrMHeader(SalesCrMHeader: Record "114")
+    local procedure UpdateDocsRelatedToSalesCrMHeader(SalesCrMHeader: Record 114)
     var
-        CustLedgEntry: Record "21";
-        DtldCustLedgEntry: Record "379";
-        GLEntry: Record "17";
+        CustLedgEntry: Record 21;
+        DtldCustLedgEntry: Record 379;
+        GLEntry: Record 17;
     begin
         CustLedgEntry.GET(SalesCrMHeader."Cust. Ledger Entry No.");
         TransSalesCrMToCustLedgEntry(SalesCrMHeader,CustLedgEntry);
@@ -1053,7 +1053,7 @@ codeunit 50020 "Electronic Accounting"
             UNTIL GLEntry.NEXT =0;
     end;
 
-    local procedure TransPurchInvToVendLedgEntry(PurchInvHeader: Record "122";var CustLedgEntry: Record "25")
+    local procedure TransPurchInvToVendLedgEntry(PurchInvHeader: Record 122;var CustLedgEntry: Record 25)
     begin
         CustLedgEntry."XML - UUID"                := PurchInvHeader."XML - UUID";
         CustLedgEntry."XML - Invoice Folio"       := PurchInvHeader."XML - Invoice Folio";
@@ -1069,7 +1069,7 @@ codeunit 50020 "Electronic Accounting"
         CustLedgEntry.MODIFY;
     end;
 
-    local procedure TransPurchInvToDtldVendLedgEntry(PurchInvHeader: Record "122";var DtldCustLedgEntry: Record "380")
+    local procedure TransPurchInvToDtldVendLedgEntry(PurchInvHeader: Record 122;var DtldCustLedgEntry: Record 380)
     begin
         DtldCustLedgEntry."XML - UUID"                := PurchInvHeader."XML - UUID";
         DtldCustLedgEntry."XML - Invoice Folio"       := PurchInvHeader."XML - Invoice Folio";
@@ -1085,7 +1085,7 @@ codeunit 50020 "Electronic Accounting"
         DtldCustLedgEntry.MODIFY;
     end;
 
-    local procedure TransPurchInvToGLEntry(PurchInvHeader: Record "122";var GLEntry: Record "17")
+    local procedure TransPurchInvToGLEntry(PurchInvHeader: Record 122;var GLEntry: Record 17)
     begin
         GLEntry."XML - UUID"                := PurchInvHeader."XML - UUID";
         GLEntry."XML - Invoice Folio"       := PurchInvHeader."XML - Invoice Folio";
@@ -1101,13 +1101,13 @@ codeunit 50020 "Electronic Accounting"
         GLEntry.MODIFY;
     end;
 
-    local procedure UpdateDocsRelatedToPurchInvHeader(PurchInvHeader: Record "122")
+    local procedure UpdateDocsRelatedToPurchInvHeader(PurchInvHeader: Record 122)
     var
-        VendLedgEntry: Record "25";
-        DtldVendLedgEntry: Record "380";
-        GLEntry: Record "17";
-        VendLedgEntry2: Record "25";
-        DtldVendLedgEntry2: Record "380";
+        VendLedgEntry: Record 25;
+        DtldVendLedgEntry: Record 380;
+        GLEntry: Record 17;
+        VendLedgEntry2: Record 25;
+        DtldVendLedgEntry2: Record 380;
     begin
         IF NOT VendLedgEntry.GET(PurchInvHeader."Vendor Ledger Entry No.") THEN BEGIN
            VendLedgEntry.RESET;
@@ -1171,7 +1171,7 @@ codeunit 50020 "Electronic Accounting"
         VendLedgEntry.MODIFY;
     end;
 
-    local procedure TransPurchCrMToDtldVendLedgEntry(PurchCrMHeader: Record "124";var DtldVendLedgEntry: Record "380")
+    local procedure TransPurchCrMToDtldVendLedgEntry(PurchCrMHeader: Record 124;var DtldVendLedgEntry: Record 380)
     begin
         DtldVendLedgEntry."XML - UUID"                := PurchCrMHeader."XML - UUID";
         DtldVendLedgEntry."XML - Invoice Folio"       := PurchCrMHeader."XML - Invoice Folio";
@@ -1187,7 +1187,7 @@ codeunit 50020 "Electronic Accounting"
         DtldVendLedgEntry.MODIFY;
     end;
 
-    local procedure TransPurchCrMToGLEntry(PurchCrMHeader: Record "124";var GLEntry: Record "17")
+    local procedure TransPurchCrMToGLEntry(PurchCrMHeader: Record 124;var GLEntry: Record 17)
     begin
         GLEntry."XML - UUID"                := PurchCrMHeader."XML - UUID";
         GLEntry."XML - Invoice Folio"       := PurchCrMHeader."XML - Invoice Folio";
@@ -1203,11 +1203,11 @@ codeunit 50020 "Electronic Accounting"
         GLEntry.MODIFY;
     end;
 
-    local procedure UpdateDocRelatedToPurchCrMHeader(PurchCrMHeader: Record "124")
+    local procedure UpdateDocRelatedToPurchCrMHeader(PurchCrMHeader: Record 124)
     var
-        VendLedgEntry: Record "25";
-        DtldVendLedgEntry: Record "380";
-        GLEntry: Record "17";
+        VendLedgEntry: Record 25;
+        DtldVendLedgEntry: Record 380;
+        GLEntry: Record 17;
     begin
         VendLedgEntry.GET(PurchCrMHeader."Vendor Ledger Entry No.");
         TransPurchCrMToVendLedgEntry(PurchCrMHeader,VendLedgEntry);
@@ -1238,7 +1238,7 @@ codeunit 50020 "Electronic Accounting"
             UNTIL GLEntry.NEXT =0;
     end;
 
-    procedure TransGenJnlLineToGenJnlLine(GenJnlLineSource: Record "81";var GenJnlLineTarget: Record "81")
+    procedure TransGenJnlLineToGenJnlLine(GenJnlLineSource: Record 81;var GenJnlLineTarget: Record 81)
     begin
         GenJnlLineTarget."XML - UUID"                 := GenJnlLineSource."XML - UUID";
         GenJnlLineTarget."XML - Invoice Folio"        := GenJnlLineSource."XML - Invoice Folio";
@@ -1266,9 +1266,9 @@ codeunit 50020 "Electronic Accounting"
 
     procedure UnApplyPayment(EntryNo: Integer)
     var
-        DtldVendLedgEntry: Record "380";
-        GLEntry: Record "17";
-        VendLedgEntry: Record "25";
+        DtldVendLedgEntry: Record 380;
+        GLEntry: Record 17;
+        VendLedgEntry: Record 25;
     begin
         //Firs Clear records
         VendLedgEntry.GET(EntryNo);
@@ -1343,9 +1343,9 @@ codeunit 50020 "Electronic Accounting"
 
     procedure UnApplyCharge(EntryNo: Integer)
     var
-        CustLedgEntry: Record "21";
-        DtldCustLedgEntry: Record "379";
-        GLEntry: Record "17";
+        CustLedgEntry: Record 21;
+        DtldCustLedgEntry: Record 379;
+        GLEntry: Record 17;
     begin
         CustLedgEntry.GET(EntryNo);
 
@@ -1411,7 +1411,7 @@ codeunit 50020 "Electronic Accounting"
 
     local procedure CreateXMLHeader(var XMLDoc: DotNet XmlDocument;var RootNode: DotNet XmlNode;IDFile: Text;RootNodeName: Text;NodeNameSpace: Text;Year: Integer;Month: Integer;Version: Text)
     var
-        CompanyInformation: Record "79";
+        CompanyInformation: Record 79;
         FullNameSpace: Text;
     begin
         CompanyInformation.GET;
@@ -1431,14 +1431,14 @@ codeunit 50020 "Electronic Accounting"
 
     procedure ExportChartOfAccounts(Year: Integer;Month: Integer;ScheduleName: Code[10])
     var
-        GLAccount: Record "15";
+        GLAccount: Record 15;
         Document: DotNet XmlDocument;
         RootNode: DotNet XmlNode;
         Node: DotNet XmlNode;
         Namespace: Text;
-        GeneralLedgerSetup: Record "50035";
-        CompanyInformation: Record "79";
-        AccScheduleLine: Record "85";
+        GeneralLedgerSetup: Record 50035;
+        CompanyInformation: Record 79;
+        AccScheduleLine: Record 85;
         Err_SATCode: Label 'Account %1 doesn''t have code SAT';
         Err_SATNature: Label 'Account %1 doesn''t have nature';
         TempBigText: BigText;
@@ -1476,15 +1476,15 @@ codeunit 50020 "Electronic Accounting"
 
     procedure ExportBalanceSheet(Year: Integer;Month: Integer;DeliveryType: Option Normal,Complementary;UpdateDate: Date;ScheduleName: Code[10])
     var
-        GeneralLedgerSetup: Record "50035";
-        CompanyInformation: Record "79";
-        AccScheduleLine: Record "85";
+        GeneralLedgerSetup: Record 50035;
+        CompanyInformation: Record 79;
+        AccScheduleLine: Record 85;
         Totaling: Text[250];
-        AccScheduleName: Record "84";
+        AccScheduleName: Record 84;
         DefaultColumnLayout: Code[10];
-        ColumnLayout: Record "334";
-        AccSchedManagement: Codeunit "8";
-        GLAccount: Record "15";
+        ColumnLayout: Record 334;
+        AccSchedManagement: Codeunit 8;
+        GLAccount: Record 15;
         Document: DotNet XmlDocument;
         RootNode: DotNet XmlNode;
         Node: DotNet XmlNode;
@@ -1574,7 +1574,7 @@ codeunit 50020 "Electronic Accounting"
     var
         hasValue: Boolean;
         Text000: Label 'The XML Poliza %1 has already been created, Do you want to replace it?';
-        AccountingPeriod: Record "50";
+        AccountingPeriod: Record 50;
     begin
         //IdProcess = True for Poliza, False for Aux. Accounts.
         ValidateDataToProcess(StartingDate,RequestType,ProcessNumber);
@@ -1594,12 +1594,12 @@ codeunit 50020 "Electronic Accounting"
 
     procedure ExportAuxiliaryAccounts(Year: Integer;Month: Integer;RequestType: Option AF,FC,DE,CO;ProcessNumber: Text[13])
     var
-        GeneralLedgerSetup: Record "50035";
-        CompanyInformation: Record "79";
-        GLAccount: Record "15";
-        GLAccountBalanceIni: Record "15";
-        GLAccountBalanceFin: Record "15";
-        GLEntry: Record "17";
+        GeneralLedgerSetup: Record 50035;
+        CompanyInformation: Record 79;
+        GLAccount: Record 15;
+        GLAccountBalanceIni: Record 15;
+        GLAccountBalanceFin: Record 15;
+        GLEntry: Record 17;
         Document: DotNet XmlDocument;
         RootNode: DotNet XmlNode;
         Node: DotNet XmlNode;
@@ -1670,9 +1670,9 @@ codeunit 50020 "Electronic Accounting"
 
     procedure ExportTransactions(Year: Integer;Month: Integer;RequestType: Option AF,FC,DE,CO;ProcessNumber: Text[13])
     var
-        GeneralLedgerSetup: Record "50035";
-        CompanyInformation: Record "79";
-        GLEntry: Record "17";
+        GeneralLedgerSetup: Record 50035;
+        CompanyInformation: Record 79;
+        GLEntry: Record 17;
         Document: DotNet XmlDocument;
         RootNode: DotNet XmlNode;
         PolizaNode: DotNet XmlNode;
@@ -1749,10 +1749,10 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttribute(Node,'Concepto',GLEntry."Source Code");
     end;
 
-    local procedure CreateTransaccionNode(var ParentNode: DotNet XmlNode;var Node: DotNet XmlNode;GLEntry: Record "17";Namespace: Text)
+    local procedure CreateTransaccionNode(var ParentNode: DotNet XmlNode;var Node: DotNet XmlNode;GLEntry: Record 17;Namespace: Text)
     var
-        GeneralLedgerSetup: Record "50035";
-        GLAccount: Record "15";
+        GeneralLedgerSetup: Record 50035;
+        GLAccount: Record 15;
         CodEleCheque: Code[10];
         CodEleTransfer: Code[10];
         CodeNatOpr: Code[10];
@@ -1802,11 +1802,11 @@ codeunit 50020 "Electronic Accounting"
         EvaluateDocumentPayRef(Node,GLEntry,Namespace,CodeNatOpr,CodeForOpr);
     end;
 
-    procedure CheckNode(var ParentNode: DotNet XmlNode;GLEntry: Record "17";Namespace: Text)
+    procedure CheckNode(var ParentNode: DotNet XmlNode;GLEntry: Record 17;Namespace: Text)
     var
-        Vendor: Record "23";
-        Customer: Record "18";
-        CompanyInformation: Record "79";
+        Vendor: Record 23;
+        Customer: Record 18;
+        CompanyInformation: Record 79;
         Benef: Text[300];
         RFC: Code[13];
         Node: DotNet XmlNode;
@@ -1860,7 +1860,7 @@ codeunit 50020 "Electronic Accounting"
     local procedure SaveXMLToClient(var Document: DotNet XmlDocument;FileName: Text): Boolean
     var
         TempXMLFile: Text;
-        GeneralLedgerSetup: Record "50035";
+        GeneralLedgerSetup: Record 50035;
         Text001: Label 'Created File %1.';
         TestFileName: Text;
     begin
@@ -1875,7 +1875,7 @@ codeunit 50020 "Electronic Accounting"
 
     procedure ExportFile(Content: BigText;DefaultName: Text)
     var
-        TempBlob: Record "99008535" temporary;
+        TempBlob: Record 99008535 temporary;
         OutStream: OutStream;
     begin
         TempBlob.INIT;
@@ -1891,7 +1891,7 @@ codeunit 50020 "Electronic Accounting"
         EXIT(FORMAT(Amount,0,'<Precision,2:2><Standard Format,9>'));
     end;
 
-    procedure TransferCustomerNode(var ParentNode: DotNet XmlNode;GLEntry: Record "17";Namespace: Text)
+    procedure TransferCustomerNode(var ParentNode: DotNet XmlNode;GLEntry: Record 17;Namespace: Text)
     var
         CtaOri: Text[50];
         BancoOri: Code[3];
@@ -1901,8 +1901,8 @@ codeunit 50020 "Electronic Accounting"
         BancoDestTag: Text[15];
         Benef: Text[300];
         RFC: Code[13];
-        Customer: Record "18";
-        CompanyInformation: Record "79";
+        Customer: Record 18;
+        CompanyInformation: Record 79;
         Node: DotNet XmlNode;
     begin
         CtaOri := GLEntry."Pymt - Bank Source Account";
@@ -1961,8 +1961,8 @@ codeunit 50020 "Electronic Accounting"
         BancoDestTag: Text[15];
         Benef: Text[300];
         RFC: Code[13];
-        Vendor: Record "23";
-        CompanyInformation: Record "79";
+        Vendor: Record 23;
+        CompanyInformation: Record 79;
         Node: DotNet XmlNode;
     begin
         CtaOri := GLEntry."Pymt - Bank Source Account";
@@ -2009,11 +2009,11 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttribute(Node,'Monto',DecimalFormat(GLEntry.Amount));
     end;
 
-    procedure OtherPaymentMethodCustNode(var ParentNode: DotNet XmlNode;GLEntry: Record "17";Namespace: Text)
+    procedure OtherPaymentMethodCustNode(var ParentNode: DotNet XmlNode;GLEntry: Record 17;Namespace: Text)
     var
-        Vendor: Record "23";
-        Customer: Record "18";
-        CompanyInformation: Record "79";
+        Vendor: Record 23;
+        Customer: Record 18;
+        CompanyInformation: Record 79;
         Benef: Text[300];
         RFC: Code[13];
         TipCamb: Decimal;
@@ -2046,11 +2046,11 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttribute(Node,'Monto',DecimalFormat(ABS(GLEntry.Amount)));
     end;
 
-    procedure OtherPaymentMethodVendNode(var ParentNode: DotNet XmlNode;GLEntry: Record "17";Namespace: Text)
+    procedure OtherPaymentMethodVendNode(var ParentNode: DotNet XmlNode;GLEntry: Record 17;Namespace: Text)
     var
-        Vendor: Record "23";
-        Customer: Record "18";
-        CompanyInformation: Record "79";
+        Vendor: Record 23;
+        Customer: Record 18;
+        CompanyInformation: Record 79;
         Benef: Text[300];
         RFC: Code[13];
         Node: DotNet XmlNode;
@@ -2082,7 +2082,7 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttribute(Node,'Monto',DecimalFormat(ABS(GLEntry.Amount)));
     end;
 
-    procedure EvaluateDocument(var ParentNode: DotNet XmlNode;GLEntry: Record "17";Namespace: Text;CodeNatOpr: Code[10];CodeForOpr: Code[10])
+    procedure EvaluateDocument(var ParentNode: DotNet XmlNode;GLEntry: Record 17;Namespace: Text;CodeNatOpr: Code[10];CodeForOpr: Code[10])
     var
         DocumentType: Option " ",Payment,Invoice,"Credit Memo","Finance Charge Memo",Reminder,Refund;
         SourceType: Option " ",Customer,Vendor,"Bank Account","Fixed Asset",Employee;
@@ -2103,7 +2103,7 @@ codeunit 50020 "Electronic Accounting"
         END;
     end;
 
-    procedure EvaluateDocumentPayRef(var ParentNode: DotNet XmlNode;GLEntry: Record "17";Namespace: Text;CodeNatOpr: Code[10];CodeForOpr: Code[10])
+    procedure EvaluateDocumentPayRef(var ParentNode: DotNet XmlNode;GLEntry: Record 17;Namespace: Text;CodeNatOpr: Code[10];CodeForOpr: Code[10])
     var
         DocumentType: Option " ",Payment,Invoice,"Credit Memo","Finance Charge Memo",Reminder,Refund;
         SourceType: Option " ",Customer,Vendor,"Bank Account","Fixed Asset",Employee;
@@ -2124,9 +2124,9 @@ codeunit 50020 "Electronic Accounting"
         END;
     end;
 
-    procedure VendorInvoice(var ParentNode: DotNet XmlNode;GLEntry: Record "17";Namespace: Text;NatFor: Boolean)
+    procedure VendorInvoice(var ParentNode: DotNet XmlNode;GLEntry: Record 17;Namespace: Text;NatFor: Boolean)
     var
-        Vendor: Record "23";
+        Vendor: Record 23;
         Node: DotNet XmlNode;
     begin
         Vendor.GET(GLEntry."Source No.");
@@ -2192,7 +2192,7 @@ codeunit 50020 "Electronic Accounting"
 
     local procedure XMLWellFormed(ServerFileName: Text) XMLWellFormed: Text
     var
-        TempBlob: Record "99008535" temporary;
+        TempBlob: Record 99008535 temporary;
         InStream: InStream;
         TxtXML: Text;
         Indice: Integer;

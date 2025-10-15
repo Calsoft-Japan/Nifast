@@ -6,19 +6,19 @@ codeunit 50024 "Withholding Calcs"
     end;
 
     var
-        GLAcc: Record "15";
-        WithHoldSetup: Record "50037";
-        PurchLine: Record "39";
+        GLAcc: Record 15;
+        WithHoldSetup: Record 50037;
+        PurchLine: Record 39;
         IncTaxGrp: Code[10];
         VatTaxGrp: Code[10];
         IncTaxPerc: Decimal;
         VatTaxPerc: Decimal;
         IncTaxAcc: Code[10];
         VatTaxAcc: Code[10];
-        TempPurchLine: Record "39" temporary;
+        TempPurchLine: Record 39 temporary;
         Counter: Integer;
         CountAppl: Integer;
-        PurchLine2: Record "39";
+        PurchLine2: Record 39;
 
     procedure CheckWithHold(PurchInvNo: Code[20])
     var
@@ -84,7 +84,7 @@ codeunit 50024 "Withholding Calcs"
 
     local procedure InsertNewLineInc(LDocNo: Code[20];LIncTaxPerc: Decimal;LocCount: Integer)
     var
-        PurchLine3: Record "39";
+        PurchLine3: Record 39;
     begin
         PurchLine3.RESET;
         PurchLine3.INIT;
@@ -104,7 +104,7 @@ codeunit 50024 "Withholding Calcs"
 
     local procedure InsertNewLineVAT(LDocNo: Code[20];LIncTaxPerc: Decimal;LocCount: Integer)
     var
-        PurchLine3: Record "39";
+        PurchLine3: Record 39;
     begin
         PurchLine3.RESET;
         PurchLine3.INIT;
@@ -122,9 +122,9 @@ codeunit 50024 "Withholding Calcs"
         COMMIT;
     end;
 
-    local procedure GetLineNo(PLine: Record "39") LineNo: Integer
+    local procedure GetLineNo(PLine: Record 39) LineNo: Integer
     var
-        PLines: Record "39";
+        PLines: Record 39;
     begin
         PLines.RESET;
         PLines.SETRANGE("Document Type",PLine."Document Type");
@@ -135,7 +135,7 @@ codeunit 50024 "Withholding Calcs"
 
     local procedure HasIncTax(AccNo: Code[20]) result: Boolean
     var
-        GLAccount: Record "15";
+        GLAccount: Record 15;
     begin
         IF GLAccount.GET(AccNo) THEN
            IF STRLEN(GLAccount."Income Tax Withholding Group")>0 THEN  EXIT(TRUE);
@@ -144,7 +144,7 @@ codeunit 50024 "Withholding Calcs"
 
     local procedure HasVATTax(AccNo: Code[20]) result: Boolean
     var
-        GLAccount: Record "15";
+        GLAccount: Record 15;
     begin
         IF GLAccount.GET(AccNo) THEN
            IF STRLEN(GLAccount."VAT Tax Withholding Group")>0 THEN  EXIT(TRUE);

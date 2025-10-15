@@ -23,7 +23,7 @@ codeunit 50011 "Batch Purch. Quotes to Orders"
     end;
 
     var
-        PurchOrderToQuote: Codeunit "96";
-        PurchHeader: Record "38";
+        PurchOrderToQuote: Codeunit 96;
+        PurchHeader: Record 38;
 }
 

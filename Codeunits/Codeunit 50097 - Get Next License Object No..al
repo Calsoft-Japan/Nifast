@@ -3,7 +3,7 @@ codeunit 50097 "Get Next License Object No."
 
     trigger OnRun()
     var
-        LicPermission_lRec: Record "2000000043";
+        LicPermission_lRec: Record 2000000043;
         LastFieldNo_lInt: Integer;
         StrMenu_lInt: Integer;
     begin
@@ -43,11 +43,11 @@ codeunit 50097 "Get Next License Object No."
 
     var
         Text000: Label 'Table,Page,Report,Codeunit,XMLport';
-        TypeLicPermission_gRec: Record "2000000043";
+        TypeLicPermission_gRec: Record 2000000043;
 
     procedure ObjectExists_lFnc(No_iInt: Integer): Boolean
     var
-        Object_lRec: Record "2000000001";
+        Object_lRec: Record 2000000001;
     begin
         Object_lRec.RESET;
         Object_lRec.SETRANGE(Type,TypeLicPermission_gRec."Object Type");
