@@ -1,4 +1,4 @@
-codeunit 50040 CU5772Subscriber
+codeunit 50033 CU5772Subscriber
 {
     //Version NAVW17.00,NV4.20,NIF.N15.C9IN.001;
     var
