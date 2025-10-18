@@ -4,83 +4,92 @@ page 50081 "Purchase Invoice Line FactBox"
 
     Caption = 'Purchase Line Details';
     PageType = CardPart;
-    SourceTable = Table39;
+    UsageCategory = None;
+    SourceTable = "Purchase Line";
 
     layout
     {
         area(content)
         {
-            field("No.";"No.")
+            field("No."; Rec."No.")
             {
                 Caption = 'Item No.';
                 Lookup = false;
+                ToolTip = 'Specifies the number of the involved entry or record, according to the specified number series.';
 
                 trigger OnDrillDown()
                 begin
-                    ShowDetails;
+                    ShowDetails();
                 end;
             }
-            field(Availability;STRSUBSTNO('%1',PurchInfoPaneMgt.CalcAvailability(Rec)))
+            field(Availability; STRSUBSTNO('%1', PurchInfoPaneMgt.CalcAvailability(Rec)))
             {
                 Caption = 'Availability';
-                DecimalPlaces = 2:0;
+                //DecimalPlaces = 2 : 0;
                 DrillDown = true;
                 Editable = true;
+                ToolTip = 'Specifies the value of the Availability field.';
 
                 trigger OnDrillDown()
                 begin
-                    ItemAvailFormsMgt.ShowItemAvailFromPurchLine(Rec,ItemAvailFormsMgt.ByEvent);
+                    ItemAvailFormsMgt.ShowItemAvailFromPurchLine(Rec, ItemAvailFormsMgt.ByEvent());
                     CurrPage.UPDATE(TRUE);
                 end;
             }
-            field(STRSUBSTNO('%1',PurchInfoPaneMgt.CalcNoOfPurchasePrices(Rec));STRSUBSTNO('%1',PurchInfoPaneMgt.CalcNoOfPurchasePrices(Rec)))
+            field(CalcNoOfPurchase; STRSUBSTNO('%1', PurchInfoPaneMgt.CalcNoOfPurchasePrices(Rec)))
             {
                 Caption = 'Purchase Prices';
                 DrillDown = true;
                 Editable = true;
+                ToolTip = 'Specifies the value of the Purchase Prices field.';
 
                 trigger OnDrillDown()
                 begin
-                    ShowPrices;
-                    CurrPage.UPDATE;
+                    ShowPrices();
+                    CurrPage.UPDATE();
                 end;
             }
-            field(STRSUBSTNO('%1',PurchInfoPaneMgt.CalcNoOfPurchLineDisc(Rec));STRSUBSTNO('%1',PurchInfoPaneMgt.CalcNoOfPurchLineDisc(Rec)))
+            field(CalcNoOfPurchLineDisc; STRSUBSTNO('%1', PurchInfoPaneMgt.CalcNoOfPurchLineDisc(Rec)))
             {
                 Caption = 'Purchase Line Discounts';
                 DrillDown = true;
                 Editable = true;
+                ToolTip = 'Specifies the value of the Purchase Line Discounts field.';
 
                 trigger OnDrillDown()
                 begin
-                    ShowLineDisc;
-                    CurrPage.UPDATE;
+                    ShowLineDisc();
+                    CurrPage.UPDATE();
                 end;
             }
             group("New Vision")
             {
                 Caption = 'New Vision';
-                field(LDate[1];LDate[1])
+                field(LDate; LDate[1])
                 {
                     Caption = 'Last Purchase';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Last Purchase field.';
                 }
-                field(LocationItem.Inventory;LocationItem.Inventory)
+                field(Inventory; LocationItem.Inventory)
                 {
                     Caption = 'Location Qty';
-                    DecimalPlaces = 0:5;
+                    DecimalPlaces = 0 : 5;
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Location Qty field.';
                 }
-                field(LDec[3];LDec[3])
+                field(LDec3; LDec[3])
                 {
-                    CaptionClass = GetCaptions1;
+                    CaptionClass = GetCaptions1();
                     Editable = false;
+                    ToolTip = 'Specifies the value of the LDec[3] field.';
                 }
-                field(LDec[4];LDec[4])
+                field(LDec4; LDec[4])
                 {
-                    CaptionClass = GetCaptions2;
+                    CaptionClass = GetCaptions2();
                     Caption = '<Control1102622004>';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the <Control1102622004> field.';
                 }
             }
         }
@@ -93,20 +102,20 @@ page 50081 "Purchase Invoice Line FactBox"
     trigger OnAfterGetRecord()
     begin
         //>>NV
-        NVM.UpdatePurchaseLineInfo(Rec,LDec,LDate,LineItem,LocationItem);
+        NVM.UpdatePurchaseLineInfo(Rec, LDec, LDate, LineItem, LocationItem);
         //<<NV
     end;
 
     var
-        PurchHeader: Record "38";
-        PurchPriceCalcMgt: Codeunit "7010";
-        PurchInfoPaneMgt: Codeunit "7181";
-        ItemAvailFormsMgt: Codeunit "353";
-        LDec: array [20] of Decimal;
-        LDate: array [10] of Date;
-        NVM: Codeunit "50021";
-        LocationItem: Record "27";
-        LineItem: Record "27";
+        LineItem: Record Item;
+        LocationItem: Record Item;
+        PurchHeader: Record "Purchase Header";
+        ItemAvailFormsMgt: Codeunit "Item Availability Forms Mgt";
+        NVM: Codeunit "NewVision Management_New";
+        PurchPriceCalcMgt: Codeunit "Purch. Price Calc. Mgt.";
+        PurchInfoPaneMgt: Codeunit "Purchases Info-Pane Management";
+        LDate: array[10] of Date;
+        LDec: array[20] of Decimal;
         Text50000: Label 'Invoice Amount';
         Text50001: Label 'Invoice Weight';
         Text50002: Label 'Order Amount';
@@ -114,49 +123,49 @@ page 50081 "Purchase Invoice Line FactBox"
 
     procedure ShowDetails()
     var
-        Item: Record "27";
+        Item: Record Item;
     begin
-        IF Type = Type::Item THEN BEGIN
-          Item.GET("No.");
-          PAGE.RUN(PAGE::"Item Card",Item);
+        IF Rec.Type = Rec.Type::Item THEN BEGIN
+            Item.GET(Rec."No.");
+            PAGE.RUN(PAGE::"Item Card", Item);
         END;
     end;
 
     procedure ShowPrices()
     begin
-        PurchHeader.GET("Document Type","Document No.");
+        PurchHeader.GET(Rec."Document Type", Rec."Document No.");
         CLEAR(PurchPriceCalcMgt);
-        PurchPriceCalcMgt.GetPurchLinePrice(PurchHeader,Rec);
+        PurchPriceCalcMgt.GetPurchLinePrice(PurchHeader, Rec);
     end;
 
     procedure ShowLineDisc()
     begin
-        PurchHeader.GET("Document Type","Document No.");
+        PurchHeader.GET(Rec."Document Type", Rec."Document No.");
         CLEAR(PurchPriceCalcMgt);
-        PurchPriceCalcMgt.GetPurchLineLineDisc(PurchHeader,Rec);
+        PurchPriceCalcMgt.GetPurchLineLineDisc(PurchHeader, Rec);
     end;
 
-    local procedure "<<NF>>"()
-    begin
-    end;
+    /*  local procedure "<<NF>>"()
+     begin
+     end; */
 
     local procedure GetCaptions1(): Text[30]
     begin
         //>> NF1.00:CIS.NG  09-01-15
-        IF "Document Type" = "Document Type"::Invoice THEN
-          EXIT(Text50000)
+        IF Rec."Document Type" = Rec."Document Type"::Invoice THEN
+            EXIT(Text50000)
         ELSE
-          EXIT(Text50002);
+            EXIT(Text50002);
         //<< NF1.00:CIS.NG  09-01-15
     end;
 
     local procedure GetCaptions2(): Text[30]
     begin
         //>> NF1.00:CIS.NG  09-01-15
-        IF "Document Type" = "Document Type"::Invoice THEN
-          EXIT(Text50001)
+        IF Rec."Document Type" = Rec."Document Type"::Invoice THEN
+            EXIT(Text50001)
         ELSE
-          EXIT(Text50003);
+            EXIT(Text50003);
         //<< NF1.00:CIS.NG  09-01-15
     end;
 }

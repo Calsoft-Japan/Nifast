@@ -11,7 +11,9 @@ page 50073 "Delivery Schedule"
 
     InsertAllowed = false;
     PageType = Document;
-    SourceTable = Table50012;
+    ApplicationArea = All;
+    UsageCategory = None;
+    SourceTable = "Delivery Schedule Header";
 
     layout
     {
@@ -20,72 +22,92 @@ page 50073 "Delivery Schedule"
             group(General)
             {
                 Caption = 'General';
-                field("Delivery Schedule Batch No.";"Delivery Schedule Batch No.")
+                field("Delivery Schedule Batch No."; Rec."Delivery Schedule Batch No.")
                 {
+                    ToolTip = 'Specifies the value of the Delivery Schedule Batch No. field.';
                 }
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the value of the No. field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Cross-Reference No.";"Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Cross-Reference No.")
                 {
+                    ToolTip = 'Specifies the value of the Cross-Reference No. field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
+                    ToolTip = 'Specifies the value of the Location Code field.';
                 }
-                field("Model Year";"Model Year")
+                field("Model Year"; Rec."Model Year")
                 {
+                    ToolTip = 'Specifies the value of the Model Year field.';
                 }
-                field("Order Reference No.";"Order Reference No.")
+                field("Order Reference No."; Rec."Order Reference No.")
                 {
+                    ToolTip = 'Specifies the value of the Order Reference No. field.';
                 }
-                field("Quantity CYTD";"Quantity CYTD")
+                field("Quantity CYTD"; Rec."Quantity CYTD")
                 {
+                    ToolTip = 'Specifies the value of the Quantity CYTD field.';
                 }
-                field("Release Number";"Release Number")
+                field("Release Number"; Rec."Release Number")
                 {
+                    ToolTip = 'Specifies the value of the Release Number field.';
                 }
-                field("Receiving Dock Code";"Receiving Dock Code")
+                field("Receiving Dock Code"; Rec."Receiving Dock Code")
                 {
+                    ToolTip = 'Specifies the value of the Receiving Dock Code field.';
                 }
-                field("Stockman Code";"Stockman Code")
+                field("Stockman Code"; Rec."Stockman Code")
                 {
+                    ToolTip = 'Specifies the value of the Stockman Code field.';
                 }
-                field("Unit of Measure CYTD";"Unit of Measure CYTD")
+                field("Unit of Measure CYTD"; Rec."Unit of Measure CYTD")
                 {
+                    ToolTip = 'Specifies the value of the Unit of Measure CYTD field.';
                 }
-                field("Start Date CYTD";"Start Date CYTD")
+                field("Start Date CYTD"; Rec."Start Date CYTD")
                 {
+                    ToolTip = 'Specifies the value of the Start Date CYTD field.';
                 }
-                field("End Date CYTD";"End Date CYTD")
+                field("End Date CYTD"; Rec."End Date CYTD")
                 {
+                    ToolTip = 'Specifies the value of the End Date CYTD field.';
                 }
-                field("Quantity Shipped CYTD";"Quantity Shipped CYTD")
+                field("Quantity Shipped CYTD"; Rec."Quantity Shipped CYTD")
                 {
+                    ToolTip = 'Specifies the value of the Quantity Shipped CYTD field.';
                 }
-                field("Unit of Measure Shipped CYTD";"Unit of Measure Shipped CYTD")
+                field("Unit of Measure Shipped CYTD"; Rec."Unit of Measure Shipped CYTD")
                 {
+                    ToolTip = 'Specifies the value of the Unit of Measure Shipped CYTD field.';
                 }
-                field("Start Date Shipped CYTD";"Start Date Shipped CYTD")
+                field("Start Date Shipped CYTD"; Rec."Start Date Shipped CYTD")
                 {
+                    ToolTip = 'Specifies the value of the Start Date Shipped CYTD field.';
                 }
-                field("End Date Shipped CYTD";"End Date Shipped CYTD")
+                field("End Date Shipped CYTD"; Rec."End Date Shipped CYTD")
                 {
+                    ToolTip = 'Specifies the value of the End Date Shipped CYTD field.';
                 }
             }
-            part(;50075)
+            part(DeliveryScheduleSubform; "Delivery Schedule Subform")
             {
-                SubPageLink = Delivery Schedule Batch No.=FIELD(Delivery Schedule Batch No.),
-                              Customer No.=FIELD(Customer No.),
-                              Document No.=FIELD(No.);
+                SubPageLink = "Delivery Schedule Batch No." = FIELD("Delivery Schedule Batch No."),
+                              "Customer No." = FIELD("Customer No."),
+                              "Document No." = FIELD("No.");
             }
         }
     }

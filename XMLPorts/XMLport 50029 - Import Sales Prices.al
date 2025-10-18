@@ -8,27 +8,29 @@ xmlport 50029 "Import Sales Prices"
         textelement("<root>")
         {
             XmlName = 'Root';
-            tableelement(Table7002;Table7002)
+            tableelement("Sales Price"; "Sales Price")
             {
                 XmlName = 'SalesPrice';
-                fieldelement(ContractNo;"Sales Price"."Contract No.")
+                fieldelement(ContractNo; "Sales Price"."Contract No.")
                 {
                 }
-                fieldelement(ItemNo;"Sales Price"."Item No.")
+                fieldelement(ItemNo; "Sales Price"."Item No.")
                 {
                 }
-                fieldelement(UnitPrice;"Sales Price"."Unit Price")
+                fieldelement(UnitPrice; "Sales Price"."Unit Price")
                 {
                 }
-                fieldelement(ContractShiptoCode;"Sales Price"."Contract Ship-to Code")
+                //TODO
+                /* fieldelement(ContractShiptoCode; "Sales Price"."Contract Ship-to Code")
                 {
                 }
-                fieldelement(AltPrice;"Sales Price"."Alt. Price")
+                fieldelement(AltPrice; "Sales Price"."Alt. Price")
                 {
                 }
-                fieldelement(AltPriceUOM;"Sales Price"."Alt. Price UOM")
+                fieldelement(AltPriceUOM; "Sales Price"."Alt. Price UOM")
                 {
-                }
+                } */
+                //TODO
             }
         }
     }

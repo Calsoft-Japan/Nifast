@@ -3,22 +3,27 @@ page 50139 "FB Tag Journal Batches"
     // NF1.00:CIS.NG    09/28/15 Update for New Vision Removal Task (Fill-Bill Functionality Renumber)
 
     PageType = List;
-    SourceTable = Table50140;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "FB Tag Journal Batch";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field(Name;Name)
+                field(Name; Rec.Name)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("No. Series";"No. Series")
+                field("No. Series"; Rec."No. Series")
                 {
+                    ToolTip = 'Specifies the value of the No. Series field.';
                 }
             }
         }

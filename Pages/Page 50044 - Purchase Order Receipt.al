@@ -11,10 +11,12 @@ page 50044 "Purchase Order Receipt"
     Caption = 'Purchase Order Receipt';
     DeleteAllowed = false;
     InsertAllowed = false;
+    UsageCategory = None;
     PageType = Document;
     RefreshOnActivate = true;
-    SourceTable = Table38;
-    SourceTableView = WHERE(Document Type=FILTER(Order));
+    SourceTable = "Purchase Header";
+    SourceTableView = WHERE("Document Type" = FILTER(Order));
+    ApplicationArea = All;
 
     layout
     {
@@ -23,147 +25,174 @@ page 50044 "Purchase Order Receipt"
             group(General)
             {
                 Caption = 'General';
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the number of the involved entry or record, according to the specified number series.';
 
                     trigger OnAssistEdit()
                     begin
-                        IF AssistEdit(xRec) THEN
-                          CurrPage.UPDATE;
+                        IF Rec.AssistEdit(xRec) THEN
+                            CurrPage.UPDATE();
                     end;
                 }
-                field("Buy-from Vendor No.";"Buy-from Vendor No.")
+                field("Buy-from Vendor No."; Rec."Buy-from Vendor No.")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the number of the vendor who delivers the products.';
 
                     trigger OnValidate()
                     begin
-                        BuyfromVendorNoOnAfterValidate;
+                        BuyfromVendorNoOnAfterValidate();
                     end;
                 }
-                field("Buy-from Vendor Name";"Buy-from Vendor Name")
+                field("Buy-from Vendor Name"; Rec."Buy-from Vendor Name")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the name of the vendor who delivers the products.';
                 }
-                field("Pay-to Vendor No.";"Pay-to Vendor No.")
+                field("Pay-to Vendor No."; Rec."Pay-to Vendor No.")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the number of the vendor that you received the invoice from.';
 
                     trigger OnValidate()
                     begin
-                        PaytoVendorNoOnAfterValidate;
+                        PaytoVendorNoOnAfterValidate();
                     end;
                 }
-                field("Tax Liable";"Tax Liable")
+                field("Tax Liable"; Rec."Tax Liable")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies if this vendor charges you sales tax for purchases.';
                 }
-                field("Posting Date";"Posting Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
                     Editable = "Posting DateEditable";
+                    ToolTip = 'Specifies the date when the posting of the purchase document will be recorded.';
                 }
-                field("Order Date";"Order Date")
+                field("Order Date"; Rec."Order Date")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the date when the order was created.';
                 }
-                field("Document Date";"Document Date")
+                field("Document Date"; Rec."Document Date")
                 {
                     Editable = "Document DateEditable";
+                    ToolTip = 'Specifies the date when the related document was created.';
                 }
-                field("Requested Receipt Date";"Requested Receipt Date")
+                field("Requested Receipt Date"; Rec."Requested Receipt Date")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the date that you want the vendor to deliver your order. The field is used to calculate the latest date you can order, as follows: requested receipt date - lead time calculation = order date. If you do not need delivery on a specific date, you can leave the field blank.';
                 }
-                field("Promised Receipt Date";"Promised Receipt Date")
+                field("Promised Receipt Date"; Rec."Promised Receipt Date")
                 {
+                    ToolTip = 'Specifies the date that the vendor has promised to deliver the order.';
                 }
-                field("Purchaser Code";"Purchaser Code")
+                field("Purchaser Code"; Rec."Purchaser Code")
                 {
                     Editable = "Purchaser CodeEditable";
+                    ToolTip = 'Specifies which purchaser is assigned to the vendor.';
                 }
-                field("Shortcut Dimension 1 Code";"Shortcut Dimension 1 Code")
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
 
                     trigger OnValidate()
                     begin
-                        ShortcutDimension1CodeOnAfterV;
+                        ShortcutDimension1CodeOnAfterV();
                     end;
                 }
-                field("Shortcut Dimension 2 Code";"Shortcut Dimension 2 Code")
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
 
                     trigger OnValidate()
                     begin
-                        ShortcutDimension2CodeOnAfterV;
+                        ShortcutDimension2CodeOnAfterV();
                     end;
                 }
-                field(Status;Status)
+                field(Status; Rec.Status)
                 {
                     Editable = false;
+                    ToolTip = 'Specifies whether the record is open, waiting to be approved, invoiced for prepayment, or released to the next stage of processing.';
                 }
-                field("On Hold";"On Hold")
+                field("On Hold"; Rec."On Hold")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies that the related entry represents an unpaid invoice for which either a payment suggestion, a reminder, or a finance charge memo exists.';
                 }
             }
-            part(PurchLines;50043)
+            part(PurchLines; "Purch. Order Receipt Subform")
             {
-                SubPageLink = Document No.=FIELD(No.);
+                SubPageLink = "Document No." = FIELD("No.");
             }
             group(Shipping)
             {
                 Caption = 'Shipping';
-                field("Ship-to Code";"Ship-to Code")
+                field("Ship-to Code"; Rec."Ship-to Code")
                 {
                     Editable = "Ship-to CodeEditable";
+                    ToolTip = 'Specifies a code for an alternate shipment address if you want to ship to another address than the one that has been entered automatically. This field is also used in case of drop shipment.';
                 }
-                field("Ship-to Name";"Ship-to Name")
+                field("Ship-to Name"; Rec."Ship-to Name")
                 {
                     Editable = "Ship-to NameEditable";
+                    ToolTip = 'Specifies the name of the company at the address to which you want the items in the purchase order to be shipped.';
                 }
-                field("Ship-to Address";"Ship-to Address")
+                field("Ship-to Address"; Rec."Ship-to Address")
                 {
                     Editable = "Ship-to AddressEditable";
+                    ToolTip = 'Specifies the address that you want the items in the purchase order to be shipped to.';
                 }
-                field("Ship-to Address 2";"Ship-to Address 2")
+                field("Ship-to Address 2"; Rec."Ship-to Address 2")
                 {
                     Editable = "Ship-to Address 2Editable";
+                    ToolTip = 'Specifies additional address information.';
                 }
-                field("Ship-to City";"Ship-to City")
+                field("Ship-to City"; Rec."Ship-to City")
                 {
                     Editable = "Ship-to CityEditable";
+                    ToolTip = 'Specifies the city the items in the purchase order will be shipped to.';
                 }
-                field("Ship-to County";"Ship-to County")
+                field("Ship-to County"; Rec."Ship-to County")
                 {
                     Caption = 'Ship-to State / ZIP Code';
                     Editable = "Ship-to CountyEditable";
+                    ToolTip = 'Specifies the state where the vendor sending the invoice is located.';
                 }
-                field("Ship-to Post Code";"Ship-to Post Code")
+                field("Ship-to Post Code"; Rec."Ship-to Post Code")
                 {
                     Editable = "Ship-to Post CodeEditable";
+                    ToolTip = 'Specifies the postal code.';
                 }
-                field("Ship-to Contact";"Ship-to Contact")
+                field("Ship-to Contact"; Rec."Ship-to Contact")
                 {
                     Editable = "Ship-to ContactEditable";
+                    ToolTip = 'Specifies the name of a contact person for the address where the items in the purchase order should be shipped.';
                 }
-                field("Ship-to UPS Zone";"Ship-to UPS Zone")
+                field("Ship-to UPS Zone"; Rec."Ship-to UPS Zone")
                 {
                     Editable = "Ship-to UPS ZoneEditable";
+                    ToolTip = 'Specifies a UPS Zone code for this document if UPS is used for shipments.';
                 }
-                field("Tax Area Code";"Tax Area Code")
+                field("Tax Area Code"; Rec."Tax Area Code")
                 {
                     Editable = "Tax Area CodeEditable";
+                    ToolTip = 'Specifies the tax area code used for this purchase to calculate and post sales tax.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
                     Editable = "Location CodeEditable";
+                    ToolTip = 'Specifies the location where the items are to be placed when they are received. This field acts as the default location for new lines. You can update the location code for individual lines as needed.';
                 }
-                field("Shipment Method Code";"Shipment Method Code")
+                field("Shipment Method Code"; Rec."Shipment Method Code")
                 {
                     Editable = "Shipment Method CodeEditable";
+                    ToolTip = 'Specifies the delivery conditions of the related shipment, such as free on board (FOB).';
                 }
             }
         }
@@ -183,66 +212,72 @@ page 50044 "Purchase Order Receipt"
                     Promoted = true;
                     PromotedCategory = Process;
                     ShortCutKey = 'F7';
+                    ToolTip = 'Executes the Statistics action.';
 
                     trigger OnAction()
                     begin
-                        PurchSetup.GET;
+                        PurchSetup.GET();
                         IF PurchSetup."Calc. Inv. Discount" THEN BEGIN
-                          CurrPage.PurchLines.PAGE.CalcInvDisc;
-                          COMMIT
+                            CurrPage.PurchLines.PAGE.CalcInvDisc();
+                            COMMIT()
                         END;
-                        IF "Tax Area Code" = '' THEN
-                          PAGE.RUNMODAL(PAGE::"Purchase Order Statistics",Rec)
+                        IF Rec."Tax Area Code" = '' THEN
+                            PAGE.RUNMODAL(PAGE::"Purchase Order Statistics", Rec)
                         ELSE
-                          PAGE.RUNMODAL(PAGE::"Purchase Order Stats.",Rec)
+                            PAGE.RUNMODAL(PAGE::"Purchase Order Stats.", Rec)
                     end;
                 }
                 action(Card)
                 {
                     Caption = 'Card';
                     Image = EditLines;
-                    RunObject = Page 26;
-                    RunPageLink = No.=FIELD(Buy-from Vendor No.);
+                    RunObject = Page "Vendor Card";
+                    RunPageLink = "No." = FIELD("Buy-from Vendor No.");
                     ShortCutKey = 'Shift+F7';
+                    ToolTip = 'Executes the Card action.';
                 }
                 action("Co&mments")
                 {
                     Caption = 'Co&mments';
                     Image = ViewComments;
-                    RunObject = Page 66;
-                    RunPageLink = Document Type=FIELD(Document Type),
-                                  No.=FIELD(No.);
+                    RunObject = Page "Purch. Comment Sheet";
+                    RunPageLink = "Document Type" = FIELD("Document Type"),
+                                  "No." = FIELD("No.");
+                    ToolTip = 'Executes the Co&mments action.';
                 }
                 action("&Receipts")
                 {
                     Caption = '&Receipts';
                     Image = PostedReceipts;
                     RunObject = Page 145;
-                    RunPageLink = Order No.=FIELD(No.);
-                    RunPageView = SORTING(Order No.);
+                    RunPageLink = "Order No." = FIELD("No.");
+                    RunPageView = SORTING("Order No.");
+                    ToolTip = 'Executes the &Receipts action.';
                 }
                 action(Invoices)
                 {
                     Caption = 'Invoices';
                     Image = Invoice;
                     RunObject = Page 146;
-                    RunPageLink = Order No.=FIELD(No.);
-                    RunPageView = SORTING(Order No.);
+                    RunPageLink = "Order No." = FIELD("No.");
+                    RunPageView = SORTING("Order No.");
+                    ToolTip = 'Executes the Invoices action.';
                 }
                 action(Dimensions)
                 {
-                    AccessByPermission = TableData 348=R;
+                    AccessByPermission = TableData Dimension = R;
                     Caption = 'Dimensions';
                     Image = Dimensions;
                     Promoted = false;
                     //The property 'PromotedIsBig' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedIsBig = false;
                     ShortCutKey = 'Shift+Ctrl+D';
+                    ToolTip = 'Executes the Dimensions action.';
 
                     trigger OnAction()
                     begin
-                        ShowDocDim;
-                        CurrPage.SAVERECORD;
+                        Rec.ShowDocDim();
+                        CurrPage.SAVERECORD();
                     end;
                 }
             }
@@ -253,12 +288,15 @@ page 50044 "Purchase Order Receipt"
             {
                 Caption = 'Trkng. Lines';
                 Promoted = true;
+                Image = Line;
+                PromotedOnly = true;
                 PromotedCategory = Process;
+                ToolTip = 'Executes the Trkng. Lines action.';
 
                 trigger OnAction()
                 begin
                     //>>NIF MAK 071205
-                    CurrPage.PurchLines.PAGE.OpenItemTrackingLines;
+                    CurrPage.PurchLines.PAGE.OpenItemTrackingLines();
                     //<<NIF MAK 071205
                 end;
             }
@@ -268,31 +306,33 @@ page 50044 "Purchase Order Receipt"
                 action("Lot Entry")
                 {
                     Caption = 'Lot Entry';
+                    Image = Lot;
+                    ToolTip = 'Executes the Lot Entry action.';
 
                     trigger OnAction()
                     var
-                        LotEntry: Record "50002";
-                        PurchLinesChkWt: Record "39";
-                        ItemChkWt: Record "27";
+                        ItemChkWt: Record Item;
+                        LotEntry: Record "Lot Entry";
+                        PurchLinesChkWt: Record "Purchase Line";
                     begin
                         //>>NIF MAK 20051213
-                        PurchLinesChkWt.SETRANGE("Document Type", "Document Type");
-                        PurchLinesChkWt.SETRANGE("Document No.", "No.");
+                        PurchLinesChkWt.SETRANGE("Document Type", Rec."Document Type");
+                        PurchLinesChkWt.SETRANGE("Document No.", Rec."No.");
                         PurchLinesChkWt.SETRANGE(Type, PurchLinesChkWt.Type::Item);
                         IF PurchLinesChkWt.FIND('-') THEN
-                          REPEAT
-                            ItemChkWt.GET(PurchLinesChkWt."No.");
-                            IF ItemChkWt."Net Weight" = 0 THEN
-                              MESSAGE('Item %1 does not have a net weight!', ItemChkWt."No.");
-                          UNTIL PurchLinesChkWt.NEXT = 0;
+                            REPEAT
+                                ItemChkWt.GET(PurchLinesChkWt."No.");
+                                IF ItemChkWt."Net Weight" = 0 THEN
+                                    MESSAGE('Item %1 does not have a net weight!', ItemChkWt."No.");
+                            UNTIL PurchLinesChkWt.NEXT() = 0;
                         //<<NIF MAK 20051213
 
 
-                        LotEntry.GetPurchLines(LotEntry."Document Type"::"Purchase Order","No.");
-                        COMMIT;
-                        LotEntry.SETRANGE("Document Type",LotEntry."Document Type"::"Purchase Order");
-                        LotEntry.SETRANGE("Document No.","No.");
-                        PAGE.RUNMODAL(0,LotEntry);
+                        LotEntry.GetPurchLines(LotEntry."Document Type"::"Purchase Order", Rec."No.");
+                        COMMIT();
+                        LotEntry.SETRANGE("Document Type", LotEntry."Document Type"::"Purchase Order");
+                        LotEntry.SETRANGE("Document No.", Rec."No.");
+                        PAGE.RUNMODAL(0, LotEntry);
                         CLEAR(LotEntry);
                     end;
                 }
@@ -300,10 +340,11 @@ page 50044 "Purchase Order Receipt"
                 {
                     Caption = 'Re&open';
                     Image = ReOpen;
+                    ToolTip = 'Executes the Re&open action.';
 
                     trigger OnAction()
                     var
-                        ReleasePurchDoc: Codeunit "415";
+                        ReleasePurchDoc: Codeunit "Release Purchase Document";
                     begin
                         ReleasePurchDoc.Reopen(Rec);
                     end;
@@ -312,39 +353,41 @@ page 50044 "Purchase Order Receipt"
             group("P&osting")
             {
                 Caption = 'P&osting';
-                action("Pre-Receiving Report")
-                {
-                    Caption = 'Pre-Receiving Report';
-                    Enabled = false;
-                    Visible = false;
+                /*   action("Pre-Receiving Report")
+                  {
+                      Caption = 'Pre-Receiving Report';
+                      Enabled = false;
+                      Visible = false;
+                      Image = Report;
+                      ToolTip = 'Executes the Pre-Receiving Report action.';
 
-                    trigger OnAction()
-                    begin
-                        //>> NF1.00:CIS.NG 09-29-15
-                        //CurrPage.SETSELECTIONFILTER(PurchHeader);
-                        //REPORT.RUN(REPORT::Report50070,TRUE,FALSE,PurchHeader);
-                        //<< NF1.00:CIS.NG 09-29-15
-                    end;
-                }
+                      trigger OnAction()
+                      begin
+                          //>> NF1.00:CIS.NG 09-29-15
+                          //CurrPage.SETSELECTIONFILTER(PurchHeader);
+                          //REPORT.RUN(REPORT::Report50070,TRUE,FALSE,PurchHeader);
+                          //<< NF1.00:CIS.NG 09-29-15
+                      end;
+                  } */
                 action("Test Report")
                 {
                     Caption = 'Test Report';
                     Ellipsis = true;
                     Image = TestReport;
+                    ToolTip = 'Executes the Test Report action.';
 
                     trigger OnAction()
                     var
-                        ">>NIF_LV": Integer;
-                        PurchTestReport: Report "402";
-                        PurchHeader: Record "38";
+                        PurchHeader: Record "Purchase Header";
+                        PurchTestReport: Report "Purchase Document - Test";
                     begin
                         //>> RTT 09-26-05
                         //ReportPrint.PrintPurchHeader(Rec);
                         PurchHeader := Rec;
-                        PurchHeader.SETRECFILTER;
+                        PurchHeader.SETRECFILTER();
                         PurchTestReport.SetCalledFromReceiving;
                         PurchTestReport.SETTABLEVIEW(PurchHeader);
-                        PurchTestReport.RUN;
+                        PurchTestReport.RUN();
                         //<< RTT 09-26-05
                     end;
                 }
@@ -357,16 +400,16 @@ page 50044 "Purchase Order Receipt"
                     PromotedCategory = Process;
                     PromotedIsBig = true;
                     ShortCutKey = 'F9';
+                    ToolTip = 'Executes the P&ost action.';
 
                     trigger OnAction()
                     var
-                        ">>NIF_LV": Integer;
-                        PurchPostYN: Codeunit "91";
+                        PurchPostYN: Codeunit "Purch.-Post (Yes/No)";
                     begin
                         PurchPostYN.SetReceiveOnly;
                         PurchPostYN.RUN(Rec);
-                        IF "Receiving No." = '-1' THEN
-                          ERROR('');
+                        IF Rec."Receiving No." = '-1' THEN
+                            ERROR('');
                     end;
                 }
                 action("Post and &Print")
@@ -378,15 +421,16 @@ page 50044 "Purchase Order Receipt"
                     PromotedCategory = Process;
                     PromotedIsBig = true;
                     ShortCutKey = 'Shift+F9';
+                    ToolTip = 'Executes the Post and &Print action.';
 
                     trigger OnAction()
                     var
-                        PurchPostPrint: Codeunit "92";
+                        PurchPostPrint: Codeunit "Purch.-Post + Print";
                     begin
                         PurchPostPrint.SetReceiveOnly;
                         PurchPostPrint.RUN(Rec);
-                        IF "Receiving No." = '-1' THEN
-                          ERROR('');
+                        IF Rec."Receiving No." = '-1' THEN
+                            ERROR('');
                     end;
                 }
             }
@@ -395,12 +439,12 @@ page 50044 "Purchase Order Receipt"
 
     trigger OnAfterGetRecord()
     begin
-        OnAfterGetCurrRecord;
+        OnAfterGetCurrRecord();
     end;
 
     trigger OnDeleteRecord(): Boolean
     begin
-        CurrPage.SAVERECORD;
+        CurrPage.SAVERECORD();
         EXIT(ConfirmDeletion);
     end;
 
@@ -425,71 +469,61 @@ page 50044 "Purchase Order Receipt"
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        "Responsibility Center" := UserMgt.GetPurchasesFilter();
-        OnAfterGetCurrRecord;
+        Rec."Responsibility Center" := UserMgt.GetPurchasesFilter();
+        OnAfterGetCurrRecord();
     end;
 
     trigger OnOpenPage()
     begin
         IF UserMgt.GetPurchasesFilter() <> '' THEN BEGIN
-          FILTERGROUP(2);
-          SETRANGE("Responsibility Center",UserMgt.GetPurchasesFilter());
-          FILTERGROUP(0);
+            Rec.FILTERGROUP(2);
+            Rec.SETRANGE("Responsibility Center", UserMgt.GetPurchasesFilter());
+            Rec.FILTERGROUP(0);
         END;
 
         //SETRANGE("Date Filter",0D,WORKDATE - 1);
     end;
 
     var
-        Text000: Label 'Unable to execute this function while in view only mode.';
-        CopyPurchDoc: Report "492";
-        MoveNegPurchLines: Report "6698";
-        PurchLine: Record "39";
-        ReportPrint: Codeunit "228";
-        DocPrint: Codeunit "229";
-        PurchSetup: Record "312";
-        ChangeExchangeRate: Page "511";
-        UserMgt: Codeunit "5700";
-        FreightAmount: Decimal;
-        FreightLineExists: Boolean;
-        tcFreightLineDescription: Label 'Freight Amount';
-        NIF: Integer;
-        PurchHeader: Record "38";
+        PurchSetup: Record "Purchases & Payables Setup";
+        UserMgt: Codeunit "User Setup Management";
+        [InDataSet]
+        "Document DateEditable": Boolean;
+        [InDataSet]
+        "Location CodeEditable": Boolean;
         [InDataSet]
         "Posting DateEditable": Boolean;
         [InDataSet]
         "Purchaser CodeEditable": Boolean;
         [InDataSet]
-        "Document DateEditable": Boolean;
-        [InDataSet]
-        "Ship-to NameEditable": Boolean;
+        "Ship-to Address 2Editable": Boolean;
         [InDataSet]
         "Ship-to AddressEditable": Boolean;
         [InDataSet]
-        "Ship-to Address 2Editable": Boolean;
-        [InDataSet]
         "Ship-to CityEditable": Boolean;
-        [InDataSet]
-        "Ship-to ContactEditable": Boolean;
-        [InDataSet]
-        "Ship-to Post CodeEditable": Boolean;
         [InDataSet]
         "Ship-to CodeEditable": Boolean;
         [InDataSet]
+        "Ship-to ContactEditable": Boolean;
+        [InDataSet]
         "Ship-to CountyEditable": Boolean;
         [InDataSet]
-        "Ship-to UPS ZoneEditable": Boolean;
+        "Ship-to NameEditable": Boolean;
         [InDataSet]
-        "Location CodeEditable": Boolean;
+        "Ship-to Post CodeEditable": Boolean;
+        [InDataSet]
+        "Ship-to UPS ZoneEditable": Boolean;
         [InDataSet]
         "Shipment Method CodeEditable": Boolean;
         [InDataSet]
         "Tax Area CodeEditable": Boolean;
+        FreightAmount: Decimal;
+        Text000: Label 'Unable to execute this function while in view only mode.';
 
     procedure UpdateAllowed(): Boolean
     begin
         IF CurrPage.EDITABLE = FALSE THEN
-          ERROR(Text000);
+            ERROR(Text000);
         EXIT(TRUE);
     end;
 
@@ -517,12 +551,12 @@ page 50044 "Purchase Order Receipt"
 
     local procedure BuyfromVendorNoOnAfterValidate()
     begin
-        CurrPage.UPDATE;
+        CurrPage.UPDATE();
     end;
 
     local procedure PaytoVendorNoOnAfterValidate()
     begin
-        CurrPage.UPDATE;
+        CurrPage.UPDATE();
     end;
 
     local procedure ShortcutDimension1CodeOnAfterV()
@@ -538,7 +572,7 @@ page 50044 "Purchase Order Receipt"
     local procedure OnAfterGetCurrRecord()
     begin
         xRec := Rec;
-        OrderOnHold("On Hold" <> '');
+        OrderOnHold(Rec."On Hold" <> '');
         FreightAmount := 0;
     end;
 }

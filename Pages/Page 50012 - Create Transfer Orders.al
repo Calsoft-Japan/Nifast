@@ -6,65 +6,72 @@ page 50012 "Create Transfer Orders"
     InsertAllowed = false;
     MultipleNewLines = false;
     PageType = Document;
+    UsageCategory = None;
     RefreshOnActivate = true;
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            group()
+            group(General)
             {
-                field(VendNo;VendNo)
+                field(VendNo; VendNo)
                 {
                     Caption = 'Vendor No.';
                     TableRelation = Vendor;
+                    ToolTip = 'Specifies the value of the Vendor No. field.';
 
                     trigger OnValidate()
                     begin
-                        SetFormFilter;
+                        SetFormFilter();
                     end;
                 }
-                field(FromLocationCode;FromLocationCode)
+                field(FromLocationCode; FromLocationCode)
                 {
                     Caption = 'From Location Code';
                     TableRelation = Location;
+                    ToolTip = 'Specifies the value of the From Location Code field.';
 
                     trigger OnValidate()
                     begin
-                        SetFormFilter;
+                        SetFormFilter();
                     end;
                 }
-                field(ToLocationCode;ToLocationCode)
+                field(ToLocationCode; ToLocationCode)
                 {
                     Caption = 'To Location Code';
                     TableRelation = Location;
+                    ToolTip = 'Specifies the value of the To Location Code field.';
 
                     trigger OnValidate()
                     begin
-                        SetFormFilter;
+                        SetFormFilter();
                     end;
                 }
-                field(VesselName;VesselName)
+                field(VesselName; VesselName)
                 {
                     Caption = 'Vessel Name';
                     TableRelation = "Shipping Vessels";
+                    ToolTip = 'Specifies the value of the Vessel Name field.';
 
                     trigger OnValidate()
                     begin
-                        SetFormFilter;
+                        SetFormFilter();
                     end;
                 }
-                field(SailOnDate;SailOnDate)
+                field(SailOnDate; SailOnDate)
                 {
                     Caption = 'Sail On Date';
+                    ToolTip = 'Specifies the value of the Sail On Date field.';
 
                     trigger OnValidate()
                     begin
-                        SetFormFilter;
+                        SetFormFilter();
                     end;
                 }
             }
-            part(RcptLines;50013)
+            part(RcptLines; "Create Trans.Ord. Subform")
             {
                 Editable = RcptLinesEditable;
             }
@@ -79,29 +86,36 @@ page 50012 "Create Transfer Orders"
             {
                 Caption = 'Deselect All';
                 Promoted = true;
+                Image = Select;
+                PromotedOnly = true;
                 PromotedCategory = Process;
+                ToolTip = 'Executes the Deselect All action.';
 
                 trigger OnAction()
                 begin
-                    CurrPage.RcptLines.PAGE.DeselectAll;
+                    CurrPage.RcptLines.PAGE.DeselectAll();
                 end;
             }
             action("Select All")
             {
                 Caption = 'Select All';
                 Promoted = true;
+                image = Select;
                 PromotedCategory = Process;
+                ToolTip = 'Executes the Select All action.';
 
                 trigger OnAction()
                 begin
-                    CurrPage.RcptLines.PAGE.SelectAll;
+                    CurrPage.RcptLines.PAGE.SelectAll();
                 end;
             }
             action("Create Transfers")
             {
                 Caption = 'Create Transfers';
                 Promoted = true;
+                Image = Create;
                 PromotedCategory = Process;
+                ToolTip = 'Executes the Create Transfers action.';
 
                 trigger OnAction()
                 begin
@@ -111,7 +125,7 @@ page 50012 "Create Transfer Orders"
                     //CLEAR(VesselName);
                     //CLEAR(SailOnDate);
                     //SetFormFilter;
-                    CurrPage.RcptLines.PAGE.CreateTransfers;
+                    CurrPage.RcptLines.PAGE.CreateTransfers();
 
                     MESSAGE('Processing Complete');
 
@@ -130,23 +144,18 @@ page 50012 "Create Transfer Orders"
     begin
         //CurrForm.RcptLines.EDITABLE(FALSE);
 
-        SetFormFilter;
+        SetFormFilter();
     end;
 
     var
-        Vend: Record "23";
-        VendNo: Code[20];
-        FromLocation: Record "14";
+        [InDataSet]
+        RcptLinesEditable: Boolean;
         FromLocationCode: Code[10];
-        FromBin: Record "7354";
-        ToLocation: Record "14";
         ToLocationCode: Code[10];
-        ReceiptLines: Record "121";
+        VendNo: Code[20];
         VesselName: Code[50];
         SailOnDate: Date;
         RecsReturned: Integer;
-        [InDataSet]
-        RcptLinesEditable: Boolean;
 
     procedure SetFormFilter()
     begin
@@ -155,8 +164,9 @@ page 50012 "Create Transfer Orders"
         //MESSAGE('Records %1', FORMAT(RecsReturned));
 
         IF RecsReturned > 0 THEN
-          RcptLinesEditable := TRUE
-          ELSE RcptLinesEditable := FALSE;
+            RcptLinesEditable := TRUE
+        ELSE
+            RcptLinesEditable := FALSE;
 
         CurrPage.UPDATE(FALSE);  //NF1.00:CIS.NG  09-05-15
         //CLEAR(Rec);

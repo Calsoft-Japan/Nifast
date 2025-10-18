@@ -7,7 +7,7 @@ xmlport 50022 "G/L Entry Export"
     {
         textelement(Root)
         {
-            tableelement(Table17; Table17)
+            tableelement("G/L Entry"; "G/L Entry")
             {
                 AutoSave = true;
                 AutoUpdate = false;
@@ -174,7 +174,6 @@ xmlport 50022 "G/L Entry Export"
 
                 trigger OnBeforeInsertRecord()
                 var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                 end;
             }

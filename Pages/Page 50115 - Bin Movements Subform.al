@@ -4,7 +4,9 @@ page 50115 "Bin Movements Subform"
 
     Editable = false;
     PageType = ListPart;
-    SourceTable = Table50041;
+    ApplicationArea = All;
+    UsageCategory = None;
+    SourceTable = "Bin Movement Lines";
 
     layout
     {
@@ -12,21 +14,25 @@ page 50115 "Bin Movements Subform"
         {
             repeater(Group)
             {
-                field(Bins;Bins)
+                field(Bins; Rec.Bins)
                 {
                     Width = 300;
+                    ToolTip = 'Specifies the value of the Bins field.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
                     Width = 300;
+                    ToolTip = 'Specifies the value of the Quantity field.';
                 }
-                field(UOM;UOM)
+                field(UOM; Rec.UOM)
                 {
                     Width = 300;
+                    ToolTip = 'Specifies the value of the UOM field.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
                     Width = 300;
+                    ToolTip = 'Specifies the value of the Location Code field.';
                 }
             }
         }

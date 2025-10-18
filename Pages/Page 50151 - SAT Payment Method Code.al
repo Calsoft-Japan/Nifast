@@ -2,7 +2,9 @@ page 50151 "SAT Payment Method Code"
 {
     Caption = 'SAT Payment Method Codes';
     PageType = List;
-    SourceTable = Table50033;
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "SAT Payment Method Codes";
 
     layout
     {
@@ -10,11 +12,13 @@ page 50151 "SAT Payment Method Code"
         {
             repeater(Group)
             {
-                field(Code;Code)
+                field(Code; Rec.Code)
                 {
+                    ToolTip = 'Specifies the value of the Code field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
             }
         }

@@ -2,7 +2,9 @@ page 50152 "SAT Bank Codes"
 {
     Caption = 'SAT Bank Codes';
     PageType = List;
-    SourceTable = Table50034;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "SAT Bank Code";
 
     layout
     {
@@ -10,14 +12,17 @@ page 50152 "SAT Bank Codes"
         {
             repeater(Group)
             {
-                field(Code;Code)
+                field(Code; Rec.Code)
                 {
+                    ToolTip = 'Specifies the value of the Code field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("Bank Name";"Bank Name")
+                field("Bank Name"; Rec."Bank Name")
                 {
+                    ToolTip = 'Specifies the value of the Bank Name field.';
                 }
             }
         }

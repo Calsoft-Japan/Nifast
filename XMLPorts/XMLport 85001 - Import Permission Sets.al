@@ -1,4 +1,4 @@
-xmlport 85001 "Import Permission Sets"
+xmlport 85001 "Import Permission Setss"
 {
     Caption = 'Import/Export Permission Sets';
     Direction = Import;
@@ -8,7 +8,7 @@ xmlport 85001 "Import Permission Sets"
     {
         textelement(Root)
         {
-            tableelement(Table2000000004;Table2000000004)
+            tableelement("Permission Set"; "Permission Set")
             {
                 XmlName = 'UserRole';
                 UseTemporary = true;
@@ -21,25 +21,24 @@ xmlport 85001 "Import Permission Sets"
 
                 trigger OnAfterInsertRecord()
                 var
-                    PermissionSet_lRec: Record "2000000004";
                 begin
                 end;
 
                 trigger OnBeforeInsertRecord()
                 var
-                    PermissionSet_lRec: Record "2000000004";
+                    PermissionSet_lRec: Record "Permission Set";
                 begin
                     IF PermissionSet_lRec.GET(RoleID) THEN
-                      currXMLport.SKIP;
+                        currXMLport.SKIP();
 
-                    PermissionSet_lRec.RESET;
-                    PermissionSet_lRec.INIT;
+                    PermissionSet_lRec.RESET();
+                    PermissionSet_lRec.INIT();
                     PermissionSet_lRec."Role ID" := RoleID;
                     PermissionSet_lRec.Name := Name;
                     PermissionSet_lRec.TESTFIELD("Role ID");
-                    PermissionSet_lRec.INSERT;
+                    PermissionSet_lRec.INSERT();
                     Count_gInt += 1;
-                    currXMLport.SKIP;
+                    currXMLport.SKIP();
                 end;
             }
         }
@@ -59,7 +58,7 @@ xmlport 85001 "Import Permission Sets"
 
     trigger OnPostXmlPort()
     begin
-        MESSAGE('%1 - Role imported Successfully',Count_gInt);
+        MESSAGE('%1 - Role imported Successfully', Count_gInt);
     end;
 
     var

@@ -8,42 +8,53 @@ page 50148 "Cust./Item Drawings"
     //   Drawing No. (HorzGlue=Left)
     // << NIF
 
-    DataCaptionFields = "Item No.","Customer No.";
+    DataCaptionFields = "Item No.", "Customer No.";
     PageType = Card;
-    SourceTable = Table50142;
+    ApplicationArea = All;
+    UsageCategory = None;
+    SourceTable = "Cust./Item Drawing2";
 
     layout
     {
         area(content)
         {
-            repeater()
+            group(General)
             {
-                field("Revision No.";"Revision No.")
+                field("Revision No."; Rec."Revision No.")
                 {
+                    ToolTip = 'Specifies the value of the Revision No. field.';
                 }
-                field("Drawing No.";"Drawing No.")
+                field("Drawing No."; Rec."Drawing No.")
                 {
+                    ToolTip = 'Specifies the value of the Drawing No. field.';
                 }
-                field("Revision Date";"Revision Date")
+                field("Revision Date"; Rec."Revision Date")
                 {
+                    ToolTip = 'Specifies the value of the Revision Date field.';
                 }
-                field(Active;Active)
+                field(Active; Rec.Active)
                 {
+                    ToolTip = 'Specifies the value of the Active field.';
                 }
-                field("Drawing Type";"Drawing Type")
+                field("Drawing Type"; Rec."Drawing Type")
                 {
+                    ToolTip = 'Specifies the value of the Drawing Type field.';
                 }
-                field("First Article Approval";"First Article Approval")
+                field("First Article Approval"; Rec."First Article Approval")
                 {
+                    ToolTip = 'Specifies the value of the First Article Approval field.';
                 }
-                field("First Article Waiver";"First Article Waiver")
+                field("First Article Waiver"; Rec."First Article Waiver")
                 {
+                    ToolTip = 'Specifies the value of the First Article Waiver field.';
                 }
-                field("PPAP Approval";"PPAP Approval")
+                field("PPAP Approval"; Rec."PPAP Approval")
                 {
+                    ToolTip = 'Specifies the value of the PPAP Approval field.';
                 }
-                field(Components;Components)
+                field(Components; Rec.Components)
                 {
+                    ToolTip = 'Specifies the value of the Components field.';
                 }
             }
         }

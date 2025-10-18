@@ -11,13 +11,13 @@ xmlport 50024 "Export Session Event"
         textelement(root)
         {
             MinOccurs = Zero;
-            tableelement(Table2000000111;Table2000000111)
+            tableelement("Session Event"; "Session Event")
             {
                 XmlName = 'SessionEvnt';
-                fieldattribute(SId;"Session Event"."Session ID")
+                fieldattribute(SId; "Session Event"."Session ID")
                 {
                 }
-                fieldattribute(EvntTyp;"Session Event"."Event Type")
+                fieldattribute(EvntTyp; "Session Event"."Event Type")
                 {
 
                     trigger OnBeforePassField()
@@ -29,16 +29,16 @@ xmlport 50024 "Export Session Event"
 
                     end;
                 }
-                fieldattribute(EvntDtTime;"Session Event"."Event Datetime")
+                fieldattribute(EvntDtTime; "Session Event"."Event Datetime")
                 {
                 }
-                fieldattribute(ClntType;"Session Event"."Client Type")
+                fieldattribute(ClntType; "Session Event"."Client Type")
                 {
                 }
-                fieldattribute(UsrId;"Session Event"."User ID")
+                fieldattribute(UsrId; "Session Event"."User ID")
                 {
                 }
-                fieldattribute(ClntCompNm;"Session Event"."Client Computer Name")
+                fieldattribute(ClntCompNm; "Session Event"."Client Computer Name")
                 {
                 }
                 textelement(coname)
@@ -74,7 +74,7 @@ xmlport 50024 "Export Session Event"
     trigger OnPostXmlPort()
     begin
         IF ErrorText <> '' THEN
-          ERROR(ErrorText);
+            ERROR(ErrorText);
 
         //jrrWindow.CLOSE;
 
@@ -86,23 +86,21 @@ xmlport 50024 "Export Session Event"
         datestr: Text[10];
         InputDate: Date;
     begin
-        InitializeGlobals;
+        InitializeGlobals();
         InputDate := TODAY;
-        datestr := FORMAT(DATE2DMY(InputDate,2)) + FORMAT(DATE2DMY(InputDate,1)) + FORMAT(DATE2DMY(InputDate,3)); //mdy
+        datestr := FORMAT(DATE2DMY(InputDate, 2)) + FORMAT(DATE2DMY(InputDate, 1)) + FORMAT(DATE2DMY(InputDate, 3)); //mdy
         currXMLport.FILENAME := 'c:\temp\userstimelog' + datestr + '.csv';
         //"User Time Register".SETFILTER(Date, '>=%1',010116D);
         CoName := COMPANYNAME;
-        tOdATE := TODAY-40;
-        ToDtTime :=CURRENTDATETIME;
+        tOdATE := TODAY - 40;
+        ToDtTime := CURRENTDATETIME;
     end;
 
     var
-        Window: Dialog;
         ErrorText: Text;
         LastLineNo: Integer;
         PrevColumnNo: Integer;
         QuitLoop: Boolean;
-        ProgressMsg: Label 'Exporting line no. #1######';
         tOdATE: Date;
         ToDtTime: DateTime;
 

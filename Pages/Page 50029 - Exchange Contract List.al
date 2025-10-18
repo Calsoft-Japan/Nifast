@@ -4,53 +4,67 @@ page 50029 "Exchange Contract List"
 
     CardPageID = "Exchange Contract Card";
     Editable = false;
+    UsageCategory = Lists;
+    ApplicationArea = All;
     PageType = List;
-    SourceTable = Table50010;
-    SourceTableView = SORTING(No.)
-                      WHERE(Contract Complete=CONST(No),
-                            Expired=CONST(No));
+    SourceTable = "4X Bank Exchange Contract";
+    SourceTableView = SORTING("No.")
+                      WHERE("Contract Complete" = CONST(false),
+                            Expired = CONST(false));
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the value of the No. field.';
                 }
-                field(BankName;BankName)
+                field(BankName; Rec.BankName)
                 {
+                    ToolTip = 'Specifies the value of the BankName field.';
                 }
-                field(Bank;Bank)
+                field(Bank; Rec.Bank)
                 {
+                    ToolTip = 'Specifies the value of the Bank field.';
                 }
-                field("Amount $";"Amount $")
+                field("Amount $"; Rec."Amount $")
                 {
+                    ToolTip = 'Specifies the value of the Amount $ field.';
                 }
-                field(ExchangeRate;ExchangeRate)
+                field(ExchangeRate; Rec.ExchangeRate)
                 {
+                    ToolTip = 'Specifies the value of the ExchangeRate field.';
                 }
-                field(JournalAmount;JournalAmount)
+                field(JournalAmount; Rec.JournalAmount)
                 {
+                    ToolTip = 'Specifies the value of the JournalAmount field.';
                 }
-                field(AmountYen;AmountYen)
+                field(AmountYen; Rec.AmountYen)
                 {
+                    ToolTip = 'Specifies the value of the AmountYen field.';
                 }
-                field("Date Created";"Date Created")
+                field("Date Created"; Rec."Date Created")
                 {
+                    ToolTip = 'Specifies the value of the Date Created field.';
                 }
-                field(PeriodStart;PeriodStart)
+                field(PeriodStart; Rec.PeriodStart)
                 {
+                    ToolTip = 'Specifies the value of the PeriodStart field.';
                 }
-                field(PeriodEnd;PeriodEnd)
+                field(PeriodEnd; Rec.PeriodEnd)
                 {
+                    ToolTip = 'Specifies the value of the PeriodEnd field.';
                 }
-                field(Approved;Approved)
+                field(Approved; Rec.Approved)
                 {
+                    ToolTip = 'Specifies the value of the Approved field.';
                 }
-                field(RemainingAmount;RemainingAmount)
+                field(RemainingAmount; Rec.RemainingAmount)
                 {
+                    ToolTip = 'Specifies the value of the RemainingAmount field.';
                 }
             }
         }

@@ -6,7 +6,9 @@ page 50040 "Lot Qty. Inquiry"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = Card;
-    SourceTable = Table6505;
+    ApplicationArea = All;
+    UsageCategory = None;
+    SourceTable = "Lot No. Information";
 
     layout
     {
@@ -15,76 +17,88 @@ page 50040 "Lot Qty. Inquiry"
             group(Filters)
             {
                 Caption = 'Filters';
-                field(ItemNoFilter;ItemNoFilter)
+                field(ItemNoFilter; ItemNoFilter)
                 {
                     Caption = 'Item Filter';
+                    ToolTip = 'Specifies the value of the Item Filter field.';
 
                     trigger OnLookup(var Text: Text): Boolean
                     begin
-                        IF PAGE.RUNMODAL(0,Item)= ACTION::LookupOK THEN
-                          ItemNoFilter := Item."No."
+                        IF PAGE.RUNMODAL(0, Item) = ACTION::LookupOK THEN
+                            ItemNoFilter := Item."No."
                         ELSE
-                          ItemNoFilter := '';
+                            ItemNoFilter := '';
 
-                        SetItemFilter;
+                        SetItemFilter();
                     end;
 
                     trigger OnValidate()
                     begin
-                        ItemNoFilterOnAfterValidate;
+                        ItemNoFilterOnAfterValidate();
                     end;
                 }
-                field("Location Filter";"Location Filter")
+                field("Location Filter"; Rec."Location Filter")
                 {
+                    ToolTip = 'Specifies the value of the Location Filter field.';
                 }
-                field(InventoryOnly;InventoryOnly)
+                field(InventoryOnly; InventoryOnly)
                 {
                     Caption = 'Onhand Only';
+                    ToolTip = 'Specifies the value of the Onhand Only field.';
 
                     trigger OnValidate()
                     begin
-                        InventoryOnlyOnPush;
+                        InventoryOnlyOnPush();
                     end;
                 }
             }
-            repeater()
+            group(General)
             {
                 Editable = false;
-                field("Lot No.";"Lot No.")
+                field("Lot No."; Rec."Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Lot No. field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field(Item.Description;Item.Description)
+                field(Description; Item.Description)
                 {
                     Caption = 'Description';
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field(InLocationBinGross;InLocationBinGross)
+                field(InLocationBinGross; Rec.InLocationBinGross())
                 {
                     Caption = 'Location-Bin';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Location-Bin field.';
 
                     trigger OnDrillDown()
                     begin
-                        ShowBinContentBufferGross;
+                        Rec.ShowBinContentBufferGross();
                     end;
                 }
-                field("Mfg. Lot No.";"Mfg. Lot No.")
+                field("Mfg. Lot No."; Rec."Mfg. Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Mfg. Lot No. field.';
                 }
-                field("Lot Creation Date";"Lot Creation Date")
+                field("Lot Creation Date"; Rec."Lot Creation Date")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Lot Creation Date field.';
                 }
-                field(Inventory;Inventory)
+                field(Inventory; Rec.Inventory)
                 {
+                    ToolTip = 'Specifies the value of the Inventory field.';
                 }
-                field("Passed Inspection";"Passed Inspection")
+                field("Passed Inspection"; Rec."Passed Inspection")
                 {
+                    ToolTip = 'Specifies the value of the Passed Inspection field.';
                 }
-                field(Blocked;Blocked)
+                field(Blocked; Rec.Blocked)
                 {
+                    ToolTip = 'Specifies the value of the Blocked field.';
                 }
             }
         }
@@ -101,34 +115,38 @@ page 50040 "Lot Qty. Inquiry"
                 {
                     Caption = 'Card';
                     Image = EditLines;
-                    RunObject = Page 6505;
-                    RunPageLink = Item No.=FIELD(Item No.),
-                                  Variant Code=FIELD(Variant Code),
-                                  Lot No.=FIELD(Lot No.);
+                    RunObject = Page "Lot No. Information Card";
+                    RunPageLink = "Item No." = FIELD("Item No."),
+                                  "Variant Code" = FIELD("Variant Code"),
+                                  "Lot No." = FIELD("Lot No.");
                     RunPageOnRec = true;
                     ShortCutKey = 'Shift+F7';
+                    ToolTip = 'Executes the Card action.';
                 }
                 action("Item &Tracking Entries")
                 {
                     Caption = 'Item &Tracking Entries';
                     Image = ItemTrackingLedger;
                     ShortCutKey = 'Ctrl+F7';
+                    ToolTip = 'Executes the Item &Tracking Entries action.';
 
                     trigger OnAction()
                     var
-                        ItemTrackingMgt: Codeunit "6500";
+                        ItemTrackingMgt: Codeunit "Item Tracking Management";
                     begin
-                        ItemTrackingMgt.CallItemTrackingEntryForm(0,'',"Item No.","Variant Code",'',"Lot No.","Location Filter");
+                        ItemTrackingMgt.CallItemTrackingEntryForm(0, '', Rec."Item No.", Rec."Variant Code", '', Rec."Lot No.", Rec."Location Filter");
                     end;
                 }
                 action(Comment)
                 {
                     Caption = 'Comment';
-                    RunObject = Page 6506;
-                    RunPageLink = Type=CONST(Lot No.),
-                                  Item No.=FIELD(Item No.),
-                                  Variant Code=FIELD(Variant Code),
-                                  Serial/Lot No.=FIELD(Lot No.);
+                    Image = Comment;
+                    RunObject = Page "Item Tracking Comments";
+                    RunPageLink = Type = CONST("Lot No."),
+                                  "Item No." = FIELD("Item No."),
+                                  "Variant Code" = FIELD("Variant Code"),
+                                  "Serial/Lot No." = FIELD("Lot No.");
+                    ToolTip = 'Executes the Comment action.';
                 }
             }
         }
@@ -136,49 +154,48 @@ page 50040 "Lot Qty. Inquiry"
 
     trigger OnAfterGetRecord()
     begin
-        IF NOT Item.GET("Item No.") THEN
-         CLEAR(Item);
+        IF NOT Item.GET(Rec."Item No.") THEN
+            CLEAR(Item);
     end;
 
     trigger OnOpenPage()
     begin
         IF UserSetup.GET(USERID) THEN
-          SETRANGE("Location Filter",UserSetup."Default Location Code")
+            Rec.SETRANGE("Location Filter", UserSetup."Default Location Code")
         ELSE
-          SETRANGE("Location Filter");
+            Rec.SETRANGE("Location Filter");
 
-        SETRANGE(Inventory); //take filter off of onhand
-        ItemNoFilter := GETFILTER("Item No.");
-        MfgLotNoFilter := GETFILTER("Mfg. Lot No.");
-        SetItemFilter;
-        SetMfgLotNoFilter;
-        GetQtyFilters;
+        Rec.SETRANGE(Inventory); //take filter off of onhand
+        ItemNoFilter := Rec.GETFILTER("Item No.");
+        MfgLotNoFilter := Rec.GETFILTER("Mfg. Lot No.");
+        SetItemFilter();
+        SetMfgLotNoFilter();
+        GetQtyFilters();
     end;
 
     var
+        Item: Record Item;
+        UserSetup: Record "User Setup";
         InventoryFilter: Boolean;
-        PendingFilter: Boolean;
         InventoryOnly: Boolean;
-        Item: Record "27";
         ItemNoFilter: Code[100];
         MfgLotNoFilter: Code[100];
-        UserSetup: Record "91";
 
     procedure SetQtyFilters()
     begin
         IF NOT InventoryOnly THEN
-           SETRANGE(Inventory)
+            Rec.SETRANGE(Inventory)
         ELSE
-           SETFILTER(Inventory,'<>0');
+            Rec.SETFILTER(Inventory, '<>0');
     end;
 
     procedure SetItemFilter()
     begin
 
-        IF ItemNoFilter='' THEN
-         SETRANGE("Item No.")
+        IF ItemNoFilter = '' THEN
+            Rec.SETRANGE("Item No.")
         ELSE
-         SETRANGE("Item No.",ItemNoFilter);
+            Rec.SETRANGE("Item No.", ItemNoFilter);
 
         CurrPage.UPDATE(FALSE);
     end;
@@ -186,10 +203,10 @@ page 50040 "Lot Qty. Inquiry"
     procedure SetMfgLotNoFilter()
     begin
 
-        IF MfgLotNoFilter='' THEN
-         SETRANGE("Mfg. Lot No.")
+        IF MfgLotNoFilter = '' THEN
+            Rec.SETRANGE("Mfg. Lot No.")
         ELSE
-         SETRANGE("Mfg. Lot No.",MfgLotNoFilter);
+            Rec.SETRANGE("Mfg. Lot No.", MfgLotNoFilter);
 
         CurrPage.UPDATE(FALSE);
     end;
@@ -197,21 +214,21 @@ page 50040 "Lot Qty. Inquiry"
     procedure GetQtyFilters()
     begin
 
-        InventoryFilter := (GETFILTER(Inventory)<>'');
+        InventoryFilter := (Rec.GETFILTER(Inventory) <> '');
     end;
 
     local procedure ItemNoFilterOnAfterValidate()
     begin
-        IF ItemNoFilter<>'' THEN
-         IF NOT Item.GET(ItemNoFilter) THEN
-           ERROR('Invalid Item No. %1',ItemNoFilter);
+        IF ItemNoFilter <> '' THEN
+            IF NOT Item.GET(ItemNoFilter) THEN
+                ERROR('Invalid Item No. %1', ItemNoFilter);
 
-        SetItemFilter;
+        SetItemFilter();
     end;
 
     local procedure InventoryOnlyOnPush()
     begin
-        SetQtyFilters;
+        SetQtyFilters();
     end;
 }
 

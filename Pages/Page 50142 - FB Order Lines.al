@@ -4,82 +4,107 @@ page 50142 "FB Order Lines"
 
     Editable = false;
     PageType = List;
-    SourceTable = Table50137;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "FB Line";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Document No.";"Document No.")
+                field("Document No."; Rec."Document No.")
                 {
+                    ToolTip = 'Specifies the value of the Document No. field.';
                 }
-                field("Line No.";"Line No.")
+                field("Line No."; Rec."Line No.")
                 {
+                    ToolTip = 'Specifies the value of the Line No. field.';
                 }
-                field("Order Date";"Order Date")
+                field("Order Date"; Rec."Order Date")
                 {
+                    ToolTip = 'Specifies the value of the Order Date field.';
                 }
-                field("Sell-to Customer No.";"Sell-to Customer No.")
+                field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Sell-to Customer No. field.';
                 }
-                field("Ship-To Code";"Ship-To Code")
+                field("Ship-To Code"; Rec."Ship-To Code")
                 {
+                    ToolTip = 'Specifies the value of the Ship-To Code field.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
+                    ToolTip = 'Specifies the value of the Location Code field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Variant Code";"Variant Code")
+                field("Variant Code"; Rec."Variant Code")
                 {
+                    ToolTip = 'Specifies the value of the Variant Code field.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
+                    ToolTip = 'Specifies the value of the Quantity field.';
                 }
-                field("Unit of Measure Code";"Unit of Measure Code")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
+                    ToolTip = 'Specifies the value of the Unit of Measure Code field.';
                 }
-                field("Tag No.";"Tag No.")
+                field("Tag No."; Rec."Tag No.")
                 {
+                    ToolTip = 'Specifies the value of the Tag No. field.';
                 }
-                field("Lot No.";"Lot No.")
+                field("Lot No."; Rec."Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Lot No. field.';
                 }
-                field("Customer Bin";"Customer Bin")
+                field("Customer Bin"; Rec."Customer Bin")
                 {
+                    ToolTip = 'Specifies the value of the Customer Bin field.';
                 }
-                field(Status;Status)
+                field(Status; Rec.Status)
                 {
+                    ToolTip = 'Specifies the value of the Status field.';
                 }
-                field("FB Order Type";"FB Order Type")
+                field("FB Order Type"; Rec."FB Order Type")
                 {
+                    ToolTip = 'Specifies the value of the FB Order Type field.';
                 }
-                field("External Document No.";"External Document No.")
+                field("External Document No."; Rec."External Document No.")
                 {
+                    ToolTip = 'Specifies the value of the External Document No. field.';
                 }
-                field("Salesperson Code";"Salesperson Code")
+                field("Salesperson Code"; Rec."Salesperson Code")
                 {
+                    ToolTip = 'Specifies the value of the Salesperson Code field.';
                 }
-                field("Inside Salesperson Code";"Inside Salesperson Code")
+                field("Inside Salesperson Code"; Rec."Inside Salesperson Code")
                 {
+                    ToolTip = 'Specifies the value of the Inside Salesperson Code field.';
                 }
-                field("Contract No.";"Contract No.")
+                field("Contract No."; Rec."Contract No.")
                 {
+                    ToolTip = 'Specifies the value of the Contract No. field.';
                 }
-                field("Cross-Reference No.";"Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Cross-Reference No.")
                 {
+                    ToolTip = 'Specifies the value of the Cross-Reference No. field.';
                 }
-                field("Unit of Measure (Cross Ref.)";"Unit of Measure (Cross Ref.)")
+                field("Unit of Measure (Cross Ref.)"; Rec."Unit of Measure (Cross Ref.)")
                 {
+                    ToolTip = 'Specifies the value of the Unit of Measure (Cross Ref.) field.';
                 }
-                field("Cross-Reference Type";"Cross-Reference Type")
+                field("Cross-Reference Type"; Rec."Cross-Reference Type")
                 {
+                    ToolTip = 'Specifies the value of the Cross-Reference Type field.';
                 }
-                field("Cross-Reference Type No.";"Cross-Reference Type No.")
+                field("Cross-Reference Type No."; Rec."Cross-Reference Type No.")
                 {
+                    ToolTip = 'Specifies the value of the Cross-Reference Type No. field.';
                 }
             }
         }

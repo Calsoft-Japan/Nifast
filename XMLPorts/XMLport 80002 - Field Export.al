@@ -8,22 +8,22 @@ xmlport 80002 "Field Export"
     {
         textelement(Root)
         {
-            tableelement(Table2000000041;Table2000000041)
+            tableelement(Field; Field)
             {
                 XmlName = 'FieldRoot';
-                fieldelement(a;Field.TableNo)
+                fieldelement(a; Field.TableNo)
                 {
                 }
-                fieldelement(aa;Field."No.")
+                fieldelement(aa; Field."No.")
                 {
                 }
-                fieldelement(aaaaa;Field.FieldName)
+                fieldelement(aaaaa; Field.FieldName)
                 {
                 }
-                fieldelement(aaa;Field.Type)
+                fieldelement(aaa; Field.Type)
                 {
                 }
-                fieldelement(aaaa;Field.Len)
+                fieldelement(aaaa; Field.Len)
                 {
                 }
             }

@@ -8,35 +8,51 @@ page 50005 "Resp. Center Comment Sheet"
     DelayedInsert = true;
     MultipleNewLines = false;
     PageType = List;
-    SourceTable = Table97;
+    UsageCategory = Lists;
+    SourceTable = "Comment Line";
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field(Date;Date)
+                field(Date; Rec.Date)
                 {
+                    ToolTip = 'Specifies the value of the Date field.';
+                    Caption = 'Date';
                 }
-                field(Comment;Comment)
+                field(Comment; Rec.Comment)
                 {
+                    ToolTip = 'Specifies the value of the Comment field.';
+                    Caption = 'Comment';
                 }
-                field(Code;Code)
+                field(Code; Rec.Code)
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Code field.';
+                    Caption = 'Code';
                 }
-                field("Print On Purch. Order";"Print On Purch. Order")
+                field("Print On Purch. Order"; Rec."Print On Purch. Order")
                 {
+                    ToolTip = 'Specifies the value of the Print On Purch. Order field.';
+                    Caption = 'Print On Purch. Order';
                 }
-                field("User ID";"User ID")
+                field("User ID"; Rec."User ID")
                 {
+                    ToolTip = 'Specifies the value of the User ID field.';
+                    Caption = 'User ID';
                 }
-                field("Time Stamp";"Time Stamp")
+                field("Time Stamp"; Rec."Time Stamp")
                 {
+                    ToolTip = 'Specifies the value of the Time Stamp field.';
+                    Caption = 'Time Stamp';
                 }
-                field("Include in E-Mail";"Include in E-Mail")
+                field("Include in E-Mail"; Rec."Include in E-Mail")
                 {
+                    ToolTip = 'Specifies the value of the Include in E-Mail field.';
+                    Caption = 'Include in E-Mail';
                 }
             }
         }
@@ -48,7 +64,7 @@ page 50005 "Resp. Center Comment Sheet"
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        SetUpNewLine;
+        Rec.SetUpNewLine();
     end;
 }
 

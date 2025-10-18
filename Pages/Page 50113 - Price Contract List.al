@@ -8,41 +8,52 @@ page 50113 "Price Contract List"
     CardPageID = "Price Contract Card";
     Editable = false;
     PageType = List;
-    SourceTable = Table50110;
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "Price Contract";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
                 Editable = false;
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the value of the No. field.';
                 }
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
-                field("Customer Name";"Customer Name")
+                field("Customer Name"; Rec."Customer Name")
                 {
+                    ToolTip = 'Specifies the value of the Customer Name field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("Payment Terms Code";"Payment Terms Code")
+                field("Payment Terms Code"; Rec."Payment Terms Code")
                 {
+                    ToolTip = 'Specifies the value of the Payment Terms Code field.';
                 }
-                field("Starting Date";"Starting Date")
+                field("Starting Date"; Rec."Starting Date")
                 {
+                    ToolTip = 'Specifies the value of the Starting Date field.';
                 }
-                field("Ending Date";"Ending Date")
+                field("Ending Date"; Rec."Ending Date")
                 {
+                    ToolTip = 'Specifies the value of the Ending Date field.';
                 }
-                field("External Document No.";"External Document No.")
+                field("External Document No."; Rec."External Document No.")
                 {
+                    ToolTip = 'Specifies the value of the External Document No. field.';
                 }
-                field("Ship-to Name";"Ship-to Name")
+                field("Ship-to Name"; Rec."Ship-to Name")
                 {
+                    ToolTip = 'Specifies the value of the Ship-to Name field.';
                 }
             }
         }
@@ -61,25 +72,27 @@ page 50113 "Price Contract List"
                     Image = EditLines;
                     RunPageOnRec = true;
                     ShortCutKey = 'Shift+F7';
+                    ToolTip = 'Executes the &Card action.';
 
                     trigger OnAction()
                     var
-                        PriceContract: Record "50110";
-                        PriceContractCard: Page "50112";
+                        PriceContract: Record "Price Contract";
+                        PriceContractCard: Page "Price Contract Card";
                     begin
                         CLEAR(PriceContractCard);
 
 
-                        PriceContract.SETFILTER("Customer No.",GETFILTER("Customer No."));
+                        PriceContract.SETFILTER("Customer No.", Rec.GETFILTER("Customer No."));
                         PriceContractCard.SETTABLEVIEW(PriceContract);
                         IF Rec."No." <> '' THEN
-                          PriceContractCard.SETRECORD(Rec)
-                        ELSE IF NOT CONFIRM('Do you want to create a Price Contract?') THEN BEGIN
-                          MESSAGE('Operation Canceled.');
-                          EXIT;
-                        END;
+                            PriceContractCard.SETRECORD(Rec)
+                        ELSE
+                            IF NOT CONFIRM('Do you want to create a Price Contract?') THEN BEGIN
+                                MESSAGE('Operation Canceled.');
+                                EXIT;
+                            END;
 
-                        PriceContractCard.RUN;
+                        PriceContractCard.RUN();
                     end;
                 }
             }

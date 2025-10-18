@@ -9,7 +9,7 @@ page 50038 "Package Line Label Request"
     // <<WC
 
     PageType = Document;
-    SourceTable = Table14000702;
+    SourceTable = 14000702;
 
     layout
     {

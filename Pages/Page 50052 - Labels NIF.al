@@ -5,7 +5,7 @@ page 50052 "Labels NIF"
     CardPageID = "Label Card NIF";
     Editable = true;
     PageType = List;
-    SourceTable = Table14000841;
+    SourceTable = 14000841;
 
     layout
     {
@@ -13,27 +13,34 @@ page 50052 "Labels NIF"
         {
             repeater()
             {
-                field(Code;Code)
+                field(Code; Code)
                 {
+                    ToolTip = 'Specifies the value of the Code field.';
                 }
-                field(Description;Description)
+                field(Description; Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("Label Usage";"Label Usage")
+                field("Label Usage"; "Label Usage")
                 {
+                    ToolTip = 'Specifies the value of the Label Usage field.';
                 }
-                field("No. of Fields";"No. of Fields")
+                field("No. of Fields"; "No. of Fields")
                 {
+                    ToolTip = 'Specifies the value of the No. of Fields field.';
                 }
-                field("Format Path";"Format Path")
+                field("Format Path"; "Format Path")
                 {
                     LookupPageID = "Filed Service Contract";
+                    ToolTip = 'Specifies the value of the Format Path field.';
                 }
-                field("Label Type";"Label Type")
+                field("Label Type"; "Label Type")
                 {
+                    ToolTip = 'Specifies the value of the Label Type field.';
                 }
-                field("Label Constant";"Label Constant")
+                field("Label Constant"; "Label Constant")
                 {
+                    ToolTip = 'Specifies the value of the Label Constant field.';
                 }
             }
         }
@@ -51,8 +58,9 @@ page 50052 "Labels NIF"
                     Caption = 'Card';
                     Image = EditLines;
                     RunObject = Page 50053;
-                    RunPageLink = Code=FIELD(Code);
+                    RunPageLink = Code = FIELD(Code);
                     ShortCutKey = 'Shift+F7';
+                    ToolTip = 'Executes the Card action.';
                 }
             }
         }
@@ -64,6 +72,7 @@ page 50052 "Labels NIF"
                 action("Test Label")
                 {
                     Caption = 'Test Label';
+                    ToolTip = 'Executes the Test Label action.';
 
                     trigger OnAction()
                     var
@@ -79,6 +88,7 @@ page 50052 "Labels NIF"
                 {
                     Caption = 'Print Label Layout';
                     Ellipsis = true;
+                    ToolTip = 'Executes the Print Label Layout action.';
 
                     trigger OnAction()
                     var
@@ -87,7 +97,7 @@ page 50052 "Labels NIF"
                         LabelHeader.RESET;
                         LabelHeader := Rec;
                         LabelHeader.SETRECFILTER;
-                        REPORT.RUN(REPORT::"Label Layout - NIF",TRUE,TRUE,LabelHeader);
+                        REPORT.RUN(REPORT::"Label Layout - NIF", TRUE, TRUE, LabelHeader);
                     end;
                 }
             }

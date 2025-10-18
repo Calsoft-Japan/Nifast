@@ -46,12 +46,12 @@ xmlport 50005 "Import PPS File"
     {
         textelement(Root)
         {
-            tableelement("<integerh>";Table2000000026)
+            tableelement(Integer; Integer)
             {
                 AutoSave = false;
                 XmlName = 'HeaderLoop';
-                SourceTableView = SORTING(Field1)
-                                  WHERE(Field1=FILTER(1));
+                SourceTableView = SORTING(Number)
+                                  WHERE(Number = FILTER(1));
                 UseTemporary = false;
                 textelement(Text1)
                 {
@@ -84,14 +84,14 @@ xmlport 50005 "Import PPS File"
                 trigger OnAfterInsertRecord()
                 begin
 
-                    d.UPDATE(1,currXMLport.FILENAME);
-                    d.UPDATE(2,LineCount);
+                    d.UPDATE(1, currXMLport.FILENAME);
+                    d.UPDATE(2, LineCount);
 
                     LineCount := LineCount + 1;
 
                     //second line contains the ship-to
-                    IF LineCount<>2 THEN
-                      currXMLport.SKIP;
+                    IF LineCount <> 2 THEN
+                        currXMLport.SKIP();
 
                     //>> WC 122210 JWW
                     //IF COPYSTR(Text1,1,3)='ASN' THEN BEGIN
@@ -104,18 +104,18 @@ xmlport 50005 "Import PPS File"
                     //  "ASN No." := '';
                     //  OldVersion := TRUE;
                     //END;
-                    IF COPYSTR(Text1,1,3)='SID' THEN BEGIN
-                    //>> WC 012511 JWW - Don't want the "ASN No." (want to auto-populate)
-                    //  "ASN No." := Text2;
-                      "ASN No." := '';
-                    //<< WC 012511 JWW - Don't want the "ASN No." (want to auto-populate)
-                      ZoneCode := Text4;
-                      OldVersion := FALSE;
+                    IF COPYSTR(Text1, 1, 3) = 'SID' THEN BEGIN
+                        //>> WC 012511 JWW - Don't want the "ASN No." (want to auto-populate)
+                        //  "ASN No." := Text2;
+                        "ASN No." := '';
+                        //<< WC 012511 JWW - Don't want the "ASN No." (want to auto-populate)
+                        ZoneCode := Text4;
+                        OldVersion := FALSE;
                     END ELSE BEGIN
-                      Text2 := DELCHR(Text2,'<',' ');
-                      ZoneCode := COPYSTR(Text2 + Text3,1,20);
-                      "ASN No." := '';
-                      OldVersion := TRUE;
+                        Text2 := DELCHR(Text2, '<', ' ');
+                        ZoneCode := COPYSTR(Text2 + Text3, 1, 20);
+                        "ASN No." := '';
+                        OldVersion := TRUE;
                     END;
 
                     //<< WC 122210 JWW
@@ -123,41 +123,39 @@ xmlport 50005 "Import PPS File"
                     //Get Ship-to Code
                     CLEAR(ErrorFlag);
                     CLEAR(ErrorMessage);
-                    PPSShipTo.SETRANGE(Code,ZoneCode);
+                    PPSShipTo.SETRANGE(Code, ZoneCode);
                     IF NOT PPSShipTo.FIND('-') THEN BEGIN
-                      ErrorFlag := TRUE;
-                      ErrorMessage := STRSUBSTNO('No Ship-to Code found in Ship-to PPS file for Zone %1.',ZoneCode);
-                      PPSBuffer.INIT;
-                      PPSBuffer."File Name" := UseFileName;
-                      PPSBuffer."File Name 2" := UseFileName2;
-                      PPSBuffer."Document No." := UseDocNo;
-                      PPSBuffer."Line No." :=  0;
-                      PPSBuffer."EDI Control No." := "ASN No.";
-                      PPSBuffer."Error Found" := ErrorFlag;
-                      PPSBuffer."Error Message" := ErrorMessage;
-                      //SM Addition for new PPS 031523==========================
-                      PPSBuffer."Plant Code" := PlantCode;
-                      PPSBuffer."Dock Code" := DockCode;
-                      //SM Addition for new PPS 031523==========================
+                        ErrorFlag := TRUE;
+                        ErrorMessage := STRSUBSTNO(TextLbl, ZoneCode);
+                        PPSBuffer.INIT();
+                        PPSBuffer."File Name" := UseFileName;
+                        PPSBuffer."File Name 2" := UseFileName2;
+                        PPSBuffer."Document No." := UseDocNo;
+                        PPSBuffer."Line No." := 0;
+                        PPSBuffer."EDI Control No." := "ASN No.";
+                        PPSBuffer."Error Found" := ErrorFlag;
+                        PPSBuffer."Error Message" := ErrorMessage;
+                        //SM Addition for new PPS 031523==========================
+                        PPSBuffer."Plant Code" := PlantCode;
+                        PPSBuffer."Dock Code" := DockCode;
+                        //SM Addition for new PPS 031523==========================
 
-                      PPSBuffer.INSERT;
-                      MESSAGE('Error in File %1:\'+
-                              '%2',UseFileName2,ErrorMessage);
+                        PPSBuffer.INSERT();
+                        MESSAGE('Error in File %1:\' +
+                                '%2', UseFileName2, ErrorMessage);
                     END;
                 end;
 
                 trigger OnBeforeInsertRecord()
-                var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                 end;
             }
-            tableelement("<integerd>";Table2000000026)
+            tableelement("<integerd>"; Integer)
             {
                 AutoSave = false;
                 XmlName = 'DetailLoop';
-                SourceTableView = SORTING(Field1)
-                                  WHERE(Field1=FILTER(1));
+                SourceTableView = SORTING(Number)
+                                  WHERE(Number = FILTER(1));
                 UseTemporary = false;
                 textelement(QtyText)
                 {
@@ -198,152 +196,150 @@ xmlport 50005 "Import PPS File"
                     CLEAR(ItemCrossRef);
 
                     LineCount := LineCount + 1;
-                    d.UPDATE(2,LineCount);
+                    d.UPDATE(2, LineCount);
 
                     //first line is the header
-                    IF LineCount=1 THEN
-                      currXMLport.SKIP;
+                    IF LineCount = 1 THEN
+                        currXMLport.SKIP();
 
-                    IF NOT EVALUATE(Qty,QtyText) THEN
-                      Qty := 0;
+                    IF NOT EVALUATE(Qty, QtyText) THEN
+                        Qty := 0;
 
                     IF OldVersion THEN
-                      Desc := COPYSTR(StdPack+Desc,1,50);
+                        Desc := COPYSTR(StdPack + Desc, 1, 50);
 
                     //ERROR CHECKING
                     //I - FIND ITEM
                     //find cross reference
-                    ItemCrossRef.RESET;
-                    ItemCrossRef.SETCURRENTKEY("Cross-Reference No.","Cross-Reference Type","Cross-Reference Type No.");
-                    ItemCrossRef.SETRANGE("Cross-Reference No.",PartNo);
-                    ItemCrossRef.SETRANGE("Cross-Reference Type",ItemCrossRef."Cross-Reference Type"::Customer);
-                    ItemCrossRef.SETFILTER("Cross-Reference Type No.",'%1|%2|%3','C0346','C0347','C0349');
+                    ItemCrossRef.RESET();
+                    ItemCrossRef.SETCURRENTKEY("Reference No.", "Reference Type", "Reference Type No.");
+                    ItemCrossRef.SETRANGE("Reference No.", PartNo);
+                    ItemCrossRef.SETRANGE("Reference Type", ItemCrossRef."Reference Type"::Customer);
+                    ItemCrossRef.SETFILTER("Reference Type No.", '%1|%2|%3', 'C0346', 'C0347', 'C0349');
                     IF NOT ItemCrossRef.FIND('-') THEN BEGIN
-                      CrossRefFound := FALSE;
-                      ErrorFlag := TRUE;
-                      ErrorMessage := STRSUBSTNO('No Cross Reference found for Part Number %1.',PartNo);
-                      MESSAGE('Error in File %1:\'+
-                              '%2',UseFileName2,ErrorMessage);
+                        CrossRefFound := FALSE;
+                        ErrorFlag := TRUE;
+                        ErrorMessage := STRSUBSTNO(Text00Lbl, PartNo);
+                        MESSAGE('Error in File %1:\' +
+                                '%2', UseFileName2, ErrorMessage);
                     END ELSE
-                      CrossRefFound := TRUE;
+                        CrossRefFound := TRUE;
 
 
                     //II - FIND CUSTOMER
                     //look in sales price to find the customer
                     IF CrossRefFound THEN BEGIN
-                      SalesPrice.RESET;
-                      CLEAR(UseCustNo);
+                        SalesPrice.RESET();
+                        CLEAR(UseCustNo);
 
-                      WITH SalesPrice DO BEGIN
-                        SETRANGE("Item No.",ItemCrossRef."Item No.");
-                        SETFILTER("Ending Date",'%1|>=%2',0D,TODAY);
-                        SETRANGE("Sales Type","Sales Type"::Customer);
-                        SETFILTER("Contract No.",'<>%1','');
+                        WITH SalesPrice DO BEGIN
+                            SETRANGE("Item No.", ItemCrossRef."Item No.");
+                            SETFILTER("Ending Date", '%1|>=%2', 0D, TODAY);
+                            SETRANGE("Sales Type", "Sales Type"::Customer);
+                            SETFILTER("Contract No.", '<>%1', '');
 
-                        //1- first try USD customer
-                        SETRANGE("Sales Code",'C0346');
-                        IF FIND('-') THEN
-                          UseCustNo := SalesPrice."Sales Code";
+                            //1- first try USD customer
+                            SETRANGE("Sales Code", 'C0346');
+                            IF FIND('-') THEN
+                                UseCustNo := SalesPrice."Sales Code";
 
-                        //2 - if no match try JPY customer
-                        IF UseCustNo='' THEN BEGIN
-                          SETRANGE("Sales Code",'C0347');
-                           IF FIND('-') THEN
-                             UseCustNo := 'C0347'
-                        END;
+                            //2 - if no match try JPY customer
+                            IF UseCustNo = '' THEN BEGIN
+                                SETRANGE("Sales Code", 'C0347');
+                                IF FIND('-') THEN
+                                    UseCustNo := 'C0347'
+                            END;
 
 
-                        //3_ SM ADDED NEW  2 - if no match try JPY customer
-                        IF UseCustNo='' THEN BEGIN
-                          SETRANGE("Sales Code",'C0349');
-                           IF FIND('-') THEN
-                             UseCustNo := 'C0349'
-                        END;
+                            //3_ SM ADDED NEW  2 - if no match try JPY customer
+                            IF UseCustNo = '' THEN BEGIN
+                                SETRANGE("Sales Code", 'C0349');
+                                IF FIND('-') THEN
+                                    UseCustNo := 'C0349'
+                            END;
 
-                        //3 - if still no match, revert back to USD with warning
-                        IF UseCustNo='' THEN BEGIN
-                           ErrorFlag := TRUE;
-                           ErrorMessage := STRSUBSTNO('No Price Contract found for Item %1, Cross Ref No. %2.',ItemCrossRef."Item No.",PartNo);
-                           MESSAGE('Error in File %1:\'+
-                                    '%2',UseFileName2,ErrorMessage);
-                        END; //end IF UseCustNo=''
-                      END; //end WITH SalesPrice DO
+                            //3 - if still no match, revert back to USD with warning
+                            IF UseCustNo = '' THEN BEGIN
+                                ErrorFlag := TRUE;
+                                ErrorMessage := STRSUBSTNO(Text01Lbl, ItemCrossRef."Item No.", PartNo);
+                                MESSAGE('Error in File %1:\' +
+                                         '%2', UseFileName2, ErrorMessage);
+                            END; //end IF UseCustNo=''
+                        END; //end WITH SalesPrice DO
                     END; //end IF CrossRefFound
 
 
 
                     //III - verify info from Item record
                     IF CrossRefFound THEN BEGIN
-                      Item.GET(ItemCrossRef."Item No.");
-                      //SNP
-                      IF Item."Units per Parcel"=0 THEN BEGIN
-                        ErrorFlag := TRUE;
-                        ErrorMessage := STRSUBSTNO('No SNP found for Item %1, Cross Ref No. %2.',Item."No.",PartNo);
-                        MESSAGE('Error in File %1:\'+
-                              '%2',UseFileName2,ErrorMessage);
-                      END;
-                      //Tax Group Code
-                      IF Item."Tax Group Code"='' THEN BEGIN
-                        ErrorFlag := TRUE;
-                        ErrorMessage := STRSUBSTNO('Tax Group Code for Item %1 is blank.',Item."No.");
-                        MESSAGE('Error in File %1:\'+
-                              '%2',UseFileName2,ErrorMessage);
-                      END;
+                        Item.GET(ItemCrossRef."Item No.");
+                        //SNP
+                        IF Item."Units per Parcel" = 0 THEN BEGIN
+                            ErrorFlag := TRUE;
+                            ErrorMessage := STRSUBSTNO(Text02Lbl, Item."No.", PartNo);
+                            MESSAGE('Error in File %1:\' +
+                                  '%2', UseFileName2, ErrorMessage);
+                        END;
+                        //Tax Group Code
+                        IF Item."Tax Group Code" = '' THEN BEGIN
+                            ErrorFlag := TRUE;
+                            ErrorMessage := STRSUBSTNO(Text03Lbl, Item."No.");
+                            MESSAGE('Error in File %1:\' +
+                                  '%2', UseFileName2, ErrorMessage);
+                        END;
                     END;
 
 
                     //IV - verify Ship-to for specific Customer
-                    IF (UseCustNo<>'') AND (PPSShipTo."Ship-to Code"<>'') AND (NOT ShipToErrorShown) THEN
-                      IF NOT ShipTo.GET(UseCustNo,PPSShipTo."Ship-to Code") THEN BEGIN
-                        ErrorFlag := TRUE;
-                        ShipToErrorShown := TRUE;
-                        ErrorMessage := STRSUBSTNO('Ship-to %1 for Customer %2 is not on file.',PPSShipTo."Ship-to Code",UseCustNo);
-                        MESSAGE('Error in File %1:\'+
-                                    '%2',UseFileName2,ErrorMessage);
-                      END;
+                    IF (UseCustNo <> '') AND (PPSShipTo."Ship-to Code" <> '') AND (NOT ShipToErrorShown) THEN
+                        IF NOT ShipTo.GET(UseCustNo, PPSShipTo."Ship-to Code") THEN BEGIN
+                            ErrorFlag := TRUE;
+                            ShipToErrorShown := TRUE;
+                            ErrorMessage := STRSUBSTNO(Text04Lbl, PPSShipTo."Ship-to Code", UseCustNo);
+                            MESSAGE('Error in File %1:\' +
+                                        '%2', UseFileName2, ErrorMessage);
+                        END;
 
 
                     //WRITE TO BufferTable
-                    PPSBuffer.SETRANGE("Document No.",UseDocNo);
-                    PPSBuffer.SETRANGE("Customer No.",UseCustNo);
-                    PPSBuffer.SETRANGE("Ship-to Code",PPSShipTo."Ship-to Code");
-                    PPSBuffer.SETRANGE("Item No.",Item."No.");
+                    PPSBuffer.SETRANGE("Document No.", UseDocNo);
+                    PPSBuffer.SETRANGE("Customer No.", UseCustNo);
+                    PPSBuffer.SETRANGE("Ship-to Code", PPSShipTo."Ship-to Code");
+                    PPSBuffer.SETRANGE("Item No.", Item."No.");
                     IF (PPSBuffer.FIND('-')) AND (NOT ErrorFlag) THEN BEGIN
-                      PPSBuffer.Quantity := PPSBuffer.Quantity + (Qty * Item."Units per Parcel");
+                        PPSBuffer.Quantity := PPSBuffer.Quantity + (Qty * Item."Units per Parcel");
 
-                      //SM Addition for new PPS 031523==========================
-                      PPSBuffer."Plant Code" := PlantCode;
-                      PPSBuffer."Dock Code" := DockCode;
-                      //SM Addition for new PPS 031523==========================
+                        //SM Addition for new PPS 031523==========================
+                        PPSBuffer."Plant Code" := PlantCode;
+                        PPSBuffer."Dock Code" := DockCode;
+                        //SM Addition for new PPS 031523==========================
 
-                      PPSBuffer.MODIFY;
+                        PPSBuffer.MODIFY();
                     END ELSE BEGIN
-                      PPSBuffer.INIT;
-                      PPSBuffer."Document No." := UseDocNo;
-                      PPSBuffer."Line No." := LineCount;
-                      PPSBuffer."Customer No." := UseCustNo;
-                      PPSBuffer."Ship-to Code" := PPSShipTo."Ship-to Code";
-                      PPSBuffer."Item No." := Item."No.";
-                      PPSBuffer."Cross-Reference No." := PartNo;
-                      PPSBuffer.Description := Desc;
-                      PPSBuffer.Quantity := Qty * Item."Units per Parcel";
-                      PPSBuffer."EDI Control No." := "ASN No.";
-                      PPSBuffer."File Name" := UseFileName;
-                      PPSBuffer."File Name 2" := UseFileName2;
-                      PPSBuffer."Error Found" := ErrorFlag;
-                      PPSBuffer."Error Message" := ErrorMessage;
-                      //SM Addition for new PPS 031523==========================
-                      PPSBuffer."Plant Code" := PlantCode;
-                      PPSBuffer."Dock Code" := DockCode;
-                      //SM Addition for new PPS 031523==========================
+                        PPSBuffer.INIT();
+                        PPSBuffer."Document No." := UseDocNo;
+                        PPSBuffer."Line No." := LineCount;
+                        PPSBuffer."Customer No." := UseCustNo;
+                        PPSBuffer."Ship-to Code" := PPSShipTo."Ship-to Code";
+                        PPSBuffer."Item No." := Item."No.";
+                        PPSBuffer."Cross-Reference No." := PartNo;
+                        PPSBuffer.Description := Desc;
+                        PPSBuffer.Quantity := Qty * Item."Units per Parcel";
+                        PPSBuffer."EDI Control No." := "ASN No.";
+                        PPSBuffer."File Name" := UseFileName;
+                        PPSBuffer."File Name 2" := UseFileName2;
+                        PPSBuffer."Error Found" := ErrorFlag;
+                        PPSBuffer."Error Message" := ErrorMessage;
+                        //SM Addition for new PPS 031523==========================
+                        PPSBuffer."Plant Code" := PlantCode;
+                        PPSBuffer."Dock Code" := DockCode;
+                        //SM Addition for new PPS 031523==========================
 
-                      PPSBuffer.INSERT;
+                        PPSBuffer.INSERT();
                     END;
                 end;
 
                 trigger OnBeforeInsertRecord()
-                var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                     //Counter_gInt += 1;
                 end;
@@ -366,7 +362,7 @@ xmlport 50005 "Import PPS File"
     trigger OnPostXmlPort()
     begin
 
-        d.CLOSE;
+        d.CLOSE();
 
         //the following was put in to make sure file is closed
         //this was causing problems when later trying to move the file
@@ -377,7 +373,7 @@ xmlport 50005 "Import PPS File"
     trigger OnPreXmlPort()
     begin
 
-        d.OPEN('Processing #1#############################\'+
+        d.OPEN('Processing #1#############################\' +
                'Line #2##');
 
         //LineCount := 0;
@@ -385,37 +381,38 @@ xmlport 50005 "Import PPS File"
     end;
 
     var
-        Text000_gTxt: Label 'Current  #1##############';
-        "<<inbound hdr fields>>": Integer;
-        "<<inbound dtl fields>>": Integer;
-        "<<data>>": Integer;
-        ZoneCode: Code[20];
-        Qty: Decimal;
-        "ASN No.": Code[20];
-        "<<supporting vars>>": Integer;
-        LineCount: Integer;
-        ItemCrossRef: Record "5717";
-        SalesPrice: Record "7002";
-        UseCustNo: Code[20];
-        Item: Record "27";
-        PPSBuffer: Record "50025";
-        d: Dialog;
-        UseDocNo: Code[30];
-        UseFileName: Text[250];
-        UseFileName2: Text[100];
-        PPSShipTo: Record "50024";
-        ErrorFlag: Boolean;
-        ErrorMessage: Text[250];
+        Item: Record Item;
+        ItemCrossRef: Record "Item Reference";
+        PPSBuffer: Record "PPS File Buffer";
+        PPSShipTo: Record "PPS Ship-to Codes";
+        SalesPrice: Record "Sales Price";
+        ShipTo: Record "Ship-to Address";
         CrossRefFound: Boolean;
-        ShipTo: Record "222";
-        ShipToErrorShown: Boolean;
+        ErrorFlag: Boolean;
         OldVersion: Boolean;
+        ShipToErrorShown: Boolean;
+        "ASN No.": Code[20];
+        UseCustNo: Code[20];
+        ZoneCode: Code[20];
+        UseDocNo: Code[30];
+        Qty: Decimal;
+        d: Dialog;
+        LineCount: Integer;
+        UseFileName2: Text[100];
+        ErrorMessage: Text[250];
+        UseFileName: Text[250];
+        TextLbl: Label 'No Ship-to Code found in Ship-to PPS file for Zone %1.', Comment = '%1';
+        Text00Lbl: Label 'No Cross Reference found for Part Number %1.', Comment = '%1';
+        Text01Lbl: label 'No Price Contract found for Item %1, Cross Ref No. %2.', Comment = '%1%2';
+        Text02Lbl: Label 'No SNP found for Item %1, Cross Ref No. %2.', Comment = '%1%2';
+        Text03Lbl: Label 'Tax Group Code for Item %1 is blank.', Comment = '%1';
+        Text04Lbl: Label 'Ship-to %1 for Customer %2 is not on file.', Comment = '%1%2';
 
-    procedure SetBufferFields(NewUseDocNo: Code[30];NewUseFileName: Text[250];NewUseFileName2: Text[100])
+    procedure SetBufferFields(NewUseDocNo: Code[30]; NewUseFileName: Text[250]; NewUseFileName2: Text[100])
     begin
 
         UseDocNo := NewUseDocNo;
-        UseFileName  := NewUseFileName;
+        UseFileName := NewUseFileName;
         UseFileName2 := NewUseFileName2;
     end;
 }

@@ -11,22 +11,22 @@ xmlport 50023 "Export Users Login Time"
         textelement(root)
         {
             MinOccurs = Zero;
-            tableelement(Table51;Table51)
+            tableelement("User Time Register"; "User Time Register")
             {
                 XmlName = 'UserTime';
-                fieldattribute(UserName;"User Time Register"."User ID")
+                fieldattribute(UserName; "User Time Register"."User ID")
                 {
                 }
-                fieldattribute(DateLogin;"User Time Register".Date)
+                fieldattribute(DateLogin; "User Time Register".Date)
                 {
 
                     trigger OnBeforePassField()
                     begin
                         IF "User Time Register".Date <> tOdATE THEN
-                           currXMLport.SKIP;
+                            currXMLport.SKIP();
                     end;
                 }
-                fieldattribute(TimeLogged;"User Time Register".Minutes)
+                fieldattribute(TimeLogged; "User Time Register".Minutes)
                 {
                 }
                 textelement(CoName)
@@ -35,7 +35,7 @@ xmlport 50023 "Export Users Login Time"
 
                 trigger OnPreXmlItem()
                 begin
-                    "User Time Register".SETRANGE(Date,tOdATE);
+                    "User Time Register".SETRANGE(Date, tOdATE);
                 end;
             }
         }
@@ -61,7 +61,7 @@ xmlport 50023 "Export Users Login Time"
     trigger OnPostXmlPort()
     begin
         IF ErrorText <> '' THEN
-          ERROR(ErrorText);
+            ERROR(ErrorText);
 
         //jrrWindow.CLOSE;
 
@@ -70,12 +70,12 @@ xmlport 50023 "Export Users Login Time"
 
     trigger OnPreXmlPort()
     var
-        datestr: Text[10];
         InputDate: Date;
+        datestr: Text[10];
     begin
-        InitializeGlobals;
+        InitializeGlobals();
         InputDate := TODAY;
-        datestr := FORMAT(DATE2DMY(InputDate,2)) + FORMAT(DATE2DMY(InputDate,1)) + FORMAT(DATE2DMY(InputDate,3)); //mdy
+        datestr := FORMAT(DATE2DMY(InputDate, 2)) + FORMAT(DATE2DMY(InputDate, 1)) + FORMAT(DATE2DMY(InputDate, 3)); //mdy
         currXMLport.FILENAME := 'c:\temp\userstimelog' + datestr + '.csv';
         //"User Time Register".SETFILTER(Date, '>=%1',010116D);
         CoName := COMPANYNAME;
@@ -83,13 +83,11 @@ xmlport 50023 "Export Users Login Time"
     end;
 
     var
-        Window: Dialog;
-        ErrorText: Text;
+        QuitLoop: Boolean;
+        tOdATE: Date;
         LastLineNo: Integer;
         PrevColumnNo: Integer;
-        QuitLoop: Boolean;
-        ProgressMsg: Label 'Exporting line no. #1######';
-        tOdATE: Date;
+        ErrorText: Text;
 
     local procedure InitializeGlobals()
     begin

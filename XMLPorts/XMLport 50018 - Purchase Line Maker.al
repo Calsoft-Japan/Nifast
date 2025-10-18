@@ -10,22 +10,22 @@ xmlport 50018 "Purchase Line Maker"
     {
         textelement(Root)
         {
-            tableelement(Table39;Table39)
+            tableelement("Purchase Line"; "Purchase Line")
             {
                 AutoSave = true;
                 AutoUpdate = false;
                 XmlName = 'PurchLine';
                 UseTemporary = false;
-                fieldelement(DocType;"Purchase Line"."Document Type")
+                fieldelement(DocType; "Purchase Line"."Document Type")
                 {
                 }
-                fieldelement(DocNo;"Purchase Line"."Document No.")
+                fieldelement(DocNo; "Purchase Line"."Document No.")
                 {
                 }
-                fieldelement(LineNo;"Purchase Line"."Line No.")
+                fieldelement(LineNo; "Purchase Line"."Line No.")
                 {
                 }
-                fieldelement(Type;"Purchase Line".Type)
+                fieldelement(Type; "Purchase Line".Type)
                 {
 
                     trigger OnAfterAssignField()
@@ -33,175 +33,182 @@ xmlport 50018 "Purchase Line Maker"
                         // if Type = '' then
                         //"Purchase Line".Type   CurrXMPport.skip;
                         IF "Purchase Line".Type = "Purchase Line".Type::Resource THEN
-                           currXMLport.SKIP;
+                            currXMLport.SKIP();
                         IF "Purchase Line".Type = 0 THEN
-                           currXMLport.SKIP;
+                            currXMLport.SKIP();
                     end;
                 }
-                fieldelement(Numb;"Purchase Line"."No.")
+                fieldelement(Numb; "Purchase Line"."No.")
                 {
                 }
-                fieldelement(AltQty;"Purchase Line"."Alt. Quantity")
+                //TODO
+                /* fieldelement(AltQty; "Purchase Line"."Alt. Quantity")
                 {
                 }
-                fieldelement(AltQtyUOM;"Purchase Line"."Alt. Qty. UOM")
+                fieldelement(AltQtyUOM; "Purchase Line"."Alt. Qty. UOM")
+                {
+                } */
+                //TODO
+                fieldelement(AltPrice; "Purchase Line"."Alt. Price")
                 {
                 }
-                fieldelement(AltPrice;"Purchase Line"."Alt. Price")
+                //TODO
+                /* fieldelement(AltPrcUOM; "Purchase Line"."Alt. Qty. UOM")
+                {
+                } */
+                //TODO
+                fieldelement(PlannedRecptDt; "Purchase Line"."Planned Receipt Date")
                 {
                 }
-                fieldelement(AltPrcUOM;"Purchase Line"."Alt. Qty. UOM")
+                fieldelement(OrdDt; "Purchase Line"."Order Date")
                 {
                 }
-                fieldelement(PlannedRecptDt;"Purchase Line"."Planned Receipt Date")
+                fieldelement(AllowItemChgAssign; "Purchase Line"."Allow Item Charge Assignment")
                 {
                 }
-                fieldelement(OrdDt;"Purchase Line"."Order Date")
+                //TODO
+                /* fieldelement(OutstGrossWt; "Purchase Line"."Outstanding Gross Weight")
                 {
                 }
-                fieldelement(AllowItemChgAssign;"Purchase Line"."Allow Item Charge Assignment")
+                fieldelement(OutstNetWt; "Purchase Line"."Outstanding Net Weight")
                 {
                 }
-                fieldelement(OutstGrossWt;"Purchase Line"."Outstanding Gross Weight")
+                fieldelement(LineGrossWt; "Purchase Line"."Line Gross Weight")
                 {
                 }
-                fieldelement(OutstNetWt;"Purchase Line"."Outstanding Net Weight")
+                fieldelement(LineNetWt; "Purchase Line"."Line Net Weight")
+                {
+                } */
+                //TODO
+                fieldelement(BuyFmVenNo; "Purchase Line"."Buy-from Vendor No.")
                 {
                 }
-                fieldelement(LineGrossWt;"Purchase Line"."Line Gross Weight")
+                fieldelement(PostGrp; "Purchase Line"."Posting Group")
                 {
                 }
-                fieldelement(LineNetWt;"Purchase Line"."Line Net Weight")
+                fieldelement(ExptdRcptDt; "Purchase Line"."Expected Receipt Date")
                 {
                 }
-                fieldelement(BuyFmVenNo;"Purchase Line"."Buy-from Vendor No.")
+                fieldelement(Desc; "Purchase Line".Description)
                 {
                 }
-                fieldelement(PostGrp;"Purchase Line"."Posting Group")
+                fieldelement(UOM; "Purchase Line"."Unit of Measure")
                 {
                 }
-                fieldelement(ExptdRcptDt;"Purchase Line"."Expected Receipt Date")
+                fieldelement(Qty; "Purchase Line".Quantity)
                 {
                 }
-                fieldelement(Desc;"Purchase Line".Description)
+                fieldelement(OutstandQty; "Purchase Line"."Outstanding Quantity")
                 {
                 }
-                fieldelement(UOM;"Purchase Line"."Unit of Measure")
+                fieldelement(QtyToInv; "Purchase Line"."Qty. to Invoice")
                 {
                 }
-                fieldelement(Qty;"Purchase Line".Quantity)
+                fieldelement(QtyToRecv; "Purchase Line"."Qty. to Receive")
                 {
                 }
-                fieldelement(OutstandQty;"Purchase Line"."Outstanding Quantity")
+                fieldelement(DirectUnitCost; "Purchase Line"."Direct Unit Cost")
                 {
                 }
-                fieldelement(QtyToInv;"Purchase Line"."Qty. to Invoice")
+                fieldelement(UnitCostLCY; "Purchase Line"."Unit Cost (LCY)")
                 {
                 }
-                fieldelement(QtyToRecv;"Purchase Line"."Qty. to Receive")
+                fieldelement(QtyPerUOM; "Purchase Line"."Qty. per Unit of Measure")
                 {
                 }
-                fieldelement(DirectUnitCost;"Purchase Line"."Direct Unit Cost")
+                fieldelement(UOMCode; "Purchase Line"."Unit of Measure Code")
                 {
                 }
-                fieldelement(UnitCostLCY;"Purchase Line"."Unit Cost (LCY)")
+                fieldelement(GrossWt; "Purchase Line"."Gross Weight")
                 {
                 }
-                fieldelement(QtyPerUOM;"Purchase Line"."Qty. per Unit of Measure")
+                fieldelement(NetWt; "Purchase Line"."Net Weight")
                 {
                 }
-                fieldelement(UOMCode;"Purchase Line"."Unit of Measure Code")
+                fieldelement(UnitsPerParcel; "Purchase Line"."Units per Parcel")
                 {
                 }
-                fieldelement(GrossWt;"Purchase Line"."Gross Weight")
+                fieldelement(QtyBase; "Purchase Line"."Quantity (Base)")
                 {
                 }
-                fieldelement(NetWt;"Purchase Line"."Net Weight")
+                fieldelement(OutstQtyBase; "Purchase Line"."Outstanding Qty. (Base)")
                 {
                 }
-                fieldelement(UnitsPerParcel;"Purchase Line"."Units per Parcel")
+                fieldelement(QtyToInvBase; "Purchase Line"."Qty. to Invoice (Base)")
                 {
                 }
-                fieldelement(QtyBase;"Purchase Line"."Quantity (Base)")
+                fieldelement(QtyToRecvBase; "Purchase Line"."Qty. to Receive (Base)")
                 {
                 }
-                fieldelement(OutstQtyBase;"Purchase Line"."Outstanding Qty. (Base)")
+                fieldelement(OutstAmt; "Purchase Line"."Outstanding Amount")
                 {
                 }
-                fieldelement(QtyToInvBase;"Purchase Line"."Qty. to Invoice (Base)")
+                fieldelement(PayToVenNo; "Purchase Line"."Pay-to Vendor No.")
                 {
                 }
-                fieldelement(QtyToRecvBase;"Purchase Line"."Qty. to Receive (Base)")
+                fieldelement(GPPG; "Purchase Line"."Gen. Prod. Posting Group")
                 {
                 }
-                fieldelement(OutstAmt;"Purchase Line"."Outstanding Amount")
+                fieldelement(VatCalcType; "Purchase Line"."VAT Calculation Type")
                 {
                 }
-                fieldelement(PayToVenNo;"Purchase Line"."Pay-to Vendor No.")
+                fieldelement(ItemCatgCode; "Purchase Line"."Item Category Code")
                 {
                 }
-                fieldelement(GPPG;"Purchase Line"."Gen. Prod. Posting Group")
+                //TODO
+                /* fieldelement(ProdGrpCd; "Purchase Line"."Product Group Code")
                 {
                 }
-                fieldelement(VatCalcType;"Purchase Line"."VAT Calculation Type")
+                fieldelement(LineAmtToRecv; "Purchase Line"."Line Amount to Receive")
                 {
                 }
-                fieldelement(ItemCatgCode;"Purchase Line"."Item Category Code")
+                fieldelement(LineAmtToInv; "Purchase Line"."Line Amount to Invoice")
+                {
+                } */
+                //TODO
+                fieldelement(TaxGrpCode; "Purchase Line"."Tax Group Code")
                 {
                 }
-                fieldelement(ProdGrpCd;"Purchase Line"."Product Group Code")
+                fieldelement(CurrCode; "Purchase Line"."Currency Code")
                 {
                 }
-                fieldelement(LineAmtToRecv;"Purchase Line"."Line Amount to Receive")
+                fieldelement(OutstAmtLCY; "Purchase Line"."Outstanding Amount (LCY)")
                 {
                 }
-                fieldelement(LineAmtToInv;"Purchase Line"."Line Amount to Invoice")
+                fieldelement(UnitCost; "Purchase Line"."Unit Cost")
                 {
                 }
-                fieldelement(TaxGrpCode;"Purchase Line"."Tax Group Code")
+                fieldelement(LineAmt; "Purchase Line"."Line Amount")
                 {
                 }
-                fieldelement(CurrCode;"Purchase Line"."Currency Code")
+                fieldelement(SafetyLeadTime; "Purchase Line"."Safety Lead Time")
                 {
                 }
-                fieldelement(OutstAmtLCY;"Purchase Line"."Outstanding Amount (LCY)")
+                fieldelement(ReqRecptDt; "Purchase Line"."Requested Receipt Date")
                 {
                 }
-                fieldelement(UnitCost;"Purchase Line"."Unit Cost")
+                fieldelement(PromRecptDt; "Purchase Line"."Promised Receipt Date")
                 {
                 }
-                fieldelement(LineAmt;"Purchase Line"."Line Amount")
+                fieldelement(RespCentre; "Purchase Line"."Responsibility Center")
                 {
                 }
-                fieldelement(SafetyLeadTime;"Purchase Line"."Safety Lead Time")
+                fieldelement(SCDim1; "Purchase Line"."Shortcut Dimension 1 Code")
                 {
                 }
-                fieldelement(ReqRecptDt;"Purchase Line"."Requested Receipt Date")
+                fieldelement(BinCode; "Purchase Line"."Bin Code")
                 {
                 }
-                fieldelement(PromRecptDt;"Purchase Line"."Promised Receipt Date")
+                fieldelement(LocCode; "Purchase Line"."Location Code")
                 {
                 }
-                fieldelement(RespCentre;"Purchase Line"."Responsibility Center")
-                {
-                }
-                fieldelement(SCDim1;"Purchase Line"."Shortcut Dimension 1 Code")
-                {
-                }
-                fieldelement(BinCode;"Purchase Line"."Bin Code")
-                {
-                }
-                fieldelement(LocCode;"Purchase Line"."Location Code")
-                {
-                }
-                fieldelement(Desc2;"Purchase Line"."Description 2")
+                fieldelement(Desc2; "Purchase Line"."Description 2")
                 {
                     MinOccurs = Zero;
                 }
 
                 trigger OnBeforeInsertRecord()
                 var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                 end;
             }
@@ -222,7 +229,7 @@ xmlport 50018 "Purchase Line Maker"
 
     trigger OnPostXmlPort()
     begin
-         MESSAGE('Import Completed');
+        MESSAGE('Import Completed');
     end;
 }
 

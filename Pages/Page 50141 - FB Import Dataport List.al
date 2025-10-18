@@ -4,38 +4,46 @@ page 50141 "FB Import Dataport List"
     // NF1.00:CIS.NG    10/26/15 Fill-Bill Functionality (Added message after file import completed)
 
     PageType = List;
-    SourceTable = Table50139;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "FB Import Dataport";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
-                field("Ship-to Code";"Ship-to Code")
+                field("Ship-to Code"; Rec."Ship-to Code")
                 {
+                    ToolTip = 'Specifies the value of the Ship-to Code field.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
+                    ToolTip = 'Specifies the value of the Location Code field.';
                 }
-                field("Dataport ID";"Dataport ID")
+                field("Dataport ID"; Rec."Dataport ID")
                 {
+                    ToolTip = 'Specifies the value of the Dataport ID field.';
                 }
-                field("Import File Path";"Import File Path")
+                field("Import File Path"; Rec."Import File Path")
                 {
+                    ToolTip = 'Specifies the value of the Import File Path field.';
 
                     trigger OnAssistEdit()
                     begin
-                        Path := GetFolder;
+                        Path := GetFolder();
                         IF Path <> '' THEN
-                          VALIDATE("Import File Path",Path);
+                            Rec.VALIDATE("Import File Path", Path);
                     end;
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
             }
         }
@@ -52,20 +60,22 @@ page 50141 "FB Import Dataport List"
                 {
                     Caption = 'Process Import';
                     Image = Import;
+                    PromotedOnly = true;
                     Promoted = true;
                     PromotedCategory = Process;
                     ShortCutKey = 'F9';
+                    ToolTip = 'Executes the Process Import action.';
 
                     trigger OnAction()
                     begin
-                        VALIDATE("User ID",USERID);
-                        MODIFY;
-                        COMMIT;
-                        ProcessImport;
-                        VALIDATE("User ID",'');
-                        TempFileName := '';
-                        MODIFY;
-                        COMMIT;
+                        Rec.VALIDATE("User ID", USERID);
+                        Rec.MODIFY();
+                        COMMIT();
+                        ProcessImport();
+                        Rec.VALIDATE("User ID", '');
+                        Rec.TempFileName := '';
+                        Rec.MODIFY();
+                        COMMIT();
                     end;
                 }
             }
@@ -75,7 +85,7 @@ page 50141 "FB Import Dataport List"
     var
         Path: Text[250];
         Text000: Label 'There is nothing to import.';
-        Text001: Label 'File import completed successfully.\\Total File: %1\Success Import: %2\Skip Import: %3';
+        Text001: Label 'File import completed successfully.\\Total File: %1\Success Import: %2\Skip Import: %3', Comment = '%1%2%3';
 
     procedure GetFolder(): Text[250]
     begin
@@ -83,7 +93,7 @@ page 50141 "FB Import Dataport List"
 
     procedure ProcessImport()
     var
-        FileSys: Record "2000000022";
+        FileSys: Record "File";
         OldFileName: Text[250];
         NewFileName: Text[250];
         InFile: File;
@@ -96,38 +106,37 @@ page 50141 "FB Import Dataport List"
         TotalImport := 0;
         //<< NF1.00:CIS.NG 10/26/15
 
-        FileSys.SETRANGE(Path,"Import File Path");
-        FileSys.SETRANGE("Is a file",TRUE);
+        FileSys.SETRANGE(Path, Rec."Import File Path");
+        FileSys.SETRANGE("Is a file", TRUE);
         IF FileSys.FIND('-') THEN BEGIN
-          REPEAT
-            TotalImport += 1;  //NF1.00:CIS.NG 10/26/15
-            IF STRPOS(FileSys.Name,'.FBX') = 0 THEN BEGIN
-              OldFileName := FileSys.Path + '\' + FileSys.Name;
-              TempFileName := OldFileName;
-              MODIFY;
-              COMMIT;
-              NewFileName := OldFileName + '.FBX';
-              IF (NOT FILE.EXISTS(NewFileName)) THEN BEGIN
-                IF FILE.COPY(OldFileName,NewFileName) THEN BEGIN
-                  //>> NF1.00:CIS.NG 09/28/15
-                  //XMLPORT.RUN("Dataport ID",FALSE);
-                  CLEAR(InFile);
-                  CLEAR(InputStream);
-                  InFile.OPEN(TempFileName);
-                  InFile.CREATEINSTREAM(InputStream);
-                  XMLPORT.IMPORT("Dataport ID",InputStream);
-                  InFile.CLOSE;
-                  //<< NF1.00:CIS.NG 09/28/15
-                  FILE.ERASE(OldFileName);
-                  SuccessImport += 1;  //NF1.00:CIS.NG 10/26/15
+            REPEAT
+                TotalImport += 1;  //NF1.00:CIS.NG 10/26/15
+                IF STRPOS(FileSys.Name, '.FBX') = 0 THEN BEGIN
+                    OldFileName := FileSys.Path + '\' + FileSys.Name;
+                    Rec.TempFileName := OldFileName;
+                    Rec.MODIFY();
+                    COMMIT();
+                    NewFileName := OldFileName + '.FBX';
+                    IF (NOT FILE.EXISTS(NewFileName)) THEN
+                        IF FILE.COPY(OldFileName, NewFileName) THEN BEGIN
+                            //>> NF1.00:CIS.NG 09/28/15
+                            //XMLPORT.RUN("Dataport ID",FALSE);
+                            CLEAR(InFile);
+                            CLEAR(InputStream);
+                            InFile.OPEN(TempFileName);
+                            InFile.CREATEINSTREAM(InputStream);
+                            XMLPORT.IMPORT(Rec."Dataport ID", InputStream);
+                            InFile.CLOSE;
+                            //<< NF1.00:CIS.NG 09/28/15
+                            FILE.ERASE(OldFileName);
+                            SuccessImport += 1;  //NF1.00:CIS.NG 10/26/15
+                        END;
                 END;
-              END;
-            END;
-          UNTIL FileSys.NEXT = 0;
-        //>> NF1.00:CIS.NG 10/26/15
-          MESSAGE(Text001,TotalImport,SuccessImport,TotalImport - SuccessImport);
+            UNTIL FileSys.NEXT() = 0;
+            //>> NF1.00:CIS.NG 10/26/15
+            MESSAGE(Text001, TotalImport, SuccessImport, TotalImport - SuccessImport);
         END ELSE
-          MESSAGE(Text000);
+            MESSAGE(Text000);
         //<< NF1.00:CIS.NG 10/26/15
     end;
 }

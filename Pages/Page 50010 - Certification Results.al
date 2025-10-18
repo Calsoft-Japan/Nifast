@@ -4,37 +4,47 @@ page 50010 "Certification Results"
 
     AutoSplitKey = true;
     PageType = List;
-    SourceTable = Table50003;
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "Certifcation Results";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Certification No.";"Certification No.")
+                field("Certification No."; Rec."Certification No.")
                 {
+                    ToolTip = 'Specifies the value of the Certification No. field.';
                 }
-                field("Certification Type";"Certification Type")
+                field("Certification Type"; Rec."Certification Type")
                 {
+                    ToolTip = 'Specifies the value of the Certification Type field.';
                 }
-                field("Passed Certification";"Passed Certification")
+                field("Passed Certification"; Rec."Passed Certification")
                 {
+                    ToolTip = 'Specifies the value of the Passed Certification field.';
                 }
-                field("Certification Comments";"Certification Comments")
+                field("Certification Comments"; Rec."Certification Comments")
                 {
+                    ToolTip = 'Specifies the value of the Certification Comments field.';
                 }
-                field("Quantity Tested";"Quantity Tested")
+                field("Quantity Tested"; Rec."Quantity Tested")
                 {
+                    ToolTip = 'Specifies the value of the Quantity Tested field.';
                 }
-                field("Tested By";"Tested By")
+                field("Tested By"; Rec."Tested By")
                 {
+                    ToolTip = 'Specifies the value of the Tested By field.';
                 }
-                field("Tested Date";"Tested Date")
+                field("Tested Date"; Rec."Tested Date")
                 {
+                    ToolTip = 'Specifies the value of the Tested Date field.';
                 }
-                field("Tested Time";"Tested Time")
+                field("Tested Time"; Rec."Tested Time")
                 {
+                    ToolTip = 'Specifies the value of the Tested Time field.';
                 }
             }
         }

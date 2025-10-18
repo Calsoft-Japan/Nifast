@@ -3,7 +3,7 @@ page 50053 "Label Card NIF"
     // NF1.00:CIS.NG  09-05-15 Merged during upgrade
 
     PageType = Card;
-    SourceTable = Table14000841;
+    SourceTable = 14000841;
 
     layout
     {

@@ -4,40 +4,51 @@ page 50075 "Delivery Schedule Subform"
 
     AutoSplitKey = true;
     PageType = ListPart;
-    SourceTable = Table50013;
+    ApplicationArea = All;
+    UsageCategory = None;
+    SourceTable = "Delivery Schedule Line";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field(Type;Type)
+                field(Type; Rec.Type)
                 {
+                    ToolTip = 'Specifies the value of the Type field.';
                 }
-                field(Frequency;Frequency)
+                field(Frequency; Rec.Frequency)
                 {
+                    ToolTip = 'Specifies the value of the Frequency field.';
                 }
-                field("Forecast Quantity";"Forecast Quantity")
+                field("Forecast Quantity"; Rec."Forecast Quantity")
                 {
+                    ToolTip = 'Specifies the value of the Forecast Quantity field.';
                 }
-                field("Expected Delivery Date";"Expected Delivery Date")
+                field("Expected Delivery Date"; Rec."Expected Delivery Date")
                 {
+                    ToolTip = 'Specifies the value of the Expected Delivery Date field.';
                 }
-                field("Start Date";"Start Date")
+                field("Start Date"; Rec."Start Date")
                 {
+                    ToolTip = 'Specifies the value of the Start Date field.';
                 }
-                field("End Date";"End Date")
+                field("End Date"; Rec."End Date")
                 {
+                    ToolTip = 'Specifies the value of the End Date field.';
                 }
-                field("Type Code";"Type Code")
+                field("Type Code"; Rec."Type Code")
                 {
+                    ToolTip = 'Specifies the value of the Type Code field.';
                 }
-                field("Frequency Code";"Frequency Code")
+                field("Frequency Code"; Rec."Frequency Code")
                 {
+                    ToolTip = 'Specifies the value of the Frequency Code field.';
                 }
-                field("Forecast Unit of Measure";"Forecast Unit of Measure")
+                field("Forecast Unit of Measure"; Rec."Forecast Unit of Measure")
                 {
+                    ToolTip = 'Specifies the value of the Forecast Unit of Measure field.';
                 }
             }
         }

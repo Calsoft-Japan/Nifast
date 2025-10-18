@@ -6,48 +6,61 @@ page 50137 "FB Order Subform"
 
     AutoSplitKey = true;
     PageType = ListPart;
-    SourceTable = Table50137;
+    ApplicationArea = All;
+    UsageCategory = none;
+    SourceTable = "FB Line";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Tag No.";"Tag No.")
+                field("Tag No."; Rec."Tag No.")
                 {
+                    ToolTip = 'Specifies the value of the Tag No. field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Variant Code";"Variant Code")
+                field("Variant Code"; Rec."Variant Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Variant Code field.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
+                    ToolTip = 'Specifies the value of the Quantity field.';
                 }
-                field("Unit of Measure Code";"Unit of Measure Code")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
+                    ToolTip = 'Specifies the value of the Unit of Measure Code field.';
                 }
-                field("Lot No.";"Lot No.")
+                field("Lot No."; Rec."Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Lot No. field.';
                 }
-                field("External Document No.";"External Document No.")
+                field("External Document No."; Rec."External Document No.")
                 {
+                    ToolTip = 'Specifies the value of the External Document No. field.';
                 }
-                field("Customer Bin";"Customer Bin")
+                field("Customer Bin"; Rec."Customer Bin")
                 {
+                    ToolTip = 'Specifies the value of the Customer Bin field.';
                 }
-                field(Status;Status)
+                field(Status; Rec.Status)
                 {
+                    ToolTip = 'Specifies the value of the Status field.';
                 }
-                field("Cross-Reference No.";"Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Cross-Reference No.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Cross-Reference No. field.';
                 }
-                field("Replenishment Method";"Replenishment Method")
+                field("Replenishment Method"; Rec."Replenishment Method")
                 {
+                    ToolTip = 'Specifies the value of the Replenishment Method field.';
                 }
             }
         }
@@ -63,45 +76,44 @@ page 50137 "FB Order Subform"
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     begin
         //>> NIF 010606 RTT
-        IF xRec."Line No."=0 THEN
-          IF FBHeader.GET("Document No.") THEN BEGIN
-            "Order Date" := FBHeader."Order Date";
-            "Sell-to Customer No." := FBHeader."Sell-to Customer No.";
-            "Ship-To Code" := FBHeader."Ship-To Code";
-            "Location Code" := FBHeader."Location Code";
-            "FB Order Type" := FBHeader."FB Order Type";
-            "External Document No." := FBHeader."External Document No.";
-            "Salesperson Code" := FBHeader."Salesperson Code";
-            "Inside Salesperson Code" := FBHeader."Inside Salesperson Code";
-            "Selling Location" := FBHeader."Selling Location";
-            "Shipping Location" := FBHeader."Shipping Location";
-            "Contract No." := FBHeader."Contract No.";
-          END;
+        IF xRec."Line No." = 0 THEN
+            IF FBHeader.GET(Rec."Document No.") THEN BEGIN
+                Rec."Order Date" := FBHeader."Order Date";
+                Rec."Sell-to Customer No." := FBHeader."Sell-to Customer No.";
+                Rec."Ship-To Code" := FBHeader."Ship-To Code";
+                Rec."Location Code" := FBHeader."Location Code";
+                Rec."FB Order Type" := FBHeader."FB Order Type";
+                Rec."External Document No." := FBHeader."External Document No.";
+                Rec."Salesperson Code" := FBHeader."Salesperson Code";
+                Rec."Inside Salesperson Code" := FBHeader."Inside Salesperson Code";
+                Rec."Selling Location" := FBHeader."Selling Location";
+                Rec."Shipping Location" := FBHeader."Shipping Location";
+                Rec."Contract No." := FBHeader."Contract No.";
+            END;
         //<< NIF 010606 RTT
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        IF FBHeader.GET("Document No.") THEN BEGIN
-          "Order Date" := FBHeader."Order Date";
-          "Sell-to Customer No." := FBHeader."Sell-to Customer No.";
-          "Ship-To Code" := FBHeader."Ship-To Code";
-          "Location Code" := FBHeader."Location Code";
-          "FB Order Type" := FBHeader."FB Order Type";
-          "External Document No." := FBHeader."External Document No.";
-          "Salesperson Code" := FBHeader."Salesperson Code";
-          "Inside Salesperson Code" := FBHeader."Inside Salesperson Code";
-          "Selling Location" := FBHeader."Selling Location";
-          "Shipping Location" := FBHeader."Shipping Location";
-          "Contract No." := FBHeader."Contract No.";
-        //>> NIF
-          "Replenishment Method" := xRec."Replenishment Method";
-        //<< NIF
+        IF FBHeader.GET(Rec."Document No.") THEN BEGIN
+            Rec."Order Date" := FBHeader."Order Date";
+            Rec."Sell-to Customer No." := FBHeader."Sell-to Customer No.";
+            Rec."Ship-To Code" := FBHeader."Ship-To Code";
+            Rec."Location Code" := FBHeader."Location Code";
+            Rec."FB Order Type" := FBHeader."FB Order Type";
+            Rec."External Document No." := FBHeader."External Document No.";
+            Rec."Salesperson Code" := FBHeader."Salesperson Code";
+            Rec."Inside Salesperson Code" := FBHeader."Inside Salesperson Code";
+            Rec."Selling Location" := FBHeader."Selling Location";
+            Rec."Shipping Location" := FBHeader."Shipping Location";
+            Rec."Contract No." := FBHeader."Contract No.";
+            //>> NIF
+            Rec."Replenishment Method" := xRec."Replenishment Method";
+            //<< NIF
         END;
     end;
 
     var
-        FBManagement: Codeunit "50133";
-        FBHeader: Record "50136";
+        FBHeader: Record "FB Header";
 }
 

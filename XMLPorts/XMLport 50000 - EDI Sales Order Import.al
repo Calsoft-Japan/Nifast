@@ -22,15 +22,15 @@ xmlport 50000 "EDI Sales Order Import"
             textelement(DOCACTION)
             {
             }
-            tableelement(tempsalesheader; Table36)
+            tableelement("Sales Header"; "Sales Header")
             {
                 MaxOccurs = Once;
                 MinOccurs = Once;
                 XmlName = 'SalesHeader';
-                SourceTableView = SORTING(Field1, Field3)
-                                  WHERE(Field1 = CONST(1));
+                SourceTableView = SORTING("Document Type", "No.")
+                                  WHERE("Document Type" = CONST(1));
                 UseTemporary = true;
-                fieldelement(EDIPOID; TempSalesHeader."EDI PO ID")
+                fieldelement(EDIPOID; "Sales Header"."EDI PO ID")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
@@ -40,10 +40,12 @@ xmlport 50000 "EDI Sales Order Import"
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(EDIOrder; TempSalesHeader."EDI Order")
+                //TODO
+                /* fieldelement(EDIOrder; "Sales Header"."EDI Order")
                 {
-                }
-                fieldelement(EDIBatchID; TempSalesHeader."EDI Batch ID")
+                } */
+                //TODO
+                fieldelement(EDIBatchID; "Sales Header"."EDI Batch ID")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
@@ -55,7 +57,7 @@ xmlport 50000 "EDI Sales Order Import"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        TempSalesHeader."Posting Date" := EvaluateDate(PostingDate);
+                        "Sales Header"."Posting Date" := EvaluateDate(PostingDate);
                     end;
                 }
                 textelement(OrderDate)
@@ -65,7 +67,7 @@ xmlport 50000 "EDI Sales Order Import"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        TempSalesHeader."Order Date" := EvaluateDate(OrderDate);
+                        "Sales Header"."Order Date" := EvaluateDate(OrderDate);
                     end;
                 }
                 textelement(DocumentDate)
@@ -75,7 +77,7 @@ xmlport 50000 "EDI Sales Order Import"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        TempSalesHeader."Document Date" := EvaluateDate(DocumentDate);
+                        "Sales Header"."Document Date" := EvaluateDate(DocumentDate);
                     end;
                 }
                 textelement(DocumentType)
@@ -90,7 +92,7 @@ xmlport 50000 "EDI Sales Order Import"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        TempSalesHeader."Requested Delivery Date" := EvaluateDate(RequestedDeliveryDate);
+                        "Sales Header"."Requested Delivery Date" := EvaluateDate(RequestedDeliveryDate);
                     end;
                 }
                 textelement(PromisedDeliveryDate)
@@ -100,46 +102,46 @@ xmlport 50000 "EDI Sales Order Import"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        TempSalesHeader."Promised Delivery Date" := EvaluateDate(PromisedDeliveryDate);
+                        "Sales Header"."Promised Delivery Date" := EvaluateDate(PromisedDeliveryDate);
                     end;
                 }
-                fieldelement(ExternalDocumentNo; TempSalesHeader."External Document No.")
+                fieldelement(ExternalDocumentNo; "Sales Header"."External Document No.")
                 {
                     FieldValidate = No;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(SalespersonCode; TempSalesHeader."Salesperson Code")
+                fieldelement(SalespersonCode; "Sales Header"."Salesperson Code")
                 {
                     FieldValidate = No;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(CampaignNo; TempSalesHeader."Campaign No.")
+                fieldelement(CampaignNo; "Sales Header"."Campaign No.")
                 {
                     FieldValidate = No;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(ResponsibilityCenter; TempSalesHeader."Responsibility Center")
+                fieldelement(ResponsibilityCenter; "Sales Header"."Responsibility Center")
                 {
                     FieldValidate = No;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(ShortcutDimension1Code; TempSalesHeader."Shortcut Dimension 1 Code")
+                fieldelement(ShortcutDimension1Code; "Sales Header"."Shortcut Dimension 1 Code")
                 {
                     FieldValidate = No;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(ShortcutDimension2Code; TempSalesHeader."Shortcut Dimension 2 Code")
+                fieldelement(ShortcutDimension2Code; "Sales Header"."Shortcut Dimension 2 Code")
                 {
                     FieldValidate = No;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(PaymentTermsCode; TempSalesHeader."Payment Terms Code")
+                fieldelement(PaymentTermsCode; "Sales Header"."Payment Terms Code")
                 {
                     FieldValidate = No;
                     MaxOccurs = Once;
@@ -152,10 +154,10 @@ xmlport 50000 "EDI Sales Order Import"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        TempSalesHeader."Due Date" := EvaluateDate(DueDate);
+                        "Sales Header"."Due Date" := EvaluateDate(DueDate);
                     end;
                 }
-                fieldelement(PaymentDiscount; TempSalesHeader."Payment Discount %")
+                fieldelement(PaymentDiscount; "Sales Header"."Payment Discount %")
                 {
                     FieldValidate = No;
                     MaxOccurs = Once;
@@ -168,40 +170,40 @@ xmlport 50000 "EDI Sales Order Import"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        TempSalesHeader."Pmt. Discount Date" := EvaluateDate(PmtDiscountDate);
+                        "Sales Header"."Pmt. Discount Date" := EvaluateDate(PmtDiscountDate);
                     end;
                 }
-                fieldelement(PaymentMethodCode; TempSalesHeader."Payment Method Code")
+                fieldelement(PaymentMethodCode; "Sales Header"."Payment Method Code")
                 {
                     AutoCalcField = false;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(LocationCode; TempSalesHeader."Location Code")
+                fieldelement(LocationCode; "Sales Header"."Location Code")
                 {
                     AutoCalcField = false;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(ShipmentMethodCode; TempSalesHeader."Shipment Method Code")
+                fieldelement(ShipmentMethodCode; "Sales Header"."Shipment Method Code")
                 {
                     AutoCalcField = false;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(ShippingAgentCode; TempSalesHeader."Shipping Agent Code")
+                fieldelement(ShippingAgentCode; "Sales Header"."Shipping Agent Code")
                 {
                     AutoCalcField = false;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(ShippingAgentServiceCode; TempSalesHeader."Shipping Agent Service Code")
+                fieldelement(ShippingAgentServiceCode; "Sales Header"."Shipping Agent Service Code")
                 {
                     AutoCalcField = false;
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(PackageTrackingNo; TempSalesHeader."Package Tracking No.")
+                fieldelement(PackageTrackingNo; "Sales Header"."Package Tracking No.")
                 {
                     AutoCalcField = false;
                     MaxOccurs = Once;
@@ -214,158 +216,158 @@ xmlport 50000 "EDI Sales Order Import"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        TempSalesHeader."Shipment Date" := EvaluateDate(ShipmentDate);
+                        "Sales Header"."Shipment Date" := EvaluateDate(ShipmentDate);
                     end;
                 }
-                fieldelement(YourReference; TempSalesHeader."Your Reference")
+                fieldelement(YourReference; "Sales Header"."Your Reference")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(CustomerPostingGroup; TempSalesHeader."Customer Posting Group")
+                fieldelement(CustomerPostingGroup; "Sales Header"."Customer Posting Group")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(CurrencyCode; TempSalesHeader."Currency Code")
+                fieldelement(CurrencyCode; "Sales Header"."Currency Code")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(CurrencyFactor; TempSalesHeader."Currency Factor")
+                fieldelement(CurrencyFactor; "Sales Header"."Currency Factor")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(CustomerPriceGroup; TempSalesHeader."Customer Price Group")
+                fieldelement(CustomerPriceGroup; "Sales Header"."Customer Price Group")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(PricesIncludingVAT; TempSalesHeader."Prices Including VAT")
+                fieldelement(PricesIncludingVAT; "Sales Header"."Prices Including VAT")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(InvoiceDiscCode; TempSalesHeader."Invoice Disc. Code")
+                fieldelement(InvoiceDiscCode; "Sales Header"."Invoice Disc. Code")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(CustomerDiscGroup; TempSalesHeader."Customer Disc. Group")
+                fieldelement(CustomerDiscGroup; "Sales Header"."Customer Disc. Group")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(OnHold; TempSalesHeader."On Hold")
+                fieldelement(OnHold; "Sales Header"."On Hold")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(VATRegistrationNo; TempSalesHeader."VAT Registration No.")
+                fieldelement(VATRegistrationNo; "Sales Header"."VAT Registration No.")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(CombineShipments; TempSalesHeader."Combine Shipments")
+                fieldelement(CombineShipments; "Sales Header"."Combine Shipments")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(ReasonCode; TempSalesHeader."Reason Code")
+                fieldelement(ReasonCode; "Sales Header"."Reason Code")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(TransportMethod; TempSalesHeader."Transport Method")
+                fieldelement(TransportMethod; "Sales Header"."Transport Method")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(TaxAreaCode; TempSalesHeader."Tax Area Code")
+                fieldelement(TaxAreaCode; "Sales Header"."Tax Area Code")
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(CustomerOrderNo; TempSalesHeader."Your Reference")
+                fieldelement(CustomerOrderNo; "Sales Header"."Your Reference")
                 {
                 }
-                fieldelement(PlantCode; TempSalesHeader."Plant Code")
+                fieldelement(PlantCode; "Sales Header"."Plant Code")
                 {
                 }
-                fieldelement(DockCode; TempSalesHeader."Dock Code")
+                fieldelement(DockCode; "Sales Header"."Dock Code")
                 {
                 }
                 textelement(SelltoCustomer)
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
-                    fieldelement(SelltoCustomerNo; TempSalesHeader."Sell-to Customer No.")
+                    fieldelement(SelltoCustomerNo; "Sales Header"."Sell-to Customer No.")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoCustomerName; TempSalesHeader."Sell-to Customer Name")
+                    fieldelement(SelltoCustomerName; "Sales Header"."Sell-to Customer Name")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoCustomerName2; TempSalesHeader."Sell-to Customer Name 2")
+                    fieldelement(SelltoCustomerName2; "Sales Header"."Sell-to Customer Name 2")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoAddress; TempSalesHeader."Sell-to Address")
+                    fieldelement(SelltoAddress; "Sales Header"."Sell-to Address")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoAddress2; TempSalesHeader."Sell-to Address 2")
+                    fieldelement(SelltoAddress2; "Sales Header"."Sell-to Address 2")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoCity; TempSalesHeader."Sell-to City")
+                    fieldelement(SelltoCity; "Sales Header"."Sell-to City")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoContact; TempSalesHeader."Sell-to Contact")
+                    fieldelement(SelltoContact; "Sales Header"."Sell-to Contact")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoCounty; TempSalesHeader."Sell-to County")
+                    fieldelement(SelltoCounty; "Sales Header"."Sell-to County")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoPostCode; TempSalesHeader."Sell-to Post Code")
+                    fieldelement(SelltoPostCode; "Sales Header"."Sell-to Post Code")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoCountryRegionCode; TempSalesHeader."Sell-to Country/Region Code")
+                    fieldelement(SelltoCountryRegionCode; "Sales Header"."Sell-to Country/Region Code")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoContactNo; TempSalesHeader."Sell-to Contact No.")
+                    fieldelement(SelltoContactNo; "Sales Header"."Sell-to Contact No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SelltoICPartnerCode; TempSalesHeader."Sell-to IC Partner Code")
+                    fieldelement(SelltoICPartnerCode; "Sales Header"."Sell-to IC Partner Code")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
@@ -375,72 +377,72 @@ xmlport 50000 "EDI Sales Order Import"
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
-                    fieldelement(BilltoCustomerNo; TempSalesHeader."Bill-to Customer No.")
+                    fieldelement(BilltoCustomerNo; "Sales Header"."Bill-to Customer No.")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoName; TempSalesHeader."Bill-to Name")
+                    fieldelement(BilltoName; "Sales Header"."Bill-to Name")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoName2; TempSalesHeader."Bill-to Name 2")
+                    fieldelement(BilltoName2; "Sales Header"."Bill-to Name 2")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoAddress; TempSalesHeader."Bill-to Address")
+                    fieldelement(BilltoAddress; "Sales Header"."Bill-to Address")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoAddress2; TempSalesHeader."Bill-to Address 2")
+                    fieldelement(BilltoAddress2; "Sales Header"."Bill-to Address 2")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoCity; TempSalesHeader."Bill-to City")
+                    fieldelement(BilltoCity; "Sales Header"."Bill-to City")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoContact; TempSalesHeader."Bill-to Contact")
+                    fieldelement(BilltoContact; "Sales Header"."Bill-to Contact")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoCounty; TempSalesHeader."Bill-to County")
+                    fieldelement(BilltoCounty; "Sales Header"."Bill-to County")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoPostCode; TempSalesHeader."Bill-to Post Code")
+                    fieldelement(BilltoPostCode; "Sales Header"."Bill-to Post Code")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoCountryRegionCode; TempSalesHeader."Bill-to Country/Region Code")
+                    fieldelement(BilltoCountryRegionCode; "Sales Header"."Bill-to Country/Region Code")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoContactNo; TempSalesHeader."Bill-to Contact No.")
+                    fieldelement(BilltoContactNo; "Sales Header"."Bill-to Contact No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BilltoICPartnerCode; TempSalesHeader."Bill-to IC Partner Code")
+                    fieldelement(BilltoICPartnerCode; "Sales Header"."Bill-to IC Partner Code")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
@@ -450,92 +452,94 @@ xmlport 50000 "EDI Sales Order Import"
                 {
                     MaxOccurs = Once;
                     MinOccurs = Zero;
-                    fieldelement(ShiptoCode; TempSalesHeader."Ship-to Code")
+                    fieldelement(ShiptoCode; "Sales Header"."Ship-to Code")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ShiptoName; TempSalesHeader."Ship-to Name")
+                    fieldelement(ShiptoName; "Sales Header"."Ship-to Name")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ShiptoName2; TempSalesHeader."Ship-to Name 2")
+                    fieldelement(ShiptoName2; "Sales Header"."Ship-to Name 2")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ShiptoAddress; TempSalesHeader."Ship-to Address")
+                    fieldelement(ShiptoAddress; "Sales Header"."Ship-to Address")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ShiptoAddress2; TempSalesHeader."Ship-to Address 2")
+                    fieldelement(ShiptoAddress2; "Sales Header"."Ship-to Address 2")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ShiptoCity; TempSalesHeader."Ship-to City")
+                    fieldelement(ShiptoCity; "Sales Header"."Ship-to City")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ShiptoContact; TempSalesHeader."Ship-to Contact")
+                    fieldelement(ShiptoContact; "Sales Header"."Ship-to Contact")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ShiptoCounty; TempSalesHeader."Ship-to County")
+                    fieldelement(ShiptoCounty; "Sales Header"."Ship-to County")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ShiptoPostCode; TempSalesHeader."Ship-to Post Code")
+                    fieldelement(ShiptoPostCode; "Sales Header"."Ship-to Post Code")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
                 }
-                tableelement(tempsalesline; Table37)
+                tableelement("Sales Line"; "Sales Line")
                 {
-                    LinkFields = Field1 = FIELD(Field1),
-                                 Field3 = FIELD(Field3);
-                    LinkTable = TempSalesHeader;
+                    LinkFields = "Document Type" = FIELD("Document Type"),
+                                 "Document No." = FIELD("No.");
+                    LinkTable = "Sales Header";
                     LinkTableForceInsert = true;
                     MaxOccurs = Unbounded;
                     MinOccurs = Zero;
                     XmlName = 'SalesLine';
                     UseTemporary = true;
-                    fieldelement(LINACTION; TempSalesLine."Prod. Kit Order No.")
+                    //TODO
+                    /* fieldelement(LINACTION; "Sales Line"."Prod. Kit Order No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Once;
                     }
-                    fieldelement(LineNum; TempSalesLine."FB Line No.")
+                    fieldelement(LineNum; "Sales Line"."FB Line No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SalesId; TempSalesLine."FB Order No.")
+                    fieldelement(SalesId; "Sales Line"."FB Order No.")
+                    {
+                        MaxOccurs = Once;
+                        MinOccurs = Zero;
+                    } */
+                    //TODO
+                    fieldelement(EDILineNo; "Sales Line"."EDI Line No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(EDILineNo; TempSalesLine."EDI Line No.")
-                    {
-                        MaxOccurs = Once;
-                        MinOccurs = Zero;
-                    }
-                    fieldelement(Type; TempSalesLine.Type)
+                    fieldelement(Type; "Sales Line".Type)
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
@@ -548,12 +552,10 @@ xmlport 50000 "EDI Sales Order Import"
                         XmlName = 'No';
 
                         trigger OnAfterAssignVariable()
-                        var
-                            Item: Record "27";
                         begin
                             //>> NF1.00:CIS.NG 10/30/15
-                            TempSalesLine."No." := No_;
-                            //IF TempSalesLine.Type = TempSalesLine.Type::Item THEN BEGIN
+                            "Sales Line"."No." := No_;
+                            //IF "Sales Line".Type = TempSalesLine.Type::Item THEN BEGIN
                             //  Item.RESET;
                             //  Item.SETRANGE("No.",TempSalesLine."No.");
                             //  Item.SETRANGE(Inactive,TRUE);
@@ -574,42 +576,44 @@ xmlport 50000 "EDI Sales Order Import"
                             //<< NF1.00:CIS.NG 10/30/15
                         end;
                     }
-                    fieldelement(EDICrossReference; TempSalesLine."EDI Item Cross Ref.")
+                    //TODO
+                    /* fieldelement(EDICrossReference; "Sales Line"."EDI Item Cross Ref.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
-                    }
-                    fieldelement(Description; TempSalesLine.Description)
-                    {
-                        FieldValidate = No;
-                        MaxOccurs = Once;
-                        MinOccurs = Zero;
-                    }
-                    fieldelement(Description2; TempSalesLine."Description 2")
+                    } */
+                    //TODO
+                    fieldelement(Description; "Sales Line".Description)
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(LocationCode; TempSalesLine."Location Code")
+                    fieldelement(Description2; "Sales Line"."Description 2")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(Quantity; TempSalesLine.Quantity)
+                    fieldelement(LocationCode; "Sales Line"."Location Code")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(UnitofMeasureCode; TempSalesLine."Unit of Measure Code")
+                    fieldelement(Quantity; "Sales Line".Quantity)
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(UnitPrice; TempSalesLine."Unit Price")
+                    fieldelement(UnitofMeasureCode; "Sales Line"."Unit of Measure Code")
+                    {
+                        FieldValidate = No;
+                        MaxOccurs = Once;
+                        MinOccurs = Zero;
+                    }
+                    fieldelement(UnitPrice; "Sales Line"."Unit Price")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
@@ -623,54 +627,56 @@ xmlport 50000 "EDI Sales Order Import"
 
                         trigger OnAfterAssignVariable()
                         begin
-                            TempSalesLine."Shipment Date" := EvaluateDate(ShipmentDate_Line);
+                            "Sales Line"."Shipment Date" := EvaluateDate(ShipmentDate_Line);
                         end;
                     }
-                    fieldelement(TaxGroupCode; TempSalesLine."Tax Group Code")
+                    fieldelement(TaxGroupCode; "Sales Line"."Tax Group Code")
                     {
                         FieldValidate = No;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(LineAmount; TempSalesLine."Line Amount")
+                    fieldelement(LineAmount; "Sales Line"."Line Amount")
                     {
                         AutoCalcField = false;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(AmountIncludingVAT; TempSalesLine."Amount Including VAT")
+                    fieldelement(AmountIncludingVAT; "Sales Line"."Amount Including VAT")
                     {
                         AutoCalcField = false;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(LineDiscount; TempSalesLine."Line Discount %")
+                    fieldelement(LineDiscount; "Sales Line"."Line Discount %")
                     {
                         AutoCalcField = false;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(LineDiscountAmount; TempSalesLine."Line Discount Amount")
+                    fieldelement(LineDiscountAmount; "Sales Line"."Line Discount Amount")
                     {
                         AutoCalcField = false;
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ExternalDocumentNo; TempSalesLine."External Document No.")
-                    {
-                        MinOccurs = Zero;
-                    }
-                    fieldelement(CertificateNo; TempSalesLine."Certificate No.")
-                    {
-                        MaxOccurs = Once;
-                        MinOccurs = Zero;
-                    }
-                    fieldelement(DrawingNo; TempSalesLine."Drawing No.")
+                    //TODO
+                    /*   fieldelement(ExternalDocumentNo; "Sales Line"."External Document No.")
+                      {
+                          MinOccurs = Zero;
+                      } */
+                    //TODO
+                    fieldelement(CertificateNo; "Sales Line"."Certificate No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(RevisionNo; TempSalesLine."Revision No.")
+                    fieldelement(DrawingNo; "Sales Line"."Drawing No.")
+                    {
+                        MaxOccurs = Once;
+                        MinOccurs = Zero;
+                    }
+                    fieldelement(RevisionNo; "Sales Line"."Revision No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
@@ -682,55 +688,55 @@ xmlport 50000 "EDI Sales Order Import"
 
                         trigger OnAfterAssignVariable()
                         begin
-                            TempSalesLine."Revision Date" := EvaluateDate(RevisionDate);
+                            "Sales Line"."Revision Date" := EvaluateDate(RevisionDate);
                         end;
                     }
-                    fieldelement(TotalParcels; TempSalesLine."Total Parcels")
+                    fieldelement(TotalParcels; "Sales Line"."Total Parcels")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(StorageLocation; TempSalesLine."Storage Location")
+                    fieldelement(StorageLocation; "Sales Line"."Storage Location")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(LineSupplyLocation; TempSalesLine."Line Supply Location")
+                    fieldelement(LineSupplyLocation; "Sales Line"."Line Supply Location")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(DeliverTo; TempSalesLine."Deliver To")
+                    fieldelement(DeliverTo; "Sales Line"."Deliver To")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ReceivingArea; TempSalesLine."Receiving Area")
+                    fieldelement(ReceivingArea; "Sales Line"."Receiving Area")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(RanNo; TempSalesLine."Ran No.")
+                    fieldelement(RanNo; "Sales Line"."Ran No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ContainerNo; TempSalesLine."Container No.")
+                    fieldelement(ContainerNo; "Sales Line"."Container No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(KanbanNo; TempSalesLine."Kanban No.")
+                    fieldelement(KanbanNo; "Sales Line"."Kanban No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ResMfg; TempSalesLine."Res. Mfg.")
+                    fieldelement(ResMfg; "Sales Line"."Res. Mfg.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ReleaseNo; TempSalesLine."Release No.")
+                    fieldelement(ReleaseNo; "Sales Line"."Release No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
@@ -742,75 +748,75 @@ xmlport 50000 "EDI Sales Order Import"
 
                         trigger OnAfterAssignVariable()
                         begin
-                            TempSalesLine."Mfg. Date" := EvaluateDate(MfgDate);
+                            "Sales Line"."Mfg. Date" := EvaluateDate(MfgDate);
                         end;
                     }
-                    fieldelement(ManNo; TempSalesLine."Man No.")
+                    fieldelement(ManNo; "Sales Line"."Man No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(DeliveryOrderNo; TempSalesLine."Delivery Order No.")
+                    fieldelement(DeliveryOrderNo; "Sales Line"."Delivery Order No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(PlantCode; TempSalesLine."Plant Code")
+                    fieldelement(PlantCode; "Sales Line"."Plant Code")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(DockCode; TempSalesLine."Dock Code")
+                    fieldelement(DockCode; "Sales Line"."Dock Code")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(BoxWeight; TempSalesLine."Box Weight")
+                    fieldelement(BoxWeight; "Sales Line"."Box Weight")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(StoreAddress; TempSalesLine."Store Address")
+                    fieldelement(StoreAddress; "Sales Line"."Store Address")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(FRSNo; TempSalesLine."FRS No.")
+                    fieldelement(FRSNo; "Sales Line"."FRS No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(MainRoute; TempSalesLine."Main Route")
+                    fieldelement(MainRoute; "Sales Line"."Main Route")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(LineSideAddress; TempSalesLine."Line Side Address")
+                    fieldelement(LineSideAddress; "Sales Line"."Line Side Address")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SubRouteNumber; TempSalesLine."Sub Route Number")
+                    fieldelement(SubRouteNumber; "Sales Line"."Sub Route Number")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(SpecialMarkings; TempSalesLine."Special Markings")
+                    fieldelement(SpecialMarkings; "Sales Line"."Special Markings")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(EngChangeNo; TempSalesLine."Eng. Change No.")
+                    fieldelement(EngChangeNo; "Sales Line"."Eng. Change No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(GroupCode; TempSalesLine."Group Code")
+                    fieldelement(GroupCode; "Sales Line"."Group Code")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    fieldelement(ModelYear; TempSalesLine."Model Year")
+                    fieldelement(ModelYear; "Sales Line"."Model Year")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
@@ -819,14 +825,14 @@ xmlport 50000 "EDI Sales Order Import"
                     trigger OnAfterInitRecord()
                     begin
                         MyLineNo += 10000;
-                        TempSalesLine."Line No." := MyLineNo;
+                        "Sales Line"."Line No." := MyLineNo;
                         //TempSalesLine."Document Type" := TempSalesLine."Document Type"::Order;
                     end;
                 }
 
                 trigger OnBeforeInsertRecord()
                 begin
-                    TempSalesHeader."Document Type" := TempSalesHeader."Document Type"::Order;
+                    "Sales Header"."Document Type" := "Sales Header"."Document Type"::Order;
                 end;
             }
         }
@@ -855,16 +861,15 @@ xmlport 50000 "EDI Sales Order Import"
     end;
 
     var
-        NewSalesHeader: Record "36";
-        NewSalesLine: Record "37";
-        EDISetup: Record "14002367";
-        CustomerSellTo: Record "18";
-        CustomerBillTo: Record "18";
+        NewSalesHeader: Record "Sales Header";
+        NewSalesLine: Record "Sales Line";
+        EDISetup: Record 14002367;
+        CustomerSellTo: Record Customer;
+        CustomerBillTo: Record Customer;
         MyLineNo: Integer;
-        Text000: Label 'DOCACTION = %1 is invalid.';
-        Text001: Label 'LINACTION = %1 is invalid.';
-        Text002: Label 'SalesId must not be blank when DOCACTION = Update.';
-        Text003: Label 'Cust# %1 N/A or N/F.';
+        Text000Err: Label 'DOCACTION = %1 is invalid.', Comment = '%1';
+        Text002Err: Label 'SalesId must not be blank when DOCACTION = Update.';
+        Text003Err: Label 'Cust# %1 N/A or N/F.', Comment = '%1';
 
     procedure GetOrderNo(): Code[20]
     begin
@@ -875,74 +880,78 @@ xmlport 50000 "EDI Sales Order Import"
     begin
         EDISetup.GET;
 
-        TempSalesHeader.RESET;
-        IF TempSalesHeader.FINDFIRST THEN BEGIN
+        "Sales Header".RESET();
+        IF "Sales Header".FINDFIRST() THEN BEGIN
             CASE DOCACTION OF
                 'Insert':
                     BEGIN
-                        NewSalesHeader.INIT;
+                        NewSalesHeader.INIT();
                         NewSalesHeader.SetHideValidationDialog(NOT EDISetup."Show Messages On Import");
                         NewSalesHeader."Document Type" := NewSalesHeader."Document Type"::Order;
                         NewSalesHeader."No." := '';
                         NewSalesHeader.INSERT(TRUE);
-                        ModSalesHeader;
+                        ModSalesHeader();
                     END;
                 'Update':
                     BEGIN
                         CLEAR(NewSalesHeader);
-                        NewSalesHeader.RESET;
+                        NewSalesHeader.RESET();
                         IF SalesId = '' THEN
-                            ERROR(Text002);
+                            ERROR(Text002Err);
                         NewSalesHeader.GET(NewSalesHeader."Document Type"::Order, SalesId);
-                        ModSalesHeader;
+                        ModSalesHeader();
                     END;
                 'Delete':
                     BEGIN
                         CLEAR(NewSalesHeader);
-                        NewSalesHeader.RESET;
+                        NewSalesHeader.RESET();
                         NewSalesHeader.GET(NewSalesHeader."Document Type"::Order, SalesId);
                         NewSalesHeader.DELETE(TRUE);
                     END;
                 ELSE
-                    ERROR(Text000, DOCACTION);
+                    ERROR(Text000Err, DOCACTION);
             END;
 
-            TempSalesLine.RESET;
-            IF TempSalesLine.FINDSET THEN BEGIN
+            "Sales Line".RESET();
+            IF "Sales Line".FINDSET() THEN
                 REPEAT
-                    CASE TempSalesLine."Prod. Kit Order No." OF
+                    CASE "Sales Line"."Prod. Kit Order No." OF
                         'INSERT':
                             BEGIN
-                                NewSalesLine.INIT;
+                                NewSalesLine.INIT();
                                 NewSalesLine.SetHideValidationDialog(NOT EDISetup."Show Messages On Import");
                                 NewSalesLine."Document Type" := NewSalesHeader."Document Type";
                                 NewSalesLine."Document No." := NewSalesHeader."No.";
-                                NewSalesLine."Line No." := GetNewLineNo;
+                                NewSalesLine."Line No." := GetNewLineNo();
                                 NewSalesLine.INSERT(TRUE);
 
-                                ModSalesLines;
+                                ModSalesLines();
                             END;
                         'UPDATE':
                             BEGIN
                                 CLEAR(NewSalesLine);
-                                NewSalesLine.RESET;
-                                NewSalesLine.GET(TempSalesLine."Document Type"::Order, TempSalesLine."FB Order No.", TempSalesLine."FB Line No.");
-
-                                ModSalesLines;
+                                NewSalesLine.RESET();
+                                //TODO
+                                /* NewSalesLine.GET("Sales Line"."Document Type"::Order, "Sales Line"."FB Order No.", "Sales Line"."FB Line No."); */
+                                //TODO
+                                ModSalesLines();
                             END;
                         'DELETE':
                             BEGIN
                                 CLEAR(NewSalesLine);
-                                NewSalesLine.RESET;
-                                NewSalesLine.GET(TempSalesLine."Document Type"::Order, TempSalesLine."FB Order No.", TempSalesLine."FB Line No.");
+                                NewSalesLine.RESET();
+                                //TODO
+                                /* NewSalesLine.GET("Sales Line"."Document Type"::Order, "Sales Line"."FB Order No.", "Sales Line"."FB Line No."); */
+                                //TODO
                                 DeleteItemTracking(NewSalesLine);  //NF1.00:CIS.NG 11/16/15
                                 NewSalesLine.DELETE(TRUE);
                             END;
                         ELSE
-                            ERROR(Text001, TempSalesLine."Prod. Kit Order No.");
+                    //TODO
+                    /*  ERROR(Text001, "Sales Line"."Prod. Kit Order No."); */
+                    //TODO
                     END;
-                UNTIL TempSalesLine.NEXT = 0;
-            END;
+                UNTIL "Sales Line".NEXT() = 0;
         END;
     end;
 
@@ -963,318 +972,325 @@ xmlport 50000 "EDI Sales Order Import"
 
     local procedure ModSalesHeader()
     begin
-        IF NOT (TempSalesHeader."EDI PO ID" = '') THEN
-            NewSalesHeader.VALIDATE("EDI PO ID", TempSalesHeader."EDI PO ID");
+        IF NOT ("Sales Header"."EDI PO ID" = '') THEN
+            NewSalesHeader.VALIDATE("EDI PO ID", "Sales Header"."EDI PO ID");
 
-        IF NOT (TempSalesHeader."EDI Order" = FALSE) THEN
-            NewSalesHeader.VALIDATE("EDI Order", TempSalesHeader."EDI Order");
+        //TODO
+        /*   IF NOT ("Sales Header"."EDI Order" = FALSE) THEN
+              NewSalesHeader.VALIDATE("EDI Order", "Sales Header"."EDI Order"); */
+        //TODO
 
-        IF NOT (TempSalesHeader."EDI Batch ID" = '') THEN
-            NewSalesHeader.VALIDATE("EDI Batch ID", TempSalesHeader."EDI Batch ID");
+        IF NOT ("Sales Header"."EDI Batch ID" = '') THEN
+            NewSalesHeader.VALIDATE("EDI Batch ID", "Sales Header"."EDI Batch ID");
 
-        IF NOT (TempSalesHeader."Sell-to Customer No." = '') THEN BEGIN
-            IF NOT CustomerSellTo.GET(TempSalesHeader."Sell-to Customer No.") THEN
-                ERROR(Text003, TempSalesHeader."Sell-to Customer No.");
+        IF NOT ("Sales Header"."Sell-to Customer No." = '') THEN BEGIN
+            IF NOT CustomerSellTo.GET("Sales Header"."Sell-to Customer No.") THEN
+                ERROR(Text003Err, "Sales Header"."Sell-to Customer No.");
             NewSalesHeader.VALIDATE("Sell-to Customer No.", CustomerSellTo."No.");
         END;
-        IF NOT (TempSalesHeader."Sell-to Customer Name" = '') THEN BEGIN
-            NewSalesHeader."Sell-to Customer Name" := TempSalesHeader."Sell-to Customer Name";
-            NewSalesHeader."Sell-to Customer Name 2" := TempSalesHeader."Sell-to Customer Name 2";
-            NewSalesHeader."Sell-to Address" := TempSalesHeader."Sell-to Address";
-            NewSalesHeader."Sell-to Address 2" := TempSalesHeader."Sell-to Address 2";
-            NewSalesHeader."Sell-to City" := TempSalesHeader."Sell-to City";
-            NewSalesHeader."Sell-to Contact" := TempSalesHeader."Sell-to Contact";
-            NewSalesHeader."Sell-to Post Code" := TempSalesHeader."Sell-to Post Code";
-            NewSalesHeader."Sell-to County" := TempSalesHeader."Sell-to County";
-            NewSalesHeader."Sell-to Country/Region Code" := TempSalesHeader."Sell-to Country/Region Code";
-            NewSalesHeader."Sell-to Contact No." := TempSalesHeader."Sell-to Contact No.";
-            NewSalesHeader."Sell-to IC Partner Code" := TempSalesHeader."Sell-to IC Partner Code";
+        IF NOT ("Sales Header"."Sell-to Customer Name" = '') THEN BEGIN
+            NewSalesHeader."Sell-to Customer Name" := "Sales Header"."Sell-to Customer Name";
+            NewSalesHeader."Sell-to Customer Name 2" := "Sales Header"."Sell-to Customer Name 2";
+            NewSalesHeader."Sell-to Address" := "Sales Header"."Sell-to Address";
+            NewSalesHeader."Sell-to Address 2" := "Sales Header"."Sell-to Address 2";
+            NewSalesHeader."Sell-to City" := "Sales Header"."Sell-to City";
+            NewSalesHeader."Sell-to Contact" := "Sales Header"."Sell-to Contact";
+            NewSalesHeader."Sell-to Post Code" := "Sales Header"."Sell-to Post Code";
+            NewSalesHeader."Sell-to County" := "Sales Header"."Sell-to County";
+            NewSalesHeader."Sell-to Country/Region Code" := "Sales Header"."Sell-to Country/Region Code";
+            NewSalesHeader."Sell-to Contact No." := "Sales Header"."Sell-to Contact No.";
+            NewSalesHeader."Sell-to IC Partner Code" := "Sales Header"."Sell-to IC Partner Code";
         END;
 
-        IF (NOT (TempSalesHeader."Bill-to Customer No." = '')) AND
-           (NOT (TempSalesHeader."Bill-to Customer No." = CustomerSellTo."Bill-to Customer No.")) THEN BEGIN
-            IF NOT CustomerBillTo.GET(TempSalesHeader."Bill-to Customer No.") THEN
-                ERROR(Text003, TempSalesHeader."Bill-to Customer No.");
+        IF (NOT ("Sales Header"."Bill-to Customer No." = '')) AND
+           (NOT ("Sales Header"."Bill-to Customer No." = CustomerSellTo."Bill-to Customer No.")) THEN BEGIN
+            IF NOT CustomerBillTo.GET("Sales Header"."Bill-to Customer No.") THEN
+                ERROR(Text003Err, "Sales Header"."Bill-to Customer No.");
             NewSalesHeader.VALIDATE("Bill-to Customer No.", CustomerBillTo."No.");
         END;
-        IF NOT (TempSalesHeader."Bill-to Name" = '') THEN BEGIN
-            NewSalesHeader."Bill-to Name" := TempSalesHeader."Bill-to Name";
-            NewSalesHeader."Bill-to Name 2" := TempSalesHeader."Bill-to Name 2";
-            NewSalesHeader."Bill-to Address" := TempSalesHeader."Bill-to Address";
-            NewSalesHeader."Bill-to Address 2" := TempSalesHeader."Bill-to Address 2";
-            NewSalesHeader."Bill-to City" := TempSalesHeader."Bill-to City";
-            NewSalesHeader."Bill-to Contact" := TempSalesHeader."Bill-to Contact";
-            NewSalesHeader."Bill-to Post Code" := TempSalesHeader."Bill-to Post Code";
-            NewSalesHeader."Bill-to County" := TempSalesHeader."Bill-to County";
-            NewSalesHeader."Bill-to Country/Region Code" := TempSalesHeader."Bill-to Country/Region Code";
-            NewSalesHeader."Bill-to Contact No." := TempSalesHeader."Bill-to Contact No.";
-            NewSalesHeader."Bill-to IC Partner Code" := TempSalesHeader."Bill-to IC Partner Code";
+        IF NOT ("Sales Header"."Bill-to Name" = '') THEN BEGIN
+            NewSalesHeader."Bill-to Name" := "Sales Header"."Bill-to Name";
+            NewSalesHeader."Bill-to Name 2" := "Sales Header"."Bill-to Name 2";
+            NewSalesHeader."Bill-to Address" := "Sales Header"."Bill-to Address";
+            NewSalesHeader."Bill-to Address 2" := "Sales Header"."Bill-to Address 2";
+            NewSalesHeader."Bill-to City" := "Sales Header"."Bill-to City";
+            NewSalesHeader."Bill-to Contact" := "Sales Header"."Bill-to Contact";
+            NewSalesHeader."Bill-to Post Code" := "Sales Header"."Bill-to Post Code";
+            NewSalesHeader."Bill-to County" := "Sales Header"."Bill-to County";
+            NewSalesHeader."Bill-to Country/Region Code" := "Sales Header"."Bill-to Country/Region Code";
+            NewSalesHeader."Bill-to Contact No." := "Sales Header"."Bill-to Contact No.";
+            NewSalesHeader."Bill-to IC Partner Code" := "Sales Header"."Bill-to IC Partner Code";
         END;
 
-        IF NOT (TempSalesHeader."Ship-to Code" = '') THEN
-            NewSalesHeader.VALIDATE("Ship-to Code", TempSalesHeader."Ship-to Code");
-        IF NOT (TempSalesHeader."Ship-to Name" = '') THEN BEGIN
-            NewSalesHeader."Ship-to Name" := TempSalesHeader."Ship-to Name";
-            NewSalesHeader."Ship-to Name 2" := TempSalesHeader."Ship-to Name 2";
-            NewSalesHeader."Ship-to Address" := TempSalesHeader."Ship-to Address";
-            NewSalesHeader."Ship-to Address 2" := TempSalesHeader."Ship-to Address 2";
-            NewSalesHeader."Ship-to City" := TempSalesHeader."Ship-to City";
-            NewSalesHeader."Ship-to Contact" := TempSalesHeader."Ship-to Contact";
-            NewSalesHeader."Ship-to Post Code" := TempSalesHeader."Ship-to Post Code";
-            NewSalesHeader."Ship-to County" := TempSalesHeader."Ship-to County";
-            NewSalesHeader."Ship-to Country/Region Code" := TempSalesHeader."Ship-to Country/Region Code";
+        IF NOT ("Sales Header"."Ship-to Code" = '') THEN
+            NewSalesHeader.VALIDATE("Ship-to Code", "Sales Header"."Ship-to Code");
+        IF NOT ("Sales Header"."Ship-to Name" = '') THEN BEGIN
+            NewSalesHeader."Ship-to Name" := "Sales Header"."Ship-to Name";
+            NewSalesHeader."Ship-to Name 2" := "Sales Header"."Ship-to Name 2";
+            NewSalesHeader."Ship-to Address" := "Sales Header"."Ship-to Address";
+            NewSalesHeader."Ship-to Address 2" := "Sales Header"."Ship-to Address 2";
+            NewSalesHeader."Ship-to City" := "Sales Header"."Ship-to City";
+            NewSalesHeader."Ship-to Contact" := "Sales Header"."Ship-to Contact";
+            NewSalesHeader."Ship-to Post Code" := "Sales Header"."Ship-to Post Code";
+            NewSalesHeader."Ship-to County" := "Sales Header"."Ship-to County";
+            NewSalesHeader."Ship-to Country/Region Code" := "Sales Header"."Ship-to Country/Region Code";
         END;
 
 
 
-        IF NOT (TempSalesHeader."Posting Date" = 0D) THEN
-            NewSalesHeader.VALIDATE("Posting Date", TempSalesHeader."Posting Date");
-        IF NOT (TempSalesHeader."Order Date" = 0D) THEN
-            NewSalesHeader.VALIDATE("Order Date", TempSalesHeader."Order Date");
-        IF NOT (TempSalesHeader."Document Date" = 0D) THEN
-            NewSalesHeader.VALIDATE("Document Date", TempSalesHeader."Document Date");
-        IF NOT (TempSalesHeader."Requested Delivery Date" = 0D) THEN
-            NewSalesHeader.VALIDATE("Requested Delivery Date", TempSalesHeader."Requested Delivery Date");
-        IF NOT (TempSalesHeader."Promised Delivery Date" = 0D) THEN
-            NewSalesHeader.VALIDATE("Promised Delivery Date", TempSalesHeader."Promised Delivery Date");
-        IF NOT (TempSalesHeader."External Document No." = '') THEN
-            NewSalesHeader.VALIDATE("External Document No.", TempSalesHeader."External Document No.");
-        IF NOT (TempSalesHeader."Salesperson Code" = '') THEN
-            NewSalesHeader.VALIDATE("Salesperson Code", TempSalesHeader."Salesperson Code");
-        IF NOT (TempSalesHeader."Campaign No." = '') THEN
-            NewSalesHeader.VALIDATE("Campaign No.", TempSalesHeader."Campaign No.");
-        IF NOT (TempSalesHeader."Responsibility Center" = '') THEN
-            NewSalesHeader.VALIDATE("Responsibility Center", TempSalesHeader."Responsibility Center");
-        IF NOT (TempSalesHeader."Shortcut Dimension 1 Code" = '') THEN
-            NewSalesHeader.VALIDATE("Shortcut Dimension 1 Code", TempSalesHeader."Shortcut Dimension 1 Code");
-        IF NOT (TempSalesHeader."Shortcut Dimension 2 Code" = '') THEN
-            NewSalesHeader.VALIDATE("Shortcut Dimension 2 Code", TempSalesHeader."Shortcut Dimension 2 Code");
-        IF NOT (TempSalesHeader."Payment Terms Code" = '') THEN
-            NewSalesHeader.VALIDATE("Payment Terms Code", TempSalesHeader."Payment Terms Code");
-        IF NOT (TempSalesHeader."Due Date" = 0D) THEN
-            NewSalesHeader.VALIDATE("Due Date", TempSalesHeader."Due Date");
-        IF NOT (TempSalesHeader."Payment Discount %" = 0) THEN
-            NewSalesHeader.VALIDATE("Payment Discount %", TempSalesHeader."Payment Discount %");
-        IF NOT (TempSalesHeader."Pmt. Discount Date" = 0D) THEN
-            NewSalesHeader.VALIDATE("Pmt. Discount Date", TempSalesHeader."Pmt. Discount Date");
-        IF NOT (TempSalesHeader."Payment Method Code" = '') THEN
-            NewSalesHeader.VALIDATE("Payment Method Code", TempSalesHeader."Payment Method Code");
-        IF NOT (TempSalesHeader."Location Code" = '') THEN
-            NewSalesHeader.VALIDATE("Location Code", TempSalesHeader."Location Code");
-        IF NOT (TempSalesHeader."Shipment Method Code" = '') THEN
-            NewSalesHeader.VALIDATE("Shipment Method Code", TempSalesHeader."Shipment Method Code");
-        IF NOT (TempSalesHeader."Shipping Agent Code" = '') THEN
-            NewSalesHeader.VALIDATE("Shipping Agent Code", TempSalesHeader."Shipping Agent Code");
-        IF NOT (TempSalesHeader."Shipping Agent Service Code" = '') THEN
-            NewSalesHeader.VALIDATE("Shipping Agent Service Code", TempSalesHeader."Shipping Agent Service Code");
-        IF NOT (TempSalesHeader."Package Tracking No." = '') THEN
-            NewSalesHeader.VALIDATE("Package Tracking No.", TempSalesHeader."Package Tracking No.");
-        IF NOT (TempSalesHeader."On Hold" = '') THEN
-            NewSalesHeader.VALIDATE("On Hold", TempSalesHeader."On Hold");
-        IF NOT (TempSalesHeader."VAT Registration No." = '') THEN
-            NewSalesHeader.VALIDATE("VAT Registration No.", TempSalesHeader."VAT Registration No.");
-        IF TempSalesHeader."Combine Shipments" THEN
-            NewSalesHeader.VALIDATE("Combine Shipments", TempSalesHeader."Combine Shipments");
-        IF NOT (TempSalesHeader."Reason Code" = '') THEN
-            NewSalesHeader.VALIDATE("Reason Code", TempSalesHeader."Reason Code");
-        IF NOT (TempSalesHeader."Transport Method" = '') THEN
-            NewSalesHeader.VALIDATE("Transport Method", TempSalesHeader."Transport Method");
-        IF NOT (TempSalesHeader."Tax Area Code" = '') THEN
-            NewSalesHeader.VALIDATE("Tax Area Code", TempSalesHeader."Tax Area Code");
-        IF NOT (TempSalesHeader."Your Reference" = '') THEN
-            NewSalesHeader.VALIDATE("Your Reference", TempSalesHeader."Your Reference");
-        IF NOT (TempSalesHeader."Shipment Date" = 0D) THEN
-            NewSalesHeader.VALIDATE("Shipment Date", TempSalesHeader."Shipment Date");
-        IF NOT (TempSalesHeader."Currency Code" = '') THEN
-            NewSalesHeader.VALIDATE("Currency Code", TempSalesHeader."Currency Code");
-        IF NOT (TempSalesHeader."Currency Factor" = 0) THEN
-            NewSalesHeader.VALIDATE("Currency Factor", TempSalesHeader."Currency Factor");
-        IF NOT (TempSalesHeader."Customer Posting Group" = '') THEN
-            NewSalesHeader.VALIDATE("Customer Posting Group", TempSalesHeader."Customer Posting Group");
-        IF NOT (TempSalesHeader."Customer Price Group" = '') THEN
-            NewSalesHeader.VALIDATE("Customer Price Group", TempSalesHeader."Customer Price Group");
-        IF TempSalesHeader."Prices Including VAT" THEN
-            NewSalesHeader.VALIDATE("Prices Including VAT", TempSalesHeader."Prices Including VAT");
-        IF NOT (TempSalesHeader."Invoice Disc. Code" = '') THEN
-            NewSalesHeader.VALIDATE("Invoice Disc. Code", TempSalesHeader."Invoice Disc. Code");
-        IF NOT (TempSalesHeader."Customer Disc. Group" = '') THEN
-            NewSalesHeader.VALIDATE("Customer Disc. Group", TempSalesHeader."Customer Disc. Group");
-        NewSalesHeader."Plant Code" := TempSalesHeader."Plant Code";
-        NewSalesHeader."Dock Code" := TempSalesHeader."Dock Code";
+        IF NOT ("Sales Header"."Posting Date" = 0D) THEN
+            NewSalesHeader.VALIDATE("Posting Date", "Sales Header"."Posting Date");
+        IF NOT ("Sales Header"."Order Date" = 0D) THEN
+            NewSalesHeader.VALIDATE("Order Date", "Sales Header"."Order Date");
+        IF NOT ("Sales Header"."Document Date" = 0D) THEN
+            NewSalesHeader.VALIDATE("Document Date", "Sales Header"."Document Date");
+        IF NOT ("Sales Header"."Requested Delivery Date" = 0D) THEN
+            NewSalesHeader.VALIDATE("Requested Delivery Date", "Sales Header"."Requested Delivery Date");
+        IF NOT ("Sales Header"."Promised Delivery Date" = 0D) THEN
+            NewSalesHeader.VALIDATE("Promised Delivery Date", "Sales Header"."Promised Delivery Date");
+        IF NOT ("Sales Header"."External Document No." = '') THEN
+            NewSalesHeader.VALIDATE("External Document No.", "Sales Header"."External Document No.");
+        IF NOT ("Sales Header"."Salesperson Code" = '') THEN
+            NewSalesHeader.VALIDATE("Salesperson Code", "Sales Header"."Salesperson Code");
+        IF NOT ("Sales Header"."Campaign No." = '') THEN
+            NewSalesHeader.VALIDATE("Campaign No.", "Sales Header"."Campaign No.");
+        IF NOT ("Sales Header"."Responsibility Center" = '') THEN
+            NewSalesHeader.VALIDATE("Responsibility Center", "Sales Header"."Responsibility Center");
+        IF NOT ("Sales Header"."Shortcut Dimension 1 Code" = '') THEN
+            NewSalesHeader.VALIDATE("Shortcut Dimension 1 Code", "Sales Header"."Shortcut Dimension 1 Code");
+        IF NOT ("Sales Header"."Shortcut Dimension 2 Code" = '') THEN
+            NewSalesHeader.VALIDATE("Shortcut Dimension 2 Code", "Sales Header"."Shortcut Dimension 2 Code");
+        IF NOT ("Sales Header"."Payment Terms Code" = '') THEN
+            NewSalesHeader.VALIDATE("Payment Terms Code", "Sales Header"."Payment Terms Code");
+        IF NOT ("Sales Header"."Due Date" = 0D) THEN
+            NewSalesHeader.VALIDATE("Due Date", "Sales Header"."Due Date");
+        IF NOT ("Sales Header"."Payment Discount %" = 0) THEN
+            NewSalesHeader.VALIDATE("Payment Discount %", "Sales Header"."Payment Discount %");
+        IF NOT ("Sales Header"."Pmt. Discount Date" = 0D) THEN
+            NewSalesHeader.VALIDATE("Pmt. Discount Date", "Sales Header"."Pmt. Discount Date");
+        IF NOT ("Sales Header"."Payment Method Code" = '') THEN
+            NewSalesHeader.VALIDATE("Payment Method Code", "Sales Header"."Payment Method Code");
+        IF NOT ("Sales Header"."Location Code" = '') THEN
+            NewSalesHeader.VALIDATE("Location Code", "Sales Header"."Location Code");
+        IF NOT ("Sales Header"."Shipment Method Code" = '') THEN
+            NewSalesHeader.VALIDATE("Shipment Method Code", "Sales Header"."Shipment Method Code");
+        IF NOT ("Sales Header"."Shipping Agent Code" = '') THEN
+            NewSalesHeader.VALIDATE("Shipping Agent Code", "Sales Header"."Shipping Agent Code");
+        IF NOT ("Sales Header"."Shipping Agent Service Code" = '') THEN
+            NewSalesHeader.VALIDATE("Shipping Agent Service Code", "Sales Header"."Shipping Agent Service Code");
+        IF NOT ("Sales Header"."Package Tracking No." = '') THEN
+            NewSalesHeader.VALIDATE("Package Tracking No.", "Sales Header"."Package Tracking No.");
+        IF NOT ("Sales Header"."On Hold" = '') THEN
+            NewSalesHeader.VALIDATE("On Hold", "Sales Header"."On Hold");
+        IF NOT ("Sales Header"."VAT Registration No." = '') THEN
+            NewSalesHeader.VALIDATE("VAT Registration No.", "Sales Header"."VAT Registration No.");
+        IF "Sales Header"."Combine Shipments" THEN
+            NewSalesHeader.VALIDATE("Combine Shipments", "Sales Header"."Combine Shipments");
+        IF NOT ("Sales Header"."Reason Code" = '') THEN
+            NewSalesHeader.VALIDATE("Reason Code", "Sales Header"."Reason Code");
+        IF NOT ("Sales Header"."Transport Method" = '') THEN
+            NewSalesHeader.VALIDATE("Transport Method", "Sales Header"."Transport Method");
+        IF NOT ("Sales Header"."Tax Area Code" = '') THEN
+            NewSalesHeader.VALIDATE("Tax Area Code", "Sales Header"."Tax Area Code");
+        IF NOT ("Sales Header"."Your Reference" = '') THEN
+            NewSalesHeader.VALIDATE("Your Reference", "Sales Header"."Your Reference");
+        IF NOT ("Sales Header"."Shipment Date" = 0D) THEN
+            NewSalesHeader.VALIDATE("Shipment Date", "Sales Header"."Shipment Date");
+        IF NOT ("Sales Header"."Currency Code" = '') THEN
+            NewSalesHeader.VALIDATE("Currency Code", "Sales Header"."Currency Code");
+        IF NOT ("Sales Header"."Currency Factor" = 0) THEN
+            NewSalesHeader.VALIDATE("Currency Factor", "Sales Header"."Currency Factor");
+        IF NOT ("Sales Header"."Customer Posting Group" = '') THEN
+            NewSalesHeader.VALIDATE("Customer Posting Group", "Sales Header"."Customer Posting Group");
+        IF NOT ("Sales Header"."Customer Price Group" = '') THEN
+            NewSalesHeader.VALIDATE("Customer Price Group", "Sales Header"."Customer Price Group");
+        IF "Sales Header"."Prices Including VAT" THEN
+            NewSalesHeader.VALIDATE("Prices Including VAT", "Sales Header"."Prices Including VAT");
+        IF NOT ("Sales Header"."Invoice Disc. Code" = '') THEN
+            NewSalesHeader.VALIDATE("Invoice Disc. Code", "Sales Header"."Invoice Disc. Code");
+        IF NOT ("Sales Header"."Customer Disc. Group" = '') THEN
+            NewSalesHeader.VALIDATE("Customer Disc. Group", "Sales Header"."Customer Disc. Group");
+        NewSalesHeader."Plant Code" := "Sales Header"."Plant Code";
+        NewSalesHeader."Dock Code" := "Sales Header"."Dock Code";
         NewSalesHeader.MODIFY(TRUE);
     end;
 
     local procedure ModSalesLines()
     begin
-        NewSalesLine.VALIDATE(Type, TempSalesLine.Type);
-        NewSalesLine.VALIDATE("No.", TempSalesLine."No.");
+        NewSalesLine.VALIDATE(Type, "Sales Line".Type);
+        NewSalesLine.VALIDATE("No.", "Sales Line"."No.");
 
-        IF NOT (TempSalesLine."EDI Line No." = 0) THEN
-            NewSalesLine.VALIDATE("EDI Line No.", TempSalesLine."EDI Line No.");
+        IF NOT ("Sales Line"."EDI Line No." = 0) THEN
+            NewSalesLine.VALIDATE("EDI Line No.", "Sales Line"."EDI Line No.");
 
-        IF NOT (TempSalesLine."EDI Item Cross Ref." = '') THEN
-            NewSalesLine.VALIDATE("EDI Item Cross Ref.", TempSalesLine."EDI Item Cross Ref.");
+        //TODO
+        /*  IF NOT ("Sales Line"."EDI Item Cross Ref." = '') THEN
+             NewSalesLine.VALIDATE("EDI Item Cross Ref.", "Sales Line"."EDI Item Cross Ref."); */
+        //TODO
 
-        IF NOT (TempSalesLine."Location Code" = '') THEN
-            NewSalesLine.VALIDATE("Location Code", TempSalesLine."Location Code");
+        IF NOT ("Sales Line"."Location Code" = '') THEN
+            NewSalesLine.VALIDATE("Location Code", "Sales Line"."Location Code");
 
-        IF NOT (TempSalesLine."Shipment Date" = 0D) THEN
-            NewSalesLine.VALIDATE("Shipment Date", TempSalesLine."Shipment Date");
+        IF NOT ("Sales Line"."Shipment Date" = 0D) THEN
+            NewSalesLine.VALIDATE("Shipment Date", "Sales Line"."Shipment Date");
 
 
-        IF NOT (TempSalesLine."Unit of Measure Code" = '') THEN
-            NewSalesLine.VALIDATE("Unit of Measure Code", TempSalesLine."Unit of Measure Code");
-        IF NOT (TempSalesLine.Quantity = 0) THEN
-            NewSalesLine.VALIDATE(Quantity, TempSalesLine.Quantity);
-        IF NOT (TempSalesLine."Unit Price" = 0) THEN
-            NewSalesLine.VALIDATE("Unit Price", TempSalesLine."Unit Price");
+        IF NOT ("Sales Line"."Unit of Measure Code" = '') THEN
+            NewSalesLine.VALIDATE("Unit of Measure Code", "Sales Line"."Unit of Measure Code");
+        IF NOT ("Sales Line".Quantity = 0) THEN
+            NewSalesLine.VALIDATE(Quantity, "Sales Line".Quantity);
+        IF NOT ("Sales Line"."Unit Price" = 0) THEN
+            NewSalesLine.VALIDATE("Unit Price", "Sales Line"."Unit Price");
 
-        IF NOT (TempSalesLine.Description = '') THEN
-            NewSalesLine.VALIDATE(Description, TempSalesLine.Description);
-        IF NOT (TempSalesLine."Description 2" = '') THEN
-            NewSalesLine.VALIDATE("Description 2", TempSalesLine."Description 2");
+        IF NOT ("Sales Line".Description = '') THEN
+            NewSalesLine.VALIDATE(Description, "Sales Line".Description);
+        IF NOT ("Sales Line"."Description 2" = '') THEN
+            NewSalesLine.VALIDATE("Description 2", "Sales Line"."Description 2");
 
-        IF NOT (TempSalesLine."Tax Group Code" = '') THEN
-            NewSalesLine.VALIDATE("Tax Group Code", TempSalesLine."Tax Group Code");
-        IF NOT (TempSalesLine."Line Amount" = 0) THEN
-            NewSalesLine.VALIDATE("Line Amount", TempSalesLine."Line Amount");
-        IF NOT (TempSalesLine."Amount Including VAT" = 0) THEN
-            NewSalesLine.VALIDATE("Amount Including VAT", TempSalesLine."Amount Including VAT");
-        IF NOT (TempSalesLine."Line Discount %" = 0) THEN
-            NewSalesLine.VALIDATE("Line Discount %", TempSalesLine."Line Discount %");
-        IF NOT (TempSalesLine."Line Discount Amount" = 0) THEN
-            NewSalesLine.VALIDATE("Line Discount Amount", TempSalesLine."Line Discount Amount");
-        //jrr 17Mar16
-        IF NOT (TempSalesLine."External Document No." = '') THEN
-            NewSalesLine.VALIDATE("External Document No.", TempSalesLine."External Document No.");
-        //jrr 17Mar16 end
+        IF NOT ("Sales Line"."Tax Group Code" = '') THEN
+            NewSalesLine.VALIDATE("Tax Group Code", "Sales Line"."Tax Group Code");
+        IF NOT ("Sales Line"."Line Amount" = 0) THEN
+            NewSalesLine.VALIDATE("Line Amount", "Sales Line"."Line Amount");
+        IF NOT ("Sales Line"."Amount Including VAT" = 0) THEN
+            NewSalesLine.VALIDATE("Amount Including VAT", "Sales Line"."Amount Including VAT");
+        IF NOT ("Sales Line"."Line Discount %" = 0) THEN
+            NewSalesLine.VALIDATE("Line Discount %", "Sales Line"."Line Discount %");
+        IF NOT ("Sales Line"."Line Discount Amount" = 0) THEN
+            NewSalesLine.VALIDATE("Line Discount Amount", "Sales Line"."Line Discount Amount");
+        //TODO
+        /*  //jrr 17Mar16
+         IF NOT ("Sales Line"."External Document No." = '') THEN
+             NewSalesLine.VALIDATE("External Document No.", "Sales Line"."External Document No.");
+         //jrr 17Mar16 end
+        */
+        //TODO
+        IF NOT ("Sales Line"."Certificate No." = '') THEN
+            NewSalesLine.VALIDATE("Certificate No.", "Sales Line"."Certificate No.");
 
-        IF NOT (TempSalesLine."Certificate No." = '') THEN
-            NewSalesLine.VALIDATE("Certificate No.", TempSalesLine."Certificate No.");
+        IF NOT ("Sales Line"."Drawing No." = '') THEN
+            NewSalesLine.VALIDATE("Drawing No.", "Sales Line"."Drawing No.");
 
-        IF NOT (TempSalesLine."Drawing No." = '') THEN
-            NewSalesLine.VALIDATE("Drawing No.", TempSalesLine."Drawing No.");
+        IF NOT ("Sales Line"."Revision No." = '') THEN
+            NewSalesLine.VALIDATE("Revision No.", "Sales Line"."Revision No.");
 
-        IF NOT (TempSalesLine."Revision No." = '') THEN
-            NewSalesLine.VALIDATE("Revision No.", TempSalesLine."Revision No.");
+        IF NOT ("Sales Line"."Revision Date" = 0D) THEN
+            NewSalesLine.VALIDATE("Revision Date", "Sales Line"."Revision Date");
 
-        IF NOT (TempSalesLine."Revision Date" = 0D) THEN
-            NewSalesLine.VALIDATE("Revision Date", TempSalesLine."Revision Date");
+        IF NOT ("Sales Line"."Total Parcels" = 0) THEN
+            NewSalesLine.VALIDATE("Total Parcels", "Sales Line"."Total Parcels");
 
-        IF NOT (TempSalesLine."Total Parcels" = 0) THEN
-            NewSalesLine.VALIDATE("Total Parcels", TempSalesLine."Total Parcels");
+        IF NOT ("Sales Line"."Storage Location" = '') THEN
+            NewSalesLine.VALIDATE("Storage Location", "Sales Line"."Storage Location");
 
-        IF NOT (TempSalesLine."Storage Location" = '') THEN
-            NewSalesLine.VALIDATE("Storage Location", TempSalesLine."Storage Location");
+        IF NOT ("Sales Line"."Line Supply Location" = '') THEN
+            NewSalesLine.VALIDATE("Line Supply Location", "Sales Line"."Line Supply Location");
 
-        IF NOT (TempSalesLine."Line Supply Location" = '') THEN
-            NewSalesLine.VALIDATE("Line Supply Location", TempSalesLine."Line Supply Location");
+        IF NOT ("Sales Line"."Deliver To" = '') THEN
+            NewSalesLine.VALIDATE("Deliver To", "Sales Line"."Deliver To");
 
-        IF NOT (TempSalesLine."Deliver To" = '') THEN
-            NewSalesLine.VALIDATE("Deliver To", TempSalesLine."Deliver To");
+        IF NOT ("Sales Line"."Receiving Area" = '') THEN
+            NewSalesLine.VALIDATE("Receiving Area", "Sales Line"."Receiving Area");
 
-        IF NOT (TempSalesLine."Receiving Area" = '') THEN
-            NewSalesLine.VALIDATE("Receiving Area", TempSalesLine."Receiving Area");
+        IF NOT ("Sales Line"."Ran No." = '') THEN
+            NewSalesLine.VALIDATE("Ran No.", "Sales Line"."Ran No.");
 
-        IF NOT (TempSalesLine."Ran No." = '') THEN
-            NewSalesLine.VALIDATE("Ran No.", TempSalesLine."Ran No.");
+        IF NOT ("Sales Line"."Container No." = '') THEN
+            NewSalesLine.VALIDATE("Container No.", "Sales Line"."Container No.");
 
-        IF NOT (TempSalesLine."Container No." = '') THEN
-            NewSalesLine.VALIDATE("Container No.", TempSalesLine."Container No.");
+        IF NOT ("Sales Line"."Kanban No." = '') THEN
+            NewSalesLine.VALIDATE("Kanban No.", "Sales Line"."Kanban No.");
 
-        IF NOT (TempSalesLine."Kanban No." = '') THEN
-            NewSalesLine.VALIDATE("Kanban No.", TempSalesLine."Kanban No.");
+        IF NOT ("Sales Line"."Res. Mfg." = '') THEN
+            NewSalesLine.VALIDATE("Res. Mfg.", "Sales Line"."Res. Mfg.");
 
-        IF NOT (TempSalesLine."Res. Mfg." = '') THEN
-            NewSalesLine.VALIDATE("Res. Mfg.", TempSalesLine."Res. Mfg.");
+        IF NOT ("Sales Line"."Release No." = '') THEN
+            NewSalesLine.VALIDATE("Release No.", "Sales Line"."Release No.");
 
-        IF NOT (TempSalesLine."Release No." = '') THEN
-            NewSalesLine.VALIDATE("Release No.", TempSalesLine."Release No.");
+        IF NOT ("Sales Line"."Mfg. Date" = 0D) THEN
+            NewSalesLine.VALIDATE("Mfg. Date", "Sales Line"."Mfg. Date");
 
-        IF NOT (TempSalesLine."Mfg. Date" = 0D) THEN
-            NewSalesLine.VALIDATE("Mfg. Date", TempSalesLine."Mfg. Date");
+        IF NOT ("Sales Line"."Man No." = '') THEN
+            NewSalesLine.VALIDATE("Man No.", "Sales Line"."Man No.");
 
-        IF NOT (TempSalesLine."Man No." = '') THEN
-            NewSalesLine.VALIDATE("Man No.", TempSalesLine."Man No.");
+        IF NOT ("Sales Line"."Delivery Order No." = '') THEN
+            NewSalesLine.VALIDATE("Delivery Order No.", "Sales Line"."Delivery Order No.");
 
-        IF NOT (TempSalesLine."Delivery Order No." = '') THEN
-            NewSalesLine.VALIDATE("Delivery Order No.", TempSalesLine."Delivery Order No.");
+        IF NOT ("Sales Line"."Plant Code" = '') THEN
+            NewSalesLine.VALIDATE("Plant Code", "Sales Line"."Plant Code");
 
-        IF NOT (TempSalesLine."Plant Code" = '') THEN
-            NewSalesLine.VALIDATE("Plant Code", TempSalesLine."Plant Code");
+        IF NOT ("Sales Line"."Dock Code" = '') THEN
+            NewSalesLine.VALIDATE("Dock Code", "Sales Line"."Dock Code");
 
-        IF NOT (TempSalesLine."Dock Code" = '') THEN
-            NewSalesLine.VALIDATE("Dock Code", TempSalesLine."Dock Code");
+        IF NOT ("Sales Line"."Box Weight" = 0) THEN
+            NewSalesLine.VALIDATE("Box Weight", "Sales Line"."Box Weight");
 
-        IF NOT (TempSalesLine."Box Weight" = 0) THEN
-            NewSalesLine.VALIDATE("Box Weight", TempSalesLine."Box Weight");
+        IF NOT ("Sales Line"."Store Address" = '') THEN
+            NewSalesLine.VALIDATE("Store Address", "Sales Line"."Store Address");
 
-        IF NOT (TempSalesLine."Store Address" = '') THEN
-            NewSalesLine.VALIDATE("Store Address", TempSalesLine."Store Address");
+        IF NOT ("Sales Line"."FRS No." = '') THEN
+            NewSalesLine.VALIDATE("FRS No.", "Sales Line"."FRS No.");
 
-        IF NOT (TempSalesLine."FRS No." = '') THEN
-            NewSalesLine.VALIDATE("FRS No.", TempSalesLine."FRS No.");
+        IF NOT ("Sales Line"."Main Route" = '') THEN
+            NewSalesLine.VALIDATE("Main Route", "Sales Line"."Main Route");
 
-        IF NOT (TempSalesLine."Main Route" = '') THEN
-            NewSalesLine.VALIDATE("Main Route", TempSalesLine."Main Route");
+        IF NOT ("Sales Line"."Line Side Address" = '') THEN
+            NewSalesLine.VALIDATE("Line Side Address", "Sales Line"."Line Side Address");
 
-        IF NOT (TempSalesLine."Line Side Address" = '') THEN
-            NewSalesLine.VALIDATE("Line Side Address", TempSalesLine."Line Side Address");
+        IF NOT ("Sales Line"."Sub Route Number" = '') THEN
+            NewSalesLine.VALIDATE("Sub Route Number", "Sales Line"."Sub Route Number");
 
-        IF NOT (TempSalesLine."Sub Route Number" = '') THEN
-            NewSalesLine.VALIDATE("Sub Route Number", TempSalesLine."Sub Route Number");
+        IF NOT ("Sales Line"."Special Markings" = '') THEN
+            NewSalesLine.VALIDATE("Special Markings", "Sales Line"."Special Markings");
 
-        IF NOT (TempSalesLine."Special Markings" = '') THEN
-            NewSalesLine.VALIDATE("Special Markings", TempSalesLine."Special Markings");
+        IF NOT ("Sales Line"."Eng. Change No." = '') THEN
+            NewSalesLine.VALIDATE("Eng. Change No.", "Sales Line"."Eng. Change No.");
 
-        IF NOT (TempSalesLine."Eng. Change No." = '') THEN
-            NewSalesLine.VALIDATE("Eng. Change No.", TempSalesLine."Eng. Change No.");
+        IF NOT ("Sales Line"."Group Code" = '') THEN
+            NewSalesLine.VALIDATE("Group Code", "Sales Line"."Group Code");
 
-        IF NOT (TempSalesLine."Group Code" = '') THEN
-            NewSalesLine.VALIDATE("Group Code", TempSalesLine."Group Code");
-
-        IF NOT (TempSalesLine."Model Year" = '') THEN
-            NewSalesLine.VALIDATE("Model Year", TempSalesLine."Model Year");
+        IF NOT ("Sales Line"."Model Year" = '') THEN
+            NewSalesLine.VALIDATE("Model Year", "Sales Line"."Model Year");
 
         NewSalesLine.MODIFY(TRUE);
     end;
 
     local procedure GetNewLineNo(): Integer
     var
-        SalesLine: Record "37";
+        SalesLine: Record "Sales Line";
     begin
-        SalesLine.LOCKTABLE;
-        SalesLine.RESET;
+        SalesLine.LOCKTABLE();
+        SalesLine.RESET();
         SalesLine.SETRANGE("Document Type", NewSalesHeader."Document Type");
         SalesLine.SETRANGE("Document No.", NewSalesHeader."No.");
-        IF SalesLine.FINDLAST THEN
+        IF SalesLine.FINDLAST() THEN
             EXIT(SalesLine."Line No." + 10000)
         ELSE
             EXIT(10000);
     end;
 
-    local procedure RepalceString(var String1: Code[20]; String2: Text; String3: Text)
-    var
-        AantalPos: Integer;
-        Deel1: Text;
-        Deel2: Text;
-    begin
-        //>> NF1.00:CIS.NG 10/30/15
-        AantalPos := STRPOS(String1, String2);
-        IF AantalPos <> 0 THEN BEGIN
-            IF AantalPos > 1 THEN
-                Deel1 := COPYSTR(String1, 1, AantalPos - 1);
-            IF AantalPos <> STRLEN(String1) - (STRLEN(String2) - 1) THEN
-                Deel2 := COPYSTR(String1, AantalPos + STRLEN(String2));
+    /*  local procedure RepalceString(var String1: Code[20]; String2: Text; String3: Text)
+     var
+         AantalPos: Integer;
+         Deel1: Text;
+         Deel2: Text;
+     begin
+         //>> NF1.00:CIS.NG 10/30/15
+         AantalPos := STRPOS(String1, String2);
+         IF AantalPos <> 0 THEN BEGIN
+             IF AantalPos > 1 THEN
+                 Deel1 := COPYSTR(String1, 1, AantalPos - 1);
+             IF AantalPos <> STRLEN(String1) - (STRLEN(String2) - 1) THEN
+                 Deel2 := COPYSTR(String1, AantalPos + STRLEN(String2));
 
-            String1 := Deel1 + String3 + Deel2;
-        END;
-        //<< NF1.00:CIS.NG 10/30/15
-    end;
+             String1 := Deel1 + String3 + Deel2;
+         END;
+         //<< NF1.00:CIS.NG 10/30/15
+     end; */
 
-    procedure DeleteItemTracking(var SalesLine_vRec: Record "37")
+    procedure DeleteItemTracking(var SalesLine_vRec: Record "Sales Line")
     var
-        ReserveSalesLine: Codeunit "99000832";
+        ReserveSalesLine: Codeunit "Sales Line-Reserve";
+        NewDeleteItemTracking: Boolean;
     begin
         //>> NF1.00:CIS.NG 11/16/15
         IF SalesLine_vRec.Type <> SalesLine_vRec.Type::Item THEN
@@ -1295,7 +1311,7 @@ xmlport 50000 "EDI Sales Order Import"
         IF NOT ReserveSalesLine.ReservEntryExist(SalesLine_vRec) THEN
             EXIT;
 
-        ReserveSalesLine.SetDeleteItemTracking;
+        ReserveSalesLine.SetDeleteItemTracking(NewDeleteItemTracking);
         ReserveSalesLine.DeleteLine(SalesLine_vRec);
         //<< NF1.00:CIS.NG 11/16/15
     end;

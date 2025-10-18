@@ -6,117 +6,131 @@ page 50001 "Master Customer List"
     CardPageID = "Customer Card";
     Editable = false;
     PageType = List;
-    SourceTable = Table18;
-    SourceTableView = SORTING(Master Customer No.);
+    UsageCategory = Lists;
+    SourceTable = Customer;
+    SourceTableView = SORTING("Master Customer No.");
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
                     StyleExpr = SetStyleText;
+                    ToolTip = 'Specifies the number of the customer. The field is either filled automatically from a defined number series, or you enter the number manually because you have enabled manual number entry in the number-series setup.';
                 }
-                field(Name;Name)
+                field(Name; Rec.Name)
                 {
                     StyleExpr = SetStyleText;
+                    ToolTip = 'Specifies the name of the customer.';
                 }
-                field(Balance;Balance)
+                field(Balance; Rec.Balance)
                 {
+                    ToolTip = 'Specifies the value of the Balance field.';
                 }
-                field("Balance Due";"Balance Due")
+                field("Balance Due"; Rec."Balance Due")
                 {
+                    ToolTip = 'Specifies the value of the Balance Due field.';
                 }
-                field("Outstanding Orders";"Outstanding Orders")
+                field("Outstanding Orders"; Rec."Outstanding Orders")
                 {
+                    ToolTip = 'Specifies the value of the Outstanding Orders field.';
                 }
-                field("Shipped Not Invoiced";"Shipped Not Invoiced")
+                field("Shipped Not Invoiced"; Rec."Shipped Not Invoiced")
                 {
+                    ToolTip = 'Specifies the value of the Shipped Not Invoiced field.';
                 }
-                field("Credit Limit (LCY)";"Credit Limit (LCY)")
+                field("Credit Limit (LCY)"; Rec."Credit Limit (LCY)")
                 {
-                    DecimalPlaces = 0:2;
+                    DecimalPlaces = 0 : 2;
+                    ToolTip = 'Specifies the maximum credit (in LCY) that can be extended to the customer.';
                 }
-                field("Balance (LCY)";"Balance (LCY)")
+                field("Balance (LCY)"; Rec."Balance (LCY)")
                 {
+                    ToolTip = 'Specifies the payment amount that the customer owes for completed sales. This value is also known as the customer''s balance.';
                 }
-                field("Balance Due (LCY)";"Balance Due (LCY)")
+                field("Balance Due (LCY)"; Rec."Balance Due (LCY)")
                 {
+                    ToolTip = 'Specifies the balance due for this customer in local currency.';
                 }
-                field("Outstanding Orders (LCY)";"Outstanding Orders (LCY)")
+                field("Outstanding Orders (LCY)"; Rec."Outstanding Orders (LCY)")
                 {
+                    ToolTip = 'Specifies the value of the Outstanding Orders (LCY) field.';
                 }
-                field("Shipped Not Invoiced (LCY)";"Shipped Not Invoiced (LCY)")
+                field("Shipped Not Invoiced (LCY)"; Rec."Shipped Not Invoiced (LCY)")
                 {
+                    ToolTip = 'Specifies the value of the Shipped Not Invoiced (LCY) field.';
                 }
-                field("Global Dimension 1 Code";"Global Dimension 1 Code")
+                field("Global Dimension 1 Code"; Rec."Global Dimension 1 Code")
                 {
+                    ToolTip = 'Specifies the value of the Division Code field.';
                 }
             }
         }
         area(factboxes)
         {
-            part(;9080)
+            part(SalesHistSelltoFactBox; "Sales Hist. Sell-to FactBox")
             {
-                SubPageLink = No.=FIELD(No.),
-                              Currency Filter=FIELD(Currency Filter),
-                              Date Filter=FIELD(Date Filter),
-                              Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                              Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter);
+                SubPageLink = "No." = FIELD("No."),
+                              "Currency Filter" = FIELD("Currency Filter"),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
                 Visible = true;
             }
-            part(;9081)
+            part(SalesHistBilltoFactBox; "Sales Hist. Bill-to FactBox")
             {
-                SubPageLink = No.=FIELD(No.),
-                              Currency Filter=FIELD(Currency Filter),
-                              Date Filter=FIELD(Date Filter),
-                              Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                              Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter);
+                SubPageLink = "No." = FIELD("No."),
+                              "Currency Filter" = FIELD("Currency Filter"),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
                 Visible = false;
             }
-            part(;9082)
+            part(CustomerStatisticsFactBox; "Customer Statistics FactBox")
             {
-                SubPageLink = No.=FIELD(No.),
-                              Currency Filter=FIELD(Currency Filter),
-                              Date Filter=FIELD(Date Filter),
-                              Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                              Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter);
+                SubPageLink = "No." = FIELD("No."),
+                              "Currency Filter" = FIELD("Currency Filter"),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
                 Visible = true;
             }
-            part(;9084)
+            part(CustomerDetailsFactBox; "Customer Details FactBox")
             {
-                SubPageLink = No.=FIELD(No.),
-                              Currency Filter=FIELD(Currency Filter),
-                              Date Filter=FIELD(Date Filter),
-                              Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                              Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter);
+                SubPageLink = "No." = FIELD("No."),
+                              "Currency Filter" = FIELD("Currency Filter"),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
                 Visible = false;
             }
-            part(;9085)
+            part(ServiceHistSelltoFactBox; "Service Hist. Sell-to FactBox")
             {
-                SubPageLink = No.=FIELD(No.),
-                              Currency Filter=FIELD(Currency Filter),
-                              Date Filter=FIELD(Date Filter),
-                              Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                              Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter);
+                SubPageLink = "No." = FIELD("No."),
+                              "Currency Filter" = FIELD("Currency Filter"),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
                 Visible = false;
             }
-            part(;9086)
+            part(ServiceHistBilltoFactBox; "Service Hist. Bill-to FactBox")
             {
-                SubPageLink = No.=FIELD(No.),
-                              Currency Filter=FIELD(Currency Filter),
-                              Date Filter=FIELD(Date Filter),
-                              Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                              Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter);
+                SubPageLink = "No." = FIELD("No."),
+                              "Currency Filter" = FIELD("Currency Filter"),
+                              "Date Filter" = FIELD("Date Filter"),
+                              "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                              "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
                 Visible = false;
             }
-            systempart(;Links)
+            systempart(Links; Links)
             {
                 Visible = true;
             }
-            systempart(;Notes)
+            systempart(Notes; Notes)
             {
                 Visible = true;
             }
@@ -135,9 +149,10 @@ page 50001 "Master Customer List"
                 {
                     Caption = 'Co&mments';
                     Image = ViewComments;
-                    RunObject = Page 50002;
-                    RunPageLink = Table Name=CONST(Customer),
-                                  No.=FIELD(No.);
+                    RunObject = Page "Customer Comment Sheet";
+                    RunPageLink = "Table Name" = CONST(Customer),
+                                  "No." = FIELD("No.");
+                    ToolTip = 'Executes the Co&mments action.';
                 }
                 group(Dimensions)
                 {
@@ -147,25 +162,27 @@ page 50001 "Master Customer List"
                     {
                         Caption = 'Dimensions-Single';
                         Image = Dimensions;
-                        RunObject = Page 540;
-                        RunPageLink = Table ID=CONST(18),
-                                      No.=FIELD(No.);
+                        RunObject = Page "Default Dimensions";
+                        RunPageLink = "Table ID" = CONST(18),
+                                      "No." = FIELD("No.");
                         ShortCutKey = 'Shift+Ctrl+D';
+                        ToolTip = 'Executes the Dimensions-Single action.';
                     }
                     action("Dimensions-&Multiple")
                     {
-                        AccessByPermission = TableData 348=R;
+                        AccessByPermission = TableData 348 = R;
                         Caption = 'Dimensions-&Multiple';
                         Image = DimensionSets;
+                        ToolTip = 'Executes the Dimensions-&Multiple action.';
 
                         trigger OnAction()
                         var
-                            Cust: Record "18";
-                            DefaultDimMultiple: Page "542";
+                            Cust: Record Customer;
+                            DefaultDimMultiple: Page "Default Dimensions-Multiple";
                         begin
                             CurrPage.SETSELECTIONFILTER(Cust);
                             DefaultDimMultiple.SetMultiCust(Cust);
-                            DefaultDimMultiple.RUNMODAL;
+                            DefaultDimMultiple.RUNMODAL();
                         end;
                     }
                 }
@@ -173,46 +190,48 @@ page 50001 "Master Customer List"
                 {
                     Caption = 'Bank Accounts';
                     Image = BankAccount;
-                    RunObject = Page 424;
-                    RunPageLink = Customer No.=FIELD(No.);
+                    RunObject = Page "Customer Bank Account List";
+                    RunPageLink = "Customer No." = FIELD("No.");
+                    ToolTip = 'Executes the Bank Accounts action.';
                 }
                 action("Direct Debit Mandates")
                 {
                     Caption = 'Direct Debit Mandates';
                     Image = MakeAgreement;
-                    RunObject = Page 1230;
-                    RunPageLink = Customer No.=FIELD(No.);
+                    RunObject = Page "SEPA Direct Debit Mandates";
+                    RunPageLink = "Customer No." = FIELD("No.");
+                    ToolTip = 'Executes the Direct Debit Mandates action.';
                 }
                 action("Ship-&to Addresses")
                 {
                     Caption = 'Ship-&to Addresses';
                     Image = ShipAddress;
-                    RunObject = Page 301;
-                    RunPageLink = Customer No.=FIELD(No.);
+                    RunObject = Page "Ship-to Address List";
+                    RunPageLink = "Customer No." = FIELD("No.");
+                    ToolTip = 'Executes the Ship-&to Addresses action.';
                 }
                 action("C&ontact")
                 {
-                    AccessByPermission = TableData 5050=R;
+                    AccessByPermission = TableData Contact = R;
                     Caption = 'C&ontact';
                     Image = ContactPerson;
+                    ToolTip = 'Executes the C&ontact action.';
 
                     trigger OnAction()
                     begin
-                        ShowContact;
+                        rec.ShowContact();
                     end;
                 }
-                action("Cross Re&ferences")
-                {
-                    Caption = 'Cross Re&ferences';
-                    Image = Change;
-                    RunObject = Page 5723;
-                    RunPageLink = Cross-Reference Type=CONST(Customer),
-                                  Cross-Reference Type No.=FIELD(No.);
-                    RunPageView = SORTING(Cross-Reference Type,Cross-Reference Type No.);
-                }
-                separator()
-                {
-                }
+                /*   action("Cross Re&ferences")
+                  {
+                      Caption = 'Cross Re&ferences';
+                      Image = Change;
+                      RunObject = Page 5723;
+                      RunPageLink = "Cross-Reference Type" = CONST(Customer),
+                                    "Cross-Reference Type No." = FIELD("No.");
+                      RunPageView = SORTING("Cross-Reference Type", "Cross-Reference Type No.");
+                      ToolTip = 'Executes the Cross Re&ferences action.';
+                  } */
             }
             group(History)
             {
@@ -224,10 +243,11 @@ page 50001 "Master Customer List"
                     Image = CustomerLedger;
                     Promoted = true;
                     PromotedCategory = Process;
-                    RunObject = Page 25;
-                    RunPageLink = Customer No.=FIELD(No.);
-                    RunPageView = SORTING(Customer No.);
+                    RunObject = Page "Customer Ledger Entries";
+                    RunPageLink = "Customer No." = FIELD("No.");
+                    RunPageView = SORTING("Customer No.");
                     ShortCutKey = 'Ctrl+F7';
+                    ToolTip = 'Executes the Ledger E&ntries action.';
                 }
                 action(Statistics)
                 {
@@ -235,56 +255,61 @@ page 50001 "Master Customer List"
                     Image = Statistics;
                     Promoted = true;
                     PromotedCategory = Process;
-                    RunObject = Page 151;
-                    RunPageLink = No.=FIELD(No.),
-                                  Date Filter=FIELD(Date Filter),
-                                  Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                                  Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter);
+                    RunObject = Page "Customer Statistics";
+                    RunPageLink = "No." = FIELD("No."),
+                                  "Date Filter" = FIELD("Date Filter"),
+                                  "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                                  "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
                     ShortCutKey = 'F7';
+                    ToolTip = 'Executes the Statistics action.';
                 }
                 action("S&ales")
                 {
                     Caption = 'S&ales';
                     Image = Sales;
-                    RunObject = Page 155;
-                    RunPageLink = No.=FIELD(No.),
-                                  Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                                  Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter);
+                    RunObject = Page "Customer Sales";
+                    RunPageLink = "No." = FIELD("No."),
+                                  "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                                  "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
+                    ToolTip = 'Executes the S&ales action.';
                 }
                 action("Entry Statistics")
                 {
                     Caption = 'Entry Statistics';
                     Image = EntryStatistics;
-                    RunObject = Page 302;
-                    RunPageLink = No.=FIELD(No.),
-                                  Date Filter=FIELD(Date Filter),
-                                  Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                                  Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter);
+                    RunObject = Page "Customer Entry Statistics";
+                    RunPageLink = "No." = FIELD("No."),
+                                  "Date Filter" = FIELD("Date Filter"),
+                                  "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                                  "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
+                    ToolTip = 'Executes the Entry Statistics action.';
                 }
                 action("Statistics by C&urrencies")
                 {
                     Caption = 'Statistics by C&urrencies';
                     Image = Currencies;
-                    RunObject = Page 486;
-                    RunPageLink = Customer Filter=FIELD(No.),
-                                  Global Dimension 1 Filter=FIELD(Global Dimension 1 Filter),
-                                  Global Dimension 2 Filter=FIELD(Global Dimension 2 Filter),
-                                  Date Filter=FIELD(Date Filter);
+                    RunObject = Page "Cust. Stats. by Curr. Lines";
+                    RunPageLink = "Customer Filter" = FIELD("No."),
+                                  "Global Dimension 1 Filter" = FIELD("Global Dimension 1 Filter"),
+                                  "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter"),
+                                  "Date Filter" = FIELD("Date Filter");
+                    ToolTip = 'Executes the Statistics by C&urrencies action.';
                 }
                 action("Item &Tracking Entries")
                 {
                     Caption = 'Item &Tracking Entries';
                     Image = ItemTrackingLedger;
+                    ToolTip = 'Executes the Item &Tracking Entries action.';
 
                     trigger OnAction()
                     var
-                        ItemTrackingMgt: Codeunit "6500";
+                        ItemTrackingMgt: Codeunit "Item Tracking Management";
                     begin
-                        ItemTrackingMgt.CallItemTrackingEntryForm(1,"No.",'','','','','');
+                        ItemTrackingMgt.CallItemTrackingEntryForm(1, Rec."No.", '', '', '', '', '');
                     end;
                 }
             }
-            group("S&ales")
+            group("S&aless")
             {
                 Caption = 'S&ales';
                 Image = Sales;
@@ -292,42 +317,47 @@ page 50001 "Master Customer List"
                 {
                     Caption = 'Invoice &Discounts';
                     Image = CalculateInvoiceDiscount;
-                    RunObject = Page 23;
-                    RunPageLink = Code=FIELD(Invoice Disc. Code);
+                    RunObject = Page "Cust. Invoice Discounts";
+                    RunPageLink = Code = FIELD("Invoice Disc. Code");
+                    ToolTip = 'Executes the Invoice &Discounts action.';
                 }
                 action(Prices)
                 {
                     Caption = 'Prices';
                     Image = Price;
-                    RunObject = Page 7002;
-                    RunPageLink = Sales Type=CONST(Customer),
-                                  Sales Code=FIELD(No.);
-                    RunPageView = SORTING(Sales Type,Sales Code);
+                    RunObject = Page "Sales Prices";
+                    RunPageLink = "Sales Type" = CONST(Customer),
+                                  "Sales Code" = FIELD("No.");
+                    RunPageView = SORTING("Sales Type", "Sales Code");
+                    ToolTip = 'Executes the Prices action.';
                 }
                 action("Line Discounts")
                 {
                     Caption = 'Line Discounts';
                     Image = LineDiscount;
-                    RunObject = Page 7004;
-                    RunPageLink = Sales Type=CONST(Customer),
-                                  Sales Code=FIELD(No.);
-                    RunPageView = SORTING(Sales Type,Sales Code);
+                    RunObject = Page "Sales Line Discounts";
+                    RunPageLink = "Sales Type" = CONST(Customer),
+                                  "Sales Code" = FIELD("No.");
+                    RunPageView = SORTING("Sales Type", "Sales Code");
+                    ToolTip = 'Executes the Line Discounts action.';
                 }
                 action("Prepa&yment Percentages")
                 {
                     Caption = 'Prepa&yment Percentages';
                     Image = PrepaymentPercentages;
-                    RunObject = Page 664;
-                    RunPageLink = Sales Type=CONST(Customer),
-                                  Sales Code=FIELD(No.);
-                    RunPageView = SORTING(Sales Type,Sales Code);
+                    RunObject = Page "Sales Prepayment Percentages";
+                    RunPageLink = "Sales Type" = CONST(Customer),
+                                  "Sales Code" = FIELD("No.");
+                    RunPageView = SORTING("Sales Type", "Sales Code");
+                    ToolTip = 'Executes the Prepa&yment Percentages action.';
                 }
                 action("S&td. Cust. Sales Codes")
                 {
                     Caption = 'S&td. Cust. Sales Codes';
                     Image = CodesList;
-                    RunObject = Page 173;
-                    RunPageLink = Customer No.=FIELD(No.);
+                    RunObject = Page "Standard Customer Sales Codes";
+                    RunPageLink = "Customer No." = FIELD("No.");
+                    ToolTip = 'Executes the S&td. Cust. Sales Codes action.';
                 }
             }
             group(Documents)
@@ -338,25 +368,28 @@ page 50001 "Master Customer List"
                 {
                     Caption = 'Quotes';
                     Image = Quote;
-                    RunObject = Page 9300;
-                    RunPageLink = Sell-to Customer No.=FIELD(No.);
-                    RunPageView = SORTING(Sell-to Customer No.);
+                    RunObject = Page "Sales Quotes";
+                    RunPageLink = "Sell-to Customer No." = FIELD("No.");
+                    RunPageView = SORTING("Sell-to Customer No.");
+                    ToolTip = 'Executes the Quotes action.';
                 }
                 action(Orders)
                 {
                     Caption = 'Orders';
                     Image = Document;
-                    RunObject = Page 9305;
-                    RunPageLink = Sell-to Customer No.=FIELD(No.);
-                    RunPageView = SORTING(Sell-to Customer No.);
+                    RunObject = Page "Sales Order List";
+                    RunPageLink = "Sell-to Customer No." = FIELD("No.");
+                    RunPageView = SORTING("Sell-to Customer No.");
+                    ToolTip = 'Executes the Orders action.';
                 }
                 action("Return Orders")
                 {
                     Caption = 'Return Orders';
                     Image = ReturnOrder;
-                    RunObject = Page 9304;
-                    RunPageLink = Sell-to Customer No.=FIELD(No.);
-                    RunPageView = SORTING(Sell-to Customer No.);
+                    RunObject = Page "Sales Return Order List";
+                    RunPageLink = "Sell-to Customer No." = FIELD("No.");
+                    RunPageView = SORTING("Sell-to Customer No.");
+                    ToolTip = 'Executes the Return Orders action.';
                 }
                 group("Issued Documents")
                 {
@@ -366,26 +399,29 @@ page 50001 "Master Customer List"
                     {
                         Caption = 'Issued &Reminders';
                         Image = OrderReminder;
-                        RunObject = Page 440;
-                        RunPageLink = Customer No.=FIELD(No.);
-                        RunPageView = SORTING(Customer No.,Posting Date);
+                        RunObject = Page "Issued Reminder List";
+                        RunPageLink = "Customer No." = FIELD("No.");
+                        RunPageView = SORTING("Customer No.", "Posting Date");
+                        ToolTip = 'Executes the Issued &Reminders action.';
                     }
                     action("Issued &Finance Charge Memos")
                     {
                         Caption = 'Issued &Finance Charge Memos';
                         Image = FinChargeMemo;
-                        RunObject = Page 452;
-                        RunPageLink = Customer No.=FIELD(No.);
-                        RunPageView = SORTING(Customer No.,Posting Date);
+                        RunObject = Page "Issued Fin. Charge Memo List";
+                        RunPageLink = "Customer No." = FIELD("No.");
+                        RunPageView = SORTING("Customer No.", "Posting Date");
+                        ToolTip = 'Executes the Issued &Finance Charge Memos action.';
                     }
                 }
                 action("Blanket Orders")
                 {
                     Caption = 'Blanket Orders';
                     Image = BlanketOrder;
-                    RunObject = Page 9303;
-                    RunPageLink = Sell-to Customer No.=FIELD(No.);
-                    RunPageView = SORTING(Document Type,Sell-to Customer No.);
+                    RunObject = Page "Blanket Sales Orders";
+                    RunPageLink = "Sell-to Customer No." = FIELD("No.");
+                    RunPageView = SORTING("Document Type", "Sell-to Customer No.");
+                    ToolTip = 'Executes the Blanket Orders action.';
                 }
             }
             group("Credit Card")
@@ -401,14 +437,16 @@ page 50001 "Master Customer List"
                         Caption = 'C&redit Cards';
                         Image = CreditCard;
                         RunObject = Page 828;
-                        RunPageLink = Customer No.=FIELD(No.);
+                        RunPageLink = "Customer No." = FIELD("No.");
+                        ToolTip = 'Executes the C&redit Cards action.';
                     }
                     action("Credit Cards Transaction Lo&g Entries")
                     {
                         Caption = 'Credit Cards Transaction Lo&g Entries';
                         Image = CreditCardLog;
                         RunObject = Page 829;
-                        RunPageLink = Customer No.=FIELD(No.);
+                        RunPageLink = "Customer No." = FIELD("No.");
+                        ToolTip = 'Executes the Credit Cards Transaction Lo&g Entries action.';
                     }
                 }
             }
@@ -420,25 +458,28 @@ page 50001 "Master Customer List"
                 {
                     Caption = 'Service Orders';
                     Image = Document;
-                    RunObject = Page 9318;
-                    RunPageLink = Customer No.=FIELD(No.);
-                    RunPageView = SORTING(Document Type,Customer No.);
+                    RunObject = Page "Service Orders";
+                    RunPageLink = "Customer No." = FIELD("No.");
+                    RunPageView = SORTING("Document Type", "Customer No.");
+                    ToolTip = 'Executes the Service Orders action.';
                 }
                 action("Ser&vice Contracts")
                 {
                     Caption = 'Ser&vice Contracts';
                     Image = ServiceAgreement;
-                    RunObject = Page 6065;
-                    RunPageLink = Customer No.=FIELD(No.);
-                    RunPageView = SORTING(Customer No.,Ship-to Code);
+                    RunObject = Page "Customer Service Contracts";
+                    RunPageLink = "Customer No." = FIELD("No.");
+                    RunPageView = SORTING("Customer No.", "Ship-to Code");
+                    ToolTip = 'Executes the Ser&vice Contracts action.';
                 }
                 action("Service &Items")
                 {
                     Caption = 'Service &Items';
                     Image = ServiceItem;
-                    RunObject = Page 5988;
-                    RunPageLink = Customer No.=FIELD(No.);
-                    RunPageView = SORTING(Customer No.,Ship-to Code,Item No.,Serial No.);
+                    RunObject = Page "Service Items";
+                    RunPageLink = "Customer No." = FIELD("No.");
+                    RunPageView = SORTING("Customer No.", "Ship-to Code", "Item No.", "Serial No.");
+                    ToolTip = 'Executes the Service &Items action.';
                 }
             }
         }
@@ -451,9 +492,10 @@ page 50001 "Master Customer List"
                 Promoted = false;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = New;
-                RunObject = Page 507;
-                RunPageLink = Sell-to Customer No.=FIELD(No.);
+                RunObject = Page "Blanket Sales Order";
+                RunPageLink = "Sell-to Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Blanket Sales Order action.';
             }
             action("Sales Quote")
             {
@@ -461,9 +503,10 @@ page 50001 "Master Customer List"
                 Image = Quote;
                 Promoted = true;
                 PromotedCategory = New;
-                RunObject = Page 41;
-                RunPageLink = Sell-to Customer No.=FIELD(No.);
+                RunObject = Page "Sales Quote";
+                RunPageLink = "Sell-to Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Sales Quote action.';
             }
             action("Sales Invoice")
             {
@@ -471,9 +514,10 @@ page 50001 "Master Customer List"
                 Image = Invoice;
                 Promoted = true;
                 PromotedCategory = New;
-                RunObject = Page 43;
-                RunPageLink = Sell-to Customer No.=FIELD(No.);
+                RunObject = Page "Sales Invoice";
+                RunPageLink = "Sell-to Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Sales Invoice action.';
             }
             action("Sales Order")
             {
@@ -481,9 +525,10 @@ page 50001 "Master Customer List"
                 Image = Document;
                 Promoted = true;
                 PromotedCategory = New;
-                RunObject = Page 42;
-                RunPageLink = Sell-to Customer No.=FIELD(No.);
+                RunObject = Page "Sales Order";
+                RunPageLink = "Sell-to Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Sales Order action.';
             }
             action("Sales Credit Memo")
             {
@@ -492,9 +537,10 @@ page 50001 "Master Customer List"
                 Promoted = false;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = New;
-                RunObject = Page 44;
-                RunPageLink = Sell-to Customer No.=FIELD(No.);
+                RunObject = Page "Sales Credit Memo";
+                RunPageLink = "Sell-to Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Sales Credit Memo action.';
             }
             action("Sales Return Order")
             {
@@ -503,9 +549,10 @@ page 50001 "Master Customer List"
                 Promoted = false;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = New;
-                RunObject = Page 6630;
-                RunPageLink = Sell-to Customer No.=FIELD(No.);
+                RunObject = Page "Sales Return Order";
+                RunPageLink = "Sell-to Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Sales Return Order action.';
             }
             action("Service Quote")
             {
@@ -514,9 +561,10 @@ page 50001 "Master Customer List"
                 Promoted = false;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = New;
-                RunObject = Page 5964;
-                RunPageLink = Customer No.=FIELD(No.);
+                RunObject = Page "Service Quote";
+                RunPageLink = "Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Service Quote action.';
             }
             action("Service Invoice")
             {
@@ -525,9 +573,10 @@ page 50001 "Master Customer List"
                 Promoted = false;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = New;
-                RunObject = Page 5933;
-                RunPageLink = Customer No.=FIELD(No.);
+                RunObject = Page "Service Invoice";
+                RunPageLink = "Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Service Invoice action.';
             }
             action("Service Order")
             {
@@ -536,9 +585,10 @@ page 50001 "Master Customer List"
                 Promoted = false;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = New;
-                RunObject = Page 5900;
-                RunPageLink = Customer No.=FIELD(No.);
+                RunObject = Page "Service Order";
+                RunPageLink = "Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Service Order action.';
             }
             action("Service Credit Memo")
             {
@@ -547,9 +597,10 @@ page 50001 "Master Customer List"
                 Promoted = false;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = New;
-                RunObject = Page 5935;
-                RunPageLink = Customer No.=FIELD(No.);
+                RunObject = Page "Service Credit Memo";
+                RunPageLink = "Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Service Credit Memo action.';
             }
             action(Reminder)
             {
@@ -557,9 +608,10 @@ page 50001 "Master Customer List"
                 Image = Reminder;
                 Promoted = true;
                 PromotedCategory = New;
-                RunObject = Page 434;
-                RunPageLink = Customer No.=FIELD(No.);
+                RunObject = Page Reminder;
+                RunPageLink = "Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Reminder action.';
             }
             action("Finance Charge Memo")
             {
@@ -568,9 +620,10 @@ page 50001 "Master Customer List"
                 Promoted = false;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = New;
-                RunObject = Page 446;
-                RunPageLink = Customer No.=FIELD(No.);
+                RunObject = Page "Finance Charge Memo";
+                RunPageLink = "Customer No." = FIELD("No.");
                 RunPageMode = Create;
+                ToolTip = 'Executes the Finance Charge Memo action.';
             }
         }
         area(processing)
@@ -580,8 +633,10 @@ page 50001 "Master Customer List"
                 Caption = 'Cash Receipt Journal';
                 Image = CashReceiptJournal;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
-                RunObject = Page 255;
+                RunObject = Page "Cash Receipt Journal";
+                ToolTip = 'Executes the Cash Receipt Journal action.';
             }
             action("Sales Journal")
             {
@@ -589,12 +644,13 @@ page 50001 "Master Customer List"
                 Image = Journals;
                 Promoted = true;
                 PromotedCategory = Process;
-                RunObject = Page 253;
+                RunObject = Page "Sales Journal";
+                ToolTip = 'Executes the Sales Journal action.';
             }
         }
         area(reporting)
         {
-            group(General)
+            group(Generals)
             {
                 Caption = 'General';
                 action("Customer Register")
@@ -604,7 +660,8 @@ page 50001 "Master Customer List"
                     Promoted = false;
                     //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedCategory = "Report";
-                    RunObject = Report 10046;
+                    RunObject = Report "Customer Register";
+                    ToolTip = 'Executes the Customer Register action.';
                 }
                 action("Customer - Top 10 List")
                 {
@@ -612,7 +669,8 @@ page 50001 "Master Customer List"
                     Image = "Report";
                     Promoted = true;
                     PromotedCategory = "Report";
-                    RunObject = Report 10062;
+                    RunObject = Report "Customer - Top 10 List";
+                    ToolTip = 'Executes the Customer - Top 10 List action.';
                 }
             }
             group(Sales)
@@ -625,7 +683,8 @@ page 50001 "Master Customer List"
                     Image = "Report";
                     Promoted = true;
                     PromotedCategory = "Report";
-                    RunObject = Report 107;
+                    RunObject = Report "Customer - Order Summary";
+                    ToolTip = 'Executes the Customer - Order Summary action.';
                 }
                 action("Customer - Order Detail")
                 {
@@ -634,7 +693,8 @@ page 50001 "Master Customer List"
                     Promoted = false;
                     //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedCategory = "Report";
-                    RunObject = Report 108;
+                    RunObject = Report "Customer - Order Detail";
+                    ToolTip = 'Executes the Customer - Order Detail action.';
                 }
                 action("Customer - Sales List")
                 {
@@ -642,7 +702,8 @@ page 50001 "Master Customer List"
                     Image = "Report";
                     Promoted = true;
                     PromotedCategory = "Report";
-                    RunObject = Report 119;
+                    RunObject = Report "Customer - Sales List";
+                    ToolTip = 'Executes the Customer - Sales List action.';
                 }
                 action("Sales Statistics")
                 {
@@ -651,7 +712,8 @@ page 50001 "Master Customer List"
                     Promoted = false;
                     //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedCategory = "Report";
-                    RunObject = Report 10047;
+                    RunObject = Report "Customer Sales Statistics";
+                    ToolTip = 'Executes the Sales Statistics action.';
                 }
             }
             group("Financial Management")
@@ -665,7 +727,8 @@ page 50001 "Master Customer List"
                     Promoted = false;
                     //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedCategory = "Report";
-                    RunObject = Report 104;
+                    RunObject = Report "Customer - Detail Trial Bal.";
+                    ToolTip = 'Executes the Customer - Detail Trial Bal. action.';
                 }
                 action(Statement)
                 {
@@ -673,16 +736,18 @@ page 50001 "Master Customer List"
                     Image = "Report";
                     Promoted = true;
                     PromotedCategory = "Report";
-                    RunObject = Report 116;
+                    RunObject = Report Statement;
+                    ToolTip = 'Executes the Statement action.';
                 }
-                action(Reminder)
+                action(Reminders)
                 {
                     Caption = 'Reminder';
                     Image = Reminder;
                     Promoted = false;
                     //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedCategory = "Report";
-                    RunObject = Report 117;
+                    RunObject = Report Reminder;
+                    ToolTip = 'Executes the Reminder action.';
                 }
                 action("Aged Accounts Receivable")
                 {
@@ -690,7 +755,8 @@ page 50001 "Master Customer List"
                     Image = "Report";
                     Promoted = true;
                     PromotedCategory = "Report";
-                    RunObject = Report 10040;
+                    RunObject = Report "Aged Accounts Receivable NA";
+                    ToolTip = 'Executes the Aged Accounts Receivable action.';
                 }
                 action("Customer - Balance to Date")
                 {
@@ -698,7 +764,8 @@ page 50001 "Master Customer List"
                     Image = "Report";
                     Promoted = true;
                     PromotedCategory = "Report";
-                    RunObject = Report 121;
+                    RunObject = Report "Customer - Balance to Date";
+                    ToolTip = 'Executes the Customer - Balance to Date action.';
                 }
                 action("Customer - Trial Balance")
                 {
@@ -707,7 +774,8 @@ page 50001 "Master Customer List"
                     Promoted = false;
                     //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedCategory = "Report";
-                    RunObject = Report 129;
+                    RunObject = Report "Customer - Trial Balance";
+                    ToolTip = 'Executes the Customer - Trial Balance action.';
                 }
                 action("Customer - Payment Receipt")
                 {
@@ -715,7 +783,8 @@ page 50001 "Master Customer List"
                     Image = "Report";
                     Promoted = true;
                     PromotedCategory = "Report";
-                    RunObject = Report 211;
+                    RunObject = Report "Customer - Payment Receipt";
+                    ToolTip = 'Executes the Customer - Payment Receipt action.';
                 }
             }
         }
@@ -723,7 +792,7 @@ page 50001 "Master Customer List"
 
     trigger OnAfterGetRecord()
     begin
-        SetStyleNoName;
+        SetStyleNoName();
     end;
 
     var
@@ -731,24 +800,24 @@ page 50001 "Master Customer List"
 
     procedure GetSelectionFilter(): Text
     var
-        Cust: Record "18";
-        SelectionFilterManagement: Codeunit "46";
+        Cust: Record Customer;
+        SelectionFilterManagement: Codeunit SelectionFilterManagement;
     begin
         CurrPage.SETSELECTIONFILTER(Cust);
         EXIT(SelectionFilterManagement.GetSelectionFilterForCustomer(Cust));
     end;
 
-    procedure SetSelection(var Cust: Record "18")
+    procedure SetSelection(var Cust: Record Customer)
     begin
         CurrPage.SETSELECTIONFILTER(Cust);
     end;
 
     local procedure SetStyleNoName()
     begin
-        IF "Master Customer No." = "No." THEN
-          SetStyleText := 'Strong'
+        IF Rec."Master Customer No." = rec."No." THEN
+            SetStyleText := 'Strong'
         ELSE
-          SetStyleText := '';
+            SetStyleText := '';
     end;
 }
 

@@ -1,7 +1,9 @@
 page 50155 "WithHolding Setup"
 {
     PageType = List;
-    SourceTable = Table50037;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "Withholding Groups";
 
     layout
     {
@@ -9,20 +11,25 @@ page 50155 "WithHolding Setup"
         {
             repeater(Group)
             {
-                field("Withholding Group";"Withholding Group")
+                field("Withholding Group"; Rec."Withholding Group")
                 {
+                    ToolTip = 'Specifies the value of the Withholding Group field.';
                 }
-                field("Withholding Percentage";"Withholding Percentage")
+                field("Withholding Percentage"; Rec."Withholding Percentage")
                 {
+                    ToolTip = 'Specifies the value of the Withholding Percentage field.';
                 }
-                field("Purch Withholding Account";"Purch Withholding Account")
+                field("Purch Withholding Account"; Rec."Purch Withholding Account")
                 {
+                    ToolTip = 'Specifies the value of the Purch Withholding Account field.';
                 }
-                field("Income Tax";"Income Tax")
+                field("Income Tax"; Rec."Income Tax")
                 {
+                    ToolTip = 'Specifies the value of the Income Tax field.';
                 }
-                field("VAT Tax";"VAT Tax")
+                field("VAT Tax"; Rec."VAT Tax")
                 {
+                    ToolTip = 'Specifies the value of the VAT Tax field.';
                 }
             }
         }

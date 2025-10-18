@@ -1,6 +1,8 @@
 page 50154 "Create XML SAT"
 {
-    SourceTable = Table85;
+    SourceTable = "Acc. Schedule Line";
+    ApplicationArea = All;
+    UsageCategory = None;
     SourceTableTemporary = true;
 
     layout
@@ -10,51 +12,60 @@ page 50154 "Create XML SAT"
             group(General)
             {
                 Caption = 'General';
-                field(StartingDate;StartingDate)
+                field(StartingDate; StartingDate)
                 {
                     Caption = 'Starting Date Period';
                     TableRelation = "Accounting Period"."Starting Date";
+                    ToolTip = 'Specifies the value of the Starting Date Period field.';
 
                     trigger OnValidate()
                     begin
-                        SetDateFilter;
+                        SetDateFilter();
                     end;
                 }
-                field(DateFilter;DateFilter)
+                field(DateFilter; DateFilter)
                 {
                     Caption = 'Date Filter';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Date Filter field.';
                 }
             }
             group(BalanceChartOfAcc)
             {
                 Caption = 'Balance / Chart of Accounts';
-                field("Schedule Name";ScheduleName)
+                field("Schedule Name"; ScheduleName)
                 {
                     Caption = 'Schedule Name';
                     HideValue = false;
                     TableRelation = "Acc. Schedule Name".Name;
                     Visible = true;
+                    ToolTip = 'Specifies the value of the Schedule Name field.';
                 }
-                field(DeliveryType;DeliveryType)
+                field(DeliveryType; DeliveryType)
                 {
+                    OptionCaption = 'Normal,Complementary';
+                    ToolTip = 'Specifies the value of the DeliveryType field.';
+                    Caption = 'DeliveryType';
                 }
-                field(UpdateDate;UpdateDate)
+                field(UpdateDate; UpdateDate)
                 {
                     Caption = 'Update Date';
+                    ToolTip = 'Specifies the value of the Update Date field.';
                 }
             }
             group(Poliza_AuxAcc)
             {
                 Caption = 'Poliza - Aux. Accounts';
-                field(RequestType;RequestType)
+                field(RequestType; RequestType)
                 {
                     Caption = 'Request Type';
                     OptionCaption = 'AF,FC,CO,DE';
+                    ToolTip = 'Specifies the value of the Request Type field.';
                 }
-                field(ProcessNumber;ProcessNumber)
+                field(ProcessNumber; ProcessNumber)
                 {
                     Caption = 'Request No.';
+                    ToolTip = 'Specifies the value of the Request No. field.';
                 }
             }
         }
@@ -71,10 +82,11 @@ page 50154 "Create XML SAT"
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ToolTip = 'Executes the Create XML Chart of Accounts action.';
 
                 trigger OnAction()
                 begin
-                    ElectronicAccounting.ExportChartOfAccounts(DATE2DMY(StartingDate,3),DATE2DMY(StartingDate,2),ScheduleName);
+                    ElectronicAccounting.ExportChartOfAccounts(DATE2DMY(StartingDate, 3), DATE2DMY(StartingDate, 2), ScheduleName);
                 end;
             }
             action(CreateBalance)
@@ -82,16 +94,18 @@ page 50154 "Create XML SAT"
                 Caption = 'Create XML Balance';
                 Image = Export;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ToolTip = 'Executes the Create XML Balance action.';
 
                 trigger OnAction()
                 begin
                     IF DeliveryType = DeliveryType::Complementary THEN
-                      IF UpdateDate = 0D THEN
-                        ERROR(eText000);
+                        IF UpdateDate = 0D THEN
+                            ERROR(eText000);
 
-                    ElectronicAccounting.ExportBalanceSheet(DATE2DMY(StartingDate,3),DATE2DMY(StartingDate,2),DeliveryType,UpdateDate,ScheduleName);
+                    ElectronicAccounting.ExportBalanceSheet(DATE2DMY(StartingDate, 3), DATE2DMY(StartingDate, 2), DeliveryType, UpdateDate, ScheduleName);
                 end;
             }
             action(CreateXMLPoliza)
@@ -99,12 +113,14 @@ page 50154 "Create XML SAT"
                 Caption = 'Create XML Poliza';
                 Image = Export;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ToolTip = 'Executes the Create XML Poliza action.';
 
                 trigger OnAction()
                 begin
-                    ElectronicAccounting.ConfirmValidateExport(StartingDate,RequestType,ProcessNumber,TRUE);
+                    ElectronicAccounting.ConfirmValidateExport(StartingDate, RequestType, ProcessNumber, TRUE);
                 end;
             }
             action(CreateXMLAuxAccounts)
@@ -112,40 +128,40 @@ page 50154 "Create XML SAT"
                 Caption = 'Create XML Aux. Accounts';
                 Image = Export;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ToolTip = 'Executes the Create XML Aux. Accounts action.';
 
                 trigger OnAction()
                 begin
-                    ElectronicAccounting.ConfirmValidateExport(StartingDate,RequestType,ProcessNumber,FALSE);
+                    ElectronicAccounting.ConfirmValidateExport(StartingDate, RequestType, ProcessNumber, FALSE);
                 end;
             }
         }
     }
 
     var
-        DeliveryType: Option Normal,Complementary;
-        ProcessNumber: Code[13];
-        RequestType: Option AF,FC,CO,DE;
-        StartingDate: Date;
-        Month: Integer;
-        Year: Integer;
-        ElectronicAccounting: Codeunit "50020";
-        DateFilter: Text[50];
+        ElectronicAccounting: Codeunit "Electronic Accounting";
         ScheduleName: Code[10];
+        ProcessNumber: Code[13];
+        StartingDate: Date;
         UpdateDate: Date;
         eText000: Label 'Update date is required.';
+        RequestType: Option AF,FC,CO,DE;
+        DeliveryType: Option Normal,Complementary;
+        DateFilter: Text[50];
 
-    procedure SetParam(PA_StartingDate: Date;PA_ScheduleName: Code[10])
+    procedure SetParam(PA_StartingDate: Date; PA_ScheduleName: Code[10])
     begin
         StartingDate := PA_StartingDate;
         ScheduleName := PA_ScheduleName;
-        SetDateFilter;
+        SetDateFilter();
     end;
 
     procedure SetDateFilter()
     begin
-        DateFilter := FORMAT(StartingDate) + '..' + FORMAT(CALCDATE('<CM>',StartingDate));
+        DateFilter := FORMAT(StartingDate) + '..' + FORMAT(CALCDATE('<CM>', StartingDate));
     end;
 }
 

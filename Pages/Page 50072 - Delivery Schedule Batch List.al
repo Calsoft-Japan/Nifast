@@ -12,31 +12,39 @@ page 50072 "Delivery Schedule Batch List"
     CardPageID = "Delivery Schedule Batch";
     Editable = false;
     PageType = List;
-    SourceTable = Table50020;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "Delivery Schedule Batch";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the value of the No. field.';
                 }
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
-                field("Release No.";"Release No.")
+                field("Release No."; Rec."Release No.")
                 {
+                    ToolTip = 'Specifies the value of the Release No. field.';
                 }
-                field("Document Function";"Document Function")
+                field("Document Function"; Rec."Document Function")
                 {
+                    ToolTip = 'Specifies the value of the Document Function field.';
                 }
-                field("Expected Delivery Date";"Expected Delivery Date")
+                field("Expected Delivery Date"; Rec."Expected Delivery Date")
                 {
+                    ToolTip = 'Specifies the value of the Expected Delivery Date field.';
                 }
-                field("Model Year";"Model Year")
+                field("Model Year"; Rec."Model Year")
                 {
+                    ToolTip = 'Specifies the value of the Model Year field.';
                 }
             }
         }

@@ -19,53 +19,73 @@ page 50037 "Receive Line Label Request"
     // <<IST
 
     PageType = Document;
-    SourceTable = Table14000602;
+    ApplicationArea = All;
+    UsageCategory = None;
+    SourceTable = 14000602;
 
     layout
     {
         area(content)
         {
-            group()
+            group(General)
             {
                 Editable = false;
-                field("Receive No.";"Receive No.")
+                field("Receive No."; Rec."Receive No.")
                 {
+                    ToolTip = 'Specifies the value of the Receive No. field.';
+                    Caption = 'Receive No.';
                 }
-                field(Type;Type)
+                field(Type; Rec.Type)
                 {
+                    ToolTip = 'Specifies the value of the Type field.';
+                    Caption = 'Type';
                 }
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the value of the No. field.';
+                    Caption = 'No.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
+                    ToolTip = 'Specifies the value of the Quantity field.';
+                    Caption = 'Quantity';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
+                    Caption = 'Description';
                 }
-                field("Lot No.";"Lot No.")
+                field("Lot No."; Rec."Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Lot No. field.';
+                    Caption = 'Lot No.';
                 }
-                field("Source ID";"Source ID")
+                field("Source ID"; Rec."Source ID")
                 {
+                    ToolTip = 'Specifies the value of the Source ID field.';
+                    Caption = 'Source ID';
                 }
-                field("Mfg. Lot No.";"Mfg. Lot No.")
+                field("Mfg. Lot No."; Rec."Mfg. Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Mfg. Lot No. field.';
+                    Caption = 'Mfg. Lot No.';
                 }
             }
-            part(;50008)
+            part(Crossreferencesubform; "Cross Reference Subform")
             {
                 Editable = false;
-                SubPageLink = Item No.=FIELD(No.);
+                SubPageLink = "Item No." = FIELD("No.");
             }
-            field(NoOfCopies;NoOfCopies)
+            field(NoOfCopies; NoOfCopies)
             {
                 Caption = 'No. of Copies';
+                ToolTip = 'Specifies the value of the No. of Copies field.';
             }
-            field(QtyToPrint;QtyToPrint)
+            field(QtyToPrint; QtyToPrint)
             {
                 Caption = 'Quantity To Print';
-                DecimalPlaces = 0:2;
+                DecimalPlaces = 0 : 2;
+                ToolTip = 'Specifies the value of the Quantity To Print field.';
             }
         }
     }
@@ -80,20 +100,22 @@ page 50037 "Receive Line Label Request"
                 action("Shipment History")
                 {
                     Caption = 'Shipment History';
-                    RunObject = Page 38;
-                    RunPageLink = Item No.=FIELD(No.);
-                    RunPageView = SORTING(Entry Type,Item No.,Variant Code,Source Type,Source No.,Posting Date)
-                                  WHERE(Entry Type=FILTER(Sale),
-                                        Quantity=FILTER(<>0));
+                    RunObject = Page "Item Ledger Entries";
+                    RunPageLink = "Item No." = FIELD("No.");
+                    RunPageView = SORTING("Entry Type", "Item No.", "Variant Code", "Source Type", "Source No.", "Posting Date")
+                                  WHERE("Entry Type" = FILTER(Sale),
+                                        Quantity = FILTER(<> 0));
+                    ToolTip = 'Executes the Shipment History action.';
                 }
                 action("Sales Order Lines")
                 {
                     Caption = 'Sales Order Lines';
                     RunObject = Page 516;
-                    RunPageLink = Type=FILTER(Item),
-                                  No.=FIELD(No.);
-                    RunPageView = SORTING(Document Type,Document No.,Type,No.,Variant Code,Drop Shipment,Pack)
-                                  WHERE(Document Type=FILTER(Order));
+                    RunPageLink = Type = FILTER(Item),
+                                  "No." = FIELD("No.");
+                    RunPageView = SORTING("Document Type", "Document No.", Type, "No.", "Variant Code", "Drop Shipment", Pack)
+                                  WHERE("Document Type" = FILTER(Order));
+                    ToolTip = 'Executes the Sales Order Lines action.';
                 }
             }
         }
@@ -104,26 +126,27 @@ page 50037 "Receive Line Label Request"
                 Caption = 'OK';
                 Promoted = true;
                 PromotedCategory = Process;
+                ToolTip = 'Executes the OK action.';
 
                 trigger OnAction()
                 begin
                     ReceiveRule.GetReceiveRule("No.");
 
                     IF ReceiveRule."Item Label Code" <> '' THEN BEGIN
-                      CLEAR(ReceiveLineLabel);
-                      ReceiveLine.COPYFILTERS(Rec);
-                      //XReceiveLine.SETRECFILTER;
-                      ReceiveLineLabel.SETTABLEVIEW(ReceiveLine);
-                      //determine whether qc
-                      IF "QC Hold" THEN
-                         ReceiveLineLabel.InitializeRequest(ReceiveRule."QC Label Code",NoOfCopies)
-                      ELSE
-                        ReceiveLineLabel.InitializeRequest(ReceiveRule."Item Label Code",NoOfCopies);
-                      ReceiveLineLabel.InitializeRequest2(QtyToPrint);
-                      //ReceiveLineLabel.USEREQUESTFORM(TRUE);
-                      ReceiveLineLabel.USEREQUESTPAGE(FALSE);
-                      ReceiveLineLabel.RUNMODAL;
-                      CLEAR(ReceiveLineLabel);
+                        CLEAR(ReceiveLineLabel);
+                        ReceiveLine.COPYFILTERS(Rec);
+                        //XReceiveLine.SETRECFILTER;
+                        ReceiveLineLabel.SETTABLEVIEW(ReceiveLine);
+                        //determine whether qc
+                        IF "QC Hold" THEN
+                            ReceiveLineLabel.InitializeRequest(ReceiveRule."QC Label Code", NoOfCopies)
+                        ELSE
+                            ReceiveLineLabel.InitializeRequest(ReceiveRule."Item Label Code", NoOfCopies);
+                        ReceiveLineLabel.InitializeRequest2(QtyToPrint);
+                        //ReceiveLineLabel.USEREQUESTFORM(TRUE);
+                        ReceiveLineLabel.USEREQUESTPAGE(FALSE);
+                        ReceiveLineLabel.RUNMODAL;
+                        CLEAR(ReceiveLineLabel);
                     END;
                 end;
             }
@@ -143,32 +166,34 @@ page 50037 "Receive Line Label Request"
     var
         QtyToPrint: Decimal;
         NoOfCopies: Integer;
-        ReceiveRule: Record "14000612";
-        ReceiveLineLabel: Report "14000847";
-        ReceiveLine: Record "14000602";
-        BOMComponent: Record "90";
-        WhereUsedList: Page "37";
+        ReceiveRule: Record 14000612;
+        ReceiveLineLabel: Report 14000847;
+        ReceiveLine: Record 14000602;
+        BOMComponent: Record "BOM Component";
+        WhereUsedList: Page "Where-Used List";
 
     procedure IsComponent(): Boolean
     begin
         CASE Type OF
-         Type::Item : BOMComponent.SETRANGE(Type,BOMComponent.Type::Item);
-         ELSE EXIT(FALSE);
+            Type::Item:
+                BOMComponent.SETRANGE(Type, BOMComponent.Type::Item);
+            ELSE
+                EXIT(FALSE);
         END;
 
-        BOMComponent.SETRANGE("No.","No.");
-        BOMComponent.SETFILTER("Quantity per",'<>%1',0);
+        BOMComponent.SETRANGE("No.", "No.");
+        BOMComponent.SETFILTER("Quantity per", '<>%1', 0);
         EXIT(BOMComponent.FIND('-'));
     end;
 
     local procedure OnAfterGetCurrRecord()
     begin
         xRec := Rec;
-        IF QtyToPrint=0 THEN
-          QtyToPrint := Quantity;
+        IF QtyToPrint = 0 THEN
+            QtyToPrint := Quantity;
 
-        IF NoOfCopies=0 THEN
-          NoOfCopies := 1;
+        IF NoOfCopies = 0 THEN
+            NoOfCopies := 1;
     end;
 }
 

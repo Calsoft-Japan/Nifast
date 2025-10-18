@@ -1,7 +1,9 @@
 page 50088 "Production Schedule"
 {
     PageType = List;
-    SourceTable = Table50044;
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "Production Schedule";
 
     layout
     {
@@ -9,26 +11,33 @@ page 50088 "Production Schedule"
         {
             repeater(Group)
             {
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Shipping Date";"Shipping Date")
+                field("Shipping Date"; Rec."Shipping Date")
                 {
+                    ToolTip = 'Specifies the value of the Shipping Date field.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
+                    ToolTip = 'Specifies the value of the Quantity field.';
                 }
-                field("Entry Date";"Entry Date")
+                field("Entry Date"; Rec."Entry Date")
                 {
+                    ToolTip = 'Specifies the value of the Entry Date field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("Entry No.";"Entry No.")
+                field("Entry No."; Rec."Entry No.")
                 {
+                    ToolTip = 'Specifies the value of the Entry No. field.';
                 }
             }
         }

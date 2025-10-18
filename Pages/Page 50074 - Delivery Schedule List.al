@@ -5,31 +5,39 @@ page 50074 "Delivery Schedule List"
     CardPageID = "Delivery Schedule";
     Editable = false;
     PageType = List;
-    SourceTable = Table50012;
+    UsageCategory = Lists;
+    SourceTable = "Delivery Schedule Header";
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Delivery Schedule Batch No.";"Delivery Schedule Batch No.")
+                field("Delivery Schedule Batch No."; Rec."Delivery Schedule Batch No.")
                 {
+                    ToolTip = 'Specifies the value of the Delivery Schedule Batch No. field.';
                 }
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the value of the No. field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Cross-Reference No.";"Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Cross-Reference No.")
                 {
+                    ToolTip = 'Specifies the value of the Cross-Reference No. field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
             }
         }

@@ -8,7 +8,7 @@ xmlport 85002 "Import Permissions"
     {
         textelement(Root)
         {
-            tableelement(Table2000000005;Table2000000005)
+            tableelement(Permission; Permission)
             {
                 XmlName = 'PermissionImport';
                 UseTemporary = true;
@@ -23,7 +23,7 @@ xmlport 85002 "Import Permissions"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        EVALUATE(ObjectType_gOpt,ObjectTypeImport);
+                        EVALUATE(ObjectType_gOpt, ObjectTypeImport);
                     end;
                 }
                 textelement(ObjectID)
@@ -31,7 +31,7 @@ xmlport 85002 "Import Permissions"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        EVALUATE(ObjectID_gInt,ObjectID);
+                        EVALUATE(ObjectID_gInt, ObjectID);
                     end;
                 }
                 textelement(ObjectName)
@@ -42,7 +42,7 @@ xmlport 85002 "Import Permissions"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        EVALUATE(ReadPermission_gOpt,ReadPermission);
+                        EVALUATE(ReadPermission_gOpt, ReadPermission);
                     end;
                 }
                 textelement(InsertPermission)
@@ -50,7 +50,7 @@ xmlport 85002 "Import Permissions"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        EVALUATE(InsertPermission_gOpt,InsertPermission);
+                        EVALUATE(InsertPermission_gOpt, InsertPermission);
                     end;
                 }
                 textelement(ModifyPermission)
@@ -58,7 +58,7 @@ xmlport 85002 "Import Permissions"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        EVALUATE(ModPermission_gOpt,ModifyPermission);
+                        EVALUATE(ModPermission_gOpt, ModifyPermission);
                     end;
                 }
                 textelement(DeletePermission)
@@ -66,7 +66,7 @@ xmlport 85002 "Import Permissions"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        EVALUATE(DelPermission_gOpt,DeletePermission);
+                        EVALUATE(DelPermission_gOpt, DeletePermission);
                     end;
                 }
                 textelement(ExecutePermission)
@@ -74,7 +74,7 @@ xmlport 85002 "Import Permissions"
 
                     trigger OnAfterAssignVariable()
                     begin
-                        EVALUATE(ExcPermission_gOpt,ExecutePermission);
+                        EVALUATE(ExcPermission_gOpt, ExecutePermission);
                     end;
                 }
 
@@ -91,16 +91,16 @@ xmlport 85002 "Import Permissions"
 
                 trigger OnBeforeInsertRecord()
                 var
-                    PermissionSet_lRec: Record "2000000005";
+                    PermissionSet_lRec: Record Permission;
                 begin
                     Counter_gInt += 1;
-                    Window_gDlg.UPDATE(1,Counter_gInt);
+                    Window_gDlg.UPDATE(1, Counter_gInt);
 
-                    IF PermissionSet_lRec.GET(RoleID,ObjectType_gOpt,ObjectID_gInt) THEN
-                      currXMLport.SKIP;
+                    IF PermissionSet_lRec.GET(RoleID, ObjectType_gOpt, ObjectID_gInt) THEN
+                        currXMLport.SKIP();
 
-                    PermissionSet_lRec.RESET;
-                    PermissionSet_lRec.INIT;
+                    PermissionSet_lRec.RESET();
+                    PermissionSet_lRec.INIT();
                     PermissionSet_lRec."Role ID" := RoleID;
                     PermissionSet_lRec."Object Type" := ObjectType_gOpt;
                     PermissionSet_lRec."Object ID" := ObjectID_gInt;
@@ -112,10 +112,10 @@ xmlport 85002 "Import Permissions"
                     PermissionSet_lRec.TESTFIELD("Role ID");
                     //PermissionSet_lRec.TESTFIELD("Object Type");
                     //PermissionSet_lRec.TESTFIELD("Object ID");
-                    PermissionSet_lRec.INSERT;
+                    PermissionSet_lRec.INSERT();
                     Count_gInt += 1;
 
-                    currXMLport.SKIP;
+                    currXMLport.SKIP();
                 end;
             }
         }
@@ -135,8 +135,8 @@ xmlport 85002 "Import Permissions"
 
     trigger OnPostXmlPort()
     begin
-        MESSAGE('%1 - Line Inserted, %2 - Line Process',Count_gInt,Counter_gInt);
-        Window_gDlg.CLOSE;
+        MESSAGE('%1 - Line Inserted, %2 - Line Process', Count_gInt, Counter_gInt);
+        Window_gDlg.CLOSE();
     end;
 
     trigger OnPreXmlPort()
@@ -154,7 +154,7 @@ xmlport 85002 "Import Permissions"
         ExcPermission_gOpt: Option " ",Yes,Indirect;
         Count_gInt: Integer;
         Window_gDlg: Dialog;
-        Text000_gTxt: Label 'Current  #1##############';
+        Text000_gTxt: Label 'Current  #1##############', comment = '%1';
         Counter_gInt: Integer;
 }
 

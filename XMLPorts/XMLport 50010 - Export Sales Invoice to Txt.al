@@ -17,11 +17,11 @@ xmlport 50010 "Export Sales Invoice to Txt"
     {
         textelement(Root)
         {
-            tableelement(Table112;Table112)
+            tableelement("Sales Invoice Header"; "Sales Invoice Header")
             {
-                RequestFilterFields = Field3;
+                RequestFilterFields = "No.";
                 XmlName = 'SIHeader';
-                SourceTableView = SORTING(Field3);
+                SourceTableView = SORTING("No.");
                 textattribute(E01)
                 {
                     Width = 3;
@@ -31,7 +31,7 @@ xmlport 50010 "Export Sales Invoice to Txt"
                         E01 := 'E01';
                     end;
                 }
-                fieldattribute(FolioInterno;"Sales Invoice Header"."No.")
+                fieldattribute(FolioInterno; "Sales Invoice Header"."No.")
                 {
                     Width = 20;
                 }
@@ -41,11 +41,11 @@ xmlport 50010 "Export Sales Invoice to Txt"
 
                     trigger OnBeforePassVariable()
                     begin
-                        Fecha := FORMAT("Sales Invoice Header"."Posting Date",0,'<Year4>-<Month,2>-<Day,2> ') +
+                        Fecha := FORMAT("Sales Invoice Header"."Posting Date", 0, '<Year4>-<Month,2>-<Day,2> ') +
                         FORMAT('00:00:00');
                     end;
                 }
-                fieldattribute(CondicionesDePago;"Sales Invoice Header"."Payment Terms Code")
+                fieldattribute(CondicionesDePago; "Sales Invoice Header"."Payment Terms Code")
                 {
                     Width = 150;
                 }
@@ -56,10 +56,10 @@ xmlport 50010 "Export Sales Invoice to Txt"
                     trigger OnBeforePassVariable()
                     begin
                         "Sales Invoice Header".CALCFIELDS(Amount);
-                        Subtotal := FORMAT(ROUND("Sales Invoice Header".Amount,0.01));
-                        Subtotal := DELCHR(Subtotal,'=',','); //-AKK1612++ CACLETXT170816
+                        Subtotal := FORMAT(ROUND("Sales Invoice Header".Amount, 0.01));
+                        Subtotal := DELCHR(Subtotal, '=', ','); //-AKK1612++ CACLETXT170816
                         IF STRLEN(Subtotal) < 14 THEN
-                          Subtotal := AddToPrnString(Subtotal,' ',STRLEN(Subtotal),(14-STRLEN(Subtotal)),Justification::Right,' ','1');   //FALTA1
+                            Subtotal := AddToPrnString(Subtotal, ' ', STRLEN(Subtotal), (14 - STRLEN(Subtotal)), Justification::Right, ' ', '1');   //FALTA1
                     end;
                 }
                 textattribute(Descuento)
@@ -71,17 +71,17 @@ xmlport 50010 "Export Sales Invoice to Txt"
                         "Sales Invoice Header".CALCFIELDS("Invoice Discount Amount");           //mandatory field  jrr
                         //-AKK1612-- CACLETXT280716
                         //Descuento := FORMAT(ROUND("Sales Invoice Header"."Invoice Discount Amount",0.01));
-                        SIL.RESET;
-                        SIL.SETRANGE("Document No.","Sales Invoice Header"."No.");
-                        SIL.SETFILTER(Quantity,'<>0');
-                        IF SIL.FINDSET THEN
-                          REPEAT
-                            Dscto := Dscto + SIL."Line Discount Amount" + SIL."Inv. Discount Amount";
-                          UNTIL SIL.NEXT=0;
-                        Descuento := FORMAT(ROUND(Dscto,0.01));
-                        Descuento := DELCHR(Descuento,'=',','); //-AKK1612++ CACLETXT170816
+                        SIL.RESET();
+                        SIL.SETRANGE("Document No.", "Sales Invoice Header"."No.");
+                        SIL.SETFILTER(Quantity, '<>0');
+                        IF SIL.FINDSET() THEN
+                            REPEAT
+                                Dscto := Dscto + SIL."Line Discount Amount" + SIL."Inv. Discount Amount";
+                            UNTIL SIL.NEXT() = 0;
+                        Descuento := FORMAT(ROUND(Dscto, 0.01));
+                        Descuento := DELCHR(Descuento, '=', ','); //-AKK1612++ CACLETXT170816
                         IF STRLEN(Descuento) < 14 THEN
-                          Descuento := AddToPrnString(Descuento,' ',STRLEN(Descuento),(14-STRLEN(Descuento)),Justification::Right,' ','1');
+                            Descuento := AddToPrnString(Descuento, ' ', STRLEN(Descuento), (14 - STRLEN(Descuento)), Justification::Right, ' ', '1');
                         //+AKK1612++ CACLETXT280716
                     end;
                 }
@@ -96,19 +96,19 @@ xmlport 50010 "Export Sales Invoice to Txt"
                     trigger OnBeforePassVariable()
                     begin
                         "Sales Invoice Header".CALCFIELDS("Amount Including VAT");
-                        Total := FORMAT(ROUND("Sales Invoice Header"."Amount Including VAT",0.01));
-                        Total := DELCHR(Total,'=',','); //-AKK1612++ CACLETXT170816
+                        Total := FORMAT(ROUND("Sales Invoice Header"."Amount Including VAT", 0.01));
+                        Total := DELCHR(Total, '=', ','); //-AKK1612++ CACLETXT170816
                         IF STRLEN(Total) < 14 THEN
-                          Total := AddToPrnString(Total,' ',STRLEN(Total),(14-STRLEN(Total)),Justification::Right,' ','1');
+                            Total := AddToPrnString(Total, ' ', STRLEN(Total), (14 - STRLEN(Total)), Justification::Right, ' ', '1');
                     end;
                 }
-                fieldattribute(MetodoDePago;"Sales Invoice Header"."Payment Method Code")
+                fieldattribute(MetodoDePago; "Sales Invoice Header"."Payment Method Code")
                 {
                     Width = 30;
 
                     trigger OnBeforePassField()
                     begin
-                          //mandatory field  jrr
+                        //mandatory field  jrr
                     end;
                 }
                 textattribute(TipoDeComprobante)
@@ -122,31 +122,29 @@ xmlport 50010 "Export Sales Invoice to Txt"
                 }
 
                 trigger OnAfterGetRecord()
-                var
-                    TaxAmt: Decimal;
                 begin
-                    SalesInvLineTemp_gRec.DELETEALL;
+                    SalesInvLineTemp_gRec.DELETEALL();
                     Cnt := 0;
-                    D02RecCnt :=0;
-                    SalesInvLine_gRec.RESET;
-                    SalesInvLine_gRec.SETRANGE("Document No.","Sales Invoice Header"."No.");
-                    SalesInvLine_gRec.SETFILTER(Type,'<>%1',SalesInvLine_gRec.Type::" ");
-                    IF SalesInvLine_gRec.FINDFIRST THEN
-                      REPEAT
-                        InsertSalesInvLineTemp_lFnc(SalesInvLine_gRec);
-                      UNTIL SalesInvLine_gRec.NEXT = 0;
+                    D02RecCnt := 0;
+                    SalesInvLine_gRec.RESET();
+                    SalesInvLine_gRec.SETRANGE("Document No.", "Sales Invoice Header"."No.");
+                    SalesInvLine_gRec.SETFILTER(Type, '<>%1', SalesInvLine_gRec.Type::" ");
+                    IF SalesInvLine_gRec.FINDFIRST() THEN
+                        REPEAT
+                            InsertSalesInvLineTemp_lFnc(SalesInvLine_gRec);
+                        UNTIL SalesInvLine_gRec.NEXT() = 0;
                 end;
 
                 trigger OnPreXmlItem()
                 begin
-                    "Sales Invoice Header".SETRANGE("No.",SalInvNo_gCod);
-                    "Sales Invoice Header".CALCFIELDS("Sales Invoice Header"."Amount Including VAT","Sales Invoice Header"."Invoice Discount Amount","Sales Invoice Header".Amount);
+                    "Sales Invoice Header".SETRANGE("No.", SalInvNo_gCod);
+                    "Sales Invoice Header".CALCFIELDS("Sales Invoice Header"."Amount Including VAT", "Sales Invoice Header"."Invoice Discount Amount", "Sales Invoice Header".Amount);
                 end;
             }
-            tableelement("<siheader2>";Table112)
+            tableelement("<siheader2>"; "Sales Invoice Header")
             {
-                LinkFields = Field2=FIELD(Field2),
-                             Field3=FIELD(Field3);
+                LinkFields = "Sell-to Customer No." = FIELD("Sell-to Customer No."),
+                             "No." = FIELD("No.");
                 LinkTable = "Sales Invoice Header";
                 XmlName = 'SIHeader2';
                 textattribute(E02)
@@ -158,7 +156,7 @@ xmlport 50010 "Export Sales Invoice to Txt"
                         E02 := 'E02';
                     end;
                 }
-                fieldattribute(No_Cliente;"<SIHeader2>"."Bill-to Customer No.")
+                fieldattribute(No_Cliente; "<SIHeader2>"."Bill-to Customer No.")
                 {
                     Width = 20;
                 }
@@ -169,20 +167,20 @@ xmlport 50010 "Export Sales Invoice to Txt"
                     trigger OnBeforePassVariable()
                     begin
                         IF ("<SIHeader2>"."Bill-to Country/Region Code" <> '') AND ("<SIHeader2>"."Bill-to Country/Region Code" <> 'MEX') THEN
-                           RFC := 'XEXX010101000'
+                            RFC := 'XEXX010101000'
                         ELSE
-                           RFC := "<SIHeader2>"."VAT Registration No.";
+                            RFC := "<SIHeader2>"."VAT Registration No.";
                     end;
                 }
-                fieldattribute(Nombre;"<SIHeader2>"."Bill-to Name")
+                fieldattribute(Nombre; "<SIHeader2>"."Bill-to Name")
                 {
                     Width = 150;
                 }
             }
-            tableelement("<siheader3>";Table112)
+            tableelement("<siheader3>"; "Sales Invoice Header")
             {
-                LinkFields = Field2=FIELD(Field2),
-                             Field3=FIELD(Field3);
+                LinkFields = "Sell-to Customer No." = FIELD("Sell-to Customer No."),
+                             "No." = FIELD("No.");
                 LinkTable = "Sales Invoice Header";
                 XmlName = 'SIHeader3';
                 textattribute(E03)
@@ -194,13 +192,13 @@ xmlport 50010 "Export Sales Invoice to Txt"
                         E03 := 'E03';
                     end;
                 }
-                fieldattribute(Calle;"<SIHeader3>"."Bill-to Address")
+                fieldattribute(Calle; "<SIHeader3>"."Bill-to Address")
                 {
                     Width = 50;
 
                     trigger OnBeforePassField()
                     begin
-                           //street name is mandatory  jrr
+                        //street name is mandatory  jrr
                     end;
                 }
                 textattribute(NoExterior)
@@ -211,7 +209,7 @@ xmlport 50010 "Export Sales Invoice to Txt"
                 {
                     Width = 50;
                 }
-                fieldattribute(Colonia;"<SIHeader3>"."Bill-to Address 2")
+                fieldattribute(Colonia; "<SIHeader3>"."Bill-to Address 2")
                 {
                     Width = 50;
                 }
@@ -223,34 +221,34 @@ xmlport 50010 "Export Sales Invoice to Txt"
                 {
                     Width = 50;
                 }
-                fieldattribute(Municipio;"<SIHeader3>"."Bill-to City")
+                fieldattribute(Municipio; "<SIHeader3>"."Bill-to City")
                 {
                     Width = 50;
                 }
-                fieldattribute(Estado;"<SIHeader3>"."Bill-to County")
+                fieldattribute(Estado; "<SIHeader3>"."Bill-to County")
                 {
                     Width = 50;
                 }
-                fieldattribute(Pais;"<SIHeader3>"."Bill-to Country/Region Code")
+                fieldattribute(Pais; "<SIHeader3>"."Bill-to Country/Region Code")
                 {
                     Width = 50;
 
                     trigger OnBeforePassField()
                     begin
-                          //country is mandatory  jrr
+                        //country is mandatory  jrr
                         IF "<SIHeader3>"."Bill-to Country/Region Code" = '' THEN        //jrr
-                           "<SIHeader3>"."Bill-to Country/Region Code" := 'MEX';
+                            "<SIHeader3>"."Bill-to Country/Region Code" := 'MEX';
                     end;
                 }
-                fieldattribute(CodigoPostal;"<SIHeader3>"."Bill-to Post Code")
+                fieldattribute(CodigoPostal; "<SIHeader3>"."Bill-to Post Code")
                 {
                     Width = 5;
                 }
             }
-            tableelement("<siheader4>";Table112)
+            tableelement("<siheader4>"; "Sales Invoice Header")
             {
-                LinkFields = Field2=FIELD(Field2),
-                             Field3=FIELD(Field3);
+                LinkFields = "Sell-to Customer No." = FIELD("Sell-to Customer No."),
+                             "No." = FIELD("No.");
                 LinkTable = "Sales Invoice Header";
                 XmlName = 'SIHeader4';
                 textattribute(E04)
@@ -272,18 +270,18 @@ xmlport 50010 "Export Sales Invoice to Txt"
 
                     trigger OnBeforePassVariable()
                     begin
-                        "<SIHeader4>".CALCFIELDS(Amount,"Amount Including VAT");       //jrr
-                        TaxAmtStr := FORMAT(ROUND(("<SIHeader4>"."Amount Including VAT" - "<SIHeader4>".Amount),0.01));
-                        TaxAmtStr := DELCHR(TaxAmtStr,'=',',');
+                        "<SIHeader4>".CALCFIELDS(Amount, "Amount Including VAT");       //jrr
+                        TaxAmtStr := FORMAT(ROUND(("<SIHeader4>"."Amount Including VAT" - "<SIHeader4>".Amount), 0.01));
+                        TaxAmtStr := DELCHR(TaxAmtStr, '=', ',');
                         IF STRLEN(TaxAmtStr) < 14 THEN
-                           TaxAmtStr := PADSTR(TaxAmtStr,14,' ');
+                            TaxAmtStr := PADSTR(TaxAmtStr, 14, ' ');
                     end;
                 }
             }
-            tableelement("<siheader6>";Table112)
+            tableelement("<siheader6>"; "Sales Invoice Header")
             {
-                LinkFields = Field2=FIELD(Field2),
-                             Field3=FIELD(Field3);
+                LinkFields = "Sell-to Customer No." = FIELD("Sell-to Customer No."),
+                             "No." = FIELD("No.");
                 LinkTable = "Sales Invoice Header";
                 XmlName = 'SIHeader6';
                 textattribute(E06)
@@ -310,8 +308,7 @@ xmlport 50010 "Export Sales Invoice to Txt"
 
                     trigger OnBeforePassVariable()
                     var
-                        VatPosting_lRec: Record "325";
-                        SalesInvLines_lRec: Record "113";
+                        SalesInvLines_lRec: Record "Sales Invoice Line";
                     begin
                         /*
                         SalesInvLines_lRec.RESET;
@@ -331,13 +328,13 @@ xmlport 50010 "Export Sales Invoice to Txt"
                           PorcentajeImpuesto2 := '';
                         */
                         //-AKK1606-- CACLETXT280716
-                        SalesInvLines_lRec.RESET;
-                        SalesInvLines_lRec.SETRANGE("Document No.","<SIHeader6>"."No.");
-                        SalesInvLines_lRec.SETRANGE("Sell-to Customer No.","<SIHeader6>"."Sell-to Customer No.");
-                        SalesInvLines_lRec.SETFILTER(Quantity,'<>0');
-                        IF SalesInvLines_lRec.FINDFIRST THEN BEGIN
-                          PorcentajeImpuesto2 := FORMAT(ROUND(SalesInvLines_lRec."VAT %",0.01));
-                        END ELSE
+                        SalesInvLines_lRec.RESET();
+                        SalesInvLines_lRec.SETRANGE("Document No.", "<SIHeader6>"."No.");
+                        SalesInvLines_lRec.SETRANGE("Sell-to Customer No.", "<SIHeader6>"."Sell-to Customer No.");
+                        SalesInvLines_lRec.SETFILTER(Quantity, '<>0');
+                        IF SalesInvLines_lRec.FINDFIRST() THEN
+                            PorcentajeImpuesto2 := FORMAT(ROUND(SalesInvLines_lRec."VAT %", 0.01))
+                        ELSE
                             PorcentajeImpuesto2 := '';
                         //+AKK1606++ CACLETXT280716
 
@@ -349,17 +346,17 @@ xmlport 50010 "Export Sales Invoice to Txt"
 
                     trigger OnBeforePassVariable()
                     begin
-                        "<SIHeader6>".CALCFIELDS(Amount,"Amount Including VAT");
-                        MontoImpuesto2 := FORMAT(ROUND(("<SIHeader6>"."Amount Including VAT" - "<SIHeader6>".Amount),0.01));
-                        MontoImpuesto2 := DELCHR(MontoImpuesto2,'=',','); //-AKK1612++ CACLETXT170816
-                        IF STRLEN(MontoImpuesto2) < 14 THEN  MontoImpuesto2 := AddToPrnString(MontoImpuesto2,' ',STRLEN(MontoImpuesto2),(14-STRLEN(MontoImpuesto2)),Justification::Right,' ','1');
+                        "<SIHeader6>".CALCFIELDS(Amount, "Amount Including VAT");
+                        MontoImpuesto2 := FORMAT(ROUND(("<SIHeader6>"."Amount Including VAT" - "<SIHeader6>".Amount), 0.01));
+                        MontoImpuesto2 := DELCHR(MontoImpuesto2, '=', ','); //-AKK1612++ CACLETXT170816
+                        IF STRLEN(MontoImpuesto2) < 14 THEN MontoImpuesto2 := AddToPrnString(MontoImpuesto2, ' ', STRLEN(MontoImpuesto2), (14 - STRLEN(MontoImpuesto2)), Justification::Right, ' ', '1');
                     end;
                 }
             }
-            tableelement("<siheader8>";Table112)
+            tableelement("<siheader8>"; "Sales Invoice Header")
             {
-                LinkFields = Field2=FIELD(Field2),
-                             Field3=FIELD(Field3);
+                LinkFields = "Sell-to Customer No." = FIELD("Sell-to Customer No."),
+                             "No." = FIELD("No.");
                 LinkTable = "Sales Invoice Header";
                 XmlName = 'SIHeader8';
                 textattribute(EA1)
@@ -382,9 +379,9 @@ xmlport 50010 "Export Sales Invoice to Txt"
                     trigger OnBeforePassVariable()
                     begin
                         IF "<SIHeader8>"."Currency Code" = '' THEN
-                          Moneda := 'MXN'
+                            Moneda := 'MXN'
                         ELSE
-                          Moneda := "<SIHeader8>"."Currency Code";
+                            Moneda := "<SIHeader8>"."Currency Code";
                     end;
                 }
                 textattribute(TipoCambio)
@@ -395,10 +392,10 @@ xmlport 50010 "Export Sales Invoice to Txt"
                     begin
                         //TipoCambio := FORMAT(ROUND("<SIHeader8>"."Currency Factor",0.0001)); //exchg rate as published by SAT jrr
                         IF "<SIHeader8>"."Currency Code" = '' THEN
-                          TC := 1
+                            TC := 1
                         ELSE
-                          TC := 1/"<SIHeader8>"."Currency Factor";
-                        TipoCambio := FORMAT(ROUND(TC,0.0001));
+                            TC := 1 / "<SIHeader8>"."Currency Factor";
+                        TipoCambio := FORMAT(ROUND(TC, 0.0001));
                     end;
                 }
                 textattribute(NTECBH)
@@ -406,18 +403,18 @@ xmlport 50010 "Export Sales Invoice to Txt"
                     Width = 254;
                 }
             }
-            tableelement(Table50038;Table50038)
+            tableelement("Sales Invoice/Cr. Memo Export"; "Sales Invoice/Cr. Memo Export")
             {
-                LinkFields = Field4=FIELD(Field3);
+                LinkFields = "Document No." = FIELD("No.");
                 LinkTable = "Sales Invoice Header";
                 LinkTableForceInsert = false;
                 XmlName = 'SILine';
                 UseTemporary = false;
-                fieldattribute(Details1;"Sales Invoice/Cr. Memo Export".Details1)
+                fieldattribute(Details1; "Sales Invoice/Cr. Memo Export".Details1)
                 {
                     Width = 250;
                 }
-                fieldattribute(Details2;"Sales Invoice/Cr. Memo Export".Details2)
+                fieldattribute(Details2; "Sales Invoice/Cr. Memo Export".Details2)
                 {
                     Width = 250;
                 }
@@ -438,44 +435,17 @@ xmlport 50010 "Export Sales Invoice to Txt"
     }
 
     var
-        NewLine: array [5] of Text[10];
-        "339_gRec": Record "339";
-        ILE_gRec: Record "32";
-        SalesInvLineTemp_gRec: Record "50038";
-        SalesInvLine_gRec: Record "113";
-        Cnt: Integer;
-        CustomField3: Text[247];
-        CustomField4: Text[247];
-        CustomField5: Text[247];
-        CustomField6: Text[247];
-        CustomField7: Text[247];
-        CustomField8: Text[247];
-        CustomField9: Text[247];
-        CustomField10: Text[247];
-        CustomField11: Text[247];
-        CustomField12: Text[247];
-        CustomField13: Text[247];
-        CustomField14: Text[247];
-        CustomField15: Text[247];
-        CustomField16: Text[247];
-        CustomField17: Text[247];
-        CustomField18: Text[247];
-        CustomField19: Text[247];
-        CustomField20: Text[247];
-        CustomField21: Text[247];
-        CustomField22: Text[247];
-        CustomField23: Text[247];
-        CustomField24: Text[247];
-        CustomField25: Text[247];
+        SalesInvLineTemp_gRec: Record "Sales Invoice/Cr. Memo Export";
+        SalesInvLine_gRec: Record "Sales Invoice Line";
+        SIL: Record "Sales Invoice Line";
         SalInvNo_gCod: Code[20];
-        "//-AKK1606VG--": Integer;
-        SIL: Record "113";
         Dscto: Decimal;
         TC: Decimal;
-        Justification: Option Left,Right;
+        Cnt: Integer;
         D02RecCnt: Integer;
+        Justification: Option Left,Right;
 
-    local procedure InsertSalesInvLineTemp_lFnc(var SalesInvLine_vRec: Record "113")
+    local procedure InsertSalesInvLineTemp_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
     begin
         InsertInvLineTemp_lFnc(SalesInvLine_vRec);
         InsertDO2Lines_lFnc(SalesInvLine_vRec);
@@ -498,88 +468,83 @@ xmlport 50010 "Export Sales Invoice to Txt"
 
     end;
 
-    local procedure InsertInvLineTemp_lFnc(var SalesInvLine_vRec: Record "113")
+    local procedure InsertInvLineTemp_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
     var
-        Cantidad: Text[14];
         Unidad: Text[5];
-        NoIdentificacion: Text[20];
-        ClientIdentification: Text[20];
-        Descripcion: Text[150];
-        ValorUnitario: Text[14];
+        Cantidad: Text[14];
         Importe: Text[14];
+        ValorUnitario: Text[14];
+        ClientIdentification: Text[20];
         CuentaPredial: Text[20];
+        NoIdentificacion: Text[20];
+        Descripcion: Text[150];
         Details_lTxt: Text[250];
     begin
-        Cantidad := FORMAT(ROUND(SalesInvLine_vRec.Quantity,0.0001));
-        Cantidad := PADSTR(Cantidad,14,' ');
-        Cantidad := DELCHR(Cantidad,'=',','); //-CACLETXT250816++
+        Cantidad := FORMAT(ROUND(SalesInvLine_vRec.Quantity, 0.0001));
+        Cantidad := PADSTR(Cantidad, 14, ' ');
+        Cantidad := DELCHR(Cantidad, '=', ','); //-CACLETXT250816++
         IF STRLEN(Cantidad) < 14 THEN
-          Cantidad := AddToPrnString(Cantidad,' ',STRLEN(Cantidad),(14-STRLEN(Cantidad)),Justification::Right,' ','1');
-        Unidad := FORMAT(PADSTR(SalesInvLine_vRec."Unit of Measure",5,' '));
-        NoIdentificacion := FORMAT(PADSTR(SalesInvLine_vRec."No.",20,' '));
+            Cantidad := AddToPrnString(Cantidad, ' ', STRLEN(Cantidad), (14 - STRLEN(Cantidad)), Justification::Right, ' ', '1');
+        Unidad := FORMAT(PADSTR(SalesInvLine_vRec."Unit of Measure", 5, ' '));
+        NoIdentificacion := FORMAT(PADSTR(SalesInvLine_vRec."No.", 20, ' '));
         //ClientIdentification := FORMAT(PADSTR(ClientIdentification,20,' '));
-        ClientIdentification := FORMAT(PADSTR(SalesInvLine_vRec."Cross-Reference No.",20,' ')); //-AKK1612++
-        Descripcion := FORMAT(PADSTR(SalesInvLine_vRec.Description,150,' '));
-        ValorUnitario := FORMAT(ROUND(SalesInvLine_vRec."Unit Price",0.0001));
-        ValorUnitario := PADSTR(ValorUnitario,14,' ');
-        ValorUnitario := DELCHR(ValorUnitario,'=',','); //-CACLETXT250816++
+        ClientIdentification := FORMAT(PADSTR(SalesInvLine_vRec."Item Reference No.", 20, ' ')); //-AKK1612++
+        Descripcion := FORMAT(PADSTR(SalesInvLine_vRec.Description, 150, ' '));
+        ValorUnitario := FORMAT(ROUND(SalesInvLine_vRec."Unit Price", 0.0001));
+        ValorUnitario := PADSTR(ValorUnitario, 14, ' ');
+        ValorUnitario := DELCHR(ValorUnitario, '=', ','); //-CACLETXT250816++
         IF STRLEN(ValorUnitario) < 14 THEN
-          ValorUnitario := AddToPrnString(ValorUnitario,' ',STRLEN(ValorUnitario),(14-STRLEN(ValorUnitario)),Justification::Right,' ','1');
-        Importe := FORMAT(ROUND((SalesInvLine_vRec.Quantity * SalesInvLine_vRec."Unit Price"),0.0001));
-        Importe := PADSTR(Importe,14,' ');
-        Importe := DELCHR(Importe,'=',','); //-CACLETXT250816++
+            ValorUnitario := AddToPrnString(ValorUnitario, ' ', STRLEN(ValorUnitario), (14 - STRLEN(ValorUnitario)), Justification::Right, ' ', '1');
+        Importe := FORMAT(ROUND((SalesInvLine_vRec.Quantity * SalesInvLine_vRec."Unit Price"), 0.0001));
+        Importe := PADSTR(Importe, 14, ' ');
+        Importe := DELCHR(Importe, '=', ','); //-CACLETXT250816++
         IF STRLEN(Importe) < 14 THEN
-          Importe := AddToPrnString(Importe,' ',STRLEN(Importe),(14-STRLEN(Importe)),Justification::Right,' ','1');
-        CuentaPredial := FORMAT(PADSTR(CuentaPredial,20,' '));
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
+            Importe := AddToPrnString(Importe, ' ', STRLEN(Importe), (14 - STRLEN(Importe)), Justification::Right, ' ', '1');
+        CuentaPredial := FORMAT(PADSTR(CuentaPredial, 20, ' '));
+        SalesInvLineTemp_gRec.INIT();
+        Cnt := Cnt + 1;
         SalesInvLineTemp_gRec.SLInes := Cnt;
         SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('D01' + Cantidad + Unidad + NoIdentificacion + ClientIdentification + Descripcion + ValorUnitario + Importe,240,' ');
+        Details_lTxt := PADSTR('D01' + Cantidad + Unidad + NoIdentificacion + ClientIdentification + Descripcion + ValorUnitario + Importe, 240, ' ');
 
         SalesInvLineTemp_gRec.Details1 := Details_lTxt;
         SalesInvLineTemp_gRec.Details2 := CuentaPredial;
-        SalesInvLineTemp_gRec.INSERT;
+        SalesInvLineTemp_gRec.INSERT();
     end;
 
-    local procedure InsertDO2Lines_lFnc(var SalesInvLine_vRec: Record "113")
+    local procedure InsertDO2Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
     var
-        ValueEntry_lRec: Record "5802";
-        ItemApplEntry_lRec: Record "339";
-        Consecutivo: Text[2];
-        Pedimento: Text[20];
         FechaPedimento: Text[10];
+        Pedimento: Text[20];
         Aduana: Text[50];
-        ILE_lRec: Record "32";
         Details_lTxt: Text[250];
-        Consecutivo2: Integer;
     begin
         //jrrs
-        
+
         IF SalesInvLine_vRec.National THEN    //no D02 for local sales
-           EXIT;
-        
-         IF (SalesInvLine_vRec."Entry/Exit Date" = 0D) OR (SalesInvLine_vRec."Entry/Exit No." = '') THEN
+            EXIT;
+
+        IF (SalesInvLine_vRec."Entry/Exit Date" = 0D) OR (SalesInvLine_vRec."Entry/Exit No." = '') THEN
             EXIT;    //no D02 if mandatory fields blank
-        
-        Pedimento := PADSTR(SalesInvLine_vRec."Entry/Exit No.",20,' ');     //custom doc#
-        FechaPedimento := PADSTR(FORMAT(SalesInvLine_vRec."Entry/Exit Date",0,'<Year4>-<Month,2>-<Day,2>'),10,' '); //custom doc dt
-        Aduana := PADSTR(FORMAT(SalesInvLine_vRec."Exit Point"),50,' ');  //custom office
-        SalesInvLineTemp_gRec.INIT;
+
+        Pedimento := PADSTR(SalesInvLine_vRec."Entry/Exit No.", 20, ' ');     //custom doc#
+        FechaPedimento := PADSTR(FORMAT(SalesInvLine_vRec."Entry/Exit Date", 0, '<Year4>-<Month,2>-<Day,2>'), 10, ' '); //custom doc dt
+        Aduana := PADSTR(FORMAT(SalesInvLine_vRec."Exit Point"), 50, ' ');  //custom office
+        SalesInvLineTemp_gRec.INIT();
         Cnt := Cnt + 1;
         D02RecCnt := D02RecCnt + 1;
         SalesInvLineTemp_gRec.SLInes := Cnt;
         SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
         //replced cnt with D02RecCnt
-        IF STRLEN(FORMAT(D02RecCnt))=1 THEN
-          Details_lTxt := PADSTR('D02' + '0' + FORMAT(D02RecCnt) + Pedimento + FechaPedimento + Aduana,240,' ')
+        IF STRLEN(FORMAT(D02RecCnt)) = 1 THEN
+            Details_lTxt := PADSTR('D02' + '0' + FORMAT(D02RecCnt) + Pedimento + FechaPedimento + Aduana, 240, ' ')
         ELSE
-          Details_lTxt := PADSTR('D02' + FORMAT(D02RecCnt) + Pedimento + FechaPedimento + Aduana,240,' ');
+            Details_lTxt := PADSTR('D02' + FORMAT(D02RecCnt) + Pedimento + FechaPedimento + Aduana, 240, ' ');
         SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
+        SalesInvLineTemp_gRec.INSERT();
         //jrre
-        
-        
+
+
         //jrr Following code written by Cleven discarded by JRR due to wrong logic.
         /*
         ValueEntry_lRec.RESET;
@@ -617,7 +582,7 @@ xmlport 50010 "Export Sales Invoice to Txt"
 
     end;
 
-    local procedure InsertDA1Lines_lFnc(var SalesInvLine_vRec: Record "113")
+    /* local procedure InsertDA1Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
     var
         OrdendeCompra: Text[20];
         FechadelaOrdendeCompra2: Date;
@@ -626,20 +591,20 @@ xmlport 50010 "Export Sales Invoice to Txt"
         UnidadMedidaPeso: Text[5];
         Details_lTxt: Text[250];
     begin
-        OrdendeCompra := PADSTR(OrdendeCompra,20,' ');
-        FechadelaOrdendeCompra := PADSTR(FORMAT((FechadelaOrdendeCompra2),0,'<Year4>-<Month,2>-<Day,2>'),10,' ');
-        Peso := PADSTR(Peso,14,' ');
-        UnidadMedidaPeso := PADSTR(UnidadMedidaPeso,5,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
+        OrdendeCompra := PADSTR(OrdendeCompra, 20, ' ');
+        FechadelaOrdendeCompra := PADSTR(FORMAT((FechadelaOrdendeCompra2), 0, '<Year4>-<Month,2>-<Day,2>'), 10, ' ');
+        Peso := PADSTR(Peso, 14, ' ');
+        UnidadMedidaPeso := PADSTR(UnidadMedidaPeso, 5, ' ');
+        SalesInvLineTemp_gRec.INIT();
+        Cnt := Cnt + 1;
         SalesInvLineTemp_gRec.SLInes := Cnt;
         SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('DA1' + OrdendeCompra + FechadelaOrdendeCompra + Peso + UnidadMedidaPeso,240,' ');
+        Details_lTxt := PADSTR('DA1' + OrdendeCompra + FechadelaOrdendeCompra + Peso + UnidadMedidaPeso, 240, ' ');
         SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+        SalesInvLineTemp_gRec.INSERT();
+    end; */
 
-    local procedure InsertDA2Lines_lFnc(var SalesInvLine_vRec: Record "113")
+    /* local procedure InsertDA2Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
     var
         NoRealese: Text[20];
         "Fecha Envio": Text[10];
@@ -651,271 +616,270 @@ xmlport 50010 "Export Sales Invoice to Txt"
         PesoNeto: Text[10];
         Details_lTxt: Text[250];
     begin
-        NoRealese := PADSTR(NoRealese,20,' ');
-        "Fecha Envio" := PADSTR(FORMAT("Fecha Envio2",0,'<Year4>-<Month,2>-<Day,2>'),10,' ');
-        BillOfLading := PADSTR(BillOfLading,20,' ');
-        packingList := PADSTR(packingList,20,' ');
-        TipoFlete := PADSTR(TipoFlete,1,' ');
-        ammendment := PADSTR(ammendment,3,' ');
-        PesoNeto := PADSTR(PesoNeto,10,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
+        NoRealese := PADSTR(NoRealese, 20, ' ');
+        "Fecha Envio" := PADSTR(FORMAT("Fecha Envio2", 0, '<Year4>-<Month,2>-<Day,2>'), 10, ' ');
+        BillOfLading := PADSTR(BillOfLading, 20, ' ');
+        packingList := PADSTR(packingList, 20, ' ');
+        TipoFlete := PADSTR(TipoFlete, 1, ' ');
+        ammendment := PADSTR(ammendment, 3, ' ');
+        PesoNeto := PADSTR(PesoNeto, 10, ' ');
+        SalesInvLineTemp_gRec.INIT();
+        Cnt := Cnt + 1;
         SalesInvLineTemp_gRec.SLInes := Cnt;
         SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + NoRealese + "Fecha Envio" + BillOfLading + packingList + TipoFlete + ammendment + PesoNeto,240,' ');
+        Details_lTxt := PADSTR('   ' + NoRealese + "Fecha Envio" + BillOfLading + packingList + TipoFlete + ammendment + PesoNeto, 240, ' ');
         SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+        SalesInvLineTemp_gRec.INSERT();
+    end; */
 
-    local procedure InsertDA3Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        Secuencia: Text[3];
-        Nota: Text[200];
-    begin
-        Secuencia := PADSTR(Secuencia,3,' ');
-        Nota := PADSTR(Nota,200,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + Secuencia + Nota,240,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+    /*  local procedure InsertDA3Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+     var
+         Details_lTxt: Text[250];
+         Secuencia: Text[3];
+         Nota: Text[200];
+     begin
+         Secuencia := PADSTR(Secuencia, 3, ' ');
+         Nota := PADSTR(Nota, 200, ' ');
+         SalesInvLineTemp_gRec.INIT();
+         Cnt := Cnt + 1;
+         SalesInvLineTemp_gRec.SLInes := Cnt;
+         SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+         Details_lTxt := PADSTR('   ' + Secuencia + Nota, 240, ' ');
+         SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+         SalesInvLineTemp_gRec.INSERT();
+     end;
 
-    local procedure InsertDA4Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        Codigo: Text[10];
-        Porcentaje: Text[7];
-        Descripcion: Text[80];
-        Importe: Text[14];
-    begin
-        Codigo := PADSTR(Codigo,10,' ');
-        Porcentaje := PADSTR(Porcentaje,7,' ');
-        Descripcion := PADSTR(Descripcion,80,' ');
-        Importe := PADSTR(Importe,14,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + Codigo + Porcentaje + Descripcion + Importe,240,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+     local procedure InsertDA4Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+     var
+         Details_lTxt: Text[250];
+         Codigo: Text[10];
+         Porcentaje: Text[7];
+         Descripcion: Text[80];
+         Importe: Text[14];
+     begin
+         Codigo := PADSTR(Codigo, 10, ' ');
+         Porcentaje := PADSTR(Porcentaje, 7, ' ');
+         Descripcion := PADSTR(Descripcion, 80, ' ');
+         Importe := PADSTR(Importe, 14, ' ');
+         SalesInvLineTemp_gRec.INIT();
+         Cnt := Cnt + 1;
+         SalesInvLineTemp_gRec.SLInes := Cnt;
+         SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+         Details_lTxt := PADSTR('   ' + Codigo + Porcentaje + Descripcion + Importe, 240, ' ');
+         SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+         SalesInvLineTemp_gRec.INSERT();
+     end;
 
-    local procedure InsertDA5Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        TipoCantidadAdicional: Text[20];
-        CantidadAdicional: Text[80];
-    begin
-        TipoCantidadAdicional := PADSTR(TipoCantidadAdicional,20,' ');
-        CantidadAdicional := PADSTR(CantidadAdicional,80,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + TipoCantidadAdicional + CantidadAdicional,240,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+     local procedure InsertDA5Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+     var
+         Details_lTxt: Text[250];
+         TipoCantidadAdicional: Text[20];
+         CantidadAdicional: Text[80];
+     begin
+         TipoCantidadAdicional := PADSTR(TipoCantidadAdicional, 20, ' ');
+         CantidadAdicional := PADSTR(CantidadAdicional, 80, ' ');
+         SalesInvLineTemp_gRec.INIT();
+         Cnt := Cnt + 1;
+         SalesInvLineTemp_gRec.SLInes := Cnt;
+         SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+         Details_lTxt := PADSTR('   ' + TipoCantidadAdicional + CantidadAdicional, 240, ' ');
+         SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+         SalesInvLineTemp_gRec.INSERT();
+     end; */
 
-    local procedure InsertDA6Lines_lFnc(var SalesInvLine_vRec: Record "113")
+    local procedure InsertDA6Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
     var
-        Details_lTxt: Text[250];
-        Details_lTxt2: Text[36];
         Impuesto: Text[5];
         Importe: Text[14];
         Tasa: Text[14];
+        Details_lTxt: Text[250];
     begin
         //Impuesto := PADSTR(SalesInvLine_vRec."VAT Identifier",5,' ');
         //Importe := PADSTR(FORMAT(ROUND(SalesInvLine_vRec.Amount,0.01)),14,' ');
-        Impuesto := PADSTR('IVA',5,' ');
-        Importe := PADSTR(FORMAT(ROUND(SalesInvLine_vRec."Amount Including VAT"-SalesInvLine_vRec.Amount,0.01)),14,' ');
-        Tasa := PADSTR(FORMAT(ROUND(SalesInvLine_vRec."VAT %",0.01)),14,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
+        Impuesto := PADSTR('IVA', 5, ' ');
+        Importe := PADSTR(FORMAT(ROUND(SalesInvLine_vRec."Amount Including VAT" - SalesInvLine_vRec.Amount, 0.01)), 14, ' ');
+        Tasa := PADSTR(FORMAT(ROUND(SalesInvLine_vRec."VAT %", 0.01)), 14, ' ');
+        SalesInvLineTemp_gRec.INIT();
+        Cnt := Cnt + 1;
         SalesInvLineTemp_gRec.SLInes := Cnt;
         SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
         //Details_lTxt := PADSTR('   ' + Impuesto + Importe + Tasa,240,' ');
-        Details_lTxt := PADSTR('DA6' + Impuesto + Importe + Tasa,36);
+        Details_lTxt := PADSTR('DA6' + Impuesto + Importe + Tasa, 36);
         SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
+        SalesInvLineTemp_gRec.INSERT();
     end;
 
-    local procedure InsertDA7Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        ContraRecibo: Text[20];
-        Fecha: Text[10];
-        Fecha2: Date;
-    begin
-        ContraRecibo := PADSTR(ContraRecibo,20,' ');
-        Fecha := PADSTR(FORMAT(Fecha2,0,'<Year4>-<Month,2>-<Day,2>'),10,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + ContraRecibo + Fecha,240,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+    /*   local procedure InsertDA7Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+      var
+          Fecha2: Date;
+          Fecha: Text[10];
+          ContraRecibo: Text[20];
+          Details_lTxt: Text[250];
+      begin
+          ContraRecibo := PADSTR(ContraRecibo, 20, ' ');
+          Fecha := PADSTR(FORMAT(Fecha2, 0, '<Year4>-<Month,2>-<Day,2>'), 10, ' ');
+          SalesInvLineTemp_gRec.INIT();
+          Cnt := Cnt + 1;
+          SalesInvLineTemp_gRec.SLInes := Cnt;
+          SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+          Details_lTxt := PADSTR('   ' + ContraRecibo + Fecha, 240, ' ');
+          SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+          SalesInvLineTemp_gRec.INSERT();
+      end;
 
-    local procedure InsertDA8Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        Codigo: Text[10];
-        Porcentaje: Text[7];
-        Descripcion: Text[80];
-        Importe: Text[14];
-    begin
-        Codigo := PADSTR(Codigo,10,' ');
-        Porcentaje := PADSTR(Porcentaje,7,' ');
-        Descripcion := PADSTR(Descripcion,80,' ');
-        Importe := PADSTR(Importe,14,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + Codigo + Porcentaje + Descripcion + Importe,240,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+      local procedure InsertDA8Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+      var
+          Porcentaje: Text[7];
+          Codigo: Text[10];
+          Importe: Text[14];
+          Descripcion: Text[80];
+          Details_lTxt: Text[250];
+      begin
+          Codigo := PADSTR(Codigo, 10, ' ');
+          Porcentaje := PADSTR(Porcentaje, 7, ' ');
+          Descripcion := PADSTR(Descripcion, 80, ' ');
+          Importe := PADSTR(Importe, 14, ' ');
+          SalesInvLineTemp_gRec.INIT();
+          Cnt := Cnt + 1;
+          SalesInvLineTemp_gRec.SLInes := Cnt;
+          SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+          Details_lTxt := PADSTR('   ' + Codigo + Porcentaje + Descripcion + Importe, 240, ' ');
+          SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+          SalesInvLineTemp_gRec.INSERT();
+      end;
 
-    local procedure InsertDC3Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        CustomField03: Text[250];
-    begin
-        CustomField03 := PADSTR(CustomField03,250,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + CustomField03,250,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+      local procedure InsertDC3Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+      var
+          CustomField03: Text[250];
+          Details_lTxt: Text[250];
+      begin
+          CustomField03 := PADSTR(CustomField03, 250, ' ');
+          SalesInvLineTemp_gRec.INIT();
+          Cnt := Cnt + 1;
+          SalesInvLineTemp_gRec.SLInes := Cnt;
+          SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+          Details_lTxt := PADSTR('   ' + CustomField03, 250, ' ');
+          SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+          SalesInvLineTemp_gRec.INSERT();
+      end;
 
-    local procedure InsertDC4Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        CustomField04: Text[250];
-    begin
-        CustomField04 := PADSTR(CustomField04,250,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + CustomField04,250,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+      local procedure InsertDC4Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+      var
+          CustomField04: Text[250];
+          Details_lTxt: Text[250];
+      begin
+          CustomField04 := PADSTR(CustomField04, 250, ' ');
+          SalesInvLineTemp_gRec.INIT();
+          Cnt := Cnt + 1;
+          SalesInvLineTemp_gRec.SLInes := Cnt;
+          SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+          Details_lTxt := PADSTR('   ' + CustomField04, 250, ' ');
+          SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+          SalesInvLineTemp_gRec.INSERT();
+      end;
 
-    local procedure InsertDC5Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        CustomField05: Text[250];
-    begin
-        CustomField05 := PADSTR(CustomField05,250,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + CustomField05,250,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+      local procedure InsertDC5Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+      var
+          CustomField05: Text[250];
+          Details_lTxt: Text[250];
+      begin
+          CustomField05 := PADSTR(CustomField05, 250, ' ');
+          SalesInvLineTemp_gRec.INIT();
+          Cnt := Cnt + 1;
+          SalesInvLineTemp_gRec.SLInes := Cnt;
+          SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+          Details_lTxt := PADSTR('   ' + CustomField05, 250, ' ');
+          SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+          SalesInvLineTemp_gRec.INSERT();
+      end;
 
-    local procedure InsertDC6Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        CustomField06: Text[250];
-    begin
-        CustomField06 := PADSTR(CustomField06,250,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + CustomField06,250,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+      local procedure InsertDC6Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+      var
+          CustomField06: Text[250];
+          Details_lTxt: Text[250];
+      begin
+          CustomField06 := PADSTR(CustomField06, 250, ' ');
+          SalesInvLineTemp_gRec.INIT();
+          Cnt := Cnt + 1;
+          SalesInvLineTemp_gRec.SLInes := Cnt;
+          SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+          Details_lTxt := PADSTR('   ' + CustomField06, 250, ' ');
+          SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+          SalesInvLineTemp_gRec.INSERT();
+      end;
 
-    local procedure InsertDC7Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        CustomField07: Text[250];
-    begin
-        CustomField07 := PADSTR(CustomField07,250,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + CustomField07,250,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+      local procedure InsertDC7Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+      var
+          CustomField07: Text[250];
+          Details_lTxt: Text[250];
+      begin
+          CustomField07 := PADSTR(CustomField07, 250, ' ');
+          SalesInvLineTemp_gRec.INIT();
+          Cnt := Cnt + 1;
+          SalesInvLineTemp_gRec.SLInes := Cnt;
+          SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+          Details_lTxt := PADSTR('   ' + CustomField07, 250, ' ');
+          SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+          SalesInvLineTemp_gRec.INSERT();
+      end;
 
-    local procedure InsertDC8Lines_lFnc(var SalesInvLine_vRec: Record "113")
-    var
-        Details_lTxt: Text[250];
-        CustomField08: Text[250];
-    begin
-        CustomField08 := PADSTR(CustomField08,250,' ');
-        SalesInvLineTemp_gRec.INIT;
-        Cnt := Cnt  + 1;
-        SalesInvLineTemp_gRec.SLInes := Cnt;
-        SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
-        Details_lTxt := PADSTR('   ' + CustomField08,250,' ');
-        SalesInvLineTemp_gRec.Details1 := Details_lTxt;
-        SalesInvLineTemp_gRec.INSERT;
-    end;
+      local procedure InsertDC8Lines_lFnc(var SalesInvLine_vRec: Record "Sales Invoice Line")
+      var
+          CustomField08: Text[250];
+          Details_lTxt: Text[250];
+      begin
+          CustomField08 := PADSTR(CustomField08, 250, ' ');
+          SalesInvLineTemp_gRec.INIT();
+          Cnt := Cnt + 1;
+          SalesInvLineTemp_gRec.SLInes := Cnt;
+          SalesInvLineTemp_gRec."Document No." := "Sales Invoice Header"."No.";
+          Details_lTxt := PADSTR('   ' + CustomField08, 250, ' ');
+          SalesInvLineTemp_gRec.Details1 := Details_lTxt;
+          SalesInvLineTemp_gRec.INSERT();
+      end; */
 
     procedure GetInvNo_gFnc(var InvNo_vCod: Code[20])
     begin
         SalInvNo_gCod := InvNo_vCod;
     end;
 
-    local procedure "//"()
-    begin
-    end;
-
-    local procedure AddToPrnString(var PrnString: Text[422];SubString: Text[345];StartPos: Integer;Length: Integer;Justification: Option Left,Right;Filler: Text[1];Type: Text[1]): Text[50]
+    /*   local procedure "//"()
+      begin
+      end;
+   */
+    local procedure AddToPrnString(var PrnString: Text[422]; SubString: Text[345]; StartPos: Integer; Length: Integer; JustificationLVar: Option Left,Right; Filler: Text[1]; Type: Text[1]): Text[50]
     var
         I: Integer;
         SubStrLen: Integer;
     begin
-        SubString := UPPERCASE(DELCHR(SubString,'<>',' '));
+        SubString := UPPERCASE(DELCHR(SubString, '<>', ' '));
         SubStrLen := STRLEN(SubString);
 
         IF SubStrLen > Length THEN BEGIN
-          SubString := COPYSTR(SubString,1,Length);
-          SubStrLen := Length;
+            SubString := COPYSTR(SubString, 1, Length);
+            SubStrLen := Length;
         END;
 
-        IF Justification = Justification::Right THEN
-          FOR I := 1 TO (Length - SubStrLen) DO
-            SubString := Filler + SubString
+        IF JustificationLVar = JustificationLVar::Right THEN
+            FOR I := 1 TO (Length - SubStrLen) DO
+                SubString := Filler + SubString
         ELSE
-          FOR I := SubStrLen + 1 TO Length DO
-            SubString := SubString + Filler;
+            FOR I := SubStrLen + 1 TO Length DO
+                SubString := SubString + Filler;
 
         IF STRLEN(PrnString) > StartPos THEN  //IF STRLEN(PrnString) >= StartPos THEN
-          IF StartPos > 1 THEN
-            PrnString := COPYSTR(PrnString,1,StartPos - 1) + SubString + COPYSTR(PrnString,StartPos)
-          ELSE
-            PrnString := SubString + PrnString
+            IF StartPos > 1 THEN
+                PrnString := COPYSTR(PrnString, 1, StartPos - 1) + SubString + COPYSTR(PrnString, StartPos)
+            ELSE
+                PrnString := SubString + PrnString
         ELSE BEGIN
-          FOR I := STRLEN(PrnString) + 1 TO StartPos - 1 DO
-            PrnString := PrnString + ' ';
-          PrnString := PrnString + SubString;
+            FOR I := STRLEN(PrnString) + 1 TO StartPos - 1 DO
+                PrnString := PrnString + ' ';
+            PrnString := PrnString + SubString;
         END;
 
         IF Type = '1' THEN
-          PrnString := COPYSTR(PrnString,1,14); //Descuento
+            PrnString := COPYSTR(PrnString, 1, 14); //Descuento
         EXIT(PrnString);
     end;
 }

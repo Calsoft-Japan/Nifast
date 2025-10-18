@@ -7,22 +7,22 @@ xmlport 50031 "GL Budget Import"
     {
         textelement(root)
         {
-            tableelement(Table96;Table96)
+            tableelement("G/L Budget Entry"; "G/L Budget Entry")
             {
                 XmlName = 'GLBudgetEntry';
-                fieldelement(BudgetName;"G/L Budget Entry"."Budget Name")
+                fieldelement(BudgetName; "G/L Budget Entry"."Budget Name")
                 {
                 }
-                fieldelement(AccountCode;"G/L Budget Entry"."G/L Account No.")
+                fieldelement(AccountCode; "G/L Budget Entry"."G/L Account No.")
                 {
                 }
-                fieldelement(Date;"G/L Budget Entry".Date)
+                fieldelement(Date; "G/L Budget Entry".Date)
                 {
                 }
-                fieldelement(DivCode;"G/L Budget Entry"."Global Dimension 1 Code")
+                fieldelement(DivCode; "G/L Budget Entry"."Global Dimension 1 Code")
                 {
                 }
-                fieldelement(Amount;"G/L Budget Entry".Amount)
+                fieldelement(Amount; "G/L Budget Entry".Amount)
                 {
                 }
             }

@@ -3,7 +3,7 @@ page 50039 "Posted Receive Line Label Req."
     // NF1.00:CIS.NG  09-05-15 Merged during upgrade
 
     PageType = Document;
-    SourceTable = Table14000604;
+    SourceTable = 14000604;
 
     layout
     {

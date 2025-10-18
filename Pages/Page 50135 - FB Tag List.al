@@ -5,41 +5,52 @@ page 50135 "FB Tag List"
     CardPageID = "FB Tag Card";
     Editable = false;
     PageType = List;
-    SourceTable = Table50134;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "FB Tag";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the value of the No. field.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
+                    ToolTip = 'Specifies the value of the Location Code field.';
                 }
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
-                field("Ship-to Code";"Ship-to Code")
+                field("Ship-to Code"; Rec."Ship-to Code")
                 {
+                    ToolTip = 'Specifies the value of the Ship-to Code field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Variant Code";"Variant Code")
+                field("Variant Code"; Rec."Variant Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Variant Code field.';
                 }
-                field("Unit of Measure Code";"Unit of Measure Code")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
+                    ToolTip = 'Specifies the value of the Unit of Measure Code field.';
                 }
-                field("Customer Bin";"Customer Bin")
+                field("Customer Bin"; Rec."Customer Bin")
                 {
+                    ToolTip = 'Specifies the value of the Customer Bin field.';
                 }
-                field("Contract No.";"Contract No.")
+                field("Contract No."; Rec."Contract No.")
                 {
+                    ToolTip = 'Specifies the value of the Contract No. field.';
                 }
             }
         }

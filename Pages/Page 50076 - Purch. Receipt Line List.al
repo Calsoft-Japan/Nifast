@@ -10,107 +10,134 @@ page 50076 "Purch. Receipt Line List"
     Caption = 'Purch. Receipt Lines';
     Editable = false;
     PageType = List;
-    SourceTable = Table121;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "Purch. Rcpt. Line";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Document No.";"Document No.")
+                field("Document No."; Rec."Document No.")
                 {
                     HideValue = "Document No.HideValue";
                     Style = Strong;
                     StyleExpr = TRUE;
+                    ToolTip = 'Specifies the receipt number.';
                 }
-                field("Buy-from Vendor No.";"Buy-from Vendor No.")
+                field("Buy-from Vendor No."; Rec."Buy-from Vendor No.")
                 {
+                    ToolTip = 'Specifies the name of the vendor who delivered the items.';
                 }
-                field(VendorName;VendorName)
+                field(VendorNames; VendorName())
                 {
                     Caption = 'Vendor Name';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Vendor Name field.';
                 }
-                field(Type;Type)
+                field(Type; Rec.Type)
                 {
+                    ToolTip = 'Specifies the line type.';
                 }
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the number of the involved entry or record, according to the specified number series.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies either the name of or a description of the item or general ledger account.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
+                    ToolTip = 'Specifies the code for the location where the receipt line is registered.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
+                    ToolTip = 'Specifies the number of units of the item specified on the line.';
                 }
-                field("Unit of Measure";"Unit of Measure")
+                field("Unit of Measure"; Rec."Unit of Measure")
                 {
+                    ToolTip = 'Specifies the name of the item or resource''s unit of measure, such as piece or hour.';
                 }
-                field("Sail-on Date";"Sail-on Date")
+                field("Sail-on Date"; Rec."Sail-on Date")
                 {
+                    ToolTip = 'Specifies the value of the Sail-on Date field.';
                 }
-                field("Vessel Name";"Vessel Name")
+                field("Vessel Name"; Rec."Vessel Name")
                 {
+                    ToolTip = 'Specifies the value of the Vessel Name field.';
                 }
-                field("Direct Unit Cost";"Direct Unit Cost")
+                field("Direct Unit Cost"; Rec."Direct Unit Cost")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the cost of one unit of the selected item or resource.';
                 }
-                field("Unit Cost (LCY)";"Unit Cost (LCY)")
+                field("Unit Cost (LCY)"; Rec."Unit Cost (LCY)")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the cost, in LCY, of one unit of the item or resource on the line.';
                 }
-                field("Shortcut Dimension 1 Code";"Shortcut Dimension 1 Code")
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                     Visible = true;
+                    ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
                 }
-                field("Shortcut Dimension 2 Code";"Shortcut Dimension 2 Code")
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
                 }
-                field("Indirect Cost %";"Indirect Cost %")
+                field("Indirect Cost %"; Rec."Indirect Cost %")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the percentage of the item''s last purchase cost that includes indirect costs, such as freight that is associated with the purchase of the item.';
                 }
-                field("Quantity Invoiced";"Quantity Invoiced")
+                field("Quantity Invoiced"; Rec."Quantity Invoiced")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies how many units of the item on the line have been posted as invoiced.';
                 }
-                field("Order No.";"Order No.")
+                field("Order No."; Rec."Order No.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Order No. field.';
                 }
-                field("Order Line No.";"Order Line No.")
+                field("Order Line No."; Rec."Order Line No.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the line number of the order that created the entry.';
                 }
-                field("Vendor Item No.";"Vendor Item No.")
+                field("Vendor Item No."; Rec."Vendor Item No.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the number that the vendor uses for this item.';
                 }
-                field("Unit Cost";"Unit Cost")
+                field("Unit Cost"; Rec."Unit Cost")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the cost of one unit of the item or resource on the line.';
                 }
-                field("Prod. Order No.";"Prod. Order No.")
+                field("Prod. Order No."; Rec."Prod. Order No.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Prod. Order No. field.';
                 }
-                field("Variant Code";"Variant Code")
+                field("Variant Code"; Rec."Variant Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the variant of the item on the line.';
                 }
-                field("Qty. per Unit of Measure";"Qty. per Unit of Measure")
+                field("Qty. per Unit of Measure"; Rec."Qty. per Unit of Measure")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the quantity per unit of measure of the item that was received.';
                 }
-                field("Unit of Measure Code";"Unit of Measure Code")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies how each unit of the item or resource is measured, such as in pieces or hours. By default, the value in the Base Unit of Measure field on the item or resource card is inserted.';
                 }
             }
         }
@@ -129,26 +156,28 @@ page 50076 "Purch. Receipt Line List"
                     Caption = 'Show Document';
                     Image = View;
                     ShortCutKey = 'Shift+F7';
+                    ToolTip = 'Executes the Show Document action.';
 
                     trigger OnAction()
                     var
-                        PurchRcptHeader: Record "120";
+                        PurchRcptHeader: Record "Purch. Rcpt. Header";
                     begin
-                        PurchRcptHeader.GET("Document No.");
-                        PAGE.RUN(PAGE::"Posted Purchase Receipt",PurchRcptHeader);
+                        PurchRcptHeader.GET(Rec."Document No.");
+                        PAGE.RUN(PAGE::"Posted Purchase Receipt", PurchRcptHeader);
                     end;
                 }
                 action(Dimensions)
                 {
-                    AccessByPermission = TableData 348=R;
+                    AccessByPermission = TableData Dimension = R;
                     Caption = 'Dimensions';
                     Image = Dimensions;
                     ShortCutKey = 'Shift+Ctrl+D';
+                    ToolTip = 'Executes the Dimensions action.';
 
                     trigger OnAction()
                     begin
-                        ShowDimensions;
-                        CurrPage.SAVERECORD;
+                        Rec.ShowDimensions();
+                        CurrPage.SAVERECORD();
                     end;
                 }
                 action("Item &Tracking Lines")
@@ -156,10 +185,11 @@ page 50076 "Purch. Receipt Line List"
                     Caption = 'Item &Tracking Lines';
                     Image = ItemTrackingLines;
                     ShortCutKey = 'Shift+Ctrl+I';
+                    ToolTip = 'Executes the Item &Tracking Lines action.';
 
                     trigger OnAction()
                     begin
-                        ShowItemTrackingLines;
+                        Rec.ShowItemTrackingLines();
                     end;
                 }
             }
@@ -169,7 +199,7 @@ page 50076 "Purch. Receipt Line List"
     trigger OnAfterGetRecord()
     begin
         "Document No.HideValue" := FALSE;
-        DocumentNoOnFormat;
+        DocumentNoOnFormat();
     end;
 
     trigger OnInit()
@@ -179,32 +209,32 @@ page 50076 "Purch. Receipt Line List"
 
     trigger OnOpenPage()
     begin
-        FILTERGROUP(2);
-        SETRANGE(Type,Type::Item);
-        SETFILTER(Quantity,'<>0');
-        SETRANGE(Correction,FALSE);
-        SETRANGE("Job No.",'');
-        FILTERGROUP(0);
+        Rec.FILTERGROUP(2);
+        Rec.SETRANGE(Type, Rec.Type::Item);
+        Rec.SETFILTER(Quantity, '<>0');
+        Rec.SETRANGE(Correction, FALSE);
+        Rec.SETRANGE("Job No.", '');
+        Rec.FILTERGROUP(0);
     end;
 
     trigger OnQueryClosePage(CloseAction: Action): Boolean
     begin
         IF CloseAction = ACTION::LookupOK THEN
-            LookupOKOnPush;
+            LookupOKOnPush();
     end;
 
     var
-        FromPurchRcptLine: Record "121";
-        TempPurchRcptLine: Record "121" temporary;
-        ItemChargeAssgntPurch: Record "5805";
-        AssignItemChargePurch: Codeunit "5805";
+        FromPurchRcptLine: Record "Purch. Rcpt. Line";
+        TempPurchRcptLine: Record "Purch. Rcpt. Line" temporary;
+        ItemChargeAssgntPurch: Record "Item Charge Assignment (Purch)";
+        AssignItemChargePurch: Codeunit "Item Charge Assgnt. (Purch.)";
         UnitCost: Decimal;
         [InDataSet]
         "Document No.HideValue": Boolean;
         [InDataSet]
         "Document No.Emphasize": Boolean;
 
-    procedure Initialize(NewItemChargeAssgntPurch: Record "5805";NewUnitCost: Decimal)
+    procedure Initialize(NewItemChargeAssgntPurch: Record "Item Charge Assignment (Purch)"; NewUnitCost: Decimal)
     begin
         ItemChargeAssgntPurch := NewItemChargeAssgntPurch;
         UnitCost := NewUnitCost;
@@ -212,32 +242,32 @@ page 50076 "Purch. Receipt Line List"
 
     local procedure IsFirstDocLine(): Boolean
     var
-        PurchRcptLine: Record "121";
+        PurchRcptLine: Record "Purch. Rcpt. Line";
     begin
-        TempPurchRcptLine.RESET;
+        TempPurchRcptLine.RESET();
         TempPurchRcptLine.COPYFILTERS(Rec);
-        TempPurchRcptLine.SETRANGE("Document No.","Document No.");
+        TempPurchRcptLine.SETRANGE("Document No.", Rec."Document No.");
         IF NOT TempPurchRcptLine.FIND('-') THEN BEGIN
-          FILTERGROUP(2);
-          PurchRcptLine.COPYFILTERS(Rec);
-          FILTERGROUP(0);
-          PurchRcptLine.SETRANGE("Document No.","Document No.");
-          PurchRcptLine.FIND('-');
-          TempPurchRcptLine := PurchRcptLine;
-          TempPurchRcptLine.INSERT;
+            Rec.FILTERGROUP(2);
+            PurchRcptLine.COPYFILTERS(Rec);
+            Rec.FILTERGROUP(0);
+            PurchRcptLine.SETRANGE("Document No.", Rec."Document No.");
+            PurchRcptLine.FindFirst();
+            TempPurchRcptLine := PurchRcptLine;
+            TempPurchRcptLine.INSERT();
         END;
-        IF "Line No." = TempPurchRcptLine."Line No." THEN
-          EXIT(TRUE);
+        IF Rec."Line No." = TempPurchRcptLine."Line No." THEN
+            EXIT(TRUE);
     end;
 
     procedure VendorName(): Text[50]
     var
-        PurchRcptHdr: Record "120";
+        PurchRcptHdr: Record "Purch. Rcpt. Header";
     begin
-        IF NOT PurchRcptHdr.GET("Document No.") THEN
-         EXIT('')
+        IF NOT PurchRcptHdr.GET(Rec."Document No.") THEN
+            EXIT('')
         ELSE
-         EXIT(PurchRcptHdr."Buy-from Vendor Name");
+            EXIT(PurchRcptHdr."Buy-from Vendor Name");
     end;
 
     local procedure LookupOKOnPush()
@@ -245,17 +275,17 @@ page 50076 "Purch. Receipt Line List"
         FromPurchRcptLine.COPY(Rec);
         CurrPage.SETSELECTIONFILTER(FromPurchRcptLine);
         IF FromPurchRcptLine.FIND('-') THEN BEGIN
-          ItemChargeAssgntPurch."Unit Cost" := UnitCost;
-          AssignItemChargePurch.CreateRcptChargeAssgnt(FromPurchRcptLine,ItemChargeAssgntPurch);
+            ItemChargeAssgntPurch."Unit Cost" := UnitCost;
+            AssignItemChargePurch.CreateRcptChargeAssgnt(FromPurchRcptLine, ItemChargeAssgntPurch);
         END;
     end;
 
     local procedure DocumentNoOnFormat()
     begin
-        IF IsFirstDocLine THEN
-          "Document No.Emphasize" := TRUE
+        IF IsFirstDocLine() THEN
+            "Document No.Emphasize" := TRUE
         ELSE
-          "Document No.HideValue" := TRUE;
+            "Document No.HideValue" := TRUE;
     end;
 }
 

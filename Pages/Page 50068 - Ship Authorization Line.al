@@ -3,59 +3,74 @@ page 50068 "Ship Authorization Line"
     // NF1.00:CIS.NG  09-05-15 Merged during upgrade
 
     PageType = ListPart;
-    SourceTable = Table50016;
+    SourceTable = "Ship Authorization Line";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Qty. Type";"Qty. Type")
+                field("Qty. Type"; Rec."Qty. Type")
                 {
+                    ToolTip = 'Specifies the value of the Qty. Type field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Cross-Reference No.";"Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Cross-Reference No.")
                 {
+                    ToolTip = 'Specifies the value of the Cross-Reference No. field.';
                 }
-                field("Cross-Reference Type";"Cross-Reference Type")
+                field("Cross-Reference Type"; Rec."Cross-Reference Type")
                 {
+                    ToolTip = 'Specifies the value of the Cross-Reference Type field.';
                 }
-                field("Cross-Reference Type No.";"Cross-Reference Type No.")
+                field("Cross-Reference Type No."; Rec."Cross-Reference Type No.")
                 {
+                    ToolTip = 'Specifies the value of the Cross-Reference Type No. field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
+                    ToolTip = 'Specifies the value of the Quantity field.';
                 }
-                field("Unit of Measure";"Unit of Measure")
+                field("Unit of Measure"; Rec."Unit of Measure")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Unit of Measure field.';
                 }
-                field("Ship Authorization No.";"Ship Authorization No.")
+                field("Ship Authorization No."; Rec."Ship Authorization No.")
                 {
+                    ToolTip = 'Specifies the value of the Ship Authorization No. field.';
                 }
-                field("Requested Delivery Date";"Requested Delivery Date")
+                field("Requested Delivery Date"; Rec."Requested Delivery Date")
                 {
+                    ToolTip = 'Specifies the value of the Requested Delivery Date field.';
                 }
-                field("Purchase Order Number";"Purchase Order Number")
+                field("Purchase Order Number"; Rec."Purchase Order Number")
                 {
+                    ToolTip = 'Specifies the value of the Purchase Order Number field.';
                 }
-                field("Purchase Order Line No.";"Purchase Order Line No.")
+                field("Purchase Order Line No."; Rec."Purchase Order Line No.")
                 {
+                    ToolTip = 'Specifies the value of the Purchase Order Line No. field.';
                 }
-                field("Delivery Plan";"Delivery Plan")
+                field("Delivery Plan"; Rec."Delivery Plan")
                 {
+                    ToolTip = 'Specifies the value of the Delivery Plan field.';
                 }
-                field("Place ID";"Place ID")
+                field("Place ID"; Rec."Place ID")
                 {
+                    ToolTip = 'Specifies the value of the Place ID field.';
                 }
-                field("Place Description";"Place Description")
+                field("Place Description"; Rec."Place Description")
                 {
+                    ToolTip = 'Specifies the value of the Place Description field.';
                 }
             }
         }

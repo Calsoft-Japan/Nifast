@@ -7,7 +7,8 @@ xmlport 50001 "Import Forecast EDI"
     Format = Xml;
     FormatEvaluate = Xml;
     PreserveWhiteSpace = true;
-    TextEncoding = UTF8;
+    //TextEncoding = UTF8;
+    Encoding = UTF8;
 
     schema
     {
@@ -15,19 +16,19 @@ xmlport 50001 "Import Forecast EDI"
         {
             textelement(Forecast_Table)
             {
-                tableelement(Table50027;Table50027)
+                tableelement("Forecast Ledger Entry"; "Forecast Ledger Entry")
                 {
                     AutoSave = true;
                     AutoUpdate = false;
                     XmlName = 'ForecastLE';
                     UseTemporary = false;
-                    fieldelement(ItemNo;"Forecast Ledger Entry"."Item No.")
+                    fieldelement(ItemNo; "Forecast Ledger Entry"."Item No.")
                     {
                     }
-                    fieldelement(ForecastQty;"Forecast Ledger Entry"."Forecast Quantity")
+                    fieldelement(ForecastQty; "Forecast Ledger Entry"."Forecast Quantity")
                     {
                     }
-                    fieldelement(CustNo;"Forecast Ledger Entry"."Customer No.")
+                    fieldelement(CustNo; "Forecast Ledger Entry"."Customer No.")
                     {
                     }
                     textelement(ShippingDate)
@@ -38,7 +39,7 @@ xmlport 50001 "Import Forecast EDI"
                             "Forecast Ledger Entry"."Shipping Date" := EvaluateDate(ShippingDate);
                         end;
                     }
-                    fieldelement(DivCode;"Forecast Ledger Entry"."Division Code")
+                    fieldelement(DivCode; "Forecast Ledger Entry"."Division Code")
                     {
                     }
                     textelement(EnterDate)
@@ -51,8 +52,6 @@ xmlport 50001 "Import Forecast EDI"
                     }
 
                     trigger OnBeforeInsertRecord()
-                    var
-                        PermissionSet_lRec: Record "2000000005";
                     begin
                     end;
                 }
@@ -78,13 +77,13 @@ xmlport 50001 "Import Forecast EDI"
         locMonth: Integer;
         locDay: Integer;
     begin
-        IF EVALUATE(locYear,COPYSTR(parDateText,1,4)) AND
-           EVALUATE(locMonth,COPYSTR(parDateText,5,2)) AND
-           EVALUATE(locDay,COPYSTR(parDateText,7,2))
+        IF EVALUATE(locYear, COPYSTR(parDateText, 1, 4)) AND
+           EVALUATE(locMonth, COPYSTR(parDateText, 5, 2)) AND
+           EVALUATE(locDay, COPYSTR(parDateText, 7, 2))
         THEN
-          EXIT(DMY2DATE(locDay,locMonth,locYear))
+            EXIT(DMY2DATE(locDay, locMonth, locYear))
         ELSE
-          EXIT(0D);
+            EXIT(0D);
     end;
 }
 

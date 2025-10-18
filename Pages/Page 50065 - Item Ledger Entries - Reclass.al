@@ -13,52 +13,65 @@ page 50065 "Item Ledger Entries - Reclass"
     // << NIF
 
     Caption = 'Item Ledger Entries - Reclass';
-    DataCaptionExpression = GetCaption;
+    DataCaptionExpression = GetCaption();
     DataCaptionFields = "Item No.";
     Editable = false;
     PageType = List;
-    SourceTable = Table32;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "Item Ledger Entry";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Posting Date";"Posting Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
+                    ToolTip = 'Specifies the value of the Posting Date field.';
                 }
-                field("Entry Type";"Entry Type")
+                field("Entry Type"; Rec."Entry Type")
                 {
+                    ToolTip = 'Specifies the value of the Entry Type field.';
                 }
-                field("Document No.";"Document No.")
+                field("Document No."; Rec."Document No.")
                 {
+                    ToolTip = 'Specifies the value of the Document No. field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field(Item.Description;Item.Description)
+                field(Descriptions; ItemGRec.Description)
                 {
                     Caption = 'Description';
+                    ToolTip = 'Specifies the value of the Item field.';
                 }
-                field("Lot No.";"Lot No.")
+                field("Lot No."; Rec."Lot No.")
                 {
                     Visible = true;
+                    ToolTip = 'Specifies the value of the Lot No. field.';
                 }
-                field("Remaining Quantity";"Remaining Quantity")
+                field("Remaining Quantity"; Rec."Remaining Quantity")
                 {
+                    ToolTip = 'Specifies the value of the Remaining Quantity field.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
+                    ToolTip = 'Specifies the value of the Quantity field.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
+                    ToolTip = 'Specifies the value of the Location Code field.';
                 }
-                field("Mfg. Lot No.";"Mfg. Lot No.")
+                field("Mfg. Lot No."; Rec."Mfg. Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Mfg. Lot No. field.';
                 }
-                field("Inspected Parts";"Inspected Parts")
+                field("Inspected Parts"; Rec."Inspected Parts")
                 {
+                    ToolTip = 'Specifies the value of the Inspected Parts field.';
                 }
             }
         }
@@ -73,12 +86,14 @@ page 50065 "Item Ledger Entries - Reclass"
                 Caption = '&Navigate';
                 Image = Navigate;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
+                ToolTip = 'Executes the &Navigate action.';
 
                 trigger OnAction()
                 begin
-                    Navigate.SetDoc("Posting Date","Document No.");
-                    Navigate.RUN;
+                    Navigate.SetDoc(Rec."Posting Date", Rec."Document No.");
+                    Navigate.RUN();
                 end;
             }
         }
@@ -86,100 +101,100 @@ page 50065 "Item Ledger Entries - Reclass"
 
     trigger OnAfterGetRecord()
     begin
-        IF NOT Item.GET("Item No.") THEN
-          CLEAR(Item);
+        IF NOT ItemGRec.GET(Rec."Item No.") THEN
+            CLEAR(ItemGRec);
     end;
 
     var
-        Navigate: Page "344";
-        Item: Record "27";
+        ItemGRec: Record Item;
+        Navigate: Page Navigate;
 
     procedure GetCaption(): Text[250]
     var
-        GLSetup: Record "98";
-        ObjTransl: Record "377";
-        Item: Record "27";
-        ProdOrder: Record "5405";
-        Cust: Record "18";
-        Vend: Record "23";
-        Dimension: Record "348";
-        DimValue: Record "349";
+        Cust: Record Customer;
+        Dimension: Record Dimension;
+        DimValue: Record "Dimension Value";
+        GLSetup: Record "General Ledger Setup";
+        Item: Record Item;
+        ObjTransl: Record "Object Translation";
+        ProdOrder: Record "Production Order";
+        Vend: Record Vendor;
+        Description: Text[100];
         SourceTableName: Text[100];
         SourceFilter: Text[200];
-        Description: Text[100];
     begin
         Description := '';
 
         CASE TRUE OF
-          GETFILTER("Item No.") <> '':
-            BEGIN
-              SourceTableName := ObjTransl.TranslateObject(ObjTransl."Object Type"::Table,27);
-              SourceFilter := GETFILTER("Item No.");
-              IF MAXSTRLEN(Item."No.") >= STRLEN(SourceFilter) THEN
-                IF Item.GET(SourceFilter) THEN
-                  Description := Item.Description;
-            END;
-          (GETFILTER("Order No.") <> '') AND ("Order Type" = "Order Type"::Production):
-            BEGIN
-              SourceTableName := ObjTransl.TranslateObject(ObjTransl."Object Type"::Table,5405);
-              SourceFilter := GETFILTER("Order No.");
-              IF MAXSTRLEN(ProdOrder."No.") >= STRLEN(SourceFilter) THEN
-                IF ProdOrder.GET(ProdOrder.Status::Released,SourceFilter) OR
-                   ProdOrder.GET(ProdOrder.Status::Finished,SourceFilter)
-                THEN BEGIN
-                  SourceTableName := STRSUBSTNO('%1 %2',ProdOrder.Status,SourceTableName);
-                  Description := ProdOrder.Description;
-                END;
-            END;
-          GETFILTER("Source No.") <> '':
-            CASE "Source Type" OF
-              "Source Type"::Customer:
+            Rec.GETFILTER("Item No.") <> '':
                 BEGIN
-                  SourceTableName :=
-                    ObjTransl.TranslateObject(ObjTransl."Object Type"::Table,18);
-                  SourceFilter := GETFILTER("Source No.");
-                  IF MAXSTRLEN(Cust."No.") >= STRLEN(SourceFilter) THEN
-                    IF Cust.GET(SourceFilter) THEN
-                      Description := Cust.Name;
+                    SourceTableName := ObjTransl.TranslateObject(ObjTransl."Object Type"::Table, 27);
+                    SourceFilter := Rec.GETFILTER("Item No.");
+                    IF MAXSTRLEN(Item."No.") >= STRLEN(SourceFilter) THEN
+                        IF Item.GET(SourceFilter) THEN
+                            Description := Item.Description;
                 END;
-              "Source Type"::Vendor:
+            (Rec.GETFILTER("Order No.") <> '') AND (Rec."Order Type" = Rec."Order Type"::Production):
                 BEGIN
-                  SourceTableName :=
-                    ObjTransl.TranslateObject(ObjTransl."Object Type"::Table,23);
-                  SourceFilter := GETFILTER("Source No.");
-                  IF MAXSTRLEN(Vend."No.") >= STRLEN(SourceFilter) THEN
-                    IF Vend.GET(SourceFilter) THEN
-                      Description := Vend.Name;
+                    SourceTableName := ObjTransl.TranslateObject(ObjTransl."Object Type"::Table, 5405);
+                    SourceFilter := Rec.GETFILTER("Order No.");
+                    IF MAXSTRLEN(ProdOrder."No.") >= STRLEN(SourceFilter) THEN
+                        IF ProdOrder.GET(ProdOrder.Status::Released, SourceFilter) OR
+                           ProdOrder.GET(ProdOrder.Status::Finished, SourceFilter)
+                        THEN BEGIN
+                            SourceTableName := STRSUBSTNO('%1 %2', ProdOrder.Status, SourceTableName);
+                            Description := ProdOrder.Description;
+                        END;
                 END;
-            END;
-          GETFILTER("Global Dimension 1 Code") <> '':
-            BEGIN
-              GLSetup.GET;
-              Dimension.Code := GLSetup."Global Dimension 1 Code";
-              SourceFilter := GETFILTER("Global Dimension 1 Code");
-              SourceTableName := Dimension.GetMLName(GLOBALLANGUAGE);
-              IF MAXSTRLEN(DimValue.Code) >= STRLEN(SourceFilter) THEN
-                IF DimValue.GET(GLSetup."Global Dimension 1 Code",SourceFilter) THEN
-                  Description := DimValue.Name;
-            END;
-          GETFILTER("Global Dimension 2 Code") <> '':
-            BEGIN
-              GLSetup.GET;
-              Dimension.Code := GLSetup."Global Dimension 2 Code";
-              SourceFilter := GETFILTER("Global Dimension 2 Code");
-              SourceTableName := Dimension.GetMLName(GLOBALLANGUAGE);
-              IF MAXSTRLEN(DimValue.Code) >= STRLEN(SourceFilter) THEN
-                IF DimValue.GET(GLSetup."Global Dimension 2 Code",SourceFilter) THEN
-                  Description := DimValue.Name;
-            END;
-          GETFILTER("Document Type") <> '':
-            BEGIN
-              SourceTableName := GETFILTER("Document Type");
-              SourceFilter := GETFILTER("Document No.");
-              Description := GETFILTER("Document Line No.");
-            END;
+            Rec.GETFILTER("Source No.") <> '':
+                CASE Rec."Source Type" OF
+                    Rec."Source Type"::Customer:
+                        BEGIN
+                            SourceTableName :=
+                              ObjTransl.TranslateObject(ObjTransl."Object Type"::Table, 18);
+                            SourceFilter := Rec.GETFILTER("Source No.");
+                            IF MAXSTRLEN(Cust."No.") >= STRLEN(SourceFilter) THEN
+                                IF Cust.GET(SourceFilter) THEN
+                                    Description := Cust.Name;
+                        END;
+                    Rec."Source Type"::Vendor:
+                        BEGIN
+                            SourceTableName :=
+                              ObjTransl.TranslateObject(ObjTransl."Object Type"::Table, 23);
+                            SourceFilter := Rec.GETFILTER("Source No.");
+                            IF MAXSTRLEN(Vend."No.") >= STRLEN(SourceFilter) THEN
+                                IF Vend.GET(SourceFilter) THEN
+                                    Description := Vend.Name;
+                        END;
+                END;
+            Rec.GETFILTER("Global Dimension 1 Code") <> '':
+                BEGIN
+                    GLSetup.GET();
+                    Dimension.Code := GLSetup."Global Dimension 1 Code";
+                    SourceFilter := Rec.GETFILTER("Global Dimension 1 Code");
+                    SourceTableName := Dimension.GetMLName(GLOBALLANGUAGE);
+                    IF MAXSTRLEN(DimValue.Code) >= STRLEN(SourceFilter) THEN
+                        IF DimValue.GET(GLSetup."Global Dimension 1 Code", SourceFilter) THEN
+                            Description := DimValue.Name;
+                END;
+            Rec.GETFILTER("Global Dimension 2 Code") <> '':
+                BEGIN
+                    GLSetup.GET();
+                    Dimension.Code := GLSetup."Global Dimension 2 Code";
+                    SourceFilter := Rec.GETFILTER("Global Dimension 2 Code");
+                    SourceTableName := Dimension.GetMLName(GLOBALLANGUAGE);
+                    IF MAXSTRLEN(DimValue.Code) >= STRLEN(SourceFilter) THEN
+                        IF DimValue.GET(GLSetup."Global Dimension 2 Code", SourceFilter) THEN
+                            Description := DimValue.Name;
+                END;
+            Rec.GETFILTER("Document Type") <> '':
+                BEGIN
+                    SourceTableName := Rec.GETFILTER("Document Type");
+                    SourceFilter := Rec.GETFILTER("Document No.");
+                    Description := Rec.GETFILTER("Document Line No.");
+                END;
         END;
-        EXIT(STRSUBSTNO('%1 %2 %3',SourceTableName,SourceFilter,Description));
+        EXIT(STRSUBSTNO('%1 %2 %3', SourceTableName, SourceFilter, Description));
     end;
 }
 

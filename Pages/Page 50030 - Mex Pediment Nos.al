@@ -4,26 +4,32 @@ page 50030 "Mex Pediment Nos"
 
     Editable = false;
     PageType = List;
-    SourceTable = Table50022;
+    UsageCategory = Lists;
+    SourceTable = "Mex Export Pediment";
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Pedimento Virtual No.";"Pedimento Virtual No.")
+                field("Pedimento Virtual No."; Rec."Pedimento Virtual No.")
                 {
                     Editable = true;
+                    ToolTip = 'Specifies the value of the Pedimento Virtual No. field.';
                 }
-                field("Start Date";"Start Date")
+                field("Start Date"; Rec."Start Date")
                 {
+                    ToolTip = 'Specifies the value of the Start Date field.';
                 }
-                field("End Date";"End Date")
+                field("End Date"; Rec."End Date")
                 {
+                    ToolTip = 'Specifies the value of the End Date field.';
                 }
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
             }
         }
@@ -37,15 +43,20 @@ page 50030 "Mex Pediment Nos"
             {
                 Caption = 'Create New';
                 Promoted = true;
+                Image = Create;
+                PromotedOnly = true;
                 PromotedCategory = Process;
-                RunObject = Page 50042;
+                RunObject = Page "Mex Pediment Card";
+                ToolTip = 'Executes the Create New action.';
             }
             action("Calsonic|K-MEX")
             {
                 Caption = 'Calsonic|K-MEX';
                 Promoted = true;
+                Image = Invoice;
                 PromotedCategory = Process;
-                RunObject = Page 50047;
+                RunObject = Page "Commercial Invoice Mex Form";
+                ToolTip = 'Executes the Calsonic|K-MEX action.';
             }
         }
     }

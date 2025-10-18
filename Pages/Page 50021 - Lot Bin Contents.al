@@ -10,11 +10,13 @@ page 50021 "Lot Bin Contents"
     // << NV
 
     Caption = 'Lot Bin Contents';
-    DataCaptionExpression = DataCaption;
+    //DataCaptionExpression = DataCaption;
     InsertAllowed = false;
     PageType = Worksheet;
     SaveValues = true;
-    SourceTable = Table50001;
+    UsageCategory = Administration;
+    ApplicationArea = All;
+    SourceTable = "Lot Bin Content";
 
     layout
     {
@@ -23,20 +25,21 @@ page 50021 "Lot Bin Contents"
             group(Options)
             {
                 Caption = 'Options';
-                field(LocationCode;LocationCode)
+                field(LocationCode; LocationCode)
                 {
                     Caption = 'Location Filter';
+                    ToolTip = 'Specifies the value of the Location Filter field.';
 
                     trigger OnLookup(var Text: Text): Boolean
                     begin
-                        Location.RESET;
-                        Location.SETRANGE("Bin Mandatory",TRUE);
+                        Location.RESET();
+                        Location.SETRANGE("Bin Mandatory", TRUE);
                         IF LocationCode <> '' THEN
-                          Location.Code := LocationCode;
-                        IF PAGE.RUNMODAL(7347,Location) = ACTION::LookupOK THEN BEGIN
-                          Location.TESTFIELD("Bin Mandatory",TRUE);
-                          LocationCode := Location.Code;
-                          DefFilter;
+                            Location.Code := LocationCode;
+                        IF PAGE.RUNMODAL(7347, Location) = ACTION::LookupOK THEN BEGIN
+                            Location.TESTFIELD("Bin Mandatory", TRUE);
+                            LocationCode := Location.Code;
+                            DefFilter();
                         END;
                         CurrPage.UPDATE(TRUE);
                     end;
@@ -44,190 +47,243 @@ page 50021 "Lot Bin Contents"
                     trigger OnValidate()
                     begin
                         ZoneCode := '';
-                        IF LocationCode <> '' THEN BEGIN
-                          IF WMSMgt.LocationIsAllowed(LocationCode) THEN BEGIN
-                            Location.GET(LocationCode);
-                            Location.TESTFIELD("Bin Mandatory",TRUE);
-                          END ELSE
-                            ERROR(Text000,USERID);
-                        END;
-                        DefFilter;
-                          LocationCodeOnAfterValidate;
+                        IF LocationCode <> '' THEN
+                            IF WMSMgt.LocationIsAllowed(LocationCode) THEN BEGIN
+                                Location.GET(LocationCode);
+                                Location.TESTFIELD("Bin Mandatory", TRUE);
+                            END ELSE
+                                ERROR(Text000Lbl, USERID);
+                        DefFilter();
+                        LocationCodeOnAfterValidate();
                     end;
                 }
-                field(ZoneCode;ZoneCode)
+                field(ZoneCode; ZoneCode)
                 {
                     Caption = 'Zone Filter';
+                    ToolTip = 'Specifies the value of the Zone Filter field.';
 
                     trigger OnLookup(var Text: Text): Boolean
                     begin
-                        Zone.RESET;
+                        Zone.RESET();
                         IF ZoneCode <> '' THEN
-                          Zone.Code := ZoneCode;
+                            Zone.Code := ZoneCode;
                         IF LocationCode <> '' THEN
-                          Zone.SETRANGE("Location Code",LocationCode);
-                        IF PAGE.RUNMODAL(0,Zone) = ACTION::LookupOK THEN BEGIN
-                          ZoneCode := Zone.Code;
-                          LocationCode := Zone."Location Code";
-                          DefFilter;
+                            Zone.SETRANGE("Location Code", LocationCode);
+                        IF PAGE.RUNMODAL(0, Zone) = ACTION::LookupOK THEN BEGIN
+                            ZoneCode := Zone.Code;
+                            LocationCode := Zone."Location Code";
+                            DefFilter();
                         END;
                         CurrPage.UPDATE(TRUE);
                     end;
 
                     trigger OnValidate()
                     begin
-                        DefFilter;
-                          ZoneCodeOnAfterValidate;
+                        DefFilter();
+                        ZoneCodeOnAfterValidate();
                     end;
                 }
             }
-            repeater()
+            repeater(General)
             {
                 Editable = false;
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Location Code field.';
+                    Caption = 'Location Code';
                 }
-                field("Zone Code";"Zone Code")
+                field("Zone Code"; Rec."Zone Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Zone Code field.';
+                    Caption = 'Zone Code';
                 }
-                field("Bin Code";"Bin Code")
+                field("Bin Code"; Rec."Bin Code")
                 {
+                    ToolTip = 'Specifies the value of the Bin Code field.';
+                    Caption = 'Bin Code';
 
                     trigger OnValidate()
                     begin
-                        CheckQty;
+                        CheckQty();
                     end;
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
+                    Caption = 'Item No.';
 
                     trigger OnValidate()
                     begin
-                        CheckQty;
+                        CheckQty();
                     end;
                 }
-                field("Expiration Date";"Expiration Date")
+                field("Expiration Date"; Rec."Expiration Date")
                 {
+                    ToolTip = 'Specifies the value of the Expiration Date field.';
+                    Caption = 'Expiration Date';
                 }
-                field("Lot No.";"Lot No.")
+                field("Lot No."; Rec."Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Lot No. field.';
+                    Caption = 'Lot No.';
                 }
-                field("Variant Code";"Variant Code")
+                field("Variant Code"; Rec."Variant Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Variant Code field.';
+                    Caption = 'Variant Code';
 
                     trigger OnValidate()
                     begin
-                        CheckQty;
+                        CheckQty();
                     end;
                 }
-                field("Block Movement";"Block Movement")
+                field("Block Movement"; Rec."Block Movement")
                 {
+                    ToolTip = 'Specifies the value of the Block Movement field.';
+                    Caption = 'Block Movement';
                 }
-                field("Unit of Measure Code";"Unit of Measure Code")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
+                    ToolTip = 'Specifies the value of the Unit of Measure Code field.';
+                    Caption = 'Unit of Measure Code';
                 }
-                field("Qty. per Unit of Measure";"Qty. per Unit of Measure")
+                field("Qty. per Unit of Measure"; Rec."Qty. per Unit of Measure")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Qty. per Unit of Measure field.';
+                    Caption = 'Qty. per Unit of Measure';
 
                     trigger OnValidate()
                     begin
-                        CheckQty;
+                        CheckQty();
                     end;
                 }
-                field("Warehouse Class Code";"Warehouse Class Code")
+                field("Warehouse Class Code"; Rec."Warehouse Class Code")
                 {
+                    ToolTip = 'Specifies the value of the Warehouse Class Code field.';
+                    Caption = 'Warehouse Class Code';
                 }
-                field("Bin Type Code";"Bin Type Code")
+                field("Bin Type Code"; Rec."Bin Type Code")
                 {
+                    ToolTip = 'Specifies the value of the Bin Type Code field.';
+                    Caption = 'Bin Type Code';
                 }
-                field("Bin Ranking";"Bin Ranking")
+                field("Bin Ranking"; Rec."Bin Ranking")
                 {
+                    ToolTip = 'Specifies the value of the Bin Ranking field.';
+                    Caption = 'Bin Ranking';
                 }
-                field(BlockMovement;"Block Movement")
+                field(BlockMovement; Rec."Block Movement")
                 {
+                    ToolTip = 'Specifies the value of the Block Movement field.';
+                    Caption = 'Block Movement';
                 }
-                field("Min. Qty.";"Min. Qty.")
+                field("Min. Qty."; Rec."Min. Qty.")
                 {
+                    ToolTip = 'Specifies the value of the Min. Qty. field.';
+                    Caption = 'Min. Qty.';
                 }
-                field("Max. Qty.";"Max. Qty.")
+                field("Max. Qty."; Rec."Max. Qty.")
                 {
+                    ToolTip = 'Specifies the value of the Max. Qty. field.';
+                    Caption = 'Max. Qty.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
+                    ToolTip = 'Specifies the value of the Quantity field.';
+                    Caption = 'Quantity';
                 }
-                field("Pick Qty.";"Pick Qty.")
+                field("Pick Qty."; Rec."Pick Qty.")
                 {
+                    ToolTip = 'Specifies the value of the Pick Qty. field.';
+                    Caption = 'Pick Qty.';
                 }
-                field("Neg. Adjmt. Qty.";"Neg. Adjmt. Qty.")
+                field("Neg. Adjmt. Qty."; Rec."Neg. Adjmt. Qty.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Neg. Adjmt. Qty. field.';
+                    Caption = 'Neg. Adjmt. Qty.';
                 }
-                field("Put-away Qty.";"Put-away Qty.")
+                field("Put-away Qty."; Rec."Put-away Qty.")
                 {
+                    ToolTip = 'Specifies the value of the Put-away Qty. field.';
+                    Caption = 'Put-away Qty.';
                 }
-                field("Pos. Adjmt. Qty.";"Pos. Adjmt. Qty.")
+                field("Pos. Adjmt. Qty."; Rec."Pos. Adjmt. Qty.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Pos. Adjmt. Qty. field.';
+                    Caption = 'Pos. Adjmt. Qty.';
                 }
-                field("Wksh. Pos. Adjmt. Qty.";"Wksh. Pos. Adjmt. Qty.")
+                field("Wksh. Pos. Adjmt. Qty."; Rec."Wksh. Pos. Adjmt. Qty.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Wksh. Pos. Adjmt. Qty. field.';
+                    Caption = 'Wksh. Pos. Adjmt. Qty.';
                 }
-                field(CalcAvailQty;CalcAvailQty)
+                field(CalcAvailQty; CalcAvailQtys())
                 {
                     Caption = 'Available Qty. to Take';
-                    DecimalPlaces = 0:5;
+                    DecimalPlaces = 0 : 5;
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Available Qty. to Take field.';
                 }
-                field(Fixed;Fixed)
+                field(Fixed; Rec.Fixed)
                 {
+                    ToolTip = 'Specifies the value of the Fixed field.';
+                    Caption = 'Fixed';
                 }
-                field("Cross-Dock Bin";"Cross-Dock Bin")
+                field("Cross-Dock Bin"; Rec."Cross-Dock Bin")
                 {
+                    ToolTip = 'Specifies the value of the Cross-Dock Bin field.';
+                    Caption = 'Cross-Dock Bin';
                 }
             }
-            group()
+            group(" ")
             {
             }
-            group()
+            group("  ")
             {
-                fixed()
+                fixed(Option)
                 {
                     group("Item Description")
                     {
                         Caption = 'Item Description';
-                        field(ItemDescription;ItemDescription)
+                        field(ItemDescription; ItemDescription)
                         {
                             Editable = false;
+                            ToolTip = 'Specifies the value of the ItemDescription field.';
+                            Caption = 'ItemDescription';
                         }
                     }
                     group("Qty. on Adjustment Bin")
                     {
                         Caption = 'Qty. on Adjustment Bin';
-                        field(CalcQtyonAdjmtBin;CalcQtyonAdjmtBin)
+                        field(CalcQtyonAdjmtBin; CalcQtyonAdjmtBin)
                         {
-                            DecimalPlaces = 0:5;
+                            //DecimalPlaces = 0 : 5;
                             Editable = false;
+                            ToolTip = 'Specifies the value of the CalcQtyonAdjmtBin field.';
+                            Caption = 'CalcQtyonAdjmtBin';
 
                             trigger OnDrillDown()
                             var
-                                WhseEntry: Record "7312";
-                                WhseEntries: Page "7318";
+                                WhseEntry: Record "Warehouse Entry";
+                                WhseEntries: Page "Warehouse Entries";
                             begin
-                                LocationGet("Location Code");
+                                LocationGet(Rec."Location Code");
                                 WhseEntry.SETCURRENTKEY(
-                                  "Item No.","Bin Code","Location Code","Variant Code","Unit of Measure Code");
-                                WhseEntry.SETRANGE("Item No.","Item No.");
-                                WhseEntry.SETRANGE("Bin Code",AdjmtLocation."Adjustment Bin Code");
-                                WhseEntry.SETRANGE("Location Code","Location Code");
-                                WhseEntry.SETRANGE("Variant Code","Variant Code");
-                                WhseEntry.SETRANGE("Unit of Measure Code","Unit of Measure Code");
+                                  "Item No.", "Bin Code", "Location Code", "Variant Code", "Unit of Measure Code");
+                                WhseEntry.SETRANGE("Item No.", Rec."Item No.");
+                                WhseEntry.SETRANGE("Bin Code", AdjmtLocation."Adjustment Bin Code");
+                                WhseEntry.SETRANGE("Location Code", Rec."Location Code");
+                                WhseEntry.SETRANGE("Variant Code", Rec."Variant Code");
+                                WhseEntry.SETRANGE("Unit of Measure Code", Rec."Unit of Measure Code");
                                 WhseEntries.SETTABLEVIEW(WhseEntry);
-                                WhseEntries.RUNMODAL;
+                                WhseEntries.RUNMODAL();
                             end;
                         }
                     }
@@ -247,18 +303,21 @@ page 50021 "Lot Bin Contents"
                 {
                     Caption = 'Warehouse Entries';
                     Image = BinLedger;
-                    RunObject = Page 7318;
-                    RunPageLink = Location Code=FIELD(Location Code),
-                                  Bin Code=FIELD(Bin Code),
-                                  Variant Code=FIELD(Variant Code);
-                    RunPageView = SORTING(Item No.,Bin Code,Location Code,Variant Code);
+                    RunObject = Page "Warehouse Entries";
+                    RunPageLink = "Location Code" = FIELD("Location Code"),
+                                  "Bin Code" = FIELD("Bin Code"),
+                                  "Variant Code" = FIELD("Variant Code");
+                    RunPageView = SORTING("Item No.", "Bin Code", "Location Code", "Variant Code");
+                    ToolTip = 'Executes the Warehouse Entries action.';
                 }
                 action("Lot No. Info Card")
                 {
                     Caption = 'Lot No. Info Card';
-                    RunObject = Page 6508;
-                    RunPageLink = Item No.=FIELD(Item No.),
-                                  Lot No.=FIELD(Lot No.);
+                    Image = LotInfo;
+                    RunObject = Page "Lot No. Information List";
+                    RunPageLink = "Item No." = FIELD("Item No."),
+                                  "Lot No." = FIELD("Lot No.");
+                    ToolTip = 'Executes the Lot No. Info Card action.';
                 }
             }
         }
@@ -266,78 +325,78 @@ page 50021 "Lot Bin Contents"
 
     trigger OnAfterGetRecord()
     begin
-        OnAfterGetCurrRecord;
+        OnAfterGetCurrRecord();
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        OnAfterGetCurrRecord;
+        OnAfterGetCurrRecord();
     end;
 
     trigger OnOpenPage()
     begin
         ItemDescription := '';
         IF NOT Location.GET(LocationCode) THEN
-          CLEAR(LocationCode);
+            CLEAR(LocationCode);
 
-        GetWhseLocation(LocationCode,ZoneCode);
+        GetWhseLocation(LocationCode, ZoneCode);
     end;
 
     var
-        Location: Record "14";
-        AdjmtLocation: Record "14";
-        Zone: Record "7300";
-        WMSMgt: Codeunit "7302";
+        AdjmtLocation: Record Location;
+        Location: Record Location;
+        Zone: Record Zone;
+        WMSMgt: Codeunit "WMS Management";
         LocationCode: Code[10];
         ZoneCode: Code[10];
-        DataCaption: Text[80];
+        Text000Lbl: Label 'Location code is not allowed for user %1.', Comment = '%1';
         ItemDescription: Text[50];
-        Text000: Label 'Location code is not allowed for user %1.';
+        DataCaption: Text[80];
         LocFilter: Text[250];
 
     procedure DefFilter()
     begin
-        FILTERGROUP := 2;
+        Rec.FILTERGROUP := 2;
         IF LocationCode <> '' THEN
-          SETRANGE("Location Code",LocationCode)
+            Rec.SETRANGE("Location Code", LocationCode)
         ELSE BEGIN
-          CLEAR(LocFilter);
-          CLEAR(Location);
-          Location.SETRANGE("Bin Mandatory",TRUE);
-          IF Location.FIND('-') THEN
-            REPEAT
-              IF WMSMgt.LocationIsAllowed(Location.Code) THEN
-                LocFilter := LocFilter + Location.Code + '|';
-            UNTIL Location.NEXT = 0;
-          IF STRLEN(LocFilter) <> 0 THEN
-            LocFilter := COPYSTR(LocFilter,1,(STRLEN(LocFilter) - 1));
-          SETFILTER("Location Code",LocFilter);
+            CLEAR(LocFilter);
+            CLEAR(Location);
+            Location.SETRANGE("Bin Mandatory", TRUE);
+            IF Location.FIND('-') THEN
+                REPEAT
+                    IF WMSMgt.LocationIsAllowed(Location.Code) THEN
+                        LocFilter := LocFilter + Location.Code + '|';
+                UNTIL Location.NEXT() = 0;
+            IF STRLEN(LocFilter) <> 0 THEN
+                LocFilter := COPYSTR(LocFilter, 1, (STRLEN(LocFilter) - 1));
+            Rec.SETFILTER("Location Code", LocFilter);
         END;
         IF ZoneCode <> '' THEN
-          SETRANGE("Zone Code",ZoneCode)
+            Rec.SETRANGE("Zone Code", ZoneCode)
         ELSE
-          SETRANGE("Zone Code");
-        FILTERGROUP := 0;
+            Rec.SETRANGE("Zone Code");
+        Rec.FILTERGROUP := 0;
     end;
 
     procedure CheckQty()
     begin
-        TESTFIELD(Quantity,0);
-        TESTFIELD("Pick Qty.",0);
-        TESTFIELD("Put-away Qty.",0);
-        TESTFIELD("Pos. Adjmt. Qty.",0);
-        TESTFIELD("Neg. Adjmt. Qty.",0);
+        Rec.TESTFIELD(Quantity, 0);
+        Rec.TESTFIELD("Pick Qty.", 0);
+        Rec.TESTFIELD("Put-away Qty.", 0);
+        Rec.TESTFIELD("Pos. Adjmt. Qty.", 0);
+        Rec.TESTFIELD("Neg. Adjmt. Qty.", 0);
     end;
 
-    procedure CalcAvailQty(): Decimal
+    procedure CalcAvailQtys(): Decimal
     begin
-        EXIT(Quantity - "Pick Qty." - "Neg. Adjmt. Qty.");
+        EXIT(Rec.Quantity - Rec."Pick Qty." - Rec."Neg. Adjmt. Qty.");
     end;
 
-    procedure LocationGet(LocationCode: Code[10])
+    procedure LocationGet(LocationCodeLVar: Code[10])
     begin
-        IF AdjmtLocation.Code <> LocationCode THEN
-          AdjmtLocation.GET(LocationCode);
+        IF AdjmtLocation.Code <> LocationCodeLVar THEN
+            AdjmtLocation.GET(LocationCodeLVar);
     end;
 
     local procedure LocationCodeOnAfterValidate()
@@ -353,8 +412,8 @@ page 50021 "Lot Bin Contents"
     local procedure OnAfterGetCurrRecord()
     begin
         xRec := Rec;
-        GetItemDescr("Item No.","Variant Code",ItemDescription);
-        DataCaption := STRSUBSTNO('%1 ',"Bin Code");
+        GetItemDescr(Rec."Item No.", Rec."Variant Code", ItemDescription);
+        DataCaption := STRSUBSTNO('%1 ', Rec."Bin Code");
     end;
 }
 

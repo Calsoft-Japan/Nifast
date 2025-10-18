@@ -2,7 +2,9 @@ page 50150 "SAT Account Code"
 {
     Caption = 'SAT Account Codes';
     PageType = List;
-    SourceTable = Table50032;
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "SAT Account Codes";
 
     layout
     {
@@ -10,14 +12,17 @@ page 50150 "SAT Account Code"
         {
             repeater(Group)
             {
-                field(Code;Code)
+                field(Code; Rec.Code)
                 {
+                    ToolTip = 'Specifies the value of the Code field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field(Level;Level)
+                field(Level; Rec.Level)
                 {
+                    ToolTip = 'Specifies the value of the Level field.';
                 }
             }
         }

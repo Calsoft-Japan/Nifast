@@ -3,62 +3,80 @@ page 50008 "Cross Reference Subform"
     // NF1.00:CIS.NG  09-05-15 Merged during upgrade
 
     PageType = ListPart;
-    SourceTable = Table5717;
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    //SourceTable = 5717;
+    SourceTable = "Item Reference";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Cross-Reference Type No.";"Cross-Reference Type No.")
+                field("Cross-Reference Type No."; Rec."Reference Type No.")
                 {
+                    ToolTip = 'Specifies the value of the Reference Type No. field.';
                 }
-                field("Cross-Reference No.";"Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Reference No.")
                 {
+                    ToolTip = 'Specifies the value of the Reference No. field.';
                 }
-                field(CrossRefName;CrossRefName)
+                field(CrossRefName; Rec.CrossRefName())
                 {
                     Caption = 'Cross-Reference Name';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Cross-Reference Name field.';
                 }
-                field(OEM;OEM)
+                field(OEM; Rec.OEM)
                 {
+                    ToolTip = 'Specifies the value of the OEM field.';
                 }
-                field(Model;Model)
+                field(Model; Rec.Model)
                 {
+                    ToolTip = 'Specifies the value of the Model field.';
                 }
-                field(EMU;EMU)
+                field(EMU; Rec.EMU)
                 {
-                    DecimalPlaces = 0:0;
+                    DecimalPlaces = 0 : 0;
+                    ToolTip = 'Specifies the value of the EMU field.';
                 }
-                field("Pieces/Vehicle";"Pieces/Vehicle")
+                field("Pieces/Vehicle"; Rec."Pieces/Vehicle")
                 {
-                    DecimalPlaces = 0:0;
+                    DecimalPlaces = 0 : 0;
+                    ToolTip = 'Specifies the value of the Pieces/Vehicle field.';
                 }
-                field(SOP;SOP)
+                field(SOP; Rec.SOP)
                 {
+                    ToolTip = 'Specifies the value of the SOP field.';
                 }
-                field(EOP;EOP)
+                field(EOP; Rec.EOP)
                 {
+                    ToolTip = 'Specifies the value of the EOP field.';
                 }
-                field(Remarks;Remarks)
+                field(Remarks; Rec.Remarks)
                 {
+                    ToolTip = 'Specifies the value of the Remarks field.';
                 }
-                field(Division;Division)
+                field(Division; Rec.Division)
                 {
+                    ToolTip = 'Specifies the value of the Division field.';
                 }
-                field("AFC Stam";"AFC Stam")
+                field("AFC Stam"; Rec."AFC Stam")
                 {
+                    ToolTip = 'Specifies the value of the AFC Stam field.';
                 }
-                field("ECI No.";"ECI No.")
+                field("ECI No."; Rec."ECI No.")
                 {
+                    ToolTip = 'Specifies the value of the ECI No. field.';
                 }
-                field(Application;Application)
+                field(Application; Rec.Application)
                 {
+                    ToolTip = 'Specifies the value of the Application field.';
                 }
-                field(Manter;Manter)
+                field(Manter; Rec.Manter)
                 {
+                    ToolTip = 'Specifies the value of the Manter field.';
                 }
             }
         }

@@ -7,22 +7,22 @@ xmlport 50020 "YAT Special Field Import"
     {
         textelement(Root)
         {
-            tableelement(Table37;Table37)
+            tableelement("Sales Line"; "Sales Line")
             {
                 AutoSave = true;
                 AutoUpdate = false;
                 XmlName = 'SalesLine';
                 UseTemporary = false;
-                fieldelement(DocType;"Sales Line"."Document Type")
+                fieldelement(DocType; "Sales Line"."Document Type")
                 {
                 }
-                fieldelement(DocNo;"Sales Line"."Document No.")
+                fieldelement(DocNo; "Sales Line"."Document No.")
                 {
                 }
-                fieldelement(LineNo;"Sales Line"."Line No.")
+                fieldelement(LineNo; "Sales Line"."Line No.")
                 {
                 }
-                fieldelement(Type;"Sales Line".Type)
+                fieldelement(Type; "Sales Line".Type)
                 {
 
                     trigger OnAfterAssignField()
@@ -33,22 +33,20 @@ xmlport 50020 "YAT Special Field Import"
                         //   currXMLport.SKIP;
                     end;
                 }
-                fieldelement(Numb;"Sales Line"."No.")
+                fieldelement(Numb; "Sales Line"."No.")
                 {
                 }
-                fieldelement(Qty;"Sales Line".Quantity)
+                fieldelement(Qty; "Sales Line".Quantity)
                 {
                 }
-                fieldelement(UOMCode;"Sales Line"."Unit of Measure Code")
+                fieldelement(UOMCode; "Sales Line"."Unit of Measure Code")
                 {
                 }
-                fieldelement(UOM;"Sales Line"."Unit of Measure")
+                fieldelement(UOM; "Sales Line"."Unit of Measure")
                 {
                 }
 
                 trigger OnBeforeInsertRecord()
-                var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                 end;
             }
@@ -69,7 +67,7 @@ xmlport 50020 "YAT Special Field Import"
 
     trigger OnPostXmlPort()
     begin
-         MESSAGE('Import Completed');
+        MESSAGE('Import Completed');
     end;
 }
 

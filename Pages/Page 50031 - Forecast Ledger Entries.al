@@ -5,28 +5,31 @@ page 50031 "Forecast Ledger Entries"
     Editable = true;
     PageType = Document;
     SaveValues = false;
-    SourceTable = Table349;
-    SourceTableView = WHERE(Dimension Code=CONST(DIV));
+    UsageCategory = None;
+    SourceTable = "Dimension Value";
+    SourceTableView = WHERE("Dimension Code" = CONST(DIV));
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            group()
+            group(General)
             {
-                field(Code;Code)
+                field(Code; Rec.Code)
                 {
                     AssistEdit = false;
                     Caption = 'Divsion Filter';
                     DrillDown = false;
                     Editable = false;
                     Lookup = false;
+                    ToolTip = 'Specifies the value of the Divsion Filter field.';
                 }
             }
-            part(;50016)
+            part(AvailabilityProjection; "[[P] Availability Projection]")
             {
-                SubPageLink = Division Code=FIELD(Code);
-                SubPageView = SORTING(Entry No.,Item No.,Customer No.,Shipping Date,Forecast Quantity,Division Code);
+                SubPageLink = "Division Code" = FIELD(Code);
+                SubPageView = SORTING("Entry No.", "Item No.", "Customer No.", "Shipping Date", "Forecast Quantity", "Division Code");
             }
         }
     }

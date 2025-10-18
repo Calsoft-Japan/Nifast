@@ -3,7 +3,9 @@ page 50042 "Mex Pediment Card"
     // NF1.00:CIS.NG  09-05-15 Merged during upgrade
 
     PageType = Card;
-    SourceTable = Table50022;
+    ApplicationArea = All;
+    UsageCategory = None;
+    SourceTable = "Mex Export Pediment";
 
     layout
     {
@@ -12,17 +14,21 @@ page 50042 "Mex Pediment Card"
             group(General)
             {
                 Caption = 'General';
-                field("Pedimento Virtual No.";"Pedimento Virtual No.")
+                field("Pedimento Virtual No."; Rec."Pedimento Virtual No.")
                 {
+                    ToolTip = 'Specifies the value of the Pedimento Virtual No. field.';
                 }
-                field("Start Date";"Start Date")
+                field("Start Date"; Rec."Start Date")
                 {
+                    ToolTip = 'Specifies the value of the Start Date field.';
                 }
-                field("End Date";"End Date")
+                field("End Date"; Rec."End Date")
                 {
+                    ToolTip = 'Specifies the value of the End Date field.';
                 }
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
             }
         }

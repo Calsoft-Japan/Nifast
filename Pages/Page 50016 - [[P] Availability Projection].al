@@ -4,64 +4,77 @@ page 50016 "[[P] Availability Projection]"
     // NF1.00:CIS.NG  02-17-16 Correct the page type to show releated action of page
 
     PageType = ListPart;
-    SourceTable = Table50027;
+    SourceTable = "Forecast Ledger Entry";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Entry No.";"Entry No.")
+                field("Entry No."; Rec."Entry No.")
                 {
+                    ToolTip = 'Specifies the value of the Entry No. field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
+                {
+                    ToolTip = 'Specifies the value of the Item No. field.';
+                    // BlankNumbers = DontBlank;
+                    // BlankZero = true;
+                }
+                field("Customer No."; Rec."Customer No.")
+                {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
+                    // BlankNumbers = BlankZero;
+                    // BlankZero = true;
+                }
+                field("Shipping Date"; Rec."Shipping Date")
+                {
+                    ToolTip = 'Specifies the value of the Shipping Date field.';
+                    //     BlankNumbers = DontBlank;
+                    //     BlankZero = true;
+                }
+                field("Forecast Quantity"; Rec."Forecast Quantity")
                 {
                     BlankNumbers = DontBlank;
-                    BlankZero = true;
+                    DecimalPlaces = 0 : 0;
+                    ToolTip = 'Specifies the value of the Forecast Quantity field.';
                 }
-                field("Customer No.";"Customer No.")
-                {
-                    BlankNumbers = BlankZero;
-                    BlankZero = true;
-                }
-                field("Shipping Date";"Shipping Date")
-                {
-                    BlankNumbers = DontBlank;
-                    BlankZero = true;
-                }
-                field("Forecast Quantity";"Forecast Quantity")
-                {
-                    BlankNumbers = DontBlank;
-                    DecimalPlaces = 0:0;
-                }
-                field("Nifast Forecast";"Nifast Forecast")
+                field("Nifast Forecast"; Rec."Nifast Forecast")
                 {
                     Caption = 'Nif. Forecast';
+                    ToolTip = 'Specifies the value of the Nif. Forecast field.';
                 }
-                field("Flow Item";"Flow Item")
+                field("Flow Item"; Rec."Flow Item")
                 {
+                    ToolTip = 'Specifies the value of the Flow Item field.';
                 }
-                field("Flow Forecast on/off";"Flow Forecast on/off")
+                field("Flow Forecast on/off"; Rec."Flow Forecast on/off")
                 {
+                    ToolTip = 'Specifies the value of the Flow Forecast on/off field.';
                 }
-                field("Enter Date";"Enter Date")
+                field("Enter Date"; Rec."Enter Date")
                 {
+                    ToolTip = 'Specifies the value of the Enter Date field.';
                 }
-                field("Division Code";"Division Code")
+                field("Division Code"; Rec."Division Code")
                 {
                     Caption = 'Div Code';
+                    ToolTip = 'Specifies the value of the Div Code field.';
                 }
-                field("Flow MPD Item";"Flow MPD Item")
+                field("Flow MPD Item"; Rec."Flow MPD Item")
                 {
                     Caption = 'Item(M)';
+                    ToolTip = 'Specifies the value of the Item(M) field.';
                 }
-                field("Flow MPD Forecast";"Flow MPD Forecast")
+                field("Flow MPD Forecast"; Rec."Flow MPD Forecast")
                 {
                     Caption = 'Forecast(M)';
+                    ToolTip = 'Specifies the value of the Forecast(M) field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
             }
         }
@@ -77,25 +90,33 @@ page 50016 "[[P] Availability Projection]"
                 action("Run Forecast Module")
                 {
                     Caption = 'Run Forecast Module';
-                    RunObject = Report 50120;
+                    Image = Forecast;
+                    RunObject = Report "Forecast Module";
+                    ToolTip = 'Executes the Run Forecast Module action.';
                 }
             }
-            group(Import)
+            group(Imports)
             {
                 Caption = 'Import';
                 action(Import)
                 {
                     Caption = 'Import';
+                    Image = Import;
                     Promoted = true;
+                    PromotedOnly = true;
                     PromotedCategory = Process;
-                    RunObject = XMLport 50017;
+                    RunObject = XMLport "Forecast Import wo Remark";
+                    ToolTip = 'Executes the Import action.';
                 }
                 action("Import w/Description")
                 {
                     Caption = 'Import w/Description';
+                    Image = Import;
                     Promoted = true;
+                    PromotedOnly = true;
                     PromotedCategory = Process;
-                    RunObject = XMLport 50008;
+                    RunObject = XMLport "Import Forecast w Description";
+                    ToolTip = 'Executes the Import w/Description action.';
                 }
             }
         }

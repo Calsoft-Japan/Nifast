@@ -7,37 +7,41 @@ page 50015 "Receive Control"
     //    InputDesc,'#1##################'));
 
     PageType = Card;
-
+    UsageCategory = None;
     layout
     {
         area(content)
         {
-            group()
+            group(General)
             {
-                field(;'')
+                field(" "; '')
                 {
-                    CaptionClass = FORMAT (InputPrompt);
+                    CaptionClass = FORMAT(InputPrompt);
                     Editable = false;
                     Style = Strong;
                     StyleExpr = TRUE;
+                    ToolTip = 'Specifies the value of the '''' field.';
                 }
-                field(;'')
+                field(""; '')
                 {
-                    CaptionClass = FORMAT (InputDesc);
+                    CaptionClass = FORMAT(InputDesc);
                     Editable = false;
                     MultiLine = true;
                     Style = Strong;
                     StyleExpr = TRUE;
+                    ToolTip = 'Specifies the value of the '''' field.';
                 }
-                field(BatchCure;MfgLotNo)
+                field(BatchCure; MfgLotNo)
                 {
                     Caption = 'Mfg. Lot No.';
+                    ToolTip = 'Specifies the value of the Mfg. Lot No. field.';
                 }
-                field(BatchCure1;EnteredQuantity)
+                field(BatchCure1; EnteredQuantity)
                 {
                     BlankZero = true;
                     Caption = 'Quantity';
-                    DecimalPlaces = 0:5;
+                    DecimalPlaces = 0 : 5;
+                    ToolTip = 'Specifies the value of the Quantity field.';
                 }
             }
         }
@@ -53,13 +57,13 @@ page 50015 "Receive Control"
         InputPrompt: Text[250];
         InputDesc: Text[250];
 
-    procedure ReturnValues(var NewMfgLotNo: Code[30];var NewQuantityEntered: Decimal)
+    procedure ReturnValues(var NewMfgLotNo: Code[30]; var NewQuantityEntered: Decimal)
     begin
         NewMfgLotNo := MfgLotNo;
         NewQuantityEntered := EnteredQuantity;
     end;
 
-    procedure SetCaption(NewInputPrompt: Text[250];NewInputDesc: Text[250])
+    procedure SetCaption(NewInputPrompt: Text[250]; NewInputDesc: Text[250])
     begin
         InputPrompt := NewInputPrompt;
         InputDesc := NewInputDesc;

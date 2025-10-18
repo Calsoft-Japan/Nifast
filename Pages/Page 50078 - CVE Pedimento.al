@@ -3,22 +3,27 @@ page 50078 "CVE Pedimento"
     // NF1.00:CIS.NG  09-05-15 Merged during upgrade
 
     PageType = List;
-    SourceTable = Table50023;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "CVE Pedimento";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field(Code;Code)
+                field(Code; Rec.Code)
                 {
+                    ToolTip = 'Specifies the value of the Code field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("Include on Virtual Invoice";"Include on Virtual Invoice")
+                field("Include on Virtual Invoice"; Rec."Include on Virtual Invoice")
                 {
+                    ToolTip = 'Specifies the value of the Include on Virtual Invoice field.';
                 }
             }
         }

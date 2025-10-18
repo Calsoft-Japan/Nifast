@@ -5,27 +5,33 @@ page 50055 "Label Field Content Properties"
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = Card;
-    SourceTable = Table50006;
+    ApplicationArea = All;
+    UsageCategory = None;
+    SourceTable = "Label Field Content";
 
     layout
     {
         area(content)
         {
-            group()
+            group(General)
             {
                 Editable = false;
-                field("Label Code";"Label Code")
+                field("Label Code"; Rec."Label Code")
                 {
+                    ToolTip = 'Specifies the value of the Label Code field.';
                 }
-                field("Field Code";"Field Code")
+                field("Field Code"; Rec."Field Code")
                 {
+                    ToolTip = 'Specifies the value of the Field Code field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
             }
-            field("No. Series";"No. Series")
+            field("No. Series"; Rec."No. Series")
             {
+                ToolTip = 'Specifies the value of the No. Series field.';
             }
         }
     }

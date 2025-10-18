@@ -7,25 +7,25 @@ xmlport 50021 "Toyo SO Surcharge Import"
     {
         textelement(Root)
         {
-            tableelement(Table37;Table37)
+            tableelement("Sales Line"; "Sales Line")
             {
                 AutoSave = true;
                 AutoUpdate = false;
                 XmlName = 'SalesLine';
                 UseTemporary = false;
-                fieldelement(DocType;"Sales Line"."Document Type")
+                fieldelement(DocType; "Sales Line"."Document Type")
                 {
                 }
-                fieldelement(SellToCustNo;"Sales Line"."Sell-to Customer No.")
+                fieldelement(SellToCustNo; "Sales Line"."Sell-to Customer No.")
                 {
                 }
-                fieldelement(DocNo;"Sales Line"."Document No.")
+                fieldelement(DocNo; "Sales Line"."Document No.")
                 {
                 }
-                fieldelement(LineNo;"Sales Line"."Line No.")
+                fieldelement(LineNo; "Sales Line"."Line No.")
                 {
                 }
-                fieldelement(Type;"Sales Line".Type)
+                fieldelement(Type; "Sales Line".Type)
                 {
 
                     trigger OnAfterAssignField()
@@ -36,124 +36,127 @@ xmlport 50021 "Toyo SO Surcharge Import"
                         //   currXMLport.SKIP;
                     end;
                 }
-                fieldelement(Numb;"Sales Line"."No.")
+                fieldelement(Numb; "Sales Line"."No.")
                 {
                 }
-                fieldelement(UOM;"Sales Line"."Unit of Measure")
+                fieldelement(UOM; "Sales Line"."Unit of Measure")
                 {
                 }
-                fieldelement(Qty;"Sales Line".Quantity)
+                fieldelement(Qty; "Sales Line".Quantity)
                 {
                 }
-                fieldelement(UnitPrc;"Sales Line"."Unit Price")
+                fieldelement(UnitPrc; "Sales Line"."Unit Price")
                 {
 
                     trigger OnAfterAssignField()
                     begin
-                          UPrc := "Sales Line"."Unit Price";
+                        UPrc := "Sales Line"."Unit Price";
                         "Sales Line".VALIDATE("Unit Price", UPrc);
                     end;
                 }
-                fieldelement(UOMCode;"Sales Line"."Unit of Measure Code")
+                fieldelement(UOMCode; "Sales Line"."Unit of Measure Code")
                 {
                 }
-                fieldelement(ExtDocNo;"Sales Line"."External Document No.")
+                //TODO
+                /*  fieldelement(ExtDocNo; "Sales Line"."External Document No.")
+                 {
+                 } */
+                //TODO
+                fieldelement(Desc; "Sales Line".Description)
                 {
                 }
-                fieldelement(Desc;"Sales Line".Description)
+                fieldelement(LocCode; "Sales Line"."Location Code")
                 {
                 }
-                fieldelement(LocCode;"Sales Line"."Location Code")
+                fieldelement(ShpntDate; "Sales Line"."Shipment Date")
                 {
                 }
-                fieldelement(ShpntDate;"Sales Line"."Shipment Date")
+                fieldelement(OutstQty; "Sales Line"."Outstanding Quantity")
                 {
                 }
-                fieldelement(OutstQty;"Sales Line"."Outstanding Quantity")
+                fieldelement(QtyToInv; "Sales Line"."Qty. to Invoice")
                 {
                 }
-                fieldelement(QtyToInv;"Sales Line"."Qty. to Invoice")
+                fieldelement(QtyToShip; "Sales Line"."Qty. to Ship")
                 {
                 }
-                fieldelement(QtyToShip;"Sales Line"."Qty. to Ship")
+                fieldelement(AllowInvDisc; "Sales Line"."Allow Invoice Disc.")
                 {
                 }
-                fieldelement(AllowInvDisc;"Sales Line"."Allow Invoice Disc.")
+                fieldelement(SCDim1; "Sales Line"."Shortcut Dimension 1 Code")
                 {
                 }
-                fieldelement(SCDim1;"Sales Line"."Shortcut Dimension 1 Code")
+                fieldelement(BillToCust; "Sales Line"."Bill-to Customer No.")
                 {
                 }
-                fieldelement(BillToCust;"Sales Line"."Bill-to Customer No.")
+                fieldelement(GPPG; "Sales Line"."Gen. Prod. Posting Group")
                 {
                 }
-                fieldelement(GPPG;"Sales Line"."Gen. Prod. Posting Group")
+                fieldelement(VATCalcType; "Sales Line"."VAT Calculation Type")
                 {
                 }
-                fieldelement(VATCalcType;"Sales Line"."VAT Calculation Type")
+                fieldelement(CurrCode; "Sales Line"."Currency Code")
                 {
                 }
-                fieldelement(CurrCode;"Sales Line"."Currency Code")
+                fieldelement(QtyPerUOM; "Sales Line"."Qty. per Unit of Measure")
                 {
                 }
-                fieldelement(QtyPerUOM;"Sales Line"."Qty. per Unit of Measure")
+                fieldelement(QtyBase; "Sales Line"."Quantity (Base)")
                 {
                 }
-                fieldelement(QtyBase;"Sales Line"."Quantity (Base)")
+                fieldelement(OQtyBase; "Sales Line"."Outstanding Qty. (Base)")
                 {
                 }
-                fieldelement(OQtyBase;"Sales Line"."Outstanding Qty. (Base)")
+                fieldelement(QtyToInvBase; "Sales Line"."Qty. to Invoice (Base)")
                 {
                 }
-                fieldelement(QtyToInvBase;"Sales Line"."Qty. to Invoice (Base)")
+                fieldelement(QtyToShipBase; "Sales Line"."Qty. to Ship (Base)")
                 {
                 }
-                fieldelement(QtyToShipBase;"Sales Line"."Qty. to Ship (Base)")
+                fieldelement(RespCenter; "Sales Line"."Responsibility Center")
                 {
                 }
-                fieldelement(RespCenter;"Sales Line"."Responsibility Center")
+                fieldelement(PlannedDelDt; "Sales Line"."Planned Delivery Date")
                 {
                 }
-                fieldelement(PlannedDelDt;"Sales Line"."Planned Delivery Date")
+                fieldelement(PlannedShpmntDt; "Sales Line"."Planned Shipment Date")
                 {
                 }
-                fieldelement(PlannedShpmntDt;"Sales Line"."Planned Shipment Date")
+                fieldelement(ShippingAgntCd; "Sales Line"."Shipping Agent Code")
                 {
                 }
-                fieldelement(ShippingAgntCd;"Sales Line"."Shipping Agent Code")
+                //TODO
+                /*   fieldelement(SlsPerCode; "Sales Line"."Salesperson Code")
+                  {
+                  }
+                  fieldelement(OrdDt; "Sales Line"."Order Date")
+                  {
+                  } */
+                //TODO
+                fieldelement(Amt; "Sales Line".Amount)
                 {
                 }
-                fieldelement(SlsPerCode;"Sales Line"."Salesperson Code")
+                fieldelement(AmtIncVat; "Sales Line"."Amount Including VAT")
                 {
                 }
-                fieldelement(OrdDt;"Sales Line"."Order Date")
+                fieldelement(OutstAmt; "Sales Line"."Outstanding Amount")
                 {
                 }
-                fieldelement(Amt;"Sales Line".Amount)
+                fieldelement(OutstAmtLCY; "Sales Line"."Outstanding Amount (LCY)")
                 {
                 }
-                fieldelement(AmtIncVat;"Sales Line"."Amount Including VAT")
+                fieldelement(VATBaseAmt; "Sales Line"."VAT Base Amount")
                 {
                 }
-                fieldelement(OutstAmt;"Sales Line"."Outstanding Amount")
+                fieldelement(LineAmt; "Sales Line"."Line Amount")
                 {
                 }
-                fieldelement(OutstAmtLCY;"Sales Line"."Outstanding Amount (LCY)")
+                //TODO
+                /* fieldelement(NetUPrc; "Sales Line"."Net Unit Price")
                 {
-                }
-                fieldelement(VATBaseAmt;"Sales Line"."VAT Base Amount")
-                {
-                }
-                fieldelement(LineAmt;"Sales Line"."Line Amount")
-                {
-                }
-                fieldelement(NetUPrc;"Sales Line"."Net Unit Price")
-                {
-                }
-
+                } */
+                //TODO
                 trigger OnBeforeInsertRecord()
-                var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                 end;
             }
@@ -174,7 +177,7 @@ xmlport 50021 "Toyo SO Surcharge Import"
 
     trigger OnPostXmlPort()
     begin
-         MESSAGE('Import Completed');
+        MESSAGE('Import Completed');
     end;
 
     var

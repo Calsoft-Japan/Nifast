@@ -3,16 +3,19 @@ page 50004 "Vessel Names"
     // NF1.00:CIS.NG  09-05-15 Merged during upgrade
 
     PageType = List;
-    SourceTable = Table50004;
+    SourceTable = "Shipping Vessels";
+    UsageCategory = Lists;
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Vessel Name";"Vessel Name")
+                field("Vessel Name"; Rec."Vessel Name")
                 {
+                    ToolTip = 'Specifies the value of the Vessel Name field.';
                 }
             }
         }

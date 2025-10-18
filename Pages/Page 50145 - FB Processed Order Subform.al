@@ -5,48 +5,61 @@ page 50145 "FB Processed Order Subform"
 
     Editable = false;
     PageType = ListPart;
-    SourceTable = Table50137;
+    UsageCategory = None;
+    SourceTable = "FB Line";
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Tag No.";"Tag No.")
+                field("Tag No."; Rec."Tag No.")
                 {
+                    ToolTip = 'Specifies the value of the Tag No. field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Variant Code";"Variant Code")
+                field("Variant Code"; Rec."Variant Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Variant Code field.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
+                    ToolTip = 'Specifies the value of the Quantity field.';
                 }
-                field("Unit of Measure Code";"Unit of Measure Code")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
+                    ToolTip = 'Specifies the value of the Unit of Measure Code field.';
                 }
-                field("Lot No.";"Lot No.")
+                field("Lot No."; Rec."Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Lot No. field.';
                 }
-                field("External Document No.";"External Document No.")
+                field("External Document No."; Rec."External Document No.")
                 {
+                    ToolTip = 'Specifies the value of the External Document No. field.';
                 }
-                field("Customer Bin";"Customer Bin")
+                field("Customer Bin"; Rec."Customer Bin")
                 {
+                    ToolTip = 'Specifies the value of the Customer Bin field.';
                 }
-                field("Replenishment Method";"Replenishment Method")
+                field("Replenishment Method"; Rec."Replenishment Method")
                 {
+                    ToolTip = 'Specifies the value of the Replenishment Method field.';
                 }
-                field(Status;Status)
+                field(Status; Rec.Status)
                 {
+                    ToolTip = 'Specifies the value of the Status field.';
                 }
-                field("Cross-Reference No.";"Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Cross-Reference No.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Cross-Reference No. field.';
                 }
             }
         }
@@ -58,8 +71,5 @@ page 50145 "FB Processed Order Subform"
         {
         }
     }
-
-    var
-        FBManagement: Codeunit "50133";
 }
 

@@ -5,31 +5,38 @@ page 50033 "4X Contract List"
     CardPageID = "4X Contract";
     Editable = false;
     PageType = List;
-    SourceTable = Table50011;
-    SourceTableView = SORTING(No.)
-                      WHERE(Closed=CONST(No));
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "4X Contract";
+    SourceTableView = SORTING("No.")
+                      WHERE(Closed = CONST(false));
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the value of the No. field.';
                 }
-                field("Contract Note No.";"Contract Note No.")
+                field("Contract Note No."; Rec."Contract Note No.")
                 {
+                    ToolTip = 'Specifies the value of the Contract Note No. field.';
                 }
-                field(Total;Total)
+                field(Total; Rec.Total)
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Total field.';
                 }
-                field("Division Code";"Division Code")
+                field("Division Code"; Rec."Division Code")
                 {
+                    ToolTip = 'Specifies the value of the Division Code field.';
                 }
-                field("Date Created";"Date Created")
+                field("Date Created"; Rec."Date Created")
                 {
+                    ToolTip = 'Specifies the value of the Date Created field.';
                 }
             }
         }
@@ -45,8 +52,10 @@ page 50033 "4X Contract List"
                 action("Contract Card")
                 {
                     Caption = 'Contract Card';
-                    RunObject = Page 50026;
-                    RunPageLink = No.=FIELD(No.);
+                    Image = FileContract;
+                    RunObject = Page "4X Contract";
+                    RunPageLink = "No." = FIELD("No.");
+                    ToolTip = 'Executes the Contract Card action.';
                 }
             }
         }

@@ -4,23 +4,28 @@ page 50045 "Get PO Headers"
 
     Editable = false;
     PageType = List;
-    SourceTable = Table38;
-    SourceTableView = WHERE(Currency Code=CONST(JPY));
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "Purchase Header";
+    SourceTableView = WHERE("Currency Code" = CONST(JPY));
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the number of the involved entry or record, according to the specified number series.';
                 }
-                field("Buy-from Vendor No.";"Buy-from Vendor No.")
+                field("Buy-from Vendor No."; Rec."Buy-from Vendor No.")
                 {
+                    ToolTip = 'Specifies the number of the vendor who delivers the products.';
                 }
-                field("Order Date";"Order Date")
+                field("Order Date"; Rec."Order Date")
                 {
+                    ToolTip = 'Specifies the date when the order was created.';
                 }
             }
         }
@@ -30,7 +35,7 @@ page 50045 "Get PO Headers"
     {
     }
 
-    procedure GetSeleted(var PurchHeader: Record "38")
+    procedure GetSeleted(var PurchHeader: Record "Purchase Header")
     begin
         CurrPage.SETSELECTIONFILTER(PurchHeader);
     end;

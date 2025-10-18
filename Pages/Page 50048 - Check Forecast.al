@@ -11,7 +11,7 @@ page 50048 "Check Forecast"
     LinksAllowed = false;
     ModifyAllowed = false;
     PageType = ConfirmationDialog;
-    SourceTable = Table27;
+    SourceTable = Item;
 
     layout
     {
@@ -20,31 +20,36 @@ page 50048 "Check Forecast"
             group(General)
             {
                 Caption = 'General';
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the number of the involved entry or record, according to the specified number series.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
                     Editable = false;
+                    ToolTip = 'Specifies a description of the item.';
                 }
-                field(InventoryQty;InventoryQty)
+                field(InventoryQty; InventoryQty)
                 {
                     Caption = 'Inventory';
-                    DecimalPlaces = 0:5;
+                    DecimalPlaces = 0 : 5;
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Inventory field.';
                 }
-                field(ForecastQty;ForecastQty)
+                field(ForecastQty; ForecastQty)
                 {
                     Caption = 'Forecast';
-                    DecimalPlaces = 0:5;
+                    DecimalPlaces = 0 : 5;
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Forecast field.';
                 }
-                field(ShipmentQty;ShipmentQty)
+                field(ShipmentQty; ShipmentQty)
                 {
                     Caption = 'Shipment';
-                    DecimalPlaces = 0:5;
+                    DecimalPlaces = 0 : 5;
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Shipment field.';
                 }
             }
         }
@@ -56,50 +61,43 @@ page 50048 "Check Forecast"
 
     trigger OnOpenPage()
     begin
-        COPY(Item2);
+        Rec.COPY(Item2);
     end;
 
     var
-        SalesSetup: Record "311";
-        OldSalesLine: Record "37";
-        CompanyInfo: Record "79";
-        Item2: Record "27";
-        SalesShipment: Record "111";
-        SalesHeader: Record "36";
-        ForecastLog: Record "50026";
-        OldQtytoShip: Decimal;
-        ItemNo: Code[20];
+        Item2: Record Item;
+        SalesHeader: Record "Sales Header";
+        OldSalesLine: Record "Sales Line";
         UnitOfMeasureCode: Code[10];
-        QtyPerUnitOfMeasure: Decimal;
-        SetupDataIsPresent: Boolean;
-        InventoryQty: Decimal;
-        ForecastQty: Decimal;
-        ShipmentQty: Decimal;
+        ItemNo: Code[20];
         BegDate: Date;
         EndDate: Date;
         GenerationDate: Date;
         PostingDate: Date;
+        ForecastQty: Decimal;
+        InventoryQty: Decimal;
+        OldQtytoShipGVar: Decimal;
+        QtyPerUnitOfMeasure: Decimal;
         QtytoShip: Decimal;
-        AvailToPromise: Codeunit "5790";
         SalesQty: Decimal;
-        Text19041947: Label 'Shipment in this month will exceed forecast. Do you still want to record the quantity?';
+        ShipmentQty: Decimal;
 
-    procedure SalesLineShowWarning(SalesLine: Record "37"): Boolean
+    procedure SalesLineShowWarning(SalesLine: Record "Sales Line"): Boolean
     begin
         IF SalesLine."Drop Shipment" THEN
-          EXIT(FALSE);
+            EXIT(FALSE);
 
         OldSalesLine := SalesLine;
-        OldQtytoShip := 0;
-        IF OldSalesLine.FIND THEN // Find previous quantity
-          IF (OldSalesLine."Document Type" = OldSalesLine."Document Type"::Order) AND
-             (OldSalesLine."No." = SalesLine."No.") AND
-             (OldSalesLine."Variant Code" = SalesLine."Variant Code") AND
-             (OldSalesLine."Location Code" = SalesLine."Location Code") AND
-             (OldSalesLine."Bin Code" = SalesLine."Bin Code") AND
-             NOT OldSalesLine."Drop Shipment"
-          THEN
-            OldQtytoShip := OldSalesLine.Quantity;
+        OldQtytoShipGVar := 0;
+        IF OldSalesLine.FIND() THEN // Find previous quantity
+            IF (OldSalesLine."Document Type" = OldSalesLine."Document Type"::Order) AND
+               (OldSalesLine."No." = SalesLine."No.") AND
+               (OldSalesLine."Variant Code" = SalesLine."Variant Code") AND
+               (OldSalesLine."Location Code" = SalesLine."Location Code") AND
+               (OldSalesLine."Bin Code" = SalesLine."Bin Code") AND
+               NOT OldSalesLine."Drop Shipment"
+            THEN
+                OldQtytoShipGVar := OldSalesLine.Quantity;
 
         EXIT(
           ShowWarning(
@@ -112,7 +110,7 @@ page 50048 "Check Forecast"
             SalesHeader."Posting Date"));
     end;
 
-    local procedure ShowWarning(ItemNo2: Code[20];ItemVariantCode: Code[10];ItemLocationCode: Code[10];UnitOfMeasureCode2: Code[10];QtyPerUnitOfMeasure2: Decimal;OldQtytoShip: Decimal;OldPostingDate: Date): Boolean
+    local procedure ShowWarning(ItemNo2: Code[20]; ItemVariantCode: Code[10]; ItemLocationCode: Code[10]; UnitOfMeasureCode2: Code[10]; QtyPerUnitOfMeasure2: Decimal; OldQtytoShip: Decimal; OldPostingDate: Date): Boolean
     begin
         ItemNo := ItemNo2;
         UnitOfMeasureCode := UnitOfMeasureCode2;
@@ -120,33 +118,31 @@ page 50048 "Check Forecast"
         PostingDate := OldPostingDate;
         QtytoShip := OldQtytoShip;
 
-        GET(ItemNo);
-        SETRANGE("No.","No.");
-        SETRANGE("Variant Filter",ItemVariantCode);
-        SETRANGE("Location Filter",ItemLocationCode);
-        SETRANGE("Drop Shipment Filter",FALSE);
+        Rec.GET(ItemNo);
+        Rec.SETRANGE("No.", Rec."No.");
+        Rec.SETRANGE("Variant Filter", ItemVariantCode);
+        Rec.SETRANGE("Location Filter", ItemLocationCode);
+        Rec.SETRANGE("Drop Shipment Filter", FALSE);
 
         Item2.COPY(Rec);
 
-        Calculate;
+        Calculate();
 
         IF ForecastQty = 0 THEN
-          EXIT(FALSE);
+            EXIT(FALSE);
 
         EXIT(ShipmentQty > ForecastQty);
     end;
 
     local procedure Calculate()
-    var
-        SalesLine: Record "37" temporary;
     begin
-        CALCFIELDS(Inventory,"Reserved Qty. on Inventory");
-        InventoryQty := Inventory - "Reserved Qty. on Inventory";
+        Rec.CALCFIELDS(Inventory, "Reserved Qty. on Inventory");
+        InventoryQty := Rec.Inventory - Rec."Reserved Qty. on Inventory";
 
-        SalesHeader.GET(OldSalesLine."Document Type",OldSalesLine."Document No.");
-        EndDate := CALCDATE('CM',SalesHeader."Posting Date");
-        BegDate := (EndDate - DATE2DMY(EndDate,1)) + 1;
-        GenerationDate := CALCDATE('-3M',BegDate);
+        SalesHeader.GET(OldSalesLine."Document Type", OldSalesLine."Document No.");
+        EndDate := CALCDATE('<CM>', SalesHeader."Posting Date");
+        BegDate := (EndDate - DATE2DMY(EndDate, 1)) + 1;
+        GenerationDate := CALCDATE('<-3M>', BegDate);
         //MESSAGE('bd is %1,ed is %2, fd is %3',FORMAT(BegDate),FORMAT(EndDate),FORMAT(GenerationDate));
 
         ForecastQty := 0;

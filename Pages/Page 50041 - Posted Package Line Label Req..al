@@ -8,7 +8,7 @@ page 50041 "Posted Package Line Label Req."
     // <<WC
 
     PageType = Document;
-    SourceTable = Table14000705;
+    SourceTable = 14000705;
 
     layout
     {

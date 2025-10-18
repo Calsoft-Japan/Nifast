@@ -13,60 +13,75 @@ page 50024 "Lot No. Information List_1"
     Caption = 'Lot No. Information List';
     Editable = false;
     PageType = List;
-    SourceTable = Table6505;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "Lot No. Information";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Lot No.";"Lot No.")
+                field("Lot No."; Rec."Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Lot No. field.';
                 }
-                field("Source Location";"Source Location")
+                field("Source Location"; Rec."Source Location")
                 {
+                    ToolTip = 'Specifies the value of the Source Location field.';
                 }
-                field("CVE Pedimento";"CVE Pedimento")
+                field("CVE Pedimento"; Rec."CVE Pedimento")
                 {
                     Visible = "CVE PedimentoVisible";
+                    ToolTip = 'Specifies the value of the CVE Pedimento field.';
                 }
-                field("Mfg. Lot No.";"Mfg. Lot No.")
+                field("Mfg. Lot No."; Rec."Mfg. Lot No.")
                 {
+                    ToolTip = 'Specifies the value of the Mfg. Lot No. field.';
                 }
-                field("Vendor No.";"Vendor No.")
+                field("Vendor No."; Rec."Vendor No.")
                 {
+                    ToolTip = 'Specifies the value of the Vendor No. field.';
                 }
-                field("Lot Creation Date";"Lot Creation Date")
+                field("Lot Creation Date"; Rec."Lot Creation Date")
                 {
+                    ToolTip = 'Specifies the value of the Lot Creation Date field.';
                 }
-                field("Passed Inspection";"Passed Inspection")
+                field("Passed Inspection"; Rec."Passed Inspection")
                 {
+                    ToolTip = 'Specifies the value of the Passed Inspection field.';
                 }
-                field(Blocked;Blocked)
+                field(Blocked; Rec.Blocked)
                 {
+                    ToolTip = 'Specifies the value of the Blocked field.';
                 }
-                field(Comment;Comment)
+                field(Comment; Rec.Comment)
                 {
+                    ToolTip = 'Specifies the value of the Comment field.';
                 }
-                field(Inventory;Inventory)
+                field(Inventory; Rec.Inventory)
                 {
+                    ToolTip = 'Specifies the value of the Inventory field.';
                 }
-                field(InLocationBinGross;InLocationBinGross)
+                field(InLocationBinGross; Rec.InLocationBinGross())
                 {
                     Caption = 'Location-Bin';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Location-Bin field.';
 
                     trigger OnDrillDown()
                     begin
-                        ShowBinContentBufferGross;
+                        Rec.ShowBinContentBufferGross();
                     end;
                 }
-                field("Revision No.";"Revision No.")
+                field("Revision No."; Rec."Revision No.")
                 {
+                    ToolTip = 'Specifies the value of the Revision No. field.';
                 }
             }
         }
@@ -86,6 +101,7 @@ page 50024 "Lot No. Information List_1"
                     RunObject = Page 6505;
                     RunPageOnRec = true;
                     ShortCutKey = 'Shift+F7';
+                    ToolTip = 'Executes the Card action.';
                 }
             }
         }
@@ -99,8 +115,8 @@ page 50024 "Lot No. Information List_1"
     trigger OnOpenPage()
     begin
         //>>NIF 051206 RTT #10775
-        IF STRPOS(COMPANYNAME,'Mexi')=0 THEN
-          "CVE PedimentoVisible" := FALSE;
+        IF STRPOS(COMPANYNAME, 'Mexi') = 0 THEN
+            "CVE PedimentoVisible" := FALSE;
         //<<NIF 051206 RTT #10775
     end;
 

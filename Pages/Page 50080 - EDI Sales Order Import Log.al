@@ -5,7 +5,9 @@ page 50080 "EDI Sales Order Import Log"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
-    SourceTable = Table50031;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "EDI Sales Order Import Log";
 
     layout
     {
@@ -13,30 +15,45 @@ page 50080 "EDI Sales Order Import Log"
         {
             repeater(Group)
             {
-                field("Entry No.";"Entry No.")
+                field("Entry No."; Rec."Entry No.")
                 {
+                    ToolTip = 'Specifies the value of the Entry No. field.';
+                    Caption = 'Entry No.';
                 }
-                field("File Name";"File Name")
+                field("File Name"; Rec."File Name")
                 {
+                    ToolTip = 'Specifies the value of the File Name field.';
+                    Caption = 'File Name';
                 }
-                field("Import Date";"Import Date")
+                field("Import Date"; Rec."Import Date")
                 {
+                    ToolTip = 'Specifies the value of the Import Date field.';
+                    Caption = 'Import Date';
                 }
-                field(FORMAT("Import Time");FORMAT("Import Time"))
+                field("Import Time"; FORMAT(Rec."Import Time"))
                 {
                     Caption = 'Import Time';
+                    ToolTip = 'Specifies the value of the (Import Time) field.';
                 }
-                field("Import By";"Import By")
+                field("Import By"; Rec."Import By")
                 {
+                    ToolTip = 'Specifies the value of the Import By field.';
+                    Caption = 'Import By';
                 }
-                field(Status;Status)
+                field(Status; Rec.Status)
                 {
+                    ToolTip = 'Specifies the value of the Status field.';
+                    Caption = 'Status';
                 }
-                field("Sales Orders";"Sales Orders")
+                field("Sales Orders"; Rec."Sales Orders")
                 {
+                    ToolTip = 'Specifies the value of the Sales Orders field.';
+                    Caption = 'Sales Orders';
                 }
-                field("Error Detail";"Error Detail")
+                field("Error Detail"; Rec."Error Detail")
                 {
+                    ToolTip = 'Specifies the value of the Error Detail field.';
+                    Caption = 'Error Detail';
                 }
             }
         }
@@ -50,12 +67,14 @@ page 50080 "EDI Sales Order Import Log"
             {
                 Image = ImportChartOfAccounts;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ToolTip = 'Executes the Process Files action.';
 
                 trigger OnAction()
                 var
-                    ProcessEDIXML: Codeunit "50000";
+                    ProcessEDIXML: Codeunit "Not used";
                 begin
                     CLEAR(ProcessEDIXML);
                     ProcessEDIXML.ProcessAll(TRUE);
@@ -66,16 +85,18 @@ page 50080 "EDI Sales Order Import Log"
                 Caption = 'Process Files Forcast';
                 Image = ImportChartOfAccounts;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ToolTip = 'Executes the Process Files Forcast action.';
 
                 trigger OnAction()
                 var
-                    JobQueueEntry: Record "472";
-                    ProcessEDIXML: Codeunit "50001";
+                    JobQueueEntry: Record "Job Queue Entry";
+                    ProcessEDIXML: Codeunit "Process EDI XML File JRR";
                 begin
                     CLEAR(ProcessEDIXML);
-                    JobQueueEntry.INIT;
+                    JobQueueEntry.INIT();
                     JobQueueEntry."Parameter String" := 'FORECAST';
                     ProcessEDIXML.RUN(JobQueueEntry);
                 end;
@@ -85,36 +106,40 @@ page 50080 "EDI Sales Order Import Log"
                 Caption = 'Show Error Message';
                 Image = PrevErrorMessage;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = "Report";
                 PromotedIsBig = true;
+                ToolTip = 'Executes the Show Error Message action.';
 
                 trigger OnAction()
                 begin
-                    TESTFIELD("Error Detail");
-                    MESSAGE("Error Detail");
+                    Rec.TESTFIELD("Error Detail");
+                    MESSAGE(Rec."Error Detail");
                 end;
             }
             action("View Orders")
             {
                 Image = BlanketOrder;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = "Report";
                 PromotedIsBig = true;
+                ToolTip = 'Executes the View Orders action.';
 
                 trigger OnAction()
                 var
-                    SalesHeader: Record "36";
-                    SalesOrderList: Page "9305";
+                    SalesHeader: Record "Sales Header";
+                    SalesOrderList: Page "Sales Order List";
                 begin
-                    TESTFIELD("Sales Orders");
-                    SalesHeader.RESET;
-                    SalesHeader.SETRANGE("Document Type",SalesHeader."Document Type"::Order);
-                    SalesHeader.SETFILTER("No.","Sales Orders");
+                    Rec.TESTFIELD("Sales Orders");
+                    SalesHeader.RESET();
+                    SalesHeader.SETRANGE("Document Type", SalesHeader."Document Type"::Order);
+                    SalesHeader.SETFILTER("No.", Rec."Sales Orders");
                     CLEAR(SalesOrderList);
                     SalesOrderList.SETTABLEVIEW(SalesHeader);
                     SalesOrderList.LOOKUPMODE := TRUE;
                     SalesOrderList.EDITABLE(FALSE);
-                    SalesOrderList.RUNMODAL;
+                    SalesOrderList.RUNMODAL();
                 end;
             }
         }

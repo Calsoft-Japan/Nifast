@@ -5,29 +5,36 @@ page 50051 "Label Field Content"
 
     DataCaptionFields = "Label Code";
     PageType = List;
-    SourceTable = Table50006;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "Label Field Content";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Field Code";"Field Code")
+                field("Field Code"; Rec."Field Code")
                 {
+                    ToolTip = 'Specifies the value of the Field Code field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("Test Print Value";"Test Print Value")
+                field("Test Print Value"; Rec."Test Print Value")
                 {
+                    ToolTip = 'Specifies the value of the Test Print Value field.';
                 }
-                field("No. Series";"No. Series")
+                field("No. Series"; Rec."No. Series")
                 {
+                    ToolTip = 'Specifies the value of the No. Series field.';
                 }
-                field("Print Value";"Print Value")
+                field("Print Value"; Rec."Print Value")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the value of the Print Value field.';
                 }
             }
         }
@@ -43,9 +50,11 @@ page 50051 "Label Field Content"
                 action("&Properties")
                 {
                     Caption = '&Properties';
-                    RunObject = Page 50055;
-                    RunPageLink = Label Code=FIELD(Label Code),
-                                  Field Code=FIELD(Field Code);
+                    Image = Properties;
+                    RunObject = Page "Label Field Content Properties";
+                    RunPageLink = "Label Code" = FIELD("Label Code"),
+                                  "Field Code" = FIELD("Field Code");
+                    ToolTip = 'Executes the &Properties action.';
                 }
             }
         }

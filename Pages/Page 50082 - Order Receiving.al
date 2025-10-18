@@ -6,170 +6,206 @@ page 50082 "Order Receiving"
     CardPageID = "Purchase Order Receipt";
     Editable = false;
     PageType = List;
-    SourceTable = Table38;
-    SourceTableView = WHERE(Document Type=CONST(Order));
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "Purchase Header";
+    SourceTableView = WHERE("Document Type" = CONST(Order));
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(GeneralFilters)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the number of the involved entry or record, according to the specified number series.';
                 }
-                field("Buy-from Vendor No.";"Buy-from Vendor No.")
+                field("Buy-from Vendor No."; Rec."Buy-from Vendor No.")
                 {
+                    ToolTip = 'Specifies the number of the vendor who delivers the products.';
                 }
-                field("Order Address Code";"Order Address Code")
+                field("Order Address Code"; Rec."Order Address Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the order address code linked to the relevant vendor''s order address.';
                 }
-                field("Buy-from Vendor Name";"Buy-from Vendor Name")
+                field("Buy-from Vendor Name"; Rec."Buy-from Vendor Name")
                 {
+                    ToolTip = 'Specifies the name of the vendor who delivers the products.';
                 }
-                field("Vendor Authorization No.";"Vendor Authorization No.")
+                field("Vendor Authorization No."; Rec."Vendor Authorization No.")
                 {
+                    ToolTip = 'Specifies the compensation agreement identification number, sometimes referred to as the RMA No. (Returns Materials Authorization).';
                 }
-                field("Buy-from Post Code";"Buy-from Post Code")
-                {
-                    Visible = false;
-                }
-                field("Buy-from Country/Region Code";"Buy-from Country/Region Code")
-                {
-                    Visible = false;
-                }
-                field("Buy-from Contact";"Buy-from Contact")
+                field("Buy-from Post Code"; Rec."Buy-from Post Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the postal code.';
                 }
-                field("Pay-to Vendor No.";"Pay-to Vendor No.")
+                field("Buy-from Country/Region Code"; Rec."Buy-from Country/Region Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the country or region of the address.';
                 }
-                field("Pay-to Name";"Pay-to Name")
+                field("Buy-from Contact"; Rec."Buy-from Contact")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the name of the person to contact about shipment of the item from this vendor.';
                 }
-                field("Pay-to Post Code";"Pay-to Post Code")
+                field("Pay-to Vendor No."; Rec."Pay-to Vendor No.")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the number of the vendor that you received the invoice from.';
                 }
-                field("Pay-to Country/Region Code";"Pay-to Country/Region Code")
+                field("Pay-to Name"; Rec."Pay-to Name")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the name of the vendor sending the invoice.';
                 }
-                field("Pay-to Contact";"Pay-to Contact")
+                field("Pay-to Post Code"; Rec."Pay-to Post Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the postal code.';
                 }
-                field("Ship-to Code";"Ship-to Code")
+                field("Pay-to Country/Region Code"; Rec."Pay-to Country/Region Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the country/region code of the vendor on the purchase document.';
                 }
-                field("Ship-to Name";"Ship-to Name")
+                field("Pay-to Contact"; Rec."Pay-to Contact")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the name of the person to contact about an invoice from this vendor.';
                 }
-                field("Ship-to Post Code";"Ship-to Post Code")
+                field("Ship-to Code"; Rec."Ship-to Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies a code for an alternate shipment address if you want to ship to another address than the one that has been entered automatically. This field is also used in case of drop shipment.';
                 }
-                field("Ship-to Country/Region Code";"Ship-to Country/Region Code")
+                field("Ship-to Name"; Rec."Ship-to Name")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the name of the company at the address to which you want the items in the purchase order to be shipped.';
                 }
-                field("Ship-to Contact";"Ship-to Contact")
+                field("Ship-to Post Code"; Rec."Ship-to Post Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the postal code.';
                 }
-                field("Posting Date";"Posting Date")
+                field("Ship-to Country/Region Code"; Rec."Ship-to Country/Region Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the country/region code of the address that the items are shipped to.';
                 }
-                field("Shortcut Dimension 1 Code";"Shortcut Dimension 1 Code")
+                field("Ship-to Contact"; Rec."Ship-to Contact")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the name of a contact person for the address where the items in the purchase order should be shipped.';
+                }
+                field("Posting Date"; Rec."Posting Date")
+                {
+                    Visible = false;
+                    ToolTip = 'Specifies the date when the posting of the purchase document will be recorded.';
+                }
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
+                {
+                    Visible = false;
+                    ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
 
                     trigger OnLookup(var Text: Text): Boolean
                     begin
                         DimMgt.LookupDimValueCodeNoUpdate(1);
                     end;
                 }
-                field("Shortcut Dimension 2 Code";"Shortcut Dimension 2 Code")
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
 
                     trigger OnLookup(var Text: Text): Boolean
                     begin
                         DimMgt.LookupDimValueCodeNoUpdate(2);
                     end;
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
                     Visible = true;
+                    ToolTip = 'Specifies the location where the items are to be placed when they are received. This field acts as the default location for new lines. You can update the location code for individual lines as needed.';
                 }
-                field("Purchaser Code";"Purchaser Code")
+                field("Purchaser Code"; Rec."Purchaser Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies which purchaser is assigned to the vendor.';
                 }
-                field("Assigned User ID";"Assigned User ID")
+                field("Assigned User ID"; Rec."Assigned User ID")
                 {
+                    ToolTip = 'Specifies the ID of the user who is responsible for the document.';
                 }
-                field("Currency Code";"Currency Code")
-                {
-                    Visible = false;
-                }
-                field("Document Date";"Document Date")
+                field("Currency Code"; Rec."Currency Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the currency that is used on the entry.';
                 }
-                field(Status;Status)
+                field("Document Date"; Rec."Document Date")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the date when the related document was created.';
                 }
-                field("Payment Terms Code";"Payment Terms Code")
+                field(Status; Rec.Status)
                 {
                     Visible = false;
+                    ToolTip = 'Specifies whether the record is open, waiting to be approved, invoiced for prepayment, or released to the next stage of processing.';
                 }
-                field("Due Date";"Due Date")
+                field("Payment Terms Code"; Rec."Payment Terms Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies a formula that calculates the payment due date, payment discount date, and payment discount amount.';
                 }
-                field("Payment Discount %";"Payment Discount %")
+                field("Due Date"; Rec."Due Date")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies when the related sales invoice must be paid.';
                 }
-                field("Payment Method Code";"Payment Method Code")
+                field("Payment Discount %"; Rec."Payment Discount %")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the payment discount percentage that is granted if you pay on or before the date entered in the Pmt. Discount Date field. The discount percentage is specified in the Payment Terms Code field.';
                 }
-                field("Shipment Method Code";"Shipment Method Code")
+                field("Payment Method Code"; Rec."Payment Method Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies how to make payment, such as with bank transfer, cash, or check.';
                 }
-                field("Requested Receipt Date";"Requested Receipt Date")
+                field("Shipment Method Code"; Rec."Shipment Method Code")
                 {
                     Visible = false;
+                    ToolTip = 'Specifies the delivery conditions of the related shipment, such as free on board (FOB).';
                 }
-                field("Job Queue Status";"Job Queue Status")
+                field("Requested Receipt Date"; Rec."Requested Receipt Date")
+                {
+                    Visible = false;
+                    ToolTip = 'Specifies the date that you want the vendor to deliver your order. The field is used to calculate the latest date you can order, as follows: requested receipt date - lead time calculation = order date. If you do not need delivery on a specific date, you can leave the field blank.';
+                }
+                field("Job Queue Status"; Rec."Job Queue Status")
                 {
                     Visible = JobQueueActive;
+                    ToolTip = 'Specifies the status of a job queue entry that handles the posting of purchase credit memos.';
                 }
             }
         }
         area(factboxes)
         {
-            part(;9093)
+            part(VendorDetailsFactBox; "Vendor Details FactBox")
             {
-                SubPageLink = No.=FIELD(Buy-from Vendor No.);
+                SubPageLink = "No." = FIELD("Buy-from Vendor No.");
                 Visible = true;
             }
-            systempart(;Links)
+            systempart(Links; Links)
             {
                 Visible = false;
             }
-            systempart(;Notes)
+            systempart(Notes; Notes)
             {
                 Visible = true;
             }
@@ -186,17 +222,18 @@ page 50082 "Order Receiving"
                 Image = "Order";
                 action(Dimensions)
                 {
-                    AccessByPermission = TableData 348=R;
+                    AccessByPermission = TableData Dimension = R;
                     Caption = 'Dimensions';
                     Image = Dimensions;
                     Promoted = false;
                     //The property 'PromotedIsBig' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedIsBig = false;
                     ShortCutKey = 'Shift+Ctrl+D';
+                    ToolTip = 'Executes the Dimensions action.';
 
                     trigger OnAction()
                     begin
-                        ShowDocDim;
+                        Rec.ShowDocDim();
                     end;
                 }
                 action(Statistics)
@@ -207,16 +244,17 @@ page 50082 "Order Receiving"
                     PromotedCategory = Process;
                     PromotedIsBig = true;
                     ShortCutKey = 'F7';
+                    ToolTip = 'Executes the Statistics action.';
 
                     trigger OnAction()
                     begin
-                        CalcInvDiscForHeader;
-                        COMMIT;
+                        Rec.CalcInvDiscForHeader();
+                        COMMIT();
                         //PAGE.RUNMODAL(PAGE::"Purchase Order Statistics",Rec);
-                        IF "Tax Area Code" = '' THEN
-                          PAGE.RUNMODAL(PAGE::"Purchase Order Statistics",Rec)
+                        IF Rec."Tax Area Code" = '' THEN
+                            PAGE.RUNMODAL(PAGE::"Purchase Order Statistics", Rec)
                         ELSE
-                          PAGE.RUNMODAL(PAGE::"Purchase Order Stats.",Rec)
+                            PAGE.RUNMODAL(PAGE::"Purchase Order Stats.", Rec)
                     end;
                 }
                 action(Approvals)
@@ -224,61 +262,68 @@ page 50082 "Order Receiving"
                     Caption = 'Approvals';
                     Image = Approvals;
                     Promoted = false;
+                    ToolTip = 'Executes the Approvals action.';
                     //The property 'PromotedIsBig' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedIsBig = false;
 
                     trigger OnAction()
                     var
-                        ApprovalEntries: Page "658";
+                        ApprovalEntries: Page "Approval Entries";
                     begin
-                        ApprovalEntries.Setfilters(DATABASE::"Purchase Header","Document Type","No.");
-                        ApprovalEntries.RUN;
+                        ApprovalEntries.Setfilters(DATABASE::"Purchase Header", Rec."Document Type", Rec."No.");
+                        ApprovalEntries.RUN();
                     end;
                 }
                 action("Co&mments")
                 {
                     Caption = 'Co&mments';
                     Image = ViewComments;
-                    RunObject = Page 66;
-                    RunPageLink = Document Type=FIELD(Document Type),
-                                  No.=FIELD(No.),
-                                  Document Line No.=CONST(0);
+                    RunObject = Page "Purch. Comment Sheet";
+                    RunPageLink = "Document Type" = FIELD("Document Type"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
+                    ToolTip = 'Executes the Co&mments action.';
                 }
                 action("E-&Mail List")
                 {
                     Caption = 'E-&Mail List';
+                    Image = Email;
+                    ToolTip = 'Executes the E-&Mail List action.';
 
                     trigger OnAction()
                     var
-                        EMailListEntry: Record "14000908";
+                        EMailListEntry: Record 14000908;
                     begin
                         EMailListEntry.RESET;
-                        EMailListEntry.SETRANGE("Table ID",DATABASE::"Purchase Header");
-                        EMailListEntry.SETRANGE(Type,"Document Type");
-                        EMailListEntry.SETRANGE(Code,"No.");
-                        PAGE.RUNMODAL(PAGE::"E-Mail List Entries",EMailListEntry);
+                        EMailListEntry.SETRANGE("Table ID", DATABASE::"Purchase Header");
+                        EMailListEntry.SETRANGE(Type, Rec."Document Type");
+                        EMailListEntry.SETRANGE(Code, Rec."No.");
+                        PAGE.RUNMODAL(PAGE::"E-Mail List Entries", EMailListEntry);
                     end;
                 }
-                group(EDI)
+                group(EDIs)
                 {
                     Caption = 'EDI';
                     action("&EDI Received Elements")
                     {
                         Caption = '&EDI Received Elements';
+                        Image = Receivables;
                         RunObject = Page 14000365;
-                        RunPageLink = Internal Doc No.=FIELD(EDI Internal Doc. No.);
-                        RunPageView = SORTING(Internal Doc No.,Line No.)
+                        RunPageLink = "Internal Doc No." = FIELD("EDI Internal Doc. No.");
+                        RunPageView = SORTING("Internal Doc No.", "Line No.")
                                       ORDER(Ascending)
-                                      WHERE(Viewable=CONST(Yes));
+                                      WHERE(Viewable = CONST(true));
+                        ToolTip = 'Executes the &EDI Received Elements action.';
                     }
                     action(Trace)
                     {
                         Caption = 'Trace';
                         Image = Trace;
+                        ToolTip = 'Executes the Trace action.';
 
                         trigger OnAction()
                         var
-                            EDITrace: Page "14002386";
+                            EDITrace: Page 14002386;
                         begin
                             CLEAR(EDITrace);
                             EDITrace.SetDoc("EDI Internal Doc. No.");
@@ -286,17 +331,19 @@ page 50082 "Order Receiving"
                         end;
                     }
                 }
-                group("E-Ship")
+                group("E-Ships")
                 {
                     Caption = 'E-Ship';
                     action(Receives)
                     {
                         Caption = 'Receives';
+                        Image = Receivables;
                         RunObject = Page 14000608;
-                        RunPageLink = Source Type=CONST(38),
-                                      Source Subtype=FIELD(Document Type),
-                                      Source ID=FIELD(No.);
-                        RunPageView = SORTING(Source Type,Source Subtype,Source ID);
+                        RunPageLink = "Source Type" = CONST(38),
+                                      "Source Subtype" = FIELD("Document Type"),
+                                      "Source ID" = FIELD("No.");
+                        RunPageView = SORTING("Source Type", "Source Subtype", "Source ID");
+                        ToolTip = 'Executes the Receives action.';
                     }
                 }
             }
@@ -304,49 +351,53 @@ page 50082 "Order Receiving"
             {
                 Caption = 'Documents';
                 Image = Documents;
-                action(Receipts)
+                action(Receiptss)
                 {
                     Caption = 'Receipts';
                     Image = PostedReceipts;
                     Promoted = false;
                     //The property 'PromotedIsBig' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedIsBig = false;
-                    RunObject = Page 145;
-                    RunPageLink = Order No.=FIELD(No.);
-                    RunPageView = SORTING(Order No.);
+                    RunObject = Page "Posted Purchase Receipts";
+                    RunPageLink = "Order No." = FIELD("No.");
+                    RunPageView = SORTING("Order No.");
+                    ToolTip = 'Executes the Receipts action.';
                 }
-                action(Invoices)
+                action(Invoicess)
                 {
                     Caption = 'Invoices';
                     Image = Invoice;
                     Promoted = false;
                     //The property 'PromotedIsBig' can only be set if the property 'Promoted' is set to 'true'
                     //PromotedIsBig = false;
-                    RunObject = Page 146;
-                    RunPageLink = Order No.=FIELD(No.);
-                    RunPageView = SORTING(Order No.);
+                    RunObject = Page "Posted Purchase Invoices";
+                    RunPageLink = "Order No." = FIELD("No.");
+                    RunPageView = SORTING("Order No.");
+                    ToolTip = 'Executes the Invoices action.';
                 }
                 action("Prepa&yment Invoices")
                 {
                     Caption = 'Prepa&yment Invoices';
                     Image = PrepaymentInvoice;
-                    RunObject = Page 146;
-                    RunPageLink = Prepayment Order No.=FIELD(No.);
-                    RunPageView = SORTING(Prepayment Order No.);
+                    RunObject = Page "Posted Purchase Invoices";
+                    RunPageLink = "Prepayment Order No." = FIELD("No.");
+                    RunPageView = SORTING("Prepayment Order No.");
+                    ToolTip = 'Executes the Prepa&yment Invoices action.';
                 }
                 action("Prepayment Credi&t Memos")
                 {
                     Caption = 'Prepayment Credi&t Memos';
                     Image = PrepaymentCreditMemo;
-                    RunObject = Page 147;
-                    RunPageLink = Prepayment Order No.=FIELD(No.);
-                    RunPageView = SORTING(Prepayment Order No.);
+                    RunObject = Page "Posted Purchase Credit Memos";
+                    RunPageLink = "Prepayment Order No." = FIELD("No.");
+                    RunPageView = SORTING("Prepayment Order No.");
+                    ToolTip = 'Executes the Prepayment Credi&t Memos action.';
                 }
-                separator()
+                separator(" ")
                 {
                 }
             }
-            group(Warehouse)
+            group(Warehouses)
             {
                 Caption = 'Warehouse';
                 Image = Warehouse;
@@ -354,22 +405,24 @@ page 50082 "Order Receiving"
                 {
                     Caption = 'In&vt. Put-away/Pick Lines';
                     Image = PickLines;
-                    RunObject = Page 5774;
-                    RunPageLink = Source Document=CONST(Purchase Order),
-                                  Source No.=FIELD(No.);
-                    RunPageView = SORTING(Source Document,Source No.,Location Code);
+                    RunObject = Page "Warehouse Activity List";
+                    RunPageLink = "Source Document" = CONST("Purchase Order"),
+                                  "Source No." = FIELD("No.");
+                    RunPageView = SORTING("Source Document", "Source No.", "Location Code");
+                    ToolTip = 'Executes the In&vt. Put-away/Pick Lines action.';
                 }
                 action("Whse. Receipt Lines")
                 {
                     Caption = 'Whse. Receipt Lines';
                     Image = ReceiptLines;
-                    RunObject = Page 7342;
-                    RunPageLink = Source Type=CONST(39),
-                                  Source Subtype=FIELD(Document Type),
-                                  Source No.=FIELD(No.);
-                    RunPageView = SORTING(Source Type,Source Subtype,Source No.,Source Line No.);
+                    RunObject = Page "Whse. Receipt Lines";
+                    RunPageLink = "Source Type" = CONST(39),
+                                  "Source Subtype" = FIELD("Document Type"),
+                                  "Source No." = FIELD("No.");
+                    RunPageView = SORTING("Source Type", "Source Subtype", "Source No.", "Source Line No.");
+                    ToolTip = 'Executes the Whse. Receipt Lines action.';
                 }
-                separator()
+                separator("  ")
                 {
                 }
             }
@@ -386,7 +439,9 @@ page 50082 "Order Receiving"
                     Ellipsis = true;
                     Image = Print;
                     Promoted = true;
+                    PromotedOnly = true;
                     PromotedCategory = Process;
+                    ToolTip = 'Executes the &Print action.';
 
                     trigger OnAction()
                     begin
@@ -403,10 +458,11 @@ page 50082 "Order Receiving"
                     Caption = 'Re&lease';
                     Image = ReleaseDoc;
                     ShortCutKey = 'Ctrl+F9';
+                    ToolTip = 'Executes the Re&lease action.';
 
                     trigger OnAction()
                     var
-                        ReleasePurchDoc: Codeunit "415";
+                        ReleasePurchDoc: Codeunit "Release Purchase Document";
                     begin
                         ReleasePurchDoc.PerformManualRelease(Rec);
                     end;
@@ -415,15 +471,16 @@ page 50082 "Order Receiving"
                 {
                     Caption = 'Re&open';
                     Image = ReOpen;
+                    ToolTip = 'Executes the Re&open action.';
 
                     trigger OnAction()
                     var
-                        ReleasePurchDoc: Codeunit "415";
+                        ReleasePurchDoc: Codeunit "Release Purchase Document";
                     begin
                         ReleasePurchDoc.PerformManualReopen(Rec);
                     end;
                 }
-                separator()
+                separator("   ")
                 {
                 }
             }
@@ -435,10 +492,11 @@ page 50082 "Order Receiving"
                 {
                     Caption = 'Send A&pproval Request';
                     Image = SendApprovalRequest;
+                    ToolTip = 'Executes the Send A&pproval Request action.';
 
                     trigger OnAction()
                     var
-                        ApprovalMgt: Codeunit "439";
+                        ApprovalMgt: Codeunit "Export F/O Consolidation";
                     begin
                         IF ApprovalMgt.SendPurchaseApprovalRequest(Rec) THEN;
                     end;
@@ -447,44 +505,47 @@ page 50082 "Order Receiving"
                 {
                     Caption = 'Cancel Approval Re&quest';
                     Image = Cancel;
+                    ToolTip = 'Executes the Cancel Approval Re&quest action.';
 
                     trigger OnAction()
                     var
-                        ApprovalMgt: Codeunit "439";
+                        ApprovalMgt: Codeunit "Export F/O Consolidation";
                     begin
-                        IF ApprovalMgt.CancelPurchaseApprovalRequest(Rec,TRUE,TRUE) THEN;
+                        IF ApprovalMgt.CancelPurchaseApprovalRequest(Rec, TRUE, TRUE) THEN;
                     end;
                 }
-                separator()
+                separator("    ")
                 {
                 }
                 action("Send IC Purchase Order")
                 {
-                    AccessByPermission = TableData 410=R;
+                    AccessByPermission = TableData "IC G/L Account" = R;
                     Caption = 'Send IC Purchase Order';
                     Image = IntercompanyOrder;
+                    ToolTip = 'Executes the Send IC Purchase Order action.';
 
                     trigger OnAction()
                     var
-                        ICInOutboxMgt: Codeunit "427";
-                        SalesHeader: Record "36";
-                        ApprovalMgt: Codeunit "439";
+                        SalesHeader: Record "Sales Header";
+                        ApprovalMgt: Codeunit "Export F/O Consolidation";
+                        ICInOutboxMgt: Codeunit ICInboxOutboxMgt;
                     begin
-                        IF ApprovalMgt.PrePostApprovalCheck(SalesHeader,Rec) THEN
-                          ICInOutboxMgt.SendPurchDoc(Rec,FALSE);
+                        IF ApprovalMgt.PrePostApprovalCheck(SalesHeader, Rec) THEN
+                            ICInOutboxMgt.SendPurchDoc(Rec, FALSE);
                     end;
                 }
                 action("E-Mail Confirmation")
                 {
                     Caption = 'E-Mail Confirmation';
+                    ToolTip = 'Executes the E-Mail Confirmation action.';
 
                     trigger OnAction()
                     var
-                        EMailMgt: Codeunit "14000903";
+                        EMailMgt: Codeunit 14000903;
                     begin
-                        TESTFIELD("E-Mail Confirmation Handled",FALSE);
+                        Rec.TESTFIELD("E-Mail Confirmation Handled", FALSE);
 
-                        EMailMgt.SendPurchaseConfirmation(Rec,TRUE,FALSE);
+                        EMailMgt.SendPurchaseConfirmation(Rec, TRUE, FALSE);
                     end;
                 }
                 group("E-Ship")
@@ -494,16 +555,18 @@ page 50082 "Order Receiving"
                     {
                         Caption = 'Fast Receive';
                         ShortCutKey = 'Alt+F11';
+                        Image = Receivables;
+                        ToolTip = 'Executes the Fast Receive action.';
 
                         trigger OnAction()
                         var
-                            FastReceiveLine: Record "14000609";
+                            FastReceiveLine: Record 14000609;
                         begin
                             FastReceiveLine.RESET;
-                            FastReceiveLine.SETRANGE("Source Type",DATABASE::"Purchase Header");
-                            FastReceiveLine.SETRANGE("Source Subtype","Document Type");
-                            FastReceiveLine.SETRANGE("Source ID","No.");
-                            PAGE.RUNMODAL(PAGE::"Fast Receive Order",FastReceiveLine);
+                            FastReceiveLine.SETRANGE("Source Type", DATABASE::"Purchase Header");
+                            FastReceiveLine.SETRANGE("Source Subtype", Rec."Document Type");
+                            FastReceiveLine.SETRANGE("Source ID", Rec."No.");
+                            PAGE.RUNMODAL(PAGE::"Fast Receive Order", FastReceiveLine);
                         end;
                     }
                 }
@@ -513,10 +576,11 @@ page 50082 "Order Receiving"
                     action("Send EDI Purchase Order")
                     {
                         Caption = 'Send EDI Purchase Order';
+                        ToolTip = 'Executes the Send EDI Purchase Order action.';
 
                         trigger OnAction()
                         var
-                            EDIIntegration: Codeunit "14000363";
+                            EDIIntegration: Codeunit 14000363;
                         begin
                             EDIIntegration.SendPurchaseOrder(Rec);
                         end;
@@ -529,36 +593,38 @@ page 50082 "Order Receiving"
                 Image = Warehouse;
                 action("Create &Whse. Receipt")
                 {
-                    AccessByPermission = TableData 7316=R;
+                    AccessByPermission = TableData "Warehouse Receipt Header" = R;
                     Caption = 'Create &Whse. Receipt';
                     Image = NewReceipt;
+                    ToolTip = 'Executes the Create &Whse. Receipt action.';
 
                     trigger OnAction()
                     var
-                        GetSourceDocInbound: Codeunit "5751";
+                        GetSourceDocInbound: Codeunit "Get Source Doc. Inbound";
                     begin
                         GetSourceDocInbound.CreateFromPurchOrder(Rec);
 
-                        IF NOT FIND('=><') THEN
-                          INIT;
+                        IF NOT Rec.FIND('=><') THEN
+                            Rec.INIT();
                     end;
                 }
                 action("Create Inventor&y Put-away/Pick")
                 {
-                    AccessByPermission = TableData 7340=R;
+                    AccessByPermission = TableData "Posted Invt. Put-away Header" = R;
                     Caption = 'Create Inventor&y Put-away/Pick';
                     Ellipsis = true;
                     Image = CreatePutawayPick;
+                    ToolTip = 'Executes the Create Inventor&y Put-away/Pick action.';
 
                     trigger OnAction()
                     begin
-                        CreateInvtPutAwayPick;
+                        Rec.CreateInvtPutAwayPick();
 
-                        IF NOT FIND('=><') THEN
-                          INIT;
+                        IF NOT Rec.FIND('=><') THEN
+                            Rec.INIT();
                     end;
                 }
-                separator()
+                separator("-")
                 {
                 }
             }
@@ -571,6 +637,7 @@ page 50082 "Order Receiving"
                     Caption = 'Test Report';
                     Ellipsis = true;
                     Image = TestReport;
+                    ToolTip = 'Executes the Test Report action.';
 
                     trigger OnAction()
                     begin
@@ -586,10 +653,11 @@ page 50082 "Order Receiving"
                     PromotedCategory = Process;
                     PromotedIsBig = true;
                     ShortCutKey = 'F9';
+                    ToolTip = 'Executes the P&ost action.';
 
                     trigger OnAction()
                     begin
-                        SendToPosting(CODEUNIT::"Purch.-Post (Yes/No)");
+                        Rec.SendToPosting(CODEUNIT::"Purch.-Post (Yes/No)");
                     end;
                 }
                 action("Post and &Print")
@@ -601,10 +669,11 @@ page 50082 "Order Receiving"
                     PromotedCategory = Process;
                     PromotedIsBig = true;
                     ShortCutKey = 'Shift+F9';
+                    ToolTip = 'Executes the Post and &Print action.';
 
                     trigger OnAction()
                     begin
-                        SendToPosting(CODEUNIT::"Purch.-Post + Print");
+                        Rec.SendToPosting(CODEUNIT::"Purch.-Post + Print");
                     end;
                 }
                 action("Post &Batch")
@@ -614,10 +683,11 @@ page 50082 "Order Receiving"
                     Image = PostBatch;
                     Promoted = true;
                     PromotedCategory = Process;
+                    ToolTip = 'Executes the Post &Batch action.';
 
                     trigger OnAction()
                     begin
-                        REPORT.RUNMODAL(REPORT::"Batch Post Purchase Orders",TRUE,TRUE,Rec);
+                        REPORT.RUNMODAL(REPORT::"Batch Post Purchase Orders", TRUE, TRUE, Rec);
                         CurrPage.UPDATE(FALSE);
                     end;
                 }
@@ -626,10 +696,11 @@ page 50082 "Order Receiving"
                     Caption = 'Remove From Job Queue';
                     Image = RemoveLine;
                     Visible = JobQueueActive;
+                    ToolTip = 'Executes the Remove From Job Queue action.';
 
                     trigger OnAction()
                     begin
-                        CancelBackgroundPosting;
+                        Rec.CancelBackgroundPosting();
                     end;
                 }
             }
@@ -638,25 +709,25 @@ page 50082 "Order Receiving"
 
     trigger OnOpenPage()
     var
-        PurchasesPayablesSetup: Record "312";
-        UserMgt: Codeunit "5700";
+        PurchasesPayablesSetup: Record "Purchases & Payables Setup";
+        UserMgt: Codeunit "User Setup Management";
     begin
         //SetSecurityFilterOnRespCenter;
         IF UserMgt.GetPurchasesFilter() <> '' THEN BEGIN
-          FILTERGROUP(2);
-          SETRANGE("Responsibility Center",UserMgt.GetPurchasesFilter());
-          FILTERGROUP(0);
+            Rec.FILTERGROUP(2);
+            Rec.SETRANGE("Responsibility Center", UserMgt.GetPurchasesFilter());
+            Rec.FILTERGROUP(0);
         END;
 
         //SETRANGE("Date Filter",0D,WORKDATE - 1);
 
-        JobQueueActive := PurchasesPayablesSetup.JobQueueActive;
+        JobQueueActive := PurchasesPayablesSetup.JobQueueActive();
     end;
 
     var
-        DimMgt: Codeunit "408";
-        ReportPrint: Codeunit "228";
-        DocPrint: Codeunit "229";
+        DimMgt: Codeunit DimensionManagement;
+        DocPrint: Codeunit "Document-Print";
+        ReportPrint: Codeunit "Test Report-Print";
         [InDataSet]
         JobQueueActive: Boolean;
 }

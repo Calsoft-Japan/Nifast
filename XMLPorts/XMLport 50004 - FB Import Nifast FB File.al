@@ -13,12 +13,12 @@ xmlport 50004 "FB Import Nifast FB File"
     {
         textelement(Root)
         {
-            tableelement("<integer>";Table2000000026)
+            tableelement(Integer; Integer)
             {
                 AutoSave = false;
                 XmlName = 'Integer';
-                SourceTableView = SORTING(Field1)
-                                  WHERE(Field1=FILTER(1));
+                SourceTableView = SORTING(Number)
+                                  WHERE(Number = FILTER(1));
                 UseTemporary = false;
                 textelement("<reserved1>")
                 {
@@ -82,117 +82,114 @@ xmlport 50004 "FB Import Nifast FB File"
 
                     CLEAR(FBImportDataLog);
                     IF GUIALLOWED THEN
-                      Window.UPDATE(1,currXMLport.FILENAME);
+                        Window.UPDATE(1, currXMLport.FILENAME);
 
                     WITH FBImportDataLog DO BEGIN
-                      INIT;
-                      "No." := ImportDataLogNo;
-                      "Line No." := LineNo;
-                      LineNo := LineNo + 1;
-                      "Import File Name" := currXMLport.FILENAME;
-                      "Import Date" := TODAY;
-                      "Import Time" := TIME;
+                        INIT();
+                        "No." := ImportDataLogNo;
+                        "Line No." := LineNo;
+                        LineNo := LineNo + 1;
+                        "Import File Name" := currXMLport.FILENAME;
+                        "Import Date" := TODAY;
+                        "Import Time" := TIME;
 
-                      IF GUIALLOWED THEN
-                        Window.UPDATE(2,"Line No.");
+                        IF GUIALLOWED THEN
+                            Window.UPDATE(2, "Line No.");
 
-                      "Customer No." := CustNo;
-                      IF NOT NVV.ValidateCustomer(CustNo) THEN
-                        FBManagement.WriteMessage("Import File Name",'','',"No.","Line No.",'IMPORT',1,
-                                                  'Customer No. '+CustNo+' Not Valid');
+                        "Customer No." := CustNo;
+                        IF NOT NVV.ValidateCustomer(CustNo) THEN
+                            FBManagement.WriteMessage("Import File Name", '', '', "No.", "Line No.", 'IMPORT', 1,
+                                                      'Customer No. ' + CustNo + ' Not Valid');
 
-                      //>> NIF 12-02-05
-                      //ShipTo=Contract
-                      CLEAR(Contract);
-                      Contract.SETRANGE("No.",ShipTo);
-                      Contract.SETRANGE("Customer No.",CustNo);
-                      IF Contract.FIND('-') THEN
-                        ShipTo := Contract."Ship-to Code"
-                      ELSE BEGIN
-                        FBManagement.WriteMessage("Import File Name",'','',"No.","Line No.",'IMPORT',1,
-                                                    'Contract No. '+ShipTo+' Not Valid');
-                        ShipTo := '';
-                      END;
-                      //<< NIF 12-02-05
-
-
-                      IF ShipTo <> '' THEN BEGIN
-                        "Ship-to Code" := ShipTo;
-                        IF NOT NVV.ValidateShipTo(CustNo,ShipTo) THEN
-                          FBManagement.WriteMessage("Import File Name",'','',"No.","Line No.",'IMPORT',1,
-                            'Ship-to Code '+ShipTo+' Not Valid');
-                      END;
-
-                      IF LocationCode <> '' THEN BEGIN
-                        "Location Code" := LocationCode;
-                        IF NOT NVV.ValidateLocation(LocationCode) THEN
-                          FBManagement.WriteMessage("Import File Name",'','',"No.","Line No.",'IMPORT',1,
-                            'Location Code '+LocationCode+' Not Valid');
-                      END;
-
-                      IF TagID <> '' THEN BEGIN
-                        "Tag No." := TagID;
-                        IF NOT NVV.ValidateFBTag(TagID) THEN
-                          FBManagement.WriteMessage("Import File Name",'','',"No.","Line No.",'IMPORT',1,
-                            'Tag No. '+TagID+' Not Valid');
-                      END;
-
-                      IF ItemNo <> '' THEN BEGIN
-                        ItemNo2 := '';
-                        VarNo2 := '';
-                        IF NVV.ValidateItem(ItemNo) THEN
-                          "Item No." := ItemNo
+                        //>> NIF 12-02-05
+                        //ShipTo=Contract
+                        CLEAR(Contract);
+                        Contract.SETRANGE("No.", ShipTo);
+                        Contract.SETRANGE("Customer No.", CustNo);
+                        IF Contract.FIND('-') THEN
+                            ShipTo := Contract."Ship-to Code"
                         ELSE BEGIN
-                          IF NVV.FindCustItemCrossRef(CustNo,ItemNo,ItemNo2,VarNo2,UOM2) THEN BEGIN
-                            "Item No." := ItemNo2;
-                            "Cross-Reference No." := ItemNo;
-                            "Unit of Measure Code" := UOM2
-                    //>> NIF 12-21-05 RTT
-                          //END ELSE BEGIN
-                          //  IF NVV.FindLotNo(ItemNo2,VarNo2,ItemNo) THEN BEGIN
-                          //    "Item No." := ItemNo2;
-                          //    "Lot No." := ItemNo;
-                          //  END;
-                    //<< NIF 12-21-05 RTT
-                          END;
+                            FBManagement.WriteMessage("Import File Name", '', '', "No.", "Line No.", 'IMPORT', 1,
+                                                        'Contract No. ' + ShipTo + ' Not Valid');
+                            ShipTo := '';
+                        END;
+                        //<< NIF 12-02-05
+
+
+                        IF ShipTo <> '' THEN BEGIN
+                            "Ship-to Code" := ShipTo;
+                            IF NOT NVV.ValidateShipTo(CustNo, ShipTo) THEN
+                                FBManagement.WriteMessage("Import File Name", '', '', "No.", "Line No.", 'IMPORT', 1,
+                                  'Ship-to Code ' + ShipTo + ' Not Valid');
                         END;
 
-                      IF NOT NVV.ValidateItem("Item No.") THEN
-                        FBManagement.WriteMessage("Import File Name",'','',"No.","Line No.",'IMPORT',1,
-                          'Item No. '+ItemNo+' Not Valid');
-                      END;
+                        IF LocationCode <> '' THEN BEGIN
+                            "Location Code" := LocationCode;
+                            IF NOT NVV.ValidateLocation(LocationCode) THEN
+                                FBManagement.WriteMessage("Import File Name", '', '', "No.", "Line No.", 'IMPORT', 1,
+                                  'Location Code ' + LocationCode + ' Not Valid');
+                        END;
 
-                      IF ("Lot No." <> '') AND ("Item No." <> '') AND (NOT NVV.ValidateLotNo("Item No.","Variant Code","Lot No.")) THEN
-                        FBManagement.WriteMessage("Import File Name",'','',"No.","Line No.",'IMPORT',1,
-                          'Lot No. '+"Lot No."+' Not Valid');
+                        IF TagID <> '' THEN BEGIN
+                            "Tag No." := TagID;
+                            IF NOT NVV.ValidateFBTag(TagID) THEN
+                                FBManagement.WriteMessage("Import File Name", '', '', "No.", "Line No.", 'IMPORT', 1,
+                                  'Tag No. ' + TagID + ' Not Valid');
+                        END;
 
-                      IF ("Cross-Reference No." <> '') AND (NOT NVV.ValidateCustItemCrossRef(CustNo,"Cross-Reference No.")) THEN
-                        FBManagement.WriteMessage("Import File Name",'','',"No.","Line No.",'IMPORT',1,
-                          'Cross-Ref. No. '+"Cross-Reference No."+' Not Valid');
+                        IF ItemNo <> '' THEN BEGIN
+                            ItemNo2 := '';
+                            VarNo2 := '';
+                            IF NVV.ValidateItem(ItemNo) THEN
+                                "Item No." := ItemNo
+                            ELSE
+                                IF NVV.FindCustItemCrossRef(CustNo, ItemNo, ItemNo2, VarNo2, UOM2) THEN BEGIN
+                                    "Item No." := ItemNo2;
+                                    "Cross-Reference No." := ItemNo;
+                                    "Unit of Measure Code" := UOM2
+                                    //>> NIF 12-21-05 RTT
+                                    //END ELSE BEGIN
+                                    //  IF NVV.FindLotNo(ItemNo2,VarNo2,ItemNo) THEN BEGIN
+                                    //    "Item No." := ItemNo2;
+                                    //    "Lot No." := ItemNo;
+                                    //  END;
+                                    //<< NIF 12-21-05 RTT
+                                END;
 
-                     //jrr Quantity := format(Qty);
-                      IF EVALUATE(Quantity, Qty) THEN ; //jrr
+                            IF NOT NVV.ValidateItem("Item No.") THEN
+                                FBManagement.WriteMessage("Import File Name", '', '', "No.", "Line No.", 'IMPORT', 1,
+                                  'Item No. ' + ItemNo + ' Not Valid');
+                        END;
 
-                      IF ("Item No." <> '') AND Item.GET("Item No.") THEN
-                        "Unit of Measure Code" := Item."Sales Unit of Measure";
+                        IF ("Lot No." <> '') AND ("Item No." <> '') AND (NOT NVV.ValidateLotNo("Item No.", "Variant Code", "Lot No.")) THEN
+                            FBManagement.WriteMessage("Import File Name", '', '', "No.", "Line No.", 'IMPORT', 1,
+                              'Lot No. ' + "Lot No." + ' Not Valid');
 
-                      IF DateOrdered <> '' THEN
-                        EVALUATE("Order Date",COPYSTR(DateOrdered,3,2)+COPYSTR(DateOrdered,5,2)+COPYSTR(DateOrdered,1,2));
-                      IF TimeOrdered <> '' THEN
-                        EVALUATE("Order Time",TimeOrdered);
+                        IF ("Cross-Reference No." <> '') AND (NOT NVV.ValidateCustItemCrossRef(CustNo, "Cross-Reference No.")) THEN
+                            FBManagement.WriteMessage("Import File Name", '', '', "No.", "Line No.", 'IMPORT', 1,
+                              'Cross-Ref. No. ' + "Cross-Reference No." + ' Not Valid');
 
-                      "Customer Bin" := CustBin;
-                    //>> NIF 12-02-05
-                      "Contract No." := Contract."No.";
-                    //<< NIF 12-02-05
+                        //jrr Quantity := format(Qty);
+                        IF EVALUATE(Quantity, Qty) THEN; //jrr
 
-                      INSERT;
+                        IF ("Item No." <> '') AND Item.GET("Item No.") THEN
+                            "Unit of Measure Code" := Item."Sales Unit of Measure";
+
+                        IF DateOrdered <> '' THEN
+                            EVALUATE("Order Date", COPYSTR(DateOrdered, 3, 2) + COPYSTR(DateOrdered, 5, 2) + COPYSTR(DateOrdered, 1, 2));
+                        IF TimeOrdered <> '' THEN
+                            EVALUATE("Order Time", TimeOrdered);
+
+                        "Customer Bin" := CustBin;
+                        //>> NIF 12-02-05
+                        "Contract No." := Contract."No.";
+                        //<< NIF 12-02-05
+
+                        INSERT();
                     END;
                 end;
 
                 trigger OnBeforeInsertRecord()
-                var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                 end;
             }
@@ -215,16 +212,16 @@ xmlport 50004 "FB Import Nifast FB File"
     begin
 
         FBImportDataport.SETCURRENTKEY("User ID");
-        FBImportDataport.SETRANGE("User ID",USERID);
+        FBImportDataport.SETRANGE("User ID", USERID);
         IF FBImportDataport.FIND('-') THEN
-          currXMLport.FILENAME := FBImportDataport.TempFileName;
+            currXMLport.FILENAME := FBImportDataport.TempFileName;
     end;
 
     trigger OnPostXmlPort()
     begin
 
         IF GUIALLOWED THEN
-          Window.CLOSE;
+            Window.CLOSE();
 
 
         //the following was put in to make sure file is closed
@@ -237,35 +234,31 @@ xmlport 50004 "FB Import Nifast FB File"
     begin
 
         IF GUIALLOWED THEN
-          Window.OPEN('File Name #1########################### \'+
-                      'Line No.  #2###########################');
+            Window.OPEN('File Name #1########################### \' +
+                        'Line No.  #2###########################');
         LineNo := 1;
 
-        FBSetup.GET;
+        FBSetup.GET();
         FBSetup.TESTFIELD("Import Data Log Nos.");
-        NoSeriesMgt.InitSeries(FBSetup."Import Data Log Nos.",OldNoSeries,WORKDATE,ImportDataLogNo,NewNoSeries);
+        NoSeriesMgt.InitSeries(FBSetup."Import Data Log Nos.", OldNoSeries, WORKDATE(), ImportDataLogNo, NewNoSeries);
     end;
 
     var
-        Text000_gTxt: Label 'Current  #1##############';
-        Reserved1: Code[2];
-        Window: Dialog;
-        CurrFBOrderNo: Code[20];
-        LineNo: Integer;
-        FilePathName: Text[200];
-        FBManagement: Codeunit "50133";
-        NoSeriesMgt: Codeunit "396";
-        NVV: Codeunit "50132";
-        FBImportDataLog: Record "50138";
-        FBImportDataport: Record "50139";
-        Item: Record "27";
-        FBSetup: Record "50133";
-        Contract: Record "50110";
-        ImportDataLogNo: Code[20];
-        OldNoSeries: Code[10];
+        FBImportDataLog: Record "FB Import Data Log";
+        FBImportDataport: Record "FB Import Dataport";
+        FBSetup: Record "FB Setup";
+        Item: Record Item;
+        Contract: Record "Price Contract";
+        FBManagement: Codeunit "FB Management";
+        NVV: Codeunit "NewVision Validation";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
         NewNoSeries: Code[10];
-        ItemNo2: Code[20];
-        VarNo2: Code[10];
+        OldNoSeries: Code[10];
         UOM2: Code[10];
+        VarNo2: Code[10];
+        ImportDataLogNo: Code[20];
+        ItemNo2: Code[20];
+        Window: Dialog;
+        LineNo: Integer;
 }
 

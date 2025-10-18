@@ -8,42 +8,49 @@ page 50034 "Master Quote Subform"
     Editable = false;
     MultipleNewLines = true;
     PageType = ListPart;
-    SourceTable = Table38;
+    SourceTable = "Purchase Header";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
                     Lookup = true;
-                    TableRelation = "Purchase Header".No.;
+                    TableRelation = "Purchase Header"."No.";
+                    ToolTip = 'Specifies the number of the involved entry or record, according to the specified number series.';
 
                     trigger OnLookup(var Text: Text): Boolean
                     begin
-                        PurchHeader.SETRANGE("No.", "No.");
-                        PAGE.RUNMODAL(49, PurchHeader);
+                        PurchHeader.SETRANGE("No.", Rec."No.");
+                        PAGE.RUNMODAL(Page::"Purchase Quote", PurchHeader);
                     end;
                 }
-                field("Sell-to Customer No.";"Sell-to Customer No.")
+                field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
+                    ToolTip = 'Specifies the number of the customer that the items are shipped to directly from your vendor, as a drop shipment.';
                 }
-                field("Order Date";"Order Date")
+                field("Order Date"; Rec."Order Date")
                 {
+                    ToolTip = 'Specifies the date when the order was created.';
                 }
-                field("Document Date";"Document Date")
+                field("Document Date"; Rec."Document Date")
                 {
+                    ToolTip = 'Specifies the date when the related document was created.';
                 }
-                field("Expected Receipt Date";"Expected Receipt Date")
+                field("Expected Receipt Date"; Rec."Expected Receipt Date")
                 {
+                    ToolTip = 'Specifies the date you expect the items to be available in your warehouse. If you leave the field blank, it will be calculated as follows: Planned Receipt Date + Safety Lead Time + Inbound Warehouse Handling Time = Expected Receipt Date.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
+                    ToolTip = 'Specifies the location where the items are to be placed when they are received. This field acts as the default location for new lines. You can update the location code for individual lines as needed.';
                 }
-                field(Status;Status)
+                field(Status; Rec.Status)
                 {
+                    ToolTip = 'Specifies whether the record is open, waiting to be approved, invoiced for prepayment, or released to the next stage of processing.';
                 }
             }
         }
@@ -54,13 +61,7 @@ page 50034 "Master Quote Subform"
     }
 
     var
-        TransferExtendedText: Codeunit "378";
-        ShortcutDimCode: array [8] of Code[20];
-        LDec: array [20] of Decimal;
-        LDate: array [10] of Date;
-        LocationItem: Record "27";
-        LineItem: Record "27";
-        PurchHeader: Record "38";
+        PurchHeader: Record "Purchase Header";
 
     procedure ApproveCalcInvDisc()
     begin
@@ -79,9 +80,6 @@ page 50034 "Master Quote Subform"
     end;
 
     procedure OpenSalesOrderForm()
-    var
-        SalesHeader: Record "36";
-        SalesOrder: Page "42";
     begin
     end;
 
@@ -102,8 +100,6 @@ page 50034 "Master Quote Subform"
     end;
 
     procedure ShowTracking()
-    var
-        TrackingForm: Page "99000822";
     begin
     end;
 
@@ -120,9 +116,6 @@ page 50034 "Master Quote Subform"
     end;
 
     procedure OpenSpecOrderSalesOrderForm()
-    var
-        SalesHeader: Record "36";
-        SalesOrder: Page "42";
     begin
     end;
 

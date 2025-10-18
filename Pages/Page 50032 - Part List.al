@@ -5,104 +5,134 @@ page 50032 "Part List"
     // SM.001 - 10-25-16 ADDED REVISION NO.
 
     PageType = List;
-    SourceTable = Table50029;
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "Vehicle Production";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                 }
-                field("Customer Name";"Customer Name")
+                field("Customer Name"; Rec."Customer Name")
                 {
+                    ToolTip = 'Specifies the value of the Customer Name field.';
                 }
-                field("Div Code";"Div Code")
+                field("Div Code"; Rec."Div Code")
                 {
                     Caption = 'Div Code';
+                    ToolTip = 'Specifies the value of the Div Code field.';
                 }
-                field("Item No.";"Item No.")
+                field("Item No."; Rec."Item No.")
                 {
+                    ToolTip = 'Specifies the value of the Item No. field.';
                 }
-                field("Cross Reference No.";"Cross Reference No.")
+                field("Cross Reference No."; Rec."Cross Reference No.")
                 {
+                    ToolTip = 'Specifies the value of the Cross Reference No. field.';
                 }
-                field("EC Level";"EC Level")
+                field("EC Level"; Rec."EC Level")
                 {
+                    ToolTip = 'Specifies the value of the EC Level field.';
                 }
-                field("Applicable Std";"Applicable Std")
+                field("Applicable Std"; Rec."Applicable Std")
                 {
+                    ToolTip = 'Specifies the value of the Applicable Std field.';
                 }
-                field(EMU;EMU)
+                field(EMU; Rec.EMU)
                 {
-                    DecimalPlaces = 0:0;
+                    DecimalPlaces = 0 : 0;
+                    ToolTip = 'Specifies the value of the EMU field.';
                 }
-                field(OEM;OEM)
+                field(OEM; Rec.OEM)
                 {
+                    ToolTip = 'Specifies the value of the OEM field.';
                 }
-                field(Model;Model)
+                field(Model; Rec.Model)
                 {
+                    ToolTip = 'Specifies the value of the Model field.';
                 }
-                field("Final Customer";"Final Customer")
+                field("Final Customer"; Rec."Final Customer")
                 {
+                    ToolTip = 'Specifies the value of the Final Customer field.';
                 }
-                field("Pieces Per Vehicle";"Pieces Per Vehicle")
+                field("Pieces Per Vehicle"; Rec."Pieces Per Vehicle")
                 {
-                    DecimalPlaces = 2:2;
+                    DecimalPlaces = 2 : 2;
+                    ToolTip = 'Specifies the value of the Pieces Per Vehicle field.';
                 }
-                field(Per;Per)
+                field(Per; Rec.Per)
                 {
+                    ToolTip = 'Specifies the value of the Per field.';
                 }
-                field(SOP;SOP)
+                field(SOP; Rec.SOP)
                 {
+                    ToolTip = 'Specifies the value of the SOP field.';
                 }
-                field(EOP;EOP)
+                field(EOP; Rec.EOP)
                 {
+                    ToolTip = 'Specifies the value of the EOP field.';
                 }
-                field(Remarks;Remarks)
+                field(Remarks; Rec.Remarks)
                 {
+                    ToolTip = 'Specifies the value of the Remarks field.';
                 }
-                field(Active;Active)
+                field(Active; Rec.Active)
                 {
                     Caption = 'Inactive';
+                    ToolTip = 'Specifies the value of the Inactive field.';
                 }
-                field(SNP;SNP)
+                field(SNP; Rec.SNP)
                 {
-                    DecimalPlaces = 0:0;
+                    DecimalPlaces = 0 : 0;
+                    ToolTip = 'Specifies the value of the SNP field.';
                 }
-                field(Selling;Selling)
+                field(Selling; Rec.Selling)
                 {
-                    DecimalPlaces = 4:4;
+                    DecimalPlaces = 4 : 4;
+                    ToolTip = 'Specifies the value of the Selling field.';
                 }
-                field(Buying;Buying)
+                field(Buying; Rec.Buying)
                 {
-                    DecimalPlaces = 4:4;
+                    DecimalPlaces = 4 : 4;
+                    ToolTip = 'Specifies the value of the Buying field.';
                 }
-                field("Vendor No.";"Vendor No.")
+                field("Vendor No."; Rec."Vendor No.")
                 {
+                    ToolTip = 'Specifies the value of the Vendor No. field.';
                 }
-                field("Vendor Name";"Vendor Name")
+                field("Vendor Name"; Rec."Vendor Name")
                 {
+                    ToolTip = 'Specifies the value of the Vendor Name field.';
                 }
-                field(Manufacturer;Manufacturer)
+                field(Manufacturer; Rec.Manufacturer)
                 {
+                    ToolTip = 'Specifies the value of the Manufacturer field.';
                 }
-                field("Flow Item";"Flow Item")
+                field("Flow Item"; Rec."Flow Item")
                 {
+                    ToolTip = 'Specifies the value of the Flow Item field.';
                 }
-                field("Remark-2";"Remark-2")
+                field("Remark-2"; Rec."Remark-2")
                 {
+                    ToolTip = 'Specifies the value of the Remark-2 field.';
                 }
-                field("PPAP Approved";"PPAP Approved")
+                field("PPAP Approved"; Rec."PPAP Approved")
                 {
+                    ToolTip = 'Specifies the value of the PPAP Approved field.';
                 }
-                field("Revision No.";"Revision No.")
+                field("Revision No."; Rec."Revision No.")
                 {
+                    ToolTip = 'Specifies the value of the Revision No. field.';
                 }
-                field("PPAP Approved Date";"PPAP Approved Date")
+                field("PPAP Approved Date"; Rec."PPAP Approved Date")
                 {
+                    ToolTip = 'Specifies the value of the PPAP Approved Date field.';
                 }
             }
         }

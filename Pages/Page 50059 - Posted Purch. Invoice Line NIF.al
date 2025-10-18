@@ -6,151 +6,225 @@ page 50059 "Posted Purch. Invoice Line NIF"
     Caption = 'Posted Purch. Invoice Line NIF';
     Editable = false;
     PageType = List;
-    SourceTable = Table123;
-    SourceTableView = SORTING(Posting Date,Type,No.,Buy-from Vendor No.);
+    UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "Purch. Inv. Line";
+    SourceTableView = SORTING("Posting Date", Type, "No.", "Buy-from Vendor No.");
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
-                field("Posting Date";"Posting Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
+                    Caption = 'Posting Date';
+                    ToolTip = 'Specifies the value of the Posting Date field.';
                 }
-                field(Type;Type)
+                field(Type; Rec.Type)
                 {
+                    Caption = 'Type';
+                    ToolTip = 'Specifies the value of the Type field.';
                 }
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    Caption = 'No.';
+                    ToolTip = 'Specifies the value of the No. field.';
                 }
-                field("Buy-from Vendor No.";"Buy-from Vendor No.")
+                field("Buy-from Vendor No."; Rec."Buy-from Vendor No.")
                 {
+                    Caption = 'Buy-from Vendor No.';
+                    ToolTip = 'Specifies the value of the Buy-from Vendor No. field.';
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
+                    Caption = 'Location Code';
+                    ToolTip = 'Specifies the value of the Location Code field.';
                 }
-                field(GetOrderNo;GetOrderNo)
+                field(GetOrderNo; GetOrderNos())
                 {
                     Caption = 'Order No.';
+                    ToolTip = 'Specifies the value of the Order No. field.';
                 }
-                field("Cross-Reference No.";"Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Cross-Reference No.")
                 {
                     Visible = false;
+                    Caption = 'Cross-Reference No.';
+                    ToolTip = 'Specifies the value of the Cross-Reference No. field.';
                 }
-                field("Variant Code";"Variant Code")
+                field("Variant Code"; Rec."Variant Code")
                 {
                     Visible = false;
+                    Caption = 'Variant Code';
+                    ToolTip = 'Specifies the value of the Variant Code field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    Caption = 'Description';
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
-                field("Return Reason Code";"Return Reason Code")
+                field("Return Reason Code"; Rec."Return Reason Code")
                 {
                     Visible = false;
+                    Caption = 'Return Reason Code';
+                    ToolTip = 'Specifies the value of the Return Reason Code field.';
                 }
-                field(Quantity;Quantity)
+                field(Quantity; Rec.Quantity)
                 {
                     BlankZero = true;
+                    Caption = 'Quantity';
+                    ToolTip = 'Specifies the value of the Quantity field.';
                 }
-                field("Unit of Measure Code";"Unit of Measure Code")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
+                    Caption = 'Unit of Measure Code';
+                    ToolTip = 'Specifies the value of the Unit of Measure Code field.';
                 }
-                field("Unit of Measure";"Unit of Measure")
+                field("Unit of Measure"; Rec."Unit of Measure")
                 {
                     Visible = false;
+                    Caption = 'Unit of Measure';
+                    ToolTip = 'Specifies the value of the Unit of Measure field.';
                 }
-                field("Direct Unit Cost";"Direct Unit Cost")
+                field("Direct Unit Cost"; Rec."Direct Unit Cost")
                 {
                     BlankZero = true;
+                    Caption = 'Direct Unit Cost';
+                    ToolTip = 'Specifies the value of the Direct Unit Cost field.';
                 }
-                field("Indirect Cost %";"Indirect Cost %")
+                field("Indirect Cost %"; Rec."Indirect Cost %")
                 {
                     Visible = false;
+                    Caption = 'Indirect Cost %';
+                    ToolTip = 'Specifies the value of the Indirect Cost % field.';
                 }
-                field("Unit Cost (LCY)";"Unit Cost (LCY)")
+                field("Unit Cost (LCY)"; Rec."Unit Cost (LCY)")
                 {
                     Visible = false;
+                    Caption = 'Unit Cost (LCY)';
+                    ToolTip = 'Specifies the value of the Unit Cost (LCY) field.';
                 }
-                field("Unit Price (LCY)";"Unit Price (LCY)")
+                field("Unit Price (LCY)"; Rec."Unit Price (LCY)")
                 {
                     Visible = false;
+                    Caption = 'Unit Price (LCY)';
+                    ToolTip = 'Specifies the value of the Unit Price (LCY) field.';
                 }
-                field("Line Amount";"Line Amount")
+                field("Line Amount"; Rec."Line Amount")
                 {
                     BlankZero = true;
+                    Caption = 'Line Amount';
+                    ToolTip = 'Specifies the value of the Line Amount field.';
                 }
-                field("Line Discount %";"Line Discount %")
+                field("Line Discount %"; Rec."Line Discount %")
                 {
                     BlankZero = true;
+                    Caption = 'Line Discount %';
+                    ToolTip = 'Specifies the value of the Line Discount % field.';
                 }
-                field("Line Discount Amount";"Line Discount Amount")
+                field("Line Discount Amount"; Rec."Line Discount Amount")
                 {
                     Visible = false;
+                    Caption = 'Line Discount Amount';
+                    ToolTip = 'Specifies the value of the Line Discount Amount field.';
                 }
-                field("Allow Invoice Disc.";"Allow Invoice Disc.")
+                field("Allow Invoice Disc."; Rec."Allow Invoice Disc.")
                 {
                     Visible = false;
+                    Caption = 'Allow Invoice Disc.';
+                    ToolTip = 'Specifies the value of the Allow Invoice Disc. field.';
                 }
-                field("Job No.";"Job No.")
+                field("Job No."; Rec."Job No.")
                 {
                     Visible = false;
+                    Caption = 'Project No.';
+                    ToolTip = 'Specifies the value of the Project No. field.';
                 }
-                field("Insurance No.";"Insurance No.")
+                field("Insurance No."; Rec."Insurance No.")
                 {
                     Visible = false;
+                    Caption = 'Insurance No.';
+                    ToolTip = 'Specifies the value of the Insurance No. field.';
                 }
-                field("Budgeted FA No.";"Budgeted FA No.")
+                field("Budgeted FA No."; Rec."Budgeted FA No.")
                 {
                     Visible = false;
+                    Caption = 'Budgeted FA No.';
+                    ToolTip = 'Specifies the value of the Budgeted FA No. field.';
                 }
-                field("FA Posting Type";"FA Posting Type")
+                field("FA Posting Type"; Rec."FA Posting Type")
                 {
                     Visible = false;
+                    Caption = 'FA Posting Type';
+                    ToolTip = 'Specifies the value of the FA Posting Type field.';
                 }
-                field("Depr. until FA Posting Date";"Depr. until FA Posting Date")
+                field("Depr. until FA Posting Date"; Rec."Depr. until FA Posting Date")
                 {
                     Visible = false;
+                    Caption = 'Depr. until FA Posting Date';
+                    ToolTip = 'Specifies the value of the Depr. until FA Posting Date field.';
                 }
-                field("Depreciation Book Code";"Depreciation Book Code")
+                field("Depreciation Book Code"; Rec."Depreciation Book Code")
                 {
                     Visible = false;
+                    Caption = 'Depreciation Book Code';
+                    ToolTip = 'Specifies the value of the Depreciation Book Code field.';
                 }
-                field("Alt. Quantity";"Alt. Quantity")
+                field("Alt. Quantity"; Rec."Alt. Quantity")
                 {
+                    Caption = 'Alt. Quantity';
+                    ToolTip = 'Specifies the value of the Alt. Quantity field.';
                 }
-                field("Alt. Qty. UOM";"Alt. Qty. UOM")
+                field("Alt. Qty. UOM"; Rec."Alt. Qty. UOM")
                 {
+                    Caption = 'Alt. Qty. UOM';
+                    ToolTip = 'Specifies the value of the Alt. Qty. UOM field.';
                 }
-                field("Alt. Price";"Alt. Price")
+                field("Alt. Price"; Rec."Alt. Price")
                 {
+                    Caption = 'Alt. Price';
+                    ToolTip = 'Specifies the value of the Alt. Price field.';
                 }
-                field("Alt. Price UOM";"Alt. Price UOM")
+                field("Alt. Price UOM"; Rec."Alt. Price UOM")
                 {
+                    Caption = 'Alt. Price UOM';
+                    ToolTip = 'Specifies the value of the Alt. Price UOM field.';
                 }
-                field("Depr. Acquisition Cost";"Depr. Acquisition Cost")
-                {
-                    Visible = false;
-                }
-                field("Appl.-to Item Entry";"Appl.-to Item Entry")
-                {
-                    Visible = false;
-                }
-                field("Shortcut Dimension 1 Code";"Shortcut Dimension 1 Code")
-                {
-                    Visible = false;
-                }
-                field("Units per Parcel";"Units per Parcel")
-                {
-                }
-                field("Shortcut Dimension 2 Code";"Shortcut Dimension 2 Code")
+                field("Depr. Acquisition Cost"; Rec."Depr. Acquisition Cost")
                 {
                     Visible = false;
+                    Caption = 'Depr. Acquisition Cost';
+                    ToolTip = 'Specifies the value of the Depr. Acquisition Cost field.';
                 }
-                field(GetSourceName;GetSourceName)
+                field("Appl.-to Item Entry"; Rec."Appl.-to Item Entry")
+                {
+                    Visible = false;
+                    Caption = 'Appl.-to Item Entry';
+                    ToolTip = 'Specifies the value of the Appl.-to Item Entry field.';
+                }
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
+                {
+                    Visible = false;
+                    Caption = 'Shortcut Dimension 1 Code';
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 1 Code field.';
+                }
+                field("Units per Parcel"; Rec."Units per Parcel")
+                {
+                    Caption = 'Units per Parcel';
+                    ToolTip = 'Specifies the value of the Units per Parcel field.';
+                }
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
+                {
+                    Visible = false;
+                    Caption = 'Shortcut Dimension 2 Code';
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 2 Code field.';
+                }
+                field(GetSourceName; GetSourceNames())
                 {
                     Caption = 'Vendor';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Vendor field.';
                 }
             }
         }
@@ -168,12 +242,13 @@ page 50059 "Posted Purch. Invoice Line NIF"
                     Caption = 'Card';
                     Image = EditLines;
                     ShortCutKey = 'Shift+F7';
+                    ToolTip = 'Executes the Card action.';
 
                     trigger OnAction()
                     begin
-                        PurchInvHdr.GET("Document No.");
+                        PurchInvHdr.GET(Rec."Document No.");
                         PurchInvHdrForm.SETRECORD(PurchInvHdr);
-                        PurchInvHdrForm.RUN;
+                        PurchInvHdrForm.RUN();
                     end;
                 }
                 action(Statistics)
@@ -183,47 +258,53 @@ page 50059 "Posted Purch. Invoice Line NIF"
                     Promoted = true;
                     PromotedCategory = Process;
                     ShortCutKey = 'F7';
+                    ToolTip = 'Executes the Statistics action.';
 
                     trigger OnAction()
                     begin
-                        IF "Tax Area Code" = '' THEN
-                          PAGE.RUNMODAL(PAGE::"Purchase Invoice Statistics",Rec,"No.")
+                        IF Rec."Tax Area Code" = '' THEN
+                            PAGE.RUNMODAL(PAGE::"Purchase Invoice Statistics", Rec, Rec."No.")
                         ELSE
-                          PAGE.RUNMODAL(PAGE::"Purchase Invoice Stats.",Rec,"No.");
+                            PAGE.RUNMODAL(PAGE::"Purchase Invoice Stats.", Rec, Rec."No.");
                     end;
                 }
                 action("Co&mments")
                 {
                     Caption = 'Co&mments';
                     Image = ViewComments;
-                    RunObject = Page 66;
-                    RunPageLink = Document Type=CONST(Posted Invoice),
-                                  No.=FIELD(No.);
+                    RunObject = Page "Purch. Comment Sheet";
+                    RunPageLink = "Document Type" = CONST("Posted Invoice"),
+                                  "No." = FIELD("No.");
+                    ToolTip = 'Executes the Co&mments action.';
+
                 }
-                action(Dimensions)
+                action(Dimensionss)
                 {
-                    AccessByPermission = TableData 348=R;
+                    AccessByPermission = TableData 348 = R;
                     Caption = 'Dimensions';
                     Image = Dimensions;
                     ShortCutKey = 'Shift+Ctrl+D';
+                    ToolTip = 'Executes the Dimensions action.';
 
                     trigger OnAction()
                     begin
-                        ShowDimensions;
+                        ShowDimensions();
                     end;
                 }
                 action("E-&Mail List")
                 {
                     Caption = 'E-&Mail List';
+                    Image = Email;
+                    ToolTip = 'Executes the E-&Mail List action.';
 
                     trigger OnAction()
                     var
-                        EMailListEntry: Record "14000908";
+                        EMailListEntry: Record 14000908;
                     begin
-                        EMailListEntry.RESET;
-                        EMailListEntry.SETRANGE("Table ID",DATABASE::"Purch. Inv. Header");
-                        EMailListEntry.SETRANGE(Code,"No.");
-                        PAGE.RUNMODAL(PAGE::"E-Mail List Entries",EMailListEntry);
+                        EMailListEntry.RESET();
+                        EMailListEntry.SETRANGE("Table ID", DATABASE::"Purch. Inv. Header");
+                        EMailListEntry.SETRANGE(Code, Rec."No.");
+                        PAGE.RUNMODAL(PAGE::"E-Mail List Entries", EMailListEntry);
                     end;
                 }
             }
@@ -235,20 +316,22 @@ page 50059 "Posted Purch. Invoice Line NIF"
                     Caption = 'Dimensions';
                     Image = Dimensions;
                     ShortCutKey = 'Shift+Ctrl+D';
+                    ToolTip = 'Executes the Dimensions action.';
 
                     trigger OnAction()
                     begin
-                        ShowDimensions;
+                        ShowDimensions();
                     end;
                 }
                 action("Item &Tracking Entries")
                 {
                     Caption = 'Item &Tracking Entries';
                     Image = ItemTrackingLedger;
+                    ToolTip = 'Executes the Item &Tracking Entries action.';
 
                     trigger OnAction()
                     begin
-                        ShowItemTrackingLines;
+                        ShowItemTrackingLines();
                     end;
                 }
             }
@@ -260,50 +343,52 @@ page 50059 "Posted Purch. Invoice Line NIF"
                 Caption = '&Navigate';
                 Image = Navigate;
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
+                ToolTip = 'Executes the &Navigate action.';
 
                 trigger OnAction()
                 begin
                     PurchInvHdr.GET("Document No.");
-                    PurchInvHdr.Navigate;
+                    PurchInvHdr.Navigate();
                 end;
             }
         }
     }
 
     var
-        PurchInvHdr: Record "122";
-        PurchInvHdrForm: Page "138";
+        PurchInvHdr: Record 122;
+        PurchInvHdrForm: Page 138;
 
     procedure ShowDimensions()
     begin
-        Rec.ShowDimensions;
+        Rec.ShowDimensions();
     end;
 
     procedure ShowItemTrackingLines()
     begin
-        Rec.ShowItemTrackingLines;
+        Rec.ShowItemTrackingLines();
     end;
 
     procedure ShowLineComments(DocumentType: Option Quote,"Order",Invoice,"Credit Memo","Blanket Order","Return Order",Receipt,"Posted Invoice","Posted Credit Memo","Posted Return Shipment")
     begin
-        Rec.ShowLineComments;
+        Rec.ShowLineComments();
     end;
 
-    procedure GetOrderNo(): Code[20]
+    procedure GetOrderNos(): Code[20]
     begin
-        IF NOT PurchInvHdr.GET("Document No.") THEN
-          EXIT('')
+        IF NOT PurchInvHdr.GET(Rec."Document No.") THEN
+            EXIT('')
         ELSE
-          EXIT(PurchInvHdr."Order No.");
+            EXIT(PurchInvHdr."Order No.");
     end;
 
-    procedure GetSourceName(): Text[50]
+    procedure GetSourceNames(): Text[50]
     begin
-        IF NOT PurchInvHdr.GET("Document No.") THEN
-          EXIT('')
+        IF NOT PurchInvHdr.GET(Rec."Document No.") THEN
+            EXIT('')
         ELSE
-          EXIT(PurchInvHdr."Buy-from Vendor Name");
+            EXIT(PurchInvHdr."Buy-from Vendor Name");
     end;
 }
 

@@ -7,25 +7,25 @@ xmlport 50019 "Standard Sales Order Import"
     {
         textelement(Root)
         {
-            tableelement(Table37;Table37)
+            tableelement("Sales Line"; "Sales Line")
             {
                 AutoSave = true;
                 AutoUpdate = false;
                 XmlName = 'SalesLine';
                 UseTemporary = false;
-                fieldelement(DocType;"Sales Line"."Document Type")
+                fieldelement(DocType; "Sales Line"."Document Type")
                 {
                 }
-                fieldelement(SellToCustNo;"Sales Line"."Sell-to Customer No.")
+                fieldelement(SellToCustNo; "Sales Line"."Sell-to Customer No.")
                 {
                 }
-                fieldelement(DocNo;"Sales Line"."Document No.")
+                fieldelement(DocNo; "Sales Line"."Document No.")
                 {
                 }
-                fieldelement(LineNo;"Sales Line"."Line No.")
+                fieldelement(LineNo; "Sales Line"."Line No.")
                 {
                 }
-                fieldelement(Type;"Sales Line".Type)
+                fieldelement(Type; "Sales Line".Type)
                 {
 
                     trigger OnAfterAssignField()
@@ -36,7 +36,7 @@ xmlport 50019 "Standard Sales Order Import"
                         //   currXMLport.SKIP;
                     end;
                 }
-                fieldelement(Numb;"Sales Line"."No.")
+                fieldelement(Numb; "Sales Line"."No.")
                 {
 
                     trigger OnAfterAssignField()
@@ -45,140 +45,142 @@ xmlport 50019 "Standard Sales Order Import"
 
                         //IF Items.FINDSET THEN BEGIN
                         //    REPEAT
-                            //"Sales Line".Description:=Items.Description;
+                        //"Sales Line".Description:=Items.Description;
                         //      "Sales Line".VALIDATE(Description,Items.Description);
                         //      MESSAGE(Items.Description);
-                             // "Sales Line".MODIFY(TRUE);
+                        // "Sales Line".MODIFY(TRUE);
                         //    UNTIL Items.NEXT = 0;
                         //END;
                     end;
                 }
-                fieldelement(UOM;"Sales Line"."Unit of Measure")
+                fieldelement(UOM; "Sales Line"."Unit of Measure")
                 {
                 }
-                fieldelement(Qty;"Sales Line".Quantity)
+                fieldelement(Qty; "Sales Line".Quantity)
                 {
                 }
-                fieldelement(UnitPrice;"Sales Line"."Unit Price")
+                fieldelement(UnitPrice; "Sales Line"."Unit Price")
                 {
                 }
-                fieldelement(UOMCode;"Sales Line"."Unit of Measure Code")
+                fieldelement(UOMCode; "Sales Line"."Unit of Measure Code")
                 {
                 }
-                fieldelement(ExtDocNo;"Sales Line"."External Document No.")
+                //TODO
+                /* fieldelement(ExtDocNo; "Sales Line"."External Document No.")
+                {
+                } */
+                //TODO
+                fieldelement(Desc; "Sales Line".Description)
                 {
                 }
-                fieldelement(Desc;"Sales Line".Description)
+                fieldelement(LocCode; "Sales Line"."Location Code")
                 {
                 }
-                fieldelement(LocCode;"Sales Line"."Location Code")
+                fieldelement(ShpntDate; "Sales Line"."Shipment Date")
                 {
                 }
-                fieldelement(ShpntDate;"Sales Line"."Shipment Date")
+                fieldelement(OutstQty; "Sales Line"."Outstanding Quantity")
                 {
                 }
-                fieldelement(OutstQty;"Sales Line"."Outstanding Quantity")
+                fieldelement(QtyToInv; "Sales Line"."Qty. to Invoice")
                 {
                 }
-                fieldelement(QtyToInv;"Sales Line"."Qty. to Invoice")
+                fieldelement(QtyToShip; "Sales Line"."Qty. to Ship")
                 {
                 }
-                fieldelement(QtyToShip;"Sales Line"."Qty. to Ship")
+                fieldelement(AllowInvDisc; "Sales Line"."Allow Invoice Disc.")
                 {
                 }
-                fieldelement(AllowInvDisc;"Sales Line"."Allow Invoice Disc.")
+                fieldelement(SCDim1; "Sales Line"."Shortcut Dimension 1 Code")
                 {
                 }
-                fieldelement(SCDim1;"Sales Line"."Shortcut Dimension 1 Code")
+                fieldelement(BillToCust; "Sales Line"."Bill-to Customer No.")
                 {
                 }
-                fieldelement(BillToCust;"Sales Line"."Bill-to Customer No.")
+                fieldelement(GPPG; "Sales Line"."Gen. Prod. Posting Group")
                 {
                 }
-                fieldelement(GPPG;"Sales Line"."Gen. Prod. Posting Group")
+                fieldelement(VATCalcType; "Sales Line"."VAT Calculation Type")
                 {
                 }
-                fieldelement(VATCalcType;"Sales Line"."VAT Calculation Type")
+                fieldelement(CurrCode; "Sales Line"."Currency Code")
                 {
                 }
-                fieldelement(CurrCode;"Sales Line"."Currency Code")
+                fieldelement(QtyPerUOM; "Sales Line"."Qty. per Unit of Measure")
                 {
                 }
-                fieldelement(QtyPerUOM;"Sales Line"."Qty. per Unit of Measure")
+                fieldelement(QtyBase; "Sales Line"."Quantity (Base)")
                 {
                 }
-                fieldelement(QtyBase;"Sales Line"."Quantity (Base)")
+                fieldelement(OQtyBase; "Sales Line"."Outstanding Qty. (Base)")
                 {
                 }
-                fieldelement(OQtyBase;"Sales Line"."Outstanding Qty. (Base)")
+                fieldelement(QtyToInvBase; "Sales Line"."Qty. to Invoice (Base)")
                 {
                 }
-                fieldelement(QtyToInvBase;"Sales Line"."Qty. to Invoice (Base)")
+                fieldelement(QtyToShipBase; "Sales Line"."Qty. to Ship (Base)")
                 {
                 }
-                fieldelement(QtyToShipBase;"Sales Line"."Qty. to Ship (Base)")
+                fieldelement(RespCenter; "Sales Line"."Responsibility Center")
                 {
                 }
-                fieldelement(RespCenter;"Sales Line"."Responsibility Center")
+                fieldelement(PlannedDelDt; "Sales Line"."Planned Delivery Date")
                 {
                 }
-                fieldelement(PlannedDelDt;"Sales Line"."Planned Delivery Date")
+                fieldelement(PlannedShpmntDt; "Sales Line"."Planned Shipment Date")
                 {
                 }
-                fieldelement(PlannedShpmntDt;"Sales Line"."Planned Shipment Date")
+                fieldelement(ShippingAgntCd; "Sales Line"."Shipping Agent Code")
                 {
                 }
-                fieldelement(ShippingAgntCd;"Sales Line"."Shipping Agent Code")
-                {
-                }
-                fieldelement(OrdDt;"Sales Line"."Order Date")
-                {
-                }
-                fieldelement(SlsPerCode;"Sales Line"."Salesperson Code")
-                {
-                }
+                //TODO
+                /*   fieldelement(OrdDt; "Sales Line"."Order Date")
+                  {
+                  }
+                  fieldelement(SlsPerCode; "Sales Line"."Salesperson Code")
+                  {
+                  } */
+                //TODO
 
                 trigger OnAfterInsertRecord()
                 begin
-                    Items.SETRANGE("No.","Sales Line"."No.");
+                    Items.SETRANGE("No.", "Sales Line"."No.");
 
-                    IF Items.FINDSET THEN BEGIN
+                    IF Items.FINDSET() THEN
                         REPEAT
-                          "Sales Line".VALIDATE(Description,Items.Description);
-                          "Sales Line".VALIDATE("Gen. Prod. Posting Group",Items."Gen. Prod. Posting Group");
-                          "Sales Line".MODIFY(TRUE);
-                        UNTIL Items.NEXT = 0;
-                    END;
+                            "Sales Line".VALIDATE(Description, Items.Description);
+                            "Sales Line".VALIDATE("Gen. Prod. Posting Group", Items."Gen. Prod. Posting Group");
+                            "Sales Line".MODIFY(TRUE);
+                        UNTIL Items.NEXT() = 0;
 
-                    Customers.SETRANGE("No.","Sales Line"."Sell-to Customer No.");
+                    Customers.SETRANGE("No.", "Sales Line"."Sell-to Customer No.");
 
-                    IF Customers.FINDSET THEN BEGIN
+                    IF Customers.FINDSET() THEN
                         REPEAT
 
-                          "Sales Line".VALIDATE("Currency Code",Customers."Currency Code");
-                          "Sales Line".MODIFY(TRUE);
-                        UNTIL Customers.NEXT = 0;
-                    END;
+                            "Sales Line".VALIDATE("Currency Code", Customers."Currency Code");
+                            "Sales Line".MODIFY(TRUE);
+                        UNTIL Customers.NEXT() = 0;
 
 
-                    SalesHeader.SETRANGE("No.","Sales Line"."Document No.");
+                    SalesHeader.SETRANGE("No.", "Sales Line"."Document No.");
 
-                    IF SalesHeader.FINDSET THEN BEGIN
+                    IF SalesHeader.FINDSET() THEN
                         REPEAT
-                          "Sales Line".VALIDATE("Salesperson Code",SalesHeader."Salesperson Code");
-                          "Sales Line".VALIDATE("Shipping Agent Code",SalesHeader."Shipping Agent Code");
-                          "Sales Line".MODIFY(TRUE);
-                        UNTIL SalesHeader.NEXT = 0;
-                    END;
+                            //TODO
+                            /* "Sales Line".VALIDATE("Salesperson Code", SalesHeader."Salesperson Code"); */
+                            //TODO
+                            "Sales Line".VALIDATE("Shipping Agent Code", SalesHeader."Shipping Agent Code");
+                            "Sales Line".MODIFY(TRUE);
+                        UNTIL SalesHeader.NEXT() = 0;
 
 
-                    "Sales Line".VALIDATE("Total Parcels","Sales Line".Quantity/"Sales Line"."Units per Parcel");
-                           "Sales Line".MODIFY(TRUE);
+                    "Sales Line".VALIDATE("Total Parcels", "Sales Line".Quantity / "Sales Line"."Units per Parcel");
+                    "Sales Line".MODIFY(TRUE);
                 end;
 
                 trigger OnBeforeInsertRecord()
                 var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                 end;
             }
@@ -199,12 +201,12 @@ xmlport 50019 "Standard Sales Order Import"
 
     trigger OnPostXmlPort()
     begin
-         MESSAGE('Import Completed');
+        MESSAGE('Import Completed');
     end;
 
     var
-        Items: Record "27";
-        Customers: Record "18";
-        SalesHeader: Record "36";
+        Customers: Record Customer;
+        Items: Record Item;
+        SalesHeader: Record "Sales Header";
 }
 

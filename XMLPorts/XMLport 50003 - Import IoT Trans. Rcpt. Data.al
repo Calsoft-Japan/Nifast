@@ -11,11 +11,11 @@ xmlport 50003 "Import IoT Trans. Rcpt. Data"
     {
         textelement(root)
         {
-            tableelement(Table50042;Table50042)
+            tableelement("IoT Data Staging"; "IoT Data Staging")
             {
                 XmlName = 'IoTData';
-                SourceTableView = SORTING(Field1);
-                fieldelement(DocNo;"IoT Data Staging"."Document No.")
+                SourceTableView = SORTING("Entry No.");
+                fieldelement(DocNo; "IoT Data Staging"."Document No.")
                 {
 
                     trigger OnAfterAssignField()
@@ -24,24 +24,23 @@ xmlport 50003 "Import IoT Trans. Rcpt. Data"
                         CleanString: Text[20];
                     begin
                         CleanString := '';
-                        FOR i := 1 TO STRLEN("IoT Data Staging"."Document No.") DO BEGIN
-                          CleanString += JunkCleanUp(COPYSTR("IoT Data Staging"."Document No.",i,1));
-                        END;
+                        FOR i := 1 TO STRLEN("IoT Data Staging"."Document No.") DO
+                            CleanString += JunkCleanUp(COPYSTR("IoT Data Staging"."Document No.", i, 1));
                         //MESSAGE('%1\%2\%3',CleanString,STRLEN("IoT Data Staging"."Document No."),"IoT Data Staging"."Document No.");
 
                         "IoT Data Staging"."Document No." := CleanString;
                     end;
                 }
-                fieldelement(DocLineNo;"IoT Data Staging"."Line No.")
+                fieldelement(DocLineNo; "IoT Data Staging"."Line No.")
                 {
                 }
-                fieldelement(ItemNo;"IoT Data Staging"."Item No.")
+                fieldelement(ItemNo; "IoT Data Staging"."Item No.")
                 {
                 }
-                fieldelement(LotNo;"IoT Data Staging"."Lot No.")
+                fieldelement(LotNo; "IoT Data Staging"."Lot No.")
                 {
                 }
-                fieldelement(Qty;"IoT Data Staging".Quantity)
+                fieldelement(Qty; "IoT Data Staging".Quantity)
                 {
                 }
 
@@ -73,12 +72,12 @@ xmlport 50003 "Import IoT Trans. Rcpt. Data"
     begin
         //MESSAGE('%1',Input);
         IF Input = 'Ù' THEN
-          Input := '';
+            Input := '';
 
-        IF Input IN ['A'..'Z','0'..'9'] THEN
-          EXIT(Input)
+        IF Input IN ['A' .. 'Z', '0' .. '9'] THEN
+            EXIT(Input)
         ELSE
-          EXIT('');
+            EXIT('');
     end;
 
     procedure SetFileName(FileName: Text[250])

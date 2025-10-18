@@ -13,92 +13,95 @@ xmlport 50026 "SP  Import - JRR"
     {
         textelement(Root)
         {
-            tableelement(Table7002;Table7002)
+            tableelement("Sales Price"; "Sales Price")
             {
                 AutoSave = false;
                 XmlName = 'SlsPrc';
                 UseTemporary = false;
-                fieldattribute(iNo;"Sales Price"."Item No.")
+                fieldattribute(iNo; "Sales Price"."Item No.")
                 {
                     Width = 20;
                 }
-                fieldattribute(iCrossref;"Sales Price"."Customer Cross Ref No.")
+                fieldattribute(iCrossref; "Sales Price"."Customer Cross Ref No.")
                 {
                     Width = 30;
                 }
-                fieldattribute(iSalesCode;"Sales Price"."Sales Code")
+                fieldattribute(iSalesCode; "Sales Price"."Sales Code")
                 {
                     Width = 20;
                 }
-                fieldattribute(iCurrCode;"Sales Price"."Currency Code")
+                fieldattribute(iCurrCode; "Sales Price"."Currency Code")
                 {
                     Width = 10;
                 }
-                fieldattribute(iStartDate;"Sales Price"."Starting Date")
+                fieldattribute(iStartDate; "Sales Price"."Starting Date")
                 {
                     Width = 20;
                 }
-                fieldattribute(iUnitPrice;"Sales Price"."Unit Price")
+                fieldattribute(iUnitPrice; "Sales Price"."Unit Price")
                 {
                     Width = 20;
                 }
-                fieldattribute(iAllowInvDisc;"Sales Price"."Allow Invoice Disc.")
+                fieldattribute(iAllowInvDisc; "Sales Price"."Allow Invoice Disc.")
                 {
                     Width = 5;
                 }
-                fieldattribute(iSalesType;"Sales Price"."Sales Type")
+                fieldattribute(iSalesType; "Sales Price"."Sales Type")
                 {
                     Width = 5;
                 }
-                fieldattribute(iMinQty;"Sales Price"."Minimum Quantity")
+                fieldattribute(iMinQty; "Sales Price"."Minimum Quantity")
                 {
                     Width = 20;
                 }
-                fieldattribute(iEndDate;"Sales Price"."Ending Date")
+                fieldattribute(iEndDate; "Sales Price"."Ending Date")
                 {
                     Width = 20;
                 }
-                fieldattribute(iUOM;"Sales Price"."Unit of Measure Code")
+                fieldattribute(iUOM; "Sales Price"."Unit of Measure Code")
                 {
                     Width = 20;
                 }
-                fieldattribute(iVariant;"Sales Price"."Variant Code")
+                fieldattribute(iVariant; "Sales Price"."Variant Code")
                 {
                     Width = 20;
                 }
-                fieldattribute(iAllowLineDisc;"Sales Price"."Allow Line Disc.")
+                fieldattribute(iAllowLineDisc; "Sales Price"."Allow Line Disc.")
                 {
                     Width = 20;
                 }
-                fieldattribute(CiscoCd;"Sales Price"."Contract Ship-to Code")
-                {
-                    Width = 20;
-                }
+                //TODO
+                /*  fieldattribute(CiscoCd; "Sales Price"."Contract Ship-to Code")
+                 {
+                     Width = 20;
+                 } */
+                //TODO
                 textelement(iContno)
                 {
                     Width = 20;
                 }
-                fieldelement(icontslc;"Sales Price"."Contract Ship-to Code")
-                {
-                    Width = 10;
-                }
-                fieldelement(icontlc;"Sales Price"."Contract Location Code")
-                {
-                    Width = 10;
-                }
-                fieldelement(iContcn;"Sales Price"."Contract Customer No.")
-                {
-                    Width = 20;
-                }
-                fieldelement(icontedn;"Sales Price"."External Document No.")
-                {
-                    Width = 20;
-                }
-
+                //TODO
+                /*   fieldelement(icontslc; "Sales Price"."Contract Ship-to Code")
+                  {
+                      Width = 10;
+                  }
+                  fieldelement(icontlc; "Sales Price"."Contract Location Code")
+                  {
+                      Width = 10;
+                  }
+                  fieldelement(iContcn; "Sales Price"."Contract Customer No.")
+                  {
+                      Width = 20;
+                  }
+                  fieldelement(icontedn; "Sales Price"."External Document No.")
+                  {
+                      Width = 20;
+                  } */
+                //TODO
                 trigger OnAfterInsertRecord()
                 begin
-                    
-                    d.UPDATE(1,FORMAT(RecNo));
+
+                    d.UPDATE(1, FORMAT(RecNo));
                     //d.UPDATE(2,iNo);
                     RecNo := RecNo + 1;
                     /*
@@ -112,37 +115,44 @@ xmlport 50026 "SP  Import - JRR"
                        END;
                      END;
                     */
-                    
-                    IF iContno <> '' THEN BEGIN
-                       IF NOT PrcCont.GET(iContno) THEN BEGIN
-                         PrcCont."No." := iContno;
-                         PrcCont."Customer No." := "Sales Price"."Sales Code";
-                         PrcCont."Starting Date" := "Sales Price"."Starting Date";
-                         PrcCont."Ending Date" := "Sales Price"."Ending Date";
-                         PrcCont."External Document No." := "Sales Price"."External Document No.";
-                         PrcCont."No. Series" := 'S-PCT';
-                         PrcCont."Location Code" :=  "Sales Price"."Contract Location Code";
-                         PrcCont."Shipping Location Code" := "Sales Price"."Contract Ship Location Code";
-                         PrcCont."E-Mail" := 'test@test.com';
-                         PrcCont.INSERT;
-                       END ELSE BEGIN
-                         PrcCont."Customer No." := "Sales Price"."Sales Code";
-                         PrcCont."Starting Date" := "Sales Price"."Starting Date";
-                         PrcCont."Ending Date" := "Sales Price"."Ending Date";
-                         PrcCont."External Document No." := "Sales Price"."External Document No.";
-                         PrcCont."No. Series" := 'S-PCT';
-                         PrcCont."Location Code" :=  "Sales Price"."Contract Location Code";
-                         PrcCont."Shipping Location Code" := "Sales Price"."Contract Ship Location Code";
-                         PrcCont."E-Mail" := 'test@test.com';
-                         PrcCont.MODIFY;
+
+                    IF iContno <> '' THEN
+                        IF NOT PrcCont.GET(iContno) THEN BEGIN
+                            PrcCont."No." := iContno;
+                            PrcCont."Customer No." := "Sales Price"."Sales Code";
+                            PrcCont."Starting Date" := "Sales Price"."Starting Date";
+                            PrcCont."Ending Date" := "Sales Price"."Ending Date";
+                            //TODO
+                            /* PrcCont."External Document No." := "Sales Price"."External Document No."; */
+                            //TODO
+                            PrcCont."No. Series" := 'S-PCT';
+                            //TODO
+                            /*   PrcCont."Location Code" := "Sales Price"."Contract Location Code";
+                              PrcCont."Shipping Location Code" := "Sales Price"."Contract Ship Location Code"; */
+                            //TODO
+                            PrcCont."E-Mail" := 'test@test.com';
+                            PrcCont.INSERT();
+                        END ELSE BEGIN
+                            PrcCont."Customer No." := "Sales Price"."Sales Code";
+                            PrcCont."Starting Date" := "Sales Price"."Starting Date";
+                            PrcCont."Ending Date" := "Sales Price"."Ending Date";
+                            //TODO
+                            /* PrcCont."External Document No." := "Sales Price"."External Document No."; */
+                            //TODO
+                            PrcCont."No. Series" := 'S-PCT';
+                            //TODO
+                            /*   PrcCont."Location Code" := "Sales Price"."Contract Location Code";
+                              PrcCont."Shipping Location Code" := "Sales Price"."Contract Ship Location Code"; */
+                            //TODO
+                            PrcCont."E-Mail" := 'test@test.com';
+                            PrcCont.MODIFY();
                         END;
-                     END;
-                    
-                     SalesPrice."Contract No." :=iContno;
-                    
-                    
-                    
-                    
+
+                    SalesPrice."Contract No." := iContno;
+
+
+
+
                     /*
                     RecReplace := SalesPrice.GET(iNo,iSalesType,iSalesCode,iStartDate,iCurrCode,iVariant,iUOM,iMinQty);
                     
@@ -189,8 +199,6 @@ xmlport 50026 "SP  Import - JRR"
                 end;
 
                 trigger OnBeforeInsertRecord()
-                var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                 end;
             }
@@ -211,7 +219,7 @@ xmlport 50026 "SP  Import - JRR"
 
     trigger OnInitXmlPort()
     begin
-        
+
         /*
         FBImportDataport.SETCURRENTKEY("User ID");
         FBImportDataport.SETRANGE("User ID",USERID);
@@ -225,28 +233,22 @@ xmlport 50026 "SP  Import - JRR"
     begin
 
         IF GUIALLOWED THEN
-          d.CLOSE;
+            d.CLOSE();
     end;
 
     trigger OnPreXmlPort()
     begin
 
         IF GUIALLOWED THEN
-          d.OPEN('Record      #1############## \'+
-               'Sales Price #2##############');
-          RecNo := 1;
+            d.OPEN('Record      #1############## \' +
+                 'Sales Price #2##############');
+        RecNo := 1;
     end;
 
     var
-        Text000_gTxt: Label 'Current  #1##############';
+        PrcCont: Record "Price Contract";
+        SalesPrice: Record "Sales Price";
         d: Dialog;
         RecNo: Integer;
-        SalesPrice: Record "7002";
-        RecReplace: Boolean;
-        StartDt: Date;
-        EndDt: Date;
-        InvDisc: Boolean;
-        SlsType: Integer;
-        PrcCont: Record "50110";
 }
 

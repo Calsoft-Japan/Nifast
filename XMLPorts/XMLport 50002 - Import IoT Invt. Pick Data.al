@@ -12,14 +12,14 @@ xmlport 50002 "Import IoT Invt. Pick Data"
     {
         textelement(root)
         {
-            tableelement(Table50042;Table50042)
+            tableelement("IoT Data Staging"; "IoT Data Staging")
             {
                 XmlName = 'IoTData';
-                SourceTableView = SORTING(Field1);
+                SourceTableView = SORTING("Entry No.");
                 textelement(Dummy)
                 {
                 }
-                fieldelement(DocNo;"IoT Data Staging"."Document No.")
+                fieldelement(DocNo; "IoT Data Staging"."Document No.")
                 {
 
                     trigger OnAfterAssignField()
@@ -28,33 +28,32 @@ xmlport 50002 "Import IoT Invt. Pick Data"
                         CleanString: Text[20];
                     begin
                         CleanString := '';
-                        FOR i := 1 TO STRLEN("IoT Data Staging"."Document No.") DO BEGIN
-                          CleanString += JunkCleanUp(COPYSTR("IoT Data Staging"."Document No.",i,1));
-                        END;
+                        FOR i := 1 TO STRLEN("IoT Data Staging"."Document No.") DO
+                            CleanString += JunkCleanUp(COPYSTR("IoT Data Staging"."Document No.", i, 1));
                         //MESSAGE('%1\%2\%3',CleanString,STRLEN("IoT Data Staging"."Document No."),"IoT Data Staging"."Document No.");
 
                         "IoT Data Staging"."Document No." := CleanString;
                     end;
                 }
-                fieldelement(LineNo;"IoT Data Staging"."Line No.")
+                fieldelement(LineNo; "IoT Data Staging"."Line No.")
                 {
                 }
-                fieldelement(TableID;"IoT Data Staging"."Table No.")
+                fieldelement(TableID; "IoT Data Staging"."Table No.")
                 {
                 }
-                fieldelement(ItemNo;"IoT Data Staging"."Item No.")
+                fieldelement(ItemNo; "IoT Data Staging"."Item No.")
                 {
                 }
-                fieldelement(LotNo;"IoT Data Staging"."Lot No.")
+                fieldelement(LotNo; "IoT Data Staging"."Lot No.")
                 {
                 }
-                fieldelement(Qty;"IoT Data Staging".Quantity)
+                fieldelement(Qty; "IoT Data Staging".Quantity)
                 {
                 }
-                fieldelement(FromLocation;"IoT Data Staging"."Location From")
+                fieldelement(FromLocation; "IoT Data Staging"."Location From")
                 {
                 }
-                fieldelement(ToLocation;"IoT Data Staging"."Location To")
+                fieldelement(ToLocation; "IoT Data Staging"."Location To")
                 {
                 }
 
@@ -63,8 +62,8 @@ xmlport 50002 "Import IoT Invt. Pick Data"
                     "IoT Data Staging"."Document Type" := "IoT Data Staging"."Document Type"::"Invt. Pick";
 
                     //>>CIS.RAM 04/18/23
-                    IF WarehouseActivityHeader.GET(WarehouseActivityHeader.Type::"Invt. Pick","IoT Data Staging"."Document No.") THEN
-                      "IoT Data Staging"."Record Status" := "IoT Data Staging"."Record Status"::Processed;
+                    IF WarehouseActivityHeader.GET(WarehouseActivityHeader.Type::"Invt. Pick", "IoT Data Staging"."Document No.") THEN
+                        "IoT Data Staging"."Record Status" := "IoT Data Staging"."Record Status"::Processed;
                     //<<CIS.RAM 04/18/23
                 end;
             }
@@ -84,19 +83,19 @@ xmlport 50002 "Import IoT Invt. Pick Data"
     }
 
     var
+        WarehouseActivityHeader: Record "Warehouse Activity Header";
         MyFile: Text[250];
-        WarehouseActivityHeader: Record "5766";
 
     local procedure JunkCleanUp(Input: Code[1]): Code[1]
     begin
         //MESSAGE('%1',Input);
         IF Input = 'Ù' THEN
-          Input := '';
+            Input := '';
 
-        IF Input IN ['A'..'Z','0'..'9'] THEN
-          EXIT(Input)
+        IF Input IN ['A' .. 'Z', '0' .. '9'] THEN
+            EXIT(Input)
         ELSE
-          EXIT('');
+            EXIT('');
     end;
 
     procedure SetFileName(FileName: Text[250])

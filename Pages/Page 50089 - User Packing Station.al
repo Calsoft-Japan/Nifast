@@ -1,7 +1,9 @@
 page 50089 "User Packing Station"
 {
     PageType = List;
-    SourceTable = Table91;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "User Setup";
 
     layout
     {
@@ -9,11 +11,15 @@ page 50089 "User Packing Station"
         {
             repeater(Group)
             {
-                field("User ID";"User ID")
+                field("User ID"; Rec."User ID")
                 {
+                    ToolTip = 'Specifies the value of the User ID field.';
+                    Caption = 'User ID';
                 }
-                field("Packing Station";"Packing Station")
+                field("Packing Station"; Rec."Packing Station")
                 {
+                    ToolTip = 'Specifies the value of the Packing Station field.';
+                    Caption = 'Packing Station';
                 }
             }
         }

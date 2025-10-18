@@ -8,34 +8,32 @@ xmlport 50007 "Forecast Log Import"
     {
         textelement(Root)
         {
-            tableelement(Table50026;Table50026)
+            tableelement("Forecast Log File"; "Forecast Log File")
             {
                 AutoSave = true;
                 AutoUpdate = false;
                 XmlName = 'ForecastLogFile';
                 UseTemporary = false;
-                fieldelement(ItemNo;"Forecast Log File"."Item No.")
+                fieldelement(ItemNo; "Forecast Log File"."Item No.")
                 {
                 }
-                fieldelement(CustNo;"Forecast Log File"."Customer No.")
+                fieldelement(CustNo; "Forecast Log File"."Customer No.")
                 {
                 }
-                fieldelement(Quantity;"Forecast Log File".Quantity)
+                fieldelement(Quantity; "Forecast Log File".Quantity)
                 {
                 }
-                fieldelement(GenDate;"Forecast Log File"."Generation Date")
+                fieldelement(GenDate; "Forecast Log File"."Generation Date")
                 {
                 }
-                fieldelement(ForecastMo;"Forecast Log File"."Forecast Month")
+                fieldelement(ForecastMo; "Forecast Log File"."Forecast Month")
                 {
                 }
-                fieldelement(DivCode;"Forecast Log File"."Div Code")
+                fieldelement(DivCode; "Forecast Log File"."Div Code")
                 {
                 }
 
                 trigger OnBeforeInsertRecord()
-                var
-                    PermissionSet_lRec: Record "2000000005";
                 begin
                 end;
             }

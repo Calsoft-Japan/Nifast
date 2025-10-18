@@ -4,9 +4,10 @@ page 50028 "Exchange Contract Card"
     // 07-25-05 RTT code at Update PO with Foreign Exchange-OnPush to check for existing contract no.
 
     PageType = Document;
-    SourceTable = Table50010;
-    SourceTableView = WHERE(No.=FILTER(<>SPOT));
-
+    SourceTable = "4X Bank Exchange Contract";
+    SourceTableView = WHERE("No." = FILTER(<> SPOT));
+    UsageCategory = None;
+    ApplicationArea = All;
     layout
     {
         area(content)
@@ -14,126 +15,144 @@ page 50028 "Exchange Contract Card"
             group(General)
             {
                 Caption = 'General';
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
+                    ToolTip = 'Specifies the value of the No. field.';
 
                     trigger OnAssistEdit()
                     begin
-                        IF AssistEdit(xRec) THEN
-                          CurrPage.UPDATE;
+                        IF Rec.AssistEdit(xRec) THEN
+                            CurrPage.UPDATE();
                     end;
 
                     trigger OnValidate()
                     begin
-                        "Date Created" := WORKDATE;
+                        Rec."Date Created" := WORKDATE();
                         //>>
                         //CurrForm.UPDATE(TRUE);
                         //<<
                     end;
                 }
-                field(Bank;Bank)
+                field(Bank; Rec.Bank)
                 {
                     Caption = 'Bank Account No.';
+                    ToolTip = 'Specifies the value of the Bank Account No. field.';
                 }
-                field(BankName;BankName)
+                field(BankName; Rec.BankName)
                 {
                     Caption = 'Bank Name';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Bank Name field.';
                 }
-                field(AmountYen;AmountYen)
+                field(AmountYen; Rec.AmountYen)
                 {
                     Caption = 'Amount JPY';
+                    ToolTip = 'Specifies the value of the Amount JPY field.';
 
                     trigger OnValidate()
                     begin
-                        IF Approved <> '' THEN
-                          ERROR('This Contract is already approved');
+                        IF Rec.Approved <> '' THEN
+                            ERROR('This Contract is already approved');
                     end;
                 }
-                field(ExchangeRate;ExchangeRate)
+                field(ExchangeRate; Rec.ExchangeRate)
                 {
                     Caption = 'Exchange Rate';
+                    ToolTip = 'Specifies the value of the Exchange Rate field.';
 
                     trigger OnValidate()
                     begin
-                        IF Approved <> '' THEN
-                          ERROR('This Contract is already approved');
+                        IF Rec.Approved <> '' THEN
+                            ERROR('This Contract is already approved');
                     end;
                 }
-                field("Current Assigned Amount";"Current Assigned Amount")
+                field("Current Assigned Amount"; Rec."Current Assigned Amount")
                 {
                     MultiLine = true;
+                    ToolTip = 'Specifies the value of the Current Assigned Amount field.';
                 }
-                field("Amount $";"Amount $")
+                field("Amount $"; Rec."Amount $")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Amount $ field.';
                 }
-                field(Expired;Expired)
+                field(Expired; Rec.Expired)
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Expired field.';
                 }
-                field(Approved;Approved)
+                field(Approved; Rec.Approved)
                 {
+                    ToolTip = 'Specifies the value of the Approved field.';
 
                     trigger OnValidate()
                     begin
-                        ApprovedOnAfterValidate;
+                        ApprovedOnAfterValidate();
                     end;
                 }
-                field("Date Created";"Date Created")
+                field("Date Created"; Rec."Date Created")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Date Created field.';
                 }
-                field(PeriodStart;PeriodStart)
+                field(PeriodStart; Rec.PeriodStart)
                 {
                     Caption = 'Window from';
+                    ToolTip = 'Specifies the value of the Window from field.';
 
                     trigger OnValidate()
                     begin
-                        IF Approved <> '' THEN
-                          ERROR('This Contract is already approved');
+                        IF Rec.Approved <> '' THEN
+                            ERROR('This Contract is already approved');
                     end;
                 }
-                field(PeriodEnd;PeriodEnd)
+                field(PeriodEnd; Rec.PeriodEnd)
                 {
                     Caption = 'Window To';
+                    ToolTip = 'Specifies the value of the Window To field.';
 
                     trigger OnValidate()
                     begin
-                        IF Approved <> '' THEN
-                          ERROR('This Contract is already approved');
+                        IF Rec.Approved <> '' THEN
+                            ERROR('This Contract is already approved');
                     end;
                 }
-                field("Bank Contract No.";"Bank Contract No.")
+                field("Bank Contract No."; Rec."Bank Contract No.")
                 {
+                    ToolTip = 'Specifies the value of the Bank Contract No. field.';
                 }
-                field("Posted Amount";"Posted Amount")
-                {
-                    Editable = false;
-                }
-                field(RemainingAmount;RemainingAmount)
+                field("Posted Amount"; Rec."Posted Amount")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Posted Amount field.';
                 }
-                field("Sell Back Rate";"Sell Back Rate")
+                field(RemainingAmount; Rec.RemainingAmount)
+                {
+                    Editable = false;
+                    ToolTip = 'Specifies the value of the RemainingAmount field.';
+                }
+                field("Sell Back Rate"; Rec."Sell Back Rate")
                 {
                     Editable = true;
+                    ToolTip = 'Specifies the value of the Sell Back Rate field.';
                 }
-                field("Sell Back Amount";"Sell Back Amount")
+                field("Sell Back Amount"; Rec."Sell Back Amount")
                 {
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Sell Back Amount field.';
                 }
             }
-            part(Subform;50027)
+            part(Subform; "4X Contract Subform")
             {
-                SubPageLink = Exchange Contract No.=FIELD(No.);
+                SubPageLink = "Exchange Contract No." = FIELD("No.");
             }
-            group()
+            group(General2)
             {
-                field("Current AssignedAmount";"Current Assigned Amount")
+                field("Current AssignedAmount"; Rec."Current Assigned Amount")
                 {
                     Caption = 'Current Assigned Amount';
                     Editable = false;
+                    ToolTip = 'Specifies the value of the Current Assigned Amount field.';
                 }
             }
         }
@@ -149,12 +168,14 @@ page 50028 "Exchange Contract Card"
                 action("&Get Purchase Orders")
                 {
                     Caption = '&Get Purchase Orders';
+                    Image = GetOrder;
+                    ToolTip = 'Executes the &Get Purchase Orders action.';
 
                     trigger OnAction()
                     var
-                        Get4XPOLines: Report "50005";
+                        Get4XPOLines: Report 50005;
                     begin
-                        Get4XPOLines."SetExchange Contract No."("No.");
+                        Get4XPOLines."SetExchange Contract No."(Rec."No.");
                         Get4XPOLines.RUN;
                         //CurrPage.Subform.PAGE.UPDATECONTROLS;
                     end;
@@ -162,82 +183,88 @@ page 50028 "Exchange Contract Card"
                 action("&Update PO with Foreign Exchange No.")
                 {
                     Caption = '&Update PO with Foreign Exchange No.';
+                    Image = UpdateDescription;
+                    ToolTip = 'Executes the &Update PO with Foreign Exchange No. action.';
 
                     trigger OnAction()
                     var
-                        PurchInvHdr: Record "122";
-                        PurchInvLine: Record "123";
+                        PurchInvHdr: Record "Purch. Inv. Header";
+                        PurchInvLine: Record "Purch. Inv. Line";
                         OtherInvFound: Boolean;
+                        TextLbl: Label '%1 %2, line %3 has %4 %5 without an invoice. Do you want to continue?', Comment = '%1%2%3%4%5';
                     begin
                         IF NOT CONFIRM('Do you want to update the PO lines ?', FALSE) THEN
-                          EXIT;
-                        "4X Purchase Header".SETRANGE("Exchange Contract No.", "No.");
+                            EXIT;
+                        "4X Purchase Header".SETRANGE("Exchange Contract No.", Rec."No.");
                         IF "4X Purchase Header".FIND('-') THEN
-                          REPEAT
-                            IF PurchaseHeader.GET(PurchaseHeader."Document Type"::Order, "4X Purchase Header"."Document No.") THEN BEGIN
-                        //>> RTT 07-25-05
-                              //filter on purch lines for this order that have a different non-blank Exchange Contract No.
-                              PurchaseLine.RESET;
-                              PurchaseLine.SETRANGE("Document Type",PurchaseHeader."Document Type");
-                              PurchaseLine.SETRANGE("Document No.",PurchaseHeader."No.");
-                              PurchaseLine.SETFILTER("Exchange Contract No.",'<>%1&<>%2','',"No.");
-                              IF PurchaseLine.FIND('-') THEN
-                                REPEAT
-                                  OtherInvFound := FALSE;
+                            REPEAT
+                                IF PurchaseHeader.GET(PurchaseHeader."Document Type"::Order, "4X Purchase Header"."Document No.") THEN BEGIN
+                                    //>> RTT 07-25-05
+                                    //filter on purch lines for this order that have a different non-blank Exchange Contract No.
+                                    PurchaseLine.RESET();
+                                    PurchaseLine.SETRANGE("Document Type", PurchaseHeader."Document Type");
+                                    PurchaseLine.SETRANGE("Document No.", PurchaseHeader."No.");
+                                    PurchaseLine.SETFILTER("Exchange Contract No.", '<>%1&<>%2', '', Rec."No.");
+                                    IF PurchaseLine.FIND('-') THEN
+                                        REPEAT
+                                            OtherInvFound := FALSE;
 
-                                  //look for purchase invoices for this order and contract no.
-                                  PurchInvHdr.SETCURRENTKEY("Order No.");
-                                  PurchInvHdr.SETRANGE("Order No.",PurchaseLine."Document No.");
-                                  PurchInvHdr.SETRANGE("Exchange Contract No.",PurchaseLine."Exchange Contract No.");
-                                  IF PurchInvHdr.FIND('-') THEN
-                                    REPEAT
-                                       PurchInvLine.SETRANGE("Document No.",PurchInvHdr."No.");
-                                       PurchInvLine.SETRANGE(Type,PurchaseLine.Type);
-                                       PurchInvLine.SETRANGE("No.",PurchaseLine."No.");
-                                       PurchInvLine.SETFILTER(Quantity,'<>%1',0);
-                                       OtherInvFound := PurchInvLine.FIND('-');
-                                    UNTIL (PurchInvHdr.NEXT=0) OR (OtherInvFound);
+                                            //look for purchase invoices for this order and contract no.
+                                            PurchInvHdr.SETCURRENTKEY("Order No.");
+                                            PurchInvHdr.SETRANGE("Order No.", PurchaseLine."Document No.");
+                                            PurchInvHdr.SETRANGE("Exchange Contract No.", PurchaseLine."Exchange Contract No.");
+                                            IF PurchInvHdr.FIND('-') THEN
+                                                REPEAT
+                                                    PurchInvLine.SETRANGE("Document No.", PurchInvHdr."No.");
+                                                    PurchInvLine.SETRANGE(Type, PurchaseLine.Type);
+                                                    PurchInvLine.SETRANGE("No.", PurchaseLine."No.");
+                                                    PurchInvLine.SETFILTER(Quantity, '<>%1', 0);
+                                                    //OtherInvFound := PurchInvLine.FIND('-');
+                                                    OtherInvFound := NOT PurchInvLine.IsEmpty;
+                                                UNTIL (PurchInvHdr.NEXT() = 0) OR (OtherInvFound);
 
-                                  //if no invoices were found, give warning
-                                  IF (NOT OtherInvFound) THEN
-                                    IF NOT CONFIRM(
-                                       STRSUBSTNO('%1 %2, line %3 has %4 %5 without an invoice. Do you want to continue?',
-                                                    PurchaseLine."Document Type",PurchaseLine."Document No.",PurchaseLine."Line No.",
-                                                       PurchaseLine.FIELDNAME("Exchange Contract No."),PurchaseLine."Exchange Contract No.")) THEN
-                                       ERROR('Operation Canceled.');
+                                            //if no invoices were found, give warning
+                                            IF (NOT OtherInvFound) THEN
+                                                IF NOT CONFIRM(
+                                                   STRSUBSTNO(TextLbl,
+                                                                PurchaseLine."Document Type", PurchaseLine."Document No.", PurchaseLine."Line No.",
+                                                                   PurchaseLine.FIELDNAME("Exchange Contract No."), PurchaseLine."Exchange Contract No.")) THEN
+                                                    ERROR('Operation Canceled.');
 
-                                UNTIL PurchaseLine.NEXT=0;
-                        //<< RTT 07-25-05
-                              PurchaseHeader.VALIDATE("Exchange Contract No.", "No.");
-                              PurchaseHeader.MODIFY;
-                        //>> RTT 07-25-05
-                              //MESSAGE('PO Lines Updated');
-                              MESSAGE('%1 %2 Lines Updated',PurchaseHeader."Document Type",PurchaseHeader."No.");
-                        //<< RTT 07-25-05
-                            END
-                            ELSE
-                        //>> RTT 07-25-05
-                              //MESSAGE('Nothing to Update');
-                              MESSAGE('Nothing to Update: %1 %2.',PurchaseHeader."Document Type",PurchaseHeader."No.");
-                        //<< RTT 07-25-05
-                          UNTIL "4X Purchase Header".NEXT = 0;
+                                        UNTIL PurchaseLine.NEXT() = 0;
+                                    //<< RTT 07-25-05
+                                    PurchaseHeader.VALIDATE("Exchange Contract No.", Rec."No.");
+                                    PurchaseHeader.MODIFY();
+                                    //>> RTT 07-25-05
+                                    //MESSAGE('PO Lines Updated');
+                                    MESSAGE('%1 %2 Lines Updated', PurchaseHeader."Document Type", PurchaseHeader."No.");
+                                    //<< RTT 07-25-05
+                                END
+                                ELSE
+                                    //>> RTT 07-25-05
+                                    //MESSAGE('Nothing to Update');
+                                    MESSAGE('Nothing to Update: %1 %2.', PurchaseHeader."Document Type", PurchaseHeader."No.");
+                            //<< RTT 07-25-05
+                            UNTIL "4X Purchase Header".NEXT() = 0;
                     end;
                 }
                 action("&Close Contract")
                 {
                     Caption = '&Close Contract';
+                    Image = CloseDocument;
+                    ToolTip = 'Executes the &Close Contract action.';
 
                     trigger OnAction()
                     var
-                        LText50000: Label 'You still have %1 JPY left on this contract\Do you want to close the contract';
-                        LText50001: Label 'Do you want to close this contract ?';
+                        LText50000Lbl: Label 'You still have %1 JPY left on this contract\Do you want to close the contract', Comment = '%1';
+                        LText50001Lbl: Label 'Do you want to close this contract ?';
                     begin
-                        IF AmountYen <> "Posted Amount" THEN BEGIN
-                         IF CONFIRM(LText50000, FALSE,(AmountYen - "Posted Amount")) THEN
-                           CloseContract(Rec);
+                        IF Rec.AmountYen <> Rec."Posted Amount" THEN BEGIN
+                            IF CONFIRM(LText50000Lbl, FALSE, (Rec.AmountYen - Rec."Posted Amount")) THEN
+                                CloseContract(Rec);
                         END ELSE
-                          IF CONFIRM(LText50001,FALSE) THEN
-                            CloseContract(Rec);
+                            IF CONFIRM(LText50001Lbl, FALSE) THEN
+                                CloseContract(Rec);
                     end;
                 }
             }
@@ -250,29 +277,33 @@ page 50028 "Exchange Contract Card"
                 action("Bank Instruction Page")
                 {
                     Caption = 'Bank Instruction Page';
+                    Image = Bank;
+                    ToolTip = 'Executes the Bank Instruction Page action.';
 
                     trigger OnAction()
                     var
-                        "4XBankReport": Report "50012";
-                        TempRec: Record "50010";
+                        BankExchangeRec: Record "4X Bank Exchange Contract";
+                        "4XBankReport": Report 50012;
                     begin
-                        TempRec.COPY(Rec);
-                        SETRANGE("No.", "No.");
+                        BankExchangeRec.COPY(Rec);
+                        Rec.SETRANGE("No.", Rec."No.");
                         "4XBankReport".SETTABLEVIEW(Rec);
                         "4XBankReport".RUN;
-                        Rec.COPY(TempRec);
+                        Rec.COPY(BankExchangeRec);
                     end;
                 }
                 action("Contract Detail")
                 {
                     Caption = 'Contract Detail';
+                    Image = ViewDetails;
+                    ToolTip = 'Executes the Contract Detail action.';
 
                     trigger OnAction()
                     var
-                        t4XContract: Record "50010";
-                        tDetailReport: Report "50013";
+                        t4XContract: Record "4X Bank Exchange Contract";
+                        tDetailReport: Report 50013;
                     begin
-                        t4XContract.SETRANGE("No.", "No.");
+                        t4XContract.SETRANGE("No.", Rec."No.");
                         tDetailReport.SETTABLEVIEW(t4XContract);
                         tDetailReport.RUN;
                     end;
@@ -283,67 +314,65 @@ page 50028 "Exchange Contract Card"
 
     trigger OnAfterGetRecord()
     begin
-        CALCFIELDS("Posted Amount");
-        RemainingAmount := AmountYen - "Posted Amount";
-        VALIDATE("Sell Back Rate");
+        Rec.CALCFIELDS("Posted Amount");
+        Rec.RemainingAmount := Rec.AmountYen - Rec."Posted Amount";
+        Rec.VALIDATE("Sell Back Rate");
 
-        IF "Contract Complete" THEN
-          CurrPage.EDITABLE := FALSE
+        IF Rec."Contract Complete" THEN
+            CurrPage.EDITABLE := FALSE
         ELSE
-          CurrPage.EDITABLE := TRUE;
-        OnAfterGetCurrRecord;
+            CurrPage.EDITABLE := TRUE;
+        OnAfterGetCurrRecord();
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        OnAfterGetCurrRecord;
+        OnAfterGetCurrRecord();
     end;
 
     trigger OnOpenPage()
     var
-        TempRec: Record "50010";
+        BankExchangeContract: Record "4X Bank Exchange Contract";
     begin
-        TempRec.COPY(Rec);
+        BankExchangeContract.COPY(Rec);
         CheckExpiration;
-        Rec.COPY(TempRec);
+        Rec.COPY(BankExchangeContract);
     end;
 
     var
-        BankContract: Record "270";
-        TEXT001: Label 'Can''t update Amount JPY\This Contract is already Approved';
-        "4X Purchase Header": Record "50008";
-        PurchaseLine: Record "39";
-        PurchaseHeader: Record "38";
+        "4X Purchase Header": Record "4X Purchase Header";
+        PurchaseHeader: Record "Purchase Header";
+        PurchaseLine: Record "Purchase Line";
 
     local procedure ApprovedOnAfterValidate()
     begin
-        IF Approved = '' THEN
-          ERROR('You must enter an UserID');
+        IF Rec.Approved = '' THEN
+            ERROR('You must enter an UserID');
 
-        "4X Purchase Header".SETRANGE("Exchange Contract No.", "No.");
+        "4X Purchase Header".SETRANGE("Exchange Contract No.", Rec."No.");
         IF "4X Purchase Header".FIND('-') THEN
-          IF NOT CONFIRM('Do you want to update the PO lines ?', FALSE) THEN
-            EXIT;
+            IF NOT CONFIRM('Do you want to update the PO lines ?', FALSE) THEN
+                EXIT;
         CLEAR("4X Purchase Header");
-        "4X Purchase Header".SETRANGE("Exchange Contract No.", "No.");
+        "4X Purchase Header".SETRANGE("Exchange Contract No.", Rec."No.");
         IF "4X Purchase Header".FIND('-') THEN
-          REPEAT
-            IF PurchaseHeader.GET(PurchaseHeader."Document Type"::Order, "4X Purchase Header"."Document No.") THEN BEGIN
-              PurchaseHeader.VALIDATE("Exchange Contract No.", "No.");
-              PurchaseHeader.MODIFY;
-              MESSAGE('PO Lines Updated');
-            END
-            ELSE
-              MESSAGE('Nothing to Update');
-          UNTIL "4X Purchase Header".NEXT = 0;
+            REPEAT
+                IF PurchaseHeader.GET(PurchaseHeader."Document Type"::Order, "4X Purchase Header"."Document No.") THEN BEGIN
+                    PurchaseHeader.VALIDATE("Exchange Contract No.", Rec."No.");
+                    PurchaseHeader.MODIFY();
+                    MESSAGE('PO Lines Updated');
+                END
+                ELSE
+                    MESSAGE('Nothing to Update');
+            UNTIL "4X Purchase Header".NEXT() = 0;
     end;
 
     local procedure OnAfterGetCurrRecord()
     begin
         xRec := Rec;
-        IF AmountYen > 0 THEN
-          IF RemainingAmount = 0 THEN
-            MESSAGE('Remaing Amount = 0\Please close this Contract');
+        IF Rec.AmountYen > 0 THEN
+            IF Rec.RemainingAmount = 0 THEN
+                MESSAGE('Remaing Amount = 0\Please close this Contract');
     end;
 }
 

@@ -4,23 +4,28 @@ page 50054 "Label Field Where-Used"
 
     Editable = false;
     PageType = List;
-    SourceTable = Table50006;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    SourceTable = "Label Field Content";
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(General)
             {
                 Editable = false;
-                field("Label Code";"Label Code")
+                field("Label Code"; Rec."Label Code")
                 {
+                    ToolTip = 'Specifies the value of the Label Code field.';
                 }
-                field("Field Code";"Field Code")
+                field("Field Code"; Rec."Field Code")
                 {
+                    ToolTip = 'Specifies the value of the Field Code field.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
+                    ToolTip = 'Specifies the value of the Description field.';
                 }
             }
         }
@@ -37,8 +42,9 @@ page 50054 "Label Field Where-Used"
                 {
                     Caption = '&Card';
                     Image = EditLines;
-                    RunObject = Page 50053;
-                    RunPageLink = Code=FIELD(Label Code);
+                    RunObject = Page "Label Card NIF";
+                    RunPageLink = Code = FIELD("Label Code");
+                    ToolTip = 'Executes the &Card action.';
                 }
             }
         }

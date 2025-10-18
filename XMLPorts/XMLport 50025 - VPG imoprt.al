@@ -7,13 +7,13 @@ xmlport 50025 "VPG imoprt"
     {
         textelement(Root)
         {
-            tableelement(Table23;Table23)
+            tableelement(Vendor; Vendor)
             {
                 XmlName = 'Vendor';
-                fieldelement(No;Vendor."No.")
+                fieldelement(No; Vendor."No.")
                 {
                 }
-                fieldelement(VPG;Vendor."Vendor Posting Group")
+                fieldelement(VPG; Vendor."Vendor Posting Group")
                 {
                 }
             }

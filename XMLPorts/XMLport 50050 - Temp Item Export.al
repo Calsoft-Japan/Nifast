@@ -7,10 +7,10 @@ xmlport 50050 "Temp Item Export"
     {
         textelement(Root)
         {
-            tableelement(Table27;Table27)
+            tableelement(Item; Item)
             {
                 XmlName = 'Item';
-                fieldelement(No;Item."No.")
+                fieldelement(No; Item."No.")
                 {
                 }
             }
