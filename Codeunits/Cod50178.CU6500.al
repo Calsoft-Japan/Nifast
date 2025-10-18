@@ -11,17 +11,16 @@ codeunit 50178 CU_6500
 
     PROCEDURE AssistEditLotSerialNo2(VAR LotEntry: Record 50002 TEMPORARY; SearchForSupply: Boolean; CurrentSignFactor: Integer; LookupMode: Option "Serial No.","Lot No."; MaxQuantity: Decimal): Boolean;
     VAR
-        ItemLedgEntry: Record 32; 
+        ItemLedgEntry: Record 32;
         ReservEntry: Record 337;
         TempReservEntry: Record 337 TEMPORARY;
         TempEntrySummary: Record 338 TEMPORARY;
-        WarehouseEntry: Record 7312;
-        LastEntryNo: Integer;
-        //AvailabilityDate: Date;
-        Window: Dialog;
-        InsertRec: Boolean;
         //">>NIF_LV": Integer;
         LotNoInfo: Record 6505;
+        InsertRec: Boolean;
+        //AvailabilityDate: Date;
+        Window: Dialog;
+        LastEntryNo: Integer;
     BEGIN
         //NV code was commented
         SearchForSupply := TRUE;
@@ -186,8 +185,8 @@ codeunit 50178 CU_6500
         TempEntrySummary.SETRANGE("Lot No.", LotEntry."Lot No.");
         IF TempEntrySummary.FIND('-') THEN
             ItemTrackingSummaryForm.SETRECORD(TempEntrySummary);
-        TempEntrySummary.RESET;
-        Window.CLOSE;
+        TempEntrySummary.RESET();
+        Window.CLOSE();
         IF ItemTrackingSummaryForm.RUNMODAL = ACTION::LookupOK THEN BEGIN
             ItemTrackingSummaryForm.GETRECORD(TempEntrySummary);
             //xSalesLotEntry."Serial No." := TempEntrySummary."Serial No.";
@@ -208,11 +207,11 @@ codeunit 50178 CU_6500
 
     PROCEDURE AssistEditLotSerialNoWMS(VAR LotEntry: Record 50002; MaxQuantity: Decimal);
     VAR
-        ItemTrackingSummaryForm: Page 50022;
         Item: Record 27;
         TempLotBinContent: Record 50001 TEMPORARY;
-        NVM: Codeunit 50021;
         LotEntry2: Record 50002;
+        NVM: Codeunit 50021;
+        ItemTrackingSummaryForm: Page 50022;
     BEGIN
         Item.GET(LotEntry."Item No.");
         Item.SETRANGE("Location Filter", LotEntry."Location Code");
@@ -227,9 +226,9 @@ codeunit 50178 CU_6500
         ItemTrackingSummaryForm.LOOKUPMODE(TRUE);
         IF TempLotBinContent.FIND('-') THEN
             ItemTrackingSummaryForm.SETRECORD(TempLotBinContent);
-        TempLotBinContent.RESET;
+        TempLotBinContent.RESET();
 
-        IF ItemTrackingSummaryForm.RUNMODAL = ACTION::LookupOK THEN BEGIN
+        IF ItemTrackingSummaryForm.RUNMODAL() = ACTION::LookupOK THEN BEGIN
             ItemTrackingSummaryForm.GETRECORD(TempLotBinContent);
 
             //>> ISTRTT 9638 02-04-05
@@ -258,10 +257,10 @@ codeunit 50178 CU_6500
 
     PROCEDURE AssistEditLotSerialWhsActvLn(VAR WhseActivityLine: Record 5767; MaxQuantity: Decimal);
     VAR
-        ItemTrackingSummaryForm: Page 50022;
         Item: Record 27;
-        TempLotBinContent:  Record 50001 TEMPORARY;
+        TempLotBinContent: Record 50001 TEMPORARY;
         NVM: Codeunit 50021;
+        ItemTrackingSummaryForm: Page 50022;
     BEGIN
         Item.GET(WhseActivityLine."Item No.");
         Item.SETRANGE("Location Filter", WhseActivityLine."Location Code");
@@ -278,9 +277,9 @@ codeunit 50178 CU_6500
         ItemTrackingSummaryForm.LOOKUPMODE(TRUE);
         IF TempLotBinContent.FIND('-') THEN
             ItemTrackingSummaryForm.SETRECORD(TempLotBinContent);
-        TempLotBinContent.RESET;
+        TempLotBinContent.RESET();
 
-        IF ItemTrackingSummaryForm.RUNMODAL = ACTION::LookupOK THEN BEGIN
+        IF ItemTrackingSummaryForm.RUNMODAL() = ACTION::LookupOK THEN BEGIN
             ItemTrackingSummaryForm.GETRECORD(TempLotBinContent);
 
             //>> ISTRTT 9638 02-04-05
@@ -305,9 +304,8 @@ codeunit 50178 CU_6500
 
     PROCEDURE LotBinContentLookup(VAR Item: Record 27);
     VAR
+        TempLotBinContent: Record 50001 TEMPORARY;
         ItemTrackingSummaryForm: Page 50022;
-        TempLotBinContent:  Record 50001 TEMPORARY;
-        NVM: Codeunit 50021;
     BEGIN
         Item.GetLotBinContents(TempLotBinContent);
 
@@ -315,16 +313,15 @@ codeunit 50178 CU_6500
         ItemTrackingSummaryForm.LOOKUPMODE(TRUE);
         IF TempLotBinContent.FIND('-') THEN
             ItemTrackingSummaryForm.SETRECORD(TempLotBinContent);
-        TempLotBinContent.RESET;
+        TempLotBinContent.RESET();
 
-        ItemTrackingSummaryForm.RUN;
+        ItemTrackingSummaryForm.RUN();
     END;
 
     PROCEDURE LotBinContentLookupBin(VAR Bin: Record 7354);
     VAR
+        TempLotBinContent: Record 50001 TEMPORARY;
         ItemTrackingSummaryForm: Page 50022;
-        TempLotBinContent:  Record 50001 TEMPORARY;
-        NVM: Codeunit 50021;
     BEGIN
         Bin.GetLotBinContents(TempLotBinContent);
 
@@ -332,16 +329,15 @@ codeunit 50178 CU_6500
         ItemTrackingSummaryForm.LOOKUPMODE(TRUE);
         IF TempLotBinContent.FIND('-') THEN
             ItemTrackingSummaryForm.SETRECORD(TempLotBinContent);
-        TempLotBinContent.RESET;
+        TempLotBinContent.RESET();
 
-        ItemTrackingSummaryForm.RUN;
+        ItemTrackingSummaryForm.RUN();
     END;
 
     PROCEDURE LotBinContentLookupBin2(VAR Bin: Record 7354; VAR ItemNo: Code[20]; VAR LotNo: Code[20]; VAR UseQty: Decimal): Boolean;
     VAR
+        TempLotBinContent: Record 50001 TEMPORARY;
         ItemTrackingSummaryForm: Page 50022;
-        TempLotBinContent:  Record 50001 TEMPORARY;
-        NVM: Codeunit 50021;
     BEGIN
         Bin.GetLotBinContents(TempLotBinContent);
 
@@ -349,9 +345,9 @@ codeunit 50178 CU_6500
         ItemTrackingSummaryForm.LOOKUPMODE(TRUE);
         IF TempLotBinContent.FIND('-') THEN
             ItemTrackingSummaryForm.SETRECORD(TempLotBinContent);
-        TempLotBinContent.RESET;
+        TempLotBinContent.RESET();
 
-        IF ItemTrackingSummaryForm.RUNMODAL = ACTION::LookupOK THEN BEGIN
+        IF ItemTrackingSummaryForm.RUNMODAL() = ACTION::LookupOK THEN BEGIN
             ItemTrackingSummaryForm.GETRECORD(TempLotBinContent);
             ItemNo := TempLotBinContent."Item No.";
             LotNo := TempLotBinContent."Lot No.";
@@ -378,7 +374,7 @@ codeunit 50178 CU_6500
             ItemTrackingSummaryForm.SETRECORD(TempLotBinContent);
         TempLotBinContent.RESET();
 
-        IF ItemTrackingSummaryForm.RUNMODAL = ACTION::LookupOK THEN BEGIN
+        IF ItemTrackingSummaryForm.RUNMODAL() = ACTION::LookupOK THEN BEGIN
             ItemTrackingSummaryForm.GETRECORD(TempLotBinContent);
             ItemNo := TempLotBinContent."Item No.";
             LotNo := TempLotBinContent."Lot No.";
@@ -405,7 +401,7 @@ codeunit 50178 CU_6500
     PROCEDURE CallPostedItemTrackingForm_gFnc(Type: Integer; Subtype: Integer; ID: Code[20]; BatchName: Code[10]; ProdOrderLine: Integer; RefNo: Integer; VAR TempItemLedgEntry_vRecTmp: TEMPORARY Record 32): Boolean;
     VAR
         TempItemLedgEntry: Record 32 TEMPORARY;
-        TrackingSpecification : Codeunit 6500;
+        TrackingSpecification: Codeunit 6500;
     BEGIN
         //>> NF1.00:CIS.NG    09/12/16
         // Used when calling Item Tracking from Posted Shipments/Receipts:

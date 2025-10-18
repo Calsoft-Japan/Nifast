@@ -16,7 +16,7 @@ codeunit 50040 WorkDateRestrictions
     var
        // [WithEvents]
         Timer: DotNet Timer;
-        recUserSetup: Record "91";
+        recUserSetup: Record 91;
 
     trigger Timer::Elapsed(sender: Variant;e: DotNet EventArgs)
     begin
@@ -28,8 +28,8 @@ codeunit 50040 WorkDateRestrictions
         END;
     end;
 
-    trigger Timer::ExceptionOccurred(sender: Variant;e: DotNet ExceptionOccurredEventArgs)
-    begin
-    end;
+    // trigger Timer::ExceptionOccurred(sender: Variant;e: DotNet ExceptionOccurredEventArgs)
+    // begin
+    // end;
 }
 

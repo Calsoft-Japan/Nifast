@@ -12,8 +12,8 @@ codeunit 50174 CU_90
     [EventSubscriber(ObjectType::Codeunit, 90, 'OnAfterCheckPurchDoc', '', True, false)]
     local procedure OnAfterCheckPurchDoc(var PurchHeader: Record "Purchase Header"; CommitIsSupressed: Boolean; WhseShip: Boolean; WhseReceive: Boolean; PreviewMode: Boolean; var ErrorMessageMgt: Codeunit "Error Message Management")
     var
-        Vend: Record Vendor;
         PurchLine: record "Purchase Line";
+        Vend: Record Vendor;
     begin
         //>> NIF #10044 05-18-05 RTT
         //check vessel info for Items being received
@@ -317,7 +317,7 @@ codeunit 50174 CU_90
                     PurchRcptLine.GET(PurchLine."Receipt No.", PurchLine."Receipt Line No.");
                     IF PurchRcptLine."Posting Date" > CheckDate THEN
                         ERROR(Text50000, PurchLine."Receipt No.", PurchLine."Receipt Line No.");
-                UNTIL PurchLine.NEXT = 0;
+                UNTIL PurchLine.NEXT() = 0;
         END;
         //<< IST 030308 JWW  #12701 Added Function CheckReceiptDate()
     END;
@@ -325,20 +325,20 @@ codeunit 50174 CU_90
 
 
     var
-        PurchSetup: Record "Purchases & Payables Setup";
-        PurchLineCommentLine: Record 14017611;
         //">>IST": Integer;
         "4XContractNote": Record 50011;
-        // "4xPO": Record 50008;
-        Text50000: Label 'ENU=Purchase Receipt %1 Line %2 has Posting Date in month later than Posting Date of Invoice.', Comment = '%1 Recepit No %2 Line no';
+        PurchLineCommentLine: Record 14017611;
+        PurchSetup: Record "Purchases & Payables Setup";
 
         NVM: Codeunit 50021;
-        BOL: Code[20];
-        CarrierNo: Code[20];
-        CarrierTrailer: Code[20];
 
         Receiving: Codeunit 14000601;
         Shipping: Codeunit 14000701;
+        BOL: Code[20];
+        CarrierNo: Code[20];
+        CarrierTrailer: Code[20];
+        // "4xPO": Record 50008;
+        Text50000: Label 'ENU=Purchase Receipt %1 Line %2 has Posting Date in month later than Posting Date of Invoice.', Comment = '%1 Recepit No %2 Line no';
 
 
 }

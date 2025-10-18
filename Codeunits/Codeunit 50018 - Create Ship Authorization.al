@@ -40,7 +40,7 @@ codeunit 50018 "Create Ship Authorization"
         EDIRecDocFields.RESET;
         EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "Field Name");
         EDIRecDocFields.SETRANGE("Internal Doc. No.", EDIRecDocHdr2."Internal Doc. No.");
-        IF EDIRecDocFields.FIND('-') THEN BEGIN
+        IF EDIRecDocFields.FIND('-') THEN
             IF EDITradePartner."Customer No." <> '' THEN
                 LastCustomerNo := EDITradePartner."Customer No."
             ELSE BEGIN
@@ -57,7 +57,6 @@ codeunit 50018 "Create Ship Authorization"
                     LastCustomerNo := COPYSTR(EDIRecDocFields."Field Text Value", 1, 20);
                 END;
             END;
-        END;
 
         ProgressWindow.UPDATE(4, LastCustomerNo);
 
@@ -72,10 +71,10 @@ codeunit 50018 "Create Ship Authorization"
             // Locking to prevent Deadlocking
             EDIRecDocHdr.LOCKTABLE;
             EDIRecDocFields.LOCKTABLE;
-            ShipAuthorization.LOCKTABLE;
-            ShipAuthorizationLine.LOCKTABLE;
+            ShipAuthorization.LOCKTABLE();
+            ShipAuthorizationLine.LOCKTABLE();
 
-            ShipAuthorization.INIT;
+            ShipAuthorization.INIT();
             CLEAR(ShipAuthorization);
             ShipAuthorization."EDI Trade Partner" := "Trade Partner No.";
             ShipAuthorization."EDI Internal Doc. No." := "Internal Doc. No.";
@@ -207,13 +206,13 @@ codeunit 50018 "Create Ship Authorization"
             UNTIL EDIRecDocFields.NEXT = 0;
 
         EDIRecDocHdr2."Document Created" := EDIRecDocHdr2."Document Created"::"Ship Auth.";
-        EDIRecDocHdr2."Created Date" := WORKDATE;
+        EDIRecDocHdr2."Created Date" := WORKDATE();
         EDIRecDocHdr2."Created Time" := TIME;
         EDIRecDocHdr2."Data Error" := FALSE;
 
         EDIRecDocHdr2.MODIFY;
 
-        COMMIT;
+        COMMIT();
 
         ProgressWindow.CLOSE;
     end;
@@ -226,11 +225,7 @@ codeunit 50018 "Create Ship Authorization"
         EDITemplate: Record 14002350;
         EDITradePartner: Record 14002360;
         EDIRecDocFields: Record 14002359;
-        EDICustCrossRef: Record 14002362";
-        ProgressWindow: Dialog;
-
-        LastCustomerNo: Code[20];
-        LastItemNo: Code[20];
+        EDICustCrossRef: Record 14002362[20];
         LastItemCrossRefNo: Code[20];
         LastUOM: Code[10];
         LastEDIUOM: Code[10];

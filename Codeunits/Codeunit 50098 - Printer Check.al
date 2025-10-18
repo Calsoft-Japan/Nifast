@@ -2,8 +2,6 @@ codeunit 50098 "Printer Check"
 {
 
     trigger OnRun()
-    var
-        UpdatedPrinterName: Text;
     begin
         UpdatedPrinterName_gTxt := GetPrintName_gFnc('Bullzip PDF Printer (redirected 2)');
         MESSAGE(UpdatedPrinterName_gTxt);
@@ -18,23 +16,23 @@ codeunit 50098 "Printer Check"
         RedirectedPos_lInt: Integer;
         SliptPrinterName_lTxt: Text;
     begin
-        Printer_lRec.RESET;
-        Printer_lRec.SETFILTER(Name,'%1','@' + PrinterName_iTxt);
-        IF Printer_lRec.FINDFIRST THEN
-          EXIT(Printer_lRec.Name);
+        Printer_lRec.RESET();
+        Printer_lRec.SETFILTER(Name, '%1', '@' + PrinterName_iTxt);
+        IF Printer_lRec.FINDFIRST() THEN
+            EXIT(Printer_lRec.Name);
 
-        IF STRPOS(PrinterName_iTxt,'(redirected') = 0 THEN
-          ERROR('Printer not found - %1',PrinterName_iTxt);
+        IF STRPOS(PrinterName_iTxt, '(redirected') = 0 THEN
+            ERROR('Printer not found - %1', PrinterName_iTxt);
 
-        RedirectedPos_lInt := STRPOS(PrinterName_iTxt,'(redirected');
-        SliptPrinterName_lTxt := COPYSTR(PrinterName_iTxt,1,RedirectedPos_lInt);
+        RedirectedPos_lInt := STRPOS(PrinterName_iTxt, '(redirected');
+        SliptPrinterName_lTxt := COPYSTR(PrinterName_iTxt, 1, RedirectedPos_lInt);
 
-        Printer_lRec.RESET;
-        Printer_lRec.SETFILTER(Name,'%1','@*' + SliptPrinterName_lTxt + '*');
-        IF Printer_lRec.FINDFIRST THEN
-          EXIT(Printer_lRec.Name);
+        Printer_lRec.RESET();
+        Printer_lRec.SETFILTER(Name, '%1', '@*' + SliptPrinterName_lTxt + '*');
+        IF Printer_lRec.FINDFIRST() THEN
+            EXIT(Printer_lRec.Name);
 
-        ERROR('Printer name was not found - %1',PrinterName_iTxt);
+        ERROR('Printer name was not found - %1', PrinterName_iTxt);
 
     end;
 }

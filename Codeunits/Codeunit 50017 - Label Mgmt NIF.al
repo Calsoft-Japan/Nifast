@@ -43,29 +43,28 @@ codeunit 50017 "Label Mgmt NIF"
     end;
 
     var
-        PackingStation: Record 14000709;
-        ReceiveStation: Record 14000608;
-        TempLabelValue: Record 50006 temporary;
-        FormatPath: Text[250];
         SalesHeader: Record 36;
-        SalesLine: Record 37;
-        ItemCrossRef: Record 5717;
-        SalesHeaderLoaded: Boolean;
-        SalesLineLoaded: Boolean;
-        ItemCrossRefLoaded: Boolean;
-        TempSalesLine: Record 37 temporary;
-        TempItemCrossRef: Record 5717 temporary;
-        LotInfoLoaded: Boolean;
-        TempLotNoInfo: Record 6505 temporary;
         TempSalesHeader: Record 36 temporary;
+        SalesLine: Record 37;
+        TempSalesLine: Record 37 temporary;
+        ItemCrossRef: Record 5717;
+        TempItemCrossRef: Record 5717 temporary;
+        TempLotNoInfo: Record 6505 temporary;
+        TempLabelValue: Record 50006 temporary;
+        ReceiveStation: Record 14000608;
+        PackingStation: Record 14000709;
         BtApplication: Automation;
         BtFormat: Automation;
-        BtFormats: Automation;
         BtSubstrings: Automation;
+        ItemCrossRefLoaded: Boolean;
+        LotInfoLoaded: Boolean;
+        MastLbl: Boolean;
+        SalesHeaderLoaded: Boolean;
+        SalesLineLoaded: Boolean;
+        PrintValue: Code[20];
         CartonPkgNo: Code[50];
         CartonPkgLnNo: Integer;
-        MastLbl: Boolean;
-        PrintValue: Code[20];
+        FormatPath: Text[250];
 
     local procedure GetPackingStation()
     begin
@@ -81,20 +80,8 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure TestPrintPackageLabel(LabelHeaderCode: Code[10])
     var
-        LabelHeader: Record 14000841;
-        LabelLine: Record 14000842;
-        LabelElement: Record 14000844;
-        "Field": Record 2000000041;
-        OutputFile: File;
-        ValuesEntered: Integer;
-        ReturnCode: Integer;
-        FormatValue: array[10] of Text[250];
-        FormattedString: Text[250];
-        Value: Text[250];
-        ElementValue: array[10] of Text[250];
-        "<<NIF_LV>>": Integer;
-        OutputFileFTP: File;
         LabelContent: Record 50006;
+        LabelHeader: Record 14000841;
         Preview: Boolean;
         PrintSel: Integer;
         UsePrinterName: Text[250];
@@ -113,20 +100,20 @@ codeunit 50017 "Label Mgmt NIF"
         //if receive label, use receive station settings
         IF (LabelHeader."Label Usage" = LabelHeader."Label Usage"::Receive) OR
              (LabelHeader."Label Usage" = LabelHeader."Label Usage"::"Receive Line") THEN BEGIN
-            GetReceiveStation;
+            GetReceiveStation();
             ReceiveStation.TESTFIELD("Printer Name");
             UsePrinterName := ReceiveStation."Printer Name";
         END
         ELSE BEGIN
             //get packing station, make sure have printer name
-            GetPackingStation;
+            GetPackingStation();
             PackingStation.TESTFIELD("Printer Name");
             UsePrinterName := PackingStation."Printer Name";
         END;
 
 
         //init temp table
-        TempLabelValue.DELETEALL;
+        TempLabelValue.DELETEALL();
 
         //now get the label lines
         LabelContent.SETRANGE("Label Code", LabelHeader.Code);
@@ -139,8 +126,8 @@ codeunit 50017 "Label Mgmt NIF"
             IF TempLabelValue."Field Code" = 'QTY' THEN
                 TempLabelValue."Print Value" := DELCHR(TempLabelValue."Print Value", '=', ',');
             //<< 09-15-05
-            TempLabelValue.INSERT;
-        UNTIL LabelContent.NEXT = 0;
+            TempLabelValue.INSERT();
+        UNTIL LabelContent.NEXT() = 0;
 
         //prompt for preview mode
         PrintSel := STRMENU('Preview,Print');
@@ -186,9 +173,9 @@ codeunit 50017 "Label Mgmt NIF"
             //>> NIF 03-22-05
             //ReceiveLineLabel.USEREQUESTFORM(FALSE);
             //ReceiveLineLabel.RUNMODAL;
-            COMMIT;
+            COMMIT();
             ReceiveLineRequest.SETTABLEVIEW(ReceiveLine);
-            ReceiveLineRequest.RUNMODAL;
+            ReceiveLineRequest.RUNMODAL();
             CLEAR(ReceiveLineRequest);
             //<< NIF 03-22-05
         END;
@@ -197,8 +184,8 @@ codeunit 50017 "Label Mgmt NIF"
     procedure PrintReceiveLineLabel(Receive: Record 14000601; "Receive Line": Record 14000602; LabelHeaderCode: Code[10]; UseQty: Decimal; NoCopies: Integer)
     var
         Item: Record 27;
-        LabelHeader: Record 14000841;
         LabelContent: Record 50006;
+        LabelHeader: Record 14000841;
     begin
         CLEAR(Item);
         IF ("Receive Line".Type = "Receive Line".Type::Item) AND ("Receive Line"."No." <> '') THEN
@@ -206,7 +193,7 @@ codeunit 50017 "Label Mgmt NIF"
 
 
         //get receive station, make sure have printer name
-        GetReceiveStation;
+        GetReceiveStation();
         ReceiveStation.TESTFIELD("Printer Name");
 
         //get label, make sure fields exist and have format path
@@ -218,13 +205,13 @@ codeunit 50017 "Label Mgmt NIF"
         LabelHeader.TESTFIELD("No. of Fields");
 
         //init temp table
-        TempLabelValue.DELETEALL;
+        TempLabelValue.DELETEALL();
 
         //now get the label lines
         LabelContent.SETRANGE("Label Code", LabelHeader.Code);
         LabelContent.FIND('-');
         REPEAT
-            TempLabelValue.INIT;
+            TempLabelValue.INIT();
             TempLabelValue."Label Code" := LabelContent."Label Code";
             TempLabelValue."Field Code" := LabelContent."Field Code";
 
@@ -252,8 +239,8 @@ codeunit 50017 "Label Mgmt NIF"
                     ERROR('Field Code %1 not supported.', LabelContent."Field Code");
             END;
 
-            TempLabelValue.INSERT;
-        UNTIL LabelContent.NEXT = 0;
+            TempLabelValue.INSERT();
+        UNTIL LabelContent.NEXT() = 0;
 
         //print label
         LabelPrint(LabelHeader, ReceiveStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
@@ -292,9 +279,9 @@ codeunit 50017 "Label Mgmt NIF"
             //>> NIF 03-22-05
             //PackageLineLabel.USEREQUESTFORM(FALSE);
             //PackageLineLabel.RUNMODAL;
-            COMMIT;
+            COMMIT();
             PackageLineRequest.SETTABLEVIEW(PackageLine);
-            PackageLineRequest.RUNMODAL;
+            PackageLineRequest.RUNMODAL();
             CLEAR(PackageLineRequest);
             //<< NIF 03-22-05
         END;
@@ -303,13 +290,10 @@ codeunit 50017 "Label Mgmt NIF"
     procedure PrintPackageLineLabel(Package: Record 14000701; "Package Line": Record 14000702; LabelHeaderCode: Code[10]; UseQty: Decimal; NoCopies: Integer)
     var
         Item: Record 27;
-        LabelHeader: Record 14000841;
         LabelContent: Record 50006;
-        SalesLine: Record 37;
-        ItemCrossRef: Record 5717;
-        SalesHeader: Record 36;
-        NoSeriesMgt: Codeunit 396;
         PackingRule: Record 14000715;
+        LabelHeader: Record 14000841;
+        NoSeriesMgt: Codeunit 396;
     begin
         CLEAR(Item);
         //jrr
@@ -320,7 +304,7 @@ codeunit 50017 "Label Mgmt NIF"
             IF NOT Item.GET("Package Line"."No.") THEN;
 
         //get Package station, make sure have printer name
-        GetPackingStation;
+        GetPackingStation();
         PackingStation.TESTFIELD("Printer Name");
 
         //get label, make sure fields exist and have format path
@@ -332,21 +316,21 @@ codeunit 50017 "Label Mgmt NIF"
         LabelHeader.TESTFIELD("No. of Fields");
 
         //init temp table
-        TempSalesHeader.DELETEALL;
-        TempSalesLine.DELETEALL;
+        TempSalesHeader.DELETEALL();
+        TempSalesLine.DELETEALL();
         TempItemCrossRef.DELETEALL;
-        TempLotNoInfo.DELETEALL;
-        TempLabelValue.RESET;
-        TempLabelValue.DELETEALL;
+        TempLotNoInfo.DELETEALL();
+        TempLabelValue.RESET();
+        TempLabelValue.DELETEALL();
 
-        ClearPackageVars;
+        ClearPackageVars();
 
         //now get the label lines
         LabelContent.SETRANGE("Label Code", LabelHeader.Code);
         LabelContent.FIND('-');
 
         REPEAT
-            TempLabelValue.INIT;
+            TempLabelValue.INIT();
             TempLabelValue."Label Code" := LabelContent."Label Code";
             TempLabelValue."Field Code" := LabelContent."Field Code";
 
@@ -495,15 +479,14 @@ codeunit 50017 "Label Mgmt NIF"
                         TempLabelValue."Print Value" := FORMAT(TempSalesLine."Mfg. Date");
                     END;
                 'MFG_LOT_NO':
-                    BEGIN
-                        IF "Package Line"."Mfg. Lot No." = '' THEN BEGIN
-                            IF NOT LotInfoLoaded THEN
-                                LoadLotNoInfo(Package, "Package Line");
-                            TempLabelValue."Print Value" := FORMAT(TempLotNoInfo."Mfg. Lot No.");
-                        END
-                        ELSE
-                            TempLabelValue."Print Value" := "Package Line"."Mfg. Lot No.";
-                    END;
+
+                    IF "Package Line"."Mfg. Lot No." = '' THEN BEGIN
+                        IF NOT LotInfoLoaded THEN
+                            LoadLotNoInfo(Package, "Package Line");
+                        TempLabelValue."Print Value" := FORMAT(TempLotNoInfo."Mfg. Lot No.");
+                    END
+                    ELSE
+                        TempLabelValue."Print Value" := "Package Line"."Mfg. Lot No.";
                 'MODEL_YR':
                     BEGIN
                         IF NOT SalesLineLoaded THEN
@@ -511,13 +494,13 @@ codeunit 50017 "Label Mgmt NIF"
                         TempLabelValue."Print Value" := FORMAT(TempSalesLine."Model Year");
                     END;
                 'NET_WT':  //base on qty printing/total qty
-                    BEGIN
-                        IF "Package Line".Quantity = 0 THEN
-                            TempLabelValue."Print Value" := '0'
-                        ELSE
-                            TempLabelValue."Print Value" := FORMAT(
-                                  ROUND((UseQty / "Package Line".Quantity) * "Package Line"."Net Weight", 0.1, '>'));
-                    END;
+
+
+                    IF "Package Line".Quantity = 0 THEN
+                        TempLabelValue."Print Value" := '0'
+                    ELSE
+                        TempLabelValue."Print Value" := FORMAT(
+                              ROUND((UseQty / "Package Line".Quantity) * "Package Line"."Net Weight", 0.1, '>'));
                 'PICK_NO':
                     TempLabelValue."Print Value" := GetPackagePickNo(Package, "Package Line");
                 'PLANT_CODE':
@@ -734,8 +717,8 @@ codeunit 50017 "Label Mgmt NIF"
                     ERROR('Field Code %1 not supported.', LabelContent."Field Code");
             END;
 
-            TempLabelValue.INSERT;
-        UNTIL LabelContent.NEXT = 0;
+            TempLabelValue.INSERT();
+        UNTIL LabelContent.NEXT() = 0;
 
         //print label
         LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
@@ -744,23 +727,20 @@ codeunit 50017 "Label Mgmt NIF"
     procedure PrintPackageLabel(Package: Record 14000701; LabelHeaderCode: Code[10]; NoCopies: Integer; Posted: Boolean; UseLineNo: Integer; UseQty: Decimal)
     var
         Item: Record 27;
-        LabelHeader: Record 14000841;
         LabelContent: Record 50006;
-        SalesLine: Record 37;
-        ItemCrossRef: Record 5717;
-        SalesHeader: Record 36;
-        NoSeriesMgt: Codeunit 396;
-        TempPackageLine: Record 14000702 temporary;
         "Package Line": Record 14000702;
+        TempPackageLine: Record 14000702 temporary;
         PackingRule: Record 14000715;
+        LabelHeader: Record 14000841;
+        NoSeriesMgt: Codeunit 396;
         MasterLabelReqForm: Page 50060;
     begin
         CLEAR(Item);
-        TempLabelValue.RESET;
-        TempLabelValue.DELETEALL;
+        TempLabelValue.RESET();
+        TempLabelValue.DELETEALL();
 
         //get Package station, make sure have printer name
-        GetPackingStation;
+        GetPackingStation();
         PackingStation.TESTFIELD("Printer Name");
 
         //get label, make sure fields exist and have format path
@@ -772,13 +752,13 @@ codeunit 50017 "Label Mgmt NIF"
         LabelHeader.TESTFIELD("No. of Fields");
 
         //init temp table
-        TempLabelValue.DELETEALL;
-        TempSalesHeader.DELETEALL;
-        TempSalesLine.DELETEALL;
+        TempLabelValue.DELETEALL();
+        TempSalesHeader.DELETEALL();
+        TempSalesLine.DELETEALL();
         TempItemCrossRef.DELETEALL;
-        TempLotNoInfo.DELETEALL;
+        TempLotNoInfo.DELETEALL();
 
-        ClearPackageVars;
+        ClearPackageVars();
 
         //summarize package lines          //jrr
         //init temp table
@@ -796,8 +776,8 @@ codeunit 50017 "Label Mgmt NIF"
             MasterLabelReqForm.SetFormValues(Package."No.", FORMAT(TempPackageLine.Type), TempPackageLine."No.",
                    TempPackageLine.Quantity, TempPackageLine.Description, Package."Ship-to No.", Package."Ship-to Code",
                      1, TempPackageLine.Quantity);
-            COMMIT;
-            IF MasterLabelReqForm.RUNMODAL = ACTION::OK THEN
+            COMMIT();
+            IF MasterLabelReqForm.RUNMODAL() = ACTION::OK THEN
                 MasterLabelReqForm.GetFormValues(UseQty, NoCopies)
             ELSE
                 EXIT;
@@ -816,7 +796,7 @@ codeunit 50017 "Label Mgmt NIF"
         LabelContent.SETRANGE("Label Code", LabelHeader.Code);
         LabelContent.FIND('-');
         REPEAT
-            TempLabelValue.INIT;
+            TempLabelValue.INIT();
             TempLabelValue."Label Code" := LabelContent."Label Code";
             TempLabelValue."Field Code" := LabelContent."Field Code";
 
@@ -965,15 +945,14 @@ codeunit 50017 "Label Mgmt NIF"
                         TempLabelValue."Print Value" := FORMAT(TempSalesLine."Mfg. Date");
                     END;
                 'MFG_LOT_NO':
-                    BEGIN
-                        IF "Package Line"."Mfg. Lot No." = '' THEN BEGIN
-                            IF NOT LotInfoLoaded THEN
-                                LoadLotNoInfo(Package, "Package Line");
-                            TempLabelValue."Print Value" := FORMAT(TempLotNoInfo."Mfg. Lot No.");
-                        END
-                        ELSE
-                            TempLabelValue."Print Value" := "Package Line"."Mfg. Lot No.";
-                    END;
+
+                    IF "Package Line"."Mfg. Lot No." = '' THEN BEGIN
+                        IF NOT LotInfoLoaded THEN
+                            LoadLotNoInfo(Package, "Package Line");
+                        TempLabelValue."Print Value" := FORMAT(TempLotNoInfo."Mfg. Lot No.");
+                    END
+                    ELSE
+                        TempLabelValue."Print Value" := "Package Line"."Mfg. Lot No.";
                 'MODEL_YR':
                     BEGIN
                         IF NOT SalesLineLoaded THEN
@@ -1188,8 +1167,8 @@ codeunit 50017 "Label Mgmt NIF"
                     ERROR('Field Code %1 not supported.', LabelContent."Field Code");
             END;
 
-            TempLabelValue.INSERT;
-        UNTIL LabelContent.NEXT = 0;
+            TempLabelValue.INSERT();
+        UNTIL LabelContent.NEXT() = 0;
 
         MastLbl := TRUE;   //jrr
 
@@ -1202,21 +1181,20 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure PrintContractLineLabel(ContractLine: Record 7002; LabelHeaderCode: Code[10]; NoCopies: Integer; UsePackingStation: Boolean)
     var
-        LabelHeader: Record 14000841;
+        // ItemCrossRefL: Record 5717;
         LabelContent: Record 50006;
         ContractHeader: Record 50110;
-        ItemCrossRef: Record 5717;
-        PackingRule: Record 14000715;
+        LabelHeader: Record 14000841;
     begin
-        TempLabelValue.RESET;
-        TempLabelValue.DELETEALL;
+        TempLabelValue.RESET();
+        TempLabelValue.DELETEALL();
 
         //get Package station, make sure have printer name
         IF UsePackingStation THEN BEGIN
-            GetPackingStation;
+            GetPackingStation();
             PackingStation.TESTFIELD("Printer Name")
         END ELSE BEGIN
-            GetReceiveStation;
+            GetReceiveStation();
             ReceiveStation.TESTFIELD("Printer Name");
         END;
 
@@ -1229,26 +1207,24 @@ codeunit 50017 "Label Mgmt NIF"
         LabelHeader.TESTFIELD("No. of Fields");
 
         //init temp table
-        TempLabelValue.DELETEALL;
+        TempLabelValue.DELETEALL();
 
         //set pointers
         IF NOT ContractHeader.GET(ContractLine."Contract No.") THEN
             CLEAR(ContractHeader);
 
-        WITH ItemCrossRef DO BEGIN
-            SETCURRENTKEY("Item No.", "Variant Code", "Unit of Measure", "Cross-Reference Type", "Cross-Reference Type No.");
-            SETRANGE("Item No.", ContractLine."Item No.");
-            SETRANGE("Cross-Reference Type", ItemCrossRef."Cross-Reference Type"::Customer);
-            SETRANGE("Cross-Reference Type No.", ContractLine."Sales Code");
-            IF NOT FIND('-') THEN
-                CLEAR(ItemCrossRef);
-        END;
+        SETCURRENTKEY("Item No.", "Variant Code", "Unit of Measure", "Cross-Reference Type", "Cross-Reference Type No.");
+        SETRANGE("Item No.", ContractLine."Item No.");
+        SETRANGE("Cross-Reference Type", ItemCrossRef."Cross-Reference Type"::Customer);
+        SETRANGE("Cross-Reference Type No.", ContractLine."Sales Code");
+        IF NOT FIND('-') THEN
+            CLEAR(ItemCrossRef);
 
         //now get the label lines
         LabelContent.SETRANGE("Label Code", LabelHeader.Code);
         LabelContent.FIND('-');
         REPEAT
-            TempLabelValue.INIT;
+            TempLabelValue.INIT();
             TempLabelValue."Label Code" := LabelContent."Label Code";
             TempLabelValue."Field Code" := LabelContent."Field Code";
 
@@ -1290,8 +1266,8 @@ codeunit 50017 "Label Mgmt NIF"
                     ERROR('Field Code %1 not supported.', LabelContent."Field Code");
             END;
 
-            TempLabelValue.INSERT;
-        UNTIL LabelContent.NEXT = 0;
+            TempLabelValue.INSERT();
+        UNTIL LabelContent.NEXT() = 0;
 
         //print label
         IF UsePackingStation THEN
@@ -1302,10 +1278,10 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure LabelPrint(LabelHeader: Record 14000841; PrinterName: Text[250]; Preview: Boolean; NoCopies: Integer)
     var
-        i: Integer;
-        NoSeriesMgt: Codeunit 396;
-        PkgLn_L: Record 14000702;
         MasterPkgLn_L: Record 14000702;
+        PkgLn_L: Record 14000702;
+        NoSeriesMgt: Codeunit 396;
+        i: Integer;
         CartonFirstSrNo: Text;
         CartonLastSrNo: Text;
     begin
@@ -1361,7 +1337,7 @@ codeunit 50017 "Label Mgmt NIF"
                     CartonFirstSrNo := TempLabelValue."Print Value";
         //jrre
 
-        UNTIL TempLabelValue.NEXT = 0;
+        UNTIL TempLabelValue.NEXT() = 0;
 
         BtFormat.EnablePrompting(FALSE);
 
@@ -1376,14 +1352,13 @@ codeunit 50017 "Label Mgmt NIF"
                             IF LabelHeader."Label Type" = LabelHeader."Label Type"::" " THEN //CIS.RAM051322
                                 TempLabelValue."Print Value" := FORMAT(NoSeriesMgt.GetNextNo(TempLabelValue."No. Series", TODAY, TRUE))
                             //>>CIS.RAM051322
-                            ELSE BEGIN
+                            ELSE
                                 TempLabelValue."Print Value" := PrintValue +
-                                   FORMAT(NoSeriesMgt.GetNextNo(TempLabelValue."No. Series", TODAY, TRUE))
-                            END;
+                                   FORMAT(NoSeriesMgt.GetNextNo(TempLabelValue."No. Series", TODAY, TRUE));
                             //<<CIS.RAM051322
                             BtFormat.SetNamedSubStringValue(TempLabelValue."Field Code", TempLabelValue."Print Value");
                             CartonLastSrNo := TempLabelValue."Print Value";   //jrr
-                        UNTIL TempLabelValue.NEXT = 0;
+                        UNTIL TempLabelValue.NEXT() = 0;
                 END;
                 BtFormat.PrintOut(TRUE, FALSE);   //show print dialog
             END;
@@ -1466,9 +1441,6 @@ codeunit 50017 "Label Mgmt NIF"
     end;
 
     procedure LoadSalesHeader(Package: Record 14000701; PackageLine: Record 14000702)
-    var
-        SalesShptLine: Record 111;
-        SalesShptHdr: Record 110;
     begin
         //>>IST 012609 CCL $12797 #12797
         //IF NOT SalesHeader.GET(SalesHeader."Document Type"::Order,PackageLine."Sales Order No.") THEN
@@ -1486,14 +1458,12 @@ codeunit 50017 "Label Mgmt NIF"
             //CCL012609    END;
 
             TempSalesHeader := SalesHeader;
-        TempSalesHeader.INSERT;
+        TempSalesHeader.INSERT();
 
         SalesHeaderLoaded := TRUE;
     end;
 
     procedure LoadSalesLine(Package: Record 14000701; PackageLine: Record 14000702)
-    var
-        SalesShptLine: Record 111;
     begin
         //>>IST 012609 CCL $12797 #12797
         //IF NOT SalesLine.GET(SalesLine."Document Type"::Order,PackageLine."Sales Order No.",PackageLine."Order Line No.") THEN
@@ -1516,24 +1486,24 @@ codeunit 50017 "Label Mgmt NIF"
 
         // NF2.00:CIS.RAM >>>
         IF NOT SalesLine.GET(SalesLine."Document Type"::Order, PackageLine."Source ID", PackageLine."Order Line No.") THEN BEGIN
-            SalesLine.RESET;
+            SalesLine.RESET();
             SalesLine.SETRANGE("Document Type", PackageLine."Source Subtype");
             SalesLine.SETRANGE("Document No.", PackageLine."Source ID");
             SalesLine.SETRANGE(Type, PackageLine.Type);
             SalesLine.SETRANGE("No.", PackageLine."No.");
-            IF SalesLine.FINDFIRST THEN;
+            IF SalesLine.FINDFIRST() THEN;
         END;
         // NF2.00:CIS.RAM <<<
 
         TempSalesLine := SalesLine;
-        TempSalesLine.INSERT;
+        TempSalesLine.INSERT();
 
         SalesLineLoaded := TRUE;
     end;
 
     procedure LoadItemCrossRef(Package: Record 14000701; PackageLine: Record 14000702)
     var
-        ItemCrossRef: Record 5717;
+        ItemCrossRefL: Record 5717;
     begin
         //if not an item or valid cross reference, then exit
         IF (PackageLine.Type <> PackageLine.Type::Item) OR
@@ -1542,20 +1512,20 @@ codeunit 50017 "Label Mgmt NIF"
             EXIT;
         END;
 
-        ItemCrossRef.SETRANGE("Item No.", PackageLine."No.");
-        ItemCrossRef.SETRANGE("Variant Code", PackageLine."Variant Code");
-        ItemCrossRef.SETRANGE("Unit of Measure", PackageLine."Unit of Measure Code");
-        ItemCrossRef.SETRANGE("Cross-Reference Type", ItemCrossRef."Cross-Reference Type"::Customer);
-        ItemCrossRef.SETRANGE("Cross-Reference Type No.", Package."Ship-to No.");
+        ItemCrossRefL.SETRANGE("Item No.", PackageLine."No.");
+        ItemCrossRefL.SETRANGE("Variant Code", PackageLine."Variant Code");
+        ItemCrossRefL.SETRANGE("Unit of Measure", PackageLine."Unit of Measure Code");
+        ItemCrossRefL.SETRANGE("Cross-Reference Type", ItemCrossRefL."Cross-Reference Type"::Customer);
+        ItemCrossRefL.SETRANGE("Cross-Reference Type No.", Package."Ship-to No.");
 
         //if cannot find, take off uom filter
-        IF NOT ItemCrossRef.FIND('-') THEN
-            ItemCrossRef.SETRANGE("Unit of Measure");
+        IF NOT ItemCrossRefL.FIND('-') THEN
+            ItemCrossRefL.SETRANGE("Unit of Measure");
 
-        IF NOT ItemCrossRef.FIND('-') THEN
-            CLEAR(ItemCrossRef);
+        IF NOT ItemCrossRefL.FIND('-') THEN
+            CLEAR(ItemCrossRefL);
 
-        TempItemCrossRef := ItemCrossRef;
+        TempItemCrossRef := ItemCrossRefL;
 
         ItemCrossRefLoaded := TRUE;
     end;
@@ -1640,15 +1610,15 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure PrintLabelsFromPick(WhseActvHdr: Record 5766)
     var
+        Item: Record 27;
+        lSalesRecSetupRec: Record 311;
         Package: Record 14000701;
         PackageLine: Record 14000702;
-        LabelHeaderCode: Code[10];
-        NoCopies: Integer;
-        UseQty: Decimal;
-        SNP: Decimal;
-        Item: Record 27;
         PackingRule: Record 14000715;
-        lSalesRecSetupRec: Record 311;
+        LabelHeaderCode: Code[10];
+        SNP: Decimal;
+        UseQty: Decimal;
+        NoCopies: Integer;
     begin
 
         CreatePackageFromPick(WhseActvHdr);
@@ -1678,7 +1648,7 @@ codeunit 50017 "Label Mgmt NIF"
         UNTIL PackageLine.NEXT = 0;
 
         //NF2.00:CIS.RAM 10/10/2017
-        lSalesRecSetupRec.GET;
+        lSalesRecSetupRec.GET();
         IF NOT (lSalesRecSetupRec."Create Pack & Enable Ship") THEN
             //NF2.00:CIS.RAM 10/10/2017
             //clean up
@@ -1687,16 +1657,16 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure PrintLabelsFromPostedPick(PostedInvtPickHdr: Record 7342)
     var
-        LabelHeaderCode: Code[10];
-        NoCopies: Integer;
-        UseQty: Decimal;
-        SNP: Decimal;
         Item: Record 27;
-        PackingRule: Record 14000715;
+        PostedInvtPickLine: Record 7343;
         Package: Record 14000701;
         PackageLine: Record 14000702;
-        PostedInvtPickLine: Record 7343;
+        PackingRule: Record 14000715;
+        LabelHeaderCode: Code[10];
         UsePkgNo: Code[20];
+        SNP: Decimal;
+        UseQty: Decimal;
+        NoCopies: Integer;
     begin
         UsePkgNo := PostedInvtPickHdr."No." + '[R]';
 
@@ -1729,23 +1699,22 @@ codeunit 50017 "Label Mgmt NIF"
 
 
                 PrintPackageLineLabel(Package, PackageLine, LabelHeaderCode, UseQty, NoCopies);
-            UNTIL PostedInvtPickLine.NEXT = 0;
+            UNTIL PostedInvtPickLine.NEXT() = 0;
         //clean up
         Package.DELETE(TRUE);
     end;
 
     procedure PrintLabelsFromPickLine(WhseActvLine: Record 5767)
     var
+        Item: Record 27;
         Package: Record 14000701;
         PackageLine: Record 14000702;
-        LabelHeaderCode: Code[10];
-        NoCopies: Integer;
-        UseQty: Decimal;
-        SNP: Decimal;
-        Item: Record 27;
         PackingRule: Record 14000715;
-        WhseActvHdr: Record 5766;
         LabelMgt: Codeunit 14000841;
+        LabelHeaderCode: Code[10];
+        SNP: Decimal;
+        UseQty: Decimal;
+        NoCopies: Integer;
     begin
 
         CreatePackageFromPickLine(WhseActvLine);
@@ -1785,17 +1754,16 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure PrintLabelsFromPostedPickLine(PostedInvtPickLine: Record 7343)
     var
+        Item: Record 27;
         Package: Record 14000701;
         PackageLine: Record 14000702;
-        LabelHeaderCode: Code[10];
-        NoCopies: Integer;
-        UseQty: Decimal;
-        SNP: Decimal;
-        Item: Record 27;
         PackingRule: Record 14000715;
-        WhseActvHdr: Record 5766;
         LabelMgt: Codeunit 14000841;
+        LabelHeaderCode: Code[10];
         UsePkgNo: Code[20];
+        SNP: Decimal;
+        UseQty: Decimal;
+        NoCopies: Integer;
     begin
 
         UsePkgNo := PostedInvtPickLine."No." + '[R]';
@@ -1831,14 +1799,14 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure CreatePackageFromPick(WhseActvHdr: Record 5766)
     var
-        WhseActvLine: Record 5767;
-        PackageMgt: Codeunit 14000702;
-        PackingControl: Record 14000717 temporary;
-        Package: Record 14000701;
         SalesSetup: Record 311;
+        WhseActvLine: Record 5767;
+        Package: Record 14000701;
+        PackingControl: Record 14000717 temporary;
+        PackageMgt: Codeunit 14000702;
     begin
         //make sure sales setup allows
-        SalesSetup.GET;
+        SalesSetup.GET();
         IF (NOT SalesSetup."Enable Shipping - Picks") THEN
             ERROR('Current configuration does not allow this function.');
 
@@ -1876,22 +1844,22 @@ codeunit 50017 "Label Mgmt NIF"
                 Package.GET(Package."No.");
                 Package.ClearTotalValueFields;
                 Package.TotalNetWeight;
-            UNTIL WhseActvLine.NEXT = 0;
+            UNTIL WhseActvLine.NEXT() = 0;
         END;
     end;
 
     procedure CreatePackageFromPickLine(WhseActvLine: Record 5767)
     var
-        PackageMgt: Codeunit 14000702;
-        PackingControl: Record 14000717 temporary;
-        Package: Record 14000701;
         SalesSetup: Record 311;
         WhseActvHdr: Record 5766;
+        Package: Record 14000701;
+        PackingControl: Record 14000717 temporary;
+        PackageMgt: Codeunit 14000702;
     begin
         //<< used to print single line of labels >>
 
         //make sure sales setup allows
-        SalesSetup.GET;
+        SalesSetup.GET();
         IF (NOT SalesSetup."Enable Shipping - Picks") THEN
             ERROR('Current configuration does not allow this function.');
 
@@ -1928,17 +1896,17 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure CreatePackageFromRegPick(PostedInvtPickHdr: Record 7342)
     var
+        SalesShptHdr: Record 110;
         PostedInvtPickLine: Record 7343;
-        PackageMgt: Codeunit 14000702;
-        PackingControl: Record 14000717 temporary;
         Package: Record 14000701;
+        PackageLine: Record 14000702;
         PostedPackage: Record 14000704;
         PostedPackageLine: Record 14000705;
-        PackageLine: Record 14000702;
-        SalesShptHdr: Record 110;
-        Shipping: Codeunit 14000701;
-        Summary: Boolean;
         PackingRule: Record 14000715;
+        PackingControl: Record 14000717 temporary;
+        Shipping: Codeunit 14000701;
+        PackageMgt: Codeunit 14000702;
+        Summary: Boolean;
     begin
         //delete, recreate package
         IF PostedPackage.GET(PostedInvtPickHdr."No.") THEN
@@ -1994,7 +1962,7 @@ codeunit 50017 "Label Mgmt NIF"
                 Package.GET(Package."No.");
                 Package.ClearTotalValueFields;
                 Package.TotalNetWeight;
-            UNTIL PostedInvtPickLine.NEXT = 0;
+            UNTIL PostedInvtPickLine.NEXT() = 0;
         END;
 
 
@@ -2009,7 +1977,7 @@ codeunit 50017 "Label Mgmt NIF"
         PostedPackage."Posted Source ID" := PostedInvtPickHdr."Source No.";
         //<<IST 032409 CCL $12797 #12797
         PostedPackage."Posting Date" := SalesShptHdr."Posting Date";
-        PostedPackage."Packing Date" := WORKDATE;
+        PostedPackage."Packing Date" := WORKDATE();
         PostedPackage.INSERT;
 
         PackageLine.SETRANGE("Package No.", Package."No.");
@@ -2031,17 +1999,17 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure CreatePackageFromSalesShpt(SalesShptHdr: Record 110; Summary: Boolean)
     var
+        ItemLedgeEntry: Record 32;
         SalesShptLine: Record 111;
-        PackageMgt: Codeunit 14000702;
-        PackingControl: Record 14000717 temporary;
+        ItemEntryRelation: Record 6507;
+        PostedInvtPickHdr: Record 7342;
         Package: Record 14000701;
+        PackageLine: Record 14000702;
         PostedPackage: Record 14000704;
         PostedPackageLine: Record 14000705;
-        PackageLine: Record 14000702;
+        PackingControl: Record 14000717 temporary;
         Shipping: Codeunit 14000701;
-        ItemEntryRelation: Record 6507;
-        ItemLedgeEntry: Record 32;
-        PostedInvtPickHdr: Record 7342;
+        PackageMgt: Codeunit 14000702;
     begin
         //if a posted pick exists for this shipment, with a posted package, then exit
         PostedInvtPickHdr.SETRANGE("Source No.", SalesShptHdr."No.");
@@ -2086,7 +2054,7 @@ codeunit 50017 "Label Mgmt NIF"
                 ItemEntryRelation.SETRANGE("Source ID", SalesShptHdr."No.");
                 ItemEntryRelation.SETRANGE("Source Type", DATABASE::"Sales Shipment Line");
                 ItemEntryRelation.SETRANGE("Source Ref. No.", SalesShptLine."Line No.");
-                IF ItemEntryRelation.FIND('-') THEN BEGIN
+                IF ItemEntryRelation.FIND('-') THEN
                     REPEAT
                         PackingControl."Pack Lot Number" := (ItemEntryRelation."Lot No." <> '');
                         PackingControl."Input Lot Number" := ItemEntryRelation."Lot No.";
@@ -2096,8 +2064,8 @@ codeunit 50017 "Label Mgmt NIF"
                             MESSAGE('%1', PackingControl."Error Message");
                             EXIT;
                         END;
-                    UNTIL ItemEntryRelation.NEXT = 0;
-                END ELSE BEGIN
+                    UNTIL ItemEntryRelation.NEXT() = 0
+                ELSE BEGIN
                     PackingControl."Pack Lot Number" := FALSE;
                     PackingControl."Input Lot Number" := '';
                     IF NOT PackageMgt.CreatePackageLineNIF(Package, PackingControl, SalesShptLine.Quantity, Summary) THEN BEGIN
@@ -2110,7 +2078,7 @@ codeunit 50017 "Label Mgmt NIF"
                 Package.ClearTotalValueFields;
                 Package.TotalNetWeight;
 
-            UNTIL SalesShptLine.NEXT = 0;
+            UNTIL SalesShptLine.NEXT() = 0;
         END;
 
 
@@ -2122,7 +2090,7 @@ codeunit 50017 "Label Mgmt NIF"
         PostedPackage.TRANSFERFIELDS(Package);
         //CCL012609PostedPackage."Sales Shipment No." := SalesShptHdr."No.";
         PostedPackage."Posting Date" := SalesShptHdr."Posting Date";
-        PostedPackage."Packing Date" := WORKDATE;
+        PostedPackage."Packing Date" := WORKDATE();
         PostedPackage.INSERT;
 
         PackageLine.SETRANGE("Package No.", Package."No.");
@@ -2141,14 +2109,11 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure CreatePackageFromRegPickLine(PostedInvtPickLine: Record 7343; UsePkgNo: Code[20])
     var
-        PackageMgt: Codeunit 14000702;
-        PackingControl: Record 14000717 temporary;
-        Package: Record 14000701;
-        PackageLine: Record 14000702;
         SalesShptHdr: Record 110;
-        Shipping: Codeunit 14000701;
-        PackingRule: Record 14000715;
         PostedInvtPickHdr: Record 7342;
+        Package: Record 14000701;
+        PackingControl: Record 14000717 temporary;
+        PackageMgt: Codeunit 14000702;
     begin
         //delete, recreate package
         PostedInvtPickHdr.GET(PostedInvtPickLine."No.");
@@ -2185,11 +2150,8 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure GetPackagePickNo(PackageHdr: Record 14000701; PackageLine: Record 14000702) PickNo: Code[20]
     var
-        SalesLine: Record 37;
-        WhseActvLine: Record 5767;
         WhseActvHdr: Record 5766;
-        PostedInvtPickHdr: Record 7342;
-        PostedInvtPickLine: Record 7343;
+        WhseActvLine: Record 5767;
     begin
         //if have shipment no., then is posted
         //CCL012609  IF PackageHdr."Sales Shipment No."<>'' THEN BEGIN
@@ -2255,10 +2217,10 @@ codeunit 50017 "Label Mgmt NIF"
     // end;
     local procedure WritePackageSerialNumber(CallNumber: Integer; CartonFirstSrNo: Text; CartonLastSrNo: Text; MasterLabelNo: Text; CustNo: Code[10])
     var
-        OutStr: OutStream;
         TempBlob: Codeunit "Temp Blob";
-        FileName: Text[250];
+        OutStr: OutStream;
         FileContent: Text;
+        FileName: Text[250];
     begin
         if CustNo in ['NISSAN', 'RO164-CTN', 'RO164-MST'] then begin
             FileName := StrSubstNo('%1-%2-%3.txt',
@@ -2286,7 +2248,7 @@ codeunit 50017 "Label Mgmt NIF"
                 FileName);
         end;
     end;
-    
+
 
 }
 

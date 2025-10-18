@@ -14,11 +14,11 @@ codeunit 50132 "NewVision Validation"
         EXIT(Customer.GET(CustNo));
     end;
 
-    procedure ValidateShipTo(CustNo: Code[20];ShipToCode: Code[10]): Boolean
+    procedure ValidateShipTo(CustNo: Code[20]; ShipToCode: Code[10]): Boolean
     var
         ShiptoAddress: Record 222;
     begin
-        EXIT(ShiptoAddress.GET(CustNo,ShipToCode));
+        EXIT(ShiptoAddress.GET(CustNo, ShipToCode));
     end;
 
     procedure ValidateItem(ItemNo: Code[20]): Boolean
@@ -35,11 +35,11 @@ codeunit 50132 "NewVision Validation"
         EXIT(Vendor.GET(VendorNo));
     end;
 
-    procedure VaidateOrderAddress(VendorNo: Code[20];OrderAddressCode: Code[10]): Boolean
+    procedure VaidateOrderAddress(VendorNo: Code[20]; OrderAddressCode: Code[10]): Boolean
     var
         OrderAddress: Record 224;
     begin
-        EXIT(OrderAddress.GET(VendorNo,OrderAddressCode));
+        EXIT(OrderAddress.GET(VendorNo, OrderAddressCode));
     end;
 
     procedure ValidateUOM(UOMCode: Code[10]): Boolean
@@ -49,11 +49,11 @@ codeunit 50132 "NewVision Validation"
         EXIT(UOM.GET(UOMCode));
     end;
 
-    procedure ValidateIUOM(ItemNo: Code[20];UOMCode: Code[10]): Boolean
+    procedure ValidateIUOM(ItemNo: Code[20]; UOMCode: Code[10]): Boolean
     var
         IUOM: Record 5404;
     begin
-        EXIT(IUOM.GET(ItemNo,UOMCode));
+        EXIT(IUOM.GET(ItemNo, UOMCode));
     end;
 
     procedure ValidatePriceContract(ContractNo: Code[20]): Boolean
@@ -63,23 +63,23 @@ codeunit 50132 "NewVision Validation"
         EXIT(Contract.GET(ContractNo));
     end;
 
-    procedure ValidateLotNo(ItemNo: Code[20];VarNo: Code[10];LotNo: Code[20]): Boolean
+    procedure ValidateLotNo(ItemNo: Code[20]; VarNo: Code[10]; LotNo: Code[20]): Boolean
     var
         LotInfo: Record 6505;
     begin
-        LotInfo.SETRANGE("Item No.",ItemNo);
-        LotInfo.SETRANGE("Variant Code",VarNo);
-        LotInfo.SETRANGE("Lot No.",LotNo);
-        EXIT(LotInfo.FIND('-'));
+        LotInfo.SETRANGE("Item No.", ItemNo);
+        LotInfo.SETRANGE("Variant Code", VarNo);
+        LotInfo.SETRANGE("Lot No.", LotNo);
+        EXIT(not LotInfo.IsEmpty());
     end;
 
-    procedure ValidateCustItemCrossRef(CustNo: Code[20];CrossRefNo: Code[20]): Boolean
+    procedure ValidateCustItemCrossRef(CustNo: Code[20]; CrossRefNo: Code[20]): Boolean
     var
         ItemXRef: Record 5717;
     begin
-        ItemXRef.SETRANGE("Cross-Reference Type",ItemXRef."Cross-Reference Type"::Customer);
-        ItemXRef.SETRANGE("Cross-Reference Type No.",CustNo);
-        ItemXRef.SETRANGE("Cross-Reference No.",CrossRefNo);
+        ItemXRef.SETRANGE("Cross-Reference Type", ItemXRef."Cross-Reference Type"::Customer);
+        ItemXRef.SETRANGE("Cross-Reference Type No.", CustNo);
+        ItemXRef.SETRANGE("Cross-Reference No.", CrossRefNo);
         EXIT(ItemXRef.FIND('-'));
     end;
 
@@ -97,37 +97,37 @@ codeunit 50132 "NewVision Validation"
         EXIT(Location.GET(LocationCode));
     end;
 
-    procedure FindLotNo(var ItemNo: Code[20];var VarNo: Code[10];LotNo: Code[20]): Boolean
+    procedure FindLotNo(var ItemNo: Code[20]; var VarNo: Code[10]; LotNo: Code[20]): Boolean
     var
         LotInfo: Record 6505;
     begin
         IF ItemNo <> '' THEN
-          LotInfo.SETRANGE("Item No.",ItemNo);
+            LotInfo.SETRANGE("Item No.", ItemNo);
         IF VarNo <> '' THEN
-          LotInfo.SETRANGE("Variant Code",VarNo);
-        LotInfo.SETRANGE("Lot No.",LotNo);
-        IF LotInfo.FIND('-') THEN BEGIN
-          ItemNo := LotInfo."Item No.";
-          VarNo := LotInfo."Variant Code";
-          EXIT(TRUE);
+            LotInfo.SETRANGE("Variant Code", VarNo);
+        LotInfo.SETRANGE("Lot No.", LotNo);
+        IF not LotInfo.IsEmpty() THEN BEGIN
+            ItemNo := LotInfo."Item No.";
+            VarNo := LotInfo."Variant Code";
+            EXIT(TRUE);
         END ELSE
-          EXIT(FALSE);
+            EXIT(FALSE);
     end;
 
-    procedure FindCustItemCrossRef(CustNo: Code[20];CrossRefNo: Code[20];var ItemNo: Code[20];var VarNo: Code[10];var UOM: Code[10]): Boolean
+    procedure FindCustItemCrossRef(CustNo: Code[20]; CrossRefNo: Code[20]; var ItemNo: Code[20]; var VarNo: Code[10]; var UOM: Code[10]): Boolean
     var
         ItemXRef: Record 5717;
     begin
-        ItemXRef.SETRANGE("Cross-Reference Type",ItemXRef."Cross-Reference Type"::Customer);
-        ItemXRef.SETRANGE("Cross-Reference Type No.",CustNo);
-        ItemXRef.SETRANGE("Cross-Reference No.",CrossRefNo);
+        ItemXRef.SETRANGE("Cross-Reference Type", ItemXRef."Cross-Reference Type"::Customer);
+        ItemXRef.SETRANGE("Cross-Reference Type No.", CustNo);
+        ItemXRef.SETRANGE("Cross-Reference No.", CrossRefNo);
         IF ItemXRef.FIND('-') THEN BEGIN
-          ItemNo := ItemXRef."Item No.";
-          VarNo := ItemXRef."Variant Code";
-          UOM := ItemXRef."Unit of Measure";
-          EXIT(TRUE);
+            ItemNo := ItemXRef."Item No.";
+            VarNo := ItemXRef."Variant Code";
+            UOM := ItemXRef."Unit of Measure";
+            EXIT(TRUE);
         END ELSE
-          EXIT(FALSE);
+            EXIT(FALSE);
     end;
 }
 

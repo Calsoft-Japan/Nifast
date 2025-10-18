@@ -1,68 +1,60 @@
 codeunit 70002 "Misc JRR"
 {
-    Permissions = TableData 27=rimd,
-                  TableData 32=rimd,
-                  TableData 39=rimd,
-                  TableData 112=rimd,
-                  TableData 339=rimd,
-                  TableData 5802=rimd,
-                  TableData 5804=rimd,
-                  TableData 7312=rimd,
-                  TableData 14000705=rimd;
+    Permissions = TableData 27 = rimd,
+                  TableData 32 = rimd,
+                  TableData 39 = rimd,
+                  TableData 112 = rimd,
+                  TableData 339 = rimd,
+                  TableData 5802 = rimd,
+                  TableData 5804 = rimd,
+                  TableData 7312 = rimd,
+                  TableData 14000705 = rimd;
 
     trigger OnRun()
-    var
-        PIL: Record 123;
-        reccnt: Integer;
-        SalesShptLine: Record 111;
-        PostedPackageLine: Record 14000705;
-        PurLn: Record 39;
-        pPath: Text[100];
-        pName: Text[100];
-        DetStr: Text[3];
-        CommonInpFile: File;
-        CommonOutFile: File;
-        tmpSTR: Text[800];
     begin
-        WE.RESET;
+        WE.RESET();
         IF WE.GET(1760447) THEN BEGIN
-          WE.Quantity := 0;
-          WE."Remaining Qty. (Base)" := 0;
-          WE.Open := FALSE;
-          WE.MODIFY;
+            WE.Quantity := 0;
+
+            WE."Remaining Qty. (Base)" := 0;
+            WE.Open := FALSE;
+            WE.MODIFY();
         END;
-        
-        WE.RESET;
+
+        WE.RESET();
         IF WE.GET(1760425) THEN BEGIN
-          WE.Quantity := 0;
-          WE."Remaining Qty. (Base)" := 0;
-          WE.Open := FALSE;
-          WE.MODIFY;
+            WE.Quantity := 0;
+            //TODO
+            // WE."Remaining Qty. (Base)" := 0;
+            //WE.Open := FALSE;
+            WE.MODIFY();
         END;
-        WE.RESET;
+        WE.RESET();
         IF WE.GET(1760443) THEN BEGIN
-          WE.Quantity := 0;
-          WE."Remaining Qty. (Base)" := 0;
-          WE.Open := FALSE;
-          WE.MODIFY;
+            WE.Quantity := 0;
+            //TODO
+            // WE."Remaining Qty. (Base)" := 0;
+            //WE.Open := FALSE;
+            WE.MODIFY();
         END;
-        WE.RESET;
+        WE.RESET();
         IF WE.GET(1760429) THEN BEGIN
-          WE.Quantity := 0;
-          WE."Remaining Qty. (Base)" := 0;
-          WE.Open := FALSE;
-          WE.MODIFY;
+            WE.Quantity := 0;
+            //TODO
+            // WE."Remaining Qty. (Base)" := 0;
+            //WE.Open := FALSE;
+            WE.MODIFY();
         END;
-        
-        ILE.RESET;
+
+        ILE.RESET();
         IF ILE.GET(222758) THEN BEGIN
-          ILE.Quantity := 0;
-          ILE."Remaining Quantity" := 0;
-          ILE."Invoiced Quantity" := 0;
-          ILE.MODIFY;
+            ILE.Quantity := 0;
+            ILE."Remaining Quantity" := 0;
+            ILE."Invoiced Quantity" := 0;
+            ILE.MODIFY();
         END;
         EXIT;
-        
+
         /*
             pPath := '\\nifnavprapp\FileImport\Export SICrMemo\';
             pName:= 'SALINVSI2957.txt';
@@ -164,11 +156,6 @@ codeunit 70002 "Misc JRR"
 
     var
         ILE: Record 32;
-        VE: Record 5802;
         WE: Record 7312;
-        Item: Record 27;
-        IAE: Record 339;
-        ACE: Record 5804;
-        SIH: Record 112;
 }
 

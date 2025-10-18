@@ -12,49 +12,54 @@ codeunit 50015 "Nifast Mgmt"
 
     trigger OnRun()
     begin
-        ImportPPS;
+        ImportPPS();
     end;
-
-    var
-        PlantCode: Code[10];
-        DockCOde: Code[10];
 
     procedure ImportPPS()
     var
-        DriveRec: Record 2000000020;
-        InboundFile: Record 2000000022;
-        FileRec: File;
-        PathIn: Text[250];
-        PathOut: Text[250];
-        FileName: Text[250];
-        UseFileName: Code[50];
-        PPSBuffer: Record 50025;
-        SalesSetup: Record 311;
-        UserSetup: Record 91;
         Location: Record 14;
         SalesHeader: Record 36;
+        TempSalesHeader: Record 36 temporary;
         SalesLine: Record 37;
+        UserSetup: Record 91;
+        SalesShptHdr: Record 110;
+        SalesSetup: Record 311;
+        PPSBuffer: Record 50025;
         TempPPSBuffer: Record 50025 temporary;
         TempPPSBufferFiles: Record 50025 temporary;
-        SalesShptHdr: Record 110;
-        TempSalesHeader: Record 36 temporary;
-        Counter: Integer;
-        OrderCounter: Integer;
-        FileCounter: Integer;
-        ErrorCounter: Integer;
-        FileErrorCounter: Integer;
+        //TODO
+        //InboundFile: Record 2000000022;
         SalesOrderReport: Report 10075;
         UserMgt: Codeunit 5700;
-        BeginOrdNo: Code[20];
-        EndOrdNo: Code[20];
-        d: Dialog;
+        //ImportData: XMLport 50005;
         ErrorFound: Boolean;
         ModelYearText: Code[10];
-        ImportData: XMLport 50005;
-        NewPath: Text[250];
+        BeginOrdNo: Code[20];
+        EndOrdNo: Code[20];
+        UseFileName: Code[50];
+        d: Dialog;
+        Counter: Integer;
+        ErrorCounter: Integer;
+        FileCounter: Integer;
+        FileErrorCounter: Integer;
+        OrderCounter: Integer;
+        Text001: Label '%1 %2 already exists for File %3. Do you want to continue?', Comment = '%1 %2 %3';
+        Text002: Label 'Posted Shipment %1 already exists for File %2. Do you want to continue?', Comment = '%1 %2';
+        Text003: Label 'Files Read:         %1\', Comment = '%1';
+        Text004: Label 'Files Successful:   %2\', Comment = '%2';
+        Text005: Label 'Files with Errors:  %3\', Comment = '%3';
+        Text006: Label 'Number of Errors:   %4\\', Comment = '%4';
+        Text007: Label 'Orders Created:     %5\', Comment = '%5';
+        Text008: Label 'Starting Order No.: %6\', Comment = '%6';
+        Text009: Label 'Ending Order No.:   %7\\', Comment = '%7';
+        Text010: Label 'Do you want to print Orders?';
+        FileName: Text[250];
+        PathIn: Text[250];
+        PathOut: Text[250];
+
     begin
         //check and set paths
-        SalesSetup.GET;
+        SalesSetup.GET();
         SalesSetup.TESTFIELD("Inbound PPS Directory");
         SalesSetup.TESTFIELD("Archive PPS Directory");
 
@@ -74,101 +79,106 @@ codeunit 50015 "Nifast Mgmt"
 
         //check and set location from user default
         UserSetup.GET(USERID);
-        UserSetup.TESTFIELD("Default Location Code");
-        Location.GET(UserSetup."Default Location Code");
+        //TODO
+        //  UserSetup.TESTFIELD("Default Location Code");
+        //Location.GET(UserSetup."Default Location Code");
 
 
         //clear buffer table
-        PPSBuffer.LOCKTABLE;
-        PPSBuffer.DELETEALL;
+        PPSBuffer.LOCKTABLE();
+        PPSBuffer.DELETEALL();
 
         Counter := 0;
 
         //set filter on text files and read
-        CLEAR(InboundFile);
-        InboundFile.SETFILTER(Path, PathIn);
-        IF SalesSetup."Use PPS XML format" THEN
-            InboundFile.SETFILTER(Name, '*.xml')
+        //TODO
+        // CLEAR(InboundFile);
+        // InboundFile.SETFILTER(Path, PathIn);
+        // IF SalesSetup."Use PPS XML format" THEN
+        //     InboundFile.SETFILTER(Name, '*.xml')
+        // ELSE
+        //     InboundFile.SETFILTER(Name, '*.dat|*.txt');
+        // InboundFile.SETRANGE("Is a file", TRUE);
+        // IF NOT InboundFile.FIND('-') THEN
+        //     ERROR('No files found in %1', PathIn);
+
+        // REPEAT//TODO
+        //set file name
+        //TODO
+        // FileName := InboundFile.Name;
+
+        //>> 11-16-05
+        /*
+        //set UseFileName, used as an identifier
+        IF STRPOS(UPPERCASE(FileName),'.TXT')<>0 THEN BEGIN
+          UseFileName := COPYSTR(DELCHR(FileName,'>','.txt'),STRLEN(FileName)-20,20);
+          UseFileName := COPYSTR(UseFileName,1,20);
+          UseFileName := DELCHR(UseFileName,'<',' ');
+        END ELSE BEGIN
+          UseFileName := COPYSTR(DELCHR(UPPERCASE(FileName),'>','.DAT'),STRLEN(FileName)-20,20);
+          UseFileName := COPYSTR(UseFileName,1,20);
+          UseFileName := DELCHR(UseFileName,'<',' ');
+        END;
+        */
+        UseFileName := DELCHR(FileName, '>', '.txt');
+        UseFileName := DELCHR(UseFileName, '>', '.dat');
+
+        IF STRLEN(UseFileName) > 30 THEN
+            UseFileName := COPYSTR(UseFileName, STRLEN(UseFileName) - 29, 30)
         ELSE
-            InboundFile.SETFILTER(Name, '*.dat|*.txt');
-        InboundFile.SETRANGE("Is a file", TRUE);
-        IF NOT InboundFile.FIND('-') THEN
-            ERROR('No files found in %1', PathIn);
+            UseFileName := COPYSTR(UseFileName, 1, 30);
+        //<< 11-16-05
+        //TODO
+        // IF SalesSetup."Use PPS XML format" THEN
+        //     ProcessXML(PathIn + FileName, InboundFile.Name)
+        // ELSE BEGIN
 
+        //     //run dataport
+        //     ImportData.SetBufferFields(UseFileName, FileName, InboundFile.Name);   //pass file and docno to use to dp
+        //     ImportData.FILENAME(PathIn + FileName);
+        //     ImportData.RUN();
+        //     CLEAR(ImportData);
+
+        // END;
+
+        //determine if error was found
+        //TODO
+        // PPSBuffer.SETRANGE("File Name", InboundFile.Name);
+        PPSBuffer.SETRANGE("Error Found", TRUE);
+        ErrorFound := PPSBuffer.FIND('-');
+
+        //insert file names
+        FileCounter := FileCounter + 1;
+        IF ErrorFound THEN
+            FileErrorCounter := FileErrorCounter + 1;
+
+        TempPPSBufferFiles.INIT();
+        TempPPSBufferFiles."Line No." := FileCounter;
+        //TODO
+        //TempPPSBufferFiles."File Name" := InboundFile.Name;
+        TempPPSBufferFiles."Error Found" := ErrorFound;
+        TempPPSBufferFiles.INSERT();
+
+        //read into a temp table to get file/customer combos
+        //use counter to keep unique if split customers
+        PPSBuffer.SETRANGE("Error Found");
+        PPSBuffer.FIND('-');
         REPEAT
-            //set file name
-            FileName := InboundFile.Name;
-
-            //>> 11-16-05
-            /*
-            //set UseFileName, used as an identifier
-            IF STRPOS(UPPERCASE(FileName),'.TXT')<>0 THEN BEGIN
-              UseFileName := COPYSTR(DELCHR(FileName,'>','.txt'),STRLEN(FileName)-20,20);
-              UseFileName := COPYSTR(UseFileName,1,20);
-              UseFileName := DELCHR(UseFileName,'<',' ');
-            END ELSE BEGIN
-              UseFileName := COPYSTR(DELCHR(UPPERCASE(FileName),'>','.DAT'),STRLEN(FileName)-20,20);
-              UseFileName := COPYSTR(UseFileName,1,20);
-              UseFileName := DELCHR(UseFileName,'<',' ');
-            END;
-            */
-            UseFileName := DELCHR(FileName, '>', '.txt');
-            UseFileName := DELCHR(UseFileName, '>', '.dat');
-
-            IF STRLEN(UseFileName) > 30 THEN
-                UseFileName := COPYSTR(UseFileName, STRLEN(UseFileName) - 29, 30)
-            ELSE
-                UseFileName := COPYSTR(UseFileName, 1, 30);
-            //<< 11-16-05
-
-            IF SalesSetup."Use PPS XML format" THEN BEGIN
-                ProcessXML(PathIn + FileName, InboundFile.Name);
-            END ELSE BEGIN
-
-                //run dataport
-                ImportData.SetBufferFields(UseFileName, FileName, InboundFile.Name);   //pass file and docno to use to dp
-                ImportData.FILENAME(PathIn + FileName);
-                ImportData.RUN;
-                CLEAR(ImportData);
-
-            END;
-
-            //determine if error was found
-            PPSBuffer.SETRANGE("File Name", InboundFile.Name);
-            PPSBuffer.SETRANGE("Error Found", TRUE);
-            ErrorFound := PPSBuffer.FIND('-');
-
-            //insert file names
-            FileCounter := FileCounter + 1;
-            IF ErrorFound THEN
-                FileErrorCounter := FileErrorCounter + 1;
-
-            TempPPSBufferFiles.INIT;
-            TempPPSBufferFiles."Line No." := FileCounter;
-            TempPPSBufferFiles."File Name" := InboundFile.Name;
-            TempPPSBufferFiles."Error Found" := ErrorFound;
-            TempPPSBufferFiles.INSERT;
-
-            //read into a temp table to get file/customer combos
-            //use counter to keep unique if split customers
-            PPSBuffer.SETRANGE("Error Found");
-            PPSBuffer.FIND('-');
-            REPEAT
-                Counter := Counter + 1;
-                TempPPSBuffer.SETRANGE("Document No.", PPSBuffer."Document No.");
-                TempPPSBuffer.SETRANGE("Customer No.", PPSBuffer."Customer No.");
-                TempPPSBuffer.SETRANGE("File Name", PPSBuffer."File Name");
-                IF NOT TempPPSBuffer.FIND('-') THEN BEGIN
-                    TempPPSBuffer.INIT;
-                    TempPPSBuffer.TRANSFERFIELDS(PPSBuffer);
-                    IF NOT SalesSetup."Use PPS XML format" THEN BEGIN
-                        TempPPSBuffer."Error Found" := ErrorFound;
-                        TempPPSBuffer."Line No." := Counter;
-                    END;
-                    TempPPSBuffer.INSERT;
+            Counter := Counter + 1;
+            TempPPSBuffer.SETRANGE("Document No.", PPSBuffer."Document No.");
+            TempPPSBuffer.SETRANGE("Customer No.", PPSBuffer."Customer No.");
+            TempPPSBuffer.SETRANGE("File Name", PPSBuffer."File Name");
+            IF NOT TempPPSBuffer.FIND('-') THEN BEGIN
+                TempPPSBuffer.INIT();
+                TempPPSBuffer.TRANSFERFIELDS(PPSBuffer);
+                IF NOT SalesSetup."Use PPS XML format" THEN BEGIN
+                    TempPPSBuffer."Error Found" := ErrorFound;
+                    TempPPSBuffer."Line No." := Counter;
                 END;
-            UNTIL PPSBuffer.NEXT = 0;
-        UNTIL InboundFile.NEXT = 0;
+                TempPPSBuffer.INSERT();
+            END;
+        UNTIL PPSBuffer.NEXT() = 0;
+        //  UNTIL InboundFile.NEXT() = 0;//TODO
 
 
         //check sales header and shipments for dupl
@@ -181,18 +191,18 @@ codeunit 50015 "Nifast Mgmt"
             SalesHeader.SETRANGE("Sell-to Customer No.", TempPPSBuffer."Customer No.");
             IF SalesHeader.FIND('-') THEN
                 IF NOT CONFIRM(
-                  STRSUBSTNO('%1 %2 already exists for File %3. Do you want to continue?',
+                  STRSUBSTNO(Text001,
                                SalesHeader."Document Type", SalesHeader."No.", TempPPSBuffer."File Name 2")) THEN
                     ERROR('Operation Canceled.');
 
             SalesShptHdr.SETRANGE("PPS File Name", TempPPSBuffer."File Name 2");
             SalesShptHdr.SETRANGE("Sell-to Customer No.", TempPPSBuffer."Customer No.");
-            IF SalesShptHdr.FIND('-') THEN
+            IF not SalesShptHdr.IsEmpty THEN
                 IF NOT CONFIRM(
-                  STRSUBSTNO('Posted Shipment %1 already exists for File %2. Do you want to continue?',
+                  STRSUBSTNO(Text002,
                                SalesShptHdr."No.", TempPPSBuffer."File Name 2")) THEN
                     ERROR('Operation Canceled.');
-        UNTIL TempPPSBuffer.NEXT = 0;
+        UNTIL TempPPSBuffer.NEXT() = 0;
 
 
         d.OPEN('Creating Order #1######## Item #2#############\' +
@@ -200,13 +210,13 @@ codeunit 50015 "Nifast Mgmt"
                'Progress @4@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
 
         //sales order creation
-        SalesHeader.RESET;
-        PPSBuffer.RESET;
+        SalesHeader.RESET();
+        PPSBuffer.RESET();
         TempPPSBuffer.SETRANGE("Error Found", FALSE);
         IF TempPPSBuffer.FIND('-') THEN
             REPEAT
                 //create header
-                SalesHeader.INIT;
+                SalesHeader.INIT();
                 SalesHeader."Document Type" := SalesHeader."Document Type"::Order;
                 SalesHeader."No." := '';
                 SalesHeader.INSERT(TRUE);
@@ -252,7 +262,7 @@ codeunit 50015 "Nifast Mgmt"
                 IF ModelYearText <> '' THEN
                     SalesHeader."Model Year" := ModelYearText;
                 //<<NIF 062207 RTT
-                SalesHeader.MODIFY;
+                SalesHeader.MODIFY();
 
                 //create lines;
                 PPSBuffer.SETRANGE("Document No.", TempPPSBuffer."Document No.");
@@ -260,7 +270,7 @@ codeunit 50015 "Nifast Mgmt"
                 PPSBuffer.SETRANGE("File Name", TempPPSBuffer."File Name");
                 PPSBuffer.FIND('-');
                 REPEAT
-                    SalesLine.INIT;
+                    SalesLine.INIT();
                     SalesLine."Document Type" := SalesHeader."Document Type";
                     SalesLine."Document No." := SalesHeader."No.";
                     SalesLine."Line No." := PPSBuffer."Line No." * 10000;
@@ -268,7 +278,7 @@ codeunit 50015 "Nifast Mgmt"
                     SalesLine.VALIDATE("No.", PPSBuffer."Item No.");
                     SalesLine.VALIDATE("Location Code", Location.Code);
                     SalesLine.VALIDATE(Quantity, PPSBuffer.Quantity);
-                    SalesLine."Cross-Reference No." := PPSBuffer."Cross-Reference No.";
+                    //SalesLine."Cross-Reference No." := PPSBuffer."Cross-Reference No.";//TODO
                     //SM Addition 031523 for new PPS========================================
                     SalesLine."Plant Code" := PPSBuffer."Plant Code";
                     SalesLine."Dock Code" := PPSBuffer."Dock Code";
@@ -282,31 +292,32 @@ codeunit 50015 "Nifast Mgmt"
                     d.UPDATE(3, TempPPSBuffer."File Name");
                     d.UPDATE(4, ROUND(OrderCounter / FileCounter * 10000, 1));
 
-                UNTIL PPSBuffer.NEXT = 0;
+                UNTIL PPSBuffer.NEXT() = 0;
 
                 //write to temp sales header for later printing and results display
                 OrderCounter := OrderCounter + 1;
-                TempSalesHeader.INIT;
+                TempSalesHeader.INIT();
                 TempSalesHeader.TRANSFERFIELDS(SalesHeader);
-                TempSalesHeader.INSERT;
+                TempSalesHeader.INSERT();
 
 
-            UNTIL TempPPSBuffer.NEXT = 0;
-        d.CLOSE;
+            UNTIL TempPPSBuffer.NEXT() = 0;
+        d.CLOSE();
 
 
         //now that orders have been created, move the files
-        IF TempPPSBuffer.FIND('-') THEN
-            REPEAT
-                IF EXISTS(PathIn + TempPPSBuffer."File Name") THEN BEGIN
-                    COPY(PathIn + TempPPSBuffer."File Name", PathOut + TempPPSBuffer."File Name");
-                    ERASE(PathIn + TempPPSBuffer."File Name");
-                    TempPPSBuffer.DELETE;
-                END;
-            UNTIL TempPPSBuffer.NEXT = 0;
+        //TODO
+        // IF TempPPSBuffer.FIND('-') THEN
+        //     REPEAT
+        //         IF EXISTS(PathIn + TempPPSBuffer."File Name") THEN BEGIN
+        //             COPY(PathIn + TempPPSBuffer."File Name", PathOut + TempPPSBuffer."File Name");
+        //             ERASE(PathIn + TempPPSBuffer."File Name");
+        //             TempPPSBuffer.DELETE();
+        //         END;
+        //     UNTIL TempPPSBuffer.NEXT() = 0;
 
         //error counts
-        PPSBuffer.RESET;
+        PPSBuffer.RESET();
         PPSBuffer.SETRANGE("Error Found", TRUE);
         ErrorCounter := PPSBuffer.COUNT;
 
@@ -320,273 +331,264 @@ codeunit 50015 "Nifast Mgmt"
 
 
         IF CONFIRM(
-           STRSUBSTNO('Files Read:         %1\' +
-                      'Files Successful:   %2\' +
-                      'Files with Errors:  %3\' +
-                      'Number of Errors:   %4\\' +
-                      'Orders Created:     %5\' +
-                      'Starting Order No.: %6\' +
-                      'Ending Order No.:   %7\\' +
-                      'Do you want to print Orders?',
+           STRSUBSTNO(Text003 +
+                      Text004 +
+                      Text005 +
+                      Text006 +
+                      Text007 +
+                      Text008 +
+                      Text009 +
+                      Text010,
                       FileCounter, FileCounter - FileErrorCounter, FileErrorCounter, ErrorCounter, OrderCounter, BeginOrdNo, EndOrdNo)) THEN BEGIN
             TempSalesHeader.FIND('-');
-            COMMIT;
+            COMMIT();
             REPEAT
-                SalesHeader.RESET;
+                SalesHeader.RESET();
                 SalesHeader.SETRANGE("Document Type", SalesHeader."Document Type"::Order);
                 SalesHeader.SETRANGE("No.", TempSalesHeader."No.");
                 //SalesOrderReport.USEREQUESTFORM(FALSE);
                 //SalesOrderReport.USEREQUESTFORM(TRUE);  //NF1.00:CIS.NG  11-04-15
                 SalesOrderReport.SETTABLEVIEW(SalesHeader);
-                SalesOrderReport.RUN;
-            UNTIL TempSalesHeader.NEXT = 0;
+                SalesOrderReport.RUN();
+            UNTIL TempSalesHeader.NEXT() = 0;
         END;
 
         IF ErrorCounter <> 0 THEN
-            IF CONFIRM('Do you want to print the errors found?') THEN
-                REPORT.RUN(REPORT::"PPS Error Report", TRUE, FALSE, PPSBuffer);
+            IF CONFIRM('Do you want to print the errors found?') THEN;
+        //REPORT.RUN(REPORT::"PPS Error Report", TRUE, FALSE, PPSBuffer);//TODO
 
         //******** DELETE PPS BUFFER HERE*****
 
     end;
 
-    procedure ProcessXML(Filename: Text[240]; Filename2: Text[240])
-    var
-        PPSBuffer: Record 50025;
-        XmlDoc: Automation;
-        XmlNodelist: Automation;
-        XmlNodelist2: Automation;
-        XmlNode: Automation;
-        i: Integer;
-        ItemCrossRef: Record 5717;
-        SalesPrice: Record 7002;
-        PPSShipTo: Record 50024;
-        ListTime: Text[100];
-        ListCode: Text[100];
-        ErrorFlag: Boolean;
-        ErrorMessage: Text[250];
-        CrossRefFound: Boolean;
-        UseCustNo: Code[20];
-        Item: Record 27;
-        ShipTo: Record 222;
-        Qty: Decimal;
-        DeliveryCode: Code[20];
-        FileMgt: Codeunit 419;
-        LocalTmpFile: Text;
-    begin
-        //>> NF1.00:CIS.NG  02-02-16
-        //CREATE(XmlDoc);
-        //XmlDoc.load(Filename);  //NF1.00:CIS.NG  06-04-16
-        CREATE(XmlDoc, TRUE, TRUE);
-        //>> NF1.00:CIS.NG  06-04-16
-        LocalTmpFile := FileMgt.DownloadTempFile(Filename);
-        XmlDoc.load(LocalTmpFile);
-        //<< NF1.00:CIS.NG  06-04-16
-        //<< NF1.00:CIS.NG  02-02-16
+    // procedure ProcessXML(Filename: Text[240]; Filename2: Text[240])
+    // var
+    //     Item: Record 27;
+    //     ShipTo: Record 222;
+    //     ItemCrossRef: Record 5717;
+    //     SalesPrice: Record 7002;
+    //     PPSShipTo: Record 50024;
+    //     PPSBuffer: Record 50025;
+    //     FileMgt: Codeunit 419;
+    //     XmlDoc: Automation;
+    //     XmlNode: Automation;
+    //     XmlNodelist: Automation;
+    //     CrossRefFound: Boolean;
+    //     ErrorFlag: Boolean;
+    //     DeliveryCode: Code[20];
+    //     UseCustNo: Code[20];
+    //     Qty: Decimal;
+    //     i: Integer;
+    //     LocalTmpFile: Text;
+    //     ListCode: Text[100];
+    //     ListTime: Text[100];
+    //     ErrorMessage: Text[250];
+    // begin
+    //     //>> NF1.00:CIS.NG  02-02-16
+    //     //CREATE(XmlDoc);
+    //     //XmlDoc.load(Filename);  //NF1.00:CIS.NG  06-04-16
+    //     CREATE(XmlDoc, TRUE, TRUE);
+    //     //>> NF1.00:CIS.NG  06-04-16
+    //     LocalTmpFile := FileMgt.DownloadTempFile(Filename);
+    //     XmlDoc.load(LocalTmpFile);
+    //     //<< NF1.00:CIS.NG  06-04-16
+    //     //<< NF1.00:CIS.NG  02-02-16
 
-        XmlNodelist := XmlDoc.selectNodes('//DocumentElement/DeliveryListDataTable');
-        FOR i := 1 TO XmlNodelist.length DO BEGIN
-            ErrorFlag := FALSE;
+    //     XmlNodelist := XmlDoc.selectNodes('//DocumentElement/DeliveryListDataTable');
+    //     FOR i := 1 TO XmlNodelist.length DO BEGIN
+    //         ErrorFlag := FALSE;
 
-            XmlNode := XmlNodelist.item(i - 1).selectSingleNode('OffsiteListTime');
-            ListTime := '';
-            IF NOT ISCLEAR(XmlNode) THEN BEGIN
-                ListTime := DELCHR(XmlNode.text, '=', ':-');
-            END;
+    //         XmlNode := XmlNodelist.item(i - 1).selectSingleNode('OffsiteListTime');
+    //         ListTime := '';
+    //         IF NOT ISCLEAR(XmlNode) THEN
+    //             ListTime := DELCHR(XmlNode.text, '=', ':-');
 
-            XmlNode := XmlNodelist.item(i - 1).selectSingleNode('Delivery');
-            CLEAR(PPSShipTo);
-            DeliveryCode := '';
-            ListTime := ListTime + '-' + '24188079';
-            ListCode := XmlNode.text;
-            IF NOT ISCLEAR(XmlNode) THEN BEGIN
-                // Find PPS ship to
-                DeliveryCode := XmlNode.text;
-                IF STRPOS(XmlNode.text, 'NIFAST - ') <> 0 THEN
-                    DeliveryCode := COPYSTR(XmlNode.text, 9);
-                IF NOT PPSShipTo.GET(DeliveryCode) THEN BEGIN
-                    ErrorFlag := TRUE;
-                    ErrorMessage := STRSUBSTNO('No Ship-to Code found in Ship-to PPS file for Zone %1.', XmlNode.text);
-                    PPSBuffer.INIT;
-                    PPSBuffer."Document No." := ListCode;
-                    PPSBuffer."File Name" := Filename2;
-                    PPSBuffer."File Name 2" := ListTime;
-                    PPSBuffer."Line No." := i;
-                    PPSBuffer."EDI Control No." := '';
-                    PPSBuffer."Error Found" := ErrorFlag;
-                    PPSBuffer."Error Message" := ErrorMessage;
-                    PPSBuffer.INSERT;
+    //         XmlNode := XmlNodelist.item(i - 1).selectSingleNode('Delivery');
+    //         CLEAR(PPSShipTo);
+    //         DeliveryCode := '';
+    //         ListTime := ListTime + '-' + '24188079';
+    //         ListCode := XmlNode.text;
+    //         IF NOT ISCLEAR(XmlNode) THEN BEGIN
+    //             // Find PPS ship to
+    //             DeliveryCode := XmlNode.text;
+    //             IF STRPOS(XmlNode.text, 'NIFAST - ') <> 0 THEN
+    //                 DeliveryCode := COPYSTR(XmlNode.text, 9);
+    //             IF NOT PPSShipTo.GET(DeliveryCode) THEN BEGIN
+    //                 ErrorFlag := TRUE;
+    //                 ErrorMessage := STRSUBSTNO('No Ship-to Code found in Ship-to PPS file for Zone %1.', XmlNode.text);
+    //                 PPSBuffer.INIT();
+    //                 PPSBuffer."Document No." := ListCode;
+    //                 PPSBuffer."File Name" := Filename2;
+    //                 PPSBuffer."File Name 2" := ListTime;
+    //                 PPSBuffer."Line No." := i;
+    //                 PPSBuffer."EDI Control No." := '';
+    //                 PPSBuffer."Error Found" := ErrorFlag;
+    //                 PPSBuffer."Error Message" := ErrorMessage;
+    //                 PPSBuffer.INSERT();
 
-                    MESSAGE('Error in File %1:\%2', ListTime, ErrorMessage);
+    //                 MESSAGE('Error in File %1:\%2', ListTime, ErrorMessage);
 
-                END;
-            END;
+    //             END;
+    //         END;
 
-            IF NOT ErrorFlag THEN BEGIN
-                XmlNode := XmlNodelist.item(i - 1).selectSingleNode('Quantity');
-                Qty := 0;
-                IF NOT ISCLEAR(XmlNode) THEN BEGIN
-                    EVALUATE(Qty, XmlNode.text);
-                END;
+    //         IF NOT ErrorFlag THEN BEGIN
+    //             XmlNode := XmlNodelist.item(i - 1).selectSingleNode('Quantity');
+    //             Qty := 0;
+    //             IF NOT ISCLEAR(XmlNode) THEN
+    //                 EVALUATE(Qty, XmlNode.text);
 
-                //SM
-                XmlNode := XmlNodelist.item(i - 1).selectSingleNode('PlantCode');
-                PlantCode := XmlNode.text;
-                XmlNode := XmlNodelist.item(i - 1).selectSingleNode('DockCode');
-                DockCOde := XmlNode.text;
+    //             //SM
+    //             XmlNode := XmlNodelist.item(i - 1).selectSingleNode('PlantCode');
+    //             PlantCode := XmlNode.text;
+    //             XmlNode := XmlNodelist.item(i - 1).selectSingleNode('DockCode');
+    //             DockCOde := XmlNode.text;
 
-                //SM
+    //             //SM
 
 
-                XmlNode := XmlNodelist.item(i - 1).selectSingleNode('PartNumber');
+    //             XmlNode := XmlNodelist.item(i - 1).selectSingleNode('PartNumber');
 
-                IF NOT ISCLEAR(XmlNode) THEN BEGIN
-                    // check xref
-                    ItemCrossRef.RESET;
-                    ItemCrossRef.SETCURRENTKEY("Cross-Reference No.", "Cross-Reference Type", "Cross-Reference Type No.");
-                    ItemCrossRef.SETRANGE("Cross-Reference No.", XmlNode.text);
-                    ItemCrossRef.SETRANGE("Cross-Reference Type", ItemCrossRef."Cross-Reference Type"::Customer);
-                    ItemCrossRef.SETFILTER("Cross-Reference Type No.", '%1|%2|%3', 'C0346', 'C0347', 'C0349');     //jrr
-                    IF NOT ItemCrossRef.FIND('-') THEN BEGIN
-                        ErrorFlag := TRUE;
-                        ErrorMessage := STRSUBSTNO('No Cross Reference found for Part Number %1.', XmlNode.text);
-                        CrossRefFound := FALSE;
-                        MESSAGE('Error in File %1:\' +
-                                '%2', '', ErrorMessage);
-                    END ELSE
-                        CrossRefFound := TRUE;
+    //             IF NOT ISCLEAR(XmlNode) THEN BEGIN
+    //                 // check xref
+    //                 ItemCrossRef.RESET;
+    //                 ItemCrossRef.SETCURRENTKEY("Cross-Reference No.", "Cross-Reference Type", "Cross-Reference Type No.");
+    //                 ItemCrossRef.SETRANGE("Cross-Reference No.", XmlNode.text);
+    //                 ItemCrossRef.SETRANGE("Cross-Reference Type", ItemCrossRef."Cross-Reference Type"::Customer);
+    //                 ItemCrossRef.SETFILTER("Cross-Reference Type No.", '%1|%2|%3', 'C0346', 'C0347', 'C0349');     //jrr
+    //                 IF NOT ItemCrossRef.FIND('-') THEN BEGIN
+    //                     ErrorFlag := TRUE;
+    //                     ErrorMessage := STRSUBSTNO('No Cross Reference found for Part Number %1.', XmlNode.text);
+    //                     CrossRefFound := FALSE;
+    //                     MESSAGE('Error in File %1:\' +
+    //                             '%2', '', ErrorMessage);
+    //                 END ELSE
+    //                     CrossRefFound := TRUE;
 
-                    //II - FIND CUSTOMER
-                    //look in sales price to find the customer
-                    IF CrossRefFound THEN BEGIN
-                        SalesPrice.RESET;
-                        CLEAR(UseCustNo);
+    //                 //II - FIND CUSTOMER
+    //                 //look in sales price to find the customer
+    //                 IF CrossRefFound THEN BEGIN
+    //                     SalesPrice.RESET();
+    //                     CLEAR(UseCustNo);
 
-                        SalesPrice.SETRANGE("Item No.", ItemCrossRef."Item No.");
-                        SalesPrice.SETFILTER("Ending Date", '%1|>=%2', 0D, TODAY);
-                        SalesPrice.SETRANGE("Sales Type", SalesPrice."Sales Type"::Customer);
-                        SalesPrice.SETFILTER("Contract No.", '<>%1', '');
+    //                     SalesPrice.SETRANGE("Item No.", ItemCrossRef."Item No.");
+    //                     SalesPrice.SETFILTER("Ending Date", '%1|>=%2', 0D, TODAY);
+    //                     SalesPrice.SETRANGE("Sales Type", SalesPrice."Sales Type"::Customer);
+    //                     SalesPrice.SETFILTER("Contract No.", '<>%1', '');
 
-                        //1- first try USD customer
-                        SalesPrice.SETRANGE("Sales Code", 'C0346');
-                        IF SalesPrice.FIND('-') THEN
-                            UseCustNo := SalesPrice."Sales Code";
+    //                     //1- first try USD customer
+    //                     SalesPrice.SETRANGE("Sales Code", 'C0346');
+    //                     IF SalesPrice.FIND('-') THEN
+    //                         UseCustNo := SalesPrice."Sales Code";
 
-                        //2 - if no match try JPY customer
-                        IF UseCustNo = '' THEN BEGIN
-                            SalesPrice.SETRANGE("Sales Code", 'C0347');
-                            IF SalesPrice.FIND('-') THEN
-                                UseCustNo := 'C0347'
-                        END;
-                        //3 - if no match try new customer C0238   //jrr
-                        IF UseCustNo = '' THEN BEGIN
-                            SalesPrice.SETRANGE("Sales Code", 'C0349');
-                            IF SalesPrice.FIND('-') THEN
-                                UseCustNo := 'C0349'
-                        END;
-                        //4 - if no match try new customer C0238   //jrr
-                        // IF UseCustNo='' THEN BEGIN
-                        //   SETRANGE("Sales Code",'C0237');
-                        //    IF FIND('-') THEN
-                        //      UseCustNo := 'C0237'
-                        // END;
+    //                     //2 - if no match try JPY customer
+    //                     IF UseCustNo = '' THEN BEGIN
+    //                         SalesPrice.SETRANGE("Sales Code", 'C0347');
+    //                         IF SalesPrice.FIND('-') THEN
+    //                             UseCustNo := 'C0347'
+    //                     END;
+    //                     //3 - if no match try new customer C0238   //jrr
+    //                     IF UseCustNo = '' THEN BEGIN
+    //                         SalesPrice.SETRANGE("Sales Code", 'C0349');
+    //                         IF SalesPrice.FIND('-') THEN
+    //                             UseCustNo := 'C0349'
+    //                     END;
+    //                     //4 - if no match try new customer C0238   //jrr
+    //                     // IF UseCustNo='' THEN BEGIN
+    //                     //   SETRANGE("Sales Code",'C0237');
+    //                     //    IF FIND('-') THEN
+    //                     //      UseCustNo := 'C0237'
+    //                     // END;
 
-                        //5 - if still no match, revert back to USD with warning
-                        IF UseCustNo = '' THEN BEGIN
-                            ErrorFlag := TRUE;
-                            ErrorMessage := STRSUBSTNO('No Price Contract found for Item %1, Cross Ref No. %2.', ItemCrossRef."Item No.", XmlNode.text);
-                            MESSAGE('Error in File %1:\' +
-                                  '%2', '', ErrorMessage);
-                        END; //end IF UseCustNo=''
-                             //end WITH SalesPrice DO
-                    END; //end IF CrossRefFound
+    //                     //5 - if still no match, revert back to USD with warning
+    //                     IF UseCustNo = '' THEN BEGIN
+    //                         ErrorFlag := TRUE;
+    //                         ErrorMessage := STRSUBSTNO('No Price Contract found for Item %1, Cross Ref No. %2.', ItemCrossRef."Item No.", XmlNode.text);
+    //                         MESSAGE('Error in File %1:\' +
+    //                               '%2', '', ErrorMessage);
+    //                     END; //end IF UseCustNo=''
+    //                          //end WITH SalesPrice DO
+    //                 END; //end IF CrossRefFound
 
 
 
-                    //III - verify info from Item record
-                    IF CrossRefFound THEN BEGIN
-                        Item.GET(ItemCrossRef."Item No.");
-                        //SNP
-                        IF Item."Units per Parcel" = 0 THEN BEGIN
-                            ErrorFlag := TRUE;
-                            ErrorMessage := STRSUBSTNO('No SNP found for Item %1, Cross Ref No. %2.', Item."No.", XmlNode.text);
-                            MESSAGE('Error in File %1:\' +
-                                  '%2', '', ErrorMessage);
-                        END;
-                        //Tax Group Code
-                        IF Item."Tax Group Code" = '' THEN BEGIN
-                            ErrorFlag := TRUE;
-                            ErrorMessage := STRSUBSTNO('Tax Group Code for Item %1 is blank.', Item."No.");
-                            MESSAGE('Error in File %1:\' +
-                                  '%2', '', ErrorMessage);
-                        END;
-                    END;
+    //                 //III - verify info from Item record
+    //                 IF CrossRefFound THEN BEGIN
+    //                     Item.GET(ItemCrossRef."Item No.");
+    //                     //SNP
+    //                     IF Item."Units per Parcel" = 0 THEN BEGIN
+    //                         ErrorFlag := TRUE;
+    //                         ErrorMessage := STRSUBSTNO('No SNP found for Item %1, Cross Ref No. %2.', Item."No.", XmlNode.text);
+    //                         MESSAGE('Error in File %1:\' +
+    //                               '%2', '', ErrorMessage);
+    //                     END;
+    //                     //Tax Group Code
+    //                     IF Item."Tax Group Code" = '' THEN BEGIN
+    //                         ErrorFlag := TRUE;
+    //                         ErrorMessage := STRSUBSTNO('Tax Group Code for Item %1 is blank.', Item."No.");
+    //                         MESSAGE('Error in File %1:\' +
+    //                               '%2', '', ErrorMessage);
+    //                     END;
+    //                 END;
 
 
-                    //IV - verify Ship-to for specific Customer
-                    IF (UseCustNo <> '') AND (PPSShipTo."Ship-to Code" <> '') THEN
-                        IF NOT ShipTo.GET(UseCustNo, PPSShipTo."Ship-to Code") THEN BEGIN
-                            ErrorFlag := TRUE;
-                            ErrorMessage := STRSUBSTNO('Ship-to %1 for Customer %2 is not on file.', PPSShipTo."Ship-to Code", UseCustNo);
-                            MESSAGE('Error in File %1:\' +
-                                    '%2', '', ErrorMessage);
-                        END;
+    //                 //IV - verify Ship-to for specific Customer
+    //                 IF (UseCustNo <> '') AND (PPSShipTo."Ship-to Code" <> '') THEN
+    //                     IF NOT ShipTo.GET(UseCustNo, PPSShipTo."Ship-to Code") THEN BEGIN
+    //                         ErrorFlag := TRUE;
+    //                         ErrorMessage := STRSUBSTNO('Ship-to %1 for Customer %2 is not on file.', PPSShipTo."Ship-to Code", UseCustNo);
+    //                         MESSAGE('Error in File %1:\' +
+    //                                 '%2', '', ErrorMessage);
+    //                     END;
 
 
-                    //WRITE TO BufferTable
-                    PPSBuffer.SETRANGE("Document No.", ListCode);
-                    PPSBuffer.SETRANGE("Customer No.", UseCustNo);
-                    PPSBuffer.SETRANGE("Ship-to Code", PPSShipTo."Ship-to Code");
-                    PPSBuffer.SETRANGE("Item No.", Item."No.");
-                    IF (PPSBuffer.FIND('-')) AND (NOT ErrorFlag) THEN BEGIN
-                        PPSBuffer.Quantity := PPSBuffer.Quantity + (Qty * Item."Units per Parcel");
-                        PPSBuffer.MODIFY;
-                    END ELSE BEGIN
-                        PPSBuffer.INIT;
-                        PPSBuffer."Document No." := ListCode;
-                        PPSBuffer."Line No." := i;
-                        PPSBuffer."Customer No." := UseCustNo;
-                        PPSBuffer."Ship-to Code" := PPSShipTo."Ship-to Code";
-                        PPSBuffer."Item No." := Item."No.";
-                        PPSBuffer."Cross-Reference No." := XmlNode.text;
-                        PPSBuffer.Description := '';
-                        PPSBuffer.Quantity := Qty * Item."Units per Parcel";
-                        PPSBuffer."EDI Control No." := '';
-                        PPSBuffer."File Name" := Filename2;
-                        PPSBuffer."File Name 2" := ListTime;
-                        PPSBuffer."Error Found" := ErrorFlag;
-                        PPSBuffer."Error Message" := ErrorMessage;
-                        //SM new PPS 032323==================================================
-                        PPSBuffer."Plant Code" := PlantCode;
-                        PPSBuffer."Dock Code" := DockCOde;
-                        //SM new PPS 032323==================================================
+    //                 //WRITE TO BufferTable
+    //                 PPSBuffer.SETRANGE("Document No.", ListCode);
+    //                 PPSBuffer.SETRANGE("Customer No.", UseCustNo);
+    //                 PPSBuffer.SETRANGE("Ship-to Code", PPSShipTo."Ship-to Code");
+    //                 PPSBuffer.SETRANGE("Item No.", Item."No.");
+    //                 IF (PPSBuffer.FIND('-')) AND (NOT ErrorFlag) THEN BEGIN
+    //                     PPSBuffer.Quantity := PPSBuffer.Quantity + (Qty * Item."Units per Parcel");
+    //                     PPSBuffer.MODIFY();
+    //                 END ELSE BEGIN
+    //                     PPSBuffer.INIT();
+    //                     PPSBuffer."Document No." := ListCode;
+    //                     PPSBuffer."Line No." := i;
+    //                     PPSBuffer."Customer No." := UseCustNo;
+    //                     PPSBuffer."Ship-to Code" := PPSShipTo."Ship-to Code";
+    //                     PPSBuffer."Item No." := Item."No.";
+    //                     PPSBuffer."Cross-Reference No." := XmlNode.text;
+    //                     PPSBuffer.Description := '';
+    //                     PPSBuffer.Quantity := Qty * Item."Units per Parcel";
+    //                     PPSBuffer."EDI Control No." := '';
+    //                     PPSBuffer."File Name" := Filename2;
+    //                     PPSBuffer."File Name 2" := ListTime;
+    //                     PPSBuffer."Error Found" := ErrorFlag;
+    //                     PPSBuffer."Error Message" := ErrorMessage;
+    //                     //SM new PPS 032323==================================================
+    //                     PPSBuffer."Plant Code" := PlantCode;
+    //                     PPSBuffer."Dock Code" := DockCOde;
+    //                     //SM new PPS 032323==================================================
 
-                        PPSBuffer.INSERT;
-                    END;
-
-
-                END;
-
-                XmlNode := XmlNodelist.item(i - 1).selectSingleNode('StandardPack');
-                IF NOT ISCLEAR(XmlNode) THEN BEGIN
-                END;
-
-                XmlNode := XmlNodelist.item(i - 1).selectSingleNode('Description');
-                IF NOT ISCLEAR(XmlNode) THEN BEGIN
-                END;
-
-                XmlNode := XmlNodelist.item(i - 1).selectSingleNode('LocationCSV');
-                IF NOT ISCLEAR(XmlNode) THEN BEGIN
-                END;
+    //                     PPSBuffer.INSERT();
+    //                 END;
 
 
-            END;
-        END;
+    //             END;
 
-        //>> NF1.00:CIS.NG  06-04-16
-        IF EXISTS(LocalTmpFile) THEN
-            ERASE(LocalTmpFile);
-        //<< NF1.00:CIS.NG  06-04-16
-    end;
+    //             XmlNode := XmlNodelist.item(i - 1).selectSingleNode('StandardPack');
+    //             IF NOT ISCLEAR(XmlNode) THEN;
+    //             XmlNode := XmlNodelist.item(i - 1).selectSingleNode('Description');
+    //             IF NOT ISCLEAR(XmlNode) THEN;
+    //             XmlNode := XmlNodelist.item(i - 1).selectSingleNode('LocationCSV');
+    //             IF NOT ISCLEAR(XmlNode) THEN;
+
+    //         END;
+    //     END;
+
+    //     //>> NF1.00:CIS.NG  06-04-16
+    //     IF EXISTS(LocalTmpFile) THEN
+    //         ERASE(LocalTmpFile);
+    //     //<< NF1.00:CIS.NG  06-04-16
+    //end;
 }
 

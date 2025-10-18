@@ -17,22 +17,21 @@ codeunit 50013 "Bank Exchange Contract Mgt."
     procedure SuggestTotalJPY("Contract No.": Code[20]) TotalAmount: Decimal
     var
         PurchHeader: Record 38;
-        PurchLine: Record 39;
         MasterHeader: Record 50011;
     begin
         //MasterHeader.SETRANGE(Total, "Contract No."); //NF1.00:CIS.NG  11-04-15
         MasterHeader.SETRANGE("Contract Note No.", "Contract No."); //NF1.00:CIS.NG  11-04-15
         IF MasterHeader.FIND('-') THEN
-          REPEAT
-            PurchHeader.SETRANGE("Contract Note No.", MasterHeader."No.");
-            IF PurchHeader.FIND('-') THEN
-              REPEAT
-                PurchHeader.CALCFIELDS(Amount);
-                TotalAmount := TotalAmount + PurchHeader.Amount;
-              UNTIL PurchHeader.NEXT = 0;
-          UNTIL MasterHeader.NEXT =0
+            REPEAT
+                PurchHeader.SETRANGE("Contract Note No.", MasterHeader."No.");
+                IF PurchHeader.FIND('-') THEN
+                    REPEAT
+                        PurchHeader.CALCFIELDS(Amount);
+                        TotalAmount := TotalAmount + PurchHeader.Amount;
+                    UNTIL PurchHeader.NEXT() = 0;
+            UNTIL MasterHeader.NEXT() = 0
         ELSE
-          MESSAGE(TEXT001);
+            MESSAGE(TEXT001);
     end;
 }
 

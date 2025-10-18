@@ -7,9 +7,9 @@ codeunit 50026 "JRR Test"
 
     trigger OnRun()
     var
-        WHE: Record 7312;
-        PH: Record 38;
-        prl: Record 121;
+       // WHE: Record 7312;
+        //PH: Record 38;
+        //prl: Record 121;
         Loc: Record 14;
     begin
         IF Loc.GET('ROMECON') THEN BEGIN
@@ -44,7 +44,7 @@ codeunit 50026 "JRR Test"
         END;
         */
         
-        EXIT;
+        //EXIT;
         
         
         
@@ -70,7 +70,7 @@ codeunit 50026 "JRR Test"
            WHE.MODIFY;
          END;
         */
-        EXIT;
+      //  EXIT;
 
     end;
 }
