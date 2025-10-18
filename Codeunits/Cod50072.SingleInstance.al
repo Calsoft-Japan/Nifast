@@ -1,4 +1,4 @@
-codeunit 50023 SingleInstance
+codeunit 50072 SingleInstance
 {
     SingleInstance = true;
 

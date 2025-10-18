@@ -1,4 +1,4 @@
-codeunit 50032 CU5704Subscriber
+codeunit 50070 CU5704Subscriber
 {
     ///Version NAVW17.10,SE0.60,NV4.35,NIF1.057,NIF.N15.C9IN.001;
 
