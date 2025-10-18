@@ -46,7 +46,7 @@ codeunit 50016 "EDI Create Delivery Schedule"
         EDIRecDocFields.RESET;
         EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "Field Name");
         EDIRecDocFields.SETRANGE("Internal Doc. No.", EDIRecDocHdr2."Internal Doc. No.");
-        IF EDIRecDocFields.FIND('-') THEN BEGIN
+        IF EDIRecDocFields.FIND('-') THEN
             IF EDITradePartner."Customer No." <> '' THEN
                 LastCustomerNo := EDITradePartner."Customer No."
             ELSE BEGIN
@@ -63,7 +63,6 @@ codeunit 50016 "EDI Create Delivery Schedule"
                     LastCustomerNo := COPYSTR(EDIRecDocFields."Field Text Value", 1, 20);
                 END;
             END;
-        END;
 
         EDIRecDocFields.RESET;
         EDIRecDocFields.SETCURRENTKEY(
@@ -75,12 +74,12 @@ codeunit 50016 "EDI Create Delivery Schedule"
             // Locking to prevent Deadlocking
             EDIRecDocHdr.LOCKTABLE;
             EDIRecDocFields.LOCKTABLE;
-            DeliverySchBatch.LOCKTABLE;
-            DeliverySchHeader.LOCKTABLE;
-            DeliverySchLine.LOCKTABLE;
+            DeliverySchBatch.LOCKTABLE();
+            DeliverySchHeader.LOCKTABLE();
+            DeliverySchLine.LOCKTABLE();
 
 
-            DeliverySchBatch.INIT;
+            DeliverySchBatch.INIT();
             CLEAR(DeliverySchBatch);
 
             DeliverySchBatch."EDI Trade Partner" := "Trade Partner No.";
@@ -130,7 +129,7 @@ codeunit 50016 "EDI Create Delivery Schedule"
                             DeliverySchHeader.SETRANGE("Delivery Schedule Batch No.", DeliverySchBatch."No.");
 
                             CLEAR(DeliverySchHeader);
-                            DeliverySchHeader.INIT;
+                            DeliverySchHeader.INIT();
                             DeliverySchHeader."Delivery Schedule Batch No." := DeliverySchBatch."No.";
                             DeliverySchHeader."Customer No." := DeliverySchBatch."Customer No.";
                             DeliverySchHeader.INSERT(TRUE);
@@ -164,92 +163,71 @@ codeunit 50016 "EDI Create Delivery Schedule"
                     LastItemNo := '';
                 END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Location Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastLocationCode := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Model Year")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastModelYear := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Release Number")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastReleaseNumber := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Receiving Dock Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastReceivingDockCode := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Stockman Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastStockmanCode := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Order Reference No.")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastOrderReferenceNo := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Quantity CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastQuantityCYTD := EDIRecDocFields."Field Integer Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Unit of Measure CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastUOMCYTD := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Start Date CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastStartDateCYTD := EDIRecDocFields."Field Date Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."End Date CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastEndDateCYTD := EDIRecDocFields."Field Date Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Quantity Shipped CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastQuantityShippedCYTD := EDIRecDocFields."Field Integer Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Unit of Measure Shipped CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastUOMShippedCYTD := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Start Date Shipped CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastStartDateShippedCYTD := EDIRecDocFields."Field Date Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."End Date Shipped CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50012) THEN
                     LastEndDateShippedCYTD := EDIRecDocFields."Field Date Value";
-                END;
 
 
                 //Delivery Schedule Line
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Type Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50013) THEN
                     LastTypeCode := EDIRecDocFields."Field Integer Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Frequency Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50013) THEN
                     LastFrequencyCode := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Forecast Unit of Measure")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50013) THEN
                     LastForecastUOM := EDIRecDocFields."Field Text Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Forecast Quantity")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50013) THEN
                     LastForecastQuantity := EDIRecDocFields."Field Integer Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Expected Delivery Date")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50013) THEN
                     LastExpDeliveryDate := EDIRecDocFields."Field Date Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Start Date")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50013) THEN
                     LastStartDate := EDIRecDocFields."Field Date Value";
-                END;
                 IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."End Date")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN BEGIN
+                   (EDIRecDocFields."NAV Table No." = 50013) THEN
                     LastEndDate := EDIRecDocFields."Field Date Value";
-                END;
 
                 IF CommandEnd THEN
                     IF DeliverySchHeaderLoop THEN BEGIN
@@ -257,11 +235,12 @@ codeunit 50016 "EDI Create Delivery Schedule"
                         ResetFSValues();
                         CmdCount := CmdCount - 1;
                         DeliverySchHeaderLoop := FALSE;
-                    END ELSE IF ('FS' = COPYSTR(EDIRecDocFields."Command ID", 1, 2)) THEN BEGIN
-                        CreDetailLine();
-                        ResetFSLValues();
-                        CmdCount := CmdCount - 1;
-                    END;
+                    END ELSE
+                        if ('FS' = COPYSTR(EDIRecDocFields."Command ID", 1, 2)) THEN BEGIN
+                            CreDetailLine();
+                            ResetFSLValues();
+                            CmdCount := CmdCount - 1;
+                        END;
 
             UNTIL EDIRecDocFields.NEXT = 0;
 
@@ -279,76 +258,58 @@ codeunit 50016 "EDI Create Delivery Schedule"
 
     var
         Customer: Record 18;
+        DeliverySchHeader: Record 50012;
+        DeliverySchLine: Record 50013;
+        DeliverySchBatch: Record 50020;
         EDITemplate: Record 14002350;
-        EDITradePartner: Record 14002360;
         EDIRecDocHdr: Record 14002358;
         EDIRecDocHdr2: Record 14002358;
         EDIRecDocFields: Record 14002359;
-        EDIRecDocFields2: Record 14002359;
-        EDIRecDocFields3: Record 14002359;
+        EDITradePartner: Record 14002360;
         EDICustCrossRef: Record 14002362;
-        EDICustCrossRef2: Record 14002362;
-        TradePartnerUnitofMeasure: Record 14002365;
         TradePartnerItem: Record 14002364;
-        ItemUnitOfMeasure: Record 5404;
-        Item: Record 27;
-        ReleaseSalesDocument: Codeunit 414;
-        ProgressWindow: Dialog;
-        i: Integer;
-        j: Integer;
-        BeginLineNo: Integer;
-        EndLineNo: Integer;
-        LastItemNo: Code[20];
-        LastItemCrossRefNo: Code[20];
-        LastItemRefNo: Integer;
-        LastCrossRefNo: Code[20];
-        LastUOM: Text[10];
-        LastEDIUOM: Code[2];
-        LastQty: Decimal;
-        LastCustomerNo: Code[20];
-        LastLocationCode: Code[20];
-        LastModelYear: Code[10];
-        LastReleaseNumber: Code[10];
-        LastReceivingDockCode: Code[10];
-        LastStockmanCode: Code[10];
-        LastOrderReferenceNo: Code[20];
-        LastQuantityCYTD: Integer;
-        LastUOMCYTD: Text[10];
-        LastStartDateCYTD: Date;
-        LastEndDateCYTD: Date;
-        LastQuantityShippedCYTD: Integer;
-        LastUOMShippedCYTD: Text[10];
-        LastStartDateShippedCYTD: Date;
-        LastEndDateShippedCYTD: Date;
-        LastTypeCode: Integer;
-        LastFrequencyCode: Text[10];
-        LastExpDeliveryDate: Date;
-        LastForecastUOM: Text[10];
-        LastForecastQuantity: Integer;
-        LastStartDate: Date;
-        LastEndDate: Date;
-        PrevItemNo: Code[20];
-        DeliverySchBatch: Record 50020;
-        DeliverySchBatch2: Record 50020;
-        DeliverySchHeader: Record 50012;
-        DeliverySchLine: Record 50013;
-        LineNo: Integer;
-        FSLineNo: Integer;
-        TotalLines: Integer;
-        c: Integer;
-        FoundCmdID: Boolean;
-        CommandIDArray: array[1024] of Code[10];
-        CmdCount: Integer;
         CommandEnd: Boolean;
-        TotalLineElements: Integer;
-        TotalFSLines: Integer;
-        NavBaseQty: Integer;
-        OrderBaseQty: Integer;
-        MultiplierQty: Integer;
-        TotalDelvieryScheduleHdr: Integer;
-        StartDate: Date;
-        EndDate: Date;
         DeliverySchHeaderLoop: Boolean;
+        LastEDIUOM: Code[2];
+        CommandIDArray: array[1024] of Code[10];
+        LastModelYear: Code[10];
+        LastReceivingDockCode: Code[10];
+        LastReleaseNumber: Code[10];
+        LastStockmanCode: Code[10];
+        LastCrossRefNo: Code[20];
+        LastCustomerNo: Code[20];
+        LastItemCrossRefNo: Code[20];
+        LastItemNo: Code[20];
+        LastLocationCode: Code[20];
+        LastOrderReferenceNo: Code[20];
+        PrevItemNo: Code[20];
+        EndDate: Date;
+        LastEndDate: Date;
+        LastEndDateCYTD: Date;
+        LastEndDateShippedCYTD: Date;
+        LastExpDeliveryDate: Date;
+        LastStartDate: Date;
+        LastStartDateCYTD: Date;
+        LastStartDateShippedCYTD: Date;
+        StartDate: Date;
+        LastQty: Decimal;
+        ProgressWindow: Dialog;
+        CmdCount: Integer;
+        i: Integer;
+        LastForecastQuantity: Integer;
+        LastItemRefNo: Integer;
+        LastQuantityCYTD: Integer;
+        LastQuantityShippedCYTD: Integer;
+        LastTypeCode: Integer;
+        LineNo: Integer;
+        TotalDelvieryScheduleHdr: Integer;
+        TotalLineElements: Integer;
+        TotalLines: Integer;
+        LastForecastUOM: Text[10];
+        LastFrequencyCode: Text[10];
+        LastUOM: Text[10];
+        LastUOMCYTD: Text[10];
+        LastUOMShippedCYTD: Text[10];
 
     procedure MapPlnSchFields()
     begin
@@ -464,7 +425,7 @@ codeunit 50016 "EDI Create Delivery Schedule"
         ELSE
             LineNo := 10000;
 
-        DeliverySchLine.INIT;
+        DeliverySchLine.INIT();
         DeliverySchLine."Delivery Schedule Batch No." := DeliverySchHeader."Delivery Schedule Batch No.";
         DeliverySchLine."Customer No." := DeliverySchHeader."Customer No.";
         DeliverySchLine."Document No." := DeliverySchHeader."No.";

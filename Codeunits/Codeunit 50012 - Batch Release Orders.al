@@ -14,17 +14,17 @@ codeunit 50012 "Batch Release Orders"
         PurchHeader.SETRANGE(Status, PurchHeader.Status::Open);
 
         IF PurchHeader.FIND('-') THEN BEGIN
-          REPEAT
-            BatchRelease.RUN(PurchHeader);
-          UNTIL PurchHeader.NEXT = 0;
+            REPEAT
+                BatchRelease.RUN(PurchHeader);
+            UNTIL PurchHeader.NEXT() = 0;
             MESSAGE(TEXT001);
         END ELSE
-          MESSAGE(TEXT002);
+            MESSAGE(TEXT002);
     end;
 
     var
-        BatchRelease: Codeunit 415;
         PurchHeader: Record 38;
+        BatchRelease: Codeunit 415;
         TEXT001: Label 'All Purchase Orders Released';
         TEXT002: Label 'Nothing to Release';
 }

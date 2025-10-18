@@ -16,77 +16,69 @@ codeunit 50005 "IoT Import Files"
         pString := DocType3;
         ProcessAll(FALSE);
 
-        IoTFileImportLog.RESET;
+        IoTFileImportLog.RESET();
         //IoTFileImportLog.SETRANGE("Import Date",TODAY);
         IoTFileImportLog.SETRANGE(Status, IoTFileImportLog.Status::Error);
-        IF IoTFileImportLog.FINDSET THEN
-            SendStatusEmail;
+        IF IoTFileImportLog.FINDSET() THEN
+            SendStatusEmail();
     end;
 
     var
         InvtSetup: Record 313;
         MyFile: Record 2000000022;
+        FileMgt: Codeunit "File Management";
+        TempBlobg: codeunit "Temp Blob";
+      //  ImportIoTInvtPickData: XMLport 50002;
+        ImportIoTTransRcptData: XMLport 50003;
+        //ImportIoTSalesShipData: XMLport 50035;
+        pString: Code[30];
+        Window: Dialog;
         SourceFile: File;
         Ins: InStream;
+        ErrorCount: Integer;
+        LastUsedLineNo: Integer;
+        SuccessCount: Integer;
+        CONFIRM_MSG: Label 'Do you want to import/update order?';
+        DIALOG_TEXT1: Label 'Import Files....\';
+        DIALOG_TEXT2: Label 'File Name #1################', Comment = '%1';
         DocType1: Label 'Invt. Pick.';
         DocType2: Label 'Trans. Rcpt.';
         DocType3: Label 'Sales Ship';
-        FOLDER_NOT_FOUND: Label 'Could not find folder %1';
-        DOCNAME: Label '%1.XML';
-        INVALID_XML_DOCTYPE: Label 'The DOCTYPE element in the XML document returned an invalid value';
-        EDI_ORDER_REJECTED: Label 'The EDI Sales Order number %1 was rejected';
-        STATUS_MSG: Label 'Files Imported: %1\Orders Failed: %2';
-        SuccessCount: Integer;
-        ErrorCount: Integer;
+        FOLDER_NOT_FOUND: Label 'Could not find folder %1', Comment = '%1';
         NOTHING_MSG: Label 'There is nothing to import.';
-        CONFIRM_MSG: Label 'Do you want to import/update order?';
-        EMAIL_TEXT1: Label 'Dear User,';
-        EMAIL_TEXT2: Label 'Error Notification';
-        EMAIL_TEXT3: Label 'Regards,';
-        EMAIL_TEXT4: Label 'Systems Auto Alert';
-        EMAIL_TEXT5: Label 'File Detail - %1';
-        EMAIL_TEXT7: Label 'Files Failed : %1';
-        DIALOG_TEXT1: Label 'Import Files....\';
-        DIALOG_TEXT2: Label 'File Name #1################';
-        Window: Dialog;
-        LastUsedLineNo: Integer;
-        JobQueueEnt: Record 472;
-        ImportIoTInvtPickData: XMLport 50002;
-        ImportIoTTransRcptData: XMLport 50003;
-        ImportIoTSalesShipData: XMLport 50035;
-        Sourcepath: Text[250];
-        Errorpath: Text[250];
-        Successpath: Text[250];
-        pString: Code[30];
+        STATUS_MSG: Label 'Files Imported: %1\Orders Failed: %2', Comment = '%1 %2';
+        Outstreamg: OutStream;
         BackSlashstr: Text[1];
+        Errorpath: Text[250];
+        Sourcepath: Text[250];
+        Successpath: Text[250];
 
     procedure ProcessAll(parShowMsg: Boolean)
     var
         IoTFileImportLog: Record 50045;
     begin
-        IF GUIALLOWED THEN BEGIN
+        IF GUIALLOWED THEN
             IF NOT CONFIRM(CONFIRM_MSG, TRUE) THEN
                 EXIT;
-        END;
 
         CLEAR(Sourcepath);
         CLEAR(Errorpath);
         CLEAR(Successpath);
 
-        CheckSetup;
+        CheckSetup();
 
-        MyFile.RESET;
+        MyFile.RESET();
 
         MyFile.SETRANGE(Path, Sourcepath);
         MyFile.SETRANGE("Is a file", TRUE);
         MyFile.SETFILTER(Name, '@*.csv');
-        IF MyFile.FINDSET THEN BEGIN
+        IF MyFile.FINDSET() THEN BEGIN
             IF GUIALLOWED THEN
                 Window.OPEN(DIALOG_TEXT1 + DIALOG_TEXT2);
 
 
-            IoTFileImportLog.RESET;
-            IF IoTFileImportLog.FINDLAST THEN
+            IoTFileImportLog.RESET();
+            IF IoTFileImportLog.FINDLAST() THEN
                 LastUsedLineNo := IoTFileImportLog."Entry No.";
 
             REPEAT
@@ -98,17 +90,16 @@ codeunit 50005 "IoT Import Files"
                     pString = UPPERCASE(DocType3):
                         ProcessInvtSalesShipFiles();
                 END;
-            UNTIL MyFile.NEXT = 0;
+            UNTIL MyFile.NEXT() = 0;
 
             IF GUIALLOWED THEN
-                Window.CLOSE;
+                Window.CLOSE();
 
             IF parShowMsg THEN
                 ShowMessage();
-        END ELSE BEGIN
+        END ELSE
             IF GUIALLOWED THEN
                 MESSAGE(NOTHING_MSG);
-        END;
     end;
 
     procedure CheckSetup()
@@ -116,7 +107,7 @@ codeunit 50005 "IoT Import Files"
         CLEAR(Sourcepath);
         CLEAR(Errorpath);
         CLEAR(Successpath);
-        InvtSetup.GET;
+        InvtSetup.GET();
 
         CASE TRUE OF
             pString = UPPERCASE(DocType1):
@@ -159,10 +150,9 @@ codeunit 50005 "IoT Import Files"
             ERROR(FOLDER_NOT_FOUND, Errorpath);
         IF NOT ValidateDirectoryPath(Sourcepath) THEN
             ERROR(FOLDER_NOT_FOUND, Sourcepath);
-        IF NOT InvtSetup."Delete IoT File on Success" THEN BEGIN
+        IF NOT InvtSetup."Delete IoT File on Success" THEN
             IF NOT ValidateDirectoryPath(Successpath) THEN
                 ERROR(FOLDER_NOT_FOUND, Successpath);
-        END;
     end;
 
     procedure ShowMessage()
@@ -174,33 +164,46 @@ codeunit 50005 "IoT Import Files"
     procedure ProcessInvtPickFiles()
     var
         IoTFileImportLog: Record 50045;
-        LastDocNo_lCod: Code[250];
     begin
-        CLEARLASTERROR;
+        CLEARLASTERROR();
         CLEAR(Ins);
         CLEAR(SourceFile);
 
         IF GUIALLOWED THEN
             Window.UPDATE(1, MyFile.Name);
 
-        SourceFile.TEXTMODE(TRUE);
-        SourceFile.OPEN(MyFile.Path + MyFile.Name);
-        SourceFile.CREATEINSTREAM(Ins);
-        CLEAR(ImportIoTInvtPickData);
-        ImportIoTInvtPickData.SetFileName(MyFile.Name);
-        ImportIoTInvtPickData.SETSOURCE(Ins);
-        IF ImportIoTInvtPickData.IMPORT THEN BEGIN
-            SuccessCount += 1;
-            IF InvtSetup."Delete IoT File on Success" THEN BEGIN
-                SourceFile.CLOSE;
-                ERASE(MyFile.Path + MyFile.Name);
-            END ELSE BEGIN
-                SourceFile.CLOSE;
-                FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name);
-                ERASE(MyFile.Path + MyFile.Name);
-            END;
+        // SourceFile.TEXTMODE(TRUE);
+        // SourceFile.OPEN(MyFile.Path + MyFile.Name);
+        // SourceFile.CREATEINSTREAM(Ins);
+        // CLEAR(ImportIoTInvtPickData);
+        // ImportIoTInvtPickData.SetFileName(MyFile.Name);
+        // ImportIoTInvtPickData.SETSOURCE(Ins);
+        // IF ImportIoTInvtPickData.IMPORT() THEN BEGIN
+        //     SuccessCount += 1;
+        //     IF InvtSetup."Delete IoT File on Success" THEN BEGIN
+        //         SourceFile.CLOSE;
+        //         ERASE(MyFile.Path + MyFile.Name);
+        //     END ELSE BEGIN
+        //         SourceFile.CLOSE;
+        //         FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name);
+        //         ERASE(MyFile.Path + MyFile.Name);
+        //     END;
+        if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
+            exit;
 
-            IoTFileImportLog.RESET;
+        Clear(ImportIoTTransRcptData);
+        ImportIoTTransRcptData.SetSource(InS);
+
+        if ImportIoTTransRcptData.Import() then begin
+            SuccessCount += 1;
+            // LastDocNo_lCod := ImportIoTTransRcptData.GetOrderNo();
+            //AddToDocNos(LastDocNo_lCod);
+            TempBlobg.CreateOutStream(Outstreamg);
+            CopyStream(Outstreamg, InS);
+            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+
+
+            IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
             IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
@@ -209,15 +212,15 @@ codeunit 50005 "IoT Import Files"
             IoTFileImportLog.Status := IoTFileImportLog.Status::Success;
             IoTFileImportLog.INSERT(TRUE);
 
-            COMMIT; // to retain all good values, in case other files fail
+            COMMIT(); // to retain all good values, in case other files fail
         END ELSE BEGIN
             ErrorCount += 1;
 
-            SourceFile.CLOSE;
-            FILE.COPY(MyFile.Path + MyFile.Name, Errorpath + MyFile.Name);
-            ERASE(MyFile.Path + MyFile.Name);
+            //  SourceFile.CLOSE;
+            //FILE.COPY(MyFile.Path + MyFile.Name, Errorpath + MyFile.Name);
+            //ERASE(MyFile.Path + MyFile.Name);
 
-            IoTFileImportLog.RESET;
+            IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
             IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
@@ -226,40 +229,53 @@ codeunit 50005 "IoT Import Files"
             IoTFileImportLog.Status := IoTFileImportLog.Status::Error;
             IoTFileImportLog."Error Text" := COPYSTR(GETLASTERRORTEXT, 1, 250);
             IoTFileImportLog.INSERT(TRUE);
-            COMMIT;
+            COMMIT();
         END;
     end;
 
     procedure ProcessInvtTransRcptFiles()
     var
         IoTFileImportLog: Record 50045;
-        LastDocNo_lCod: Code[250];
     begin
-        CLEARLASTERROR;
+        CLEARLASTERROR();
         CLEAR(Ins);
         CLEAR(SourceFile);
 
         IF GUIALLOWED THEN
             Window.UPDATE(1, MyFile.Name);
 
-        SourceFile.TEXTMODE(TRUE);
-        SourceFile.OPEN(MyFile.Path + MyFile.Name);
-        SourceFile.CREATEINSTREAM(Ins);
-        CLEAR(ImportIoTInvtPickData);
-        ImportIoTInvtPickData.SetFileName(MyFile.Name);
-        ImportIoTTransRcptData.SETSOURCE(Ins);
-        IF ImportIoTTransRcptData.IMPORT THEN BEGIN
-            SuccessCount += 1;
-            IF InvtSetup."Delete IoT File on Success" THEN BEGIN
-                SourceFile.CLOSE;
-                ERASE(MyFile.Path + MyFile.Name);
-            END ELSE BEGIN
-                SourceFile.CLOSE;
-                FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name);
-                ERASE(MyFile.Path + MyFile.Name);
-            END;
+        // SourceFile.TEXTMODE(TRUE);
+        // SourceFile.OPEN(MyFile.Path + MyFile.Name);
+        // SourceFile.CREATEINSTREAM(Ins);
+        // CLEAR(ImportIoTInvtPickData);
+        // ImportIoTInvtPickData.SetFileName(MyFile.Name);
+        // ImportIoTTransRcptData.SETSOURCE(Ins);
+        // IF ImportIoTTransRcptData.IMPORT() THEN BEGIN
+        //     SuccessCount += 1;
+        //     IF InvtSetup."Delete IoT File on Success" THEN BEGIN
+        //         SourceFile.CLOSE;
+        //         ERASE(MyFile.Path + MyFile.Name);
+        //     END ELSE BEGIN
+        //         SourceFile.CLOSE;
+        //         FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name);
+        //         ERASE(MyFile.Path + MyFile.Name);
+        //     END;
+        if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
+            exit;
 
-            IoTFileImportLog.RESET;
+        Clear(ImportIoTTransRcptData);
+        ImportIoTTransRcptData.SetSource(InS);
+
+        if ImportIoTTransRcptData.Import() then begin
+            SuccessCount += 1;
+            // LastDocNo_lCod := ImportIoTTransRcptData.GetOrderNo();
+            //AddToDocNos(LastDocNo_lCod);
+            TempBlobg.CreateOutStream(Outstreamg);
+            CopyStream(Outstreamg, InS);
+            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+
+
+            IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
             IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
@@ -268,15 +284,15 @@ codeunit 50005 "IoT Import Files"
             IoTFileImportLog.Status := IoTFileImportLog.Status::Success;
             IoTFileImportLog.INSERT(TRUE);
 
-            COMMIT; // to retain all good values, in case other files fail
+            COMMIT(); // to retain all good values, in case other files fail
         END ELSE BEGIN
             ErrorCount += 1;
 
-            SourceFile.CLOSE;
-            FILE.COPY(MyFile.Path + MyFile.Name, Errorpath + MyFile.Name);
-            ERASE(MyFile.Path + MyFile.Name);
+            //  SourceFile.CLOSE;
+            //FILE.COPY(MyFile.Path + MyFile.Name, Errorpath + MyFile.Name);
+            //ERASE(MyFile.Path + MyFile.Name);
 
-            IoTFileImportLog.RESET;
+            IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
             IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
@@ -285,40 +301,53 @@ codeunit 50005 "IoT Import Files"
             IoTFileImportLog.Status := IoTFileImportLog.Status::Error;
             IoTFileImportLog."Error Text" := COPYSTR(GETLASTERRORTEXT, 1, 250);
             IoTFileImportLog.INSERT(TRUE);
-            COMMIT;
+            COMMIT();
         END;
     end;
 
     procedure ProcessInvtSalesShipFiles()
     var
         IoTFileImportLog: Record 50045;
-        LastDocNo_lCod: Code[250];
     begin
-        CLEARLASTERROR;
+        CLEARLASTERROR();
         CLEAR(Ins);
         CLEAR(SourceFile);
 
         IF GUIALLOWED THEN
             Window.UPDATE(1, MyFile.Name);
 
-        SourceFile.TEXTMODE(TRUE);
-        SourceFile.OPEN(MyFile.Path + MyFile.Name);
-        SourceFile.CREATEINSTREAM(Ins);
-        CLEAR(ImportIoTInvtPickData);
-        ImportIoTSalesShipData.SetFileName(MyFile.Name);
-        ImportIoTSalesShipData.SETSOURCE(Ins);
-        IF ImportIoTSalesShipData.IMPORT THEN BEGIN
-            SuccessCount += 1;
-            IF InvtSetup."Delete IoT File on Success" THEN BEGIN
-                SourceFile.CLOSE;
-                ERASE(MyFile.Path + MyFile.Name);
-            END ELSE BEGIN
-                SourceFile.CLOSE;
-                FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name);
-                ERASE(MyFile.Path + MyFile.Name);
-            END;
+        // SourceFile.TEXTMODE(TRUE);
+        // SourceFile.OPEN(MyFile.Path + MyFile.Name);
+        // SourceFile.CREATEINSTREAM(Ins);
+        // CLEAR(ImportIoTInvtPickData);
+        // ImportIoTSalesShipData.SetFileName(MyFile.Name);
+        // ImportIoTSalesShipData.SETSOURCE(Ins);
+        // IF ImportIoTSalesShipData.IMPORT() THEN BEGIN
+        //     SuccessCount += 1;
+        //     IF InvtSetup."Delete IoT File on Success" THEN BEGIN
+        //         SourceFile.CLOSE;
+        //         ERASE(MyFile.Path + MyFile.Name);
+        //     END ELSE BEGIN
+        //         SourceFile.CLOSE;
+        //         FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name);
+        //         ERASE(MyFile.Path + MyFile.Name);
+        //     END;
+        if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
+            exit;
 
-            IoTFileImportLog.RESET;
+        Clear(ImportIoTTransRcptData);
+        ImportIoTTransRcptData.SetSource(InS);
+
+        if ImportIoTTransRcptData.Import() then begin
+            SuccessCount += 1;
+            // LastDocNo_lCod := ImportIoTTransRcptData.GetOrderNo();
+            //AddToDocNos(LastDocNo_lCod);
+            TempBlobg.CreateOutStream(Outstreamg);
+            CopyStream(Outstreamg, InS);
+            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+
+
+            IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
             IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
@@ -327,15 +356,15 @@ codeunit 50005 "IoT Import Files"
             IoTFileImportLog.Status := IoTFileImportLog.Status::Success;
             IoTFileImportLog.INSERT(TRUE);
 
-            COMMIT; // to retain all good values, in case other files fail
+            COMMIT(); // to retain all good values, in case other files fail
         END ELSE BEGIN
             ErrorCount += 1;
 
-            SourceFile.CLOSE;
-            FILE.COPY(MyFile.Path + MyFile.Name, Errorpath + MyFile.Name);
-            ERASE(MyFile.Path + MyFile.Name);
+            // SourceFile.CLOSE;
+            //FILE.COPY(MyFile.Path + MyFile.Name, Errorpath + MyFile.Name);
+            //ERASE(MyFile.Path + MyFile.Name);
 
-            IoTFileImportLog.RESET;
+            IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
             IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
@@ -344,7 +373,7 @@ codeunit 50005 "IoT Import Files"
             IoTFileImportLog.Status := IoTFileImportLog.Status::Error;
             IoTFileImportLog."Error Text" := COPYSTR(GETLASTERRORTEXT, 1, 250);
             IoTFileImportLog.INSERT(TRUE);
-            COMMIT;
+            COMMIT();
         END;
     end;
 
@@ -434,21 +463,21 @@ codeunit 50005 "IoT Import Files"
     var
         IoTFileImportLog: Record 50045;
         IoTFileImportLogM: Record 50045;
-        EmailMessage: Codeunit "Email Message";
         Email: Codeunit "Email";
-        EmailBody: TextBuilder;
-        ToRecipients: List of [Text];
-        CCRecipients: List of [Text];
-        BCCRecipients: List of [Text];
-        EmailTo: Text[1024];
-        EmailCC: Text[1024];
-        EmailBCC: Text[1024];
-        FileCount: Integer;
+        EmailMessage: Codeunit "Email Message";
         j: Integer;
-        Recipients: Text[250];
         EMAIL_TEXT1: Label 'Dear User,';
         EMAIL_TEXT3: Label 'Regards,';
         EMAIL_TEXT4: Label 'Systems Auto Alert';
+        TEXT001: Label '<tr><td>%1</td><td>%2</td><td>%3</td><td>%4</td></tr>', Comment = '%1 %2 %3 %4';
+        BCCRecipients: List of [Text];
+        CCRecipients: List of [Text];
+        ToRecipients: List of [Text];
+        Recipients: Text[250];
+        EmailBCC: Text[1024];
+        EmailCC: Text[1024];
+        EmailTo: Text[1024];
+        EmailBody: TextBuilder;
     begin
         if not InvtSetup."Send Email Notifications" then
             exit;
@@ -491,7 +520,7 @@ codeunit 50005 "IoT Import Files"
 
                     EmailBody.AppendLine(
                         StrSubstNo(
-                            '<tr><td>%1</td><td>%2</td><td>%3</td><td>%4</td></tr>',
+                            TEXT001,
                             IoTFileImportLog."File Name",
                             Format(IoTFileImportLog.Status),
                             IoTFileImportLog."Error Text",

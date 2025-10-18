@@ -143,7 +143,6 @@ codeunit 50004 "IoT Email Notifications"
         IoTDataStagingM: Record 50042;
         InventorySetup: Record 313;
         EmailMessage: Codeunit "Email Message";
-        EmailAccount: Codeunit "Email Account";
         Email: Codeunit "Email";
         EmailMsg: Codeunit "Email Message";
         EmailBody: TextBuilder;
@@ -158,9 +157,10 @@ codeunit 50004 "IoT Email Notifications"
         ToRecipients: List of [Text];
         CCRecipients: List of [Text];
         Emailtext: text[1024];
+        Text001: Label '<tr><td>%1</td><td>%2</td><td>%3</td><td>%4</td></tr>', Comment = '%1 %2 %3 %4';
     begin
         for i := 1 to 3 do begin
-            IoTDataStaging.Reset;
+            IoTDataStaging.Reset();
 
             case i of
                 1:
@@ -225,7 +225,7 @@ codeunit 50004 "IoT Email Notifications"
 
                         EmailBody.AppendLine(
                           StrSubstNo(
-                            '<tr><td>%1</td><td>%2</td><td>%3</td><td>%4</td></tr>',
+                            Text001,
                             Format(IoTDataStaging."Document Type"),
                             IoTDataStaging."Document No.",
                             Format(IoTDataStaging."Record Status"),

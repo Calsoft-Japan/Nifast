@@ -11,19 +11,20 @@ codeunit 50011 "Batch Purch. Quotes to Orders"
 
     trigger OnRun()
     begin
-        TESTFIELD("Authorized By");
+        //TODO
+        //TESTFIELD("Authorized By");
 
         PurchHeader.SETRANGE("Document Type", PurchHeader."Document Type"::Quote);
         PurchHeader.SETRANGE("Contract Note No.", Rec."No.");
 
         IF PurchHeader.FIND('-') THEN
-          REPEAT
-            PurchOrderToQuote.RUN(PurchHeader);
-          UNTIL PurchHeader.NEXT = 0;
+            REPEAT
+                PurchOrderToQuote.RUN(PurchHeader);
+            UNTIL PurchHeader.NEXT() = 0;
     end;
 
     var
-        PurchOrderToQuote: Codeunit 96;
         PurchHeader: Record 38;
+        PurchOrderToQuote: Codeunit 96;
 }
 

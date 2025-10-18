@@ -1,45 +1,35 @@
 codeunit 70001 "Temp JRR"
 {
-    Permissions = TableData 21=rimd,
-                  TableData 379=rimd,
-                  TableData 7312=rimd;
+    Permissions = TableData 21 = rimd,
+                  TableData 379 = rimd,
+                  TableData 7312 = rimd;
 
     trigger OnRun()
     var
-        sp: Record 7002;
-        cntint: Integer;
-        OutputFileName: Text[250];
-        SourceFile: File;
-        DestinationFile: File;
-        CurrentLine: Text[1000];
-        InputFileName: Text[250];
-        TestFile: File;
-        MyOutstream: OutStream;
-        SIH: Record 112;
         WHE: Record 7312;
     begin
-         IF WHE.GET(147349) THEN  BEGIN     //-1000
-            WHE.Quantity :=0;
-           WHE."Qty. (Base)"  :=0;
-           WHE.MODIFY;
-         END;
-         IF WHE.GET(147350) THEN  BEGIN     //-6k
-            WHE.Quantity :=0;
-           WHE."Qty. (Base)"  :=0;
-           WHE.MODIFY;
-         END;
-         IF WHE.GET(147351) THEN  BEGIN   //-2k
-            WHE.Quantity :=0;
-           WHE."Qty. (Base)"  :=0;
-           WHE.MODIFY;
-         END;
-         IF WHE.GET(147352) THEN  BEGIN    //-2k
-            WHE.Quantity :=0;
-           WHE."Qty. (Base)"  :=0;
-           WHE.MODIFY;
-         END;
+        IF WHE.GET(147349) THEN BEGIN     //-1000
+            WHE.Quantity := 0;
+            WHE."Qty. (Base)" := 0;
+            WHE.MODIFY();
+        END;
+        IF WHE.GET(147350) THEN BEGIN     //-6k
+            WHE.Quantity := 0;
+            WHE."Qty. (Base)" := 0;
+            WHE.MODIFY();
+        END;
+        IF WHE.GET(147351) THEN BEGIN   //-2k
+            WHE.Quantity := 0;
+            WHE."Qty. (Base)" := 0;
+            WHE.MODIFY();
+        END;
+        IF WHE.GET(147352) THEN BEGIN    //-2k
+            WHE.Quantity := 0;
+            WHE."Qty. (Base)" := 0;
+            WHE.MODIFY();
+        END;
         EXIT;
-        
+
         /*
         cntint:=SIH.COUNT;
         MESSAGE('SIH ' + FORMAT(cntint));
@@ -175,12 +165,5 @@ codeunit 70001 "Temp JRR"
          */
 
     end;
-
-    var
-        DCLE: Record 379;
-        CLE: Record 21;
-        GLE: Record 17;
-        ILE: Record 32;
-        VLE: Record 25;
 }
 

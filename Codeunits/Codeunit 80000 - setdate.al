@@ -8,14 +8,14 @@ codeunit 80000 setdate
         VenRec.MODIFYALL("Check Date Format",1);
         VenRec.MODIFYALL("Check Date Separator",3);
         */
-        Itemrec.INIT;
-        Itemrec.MODIFYALL(National,TRUE);
+        Itemrec.INIT();
+        Itemrec.MODIFYALL(National, TRUE);
         EXIT;
 
     end;
 
     var
-        VenRec: Record 23;
+        // VenRec: Record 23;
         Itemrec: Record 27;
 }
 
