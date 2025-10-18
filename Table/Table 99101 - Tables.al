@@ -1,50 +1,78 @@
 table 99101 "Tables"
 {
+    //TODO
+    /*   DrillDownPageID = 99102;
+      LookupPageID = 99102; */
+    //TODO
     fields
     {
-        field(1;"Table No.";Integer)
+        field(1; "Table No."; Integer)
         {
             // cleaned
         }
-        field(2;"Table Name";Text[50])
+        field(2; "Table Name"; Text[50])
         {
             // cleaned
         }
-        field(3;"No. of Records";Integer)
+        field(3; "No. of Records"; Integer)
         {
             // cleaned
         }
-        field(4;Enabled;Integer)
+        field(4; Enabled; Integer)
+        {
+            // cleaned
+            FieldClass = Normal;
+        }
+        field(5; Disabled; Integer)
+        {
+            // cleaned
+            FieldClass = Normal;
+        }
+        field(6; Modified; Boolean)
         {
             // cleaned
         }
-        field(5;Disabled;Integer)
+        field(7; Date; Date)
         {
             // cleaned
         }
-        field(6;Modified;Boolean)
+        field(8; Time; Time)
         {
             // cleaned
         }
-        field(7;Date;Date)
+        field(9; "Version List"; Text[100])
         {
             // cleaned
         }
-        field(8;Time;Time)
+        field(10; Caption; Text[100])
         {
             // cleaned
         }
-        field(9;"Version List";Text[100])
+        field(11; "Cost Per Record"; Integer)
         {
             // cleaned
         }
-        field(10;Caption;Text[100])
+    }
+    keys
+    {
+        key(Key1; "Table No.")
         {
-            // cleaned
         }
-        field(11;"Cost Per Record";Integer)
+        key(Key2; "No. of Records")
         {
-            // cleaned
         }
+        key(Key3; Modified, Date, Time)
+        {
+        }
+        key(Key4; Enabled)
+        {
+        }
+        key(Key5; "Cost Per Record")
+        {
+        }
+    }
+
+    fieldgroups
+    {
     }
 }
