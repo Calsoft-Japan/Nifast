@@ -8,21 +8,21 @@ codeunit 50043 CU7321Subscriber
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Create Inventory Put-away", OnBeforeNewWhseActivLineInsertFromPurchase, '', false, false)]
     local procedure OnBeforeNewWhseActivLineInsertFromPurchase(var WarehouseActivityLine: Record "Warehouse Activity Line"; PurchaseLine: Record "Purchase Line")
     var
-    /*  Item: Record Item;
-     InvtSetup: Record 313;
-     NVM: Codeunit 50021; */
+        Item: Record Item;
+        InvtSetup: Record 313;
+        NVM: Codeunit 50021;
     begin
         GetLocation(PurchaseLine."Location Code");
         //TODO
-        /*  // >> NV
-         //if Item is on QC Hold then assign to inbound bin
-         IF NVM.TestPermission(14018070) THEN BEGIN
-             InvtSetup.GET();
-             Item.GET(WarehouseActivityLine."Item No.");
-             IF (Item."QC Hold") AND (CurrLocation."Bin Mandatory") AND (InvtSetup."QC Hold On Purch. Receipts") THEN
-                 WarehouseActivityLine."Bin Code" := CurrLocation."Inbound QC Bin Code";
-         END;
-         // << NV */
+        // >> NV
+        //if Item is on QC Hold then assign to inbound bin
+        IF NVM.TestPermission(14018070) THEN BEGIN
+            InvtSetup.GET();
+            Item.GET(WarehouseActivityLine."Item No.");
+            IF (Item."QC Hold") AND (CurrLocation."Bin Mandatory") AND (InvtSetup."QC Hold On Purch. Receipts") THEN
+                WarehouseActivityLine."Bin Code" := CurrLocation."Inbound QC Bin Code";
+        END;
+        // << NV 
         //TODO
     end;
 

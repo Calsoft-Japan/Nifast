@@ -56,38 +56,38 @@ table 70701 "_Shipping Agent Change"
         field(32; "New Dom. E-Ship Agent Service"; Code[30])
         {
             // cleaned
-            //TODO
-            /*  TableRelation = "E-Ship Agent Service".Code WHERE("Shipping Agent Code"=FIELD("New Shipping Agent Code"),
-                                                                "World Wide Service"=CONST(False)); */
-            //TODO
+
+            TableRelation = "LAX EShip Agent Service".Code WHERE("Shipping Agent Code" = FIELD("New Shipping Agent Code"),
+                                                                "World Wide Service" = CONST(False));
+
         }
         field(33; "New Int. E-Ship Agent Service"; Code[30])
         {
             // cleaned
-            //TODO
-            /*  TableRelation = "E-Ship Agent Service".Code WHERE("Shipping Agent Code" = FIELD("New Shipping Agent Code"),
-                                                                "World Wide Service" = CONST(True)); */
-            //TODO
+
+            TableRelation = "LAX EShip Agent Service".Code WHERE("Shipping Agent Code" = FIELD("New Shipping Agent Code"),
+                                                                "World Wide Service" = CONST(True));
+
         }
         field(34; "New UPS CA E-Ship Agent Serv."; Code[30])
         {
             // cleaned
-            //TODO
-            /*  TableRelation = "E-Ship Agent Service".Code WHERE("Shipping Agent Code" = FIELD("New Shipping Agent Code"),
+
+            TableRelation = "LAX EShip Agent Service".Code WHERE("Shipping Agent Code" = FIELD("New Shipping Agent Code"),
                                                                 "World Wide Service" = CONST(False),
                                                                 "UPS Canadian Service" = CONST(True),
-                                                                "UPS Puerto Rico Service" = CONST(False)); */
-            //TODO
+                                                                "UPS Puerto Rico Service" = CONST(False));
+
         }
         field(35; "New UPS PR E-Ship Agent Serv."; Code[30])
         {
             // cleaned
-            //TODO
-            /* TableRelation = "E-Ship Agent Service".Code WHERE("Shipping Agent Code" = FIELD("New Shipping Agent Code"),
+
+            TableRelation = "LAX EShip Agent Service".Code WHERE("Shipping Agent Code" = FIELD("New Shipping Agent Code"),
                                                                "World Wide Service" = CONST(False),
                                                                "UPS Canadian Service" = CONST(False),
-                                                               "UPS Puerto Rico Service" = CONST(True)); */
-            //TODO
+                                                               "UPS Puerto Rico Service" = CONST(True));
+
         }
         field(36; "New Residential Delivery"; Boolean)
         {

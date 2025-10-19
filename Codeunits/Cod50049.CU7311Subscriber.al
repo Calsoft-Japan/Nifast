@@ -6,12 +6,12 @@ codeunit 50049 CU7311Subscriber
     local procedure OnAfterFromWhseRcptLineCreateWhseWkshLine(var WhseWorksheetLine: Record "Whse. Worksheet Line"; PostedWhseReceiptLine: Record "Posted Whse. Receipt Line")
     begin
         //TODO
-        /*     // >> JDC
-            WhseWorksheetLine."License Plate No." := PostedWhseReceiptLine."License Plate No.";
-            // <<
-            //>> NV4.33
-            WhseWorksheetLine."QC Hold" := PostedWhseReceiptLine."QC Hold";
-            //<< NV4.33 */
+        // >> JDC
+        WhseWorksheetLine."License Plate No." := PostedWhseReceiptLine."License Plate No.";
+        // <<
+        //>> NV4.33
+        WhseWorksheetLine."QC Hold" := PostedWhseReceiptLine."QC Hold";
+        //<< NV4.33 
         //TODO
     end;
 }

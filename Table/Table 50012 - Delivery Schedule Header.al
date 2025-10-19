@@ -45,9 +45,7 @@ table 50012 "Delivery Schedule Header"
             var
                 ReturnedCrossRef: Record 5777;
                 SalesLine: Record 37;
-                //TODO
-                //DistIntegration: Codeunit 5702;
-                //TODO
+                DistIntegration: Codeunit 5702;
                 CustomerNo: Code[20];
             begin
                 CustomerNo := "Customer No.";
@@ -55,9 +53,7 @@ table 50012 "Delivery Schedule Header"
                 IF "Cross-Reference No." <> '' THEN BEGIN
                     SalesLine.INIT();
                     SalesLine."Item Reference No." := "Cross-Reference No.";
-                    //TODO
-                    //DistIntegration.ICRLookupSalesItem(SalesLine, ReturnedCrossRef);
-                    //TODO
+                    DistIntegration.ICRLookupSalesItem(SalesLine, ReturnedCrossRef);
                     VALIDATE("Item No.", ReturnedCrossRef."Item No.");
                 END;
 

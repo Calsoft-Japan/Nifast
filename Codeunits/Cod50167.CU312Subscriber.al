@@ -6,7 +6,7 @@ codeunit 50167 CU312Subscriber
         CustCheckCrLimit: Codeunit "Cust-Check Cr. Limit";
         NotificationLifecycleMgt: Codeunit "Notification Lifecycle Mgt.";
         CustCheckCreditLimit: Page "Check Credit Limit";
-        // Text000: Label 'The update has been interrupted to respect the warning.';
+        Text000: Label 'The update has been interrupted to respect the warning.';
         CreditLimitNotificationMsg: Label 'The customer''s credit limit has been exceeded.';
         OverdueBalanceNotificationMsg: Label 'This customer has an overdue balance.';
         GetDetailsTxt: Label 'Show details';
@@ -24,11 +24,11 @@ codeunit 50167 CU312Subscriber
         if GuiAllowed then begin
 
             //>> NIF #10053 RTT 05-23-05
+            //TODO
             if CalledFromRelease then
-                //TODO
-                //CustCheckCreditLimit.SetCalledFromRelease();
-                //TODO
-                CustCheckCreditLimit.EDITABLE(true);  //NF1.00:CIS.NG  05/27/16
+                CustCheckCreditLimit.SetCalledFromRelease();
+            //TODO
+            CustCheckCreditLimit.EDITABLE(true);  //NF1.00:CIS.NG  05/27/16
 
             //<< NIF #10053 RTT 05-23-05 
 
@@ -43,10 +43,10 @@ codeunit 50167 CU312Subscriber
                 SalesHeader.CustomerCreditLimitExceeded(CustCheckCreditLimit.GetNotificationId());
 
                 //TODO
-                /*   //>> NF1.00:CIS.NG  05/27/16
-                  IF NOT CustCheckCreditLimit.GetPasswordValue() THEN
-                      ERROR(Text000);
-                  //<< NF1.00:CIS.NG  05/27/16 */
+                //>> NF1.00:CIS.NG  05/27/16
+                IF NOT CustCheckCreditLimit.GetPasswordValue() THEN
+                    ERROR(Text000);
+                //<< NF1.00:CIS.NG  05/27/16 
                 //TODO
             end;
         end;

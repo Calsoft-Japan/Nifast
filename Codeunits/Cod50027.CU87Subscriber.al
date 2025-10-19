@@ -33,16 +33,13 @@ codeunit 50027 CU87Subscriber
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Blanket Sales Order to Order", OnBeforeReserveItemsManuallyLoop, '', false, false)]
     local procedure OnBeforeReserveItemsManuallyLoop(var SalesHeader: Record "Sales Header"; var SalesOrderHeader: Record "Sales Header"; var TempSalesLine: Record "Sales Line" temporary; var SuppressCommit: Boolean)
     var
-    // EMailMgt: Codeunit 14000903;
+        EMailMgt: Codeunit 14000903;
     begin
         SalesSetup.get();
-
-        //TODO
-        /*  // >> Shipping
-         IF SalesSetup."Enable E-Mail" THEN
-             EMailMgt.MoveEMailListSalesHeader(SalesHeader, SalesOrderHeader);
-         // << Shipping */
-        //TODO
+        // >> Shipping
+        IF SalesSetup."LAX Enable E-Mail" THEN
+            EMailMgt.MoveEMailListSalesHeader(SalesHeader, SalesOrderHeader);
+        // << Shipping
     end;
 
     PROCEDURE CopyLineCommentLines(FromDocumentType: Integer; ToDocumentType: Integer; FromNumber: Code[20]; ToNumber: Code[20]; FromLine: Integer; ToLine: Integer);

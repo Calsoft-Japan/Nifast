@@ -131,41 +131,37 @@ tableextension 55741 "Transfer Line Ext" extends "Transfer Line"
 
     PROCEDURE CalcEShipWhseOutstQtyBase(LocationPacking: Boolean; LocationCode: Code[10]) QtyBase: Decimal;
     VAR
-    //TransferLine: Record 5741;
+        TransferLine: Record 5741;
     BEGIN
-        //TODO
-        /*  QtyBase := 0;
+        QtyBase := 0;
 
-         TransferLine.COPY(Rec);
-         IF LocationPacking THEN
-             TransferLine.SETRANGE("Transfer-from Code", LocationCode);
-         IF TransferLine.FIND('-') THEN
-             REPEAT
-                 TransferLine.CALCFIELDS("E-Ship Invt. Outst. Qty (Base)");
-                 IF (TransferLine."Qty. to Ship (Base)" = 0) OR
-                    (TransferLine."E-Ship Invt. Outst. Qty (Base)" <> 0)
-                 THEN BEGIN
-                     TransferLine.CALCFIELDS(
-                       "E-Ship Whse. Outst. Qty (Base)", "E-Ship Whse. Ship. Qty (Base)");
-                     QtyBase :=
-                       QtyBase +
-                       TransferLine."E-Ship Whse. Outst. Qty (Base)" +
-                       TransferLine."E-Ship Whse. Ship. Qty (Base)" +
-                       TransferLine."E-Ship Invt. Outst. Qty (Base)";
-                 END;
-             UNTIL TransferLine.NEXT = 0; */
-        //TODO
+        TransferLine.COPY(Rec);
+        IF LocationPacking THEN
+            TransferLine.SETRANGE("Transfer-from Code", LocationCode);
+        IF TransferLine.FIND('-') THEN
+            REPEAT
+                TransferLine.CALCFIELDS("LAX EShip Invt Outst Qty(Base)");
+                IF (TransferLine."Qty. to Ship (Base)" = 0) OR
+                   (TransferLine."LAX EShip Invt Outst Qty(Base)" <> 0)
+                THEN BEGIN
+                    TransferLine.CALCFIELDS(
+                      "LAX EShip Whse Outst.Qty(Base)", "LAX EShip Whse Ship. Qty(Base)");
+                    QtyBase :=
+                      QtyBase +
+                      TransferLine."LAX EShip Whse Outst.Qty(Base)" +
+                      TransferLine."LAX EShip Whse Ship. Qty(Base)" +
+                      TransferLine."LAX EShip Invt Outst Qty(Base)";
+                END;
+            UNTIL TransferLine.NEXT = 0;
     END;
 
     PROCEDURE UpdateWeight();
     BEGIN
-        //TODO
-        /*  "Line Gross Weight" := Quantity * "Gross Weight";
-         "Line Net Weight" := Quantity * "Net Weight";
-         "Outstanding Gross Weight" := "Outstanding Quantity" * "Gross Weight";
-         "Outstanding Net Weight" := "Outstanding Quantity" * "Net Weight";
-         "In-Transit Gross Weight" := "Qty. in Transit" * "Gross Weight"; */
-        //TODO
+        "Line Gross Weight" := Quantity * "Gross Weight";
+        "Line Net Weight" := Quantity * "Net Weight";
+        "Outstanding Gross Weight" := "Outstanding Quantity" * "Gross Weight";
+        "Outstanding Net Weight" := "Outstanding Quantity" * "Net Weight";
+        "In-Transit Gross Weight" := "Qty. in Transit" * "Gross Weight";
     END;
 
     LOCAL PROCEDURE GetPostedAssOrder();

@@ -1,9 +1,7 @@
 table 99101 "Tables"
 {
-    //TODO
-    /*   DrillDownPageID = 99102;
-      LookupPageID = 99102; */
-    //TODO
+    DrillDownPageID = 99102;
+    LookupPageID = 99102;
     fields
     {
         field(1; "Table No."; Integer)

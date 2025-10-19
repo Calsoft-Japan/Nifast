@@ -3,7 +3,7 @@ query 50001 "SCT -Order Line Special Fields"
 
     elements
     {
-        dataitem(QueryElement1000000000;Table37)
+        dataitem(Sales_Line;"Sales Line")
         {
             column(Document_Type;"Document Type")
             {
@@ -25,7 +25,7 @@ query 50001 "SCT -Order Line Special Fields"
             }
             column(No;"No.")
             {
-                ColumnFilter = No=FILTER(=5500007169TEST);
+                ColumnFilter = No=FILTER('TEST');
             }
         }
     }

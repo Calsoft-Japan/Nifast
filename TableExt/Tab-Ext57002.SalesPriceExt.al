@@ -17,27 +17,23 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
                     "Starting Date" := Contract."Starting Date";
                     "Ending Date" := Contract."Ending Date";
                     "Minimum Quantity" := 1;
-                    //TODO
-                    /*   "Contract Customer No." := Contract."Customer No.";
-                      "Contract Ship-to Code" := Contract."Ship-to Code";
-                      "Contract Location Code" := Contract."Location Code";
-                      "Contract Ship Location Code" := Contract."Shipping Location Code";
-                      "ContractSelling Location Code" := Contract."Selling Location Code";
-                      IF Contract."External Document No." <> '' THEN
-                          "External Document No." := Contract."External Document No."; */
-                    //TODO
+                    "LAX Contract Customer No." := Contract."Customer No.";
+                    "Contract Ship-to Code" := Contract."Ship-to Code";
+                    "Contract Location Code" := Contract."Location Code";
+                    "Contract Ship Location Code" := Contract."Shipping Location Code";
+                    "ContractSelling Location Code" := Contract."Selling Location Code";
+                    IF Contract."External Document No." <> '' THEN
+                        "External Document No." := Contract."External Document No.";
                     VALIDATE("Unit of Measure Code", Item."Sales Unit of Measure");
                     "Allow Invoice Disc." := FALSE;
                     "Allow Line Disc." := FALSE;
                 END;
-                //TODO
-                /*   IF "Item No." <> '' THEN
-                      CALCFIELDS("Item Description");
-                  //<<NV 011206 RTT  $10571 #10571
-                  "FB Order Type" := Contract."FB Order Type";
-                  "Replenishment Method" := Contract."Default Repl. Method";
-                  "Method of Fullfillment" := Contract."Def. Method of Fullfillment"; */
-                //TODO
+                IF "Item No." <> '' THEN
+                    CALCFIELDS("Item Description");
+                //<<NV 011206 RTT  $10571 #10571
+                "FB Order Type" := Contract."FB Order Type";
+                "Replenishment Method" := Contract."Default Repl. Method";
+                "Method of Fullfillment" := Contract."Def. Method of Fullfillment";
                 //<<NV 011206 RTT  $10571 #10571
             end;
         }
@@ -269,22 +265,20 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
 
     PROCEDURE GetAltUOM();
     VAR
-    // ItemUOM: Record 5404;
+        ItemUOM: Record 5404;
     BEGIN
-        //TODO
-        /*  ItemUOM.RESET;
-         ItemUOM.SETRANGE("Item No.", "Item No.");
-         ItemUOM.SETRANGE("Sales Qty Alt.", TRUE);
-         IF ItemUOM.FIND('-') THEN BEGIN
-             "Alt. Price UOM" := ItemUOM."Sales Price Per Alt.";
-             IF ItemUOM."Sales Price Per Alt." <> '' THEN BEGIN
-                 ItemUOM.RESET;
-                 ItemUOM.GET("Item No.", ItemUOM."Sales Price Per Alt.");
-                 "Alt. Price" := "Unit Price" * ItemUOM."Qty. per Unit of Measure";
+        ItemUOM.RESET();
+        ItemUOM.SETRANGE("Item No.", "Item No.");
+        ItemUOM.SETRANGE("Sales Qty Alt.", TRUE);
+        IF ItemUOM.FIND('-') THEN BEGIN
+            "Alt. Price UOM" := ItemUOM."Sales Price Per Alt.";
+            IF ItemUOM."Sales Price Per Alt." <> '' THEN BEGIN
+                ItemUOM.RESET;
+                ItemUOM.GET("Item No.", ItemUOM."Sales Price Per Alt.");
+                "Alt. Price" := "Unit Price" * ItemUOM."Qty. per Unit of Measure";
 
-             END;
-         END; */
-        //TODO
+            END;
+        END;
     END;
 
     PROCEDURE ShowLineComments();
@@ -307,21 +301,19 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
 
     PROCEDURE ShowBlanketOrders();
     VAR
-    /* SalesLine: Record 37;
-    SalesLines: Page 516; */
+        SalesLine: Record 37;
+        SalesLines: Page "Sales Lines";
     BEGIN
-        //TODO
-        /*  CALCFIELDS("Blanket Orders");
-         IF NOT "Blanket Orders" THEN
-             EXIT;
-         SalesLine.SETRANGE("Document Type", SalesLine."Document Type"::"Blanket Order");
-         SalesLine.SETRANGE(Type, SalesLine.Type::Item);
-         SalesLine.SETRANGE("No.", "Item No.");
-         SalesLine.SETRANGE("Contract No.", "Contract No.");
+        CALCFIELDS("Blanket Orders");
+        IF NOT "Blanket Orders" THEN
+            EXIT;
+        SalesLine.SETRANGE("Document Type", SalesLine."Document Type"::"Blanket Order");
+        SalesLine.SETRANGE(Type, SalesLine.Type::Item);
+        SalesLine.SETRANGE("No.", "Item No.");
+        SalesLine.SETRANGE("Contract No.", "Contract No.");
 
-         CLEAR(SalesLines);
-         SalesLines.SETTABLEVIEW(SalesLine);
-         SalesLines.RUNMODAL; */
-        //TODO
+        CLEAR(SalesLines);
+        SalesLines.SETTABLEVIEW(SalesLine);
+        SalesLines.RUNMODAL();
     END;
 }

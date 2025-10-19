@@ -13,13 +13,11 @@ table 50110 "Price Contract"
         {
             trigger OnValidate()
             begin
-                //TODO
-                /*  IF "No." <> xRec."No." THEN BEGIN
-                     SalesSetup.GET();
-                     NoSeriesMgt.TestManual(SalesSetup."Price Contract Nos.");
-                     "No. Series" := '';
-                 END; */
-                //TODO
+                IF "No." <> xRec."No." THEN BEGIN
+                    SalesSetup.GET();
+                    NoSeriesMgt.TestManual(SalesSetup."Price Contract Nos.");
+                    "No. Series" := '';
+                END;
             end;
         }
         field(2; "Customer No."; Code[20])
@@ -28,13 +26,11 @@ table 50110 "Price Contract"
 
             trigger OnValidate()
             begin
-                //TODO
-                /*  IF ("Customer No." <> '') THEN BEGIN
-                     Cust.GET("Customer No.");
-                     VALIDATE("Ship-to Code", Cust."Default Ship-To Code");
-                     "Customer Name" := Cust.Name;
-                 END; */
-                //TODO
+                IF ("Customer No." <> '') THEN BEGIN
+                    Cust.GET("Customer No.");
+                    VALIDATE("Ship-to Code", Cust."Default Ship-To Code");
+                    "Customer Name" := Cust.Name;
+                END;
 
                 IF (xRec."Customer No." <> "Customer No.") THEN
                     HandleRename(Rec, xRec);
@@ -120,18 +116,14 @@ table 50110 "Price Contract"
                     "Tax Area Code" := ShipToAddr."Tax Area Code";
                     "Tax Liable" := ShipToAddr."Tax Liable";
                     "Broker/Agent Code" := ShipToAddr."Broker/Agent Code";
-                    //TODO
-                    /*  "Delivery Route" := ShipToAddr."Delivery Route";
-                     "Delivery Stop" := ShipToAddr."Delivery Stop"; */
-                    //TODO
+                    "Delivery Route" := ShipToAddr."Delivery Route";
+                    "Delivery Stop" := ShipToAddr."Delivery Stop";
                     "UPS Zone" := ShipToAddr."UPS Zone";
                     "Place of Export" := ShipToAddr."Place of Export";
                     "Service Zone Code" := ShipToAddr."Service Zone Code";
                     IF ShipToAddr."Phone No." <> '' THEN "Phone No." := ShipToAddr."Phone No.";
                     IF ShipToAddr."Salesperson Code" <> '' THEN "Salesperson Code" := ShipToAddr."Salesperson Code";
-                    //TODO
-                    // IF ShipToAddr."Inside Salesperson" <> '' THEN "Inside Salesperson" := ShipToAddr."Inside Salesperson";
-                    //TODO
+                    IF ShipToAddr."Inside Salesperson" <> '' THEN "Inside Salesperson" := ShipToAddr."Inside Salesperson";
                 END ELSE BEGIN
                     Cust.GET("Customer No.");
                     "Ship-to Name" := Cust.Name;
@@ -152,19 +144,15 @@ table 50110 "Price Contract"
                     "Tax Area Code" := Cust."Tax Area Code";
                     "Tax Liable" := Cust."Tax Liable";
                     "Payment Terms Code" := Cust."Payment Terms Code";
-                    //TODO
-                    /*   "Broker/Agent Code" := Cust."Broker/Agent Code";
-                      "Delivery Route" := Cust."Delivery Route";
-                      "Delivery Stop" := Cust."Delivery Stop"; */
-                    //TODO
+                    "Broker/Agent Code" := Cust."Broker/Agent Code";
+                    "Delivery Route" := Cust."Delivery Route";
+                    "Delivery Stop" := Cust."Delivery Stop";
                     "UPS Zone" := Cust."UPS Zone";
                     "Place of Export" := Cust."Place of Export";
                     "Service Zone Code" := Cust."Service Zone Code";
                     IF Cust."Phone No." <> '' THEN "Phone No." := Cust."Phone No.";
                     IF Cust."Salesperson Code" <> '' THEN "Salesperson Code" := Cust."Salesperson Code";
-                    //TODO
-                    // IF Cust."Inside Salesperson" <> '' THEN "Inside Salesperson" := Cust."Inside Salesperson";
-                    //TODO
+                    IF Cust."Inside Salesperson" <> '' THEN "Inside Salesperson" := Cust."Inside Salesperson";
                 END;
             end;
 
@@ -297,10 +285,8 @@ table 50110 "Price Contract"
         field(89; "Selling Location Code"; Code[10])
         {
             // cleaned
-            //TODO
-            /*  TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                             "Rework Location" = CONST(false)); */
-            //TODO
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                             "Rework Location" = CONST(false));
         }
         field(90; "Fax No."; Text[30])
         {
@@ -367,10 +353,8 @@ table 50110 "Price Contract"
         field(50108; "Inside Salesperson"; Code[10])
         {
             // cleaned
-            //TODO
-            /*   TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(false),
-                                                                Sales = CONST(false)); */
-            //TDOD
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(false),
+                                                                Sales = CONST(false));
         }
         field(50117; "Broker/Agent Code"; Code[10])
         {
@@ -405,13 +389,11 @@ table 50110 "Price Contract"
 
     trigger OnInsert()
     begin
-        //TODO
-        /*   IF "No." = '' THEN BEGIN
-              SalesSetup.GET();
-              SalesSetup.TESTFIELD("Price Contract Nos.");
-              NoSeriesMgt.InitSeries(SalesSetup."Price Contract Nos.", xRec."No. Series", 0D, "No.", "No. Series");
-          END; */
-        //TODO
+        IF "No." = '' THEN BEGIN
+            SalesSetup.GET();
+            SalesSetup.TESTFIELD("Price Contract Nos.");
+            NoSeriesMgt.AreRelated(SalesSetup."Price Contract Nos.", xRec."No. Series");
+        END;
 
         IF GETFILTER("Customer No.") <> '' THEN
             IF GETRANGEMIN("Customer No.") = GETRANGEMAX("Customer No.") THEN
@@ -430,23 +412,21 @@ table 50110 "Price Contract"
         Cust: Record 18;
         ShipToAddr: Record 222;
         PostCode: Record 225;
-        //SalesSetup: Record 311;
-        //Contract: Record 50110;
+        SalesSetup: Record 311;
+        Contract: Record 50110;
         PriceContractCommentLine: Record 50111;
-    //NoSeriesMgt: Codeunit 396;
+        NoSeriesMgt: Codeunit "No. Series";
 
     procedure AssistEdit(OldContract: Record 50110): Boolean
     begin
-        //TODO
-        /*   Contract := Rec;
-          SalesSetup.GET();
-          SalesSetup.TESTFIELD("Price Contract Nos.");
-          IF NoSeriesMgt.SelectSeries(SalesSetup."Price Contract Nos.", OldContract."No. Series", Contract."No. Series") THEN BEGIN
-              NoSeriesMgt.SetSeries(Contract."No.");
-              Rec := Contract;
-              EXIT(TRUE);
-          END; */
-        //TODO
+        Contract := Rec;
+        SalesSetup.GET();
+        SalesSetup.TESTFIELD("Price Contract Nos.");
+        IF NoSeriesMgt.LookupRelatedNoSeries(SalesSetup."Price Contract Nos.", OldContract."No. Series", Contract."No. Series") THEN BEGIN
+            NoSeriesMgt.GetNextNo(Contract."No.");
+            Rec := Contract;
+            EXIT(TRUE);
+        END;
     end;
 
     procedure HandleRename(Contract: Record 50110; xContract: Record 50110)

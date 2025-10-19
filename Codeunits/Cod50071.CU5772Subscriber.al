@@ -26,12 +26,12 @@ codeunit 50071 CU5772Subscriber
     local procedure OnBeforeCreateWhseRequest(var WhseRqst: Record "Warehouse Request"; var PurchHeader: Record "Purchase Header"; var PurchLine: Record "Purchase Line"; WhseType: Option Inbound,Outbound)
     begin
         //TODO
-        /*     //>>NV
-            PurchHeader.CALCFIELDS("Outstanding Gross Weight", "Outstanding Net Weight");
-            WhseRqst."Outstanding Gross Weight" := PurchHeader."Outstanding Gross Weight";
-            WhseRqst."Outstanding Net Weight" := PurchHeader."Outstanding Net Weight";
-            WhseRqst."Destination Name" := PurchHeader."Buy-from Vendor Name";
-            //<<NV */
+        //>>NV
+        PurchHeader.CALCFIELDS("Outstanding Gross Weight", "Outstanding Net Weight");
+        WhseRqst."Outstanding Gross Weight" := PurchHeader."Outstanding Gross Weight";
+        WhseRqst."Outstanding Net Weight" := PurchHeader."Outstanding Net Weight";
+        WhseRqst."Destination Name" := PurchHeader."Buy-from Vendor Name";
+        //<<NV 
         //TODO
     end;
 }

@@ -36,33 +36,33 @@ tableextension 50044 SalesCommentLineExt extends "Sales Comment Line"
     trigger OnInsert()
     BEGIN
         //TODO
-        /*   //>>NV
-          Rec.VALIDATE("User ID", USERID);
-          Rec."Time Stamp" := TIME;
-          Rec."Date Added" := TODAY;
-          //<<NV */
+        //>>NV
+        Rec.VALIDATE("User ID", USERID);
+        Rec."Time Stamp" := TIME;
+        Rec."Date Added" := TODAY;
+        //<<NV 
         //TODO
     END;
 
     trigger OnModify()
     BEGIN
         //TODO
-        /* //>>NV
+        //>>NV
         Rec.VALIDATE("User ID", USERID);
         Rec."Time Stamp" := TIME;
         Rec."Date Added" := TODAY;
-        //<<NV */
+        //<<NV 
         //TODO
     END;
 
     trigger OnRename()
     BEGIN
         //TODO
-        /*  //>>NV
-         Rec.VALIDATE("User ID", USERID);
-         Rec."Time Stamp" := TIME;
-         Rec."Date Added" := TODAY;
-         //<<NV */
+        //>>NV
+        Rec.VALIDATE("User ID", USERID);
+        Rec."Time Stamp" := TIME;
+        Rec."Date Added" := TODAY;
+        //<<NV 
         //TODO
     END;
 }

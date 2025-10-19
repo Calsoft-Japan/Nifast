@@ -45,7 +45,6 @@ tableextension 50091 "User Setup Ext" extends "User Setup"
         */
         //TODO
 
-        //TODO
         field(50002; "E-Signature"; Blob) //Move from User to here. BC Upgrade 2025-06-23
         {
             Caption = 'E-Signature';
@@ -54,6 +53,5 @@ tableextension 50091 "User Setup Ext" extends "User Setup"
         {
             Caption = 'PO Authority';
         }
-        //TODO
     }
 }

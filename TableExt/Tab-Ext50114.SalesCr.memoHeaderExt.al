@@ -235,35 +235,31 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
    */
     procedure ExportSICrMemotoTxt_gFnc(var SCrmHeader_vRec: Record "Sales Cr.Memo Header")
     var
-    //TODO
-    /*  SalesReceivableSetup_lRec: Record "Sales & Receivables Setup";
-     TempBlob: Codeunit "Temp Blob";
-     XMLP: XMLport 50011;
-     FileName: Text;
-     OutStr: OutStream;
-     Txt50150_lTxt: Label 'Sales Invoice %1 has been exported into Text file successfully.', Comment = '%1=SCrmHeader_vRec."No."';
-     Txt50151_lTxt: Label 'Sales Invoice %1 file has already been generated. Do you want to process again?', Comment = '%1=SCrmHeader_vRec."No."';
-     InStr: InStream; */
-    //TODO
+        SalesReceivableSetup_lRec: Record "Sales & Receivables Setup";
+        TempBlob: Codeunit "Temp Blob";
+        XMLP: XMLport 50011;
+        FileName: Text;
+        OutStr: OutStream;
+        Txt50150_lTxt: Label 'Sales Invoice %1 has been exported into Text file successfully.', Comment = '%1=SCrmHeader_vRec."No."';
+        Txt50151_lTxt: Label 'Sales Invoice %1 file has already been generated. Do you want to process again?', Comment = '%1=SCrmHeader_vRec."No."';
+        InStr: InStream;
     begin
-        //TODO
-        /*  SalesReceivableSetup_lRec.Get();
-         SalesReceivableSetup_lRec.TestField("Export Sales Inv/Cr/Memo Path");
+        SalesReceivableSetup_lRec.Get();
+        SalesReceivableSetup_lRec.TestField("Export Sales Inv/Cr/Memo Path");
 
-         FileName := FORMAT(SalesReceivableSetup_lRec."Export Sales Inv/Cr/Memo Path") + '\' + 'SALCRMO' + SCrmHeader_vRec."No." + '.txt';
+        FileName := FORMAT(SalesReceivableSetup_lRec."Export Sales Inv/Cr/Memo Path") + '\' + 'SALCRMO' + SCrmHeader_vRec."No." + '.txt';
 
-         if Confirm(Txt50151_lTxt, false, SCrmHeader_vRec."No.") then begin
-             TempBlob.CreateOutStream(OutStr);
-             XMLP.GetCrMemoNo_gFnc(SCrmHeader_vRec."No.");
-             XMLP.SetTableView(SCrmHeader_vRec);
-             XMLP.SetDestination(OutStr);
-             XMLP.Export();
-             TempBlob.CreateInStream(InStr);
-             DownloadFromStream(InStr, '', '', 'Text Files (*.txt)|*.txt', FileName);
+        if Confirm(Txt50151_lTxt, false, SCrmHeader_vRec."No.") then begin
+            TempBlob.CreateOutStream(OutStr);
+            XMLP.GetCrMemoNo_gFnc(SCrmHeader_vRec."No.");
+            XMLP.SetTableView(SCrmHeader_vRec);
+            XMLP.SetDestination(OutStr);
+            XMLP.Export();
+            TempBlob.CreateInStream(InStr);
+            DownloadFromStream(InStr, '', '', 'Text Files (*.txt)|*.txt', FileName);
 
-             Message(Txt50150_lTxt, SCrmHeader_vRec."No.");
-         end; */
-        //TODO
+            Message(Txt50150_lTxt, SCrmHeader_vRec."No.");
+        end;
     End;
 
 
@@ -294,32 +290,28 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
 
     procedure ExportSICrMemotoTxt2_gFnc(var SCrmHeader_vRec: Record "Sales Cr.Memo Header")
     var
-    //TODO
-    /*  SalesReceivableSetup_lRec: Record "Sales & Receivables Setup";
-     TempBlob: Codeunit "Temp Blob";
-     XMLP: XMLport 50011;
-     FileName_lTxt: Text[250];
-     Stream: OutStream;
-     InStr: InStream; */
-    //TODO
-    /*   Txt50150_lTxt: Label 'Sales Invoice %1 has been exported into Text file Successfully.';
-      Txt50151_lTxt: Label 'Sales Invoice %1 file is already been generated. Do you want to Process again?'; */
+        SalesReceivableSetup_lRec: Record "Sales & Receivables Setup";
+        TempBlob: Codeunit "Temp Blob";
+        XMLP: XMLport 50011;
+        FileName_lTxt: Text[250];
+        Stream: OutStream;
+        InStr: InStream;
+        Txt50150_lTxt: Label 'Sales Invoice %1 has been exported into Text file Successfully.';
+        Txt50151_lTxt: Label 'Sales Invoice %1 file is already been generated. Do you want to Process again?';
     begin
-        //TODO
-        /*   SalesReceivableSetup_lRec.Get();
-          SalesReceivableSetup_lRec.TestField("Export Sales Inv/Cr/Memo Path");
+        SalesReceivableSetup_lRec.Get();
+        SalesReceivableSetup_lRec.TestField("Export Sales Inv/Cr/Memo Path");
 
-          FileName_lTxt := FORMAT(SalesReceivableSetup_lRec."Export Sales Inv/Cr/Memo Path") + '\' + 'SALCRMO' + SCrmHeader_vRec."No." + '.txt';
+        FileName_lTxt := FORMAT(SalesReceivableSetup_lRec."Export Sales Inv/Cr/Memo Path") + '\' + 'SALCRMO' + SCrmHeader_vRec."No." + '.txt';
 
-          TempBlob.CreateOutStream(Stream);
-          XMLP.GetCrMemoNo_gFnc(SCrmHeader_vRec."No.");
-          XMLP.SetTableView(SCrmHeader_vRec);
-          XMLP.SetDestination(Stream);
-          XMLP.Export();
+        TempBlob.CreateOutStream(Stream);
+        XMLP.GetCrMemoNo_gFnc(SCrmHeader_vRec."No.");
+        XMLP.SetTableView(SCrmHeader_vRec);
+        XMLP.SetDestination(Stream);
+        XMLP.Export();
 
-          TempBlob.CreateInStream(InStr);
-          DownloadFromStream(InStr, '', '', '', FileName_lTxt); */
-        //TODO
+        TempBlob.CreateInStream(InStr);
+        DownloadFromStream(InStr, '', '', '', FileName_lTxt);
     end;
 
 

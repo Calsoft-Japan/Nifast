@@ -31,16 +31,12 @@ table 50031 "EDI Sales Order Import Log"
 
             trigger OnLookup()
             begin
-                //TODO
-                // UserMgt.LookupUserID("Import By");
-                //TODO
+                UserMgt.LookupUserID("Import By");
             end;
 
             trigger OnValidate()
             begin
-                //TODO
-                //UserMgt.ValidateUserID("Import By");
-                //TODO
+                UserMgt.ValidateUserID("Import By");
             end;
         }
         field(25; "Sales Orders"; Code[250])
@@ -69,7 +65,7 @@ table 50031 "EDI Sales Order Import Log"
     {
     }
     var
-        //UserMgt: Codeunit 418;
+        UserMgt: Codeunit "User Management";
 
     trigger OnInsert()
     var

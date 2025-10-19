@@ -15,15 +15,14 @@ codeunit 50051 CU391Subscriber
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Shipment Header - Edit", OnBeforeSalesShptHeaderModify, '', false, false)]
     local procedure OnBeforeSalesShptHeaderModify(var SalesShptHeader: Record "Sales Shipment Header"; FromSalesShptHeader: Record "Sales Shipment Header")
     begin
-        //TODO
-        /*    // << Shipping
-           SalesShptHeader."E-Mail Shipment Notice Handled" := FromSalesShptHeader."E-Mail Shipment Notice Handled";
-           SalesShptHeader."EDI Order" := FromSalesShptHeader."EDI Order";
-           SalesShptHeader."Shipment Invoice No." := FromSalesShptHeader."Shipment Invoice No.";
-           SalesShptHeader."Shipment Release" := FromSalesShptHeader."Shipment Release";
-           SalesShptHeader."EDI Trade Partner" := FromSalesShptHeader."EDI Trade Partner";
-           // >> Shipping */
-        //TODO
+        // << Shipping
+        SalesShptHeader."LAX E-Mail Ship Notice Handled" := FromSalesShptHeader."LAX E-Mail Ship Notice Handled";
+        SalesShptHeader."LAX EDI Order" := FromSalesShptHeader."LAX EDI Order";
+        SalesShptHeader."LAX Shipment Invoice No." := FromSalesShptHeader."LAX Shipment Invoice No.";
+        SalesShptHeader."LAX EDI Shipment Release" := FromSalesShptHeader."LAX EDI Shipment Release";
+        SalesShptHeader."LAX EDI Trade Partner" := FromSalesShptHeader."LAX EDI Trade Partner";
+        // >> Shipping 
+
         // >> NIF
         SalesShptHeader."Model Year" := FromSalesShptHeader."Model Year";
         SalesShptHeader."EDI Control No." := FromSalesShptHeader."EDI Control No.";
@@ -40,13 +39,11 @@ codeunit 50051 CU391Subscriber
         SalesInvoiceHeader2.LOCKTABLE();
         SalesInvoiceHeader2.FIND();
 
-        //TODO
-        /*  SalesInvoiceHeader2."E-Mail Invoice Notice Handled" := SalesInvoiceHeader."E-Mail Invoice Notice Handled";
-         SalesInvoiceHeader2."EDI Order" := SalesInvoiceHeader."EDI Order";
-         SalesInvoiceHeader2."EDI Trade Partner" := SalesInvoiceHeader."EDI Trade Partner";
-         SalesInvoiceHeader2."Invoice for Bill of Lading No." := SalesInvoiceHeader."Invoice for Bill of Lading No.";
-         SalesInvoiceHeader2."Invoice for Shipment No." := SalesInvoiceHeader."Invoice for Shipment No."; */
-        //TODO
+        SalesInvoiceHeader2."LAX E-Mail Inv. Notice Handled" := SalesInvoiceHeader."LAX E-Mail Inv. Notice Handled";
+        SalesInvoiceHeader2."LAX EDI Order" := SalesInvoiceHeader."LAX EDI Order";
+        SalesInvoiceHeader2."LAX EDI Trade Partner" := SalesInvoiceHeader."LAX EDI Trade Partner";
+        SalesInvoiceHeader2."LAX Invoice for BOL No." := SalesInvoiceHeader."LAX Invoice for BOL No.";
+        SalesInvoiceHeader2."LAX Invoice for Shipment No." := SalesInvoiceHeader."LAX Invoice for Shipment No.";
 
         //>>NIF MAK 050806
         SalesInvoiceHeader2."Exclude from Virtual Inv." := SalesInvoiceHeader."Exclude from Virtual Inv.";
@@ -60,9 +57,7 @@ codeunit 50051 CU391Subscriber
         END;
         //<<NIF MAK 050806
 
-        //TODO
-        //SalesInvoiceHeader2."EDI Invoice" := SalesInvoiceHeader."EDI Invoice";
-        //TODO
+        SalesInvoiceHeader2."LAX EDI Invoice" := SalesInvoiceHeader."LAX EDI Invoice";
 
         SalesInvoiceHeader2.MODIFY();
         SalesInvoiceHeader := SalesInvoiceHeader2;
@@ -71,143 +66,131 @@ codeunit 50051 CU391Subscriber
 
     PROCEDURE BillOfLadingSalesShipmentHdr(CurrentSalesShipmentHeader: Record 110; BillOfLadingNo: Code[20]);
     VAR
-    /*  PostedPackage: Record 14000704;
-     BillOfLadingLine: Record 14000823; 
-    SalesShptHeader: Record "Sales Shipment Header";*/
+        PostedPackage: Record 14000704;
+        BillOfLadingLine: Record 14000823;
+        SalesShptHeader: Record "Sales Shipment Header";
     BEGIN
-        //TODO
-        /*  SalesShptHeader.GET(CurrentSalesShipmentHeader."No.");
-         SalesShptHeader.VALIDATE("Bill of Lading No.", BillOfLadingNo);
-         SalesShptHeader.MODIFY();
+        SalesShptHeader.GET(CurrentSalesShipmentHeader."No.");
+        SalesShptHeader.VALIDATE("LAX Bill of Lading No.", BillOfLadingNo);
+        SalesShptHeader.MODIFY();
 
-         BillOfLadingLine.LOCKTABLE;
+        BillOfLadingLine.LOCKTABLE();
 
-         PostedPackage.RESET;
-         PostedPackage.SETCURRENTKEY("Source Type", "Source Subtype", "Posted Source ID");
-         PostedPackage.SETRANGE("Source Type", DATABASE::"Sales Header");
-         PostedPackage.SETRANGE("Posted Source ID", CurrentSalesShipmentHeader."No.");
-         PostedPackage.MODIFYALL(
-           "Used on Bill of Lading No.", BillOfLadingNo, TRUE); */
-        //TODO
+        PostedPackage.RESET;
+        PostedPackage.SETCURRENTKEY("Source Type", "Source Subtype", "Posted Source ID");
+        PostedPackage.SETRANGE("Source Type", DATABASE::"Sales Header");
+        PostedPackage.SETRANGE("Posted Source ID", CurrentSalesShipmentHeader."No.");
+        PostedPackage.MODIFYALL(
+          "Used on Bill of Lading No.", BillOfLadingNo, TRUE);
     END;
 
     PROCEDURE PurchaseReceiptHeaderEdit(PurchReceiptHeader: Record 120);
     VAR
-    //PurchReceiptHeader2: Record 120;
+        PurchReceiptHeader2: Record 120;
     BEGIN
-        //TODO
-        /*  // >> Shipping
-         PurchReceiptHeader2 := PurchReceiptHeader;
-         PurchReceiptHeader2.LOCKTABLE();
-         PurchReceiptHeader2.FIND();
+        // >> Shipping
+        PurchReceiptHeader2 := PurchReceiptHeader;
+        PurchReceiptHeader2.LOCKTABLE();
+        PurchReceiptHeader2.FIND();
 
-         PurchReceiptHeader2."E-Mail Receipt Notice Handled" := PurchReceiptHeader."E-Mail Receipt Notice Handled";
+        PurchReceiptHeader2."LAX EMail Recpt Notice Handled" := PurchReceiptHeader."LAX EMail Recpt Notice Handled";
 
-         PurchReceiptHeader2.MODIFY();
-         PurchReceiptHeader := PurchReceiptHeader2;
-         // << Shipping */
-        //TODO
+        PurchReceiptHeader2.MODIFY();
+        PurchReceiptHeader := PurchReceiptHeader2;
+        // << Shipping 
     END;
 
     PROCEDURE PurchaseInvoiceHeaderEdit(PurchInvoiceHeader: Record 122);
     VAR
-    // PurchInvoiceHeader2: Record 122;
+        PurchInvoiceHeader2: Record 122;
     BEGIN
         //TODO
-        /* // >> Shipping
+        // >> Shipping
         PurchInvoiceHeader2 := PurchInvoiceHeader;
         PurchInvoiceHeader2.LOCKTABLE();
         PurchInvoiceHeader2.FIND();
 
         PurchInvoiceHeader2."E-Mail Invoice Notice Handled" := PurchInvoiceHeader."E-Mail Invoice Notice Handled";
-        PurchInvoiceHeader2."EDI Order" := PurchInvoiceHeader."EDI Order";
+        PurchInvoiceHeader2."LAX EDI Order" := PurchInvoiceHeader."LAX EDI Order";
 
         PurchInvoiceHeader2.MODIFY();
         PurchInvoiceHeader := PurchInvoiceHeader2;
-        // << Shipping */
+        // << Shipping
         //TODO
     END;
 
     PROCEDURE TransferShipmentHeaderEdit(TransferShipmentHeader: Record 5744);
     VAR
-    // TransferShipmentHeader2: Record 5744;
+        TransferShipmentHeader2: Record 5744;
     BEGIN
-        //TODO
-        /* // >> EDI
+        // >> EDI
         TransferShipmentHeader2 := TransferShipmentHeader;
         TransferShipmentHeader2.LOCKTABLE();
         TransferShipmentHeader2.FIND();
 
-        TransferShipmentHeader2."EDI Trade Partner" := TransferShipmentHeader."EDI Trade Partner";
-        TransferShipmentHeader2."EDI Order" := TransferShipmentHeader."EDI Order";
+        TransferShipmentHeader2."LAX EDI Trade Partner" := TransferShipmentHeader."LAX EDI Trade Partner";
+        TransferShipmentHeader2."LAX EDI Order" := TransferShipmentHeader."LAX EDI Order";
 
         TransferShipmentHeader2.MODIFY();
         TransferShipmentHeader := TransferShipmentHeader2;
-        // << EDI */
-        //TODO
+        // << EDI 
     END;
 
     PROCEDURE BillOfLadingPurchCrMemo(CurrentPurchCrMemoHeader: Record 124; BillOfLadingNo: Code[20]);
     VAR
-    /*  PurchCrMemoHeader: Record 124;
-     PostedPackage: Record 14000704;
-     BillOfLadingLine: Record 14000823; */
+        PurchCrMemoHeader: Record 124;
+        PostedPackage: Record 14000704;
+        BillOfLadingLine: Record 14000823;
     BEGIN
-        //TODO
-        /*   PurchCrMemoHeader.GET(CurrentPurchCrMemoHeader."No.");
-          PurchCrMemoHeader.VALIDATE("Bill of Lading No.", BillOfLadingNo);
-          PurchCrMemoHeader.MODIFY();
+        PurchCrMemoHeader.GET(CurrentPurchCrMemoHeader."No.");
+        PurchCrMemoHeader.VALIDATE("LAX Bill of Lading No.", BillOfLadingNo);
+        PurchCrMemoHeader.MODIFY();
 
-          BillOfLadingLine.LOCKTABLE();
+        BillOfLadingLine.LOCKTABLE();
 
-          PostedPackage.RESET;
-          PostedPackage.SETCURRENTKEY("Source Type", "Source Subtype", "Posted Source ID");
-          PostedPackage.SETRANGE("Source Type", DATABASE::"Purchase Header");
-          PostedPackage.SETRANGE("Posted Source ID", CurrentPurchCrMemoHeader."No.");
-          PostedPackage.MODIFYALL("Used on Bill of Lading No.", BillOfLadingNo, TRUE); */
-        //TODO
+        PostedPackage.RESET();
+        PostedPackage.SETCURRENTKEY("Source Type", "Source Subtype", "Posted Source ID");
+        PostedPackage.SETRANGE("Source Type", DATABASE::"Purchase Header");
+        PostedPackage.SETRANGE("Posted Source ID", CurrentPurchCrMemoHeader."No.");
+        PostedPackage.MODIFYALL("Used on Bill of Lading No.", BillOfLadingNo, TRUE);
     END;
 
     PROCEDURE BillOfLadingReturnShipment(CurrentReturnShipmentHeader: Record 6650; BillOfLadingNo: Code[20]);
     VAR
-    /*  ReturnShipmentHeader: Record 6650;
-     PostedPackage: Record 14000704;
-     BillOfLadingLine: Record 14000823; */
+        ReturnShipmentHeader: Record 6650;
+        PostedPackage: Record 14000704;
+        BillOfLadingLine: Record 14000823;
     BEGIN
-        //TODO
-        /*  ReturnShipmentHeader.GET(CurrentReturnShipmentHeader."No.");
-         ReturnShipmentHeader.VALIDATE("Bill of Lading No.", BillOfLadingNo);
-         ReturnShipmentHeader.MODIFY();
+        ReturnShipmentHeader.GET(CurrentReturnShipmentHeader."No.");
+        ReturnShipmentHeader.VALIDATE("LAX Bill of Lading No.", BillOfLadingNo);
+        ReturnShipmentHeader.MODIFY();
 
-         BillOfLadingLine.LOCKTABLE();
+        BillOfLadingLine.LOCKTABLE();
 
-         PostedPackage.RESET;
-         PostedPackage.SETCURRENTKEY("Source Type", "Source Subtype", "Posted Source ID");
-         PostedPackage.SETRANGE("Source Type", DATABASE::"Purchase Header");
-         PostedPackage.SETRANGE("Posted Source ID", CurrentReturnShipmentHeader."No.");
-         PostedPackage.MODIFYALL("Used on Bill of Lading No.", BillOfLadingNo, TRUE); */
-        //TODO
+        PostedPackage.RESET;
+        PostedPackage.SETCURRENTKEY("Source Type", "Source Subtype", "Posted Source ID");
+        PostedPackage.SETRANGE("Source Type", DATABASE::"Purchase Header");
+        PostedPackage.SETRANGE("Posted Source ID", CurrentReturnShipmentHeader."No.");
+        PostedPackage.MODIFYALL("Used on Bill of Lading No.", BillOfLadingNo, TRUE);
     END;
 
     PROCEDURE BillOfLadingTransferShipment(CurrentTransferShipmentHeader: Record 5744; BillOfLadingNo: Code[20]);
     VAR
-    /* TransferShipmentHeader: Record 5744;
-PostedPackage: Record 14000704;
- BillOfLadingLine: Record 14000823; */
+        TransferShipmentHeader: Record 5744;
+        PostedPackage: Record 14000704;
+        BillOfLadingLine: Record 14000823;
     BEGIN
-        //TODO
-        /*    TransferShipmentHeader.GET(CurrentTransferShipmentHeader."No.");
-           TransferShipmentHeader.VALIDATE("Bill of Lading No.", BillOfLadingNo);
-           TransferShipmentHeader.MODIFY();
+        TransferShipmentHeader.GET(CurrentTransferShipmentHeader."No.");
+        TransferShipmentHeader.VALIDATE("LAX Bill of Lading No.", BillOfLadingNo);
+        TransferShipmentHeader.MODIFY();
 
-           BillOfLadingLine.LOCKTABLE();
+        BillOfLadingLine.LOCKTABLE();
 
-           PostedPackage.RESET;
-           PostedPackage.SETCURRENTKEY("Source Type", "Source Subtype", "Posted Source ID");
-           PostedPackage.SETRANGE("Source Type", DATABASE::"Transfer Header");
-           PostedPackage.SETRANGE("Posted Source ID", CurrentTransferShipmentHeader."No.");
-           PostedPackage.MODIFYALL("Used on Bill of Lading No.", BillOfLadingNo, TRUE); */
-        //TODO
+        PostedPackage.RESET;
+        PostedPackage.SETCURRENTKEY("Source Type", "Source Subtype", "Posted Source ID");
+        PostedPackage.SETRANGE("Source Type", DATABASE::"Transfer Header");
+        PostedPackage.SETRANGE("Posted Source ID", CurrentTransferShipmentHeader."No.");
+        PostedPackage.MODIFYALL("Used on Bill of Lading No.", BillOfLadingNo, TRUE);
     END;
 
     PROCEDURE SalesCrMemoHeaderEdit(SalesCrMemoHeader: Record 114);
@@ -220,10 +203,8 @@ PostedPackage: Record 14000704;
         SalesCrMemoHeader2.LOCKTABLE();
         SalesCrMemoHeader2.FIND();
 
-        //TODO
-        /*  SalesCrMemoHeader2."EDI Order" := SalesCrMemoHeader."EDI Order";
-         SalesCrMemoHeader2."EDI Trade Partner" := SalesCrMemoHeader."EDI Trade Partner"; */
-        //TODO
+        SalesCrMemoHeader2."LAX EDI Order" := SalesCrMemoHeader."LAX EDI Order";
+        SalesCrMemoHeader2."LAX EDI Trade Partner" := SalesCrMemoHeader."LAX EDI Trade Partner";
 
         //>>WC1.01.Begin
         SalesCrMemoHeader2."Exclude from Virtual Inv." := SalesCrMemoHeader."Exclude from Virtual Inv.";
@@ -250,10 +231,8 @@ PostedPackage: Record 14000704;
         ReturnReceiptHeader2.LOCKTABLE();
         ReturnReceiptHeader2.FIND();
 
-        //TODO
-        /*  ReturnReceiptHeader2."EDI Order" := ReturnReceiptHeader."EDI Order";
-         ReturnReceiptHeader2."EDI Trade Partner" := ReturnReceiptHeader."EDI Trade Partner"; */
-        //TODO
+        ReturnReceiptHeader2."LAX EDI Order" := ReturnReceiptHeader."LAX EDI Order";
+        ReturnReceiptHeader2."LAX EDI Trade Partner" := ReturnReceiptHeader."LAX EDI Trade Partner";
 
         ReturnReceiptHeader2.MODIFY();
         ReturnReceiptHeader := ReturnReceiptHeader2;

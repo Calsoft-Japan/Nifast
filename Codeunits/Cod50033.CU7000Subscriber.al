@@ -6,7 +6,7 @@ codeunit 50033 CU7000Subscriber
     local procedure OnFindSalesLinePriceOnItemTypeOnAfterSetUnitPrice(var SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; var TempSalesPrice: Record "Sales Price" temporary; CalledByFieldNo: Integer; FoundSalesPrice: Boolean)
     begin
         //TODO
-        // SalesLine."Customer Bin" := TempSalesPrice."Default Customer Bin Code"; //07/30/15 by CIS.RAM Added Default Bin code field
+        SalesLine."Customer Bin" := TempSalesPrice."Default Customer Bin Code"; //07/30/15 by CIS.RAM Added Default Bin code field
         //TODO
     end;
 
@@ -19,11 +19,11 @@ codeunit 50033 CU7000Subscriber
     end;
 
     var
-    /*    Item: Record Item;
-       TempSalesPrice: Record "Sales Price" temporary;
-       SalesPriceCalcMgmtCu: Codeunit "Sales Price Calc. Mgt.";
-       FoundSalesPrice: Boolean;
-       DateCaption: Text[30]; */
+        Item: Record Item;
+        TempSalesPrice: Record "Sales Price" temporary;
+        SalesPriceCalcMgmtCu: Codeunit "Sales Price Calc. Mgt.";
+        // FoundSalesPrice: Boolean;
+        DateCaption: Text[30];
 
     PROCEDURE "<<NV>>"();
     BEGIN
@@ -32,15 +32,15 @@ codeunit 50033 CU7000Subscriber
     PROCEDURE SalesLineContractPriceExists(SalesHeader: Record 36; VAR SalesLine: Record 37; ShowAll: Boolean): Boolean;
     BEGIN
         //TODO
-        /*  WITH SalesLine DO
-             IF (Type = Type::Item) AND Item.GET("No.") THEN BEGIN
-                 FindContractSalesPrice(
-                   TempSalesPrice, "Sell-to Customer No.", SalesLine."Contract No.",
-                   "Customer Price Group", '', "No.", "Variant Code", "Unit of Measure Code",
-                   SalesHeader."Currency Code", SalesPriceCalcMgmtCu.SalesHeaderStartDate(SalesHeader, DateCaption), ShowAll);
-                 EXIT(TempSalesPrice.FIND('-'));
-             END;
-         EXIT(FALSE); */
+        //WITH SalesLine DO
+        IF (SalesLine.Type = SalesLine.Type::Item) AND Item.GET(SalesLine."No.") THEN BEGIN
+            FindContractSalesPrice(
+              TempSalesPrice, SalesLine."Sell-to Customer No.", SalesLine."Contract No.",
+              SalesLine."Customer Price Group", '', SalesLine."No.", SalesLine."Variant Code", SalesLine."Unit of Measure Code",
+              SalesHeader."Currency Code", SalesPriceCalcMgmtCu.SalesHeaderStartDate(SalesHeader, DateCaption), ShowAll);
+            EXIT(TempSalesPrice.FIND('-'));
+        END;
+        EXIT(FALSE);
         //TODO
     END;
 
@@ -49,24 +49,24 @@ codeunit 50033 CU7000Subscriber
         FromSalesPrice: Record 7002;
     //  TempTargetCampaignGr: Record 7030 TEMPORARY;
     BEGIN
-        WITH FromSalesPrice DO BEGIN
-            SETRANGE("Item No.", ItemNo);
-            SETFILTER("Variant Code", '%1|%2', VariantCode, '');
-            SETFILTER("Ending Date", '%1|>=%2', 0D, StartingDate);
-            IF NOT ShowAll THEN BEGIN
-                SETFILTER("Currency Code", '%1|%2', CurrencyCode, '');
-                SETFILTER("Unit of Measure Code", '%1|%2', UOM, '');
-                SETRANGE("Starting Date", 0D, StartingDate);
-            END;
-
-            ToSalesPrice.RESET();
-            ToSalesPrice.DELETEALL();
-
-            SETRANGE("Sales Type", "Sales Type"::Customer);
-            SETRANGE("Sales Code", CustNo);
-            SETRANGE("Contract No.", ContractNo);
-            CopySalesPriceToSalesPrice(FromSalesPrice, ToSalesPrice);
+        //  WITH FromSalesPrice DO BEGIN
+        FromSalesPrice.SETRANGE("Item No.", ItemNo);
+        FromSalesPrice.SETFILTER("Variant Code", '%1|%2', VariantCode, '');
+        FromSalesPrice.SETFILTER("Ending Date", '%1|>=%2', 0D, StartingDate);
+        IF NOT ShowAll THEN BEGIN
+            FromSalesPrice.SETFILTER("Currency Code", '%1|%2', CurrencyCode, '');
+            FromSalesPrice.SETFILTER("Unit of Measure Code", '%1|%2', UOM, '');
+            FromSalesPrice.SETRANGE("Starting Date", 0D, StartingDate);
         END;
+
+        ToSalesPrice.RESET();
+        ToSalesPrice.DELETEALL();
+
+        FromSalesPrice.SETRANGE("Sales Type", FromSalesPrice."Sales Type"::Customer);
+        FromSalesPrice.SETRANGE("Sales Code", CustNo);
+        FromSalesPrice.SETRANGE("Contract No.", ContractNo);
+        CopySalesPriceToSalesPrice(FromSalesPrice, ToSalesPrice);
+        //  END;
     END;
 
     //The local method 'CalcContractUnitPrice' is declared but never used so commented it

@@ -2,12 +2,12 @@ codeunit 50034 CU7308Subscriber
 {
     var
         Bin: Record Bin;
-        // Location: Record Location;
+        Location: Record Location;
         ReplenishmentCu: Codeunit Replenishment;
         BreakAtRemainQtyToReplenish: Decimal;
         MustNotBeErr: Label 'must not be %1.', Comment = '%1 - field value';
-    /*  ">> NV": Integer;
-     UseBreakWhenQtyOnHand: Option " ",">= Min. Qty.","= Max. Qty."; */
+        ">> NV": Integer;
+        UseBreakWhenQtyOnHand: Option " ",">= Min. Qty.","= Max. Qty.";
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::Replenishment, OnBeforeReplenishBin, '', false, false)]
     local procedure OnBeforeReplenishBin(ToBinContent: Record "Bin Content"; var IsHandled: Boolean; RemainQtyToReplenishBase: Decimal; AllowBreakBulk: Boolean)
@@ -31,22 +31,22 @@ codeunit 50034 CU7308Subscriber
             exit;
 
         //TODO
-        /*  // >> NV - 09/19/03 MV
-         // Determine break criteria
-         Location.GET(ToBinContent."Location Code");
-         IF ToBinContent."Break Pick when Qty. on Hand" <> ToBinContent."Break Pick when Qty. on Hand"::" " THEN
-             UseBreakWhenQtyOnHand := ToBinContent."Break Pick when Qty. on Hand"
-         ELSE
-             UseBreakWhenQtyOnHand := Location."Break Pick when Qty. on Hand";
-         IF UseBreakWhenQtyOnHand = UseBreakWhenQtyOnHand::" " THEN
-             Location.TESTFIELD("Break Pick when Qty. on Hand", UseBreakWhenQtyOnHand::" "); // Error message
-         IF UseBreakWhenQtyOnHand = UseBreakWhenQtyOnHand::">= Min. Qty." THEN BEGIN
-             ToBinContent.TESTFIELD("Min. Qty.");
-             BreakAtRemainQtyToReplenish :=
-               RemainQtyToReplenishBase - (ToBinContent."Min. Qty." - CalcQtyAvailable(0)); // New function -- must be consistent w/ "CalcQtyToReplenish"
-         END ELSE
-             BreakAtRemainQtyToReplenish := 0;
-         // << NV - 09/19/03 MV */
+        // >> NV - 09/19/03 MV
+        // Determine break criteria
+        Location.GET(ToBinContent."Location Code");
+        IF ToBinContent."Break Pick when Qty. on Hand" <> ToBinContent."Break Pick when Qty. on Hand"::" " THEN
+            UseBreakWhenQtyOnHand := ToBinContent."Break Pick when Qty. on Hand"
+        ELSE
+            UseBreakWhenQtyOnHand := Location."Break Pick when Qty. on Hand";
+        IF UseBreakWhenQtyOnHand = UseBreakWhenQtyOnHand::" " THEN
+            Location.TESTFIELD("Break Pick when Qty. on Hand", UseBreakWhenQtyOnHand::" "); // Error message
+        IF UseBreakWhenQtyOnHand = UseBreakWhenQtyOnHand::">= Min. Qty." THEN BEGIN
+            ToBinContent.TESTFIELD("Min. Qty.");
+            BreakAtRemainQtyToReplenish :=
+              RemainQtyToReplenishBase - (ToBinContent."Min. Qty." - ToBinContent.CalcQtyAvailable(0)); // New function -- must be consistent w/ "CalcQtyToReplenish"
+        END ELSE
+            BreakAtRemainQtyToReplenish := 0;
+        // << NV - 09/19/03 MV
         //TODO
 
         ReplenishmentCu.FindReplenishmtBin(ToBinContent, AllowBreakBulk);

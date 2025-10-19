@@ -1,10 +1,8 @@
 table 70783 "E.D.I. SendDocHdr Old SE054.21"
 {
     Caption = 'E.D.I. SendDocHdr Old SE054.21';
-    //TODO
-    /*  DrillDownPageID = 14002383;
-     LookupPageID = 14002383; */
-    //TODO
+    DrillDownPageID = 14002383;
+    LookupPageID = 14002383;
     Permissions = TableData 112 = rm;
     fields
     {
@@ -17,9 +15,7 @@ table 70783 "E.D.I. SendDocHdr Old SE054.21"
         {
             Caption = 'Navision Document';
             Editable = false;
-            //TODO
-            // TableRelation = "E.D.I. Navision Available Doc.".Document;
-            //TODO
+            TableRelation = "E.D.I. Navision Available Doc.".Document;
         }
         field(3; "Document No."; Code[20])
         {
@@ -35,9 +31,8 @@ table 70783 "E.D.I. SendDocHdr Old SE054.21"
         {
             Caption = 'Trade Partner No.';
             Editable = false;
-            //TODO
             // TableRelation = "E.D.I. Trade Partner"."No.";
-            //TODO
+            TableRelation = "LAX EDI Trade Partner"."No.";
         }
         field(12; "EDI Document No."; Code[6])
         {
@@ -53,9 +48,8 @@ table 70783 "E.D.I. SendDocHdr Old SE054.21"
         {
             Caption = 'EDI Template Name';
             Editable = false;
-            //TODO
             // TableRelation = "E.D.I. Template";
-            //TODO
+            TableRelation = "LAX EDI Template";
         }
         field(15; "Interchange Control No."; Text[30])
         {
@@ -75,9 +69,8 @@ table 70783 "E.D.I. SendDocHdr Old SE054.21"
         field(18; "EDI Trade Partner Name"; Text[40])
         {
             FieldClass = FlowField;
-            //TODO
-            // CalcFormula = Lookup("E.D.I. Trade Partner".Name WHERE("No." = FIELD("Trade Partner No.")));
-            //TODO
+            //  CalcFormula = Lookup("E.D.I. Trade Partner".Name WHERE("No." = FIELD("Trade Partner No.")));
+            CalcFormula = Lookup("LAX EDI Trade Partner".Name WHERE("No." = FIELD("Trade Partner No.")));
             Caption = 'EDI Trade Partner Name';
             Editable = false;
 
@@ -103,12 +96,16 @@ table 70783 "E.D.I. SendDocHdr Old SE054.21"
         }
         field(22; "Data Error"; Boolean)
         {
-            //TODO
-            /*    CalcFormula = Exist("E.D.I. Send Document Field" WHERE("Internal Doc No." = FIELD("Internal Doc No."),
+
+            /*  CalcFormula = Exist("E.D.I. Send Document Field" WHERE("Internal Doc No." = FIELD("Internal Doc No."),
+                                                                        "Document No." = FIELD("Document No."),
+                                                                        Version = FIELD(Version),
+                                                                        "Data Error" = CONST(true))); */
+            CalcFormula = Exist("LAX EDI Send Document Field" WHERE("Internal Doc No." = FIELD("Internal Doc No."),
                                                                        "Document No." = FIELD("Document No."),
                                                                        Version = FIELD(Version),
-                                                                       "Data Error" = CONST(true))); */
-            //TODO
+                                                                       "Data Error" = CONST(true)));
+
             Caption = 'Data Error';
             Editable = false;
             FieldClass = FlowField;

@@ -178,11 +178,11 @@ table 80020 "Duplicate Lot Info"
         }
         field(50155; "QC Order Lines"; Integer)
         {
-            //TODO
-            /*  CalcFormula = Count("QC Line" WHERE("Item No." = FIELD("Item No."),
+
+            CalcFormula = Count("QC Line" WHERE("Item No." = FIELD("Item No."),
                                                   "Variant Code" = FIELD("Variant Code"),
-                                                  "Lot No." = FIELD("Lot No."))); */
-            //TODO
+                                                  "Lot No." = FIELD("Lot No.")));
+
             Editable = false;
             FieldClass = FlowField;
         }
@@ -204,14 +204,14 @@ table 80020 "Duplicate Lot Info"
         }
         field(50500; "Open Whse. Entries Exist"; Boolean)
         {
-            //TODO
-            /*  CalcFormula = Exist("Warehouse Entry" WHERE("Item No." = FIELD("Item No."),
+
+            CalcFormula = Exist("Warehouse Entry" WHERE("Item No." = FIELD("Item No."),
                                                           "Lot No." = FIELD("Lot No."),
                                                           Open = CONST(true),
                                                           "Location Code" = FIELD("Location Filter"),
                                                           "Bin Code" = FIELD("Bin Filter"),
-                                                          "Variant Code" = FIELD("Variant Code"))); */
-            //TODO
+                                                          "Variant Code" = FIELD("Variant Code")));
+
             Editable = false;
             FieldClass = FlowField;
         }
