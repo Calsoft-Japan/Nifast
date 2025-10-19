@@ -218,8 +218,8 @@ tableextension 50027 "Item Ext" extends "Item"
             DataClassification = ToBeClassified;
         }
 
-        //TODO
-        /*   field(14017622; "Harmonizing Tariff Code"; Code[20])
+        
+         field(14017622; "Harmonizing Tariff Code"; Code[20])
           {
               Description = 'NF1.00:CIS.CM 09-29-15';
           }
@@ -263,8 +263,8 @@ tableextension 50027 "Item Ext" extends "Item"
               Editable = false;
               Enabled = false;
               FieldClass = FlowField;
-          } */
-        //TODO
+          }
+        
     }
     var
         ItemCrossReference: Record 5777;

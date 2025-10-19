@@ -136,8 +136,7 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
 
         field(50001; "Inside Salesperson Code"; Code[10])//NV-FB 14017617->50001 BC Upgrade
         { }
-        //TODO
-        /* field(14017610; "Entered User ID"; Code[50])
+        field(14017610; "Entered User ID"; Code[50])
         {
             Description = '20-->50 NF1.00:CIS.NG  10-10-15';
             TableRelation = User."User Name";
@@ -182,8 +181,7 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
             Editable = false;
             Enabled = false;
             FieldClass = FlowField;
-        }*/
-        //TODO
+        }
     }
 
     trigger OnAfterDelete()

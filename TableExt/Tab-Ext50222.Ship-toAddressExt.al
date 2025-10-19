@@ -56,12 +56,10 @@ tableextension 50222 "Ship-to Address Ext" extends "Ship-to Address"
             // cleaned
             TableRelation = "Freight Code";
         }
-        //TODO
-        /*   field(14017650; "Broker/Agent Code"; Code[10])
-          {
-              Description = 'NF1.00:CIS.NG  10-10-15';
-          } */
-        //TODO
+        field(14017650; "Broker/Agent Code"; Code[10])
+        {
+            Description = 'NF1.00:CIS.NG  10-10-15';
+        }
     }
     var
         ShippingAgent: Record 291;

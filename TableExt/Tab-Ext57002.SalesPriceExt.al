@@ -82,8 +82,7 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
         { }
         field(50006; "Customer Bin"; Code[20])//NV 14017662->50006 BC Upgrade
         { }
-        //TODO
-        /*   field(14017614; "Alt. Price"; Decimal)
+         field(14017614; "Alt. Price"; Decimal)
           {
               Description = 'NV';
               Editable = false;
@@ -235,8 +234,7 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
               Description = 'NV';
               OptionCaption = '" ,Consigned,Non-Consigned"';
               OptionMembers = " ",Consigned,"Non-Consigned";
-          } */
-        //TODO
+          }
     }
     var
         Contract: Record 50110;

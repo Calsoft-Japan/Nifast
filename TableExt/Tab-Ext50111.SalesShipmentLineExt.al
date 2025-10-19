@@ -139,8 +139,8 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
             Caption = 'National';
             Description = 'AKK1606.01';
         }
-        //TODO
-        /*   field(14017611; "Order Date"; Date)
+        
+          field(14017611; "Order Date"; Date)
           {
               Description = 'NV';
           }
@@ -193,8 +193,7 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
           field(37015333; "FB Customer Bin"; Code[20])
           {
               Description = 'NV';
-          } */
-        //TODO
+          } 
     }
     keys
     {

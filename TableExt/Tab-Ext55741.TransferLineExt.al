@@ -103,8 +103,8 @@ tableextension 55741 "Transfer Line Ext" extends "Transfer Line"
         field(50001; "FB Order No."; Code[20])//NV-FB 37015330->50001 BC Upgrade
         { }
 
-        //TODO
-        /*  field(14017999; "License Plate No."; Code[20])
+        
+         field(14017999; "License Plate No."; Code[20])
          {
              Description = 'NF1.00:CIS.NG  10-10-15';
              Editable = false;
@@ -125,8 +125,7 @@ tableextension 55741 "Transfer Line Ext" extends "Transfer Line"
          {
              Description = 'NV-FB';
          }
-  */
-        //TODO
+  
     }
 
     PROCEDURE CalcEShipWhseOutstQtyBase(LocationPacking: Boolean; LocationCode: Code[10]) QtyBase: Decimal;

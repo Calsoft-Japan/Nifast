@@ -181,8 +181,8 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         {
             Description = 'CIS.Ram IoT';
         }
-        //TODO
-        /* field(14017611; "Order Date"; Date)
+        
+        field(14017611; "Order Date"; Date)
         {
             Description = 'NV - FB';
         }
@@ -252,8 +252,8 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         field(37015333; "FB Customer Bin"; Code[20])
         {
             Description = 'NV - FB';
-        } */
-        //TODO
+        } 
+        
     }
 
     Var
