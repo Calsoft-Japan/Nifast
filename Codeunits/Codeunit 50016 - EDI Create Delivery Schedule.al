@@ -11,18 +11,20 @@ codeunit 50016 "EDI Create Delivery Schedule"
     TableNo = 14002358;
 
     trigger OnRun()
+    var
+        EDIReceviceDocument: record "LAX EDI Receive Document Hdr.";
     begin
-        IF "Navision Document" <> 'I_DELFOR' THEN
-            ERROR('EDI Navision Document %1 does not match this function.', "Navision Document");
+        IF EDIReceviceDocument."Document" <> 'I_DELFOR' THEN
+            ERROR('EDI Navision Document %1 does not match this function.', EDIReceviceDocument."Document");
 
-        EDITemplate.GET("EDI Template Code");
+        EDITemplate.GET(EDIReceviceDocument."EDI Template Code");
         EDIRecDocHdr2.GET(
-          "Trade Partner No.", "Navision Document", "EDI Document No.", "EDI Version", "Internal Doc. No.");
+          EDIReceviceDocument."Trade Partner No.", EDIReceviceDocument."Document", EDIReceviceDocument."EDI Document No.", EDIReceviceDocument."EDI Version", EDIReceviceDocument."Internal Doc. No.");
         IF EDIRecDocHdr2."Company Name" <> COMPANYNAME THEN
             ERROR(
               'The recive document %1 is for company %2.  You are currently in company %3.',
               EDIRecDocHdr2."Internal Doc. No.", EDIRecDocHdr2."Company Name", COMPANYNAME);
-        IF "Document Created" = "Document Created"::"Delivery Schedule" THEN
+        IF EDIReceviceDocument."Document Created" = EDIReceviceDocument."Document Created"::"Delivery Schedule" THEN
             IF NOT CONFIRM(
               'Delivery Schedule has already been created.\' +
               'Do you wish to re-create it?') THEN
@@ -51,10 +53,10 @@ codeunit 50016 "EDI Create Delivery Schedule"
                 LastCustomerNo := EDITradePartner."Customer No."
             ELSE BEGIN
                 EDIRecDocFields.RESET;
-                EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "NAV Table No.", "Nav Field No.");
+                EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "Table No.", "Field No.");
                 EDIRecDocFields.SETRANGE("Internal Doc. No.", EDIRecDocHdr2."Internal Doc. No.");
-                EDIRecDocFields.SETRANGE("NAV Table No.", 50020);
-                EDIRecDocFields.SETRANGE("Nav Field No.", DeliverySchBatch.FIELDNO("Customer No."));
+                EDIRecDocFields.SETRANGE("Table No.", 50020);
+                EDIRecDocFields.SETRANGE("Field No.", DeliverySchBatch.FIELDNO("Customer No."));
                 IF EDIRecDocFields.FIND('-') THEN BEGIN
                     EDICustCrossRef.RESET;
                     EDICustCrossRef.SETRANGE("Trade Partner No.", EDIRecDocFields."Trade Partner No.");
@@ -66,10 +68,10 @@ codeunit 50016 "EDI Create Delivery Schedule"
 
         EDIRecDocFields.RESET;
         EDIRecDocFields.SETCURRENTKEY(
-          EDIRecDocFields."Internal Doc. No.", "NAV Table No.", "Nav Field No.");
+          EDIRecDocFields."Internal Doc. No.", "Table No.", "Field No.");
         EDIRecDocFields.SETRANGE(
-          EDIRecDocFields."Internal Doc. No.", "Internal Doc. No.");
-        EDIRecDocFields.SETRANGE(EDIRecDocFields."NAV Table No.", 50020);
+          EDIRecDocFields."Internal Doc. No.");
+        EDIRecDocFields.SETRANGE(EDIRecDocFields."Table No.", 50020);
         IF EDIRecDocFields.FIND('-') THEN BEGIN
             // Locking to prevent Deadlocking
             EDIRecDocHdr.LOCKTABLE;
@@ -83,7 +85,7 @@ codeunit 50016 "EDI Create Delivery Schedule"
             CLEAR(DeliverySchBatch);
 
             DeliverySchBatch."EDI Trade Partner" := "Trade Partner No.";
-            EDITradePartner.GET("Trade Partner No.");
+            EDITradePartner.GET("ITrade Partner No.");
             DeliverySchBatch.VALIDATE("Customer No.", LastCustomerNo);
 
             EDIRecDocHdr2."Customer No." := DeliverySchBatch."Customer No.";
@@ -144,89 +146,89 @@ codeunit 50016 "EDI Create Delivery Schedule"
                     StartDate := EDIRecDocFields."Field Date Value";
 
                 // Delivery Schedule Header
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Item No.")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Item No.")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN BEGIN
                     LastItemNo := EDIRecDocFields."Field Text Value";
                     LastCrossRefNo := '';
                     LastItemCrossRefNo := '';
                 END;
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."EDI Item Cross Ref.")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."EDI Item Cross Ref.")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN BEGIN
                     LastCrossRefNo := EDIRecDocFields."Field Text Value";
                     LastItemNo := '';
                     LastItemCrossRefNo := '';
                 END;
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Cross-Reference No.")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN BEGIN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Cross-Reference No.")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN BEGIN
                     LastItemCrossRefNo := EDIRecDocFields."Field Text Value";
                     LastCrossRefNo := '';
                     LastItemNo := '';
                 END;
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Location Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Location Code")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastLocationCode := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Model Year")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Model Year")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastModelYear := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Release Number")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Release Number")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastReleaseNumber := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Receiving Dock Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Receiving Dock Code")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastReceivingDockCode := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Stockman Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Stockman Code")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastStockmanCode := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Order Reference No.")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Order Reference No.")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastOrderReferenceNo := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Quantity CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Quantity CYTD")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastQuantityCYTD := EDIRecDocFields."Field Integer Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Unit of Measure CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Unit of Measure CYTD")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastUOMCYTD := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Start Date CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Start Date CYTD")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastStartDateCYTD := EDIRecDocFields."Field Date Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."End Date CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."End Date CYTD")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastEndDateCYTD := EDIRecDocFields."Field Date Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Quantity Shipped CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Quantity Shipped CYTD")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastQuantityShippedCYTD := EDIRecDocFields."Field Integer Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Unit of Measure Shipped CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Unit of Measure Shipped CYTD")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastUOMShippedCYTD := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Start Date Shipped CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."Start Date Shipped CYTD")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastStartDateShippedCYTD := EDIRecDocFields."Field Date Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."End Date Shipped CYTD")) AND
-                   (EDIRecDocFields."NAV Table No." = 50012) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchHeader.FIELDNO(DeliverySchHeader."End Date Shipped CYTD")) AND
+                   (EDIRecDocFields."Table No." = 50012) THEN
                     LastEndDateShippedCYTD := EDIRecDocFields."Field Date Value";
 
 
                 //Delivery Schedule Line
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Type Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Type Code")) AND
+                   (EDIRecDocFields."Table No." = 50013) THEN
                     LastTypeCode := EDIRecDocFields."Field Integer Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Frequency Code")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Frequency Code")) AND
+                   (EDIRecDocFields."Table No." = 50013) THEN
                     LastFrequencyCode := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Forecast Unit of Measure")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Forecast Unit of Measure")) AND
+                   (EDIRecDocFields."Table No." = 50013) THEN
                     LastForecastUOM := EDIRecDocFields."Field Text Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Forecast Quantity")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Forecast Quantity")) AND
+                   (EDIRecDocFields."Table No." = 50013) THEN
                     LastForecastQuantity := EDIRecDocFields."Field Integer Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Expected Delivery Date")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Expected Delivery Date")) AND
+                   (EDIRecDocFields."Table No." = 50013) THEN
                     LastExpDeliveryDate := EDIRecDocFields."Field Date Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Start Date")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."Start Date")) AND
+                   (EDIRecDocFields."Table No." = 50013) THEN
                     LastStartDate := EDIRecDocFields."Field Date Value";
-                IF (EDIRecDocFields."Nav Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."End Date")) AND
-                   (EDIRecDocFields."NAV Table No." = 50013) THEN
+                IF (EDIRecDocFields."Field No." = DeliverySchLine.FIELDNO(DeliverySchLine."End Date")) AND
+                   (EDIRecDocFields."Table No." = 50013) THEN
                     LastEndDate := EDIRecDocFields."Field Date Value";
 
                 IF CommandEnd THEN
@@ -314,12 +316,12 @@ codeunit 50016 "EDI Create Delivery Schedule"
     procedure MapPlnSchFields()
     begin
         EDIRecDocFields.RESET;
-        EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "NAV Table No.", "Nav Field No.");
+        EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "Table No.", "Field No.");
         EDIRecDocFields.SETRANGE("Internal Doc. No.", EDIRecDocHdr2."Internal Doc. No.");
-        EDIRecDocFields.SETRANGE(EDIRecDocFields."NAV Table No.", 50020);
+        EDIRecDocFields.SETRANGE(EDIRecDocFields."Table No.", 50020);
         IF EDIRecDocFields.FIND('-') THEN
             REPEAT
-                CASE EDIRecDocFields."Nav Field No." OF
+                CASE EDIRecDocFields."Field No." OF
                     DeliverySchBatch.FIELDNO(DeliverySchBatch."Release No."):
                         DeliverySchBatch."Release No." := EDIRecDocFields."Field Text Value";
                     DeliverySchBatch.FIELDNO(DeliverySchBatch."Expected Delivery Date"):
@@ -505,7 +507,7 @@ codeunit 50016 "EDI Create Delivery Schedule"
                 TradePartnerItem.SETRANGE("Trade Partner No.", EDIRecDocHdr2."Trade Partner No.");
                 TradePartnerItem.SETRANGE("Partner Item No.", LastCrossRefNo);
                 IF TradePartnerItem.FIND('-') THEN
-                    LastItemNo := TradePartnerItem."Navision Item No."
+                    LastItemNo := TradePartnerItem."Item No."
                 ELSE
                     LastItemNo := LastCrossRefNo;
 

@@ -45,8 +45,8 @@ codeunit 50025 "Test BTApp"
         TempSalesHeader: Record 36 temporary;
         SalesLine: Record 37;
         TempSalesLine: Record 37 temporary;
-        ItemCrossRef: Record 5717;
-        TempItemCrossRef: Record 5717 temporary;
+        ItemCrossRef: Record "Item Reference";
+        TempItemCrossRef: Record "Item Reference" temporary;
         TempLotNoInfo: Record 6505 temporary;
         TempLabelValue: Record 50006 temporary;
         ReceiveStation: Record 14000608;
@@ -309,7 +309,7 @@ codeunit 50025 "Test BTApp"
         //init temp table
         TempSalesHeader.DELETEALL();
         TempSalesLine.DELETEALL();
-        TempItemCrossRef.DELETEALL;
+        TempItemCrossRef.DELETEALL();
         TempLotNoInfo.DELETEALL();
         TempLabelValue.RESET();
         TempLabelValue.DELETEALL();
@@ -673,7 +673,7 @@ codeunit 50025 "Test BTApp"
         TempLabelValue.DELETEALL();
         TempSalesHeader.DELETEALL();
         TempSalesLine.DELETEALL();
-        TempItemCrossRef.DELETEALL;
+        TempItemCrossRef.DELETEALL();
         TempLotNoInfo.DELETEALL();
 
         ClearPackageVars();
@@ -1028,7 +1028,7 @@ codeunit 50025 "Test BTApp"
 
     procedure PrintContractLineLabel(ContractLine: Record 7002; LabelHeaderCode: Code[10]; NoCopies: Integer; UsePackingStation: Boolean)
     var
-        ItemCrossRefl: Record 5717;
+        ItemCrossRefl: Record "Item Reference";
         LabelContent: Record 50006;
         ContractHeader: Record 50110;
         LabelHeader: Record 14000841;
@@ -1060,10 +1060,10 @@ codeunit 50025 "Test BTApp"
         IF NOT ContractHeader.GET(ContractLine."Contract No.") THEN
             CLEAR(ContractHeader);
 
-        SETCURRENTKEY("Item No.", "Variant Code", "Unit of Measure", "Cross-Reference Type", "Cross-Reference Type No.");
+        SETCURRENTKEY("Item No.", "Variant Code", "Unit of Measure", "Reference Type", "Reference Type No.");
         SETRANGE("Item No.", ContractLine."Item No.");
-        SETRANGE("Cross-Reference Type", ItemCrossRefl."Cross-Reference Type"::Customer);
-        SETRANGE("Cross-Reference Type No.", ContractLine."Sales Code");
+        SETRANGE("Reference Type", ItemCrossRefl."Reference Type"::Customer);
+        SETRANGE("Reference Type No.", ContractLine."Sales Code");
         IF NOT FIND('-') THEN
             CLEAR(ItemCrossRefl);
 
@@ -1245,7 +1245,7 @@ codeunit 50025 "Test BTApp"
 
     procedure LoadItemCrossRef(Package: Record 14000701; PackageLine: Record 14000702)
     var
-        ItemCrossRef: Record 5717;
+        ItemCrossRefl: Record "Item Reference";
     begin
         //if not an item or valid cross reference, then exit
         IF (PackageLine.Type <> PackageLine.Type::Item) OR
@@ -1254,20 +1254,20 @@ codeunit 50025 "Test BTApp"
             EXIT;
         END;
 
-        ItemCrossRef.SETRANGE("Item No.", PackageLine."No.");
-        ItemCrossRef.SETRANGE("Variant Code", PackageLine."Variant Code");
-        ItemCrossRef.SETRANGE("Unit of Measure", PackageLine."Unit of Measure Code");
-        ItemCrossRef.SETRANGE("Cross-Reference Type", ItemCrossRef."Cross-Reference Type"::Customer);
-        ItemCrossRef.SETRANGE("Cross-Reference Type No.", Package."Ship-to No.");
+        ItemCrossRefl.SETRANGE("Item No.", PackageLine."No.");
+        ItemCrossRefl.SETRANGE("Variant Code", PackageLine."Variant Code");
+        ItemCrossRefl.SETRANGE("Unit of Measure", PackageLine."Unit of Measure Code");
+        ItemCrossRefl.SETRANGE("Reference Type", ItemCrossRefl."Reference Type"::Customer);
+        ItemCrossRefl.SETRANGE("Reference Type No.", Package."Ship-to No.");
 
         //if cannot find, take off uom filter
-        IF NOT ItemCrossRef.FIND('-') THEN
-            ItemCrossRef.SETRANGE("Unit of Measure");
+        IF NOT ItemCrossRefl.FIND('-') THEN
+            ItemCrossRefl.SETRANGE("Unit of Measure");
 
-        IF NOT ItemCrossRef.FIND('-') THEN
-            CLEAR(ItemCrossRef);
+        IF NOT ItemCrossRefl.FIND('-') THEN
+            CLEAR(ItemCrossRefl);
 
-        TempItemCrossRef := ItemCrossRef;
+        TempItemCrossRef := ItemCrossRefl;
 
         ItemCrossRefLoaded := TRUE;
     end;
@@ -1318,7 +1318,7 @@ codeunit 50025 "Test BTApp"
                     TempPackageLine.TRANSFERFIELDS(PackageLine);
                     TempPackageLine.INSERT;
                 END;
-            UNTIL PackageLine.NEXT = 0;
+            UNTIL PackageLine.NEXT() = 0;
     end;
 
     procedure SummarizePostedPackage(Package: Record 14000701; var TempPackageLine: Record 14000702 temporary; UseLineNo: Integer)
@@ -1326,16 +1326,16 @@ codeunit 50025 "Test BTApp"
         PostedPackageLine: Record 14000705;
         PostedPackageLine2: Record 14000705;
     begin
-        PostedPackageLine.RESET;
+        PostedPackageLine.RESET();
         PostedPackageLine.SETRANGE("Package No.", Package."No.");
         IF (UseLineNo <> 0) AND (PostedPackageLine2.GET(Package."No.", UseLineNo)) THEN BEGIN
             PostedPackageLine.SETRANGE(Type, PostedPackageLine2.Type);
             PostedPackageLine.SETRANGE("No.", PostedPackageLine2."No.");
         END;
 
-        IF PostedPackageLine.FIND('-') THEN
+        IF PostedPackageLine.FINDset() THEN
             REPEAT
-                TempPackageLine.RESET;
+                TempPackageLine.RESET();
                 TempPackageLine.SETRANGE(Type, PostedPackageLine.Type::Item);
                 TempPackageLine.SETRANGE("No.", PostedPackageLine."No.");
                 IF TempPackageLine.FIND('-') THEN BEGIN
@@ -1573,7 +1573,7 @@ codeunit 50025 "Test BTApp"
                 PackingControl."Input No." := WhseActvLine."Item No.";
                 PackingControl."Input Variant Code" := WhseActvLine."Variant Code";
                 PackingControl."Input Unit of Measure Code" := WhseActvLine."Unit of Measure Code";
-                PackingControl."Order Line No." := WhseActvLine."Source Line No.";
+               // PackingControl."Order Line No." := WhseActvLine."Source Line No.";
                 PackingControl."Pack Lot Number" := (WhseActvLine."Lot No." <> '');
                 PackingControl."Input Lot Number" := WhseActvLine."Lot No.";
                 PackageMgt.CreatePackageLineNIF(Package, PackingControl, WhseActvLine.Quantity, FALSE);  //FALSE=no summary

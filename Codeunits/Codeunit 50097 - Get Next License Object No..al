@@ -48,15 +48,15 @@ codeunit 50097 "Get Next License Object No."
     var
         TypeLicPermission_gRec: Record 2000000043;
         Text000: Label 'Table,Page,Report,Codeunit,XMLport';
-    //TODO
-    // procedure ObjectExists_lFnc(No_iInt: Integer): Boolean
-    // var
-    //     Object_lRec: Record 2000000001;
-    // begin
-    //     Object_lRec.RESET();
-    //     Object_lRec.SETRANGE(Type, TypeLicPermission_gRec."Object Type");
-    //     Object_lRec.SETRANGE(ID, No_iInt);
-    //     EXIT(Object_lRec.FINDFIRST());
-    // end;
+
+    procedure ObjectExists_lFnc(No_iInt: Integer): Boolean
+    var
+        Object_lRec: Record 2000000001;
+    begin
+        Object_lRec.RESET();
+        Object_lRec.SETRANGE(Type, TypeLicPermission_gRec."Object Type");
+        Object_lRec.SETRANGE(ID, No_iInt);
+        EXIT(Object_lRec.FINDFIRST());
+    end;
 }
 

@@ -3,19 +3,21 @@ codeunit 50018 "Create Ship Authorization"
     TableNo = 14002358;
 
     trigger OnRun()
+    var
+    LaxEDIreceive: record "LAX EDI Receive Document Hdr.";
     begin
-        IF "Navision Document" <> 'I_DELJIT' THEN
-            ERROR('EDI Navision Document %1 does not match this function.', "Navision Document");
+        IF LaxEDIreceive."Document" <> 'I_DELJIT' THEN
+            ERROR('EDI Navision Document %1 does not match this function.', LaxEDIreceive."Document");
 
-        EDITemplate.GET("EDI Template Code");
+        EDITemplate.GET(LaxEDIreceive."EDI Template Code");
 
         EDIRecDocHdr2.GET(
-          "Trade Partner No.", "Navision Document", "EDI Document No.", "EDI Version", "Internal Doc. No.");
+          LaxEDIreceive."Trade Partner No.", LaxEDIreceive."Document", LaxEDIreceive."EDI Document No.", LaxEDIreceive."EDI Version", LaxEDIreceive."Internal Doc. No.");
         IF EDIRecDocHdr2."Company Name" <> COMPANYNAME THEN
             ERROR(
               'The receive document %1 is for company %2. You are currently in company %3.',
               EDIRecDocHdr2."Internal Doc. No.", EDIRecDocHdr2."Company Name", COMPANYNAME);
-        IF "Document Created" = "Document Created"::"Ship Auth." THEN
+        IF LaxEDIreceive."Document Created" = LaxEDIreceive."Document Created"::"Ship Auth." THEN
             IF NOT CONFIRM(
               'Shipment Authorization has already been created.\' +
               'Do you wish to re-create it?') THEN
@@ -45,10 +47,10 @@ codeunit 50018 "Create Ship Authorization"
                 LastCustomerNo := EDITradePartner."Customer No."
             ELSE BEGIN
                 EDIRecDocFields.RESET;
-                EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "NAV Table No.", "Nav Field No.");
+                EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "Table No.", "Field No.");
                 EDIRecDocFields.SETRANGE("Internal Doc. No.", EDIRecDocHdr2."Internal Doc. No.");
-                EDIRecDocFields.SETRANGE("NAV Table No.", 50015);
-                EDIRecDocFields.SETRANGE("Nav Field No.", ShipAuthorization.FIELDNO("Sell-to Customer No."));
+                EDIRecDocFields.SETRANGE("Table No.", 50015);
+                EDIRecDocFields.SETRANGE("Field No.", ShipAuthorization.FIELDNO("Sell-to Customer No."));
                 IF EDIRecDocFields.FIND('-') THEN BEGIN
                     EDICustCrossRef.RESET;
                     EDICustCrossRef.SETRANGE("Trade Partner No.", EDIRecDocFields."Trade Partner No.");
@@ -63,10 +65,10 @@ codeunit 50018 "Create Ship Authorization"
 
         EDIRecDocFields.RESET;
         EDIRecDocFields.SETCURRENTKEY(
-          EDIRecDocFields."Internal Doc. No.", "NAV Table No.", "Nav Field No.");
+          EDIRecDocFields."Internal Doc. No.", "Table No.", "Field No.");
         EDIRecDocFields.SETRANGE(
-          EDIRecDocFields."Internal Doc. No.", "Internal Doc. No.");
-        EDIRecDocFields.SETRANGE(EDIRecDocFields."NAV Table No.", 50015);
+          EDIRecDocFields."Internal Doc. No.", LaxEDIreceive."Internal Doc. No.");
+        EDIRecDocFields.SETRANGE(EDIRecDocFields."Table No.", 50015);
         IF EDIRecDocFields.FIND('-') THEN BEGIN
             // Locking to prevent Deadlocking
             EDIRecDocHdr.LOCKTABLE;
@@ -76,10 +78,10 @@ codeunit 50018 "Create Ship Authorization"
 
             ShipAuthorization.INIT();
             CLEAR(ShipAuthorization);
-            ShipAuthorization."EDI Trade Partner" := "Trade Partner No.";
-            ShipAuthorization."EDI Internal Doc. No." := "Internal Doc. No.";
+            ShipAuthorization."EDI Trade Partner" := LaxEDIreceive."Trade Partner No.";
+            ShipAuthorization."EDI Internal Doc. No." := LaxEDIreceive."Internal Doc. No.";
 
-            EDITradePartner.GET("Trade Partner No.");
+            EDITradePartner.GET(LaxEDIreceive."Trade Partner No.");
             ShipAuthorization.VALIDATE("Sell-to Customer No.", LastCustomerNo);
 
             MapShipAuthHdrFields();
@@ -92,107 +94,107 @@ codeunit 50018 "Create Ship Authorization"
         // Create Lines
         EDIRecDocFields.RESET();
         EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "Line No.");
-        EDIRecDocFields.SETRANGE("Internal Doc. No.", "Internal Doc. No.");
+        EDIRecDocFields.SETRANGE("Internal Doc. No.", LaxEDIreceive."Internal Doc. No.");
         InitShipAuthLineValues();
         BeginLineNo := 0;
         IF EDIRecDocFields.FIND('-') THEN
             REPEAT
-                IF (EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Item No.")) AND
-                  (EDIRecDocFields."NAV Table No." = 50016) THEN BEGIN
+                IF (EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Item No.")) AND
+                  (EDIRecDocFields."Table No." = 50016) THEN BEGIN
                     LastItemNo := EDIRecDocFields."Field Text Value";
                     LastItemCrossRefNo := '';
                 END;
-                IF (EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Cross-Reference No.")) AND
-                  (EDIRecDocFields."NAV Table No." = 50016) THEN BEGIN
+                IF (EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Cross-Reference No.")) AND
+                  (EDIRecDocFields."Table No." = 50016) THEN BEGIN
                     LastItemCrossRefNo := EDIRecDocFields."Field Text Value";
                     LastItemNo := '';
                 END;
-                IF (EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."EDI Unit of Measure")) AND
-                  (EDIRecDocFields."NAV Table No." = 50016) THEN BEGIN
+                IF (EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."EDI Unit of Measure")) AND
+                  (EDIRecDocFields."Table No." = 50016) THEN BEGIN
                     LastEDIUOM := EDIRecDocFields."Field Text Value";
                     LastUOM := '';
                 END;
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Unit of Measure")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Unit of Measure")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastUOM := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine.Quantity)) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN BEGIN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine.Quantity)) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN BEGIN
                     IF EDIRecDocFields."Field Integer Value" <> 0 THEN
                         LastQty := EDIRecDocFields."Field Integer Value";
                     IF EDIRecDocFields."Field Dec. Value" <> 0 THEN
                         LastQty := EDIRecDocFields."Field Dec. Value";
                 END;
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Quantity Per Pack")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Quantity Per Pack")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastQtyPerPack := EDIRecDocFields."Field Integer Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Delivery Order Number")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Delivery Order Number")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastDeliveryOrderNo := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Transport route")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Transport route")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastTransportRoute := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Purchase Order Number")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Purchase Order Number")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastPONo := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Purchase Order Line No.")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Purchase Order Line No.")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastPOLineNo := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Delivery Plan")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Delivery Plan")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastDeliveryPlan := EDIRecDocFields."Field Integer Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Place ID")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Place ID")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastPlaceID := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Place Description")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Place Description")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastPlaceDescription := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Requested Delivery Date")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Requested Delivery Date")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastReqDeliveryDate := EDIRecDocFields."Field Date Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Requested Shipment Date")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Requested Shipment Date")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastReqShipmentDate := EDIRecDocFields."Field Date Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Kanban Plan Code")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Kanban Plan Code")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastKanbanPlanCode := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 11z")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 11z")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastLable11z := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 12z")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 12z")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastLable12z := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 13z")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 13z")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastLable13z := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 14z")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 14z")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastLable14z := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 15z")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 15z")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastLable15z := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 16z")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 16z")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastLable16z := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 17z")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Label 17z")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastLable17z := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Kanban Serial Number Start")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Kanban Serial Number Start")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastKanbanStart := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Kanban Serial Number End")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Kanban Serial Number End")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastKanbanEnd := EDIRecDocFields."Field Text Value";
                 //>>NIF
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Ship Authorization No.")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Ship Authorization No.")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastShipAuthorizationNo := EDIRecDocFields."Field Text Value";
-                IF ((EDIRecDocFields."Nav Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Quantity Qualifier")) AND
-                    (EDIRecDocFields."NAV Table No." = 50016)) THEN
+                IF ((EDIRecDocFields."Field No." = ShipAuthorizationLine.FIELDNO(ShipAuthorizationLine."Quantity Qualifier")) AND
+                    (EDIRecDocFields."Table No." = 50016)) THEN
                     LastQuantityQualifier := EDIRecDocFields."Field Integer Value";
                 //<<NIF
                 IF BeginLineNo = 0 THEN
                     BeginLineNo := EDIRecDocFields."Line No.";
-                IF EDIRecDocFields.Trigger = TRUE THEN BEGIN
+                IF EDIRecDocFields."EDI Trigger" = TRUE THEN BEGIN
                     EndLineNo := EDIRecDocFields."Line No.";
                     CreLine();
                     //>>NIF
@@ -203,9 +205,9 @@ codeunit 50018 "Create Ship Authorization"
                     EndLineNo := 0;
                 END;
 
-            UNTIL EDIRecDocFields.NEXT = 0;
+            UNTIL EDIRecDocFields.NEXT() = 0;
 
-        EDIRecDocHdr2."Document Created" := EDIRecDocHdr2."Document Created"::"Ship Auth.";
+       // EDIRecDocHdr2."Document Created" := EDIRecDocHdr2."Document Created"::"Ship Auth.";
         EDIRecDocHdr2."Created Date" := WORKDATE();
         EDIRecDocHdr2."Created Time" := TIME;
         EDIRecDocHdr2."Data Error" := FALSE;
@@ -214,7 +216,7 @@ codeunit 50018 "Create Ship Authorization"
 
         COMMIT();
 
-        ProgressWindow.CLOSE;
+        ProgressWindow.CLOSE();
     end;
 
     var
@@ -225,7 +227,7 @@ codeunit 50018 "Create Ship Authorization"
         EDITemplate: Record 14002350;
         EDITradePartner: Record 14002360;
         EDIRecDocFields: Record 14002359;
-        EDICustCrossRef: Record 14002362[20];
+        EDICustCrossRef: Record 14002362;
         LastItemCrossRefNo: Code[20];
         LastUOM: Code[10];
         LastEDIUOM: Code[10];
@@ -261,12 +263,12 @@ codeunit 50018 "Create Ship Authorization"
     procedure MapShipAuthHdrFields()
     begin
         EDIRecDocFields.RESET;
-        EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "NAV Table No.", "Nav Field No.");
+        EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "Table No.", "Field No.");
         EDIRecDocFields.SETRANGE("Internal Doc. No.", EDIRecDocHdr2."Internal Doc. No.");
-        EDIRecDocFields.SETRANGE(EDIRecDocFields."NAV Table No.", 50015);
+        EDIRecDocFields.SETRANGE(EDIRecDocFields."Table No.", 50015);
         IF EDIRecDocFields.FIND('-') THEN
             REPEAT
-                CASE EDIRecDocFields."Nav Field No." OF
+                CASE EDIRecDocFields."Field No." OF
                     ShipAuthorization.FIELDNO(ShipAuthorization."Reference No."):
                         ShipAuthorization."Reference No." := EDIRecDocFields."Field Text Value";
                     ShipAuthorization.FIELDNO(ShipAuthorization."Document Date"):

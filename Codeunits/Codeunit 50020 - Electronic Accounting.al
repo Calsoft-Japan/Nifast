@@ -57,7 +57,7 @@ codeunit 50020 "Electronic Accounting"
         ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
 
         //Extract
-        xmlDoc := xmlDoc.XmlDocument;
+        xmlDoc := xmlDoc;
         xmlDoc.LoadXml(XMLWellFormed(ServerFileName));
         //xmlDoc.Load(ServerFileName);
         ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
@@ -117,13 +117,13 @@ codeunit 50020 "Electronic Accounting"
         Payment: Code[50];
         CurrencyFactor: Decimal;
         Total: Decimal;
-        xmlDoc:  XmlDocument;
         FileDialogTxt: Label 'Import XML';
         ClientFileName: Text;
         ServerFileName: Text;
         CertifiedNo: Text[20];
         CertifiedSAT: Text[20];
         DateTime: Text[50];
+        xmlDoc: XmlDocument;
     begin
         ElectronicAccSetup.FIND('-');
         IF FileManagement.IsWebClient THEN
@@ -135,7 +135,7 @@ codeunit 50020 "Electronic Accounting"
         ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
 
         //Extract
-        xmlDoc := xmlDoc.XmlDocument;
+        xmlDoc := xmlDoc;
         //xmlDoc.Load(ServerFileName);
         xmlDoc.LoadXml(XMLWellFormed(ServerFileName));
         ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
@@ -237,13 +237,13 @@ codeunit 50020 "Electronic Accounting"
         Payment: Code[50];
         CurrencyFactor: Decimal;
         Total: Decimal;
-        xmlDoc:  XmlDocument;
         FileDialogTxt: Label 'Import XML';
         ClientFileName: Text;
         ServerFileName: Text;
         CertifiedNo: Text[20];
         CertifiedSAT: Text[20];
         DateTime: Text[50];
+        xmlDoc: XmlDocument;
     begin
         ElectronicAccSetup.FIND('-');
         IF FileManagement.IsWebClient THEN
@@ -294,13 +294,13 @@ codeunit 50020 "Electronic Accounting"
         Payment: Code[50];
         CurrencyFactor: Decimal;
         Total: Decimal;
-        xmlDoc:  XmlDocument;
         FileDialogTxt: Label 'Import XML';
         ClientFileName: Text;
         ServerFileName: Text;
         CertifiedNo: Text[20];
         CertifiedSAT: Text[20];
         DateTime: Text[50];
+        xmlDoc: XmlDocument;
     begin
         ElectronicAccSetup.FIND('-');
         IF FileManagement.IsWebClient THEN
@@ -312,7 +312,7 @@ codeunit 50020 "Electronic Accounting"
         ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
 
         //Extract
-        xmlDoc := xmlDoc.XmlDocument;
+        xmlDoc := xmlDoc;
         //xmlDoc.Load(ServerFileName);
         xmlDoc.LoadXml(XMLWellFormed(ServerFileName));
         ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
@@ -441,7 +441,7 @@ codeunit 50020 "Electronic Accounting"
     procedure ImportPDFToSalesCrMHeader(var SalesCrMHeader: Record 114)
     var
         FileDialogTxt: Label 'Import PDF';
-       // WebClientErr: Label 'The import is not supported on the webclient.';
+        // WebClientErr: Label 'The import is not supported on the webclient.';
         ClientFileName: Text;
         ServerFileName: Text;
     begin
@@ -560,12 +560,12 @@ codeunit 50020 "Electronic Accounting"
     begin
     end;
 
-    local procedure ExtractFiscalInformation(xmlDoc:  XmlDocument; var UUID: Code[36]; var FolioInvoice: Code[50]; var CertifiedNo: Text[20]; var SATCertifiedNo: Text[20]; var DateTimeStamped: Text[50]; var VAT: Code[13]; var "VAT Receptor": Code[13]; var TotalInvoice: Decimal; var PaymentMethod: Code[50]; var Currency: Code[50]; var CurrencyFactor: Decimal)
+    local procedure ExtractFiscalInformation(xmlDoc: XmlDocument; var UUID: Code[36]; var FolioInvoice: Code[50]; var CertifiedNo: Text[20]; var SATCertifiedNo: Text[20]; var DateTimeStamped: Text[50]; var VAT: Code[13]; var "VAT Receptor": Code[13]; var TotalInvoice: Decimal; var PaymentMethod: Code[50]; var Currency: Code[50]; var CurrencyFactor: Decimal)
     var
-        NamespaceManager:  XmlNamespaceManager;
-        Node:  XmlNode;
-        NodeList:  XmlNodeList;
         ImportFailedErr: Label 'The import failed. The XML document is not a valid electronic invoice.';
+        NamespaceManager: XmlNamespaceManager;
+        Node: XmlNode;
+        NodeList: XmlNodeList;
     begin
 
         NamespaceManager := NamespaceManager.XmlNamespaceManager(xmlDoc.NameTable);
@@ -622,10 +622,10 @@ codeunit 50020 "Electronic Accounting"
             ERROR(ImportFailedErr);
     end;
 
-    local procedure HasAttribute(xmlElement:  XmlElement; AttributeName: Text): Boolean
+    local procedure HasAttribute(xmlElement: XmlElement; AttributeName: Text): Boolean
     var
-        xmlNode:  XmlNode;
         Indice: Integer;
+        xmlNode: XmlNode;
     begin
         IF NOT xmlElement.HasAttributes THEN EXIT(FALSE);
 
@@ -722,7 +722,7 @@ codeunit 50020 "Electronic Accounting"
         GeneralLedgerSetup: Record 50035;
         minAmount: Decimal;
         plusAmount: Decimal;
-        eText001: Label 'The amount in the document %1 does not match with the amount in XMl file %2.';
+        eText001: Label 'The amount in the document %1 does not match with the amount in XMl file %2.',Comment = '%1 %2';
     begin
         GeneralLedgerSetup.GET();
         plusAmount := DocAmount + GeneralLedgerSetup."EA Variant Amount";
@@ -734,7 +734,7 @@ codeunit 50020 "Electronic Accounting"
     local procedure ValidateDate(DocDate: Date; FileDate: Date)
     var
         GeneralLedgerSetup: Record 98;
-        eText001: Label 'The Date in the document %1 does not match with the Date in XMl file %2.',Comment = '%1 %2';
+        eText001: Label 'The Date in the document %1 does not match with the Date in XMl file %2.', Comment = '%1 %2';
     begin
         GeneralLedgerSetup.GET();
         IF DocDate <> FileDate THEN ERROR(eText001, FORMAT(DocDate), FORMAT(FileDate));
@@ -1402,13 +1402,13 @@ codeunit 50020 "Electronic Accounting"
     begin
     end;
 
-    local procedure CreateXMLHeader(var XMLDoc:  XmlDocument; var RootNode:  XmlNode; IDFile: Text; RootNodeName: Text; NodeNameSpace: Text; Year: Integer; Month: Integer; Version: Text)
+    local procedure CreateXMLHeader(var XMLDoc: XmlDocument; var RootNode: XmlNode; IDFile: Text; RootNodeName: Text; NodeNameSpace: Text; Year: Integer; Month: Integer; Version: Text)
     var
         CompanyInformation: Record 79;
         FullNameSpace: Text;
     begin
         CompanyInformation.GET();
-        XMLDoc := XMLDoc.XmlDocument;
+        XMLDoc := XMLDoc;
         FullNameSpace := NamespaceTxt + NodeNameSpace;
         XMLDOMManagement.AddRootElementWithPrefix(XMLDoc, IDFile, '', FullNameSpace, RootNode);
 
@@ -1428,12 +1428,12 @@ codeunit 50020 "Electronic Accounting"
         AccScheduleLine: Record 85;
         GeneralLedgerSetup: Record 50035;
         TempBigText: BigText;
-        Document:  XmlDocument;
-        Node:  XmlNode;
-        RootNode:  XmlNode;
-        Err_SATCode: Label 'Account %1 doesn''t have code SAT';
-        Err_SATNature: Label 'Account %1 doesn''t have nature';
+        Err_SATCode: Label 'Account %1 doesn''t have code SAT',Comment = '%1';
+        Err_SATNature: Label 'Account %1 doesn''t have nature',Comment = '%1';
         Namespace: Text;
+        Document: XmlDocument;
+        Node: XmlNode;
+        RootNode: XmlNode;
     begin
         GeneralLedgerSetup.GET();
         GeneralLedgerSetup.TESTFIELD("SAT XML Path");
@@ -1482,14 +1482,14 @@ codeunit 50020 "Electronic Accounting"
         StartDate: Date;
         Amount: Decimal;
         CellValue: array[1000, 5] of Decimal;
-        Document:  XmlDocument;
-        Node:  XmlNode;
-        RootNode:  XmlNode;
         x: Integer;
         y: Integer;
         FileType: Text;
         Namespace: Text;
         Totaling: Text[250];
+        Document: XmlDocument;
+        Node: XmlNode;
+        RootNode: XmlNode;
     begin
         GeneralLedgerSetup.GET();
         GeneralLedgerSetup.TESTFIELD("SAT XML Path");
@@ -1592,11 +1592,11 @@ codeunit 50020 "Electronic Accounting"
         BigTextTmp: BigText;
         EndDate: Date;
         StartDate: Date;
-        Document:  XmlDocument;
-        ChildNode:  XmlNode;
-        Node:  XmlNode;
-        RootNode:  XmlNode;
         Namespace: Text;
+        Document: XmlDocument;
+        ChildNode: XmlNode;
+        Node: XmlNode;
+        RootNode: XmlNode;
     begin
         GeneralLedgerSetup.GET();
         GeneralLedgerSetup.TESTFIELD("SAT XML Path");
@@ -1663,12 +1663,12 @@ codeunit 50020 "Electronic Accounting"
         GeneralLedgerSetup: Record 50035;
         EndDate: Date;
         StartDate: Date;
-        Document:  XmlDocument;
-        PolizaNode:  XmlNode;
-        RootNode:  XmlNode;
-        TransactionNode:  XmlNode;
         TransactionNoCurrent: Integer;
         Namespace: Text;
+        Document: XmlDocument;
+        PolizaNode: XmlNode;
+        RootNode: XmlNode;
+        TransactionNode: XmlNode;
     begin
         GeneralLedgerSetup.GET();
         GeneralLedgerSetup.TESTFIELD("SAT XML Path");
@@ -1714,7 +1714,7 @@ codeunit 50020 "Electronic Accounting"
     local procedure ValidateDataToProcess(StartingDate: Date; RequestType: Option AF,FC,DE,CO; ProcessNumber: Code[13])
     var
         Text001: Label 'You must enter a Starting Date Period';
-        Text002: Label 'The length to Order No. must be %1.';
+        Text002: Label 'The length to Order No. must be %1.',Comment = '%1';
     begin
         IF StartingDate = 0D THEN
             ERROR(Text001);
@@ -1727,7 +1727,7 @@ codeunit 50020 "Electronic Accounting"
                 ERROR(Text002, '10');
     end;
 
-    local procedure CreatePolizaNode(var ParentNode:  XmlNode; var Node:  XmlNode; GLEntry: Record 17; Namespace: Text)
+    local procedure CreatePolizaNode(var ParentNode: XmlNode; var Node: XmlNode; GLEntry: Record 17; Namespace: Text)
     begin
         XMLDOMManagement.AddElement(ParentNode, 'Poliza', '', Namespace, Node);
         XMLDOMManagement.AddAttribute(Node, 'NumUnIdenPol', FORMAT(GLEntry."Transaction No."));
@@ -1735,7 +1735,7 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttribute(Node, 'Concepto', GLEntry."Source Code");
     end;
 
-    local procedure CreateTransaccionNode(var ParentNode:  XmlNode; var Node:  XmlNode; GLEntry: Record 17; Namespace: Text)
+    local procedure CreateTransaccionNode(var ParentNode: XmlNode; var Node: XmlNode; GLEntry: Record 17; Namespace: Text)
     var
         GLAccount: Record 15;
         GeneralLedgerSetup: Record 50035;
@@ -1802,14 +1802,14 @@ codeunit 50020 "Electronic Accounting"
         EvaluateDocumentPayRef(Node, GLEntry, Namespace, CodeNatOpr, CodeForOpr);
     end;
 
-    procedure CheckNode(var ParentNode:  XmlNode; GLEntry: Record 17; Namespace: Text)
+    procedure CheckNode(var ParentNode: XmlNode; GLEntry: Record 17; Namespace: Text)
     var
         Customer: Record 18;
         Vendor: Record 23;
         CompanyInformation: Record 79;
         RFC: Code[13];
-        Node:  XmlNode;
         Benef: Text[300];
+        Node: XmlNode;
     begin
         RFC := '';
         Benef := '';
@@ -1855,10 +1855,10 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttribute(Node, 'Monto', DecimalFormat(GLEntry.Amount));
     end;
 
-    local procedure SaveXMLToClient(var Document:  XmlDocument; FileName: Text): Boolean
+    local procedure SaveXMLToClient(var Document: XmlDocument; FileName: Text): Boolean
     var
         GeneralLedgerSetup: Record 50035;
-        Text001: Label 'Created File %1.';
+        Text001: Label 'Created File %1.', Comment = '%1';
         TempXMLFile: Text;
         TestFileName: Text;
     begin
@@ -1873,14 +1873,15 @@ codeunit 50020 "Electronic Accounting"
 
     procedure ExportFile(Content: BigText; DefaultName: Text)
     var
-        TempBlob: Record 99008535 temporary;
+        TempBlobL: codeunit "Temp Blob";
         OutStream: OutStream;
     begin
-        TempBlob.INIT;
-        TempBlob."Primary Key" := 1;
-        TempBlob.Blob.CREATEOUTSTREAM(OutStream);
-        Content.WRITE(OutStream);
-        TempBlob.INSERT;
+        // TempBlob.INIT;
+        //TempBlob."Primary Key" := 1;
+        //TempBlob.Blob.CREATEOUTSTREAM(OutStream);
+        //Content.WRITE(OutStream);
+        //TempBlob.INSERT;
+        TempBlobL.CreateOutStream(OutStream);
         FileManagement.BLOBExport(TempBlob, DefaultName, TRUE);
     end;
 
@@ -1889,19 +1890,19 @@ codeunit 50020 "Electronic Accounting"
         EXIT(FORMAT(Amount, 0, '<Precision,2:2><Standard Format,9>'));
     end;
 
-    procedure TransferCustomerNode(var ParentNode:  XmlNode; GLEntry: Record 17; Namespace: Text)
+    procedure TransferCustomerNode(var ParentNode: XmlNode; GLEntry: Record 17; Namespace: Text)
     var
         Customer: Record 18;
         CompanyInformation: Record 79;
         BancoDest: Code[3];
         BancoOri: Code[3];
         RFC: Code[13];
-        Node:  XmlNode;
         BancoDestTag: Text[15];
         BancoOriTag: Text[15];
         CtaDest: Text[50];
         CtaOri: Text[50];
         Benef: Text[300];
+        Node: XmlNode;
     begin
         CtaOri := GLEntry."Pymt - Bank Source Account";
         BancoOri := GLEntry."Pymt - Bank Source Code";
@@ -1948,19 +1949,19 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttribute(Node, 'Monto', DecimalFormat(GLEntry.Amount));
     end;
 
-    procedure TransferVendorNode(var ParentNode:  XmlNode; GLEntry: Record 17; Namespace: Text)
+    procedure TransferVendorNode(var ParentNode: XmlNode; GLEntry: Record 17; Namespace: Text)
     var
         Vendor: Record 23;
         CompanyInformation: Record 79;
         BancoDest: Code[3];
         BancoOri: Code[3];
         RFC: Code[13];
-        Node:  XmlNode;
         BancoDestTag: Text[15];
         BancoOriTag: Text[15];
         CtaDest: Text[50];
         CtaOri: Text[50];
         Benef: Text[300];
+        Node: XmlNode;
     begin
         CtaOri := GLEntry."Pymt - Bank Source Account";
         BancoOri := GLEntry."Pymt - Bank Source Code";
@@ -2182,8 +2183,8 @@ codeunit 50020 "Electronic Accounting"
         TempBlob: CODEUNIT "Temp Blob";
         InStream: InStream;
         Indice: Integer;
-        TxtXML: Text;
         Outstream: OutStream;
+        TxtXML: Text;
     begin
         //first upload file
         // TempBlob.INIT;

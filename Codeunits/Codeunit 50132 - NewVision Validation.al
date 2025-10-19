@@ -75,12 +75,12 @@ codeunit 50132 "NewVision Validation"
 
     procedure ValidateCustItemCrossRef(CustNo: Code[20]; CrossRefNo: Code[20]): Boolean
     var
-        ItemXRef: Record 5717;
+        ItemXRef: Record "Item Reference";
     begin
-        ItemXRef.SETRANGE("Cross-Reference Type", ItemXRef."Cross-Reference Type"::Customer);
-        ItemXRef.SETRANGE("Cross-Reference Type No.", CustNo);
-        ItemXRef.SETRANGE("Cross-Reference No.", CrossRefNo);
-        EXIT(ItemXRef.FIND('-'));
+        ItemXRef.SETRANGE("Reference Type", ItemXRef."Reference Type"::Customer);
+        ItemXRef.SETRANGE("Reference Type No.", CustNo);
+        ItemXRef.SETRANGE("Reference No.", CrossRefNo);
+        EXIT(Not ItemXRef.IsEmpty());
     end;
 
     procedure ValidateFBTag(TagNo: Code[20]): Boolean
@@ -116,12 +116,12 @@ codeunit 50132 "NewVision Validation"
 
     procedure FindCustItemCrossRef(CustNo: Code[20]; CrossRefNo: Code[20]; var ItemNo: Code[20]; var VarNo: Code[10]; var UOM: Code[10]): Boolean
     var
-        ItemXRef: Record 5717;
+        ItemXRef: Record "Item Reference";
     begin
-        ItemXRef.SETRANGE("Cross-Reference Type", ItemXRef."Cross-Reference Type"::Customer);
-        ItemXRef.SETRANGE("Cross-Reference Type No.", CustNo);
-        ItemXRef.SETRANGE("Cross-Reference No.", CrossRefNo);
-        IF ItemXRef.FIND('-') THEN BEGIN
+        ItemXRef.SETRANGE("Reference Type", ItemXRef."Reference Type"::Customer);
+        ItemXRef.SETRANGE("Reference Type No.", CustNo);
+        ItemXRef.SETRANGE("Reference No.", CrossRefNo);
+        IF not ItemXRef.IsEmpty() THEN BEGIN
             ItemNo := ItemXRef."Item No.";
             VarNo := ItemXRef."Variant Code";
             UOM := ItemXRef."Unit of Measure";

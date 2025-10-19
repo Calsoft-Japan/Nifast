@@ -33,7 +33,7 @@ codeunit 50000 "Not used"
         EMAIL_TEXT4: Label '%1 - Systems Auto Alert', Comment = '%1';
         EMAIL_TEXT6: Label 'Order Processed : %1', Comment = '%1';
         EMAIL_TEXT7: Label 'Order Failed : %1', Comment = '%1';
-       // FOLDER_NOT_FOUND: Label 'Could not find folder %1', Comment = '%1';
+        // FOLDER_NOT_FOUND: Label 'Could not find folder %1', Comment = '%1';
         NOTHING_MSG: Label 'There is nothing to import.';
         STATUS_MSG: Label 'Orders Created: %1 (%2)\Orders Failed: %3', Comment = '%1 %2 %3';
         SUPPORTUSER: Label 'Nifast Support';
@@ -96,7 +96,7 @@ codeunit 50000 "Not used"
         // IF NOT EDISetup."Delete XML on Success" THEN
         //     IF NOT ValidateDirectoryPath(EDISetup."XML Success Folder") THEN
         //         ERROR(FOLDER_NOT_FOUND, EDISetup."XML Success Folder");
-        
+
     end;
 
     procedure AddToDocNos(parDocNo: Code[20])
@@ -164,7 +164,8 @@ codeunit 50000 "Not used"
             AddToDocNos(LastDocNo_lCod);
             TempBlobL.CreateOutStream(OutstreamL);
             CopyStream(OutstreamL, InS);
-            FileMgt.BLOBExport(TempBlobL, EDISetup."XML Success Folder" + MyFile.Name, true);
+            DownloadFromStream(ins, '', '', '', EDISetup."XML Success Folder");
+            //  FileMgt.BLOBExport(TempBlobL, EDISetup."XML Success Folder" + MyFile.Name, true);
 
 
 
@@ -183,7 +184,7 @@ codeunit 50000 "Not used"
         END ELSE BEGIN
             ErrorCount += 1;
 
-           // SourceFile.CLOSE;
+            // SourceFile.CLOSE;
             //FILE.COPY(MyFile.Path + MyFile.Name, EDISetup."XML Error Folder" + MyFile.Name);
             //ERASE(MyFile.Path + MyFile.Name);
 
@@ -390,9 +391,9 @@ codeunit 50000 "Not used"
     begin
         if not EDISetup."Send Email on Error" then
             exit;
-        //TODO
-        // EDISetup.TestField("Email Title");
-        // EDISetup.TestField("Email Subject");
+
+        EDISetup.TestField("Email Title");
+        EDISetup.TestField("Email Subject");
 
         GetEmailAddress('SalesOrder_EDI', EmailTo, EmailCC, EmailBCC);
 
@@ -441,8 +442,8 @@ codeunit 50000 "Not used"
     var
         Email: Codeunit Email;
         EmailMessage: Codeunit "Email Message";
-        //TODO
-        // EDISalesOrderImportLog: Record 50031;
+
+        EDISalesOrderImportLog: Record 50031;
         FileCount: Integer;
         CompanyNameTxt: Text;
         EmailBCC: Text[1024];
@@ -455,9 +456,9 @@ codeunit 50000 "Not used"
 
         if (SuccessCount = 0) or (SuccessCount + ErrorCount = 0) then
             exit;
-        //TODO
-        // EDISetup.TestField("Email Title");
-        // EDISetup.TestField("Email Subject");
+
+        EDISetup.TestField("Email Title");
+        EDISetup.TestField("Email Subject");
 
         GetEmailAddress('StatusEmail_EDI', EmailTo, EmailCC, EmailBCC);
 
@@ -471,14 +472,14 @@ codeunit 50000 "Not used"
         BodyBuilder.Append('<tr><th style="border:1px solid black;">Sr No.</th><th style="border:1px solid black;">File Name</th><th style="border:1px solid black;">Status</th><th style="border:1px solid black;">Sales Order</th></tr>');
 
         FileCount := 0;
-        //TODO
-        // EDISalesOrderImportLog.Reset();
-        // EDISalesOrderImportLog.SetFilter("Entry No.", '>%1', LastUsedLineNo);
-        // if EDISalesOrderImportLog.FindSet() then
-        //     repeat
-        //         FileCount += 1;
-        //         TableBodyAppendResult(BodyBuilder, FileCount, EDISalesOrderImportLog."File Name", Format(EDISalesOrderImportLog.Status), EDISalesOrderImportLog."Sales Orders");
-        //     until EDISalesOrderImportLog.Next() = 0;
+
+        EDISalesOrderImportLog.Reset();
+        EDISalesOrderImportLog.SetFilter("Entry No.", '>%1', LastUsedLineNo);
+        if EDISalesOrderImportLog.FindSet() then
+            repeat
+                FileCount += 1;
+                TableBodyAppendResult(BodyBuilder, FileCount, EDISalesOrderImportLog."File Name", Format(EDISalesOrderImportLog.Status), EDISalesOrderImportLog."Sales Orders");
+            until EDISalesOrderImportLog.Next() = 0;
 
         BodyBuilder.Append('</table><br/><br/>');
         BodyBuilder.Append(EMAIL_TEXT3 + '<br/>');

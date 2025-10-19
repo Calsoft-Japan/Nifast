@@ -47,7 +47,7 @@ codeunit 50001 "Process EDI XML File JRR"
         EMAIL_TEXT4: Label '%1 - Systems Auto Alert', Comment = '%1';
         EMAIL_TEXT6: Label 'Order Processed : %1', Comment = '%1';
         EMAIL_TEXT7: Label 'Order Failed : %1', Comment = '%1';
-        FOLDER_NOT_FOUND: Label 'Could not find folder %1', Comment = '%1';
+        //FOLDER_NOT_FOUND: Label 'Could not find folder %1', Comment = '%1';
         NOTHING_MSG: Label 'There is nothing to import.';
         STATUS_MSG: Label 'Orders Created: %1 (%2)\Orders Failed: %3', Comment = '%1 %2 %3';
         SUPPORTUSER: Label 'Nifast Support';
@@ -115,7 +115,7 @@ codeunit 50001 "Process EDI XML File JRR"
         CLEAR(Sourcepath);
         CLEAR(Errorpath);
         CLEAR(Successpath);
-        EDISetup.GET;
+        EDISetup.GET();
         //jrr start
         IF pString = 'SALESORDER' THEN BEGIN
             //EDISetup.TESTFIELD("XML Source Document Folder");//TODO
@@ -497,8 +497,8 @@ codeunit 50001 "Process EDI XML File JRR"
     var
         Email: Codeunit Email;
         EmailMessage: Codeunit "Email Message";
-        //TODO
-        // EDISalesOrderImportLog: Record 50031;
+
+        EDISalesOrderImportLog: Record 50031;
         FileCount: Integer;
         CompanyNameTxt: Text;
         EmailBCC: Text[1024];
@@ -511,9 +511,9 @@ codeunit 50001 "Process EDI XML File JRR"
 
         if (SuccessCount = 0) or (SuccessCount + ErrorCount = 0) then
             exit;
-        //TODO
-        // EDISetup.TestField("Email Title");
-        // EDISetup.TestField("Email Subject");
+
+        EDISetup.TestField("Email Title");
+        EDISetup.TestField("Email Subject");
 
         GetEmailAddress('StatusEmail_EDI', EmailTo, EmailCC, EmailBCC);
 
@@ -527,14 +527,14 @@ codeunit 50001 "Process EDI XML File JRR"
         BodyBuilder.Append('<tr><th style="border:1px solid black;">Sr No.</th><th style="border:1px solid black;">File Name</th><th style="border:1px solid black;">Status</th><th style="border:1px solid black;">Sales Order</th></tr>');
 
         FileCount := 0;
-        //TODO
-        // EDISalesOrderImportLog.Reset();
-        // EDISalesOrderImportLog.SetFilter("Entry No.", '>%1', LastUsedLineNo);
-        // if EDISalesOrderImportLog.FindSet() then
-        //     repeat
-        //         FileCount += 1;
-        //         TableBodyAppendResult(BodyBuilder, FileCount, EDISalesOrderImportLog."File Name", Format(EDISalesOrderImportLog.Status), EDISalesOrderImportLog."Sales Orders");
-        //     until EDISalesOrderImportLog.Next() = 0;
+
+        EDISalesOrderImportLog.Reset();
+        EDISalesOrderImportLog.SetFilter("Entry No.", '>%1', LastUsedLineNo);
+        if EDISalesOrderImportLog.FindSet() then
+            repeat
+                FileCount += 1;
+                TableBodyAppendResult(BodyBuilder, FileCount, EDISalesOrderImportLog."File Name", Format(EDISalesOrderImportLog.Status), EDISalesOrderImportLog."Sales Orders");
+            until EDISalesOrderImportLog.Next() = 0;
 
         BodyBuilder.Append('</table><br/><br/>');
         BodyBuilder.Append(EMAIL_TEXT3 + '<br/>');
@@ -564,13 +564,13 @@ codeunit 50001 "Process EDI XML File JRR"
         BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + ValueTxt + '</td></tr>');
     end;
 
-    // local procedure TableBodyAppendResult(var BodyBuilder: TextBuilder; SrNo: Integer; FileName: Text; Status: Text; SalesOrder: Text)
-    // begin
-    //     BodyBuilder.Append('<tr><td style="border:1px solid black;padding:5px;">' + Format(SrNo) + '</td>');
-    //     BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + FileName + '</td>');
-    //     BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + Status + '</td>');
-    //     BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + SalesOrder + '</td></tr>');
-    // end;
+    local procedure TableBodyAppendResult(var BodyBuilder: TextBuilder; SrNo: Integer; FileName: Text; Status: Text; SalesOrder: Text)
+    begin
+        BodyBuilder.Append('<tr><td style="border:1px solid black;padding:5px;">' + Format(SrNo) + '</td>');
+        BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + FileName + '</td>');
+        BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + Status + '</td>');
+        BodyBuilder.Append('<td style="border:1px solid black;padding:5px;">' + SalesOrder + '</td></tr>');
+    end;
 
 
     // local procedure FormatMailDate(Date_iDte: Date): Text
@@ -591,11 +591,11 @@ codeunit 50001 "Process EDI XML File JRR"
 
         IF STRPOS(COMPANYNAME, 'CORPORATION') > 0 THEN
             pTo := To_NUSA
-        ELSE 
-        if STRPOS(COMPANYNAME, 'Canada') > 0 THEN
-            pTo := To_NC1 + To_NC2
         ELSE
-            pTo := ToEmail;
+            if STRPOS(COMPANYNAME, 'Canada') > 0 THEN
+                pTo := To_NC1 + To_NC2
+            ELSE
+                pTo := ToEmail;
 
         //jrr 071716
 
@@ -642,7 +642,8 @@ codeunit 50001 "Process EDI XML File JRR"
             AddToDocNos(LastDocNo_lCod);
             TempBlobg.CreateOutStream(Outstreamg);
             CopyStream(Outstreamg, InS);
-            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+            DownloadFromStream(ins, '', '', '', EDISetup."XML Success Folder");
+            //FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
 
 
             EDISalesOrderImportLog.RESET();

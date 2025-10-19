@@ -74,7 +74,8 @@ codeunit 50133 "FB Management"
 
     procedure LoadFBOrders(FBImportLog: Record 50138)
     var
-        ItemCrossRef: Record 5717;
+        //ItemCrossRef: Record 5717;
+        ItemcrossRef: Record "Item Reference";
         LotInfo: Record 6505;
         SalesPrice: Record 7002;
         PriceContract: Record 50110;
@@ -213,12 +214,12 @@ codeunit 50133 "FB Management"
                 FBLine.VALIDATE("Unit of Measure Code", FBImportLog."Unit of Measure Code");
             END ELSE BEGIN
                 IF FBImportLog."Cross-Reference No." <> '' THEN BEGIN
-                    ItemCrossRef.SETRANGE("Cross-Reference Type", ItemCrossRef."Cross-Reference Type"::Customer);
-                    ItemCrossRef.SETRANGE("Cross-Reference Type No.", FBLine."Sell-to Customer No.");
-                    ItemCrossRef.SETRANGE("Cross-Reference No.", FBImportLog."Cross-Reference No.");
-                    IF ItemCrossRef.FIND('-') THEN BEGIN
+                    ItemCrossRef.SETRANGE("Reference Type", ItemCrossRef."Reference Type"::Customer);
+                    ItemCrossRef.SETRANGE("Reference Type No.", FBLine."Sell-to Customer No.");
+                    ItemCrossRef.SETRANGE("Reference No.", FBImportLog."Cross-Reference No.");
+                    IF not ItemCrossRef.IsEmpty() THEN BEGIN
                         FBLine."Cross-Reference No." := FBImportLog."Cross-Reference No.";
-                        FBLine."Cross-Reference Type" := ItemCrossRef."Cross-Reference Type"::Customer;
+                        FBLine."Cross-Reference Type" := ItemCrossRef."Reference Type"::Customer;
                         FBLine."Cross-Reference Type No." := FBLine."Sell-to Customer No.";
                         IF FBLine."Item No." = '' THEN BEGIN
                             FBLine.VALIDATE("Item No.", ItemCrossRef."Item No.");
@@ -231,7 +232,7 @@ codeunit 50133 "FB Management"
                 IF FBImportLog."Lot No." <> '' THEN BEGIN
                     FBLine."Lot No." := FBImportLog."Lot No.";
                     LotInfo.SETRANGE("Lot No.", FBImportLog."Lot No.");
-                    IF (LotInfo.FIND('-')) AND (FBImportLog."Item No." = '') THEN BEGIN
+                    IF (not LotInfo.IsEmpty()) AND (FBImportLog."Item No." = '') THEN BEGIN
                         FBLine.VALIDATE("Item No.", LotInfo."Item No.");
                         FBLine.VALIDATE("Variant Code", LotInfo."Variant Code");
                     END;
@@ -254,7 +255,7 @@ codeunit 50133 "FB Management"
         SalesPrice.SETRANGE("Method of Fullfillment", SalesPrice."Method of Fullfillment"::FillBill);
         IF FBLine."Contract No." <> '' THEN
             SalesPrice.SETRANGE("Contract No.", FBLine."Contract No.");
-        SalesPriceFound := SalesPrice.FIND('-');
+        SalesPriceFound := not SalesPrice.IsEmpty();
 
         IF SalesPriceFound AND (NOT FoundTag) THEN BEGIN
             FBLine."Contract No." := SalesPrice."Contract No.";

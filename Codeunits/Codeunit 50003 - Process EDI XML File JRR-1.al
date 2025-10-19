@@ -36,15 +36,15 @@ codeunit 50003 "Process EDI XML File JRR-1"
         CCEmail: Label 'rosenberger@nifast.com';
         CONFIRM_MSG: Label 'Do you want to import/update order?';
         DIALOG_TEXT1: Label 'Import Files....\';
-        DIALOG_TEXT2: Label 'File Name #1################',Comment = '%1';
+        DIALOG_TEXT2: Label 'File Name #1################', Comment = '%1';
         EMAIL_TEXT2: Label 'Error Notification';
         EMAIL_TEXT3: Label 'Regards,';
-        EMAIL_TEXT4: Label '%1 - Systems Auto Alert',Comment = '%1';
-        EMAIL_TEXT6: Label 'Order Processed : %1',Comment = '%1';
-        EMAIL_TEXT7: Label 'Order Failed : %1',Comment = '%1';
-       // FOLDER_NOT_FOUND: Label 'Could not find folder %1';
+        EMAIL_TEXT4: Label '%1 - Systems Auto Alert', Comment = '%1';
+        EMAIL_TEXT6: Label 'Order Processed : %1', Comment = '%1';
+        EMAIL_TEXT7: Label 'Order Failed : %1', Comment = '%1';
+        // FOLDER_NOT_FOUND: Label 'Could not find folder %1';
         NOTHING_MSG: Label 'There is nothing to import.';
-        STATUS_MSG: Label 'Orders Created: %1 (%2)\Orders Failed: %3',Comment = '%1 %2 %3';
+        STATUS_MSG: Label 'Orders Created: %1 (%2)\Orders Failed: %3', Comment = '%1 %2 %3';
         SUPPORTUSER: Label 'Nifast Support';
         To_NC1: Label 'bell.a@nifast.com;muraoka.s@nifast.com;';
         To_NC2: Label 'cecchin.d@nifast.com';
@@ -197,7 +197,8 @@ codeunit 50003 "Process EDI XML File JRR-1"
             AddToDocNos(LastDocNo_lCod);
             TempBlobg.CreateOutStream(Outstreamg);
             CopyStream(Outstreamg, InS);
-            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+            DownloadFromStream(ins, '', '', '', EDISetup."XML Success Folder");
+            //FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
 
             EDISalesOrderImportLog.RESET();
             CLEAR(EDISalesOrderImportLog);
@@ -421,9 +422,9 @@ codeunit 50003 "Process EDI XML File JRR-1"
     begin
         if not EDISetup."Send Email on Error" then
             exit;
-        //TODO
-        // EDISetup.TestField("Email Title");
-        // EDISetup.TestField("Email Subject");
+        // TODO
+        EDISetup.TestField("Email Title");
+        EDISetup.TestField("Email Subject");
 
         GetEmailAddress('SalesOrder_EDI', EmailTo, EmailCC, EmailBCC);
 
@@ -632,7 +633,8 @@ codeunit 50003 "Process EDI XML File JRR-1"
             AddToDocNos(LastDocNo_lCod);
             TempBlobg.CreateOutStream(Outstreamg);
             CopyStream(Outstreamg, InS);
-            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+            DownloadFromStream(Ins, '', '', '', EDISetup."XML Success Folder");
+            // FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
 
 
             EDISalesOrderImportLog.RESET();

@@ -28,7 +28,7 @@ codeunit 50005 "IoT Import Files"
         MyFile: Record 2000000022;
         FileMgt: Codeunit "File Management";
         TempBlobg: codeunit "Temp Blob";
-      //  ImportIoTInvtPickData: XMLport 50002;
+        //  ImportIoTInvtPickData: XMLport 50002;
         ImportIoTTransRcptData: XMLport 50003;
         //ImportIoTSalesShipData: XMLport 50035;
         pString: Code[30];
@@ -146,13 +146,13 @@ codeunit 50005 "IoT Import Files"
             ERROR('Sourcepath is blank. Checkit');
 
         //check folders
-        IF NOT ValidateDirectoryPath(Errorpath) THEN
-            ERROR(FOLDER_NOT_FOUND, Errorpath);
-        IF NOT ValidateDirectoryPath(Sourcepath) THEN
-            ERROR(FOLDER_NOT_FOUND, Sourcepath);
-        IF NOT InvtSetup."Delete IoT File on Success" THEN
-            IF NOT ValidateDirectoryPath(Successpath) THEN
-                ERROR(FOLDER_NOT_FOUND, Successpath);
+        // IF NOT ValidateDirectoryPath(Errorpath) THEN
+        //     ERROR(FOLDER_NOT_FOUND, Errorpath);
+        // IF NOT ValidateDirectoryPath(Sourcepath) THEN
+        //     ERROR(FOLDER_NOT_FOUND, Sourcepath);
+        // IF NOT InvtSetup."Delete IoT File on Success" THEN
+        //     IF NOT ValidateDirectoryPath(Successpath) THEN
+        //         ERROR(FOLDER_NOT_FOUND, Successpath);
     end;
 
     procedure ShowMessage()
@@ -200,7 +200,7 @@ codeunit 50005 "IoT Import Files"
             //AddToDocNos(LastDocNo_lCod);
             TempBlobg.CreateOutStream(Outstreamg);
             CopyStream(Outstreamg, InS);
-            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+            //FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
 
 
             IoTFileImportLog.RESET();
@@ -344,7 +344,8 @@ codeunit 50005 "IoT Import Files"
             //AddToDocNos(LastDocNo_lCod);
             TempBlobg.CreateOutStream(Outstreamg);
             CopyStream(Outstreamg, InS);
-            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+            DownloadFromStream(Ins, '', '', '', EDISetup."XML Success Folder");
+            // FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
 
 
             IoTFileImportLog.RESET();
@@ -377,15 +378,15 @@ codeunit 50005 "IoT Import Files"
         END;
     end;
 
-    local procedure ValidateDirectoryPath(FileDirectory_iTxt: Text[250]): Boolean
-    var
-        SystemDirectoryServer_lDnt: DotNet Directory0;
-    begin
-        IF SystemDirectoryServer_lDnt.Exists(FileDirectory_iTxt) THEN
-            EXIT(TRUE)
-        ELSE
-            EXIT(FALSE);
-    end;
+    // local procedure ValidateDirectoryPath(FileDirectory_iTxt: Text[250]): Boolean
+    // var
+    //     SystemDirectoryServer_lDnt: DotNet Directory0;
+    // begin
+    //     IF SystemDirectoryServer_lDnt.Exists(FileDirectory_iTxt) THEN
+    //         EXIT(TRUE)
+    //     ELSE
+    //         EXIT(FALSE);
+    // end;
 
     // local procedure SendStatusEmail()
     // var

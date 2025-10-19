@@ -20,5 +20,8 @@ codeunit 50260 CU_7301
 
     end;
 
+    var
+        NVM: Codeunit "NewVision Management_New";
+
 
 }

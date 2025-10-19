@@ -47,8 +47,8 @@ codeunit 50017 "Label Mgmt NIF"
         TempSalesHeader: Record 36 temporary;
         SalesLine: Record 37;
         TempSalesLine: Record 37 temporary;
-        ItemCrossRef: Record 5717;
-        TempItemCrossRef: Record 5717 temporary;
+        ItemCrossRef: Record "Item Reference";
+        TempItemCrossRef: Record "Item Reference" temporary;
         TempLotNoInfo: Record 6505 temporary;
         TempLabelValue: Record 50006 temporary;
         ReceiveStation: Record 14000608;
@@ -830,15 +830,15 @@ codeunit 50017 "Label Mgmt NIF"
                         IF NOT ItemCrossRefLoaded THEN
                             LoadItemCrossRef(Package, "Package Line");
                         //>> RTT 07-29-05 if ASN customer, use customer part number
-                        IF TempItemCrossRef."Cross-Reference No." = '' THEN BEGIN
+                        IF TempItemCrossRef."Reference No." = '' THEN BEGIN
                             IF NOT SalesHeaderLoaded THEN
                                 LoadSalesHeader(Package, "Package Line");
                             PackingRule.GetPackingRule(0, TempSalesHeader."Sell-to Customer No.", TempSalesHeader."Ship-to Code");  //0=customer
                             IF (PackingRule."ASN Summary Type" <> PackingRule."ASN Summary Type"::" ") THEN
-                                TempItemCrossRef."Cross-Reference No." := "Package Line"."No.";
+                                TempItemCrossRef."Reference No." := "Package Line"."No.";
                         END;
                         //<< RTT 07-29-05 if ASN customer, use customer part number
-                        TempLabelValue."Print Value" := FORMAT(TempItemCrossRef."Cross-Reference No.");
+                        TempLabelValue."Print Value" := FORMAT(TempItemCrossRef."Reference No.");
                     END;
                 'CUST_NO':
                     BEGIN
@@ -850,7 +850,7 @@ codeunit 50017 "Label Mgmt NIF"
                     BEGIN
                         IF NOT SalesLineLoaded THEN
                             LoadSalesLine(Package, "Package Line");
-                        TempLabelValue."Print Value" := FORMAT(TempSalesLine."External Document No.");
+                        TempLabelValue."Print Value" := FORMAT(TempSalesLine."Document No.");
                     END;
                 'DEL_ORD_NO':
                     BEGIN
@@ -946,13 +946,13 @@ codeunit 50017 "Label Mgmt NIF"
                     END;
                 'MFG_LOT_NO':
 
-                    IF "Package Line"."Mfg. Lot No." = '' THEN BEGIN
+                    IF "Package Line"."Lot No." = '' THEN BEGIN
                         IF NOT LotInfoLoaded THEN
                             LoadLotNoInfo(Package, "Package Line");
                         TempLabelValue."Print Value" := FORMAT(TempLotNoInfo."Mfg. Lot No.");
                     END
                     ELSE
-                        TempLabelValue."Print Value" := "Package Line"."Mfg. Lot No.";
+                        TempLabelValue."Print Value" := "Package Line"."Lot No.";
                 'MODEL_YR':
                     BEGIN
                         IF NOT SalesLineLoaded THEN
@@ -1181,10 +1181,11 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure PrintContractLineLabel(ContractLine: Record 7002; LabelHeaderCode: Code[10]; NoCopies: Integer; UsePackingStation: Boolean)
     var
-        // ItemCrossRefL: Record 5717;
+        ItemCrossRefL: Record "Item Reference";
         LabelContent: Record 50006;
         ContractHeader: Record 50110;
         LabelHeader: Record 14000841;
+        ItemL: record Item;
     begin
         TempLabelValue.RESET();
         TempLabelValue.DELETEALL();
@@ -1213,12 +1214,12 @@ codeunit 50017 "Label Mgmt NIF"
         IF NOT ContractHeader.GET(ContractLine."Contract No.") THEN
             CLEAR(ContractHeader);
 
-        SETCURRENTKEY("Item No.", "Variant Code", "Unit of Measure", "Cross-Reference Type", "Cross-Reference Type No.");
-        SETRANGE("Item No.", ContractLine."Item No.");
-        SETRANGE("Cross-Reference Type", ItemCrossRef."Cross-Reference Type"::Customer);
-        SETRANGE("Cross-Reference Type No.", ContractLine."Sales Code");
-        IF NOT FIND('-') THEN
-            CLEAR(ItemCrossRef);
+        ItemCrossRefL.SETCURRENTKEY("Item No.", "Variant Code", "Unit of Measure", "Reference Type", "Reference Type No.");
+        ItemCrossRefL.SETRANGE("Item No.", ContractLine."Item No.");
+        ItemCrossRefL.SETRANGE("Reference Type", ItemCrossRefL."Reference Type"::Customer);
+        ItemCrossRefL.SETRANGE("Reference Type No.", ContractLine."Sales Code");
+        IF ItemCrossRefL.IsEmpty() THEN
+            CLEAR(ItemCrossRefL);
 
         //now get the label lines
         LabelContent.SETRANGE("Label Code", LabelHeader.Code);
@@ -1233,12 +1234,12 @@ codeunit 50017 "Label Mgmt NIF"
                     TempLabelValue."Print Value" := ContractHeader.Description;
                 'CONTRACT_NO':
                     TempLabelValue."Print Value" := ContractLine."Contract No.";
-                'CONTRACT_LOC':
-                    TempLabelValue."Print Value" := ContractLine."Contract Location Code";
+                // 'CONTRACT_LOC':
+                //     TempLabelValue."Print Value" := ContractLine."Contract Location Code";
                 'CROSS_REF_DESC':
                     TempLabelValue."Print Value" := ItemCrossRef.Description;
                 'CROSS_REF_NO':
-                    TempLabelValue."Print Value" := ItemCrossRef."Cross-Reference No.";
+                    TempLabelValue."Print Value" := ItemCrossRef."Reference No.";
                 'CUST_BIN':
                     TempLabelValue."Print Value" := ContractLine."Customer Bin";
                 'CUST_BIN_QTY':
@@ -1253,8 +1254,9 @@ codeunit 50017 "Label Mgmt NIF"
                     TempLabelValue."Print Value" := ContractHeader."External Document No.";
                 'ITEM_DESC':
                     BEGIN
-                        ContractLine.CALCFIELDS("Item Description");
-                        TempLabelValue."Print Value" := ContractLine."Item Description";
+                        if ItemL.get(ContractLine."Item No.") then;
+                        //ContractLine.CALCFIELDS("Item Description");
+                        TempLabelValue."Print Value" := ItemL.Description;
                     END;
                 'ITEM_NO':
                     TempLabelValue."Print Value" := ContractLine."Item No.";
@@ -1271,9 +1273,9 @@ codeunit 50017 "Label Mgmt NIF"
 
         //print label
         IF UsePackingStation THEN
-            LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies)   //FALSE=No Preview
+            LabelPrint(LabelHeader, PackingStation.Description, FALSE, NoCopies)   //FALSE=No Preview
         ELSE
-            LabelPrint(LabelHeader, ReceiveStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
+            LabelPrint(LabelHeader, ReceiveStation.Description, FALSE, NoCopies);   //FALSE=No Preview
     end;
 
     procedure LabelPrint(LabelHeader: Record 14000841; PrinterName: Text[250]; Preview: Boolean; NoCopies: Integer)
@@ -1349,7 +1351,7 @@ codeunit 50017 "Label Mgmt NIF"
                     TempLabelValue.SETFILTER("No. Series", '<>%1', '');
                     IF TempLabelValue.FIND('-') THEN
                         REPEAT
-                            IF LabelHeader."Label Type" = LabelHeader."Label Type"::" " THEN //CIS.RAM051322
+                            IF LabelHeader."Printer Type" = LabelHeader."Printer Type"::" " THEN //CIS.RAM051322
                                 TempLabelValue."Print Value" := FORMAT(NoSeriesMgt.GetNextNo(TempLabelValue."No. Series", TODAY, TRUE))
                             //>>CIS.RAM051322
                             ELSE
@@ -1377,8 +1379,8 @@ codeunit 50017 "Label Mgmt NIF"
             PkgLn_L.INIT;
             IF PkgLn_L.GET(CartonPkgNo, CartonPkgLnNo) THEN BEGIN
                 IF MastLbl THEN BEGIN
-                    PkgLn_L."Master Label SrNo." := CartonFirstSrNo;
-                    WritePackageSerialNumber(0, CartonFirstSrNo, CartonLastSrNo, PkgLn_L."Master Label SrNo.", LabelHeader.Code);
+                    PkgLn_L."Serial No." := CartonFirstSrNo;
+                    WritePackageSerialNumber(0, CartonFirstSrNo, CartonLastSrNo, PkgLn_L."Serial No.", LabelHeader.Code);
 
                     MasterPkgLn_L.RESET;
                     MasterPkgLn_L.SETRANGE("Package No.", CartonPkgNo);
@@ -1388,9 +1390,9 @@ codeunit 50017 "Label Mgmt NIF"
                     IF MasterPkgLn_L.FINDFIRST THEN
                         REPEAT
                             //    IF PkgLn_L."Line No." <> MasterPkgLn_L."Line No." THEN BEGIN
-                            MasterPkgLn_L."Master Label SrNo." := CartonFirstSrNo;
+                            MasterPkgLn_L."Serial No." := CartonFirstSrNo;
                             MasterPkgLn_L.MODIFY;
-                            WritePackageSerialNumber(1, CartonFirstSrNo, CartonLastSrNo, MasterPkgLn_L."Master Label SrNo.", LabelHeader.Code);
+                            WritePackageSerialNumber(1, CartonFirstSrNo, CartonLastSrNo, MasterPkgLn_L."Serial No.", LabelHeader.Code);
                         //    END;
                         UNTIL MasterPkgLn_L.NEXT = 0;
 
@@ -1503,7 +1505,7 @@ codeunit 50017 "Label Mgmt NIF"
 
     procedure LoadItemCrossRef(Package: Record 14000701; PackageLine: Record 14000702)
     var
-        ItemCrossRefL: Record 5717;
+        ItemCrossRefL: Record "Item Reference";
     begin
         //if not an item or valid cross reference, then exit
         IF (PackageLine.Type <> PackageLine.Type::Item) OR
@@ -1515,8 +1517,8 @@ codeunit 50017 "Label Mgmt NIF"
         ItemCrossRefL.SETRANGE("Item No.", PackageLine."No.");
         ItemCrossRefL.SETRANGE("Variant Code", PackageLine."Variant Code");
         ItemCrossRefL.SETRANGE("Unit of Measure", PackageLine."Unit of Measure Code");
-        ItemCrossRefL.SETRANGE("Cross-Reference Type", ItemCrossRefL."Cross-Reference Type"::Customer);
-        ItemCrossRefL.SETRANGE("Cross-Reference Type No.", Package."Ship-to No.");
+        ItemCrossRefL.SETRANGE("Reference Type", ItemCrossRefL."Reference Type"::Customer);
+        ItemCrossRefL.SETRANGE("Reference Type No.", Package."Ship-to No.");
 
         //if cannot find, take off uom filter
         IF NOT ItemCrossRefL.FIND('-') THEN
@@ -1884,7 +1886,7 @@ codeunit 50017 "Label Mgmt NIF"
         PackingControl."Input No." := WhseActvLine."Item No.";
         PackingControl."Input Variant Code" := WhseActvLine."Variant Code";
         PackingControl."Input Unit of Measure Code" := WhseActvLine."Unit of Measure Code";
-        PackingControl."Order Line No." := WhseActvLine."Source Line No.";
+       // PackingControl."Order Line No." := WhseActvLine."Source Line No.";
         PackingControl."Pack Lot Number" := (WhseActvLine."Lot No." <> '');
         PackingControl."Input Lot Number" := WhseActvLine."Lot No.";
         PackageMgt.CreatePackageLineNIF(Package, PackingControl, WhseActvLine.Quantity, FALSE);  //FALSE=No Summary
@@ -1950,7 +1952,7 @@ codeunit 50017 "Label Mgmt NIF"
                 PackingControl."Input No." := PostedInvtPickLine."Item No.";
                 PackingControl."Input Variant Code" := PostedInvtPickLine."Variant Code";
                 PackingControl."Input Unit of Measure Code" := PostedInvtPickLine."Unit of Measure Code";
-                PackingControl."Order Line No." := PostedInvtPickLine."Source Line No.";
+               // PackingControl."Order Line No." := PostedInvtPickLine."Source Line No.";
                 PackingControl."Pack Lot Number" := (PostedInvtPickLine."Lot No." <> '');
                 PackingControl."Input Lot Number" := PostedInvtPickLine."Lot No.";
 
@@ -2046,7 +2048,7 @@ codeunit 50017 "Label Mgmt NIF"
                 PackingControl."Input No." := SalesShptLine."No.";
                 PackingControl."Input Variant Code" := SalesShptLine."Variant Code";
                 PackingControl."Input Unit of Measure Code" := SalesShptLine."Unit of Measure Code";
-                PackingControl."Order Line No." := SalesShptLine."Order Line No.";
+               // PackingControl."Order Line No." := SalesShptLine."Order Line No.";
 
                 //use entry relation if found, otherwise use sales shipment line record
                 ItemEntryRelation.SETCURRENTKEY(
@@ -2138,7 +2140,7 @@ codeunit 50017 "Label Mgmt NIF"
         PackingControl."Input No." := PostedInvtPickLine."Item No.";
         PackingControl."Input Variant Code" := PostedInvtPickLine."Variant Code";
         PackingControl."Input Unit of Measure Code" := PostedInvtPickLine."Unit of Measure Code";
-        PackingControl."Order Line No." := PostedInvtPickLine."Source Line No.";
+        //PackingControl."Order Line No." := PostedInvtPickLine."Source Line No.";
         PackingControl."Pack Lot Number" := (PostedInvtPickLine."Lot No." <> '');
         PackingControl."Input Lot Number" := PostedInvtPickLine."Lot No.";
 
@@ -2171,7 +2173,7 @@ codeunit 50017 "Label Mgmt NIF"
         //WhseActvLine.SETRANGE("Source No.",PackageLine."Sales Order No.");
         WhseActvLine.SETRANGE("Source No.", PackageLine."Source ID");
         //<<IST 012609 CCL $12797 #12797
-        WhseActvLine.SETRANGE("Source Line No.", PackageLine."Order Line No.");
+        WhseActvLine.SETRANGE("Source Line No.", PackageLine."Line No.");
         WhseActvLine.SETFILTER("Activity Type", '%1|%2', WhseActvLine."Activity Type"::"Invt. Pick", WhseActvLine."Activity Type"::Pick);
         IF WhseActvLine.FIND('-') THEN BEGIN
             PickNo := WhseActvLine."No.";
@@ -2221,6 +2223,7 @@ codeunit 50017 "Label Mgmt NIF"
         OutStr: OutStream;
         FileContent: Text;
         FileName: Text[250];
+        InsStr: InStream;
     begin
         if CustNo in ['NISSAN', 'RO164-CTN', 'RO164-MST'] then begin
             FileName := StrSubstNo('%1-%2-%3.txt',
@@ -2240,8 +2243,7 @@ codeunit 50017 "Label Mgmt NIF"
             OutStr.WriteText(FileContent);
 
             // Let the user download the file
-            DownloadFromStream(
-                TempBlob,
+            DownloadFromStream(InsStr,
                 '',
                 '',
                 FileName,

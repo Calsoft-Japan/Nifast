@@ -9,15 +9,15 @@ codeunit 50031 ConsolidationImp
         IF CheckToRunConsolidation() THEN
             //>>KW11.01:EDD-1.9.3.7:2:2
             UpdateBUForExRates();
-            //<<KW11.01:EDD-1.9.3.7:2:2
-            //RunAllConsolidation();
+        //<<KW11.01:EDD-1.9.3.7:2:2
+        //RunAllConsolidation();
     end;
 
     var
         NoSeries: Record 308;
         LastNoSeriesLine: Record 309;
         CurrExchRate: Record 330;
-        Company: Record 2000000006;
+       // Company: Record 2000000006;
         CurrencyCode: Code[10];
         CurrencyCode2: Code[10];
         CurrencyCode3: Code[10];
@@ -56,21 +56,21 @@ codeunit 50031 ConsolidationImp
         //  END;
         //END ELSE BEGIN
         // Company.SETFILTER(Name, '<>%1', COMPANYNAME);
-        IF Company.FIND('-') THEN BEGIN
-            //    REPEAT
-            //      IF KoppersSetup.CHANGECOMPANY(Company.Name) THEN BEGIN
-            //        IF KoppersSetup.GET THEN BEGIN
-            //          IF KoppersSetup."Global Financial Control" THEN BEGIN
-            //            IF KoppersSetup."Run Consolidations Now" THEN BEGIN
-            GlobelControlCompany := Company.Name;
-            //              MonthEndDate := KoppersSetup."Consolidation Month-End Date"; --------------------Check It
-            EXIT(TRUE);
-            //            END;
-            //          END;
-            //        END;
-            //      END;
-            //    UNTIL Company.NEXT =0 ;
-        END;
+        // IF Company.FIND('-') THEN BEGIN
+        //    REPEAT
+        //      IF KoppersSetup.CHANGECOMPANY(Company.Name) THEN BEGIN
+        //        IF KoppersSetup.GET THEN BEGIN
+        //          IF KoppersSetup."Global Financial Control" THEN BEGIN
+        //            IF KoppersSetup."Run Consolidations Now" THEN BEGIN
+        //   GlobelControlCompany := Company.Name;
+        //              MonthEndDate := KoppersSetup."Consolidation Month-End Date"; --------------------Check It
+        // EXIT(TRUE);
+        //            END;
+        //          END;
+        //        END;
+        //      END;
+        //    UNTIL Company.NEXT =0 ;
+        //END;
         //END;
         //EXIT(FALSE);
         //\\ RAM +++01
@@ -633,7 +633,7 @@ codeunit 50031 ConsolidationImp
                     //>>TL01
                     CurrencyCode3 := BusUnitRec."Currency Code";
                     CurrencyFactor := BusUnitRec."Balance Currency Factor";
-                    Date3 := CALCDATE('-1M+CM', MonthEndDate);
+                    Date3 := CALCDATE('<-1M+CM>', MonthEndDate);
                     InitValues();
                     IF RefCurrencyCode = '' THEN
                         BusUnitRec."Last Balance Currency Factor" := CurrentExchRate / NewRefExchRate
