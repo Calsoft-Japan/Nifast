@@ -21,6 +21,7 @@ codeunit 50178 CU_6500
         //AvailabilityDate: Date;
         Window: Dialog;
         LastEntryNo: Integer;
+        ItemTrackingSummaryForm: Page 50022;
     BEGIN
         //NV code was commented
         SearchForSupply := TRUE;
