@@ -48,7 +48,7 @@ pageextension 55404 "Item Units of Measure Ext" extends "Item Units of Measure"
     VAR
         SalesLine: Record 37;
         PurchLine: Record 39;
-        // WhseEntry: Record 7312;
+        WhseEntry: Record 7312;
         TransferLine: Record 5741;
     BEGIN
         SalesLine.SETCURRENTKEY(Type, "No.");
@@ -72,12 +72,12 @@ pageextension 55404 "Item Units of Measure Ext" extends "Item Units of Measure"
             ERROR('Transfer Orders exist for Item %1 unit of measure %2', Rec."Item No.", Rec.Code);
 
         //TODO
-        /*  WhseEntry.SETCURRENTKEY("Item No.", Open);
-         WhseEntry.SETRANGE("Item No.", Rec."Item No.");
-         WhseEntry.SETRANGE(Open, TRUE);
-         WhseEntry.SETRANGE("Unit of Measure Code", Rec.Code);
-         IF not WhseEntry.IsEmpty THEN
-             ERROR('Open Whse Entries exist for Item %1, Unit of Measure %2', Rec."Item No.", Rec.Code); */
+        WhseEntry.SETCURRENTKEY("Item No.", Open);
+        WhseEntry.SETRANGE("Item No.", Rec."Item No.");
+        WhseEntry.SETRANGE(Open, TRUE);
+        WhseEntry.SETRANGE("Unit of Measure Code", Rec.Code);
+        IF not WhseEntry.IsEmpty THEN
+            ERROR('Open Whse Entries exist for Item %1, Unit of Measure %2', Rec."Item No.", Rec.Code);
         //TODO
     END;
 }

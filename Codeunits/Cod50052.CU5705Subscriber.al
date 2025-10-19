@@ -4,11 +4,11 @@ codeunit 50052 CU5705Subscriber
 
     var
         InvtSetup: Record "Inventory Setup";
-    /*  Receiving: Codeunit 14000601;
-   ReservMgt: Codeunit 99000845;
-   BOL: Code[20];
-   CarrierNo: Code[20];
-   CarrierTrailer: Code[20]; */
+        Receiving: Codeunit 14000601;
+        ReservMgt: Codeunit 99000845;
+        BOL: Code[20];
+        CarrierNo: Code[20];
+        CarrierTrailer: Code[20];
 
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Receipt", OnAfterCheckInvtPostingSetup, '', false, false)]
@@ -42,15 +42,13 @@ codeunit 50052 CU5705Subscriber
 
         InvtSetup.Get();
 
-        //TODO
-        /*    // >> Receiving
-           IF InvtSetup."Enable Receive" AND
-              (InvtSetup."E-Receive Locking Optimization" =
-               InvtSetup."E-Receive Locking Optimization"::Base)
-           THEN
-               Receiving.CheckTransferHeader(TransHeader);
-           // << Receiving */
-        //TODO
+        // >> Receiving
+        IF InvtSetup."LAX Enable Receive" AND
+           (InvtSetup."LAX E-Rec Locking Optimization" =
+            InvtSetup."LAX E-Rec Locking Optimization"::Base)
+        THEN
+            Receiving.CheckTransferHeader(TransferHeader);
+        // << Receiving 
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Receipt", OnBeforeTransRcptHeaderInsert, '', false, false)]
@@ -83,9 +81,7 @@ codeunit 50052 CU5705Subscriber
            // << pfc
            } */
 
-        //TODO
-        // TransferReceiptHeader."Posted Assembly Order No." := TransferHeader."Posted Assembly Order No.";  //NF1.00:CIS.NG  10/26/15
-        //TODO
+        TransferReceiptHeader."Posted Assembly Order No." := TransferHeader."Posted Assembly Order No.";  //NF1.00:CIS.NG  10/26/15
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Receipt", OnAfterInsertTransRcptHeader, '', false, false)]
@@ -125,15 +121,13 @@ codeunit 50052 CU5705Subscriber
         //<<NV 03.31.04 JWW:
 
         InvtSetup.Get();
-        //TODO
-        /*   // >> Receiving
-          IF InvtSetup."Enable Receive" AND
-             (InvtSetup."E-Receive Locking Optimization" =
-              InvtSetup."E-Receive Locking Optimization"::Base)
-          THEN
-              Receiving.PostReceiveTransferHeader(TransHeader, TransRcptHeader);
-          // << Receiving */
-        //TODO
+        // >> Receiving
+        IF InvtSetup."LAX Enable Receive" AND
+           (InvtSetup."LAX E-Rec Locking Optimization" =
+            InvtSetup."LAX E-Rec Locking Optimization"::Base)
+        THEN
+            Receiving.PostReceiveTransferHeader(TransHeader, TransRcptHeader);
+        // << Receiving 
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Receipt", OnRunOnAfterTransLineSetFiltersForRcptLines, '', false, false)]
@@ -216,18 +210,16 @@ END;
     begin
         InvtSetup.Get();
 
-        //TODO
-        /*     // >> Receiving
-            IF InvtSetup."Enable Receive" AND
-               (InvtSetup."E-Receive Locking Optimization" =
-                InvtSetup."E-Receive Locking Optimization"::Receiving)
-            THEN BEGIN
-                Receiving.CheckTransferHeader(TransferHeader);
+        // >> Receiving
+        IF InvtSetup."LAX Enable Receive" AND
+           (InvtSetup."LAX E-Rec Locking Optimization" =
+            InvtSetup."LAX E-Rec Locking Optimization"::Receiving)
+        THEN BEGIN
+            Receiving.CheckTransferHeader(TransferHeader);
 
-                Receiving.PostReceiveTransferHeader(TransferHeader, TransRcptHeader);
-            END;
-            // << Receiving */
-        //TODO
+            Receiving.PostReceiveTransferHeader(TransferHeader, TransRcptHeader);
+        END;
+        // << Receiving 
     end;
 
     PROCEDURE "NV>>"();

@@ -12,12 +12,10 @@ table 70778 "Conv. Package Info"
         {
             Caption = 'Source ID';
             NotBlank = false;
-            //TODO
-            /* TableRelation = IF (Type = CONST(Package)) Package
+            TableRelation = IF (Type = CONST(Package)) Package
             ELSE IF (Type = CONST(Item)) Item
             ELSE IF (Type = CONST(Resource)) Resource
-            ELSE IF (Type = CONST("Standard Option")) "Standard Option Setup"; */
-            //TODO
+            ELSE IF (Type = CONST("Standard Option")) "LAX Standard Option Setup";
             //This property is currently not supported
             //TestTableRelation = false;
         }

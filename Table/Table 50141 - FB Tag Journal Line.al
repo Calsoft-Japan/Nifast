@@ -34,10 +34,8 @@ table 50141 "FB Tag Journal Line"
         field(50; "Location Code"; Code[10])
         {
             Caption = 'Location Code';
-            //TOOO
-            /*  TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                             "Rework Location" = CONST(false)); */
-            //TODO
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                             "Rework Location" = CONST(false));
         }
         field(60; "Ship-to Code"; Code[10])
         {
@@ -123,16 +121,16 @@ table 50141 "FB Tag Journal Line"
         field(170; "Salesperson Code"; Code[10])
         {
             Caption = 'Salespers./Purch. Code';
-            //TODO
-            //  TableRelation = "Salesperson/Purchaser" WHERE(Sales = CONST(true));
-            //TODO
+             
+            TableRelation = "Salesperson/Purchaser" WHERE(Sales = CONST(true));
+             
         }
         field(175; "Inside Salesperson Code"; Code[10])
         {
             // cleaned
-            //TODO
-            //TableRelation = "Salesperson/Purchaser" WHERE("Inside Sales" = CONST(true));
-            //TODO
+             
+            TableRelation = "Salesperson/Purchaser" WHERE("Inside Sales" = CONST(true));
+             
         }
         field(180; "Required Date"; Date)
         {

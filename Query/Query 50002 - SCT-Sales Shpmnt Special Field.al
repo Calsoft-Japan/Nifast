@@ -3,7 +3,7 @@ query 50002 "SCT-Sales Shpmnt Special Field"
 
     elements
     {
-        dataitem(QueryElement1000000000;Table111)
+        dataitem(Sales_Shipment_Line;"Sales Shipment Line")
         {
             column(Sell_to_Customer_No;"Sell-to Customer No.")
             {

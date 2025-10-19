@@ -74,13 +74,13 @@ codeunit 50032 CU5763Subscriber
     local procedure OnAfterCreateWhseJnlLine(var WarehouseJournalLine: Record "Warehouse Journal Line"; PostedWhseShipmentLine: Record "Posted Whse. Shipment Line")
     begin
         //TODO
-        /*   // >> NV
-          IF PostedWhseShipmentLine."License Plate No." <> '' THEN BEGIN
-              WarehouseJournalLine."License Plate Operation Type" := WarehouseJournalLine."License Plate Operation Type"::"License Plate Movement";
-              WarehouseJournalLine."From License Plate No." := PostedWhseShipmentLine."License Plate No.";
-              WarehouseJournalLine."To License Plate No." := '';
-          END;
-          // << NV */
+        // >> NV
+        IF PostedWhseShipmentLine."License Plate No." <> '' THEN BEGIN
+            WarehouseJournalLine."License Plate Operation Type" := WarehouseJournalLine."License Plate Operation Type"::"License Plate Movement";
+            WarehouseJournalLine."From License Plate No." := PostedWhseShipmentLine."License Plate No.";
+            WarehouseJournalLine."To License Plate No." := '';
+        END;
+        // << NV 
         //TODO
     end;
 

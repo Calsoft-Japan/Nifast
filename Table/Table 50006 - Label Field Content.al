@@ -19,22 +19,20 @@ table 50006 "Label Field Content"
 
             trigger OnLookup()
             begin
-                //TODO
-                /*   LabelHeader.GET("Label Code");
-                  LabelField.RESET();
-                  CASE LabelHeader."Label Usage" OF
-                      LabelHeader."Label Usage"::Package:
-                          LabelField.SETRANGE(Package, TRUE);
-                      LabelHeader."Label Usage"::"Package Line":
-                          LabelField.SETRANGE("Package Line", TRUE);
-                      LabelHeader."Label Usage"::Receive:
-                          LabelField.SETRANGE(Receive, TRUE);
-                      LabelHeader."Label Usage"::"Receive Line":
-                          LabelField.SETRANGE("Receive Line", TRUE);
-                      LabelHeader."Label Usage"::"Contract Line":
-                          LabelField.SETRANGE("Contract Line", TRUE);
-                  END; */
-                //TODO
+                LabelHeader.GET("Label Code");
+                LabelField.RESET();
+                CASE LabelHeader."Label Usage" OF
+                    LabelHeader."Label Usage"::Package:
+                        LabelField.SETRANGE(Package, TRUE);
+                    LabelHeader."Label Usage"::"Package Line":
+                        LabelField.SETRANGE("Package Line", TRUE);
+                    LabelHeader."Label Usage"::Receive:
+                        LabelField.SETRANGE(Receive, TRUE);
+                    LabelHeader."Label Usage"::"Receive Line":
+                        LabelField.SETRANGE("Receive Line", TRUE);
+                    LabelHeader."Label Usage"::"Contract Line":
+                        LabelField.SETRANGE("Contract Line", TRUE);
+                END;
 
                 IF PAGE.RUNMODAL(0, LabelField) = ACTION::LookupOK THEN
                     VALIDATE("Field Code", LabelField.Code);
@@ -42,38 +40,33 @@ table 50006 "Label Field Content"
 
             trigger OnValidate()
             var
-            //TODO
-            // ShippingSetup: Record 14000707;
-            //TODO
+                ShippingSetup: Record 14000707;
             begin
                 IF ("Field Code" <> xRec."Field Code") AND ("Field Code" <> '') THEN BEGIN
                     LabelField.GET("Field Code");
 
-                    //TODO
                     //make sure usage is valid
-                    /*  LabelHeader.GET("Label Code");
-                     CASE LabelHeader."Label Usage" OF
-                         LabelHeader."Label Usage"::Package:
-                             LabelField.TESTFIELD(Package, TRUE);
-                         LabelHeader."Label Usage"::"Package Line":
-                             LabelField.TESTFIELD("Package Line", TRUE);
-                         LabelHeader."Label Usage"::Receive:
-                             LabelField.TESTFIELD(Receive, TRUE);
-                         LabelHeader."Label Usage"::"Receive Line":
-                             LabelField.TESTFIELD("Receive Line", TRUE);
-                         LabelHeader."Label Usage"::"Contract Line":
-                             LabelField.TESTFIELD("Contract Line", TRUE);
-                     END; */
-                    //TODO
+                    LabelHeader.GET("Label Code");
+                    CASE LabelHeader."Label Usage" OF
+                        LabelHeader."Label Usage"::Package:
+                            LabelField.TESTFIELD(Package, TRUE);
+                        LabelHeader."Label Usage"::"Package Line":
+                            LabelField.TESTFIELD("Package Line", TRUE);
+                        LabelHeader."Label Usage"::Receive:
+                            LabelField.TESTFIELD(Receive, TRUE);
+                        LabelHeader."Label Usage"::"Receive Line":
+                            LabelField.TESTFIELD("Receive Line", TRUE);
+                        LabelHeader."Label Usage"::"Contract Line":
+                            LabelField.TESTFIELD("Contract Line", TRUE);
+                    END;
 
-                    //TODO
-                    /*  IF "Field Code" = 'SERIAL_NO' THEN BEGIN
-                         ShippingSetup.GET;
-                         "No. Series" := ShippingSetup."Serial No. Nos.";
-                     END
-                     ELSE
-                         "No. Series" := ''; */
-                    //TODO
+
+                    IF "Field Code" = 'SERIAL_NO' THEN BEGIN
+                        ShippingSetup.GET();
+                        "No. Series" := ShippingSetup."Serial No. Nos.";
+                    END
+                    ELSE
+                        "No. Series" := '';
                     Description := LabelField.Description;
                     "Test Print Value" := LabelField."Test Print Value";
                 END
@@ -117,7 +110,5 @@ table 50006 "Label Field Content"
 
     var
         LabelField: Record 50005;
-    //TODO
-    // LabelHeader: Record 14000841;
-    //TODO
+        LabelHeader: Record 14000841;
 }

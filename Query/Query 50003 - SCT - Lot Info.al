@@ -3,12 +3,12 @@ query 50003 "SCT - Lot Info"
 
     elements
     {
-        dataitem(QueryElement1000000000;Table6505)
+        dataitem(QueryElement1000000000; "Lot No. Information")
         {
-            column(Item_No;"Item No.")
+            column(Item_No; "Item No.")
             {
             }
-            column(Lot_Creation_Date;"Lot Creation Date")
+            column(Lot_Creation_Date; "Lot Creation Date")
             {
             }
         }

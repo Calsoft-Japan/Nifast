@@ -171,9 +171,7 @@ table 80001 "Purchase Header NV"
         field(43; "Purchaser Code"; Code[10])
         {
             Description = 'NV3.60';
-            //TODO
-            // TableRelation = "Salesperson/Purchaser".Code WHERE(Purchase = CONST(true));
-            //TODO
+            TableRelation = "Salesperson/Purchaser".Code WHERE(Purchase = CONST(true));
 
             trigger OnValidate()
             var

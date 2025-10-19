@@ -2,10 +2,8 @@ table 90001 "Table Import Definition"
 {
     DataCaptionFields = "Table Import Code", "File Field No.", "Field Name";
     DataPerCompany = false;
-    //TODO
-    /*   DrillDownPageID = 90011;
-      LookupPageID = 90011; */
-    //TODO
+    DrillDownPageID = 90011;
+    LookupPageID = 90011;
 
     fields
     {

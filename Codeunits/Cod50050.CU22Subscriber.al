@@ -2,22 +2,21 @@ codeunit 50050 CU22Subscriber
 {
     // Version NAVW18.00,NAVNA8.00,NV4.35,NIF1.062,NMX1.000,NIF.N15.C9IN.001,AKK1606.01;
     var
-        // InvtSetup: Record "Inventory Setup";
+        InvtSetup: Record "Inventory Setup";
         GLSetup: Record "General Ledger Setup";
         Currency: Record Currency;
         CurrExchRate: Record "Currency Exchange Rate";
         MfgCostCalcMgt: Codeunit "Mfg. Cost Calculation Mgt.";
-
         SingleInstanceCu: Codeunit SingleInstance;
-        // UOMMgt: Codeunit "Unit of Measure Management";
-        /*  NVM: Codeunit 50021;
-          ">>NIF": Integer;
-          PostItemJnlLineBoo: Boolean;
-          "//AKK1606.01--": Integer;
-          wEntryDate: Date;
-          wEntryDateApp: Date;
-          wEntryText: Text[50];
-          rItemLedEntry: Record 32; */
+        UOMMgt: Codeunit "Unit of Measure Management";
+        NVM: Codeunit 50021;
+        ">>NIF": Integer;
+        PostItemJnlLineBoo: Boolean;
+        "//AKK1606.01--": Integer;
+        wEntryDate: Date;
+        wEntryDateApp: Date;
+        wEntryText: Text[50];
+        rItemLedEntry: Record 32;
         wEntryNo: Code[20];
         wEntryDate2: Date;
         // wEntryNo2: Code[20];
@@ -52,25 +51,23 @@ codeunit 50050 CU22Subscriber
     local procedure OnPostItemOnAfterGetSKU(var ItemJnlLine: Record "Item Journal Line"; var SKUExists: Boolean; var IsHandled: Boolean)
     begin
         //TODO
-        /*  if InvtSetup.Get() then
-             //>>NV
-             IF (NOT SKUExists) AND (InvtSetup."Auto Create SKU") THEN
-                 SKUExists := NVM.CreateSKU(ItemJnlLine."Item No.", ItemJnlLine."Location Code", ItemJnlLine."Variant Code");
-         //<<NV */
+        if InvtSetup.Get() then
+            //>>NV
+            IF (NOT SKUExists) AND (InvtSetup."Auto Create SKU") THEN
+                SKUExists := NVM.CreateSKU(ItemJnlLine."Item No.", ItemJnlLine."Location Code", ItemJnlLine."Variant Code");
+        //<<NV 
         //TODO
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", OnPostItemOnBeforeCheckInventoryPostingGroup, '', false, false)]
     local procedure OnPostItemOnBeforeCheckInventoryPostingGroup(var ItemJnlLine: Record "Item Journal Line"; var CalledFromAdjustment: Boolean; var Item: Record Item; var ItemTrackingCode: Record "Item Tracking Code")
     begin
-        //TODO
-        /*   //>> NIF 07-10-05
-          IF Item.GET(ItemJnlLine."Item No.") THEN
-              IF NOT CalledFromAdjustment THEN
-                  IF (Item."Require Revision No.") AND (ItemJnlLine."Revision No." = '') AND (ItemJnlLine."Item Charge No." = '') THEN
-                      ERROR('%1 is required for %2.', ItemJnlLine.FIELDNAME("Revision No."), Item."No.");
-          //<< NIF 07-10-05 */
-        //TODO
+        //>> NIF 07-10-05
+        IF Item.GET(ItemJnlLine."Item No.") THEN
+            IF NOT CalledFromAdjustment THEN
+                IF (Item."Require Revision No.") AND (ItemJnlLine."Revision No." = '') AND (ItemJnlLine."Item Charge No." = '') THEN
+                    ERROR('%1 is required for %2.', ItemJnlLine.FIELDNAME("Revision No."), Item."No.");
+        //<< NIF 07-10-05
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", OnPostFlushedConsumpOnAfterCalcQtyToPost, '', false, false)]
@@ -102,9 +99,9 @@ codeunit 50050 CU22Subscriber
     local procedure OnTestFirstApplyItemLedgEntryOnBeforeReservationPreventsApplication(OldItemLedgerEntry: Record "Item Ledger Entry"; ItemLedgerEntry: Record "Item Ledger Entry"; var IsHandled: Boolean);
     begin
         //TODO
-        /*   //>>> NV
-          ItemLedgerEntry."QC Hold" := OldItemLedgerEntry."QC Hold";
-          //<<< NV */
+        //>>> NV
+        ItemLedgerEntry."QC Hold" := OldItemLedgerEntry."QC Hold";
+        //<<< NV
         //TODO
     end;
 
@@ -112,12 +109,12 @@ codeunit 50050 CU22Subscriber
     local procedure OnAfterApplyItemLedgEntrySetFilters(var ItemLedgerEntry2: Record "Item Ledger Entry"; ItemLedgerEntry: Record "Item Ledger Entry"; ItemJournalLine: Record "Item Journal Line")
     begin
         //TODO
-        /*  //>>> NV
-         IF (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::Sale) OR
-            (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::Transfer) OR
-            (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::"Negative Adjmt.") THEN
-             ItemLedgerEntry2.SETRANGE("QC Hold", FALSE);
-         //<<< NV */
+        //>>> NV
+        IF (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::Sale) OR
+           (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::Transfer) OR
+           (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::"Negative Adjmt.") THEN
+            ItemLedgerEntry2.SETRANGE("QC Hold", FALSE);
+        //<<< NV
         //TODO
         SingleInstanceCu.SetItemLedgerEntry(ItemLedgerEntry2);
     end;
@@ -159,10 +156,10 @@ codeunit 50050 CU22Subscriber
         //+AKK1606.01++
 
         //TODO
-        /*   //>>> NV
-          NewItemLedgerEntry."QC Hold" := ItemJournalLine."QC Hold";
-          NewItemLedgerEntry."QC Hold Reason Code" := ItemJournalLine."QC Hold Reason Code";
-          //<<< NV */
+        //>>> NV
+        NewItemLedgerEntry."QC Hold" := ItemJournalLine."QC Hold";
+        NewItemLedgerEntry."QC Hold Reason Code" := ItemJournalLine."QC Hold Reason Code";
+        //<<< NV
         //TODO
 
     end;
@@ -232,9 +229,9 @@ codeunit 50050 CU22Subscriber
     local procedure OnInitValueEntryOnAfterAssignFields(var ValueEntry: Record "Value Entry"; ItemLedgEntry: Record "Item Ledger Entry"; ItemJnlLine: Record "Item Journal Line")
     begin
         //TODO
-        /*   //>> NV #9752
-          ValueEntry."Contract No." := ItemJnlLine."Contract No.";
-          //<< NV #9752 */
+        //>> NV #9752
+        ValueEntry."Contract No." := ItemJnlLine."Contract No.";
+        //<< NV #9752 
         //TODO
     end;
 

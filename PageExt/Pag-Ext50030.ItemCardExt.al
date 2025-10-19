@@ -206,7 +206,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                          CurrPage.UPDATE(FALSE);
                          //<< NIF 06-29-05 RTT
                      end;
-                 } */
+                 }
                 //TODO
                 /*  field("Revision Date"; Rec."Revision Date")
                  {

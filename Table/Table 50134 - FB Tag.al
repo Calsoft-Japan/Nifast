@@ -28,10 +28,9 @@ table 50134 "FB Tag"
         field(45; "Location Code"; Code[10])
         {
             // cleaned
-            //TODO
-            /*  TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                             "Rework Location" = CONST(false)); */
-            //TODO
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                             "Rework Location" = CONST(false));
+
         }
         field(80; "Item No."; Code[20])
         {
@@ -67,18 +66,14 @@ table 50134 "FB Tag"
         field(180; "Selling Location"; Code[10])
         {
             // cleaned
-            //TODO
-            /*  TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                             "Rework Location" = CONST(false)); */
-            //TODO
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                             "Rework Location" = CONST(false));
         }
         field(190; "Shipping Location"; Code[10])
         {
             // cleaned
-            //TODO
-            /*    TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                               "Rework Location" = CONST(false)); */
-            //TODO
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                               "Rework Location" = CONST(false));
         }
         field(200; "Contract No."; Code[20])
         {
@@ -87,29 +82,27 @@ table 50134 "FB Tag"
 
             trigger OnValidate()
             begin
-                //TODO
-                /*   IF "Contract No." <> '' THEN BEGIN
-                      SalesPrice.SETRANGE("Item No.", "Item No.");
-                      SalesPrice.SETRANGE("Sales Type", SalesPrice."Sales Type"::Customer);
-                      SalesPrice.SETRANGE("Sales Code", "Customer No.");
-                      SalesPrice.SETRANGE("Starting Date", 0D, WORKDATE());
-                      SalesPrice.SETRANGE("Variant Code", "Variant Code");
-                      SalesPrice.SETRANGE("Unit of Measure Code", "Unit of Measure Code");
-                      SalesPrice.SETFILTER("Ending Date", '%1|>=%2', 0D, WORKDATE());
-                      SalesPrice.SETRANGE("Contract No.", "Contract No.");
-                      SalesPrice.SETRANGE("Contract Ship-to Code", "Ship-to Code");
-                      IF SalesPrice.FIND('-') THEN BEGIN
-                          "Reorder Quantity" := SalesPrice."Reorder Quantity";
-                          "Min. Quantity" := SalesPrice."Min. Quantity";
-                          "Max. Quantity" := SalesPrice."Max. Quantity";
-                          "External Document No." := SalesPrice."External Document No.";
-                          "FB Order Type" := SalesPrice."FB Order Type";
-                          "Replenishment Method" := SalesPrice."Replenishment Method";
-                          "Selling Location" := SalesPrice."Contract Location Code";
-                          "Shipping Location" := SalesPrice."Contract Ship Location Code";
-                      END;
-                  END; */
-                //TODO
+                IF "Contract No." <> '' THEN BEGIN
+                    SalesPrice.SETRANGE("Item No.", "Item No.");
+                    SalesPrice.SETRANGE("Sales Type", SalesPrice."Sales Type"::Customer);
+                    SalesPrice.SETRANGE("Sales Code", "Customer No.");
+                    SalesPrice.SETRANGE("Starting Date", 0D, WORKDATE());
+                    SalesPrice.SETRANGE("Variant Code", "Variant Code");
+                    SalesPrice.SETRANGE("Unit of Measure Code", "Unit of Measure Code");
+                    SalesPrice.SETFILTER("Ending Date", '%1|>=%2', 0D, WORKDATE());
+                    SalesPrice.SETRANGE("Contract No.", "Contract No.");
+                    SalesPrice.SETRANGE("Contract Ship-to Code", "Ship-to Code");
+                    IF SalesPrice.FIND('-') THEN BEGIN
+                        "Reorder Quantity" := SalesPrice."Reorder Quantity";
+                        "Min. Quantity" := SalesPrice."Min. Quantity";
+                        "Max. Quantity" := SalesPrice."Max. Quantity";
+                        "External Document No." := SalesPrice."External Document No.";
+                        "FB Order Type" := SalesPrice."FB Order Type";
+                        "Replenishment Method" := SalesPrice."Replenishment Method";
+                        "Selling Location" := SalesPrice."Contract Location Code";
+                        "Shipping Location" := SalesPrice."Contract Ship Location Code";
+                    END;
+                END;
             end;
 
         }
@@ -166,12 +159,12 @@ table 50134 "FB Tag"
         TagSetup.GET();
         IF "No." = '' THEN BEGIN
             TagSetup.TESTFIELD("Tag Nos.");
-            NoSeriesMgt.InitSeries(TagSetup."Tag Nos.", xRec."No. Series", WORKDATE(), "No.", "No. Series");
+            NoSeriesMgt.AreRelated(TagSetup."Tag Nos.", xRec."No. Series");
         END;
     end;
 
     var
         TagSetup: Record 50133;
-        // SalesPrice: Record 7002;
-        NoSeriesMgt: Codeunit 396;
+        SalesPrice: Record 7002;
+        NoSeriesMgt: Codeunit "No. Series";
 }

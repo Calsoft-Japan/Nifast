@@ -4,15 +4,13 @@ codeunit 50046 CU5063Subscriber
     [EventSubscriber(ObjectType::Codeunit, Codeunit::ArchiveManagement, OnBeforeCheckIfDocumentIsPartiallyPosted, '', false, false)]
     local procedure OnBeforeCheckIfDocumentIsPartiallyPosted(var SalesHeaderArchive: Record "Sales Header Archive"; var DoCheck: Boolean)
     var
-    // SalesHeader: Record "Sales Header";
+        SalesHeader: Record "Sales Header";
     begin
-        //TODO
-        /*   if SalesHeader.Get(SalesHeaderArchive."Document Type", SalesHeaderArchive."No.") then begin
-              // >> EDI
-              SalesHeader.TESTFIELD("EDI Order", FALSE);
-              SalesHeader.TESTFIELD("EDI Internal Doc. No.", '');
-              // << EDI
-          end; */
-        //TODO
+        if SalesHeader.Get(SalesHeaderArchive."Document Type", SalesHeaderArchive."No.") then begin
+            // >> EDI
+            SalesHeader.TESTFIELD("LAX EDI Order", FALSE);
+            SalesHeader.TESTFIELD("LAX EDI Internal Doc. No.", '');
+            // << EDI
+        end;
     end;
 }

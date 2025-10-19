@@ -104,38 +104,36 @@ table 99953 "TEMP - Fix Reservation Entry"
         field(25; "Created By"; Code[20])
         {
             Caption = 'Created By';
-            //TODO
-            //TableRelation = Table2000000002;
-            //TODO
+            TableRelation = Table2000000002;
             //This property is currently not supported
             //TestTableRelation = false;
 
             trigger OnLookup()
             var
-            //  LoginMgt: Codeunit 418;
+                LoginMgt: Codeunit 418;
             begin
-                //TODO
-                // LoginMgt.LookupUserID("Created By");
-                //TODO
+                 
+                LoginMgt.LookupUserID("Created By");
+                 
             end;
 
         }
         field(27; "Changed By"; Code[20])
         {
             Caption = 'Changed By';
-            //TODO
-            // TableRelation = Table2000000002;
-            //TODO
+             
+            TableRelation = Table2000000002;
+             
             //This property is currently not supported
             //TestTableRelation = false;
 
             trigger OnLookup()
             var
-            //  LoginMgt: Codeunit 418;
+                LoginMgt: Codeunit 418;
             begin
-                //TODO
-                //LoginMgt.LookupUserID("Changed By");
-                //TODO
+                 
+                LoginMgt.LookupUserID("Changed By");
+                 
             end;
 
         }

@@ -273,25 +273,23 @@ tableextension 50081 "Gen. Journal Line Ext" extends "Gen. Journal Line"
 
     PROCEDURE Check4XContract();
     VAR
-    /*  Bank4XContract: Record 50010;
-     LText50000: Label 'There is not enough remaining to cover this line\Do you want to split this line ?';
-     LText50001: Label 'Select another Contract or use SPOT';
-     LText50002: Label 'The Amount avaliable on Exchange Contract No. %1 has already been used in this journal', Comment = '%1=Bank4XContract."No."'; */
+        Bank4XContract: Record 50010;
+        LText50000: Label 'There is not enough remaining to cover this line\Do you want to split this line ?';
+        LText50001: Label 'Select another Contract or use SPOT';
+        LText50002: Label 'The Amount avaliable on Exchange Contract No. %1 has already been used in this journal', Comment = '%1=Bank4XContract."No."';
     BEGIN
-        //TODO
-        /*   IF Bank4XContract.GET("Exchange Contract No.") THEN BEGIN
-              Bank4XContract.CALCFIELDS(JournalAmount);
-              IF Bank4XContract.JournalAmount = Bank4XContract.AmountYen THEN
-                  ERROR(LText50002, Bank4XContract."No.");
+        IF Bank4XContract.GET("Exchange Contract No.") THEN BEGIN
+            Bank4XContract.CALCFIELDS(JournalAmount);
+            IF Bank4XContract.JournalAmount = Bank4XContract.AmountYen THEN
+                ERROR(LText50002, Bank4XContract."No.");
 
-              IF (Bank4XContract.JournalAmount + Amount) > Bank4XContract.AmountYen THEN BEGIN
-                  IF NOT CONFIRM(LText50000, FALSE) THEN
-                      ERROR(LText50001);
+            IF (Bank4XContract.JournalAmount + Amount) > Bank4XContract.AmountYen THEN BEGIN
+                IF NOT CONFIRM(LText50000, FALSE) THEN
+                    ERROR(LText50001);
 
-                  SplitLine(Bank4XContract);
-              END;
-          END; */
-        //TODO
+                SplitLine(Bank4XContract);
+            END;
+        END;
     END;
 
     PROCEDURE SplitLine(VAR Bank4XContract: Record 50010);

@@ -35,10 +35,8 @@ table 50136 "FB Header"
         field(45; "Location Code"; Code[10])
         {
             // cleaned
-            //TODO
-            /*  TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                             "Rework Location" = CONST(false)); */
-            //TODO
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                             "Rework Location" = CONST(false));
         }
         field(49; "Import Date"; Date)
         {
@@ -78,9 +76,7 @@ table 50136 "FB Header"
         field(170; "Salesperson Code"; Code[10])
         {
             Caption = 'Salesperson Code';
-            //TODO
-            // TableRelation = "Salesperson/Purchaser" WHERE(Sales = CONST(true));
-            //TODO
+            TableRelation = "Salesperson/Purchaser" WHERE(Sales = CONST(true));
 
             trigger OnValidate()
             var
@@ -94,25 +90,19 @@ table 50136 "FB Header"
         field(175; "Inside Salesperson Code"; Code[10])
         {
             // cleaned
-            //TODO
-            // TableRelation = "Salesperson/Purchaser" WHERE("Inside Sales" = CONST(true));
-            //TODO
+            TableRelation = "Salesperson/Purchaser" WHERE("Inside Sales" = CONST(true));
         }
         field(180; "Selling Location"; Code[10])
         {
             // cleaned
-            //TODO
-            /*  TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                             "Rework Location" = CONST(false)); */
-            //TODO
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                             "Rework Location" = CONST(false));
         }
         field(190; "Shipping Location"; Code[10])
         {
             // cleaned
-            //TODO
-            /*    TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                               "Rework Location" = CONST(false)); */
-            //TODO
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                               "Rework Location" = CONST(false));
         }
         field(200; "Contract No."; Code[20])
         {
@@ -125,9 +115,7 @@ table 50136 "FB Header"
                 IF PriceContract.GET("Contract No.") THEN BEGIN
                     "Ship-To Code" := PriceContract."Ship-to Code";
                     "Location Code" := PriceContract."Location Code";
-                    //TODO
-                    // "FB Order Type" := PriceContract."FB Order Type";
-                    //TODO
+                    "FB Order Type" := PriceContract."FB Order Type";
                     "Selling Location" := PriceContract."Selling Location Code";
                     "Shipping Location" := PriceContract."Shipping Location Code";
                 END;
@@ -170,7 +158,8 @@ table 50136 "FB Header"
         FBSetup.GET();
         IF "No." = '' THEN BEGIN
             FBSetup.TESTFIELD("Order Nos.");
-            NoSeriesMgt.InitSeries(FBSetup."Order Nos.", xRec."No. Series", WORKDATE(), "No.", "No. Series");
+            //NoSeriesMgt.InitSeries(FBSetup."Order Nos.", xRec."No. Series", WORKDATE(), "No.", "No. Series");
+            NoSeriesMgt.AreRelated(FBSetup."Order Nos.", xRec."No. Series");
         END;
 
         Status := Status::New;
@@ -182,7 +171,7 @@ table 50136 "FB Header"
         FBHeader: Record 50136;
         FBLine: Record 50137;
         PriceContract: Record 50110;
-        NoSeriesMgt: Codeunit 396;
+        NoSeriesMgt: Codeunit "No. Series";
     //">>NIF": Integer;
 
     procedure AssistEdit(OldFBHeader: Record 50136): Boolean
@@ -190,10 +179,10 @@ table 50136 "FB Header"
         FBHeader := Rec;
         FBSetup.GET();
         FBSetup.TESTFIELD("Order Nos.");
-        IF NoSeriesMgt.SelectSeries(FBSetup."Order Nos.", OldFBHeader."No. Series", FBHeader."No. Series") THEN BEGIN
+        IF NoSeriesMgt.LookupRelatedNoSeries(FBSetup."Order Nos.", OldFBHeader."No. Series", FBHeader."No. Series") THEN BEGIN
             FBSetup.GET();
             FBSetup.TESTFIELD("Order Nos.");
-            NoSeriesMgt.SetSeries(FBHeader."No.");
+            NoSeriesMgt.GetNextNo(FBHeader."No.");
             Rec := FBHeader;
             EXIT(TRUE);
         END;

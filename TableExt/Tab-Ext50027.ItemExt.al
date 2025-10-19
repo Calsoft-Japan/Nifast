@@ -73,12 +73,12 @@ tableextension 50027 "Item Ext" extends "Item"
             trigger OnAfterValidate()
             begin
                 //TODO
-                /*  //>> NV
-                 SKU.RESET;
-                 SKU.SETRANGE("Item No.", "No.");
-                 SKU.MODIFYALL("Item Category Code", "Item Category Code");
-                 SKU.MODIFYALL("Product Group Code", "Product Group Code");
-                 //<< NV */
+                //>> NV
+                SKU.RESET;
+                SKU.SETRANGE("Item No.", "No.");
+                SKU.MODIFYALL("Item Category Code", "Item Category Code");
+                SKU.MODIFYALL("Product Group Code", "Product Group Code");
+                //<< NV 
                 //TODO
             end;
         }
@@ -267,45 +267,47 @@ tableextension 50027 "Item Ext" extends "Item"
         //TODO
     }
     var
-    /*  ItemCrossReference: Record 5777;
-     SKU: Record "Stockkeeping Unit";
-     UserSetup: Record 91;
-     Item: Record 27;
-     NVM: Codeunit 50021;
-     Text14000701: Label '%1 is normally 12 digit, use this number anyway?';
-     Text14000702: Label 'Nothing Changed.';
-*/
+        ItemCrossReference: Record 5777;
+        SKU: Record "Stockkeeping Unit";
+        UserSetup: Record 91;
+        InventorySetup: Record "Inventory Setup";
+        Item: Record 27;
+        NVM: Codeunit 50021;
+        HasInvtSetup: Boolean;
+        Text14000701: Label '%1 is normally 12 digit, use this number anyway?';
+        Text14000702: Label 'Nothing Changed.';
+
     trigger OnAfterInsert()
     begin
         National := TRUE; //-AKK1606.01++
 
         //TODO
-        /* //>>NV
-        "Date Created" := WORKDATE;
+        //>>NV
+        "Date Created" := WORKDATE();
         //>> NF1.00:CIS.CM 09-29-15
         //IF NVM.TestPermission(14017859) THEN
         //MDM.CreateNotification('300',0,"No.",0,'',0,'');
         //<< NF1.00:CIS.CM 09-29-15
 
         IF NVM.TestPermission(14018070) THEN BEGIN
-            GetInvtSetup;
+            GetInvtSetup();
             "QC Hold" := InvtSetup."Default New Item QC Hold";
             "QC Hold Reason Code" := InvtSetup."New Item QC Reason Code";
             //QCMgmt.InsertNewQCItemTask(Rec); //NF1.00:CIS.CM 09-29-15
         END;
-        //<<NV */
+        //<<NV 
         //TODO
     end;
 
     trigger OnAfterDelete()
     var
-    // SocialListeningSearchTopic: Record 871;
+        SocialListeningSearchTopic: Record 871;
     begin
         //TODO
-        /*      IF NOT SocialListeningSearchTopic.ISEMPTY THEN BEGIN
-                 SocialListeningSearchTopic.FindSearchTopic(SocialListeningSearchTopic."Source Type"::Item, "No.");
-                 SocialListeningSearchTopic.DELETEALL;
-             END; */
+        IF NOT SocialListeningSearchTopic.ISEMPTY THEN BEGIN
+            SocialListeningSearchTopic.FindSearchTopic(SocialListeningSearchTopic."Source Type"::Item, "No.");
+            SocialListeningSearchTopic.DELETEALL;
+        END;
         //TODO
 
         //>>NV
@@ -321,138 +323,144 @@ tableextension 50027 "Item Ext" extends "Item"
     BEGIN
     END;
 
+    local procedure GetInvtSetup()
+    begin
+        if not HasInvtSetup then begin
+            InventorySetup.Get();
+            HasInvtSetup := true;
+        end;
+    end;
+
     PROCEDURE GetLotBinContents(VAR TempLotBinContent: Record 50001 temporary);
     VAR
-    /*  LotNoInfo: Record 6505;
-     WhseEntry: Record 7312;
-     Bin: Record 7354;
-     ItemUnitOfMeasure: Record 5404;
-     BinContent: Record 7302; */
+        LotNoInfo: Record 6505;
+        WhseEntry: Record 7312;
+        Bin: Record 7354;
+        ItemUnitOfMeasure: Record 5404;
+        BinContent: Record 7302;
     BEGIN
         //TODO
-        /*
-           TempLotBinContent.DELETEALL();
+        TempLotBinContent.DELETEALL();
 
-           LotNoInfo.SETRANGE("Item No.", "No.");
-           LotNoInfo.SETRANGE("Open Whse. Entries Exist", TRUE);
-           LotNoInfo.SETFILTER("Location Filter", GETFILTER("Location Filter"));
-           LotNoInfo.SETFILTER("Bin Filter", GETFILTER("Bin Filter"));
-           LotNoInfo.SETFILTER("Variant Code", GETFILTER("Variant Filter"));
+        LotNoInfo.SETRANGE("Item No.", "No.");
+        LotNoInfo.SETRANGE("Open Whse. Entries Exist", TRUE);
+        LotNoInfo.SETFILTER("Location Filter", GETFILTER("Location Filter"));
+        LotNoInfo.SETFILTER("Bin Filter", GETFILTER("Bin Filter"));
+        LotNoInfo.SETFILTER("Variant Code", GETFILTER("Variant Filter"));
 
-           IF NOT LotNoInfo.FIND('-') THEN
-               EXIT;
+        IF NOT LotNoInfo.FIND('-') THEN
+            EXIT;
 
-           //loop through whse. entry
-           WhseEntry.SETCURRENTKEY("Item No.", Open, Positive, "Location Code", "Zone Code",
-                                     "Bin Code", "Serial No.", "Lot No.", "Expiration Date", "Posting Date");
+        //loop through whse. entry
+        WhseEntry.SETCURRENTKEY("Item No.", Open, Positive, "Location Code", "Zone Code",
+                                  "Bin Code", "Serial No.", "Lot No.", "Expiration Date", "Posting Date");
 
-           WhseEntry.SETRANGE("Item No.", "No.");
-           WhseEntry.SETRANGE(Open, TRUE);
-           WhseEntry.SETFILTER("Location Code", GETFILTER("Location Filter"));
+        WhseEntry.SETRANGE("Item No.", "No.");
+        WhseEntry.SETRANGE(Open, TRUE);
+        WhseEntry.SETFILTER("Location Code", GETFILTER("Location Filter"));
 
-           REPEAT
-               WhseEntry.SETFILTER("Lot No.", LotNoInfo."Lot No.");
-               WhseEntry.SETFILTER("Variant Code", GETFILTER("Variant Filter"));
-               WhseEntry.FIND('-');
-               REPEAT
-                   WITH TempLotBinContent DO BEGIN
-                       "Location Code" := WhseEntry."Location Code";
-                       "Bin Code" := WhseEntry."Bin Code";
-                       "Item No." := WhseEntry."Item No.";
-                       "Variant Code" := WhseEntry."Variant Code";
-                       "Unit of Measure Code" := WhseEntry."Unit of Measure Code";
-                       "Lot No." := WhseEntry."Lot No.";
-                       "Zone Code" := WhseEntry."Zone Code";
-                       "Bin Type Code" := WhseEntry."Bin Type Code";
-                       //"Expiration Date" := LotNoInfo."Expiration Date";
-                       "Creation Date" := LotNoInfo."Lot Creation Date";
-                       "External Lot No." := LotNoInfo."Mfg. Lot No.";
+        REPEAT
+            WhseEntry.SETFILTER("Lot No.", LotNoInfo."Lot No.");
+            WhseEntry.SETFILTER("Variant Code", GETFILTER("Variant Filter"));
+            WhseEntry.FIND('-');
+            REPEAT
+                WITH TempLotBinContent DO BEGIN
+                    "Location Code" := WhseEntry."Location Code";
+                    "Bin Code" := WhseEntry."Bin Code";
+                    "Item No." := WhseEntry."Item No.";
+                    "Variant Code" := WhseEntry."Variant Code";
+                    "Unit of Measure Code" := WhseEntry."Unit of Measure Code";
+                    "Lot No." := WhseEntry."Lot No.";
+                    "Zone Code" := WhseEntry."Zone Code";
+                    "Bin Type Code" := WhseEntry."Bin Type Code";
+                    //"Expiration Date" := LotNoInfo."Expiration Date";
+                    "Creation Date" := LotNoInfo."Lot Creation Date";
+                    "External Lot No." := LotNoInfo."Mfg. Lot No.";
 
-                       //get qty per unit of measure
-                       ItemUnitOfMeasure.GET("Item No.", "Unit of Measure Code");
-                       "Qty. per Unit of Measure" := ItemUnitOfMeasure."Qty. per Unit of Measure";
+                    //get qty per unit of measure
+                    ItemUnitOfMeasure.GET("Item No.", "Unit of Measure Code");
+                    "Qty. per Unit of Measure" := ItemUnitOfMeasure."Qty. per Unit of Measure";
 
-                       //get bin fields
-                       IF NOT Bin.GET(WhseEntry."Location Code", WhseEntry."Bin Code") THEN
-                           CLEAR(Bin);
-                       "Warehouse Class Code" := Bin."Warehouse Class Code";
-                       "Bin Ranking" := Bin."Bin Ranking";
-                       "Cross-Dock Bin" := Bin."Cross-Dock Bin";
-                       Default := Bin.Default;
-                       IF BinContent.GET("Location Code", "Bin Code", "Item No.", "Variant Code", "Unit of Measure Code") THEN
-                           "Block Movement" := BinContent."Block Movement"
-                       ELSE
-                           "Block Movement" := Bin."Block Movement";
-                       //>> 06-14-05
-                       "Units per Parcel" := Item."Units per Parcel";
-                       //<< 06-14-05
-                       //Bin."Adjustment Bin";
-                       //Bin."Pick Bin Ranking";
-                       //Bin."Bin Size Code";
+                    //get bin fields
+                    IF NOT Bin.GET(WhseEntry."Location Code", WhseEntry."Bin Code") THEN
+                        CLEAR(Bin);
+                    "Warehouse Class Code" := Bin."Warehouse Class Code";
+                    "Bin Ranking" := Bin."Bin Ranking";
+                    "Cross-Dock Bin" := Bin."Cross-Dock Bin";
+                    Default := Bin.Default;
+                    IF BinContent.GET("Location Code", "Bin Code", "Item No.", "Variant Code", "Unit of Measure Code") THEN
+                        "Block Movement" := BinContent."Block Movement"
+                    ELSE
+                        "Block Movement" := Bin."Block Movement";
+                    //>> 06-14-05
+                    "Units per Parcel" := Item."Units per Parcel";
+                    //<< 06-14-05
+                    //Bin."Adjustment Bin";
+                    //Bin."Pick Bin Ranking";
+                    //Bin."Bin Size Code";
 
-                       IF NOT INSERT() THEN;
-                   END;
-               UNTIL WhseEntry.NEXT() = 0;
-           UNTIL LotNoInfo.NEXT() = 0;
-           */
+                    IF NOT INSERT() THEN;
+                END;
+            UNTIL WhseEntry.NEXT() = 0;
+        UNTIL LotNoInfo.NEXT() = 0;
         //TODO
     END;
 
     PROCEDURE UpdateQCHoldFromItem(ItemNo: Code[20]; QCHold: Boolean);
     VAR
-    /*   PurchLine: Record 39;
-      ItemVend: Record 99; */
+        PurchLine: Record 39;
+        ItemVend: Record 99;
     BEGIN
         //TODO
-        /*  //>> NF1.00:CIS.CM 09-29-15
-         PurchLine.SETCURRENTKEY(Type, "No.");
-         PurchLine.SETRANGE(Type, PurchLine.Type::Item);
-         PurchLine.SETRANGE("No.", ItemNo);
-         PurchLine.MODIFYALL("QC Hold", QCHold);
+        //>> NF1.00:CIS.CM 09-29-15
+        PurchLine.SETCURRENTKEY(Type, "No.");
+        PurchLine.SETRANGE(Type, PurchLine.Type::Item);
+        PurchLine.SETRANGE("No.", ItemNo);
+        PurchLine.MODIFYALL("QC Hold", QCHold);
 
-         //if qc hold taken off, then exit
-         IF NOT QCHold THEN
-             EXIT;
+        //if qc hold taken off, then exit
+        IF NOT QCHold THEN
+            EXIT;
 
-         //if qc hold put on, consider waivers
-         ItemVend.SETRANGE("Item No.", ItemNo);
-         ItemVend.SETRANGE("Waive QC Hold", TRUE);
+        //if qc hold put on, consider waivers
+        ItemVend.SETRANGE("Item No.", ItemNo);
+        ItemVend.SETRANGE("Waive QC Hold", TRUE);
 
-         //if no waivers found, then exit
-         IF NOT ItemVend.FIND('-') THEN
-             EXIT;
+        //if no waivers found, then exit
+        IF NOT ItemVend.FindLast() THEN
+            EXIT;
 
-         REPEAT
-             UpdateQCWaiverFromItemVend(ItemVend, QCHold, TRUE);
-         UNTIL ItemVend.NEXT = 0;
-         //<< NF1.00:CIS.CM 09-29-15 */
+        REPEAT
+            UpdateQCWaiverFromItemVend(ItemVend, QCHold, TRUE);
+        UNTIL ItemVend.NEXT() = 0;
+        //<< NF1.00:CIS.CM 09-29-15 
         //TODO
     END;
 
     PROCEDURE UpdateQCWaiverFromItemVend(ItemVend: Record 99; WaiveQCHold: Boolean; CalledFromItem: Boolean);
     VAR
-    //  PurchLine: Record 39;
+        PurchLine: Record 39;
     BEGIN
         //TODO
-        /*         //>> NF1.00:CIS.CM 09-29-15
-                //exit if item is blank
-                IF ItemVend."Item No." = '' THEN
-                    EXIT;
+        //>> NF1.00:CIS.CM 09-29-15
+        //exit if item is blank
+        IF ItemVend."Item No." = '' THEN
+            EXIT;
 
-                //if called from item, use internal value for hold
-                IF CalledFromItem THEN
-                    WaiveQCHold := ItemVend."Waive QC Hold";
+        //if called from item, use internal value for hold
+        IF CalledFromItem THEN
+            WaiveQCHold := ItemVend."Waive QC Hold";
 
-                PurchLine.SETCURRENTKEY(Type, "No.");
-                PurchLine.SETRANGE(Type, PurchLine.Type::Item);
-                PurchLine.SETRANGE("No.", ItemVend."Item No.");
-                PurchLine.SETRANGE("Buy-from Vendor No.", ItemVend."Vendor No.");
-                IF PurchLine.FIND('-') THEN
-                    REPEAT
-                        PurchLine."QC Hold" := (NOT WaiveQCHold);
-                        PurchLine.MODIFY;
-                    UNTIL PurchLine.NEXT = 0;
-                //<< NF1.00:CIS.CM 09-29-15 */
+        PurchLine.SETCURRENTKEY(Type, "No.");
+        PurchLine.SETRANGE(Type, PurchLine.Type::Item);
+        PurchLine.SETRANGE("No.", ItemVend."Item No.");
+        PurchLine.SETRANGE("Buy-from Vendor No.", ItemVend."Vendor No.");
+        IF PurchLine.FIND('-') THEN
+            REPEAT
+                PurchLine."QC Hold" := (NOT WaiveQCHold);
+                PurchLine.MODIFY();
+            UNTIL PurchLine.NEXT() = 0;
+        //<< NF1.00:CIS.CM 09-29-15 
         //TODO
     END;
 }

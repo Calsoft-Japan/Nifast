@@ -215,27 +215,25 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
 
     PROCEDURE ShowSpecialFields();
     VAR
-    // SalesShptLine: Record 111;
-    // SpecialFields: Page 50007;
+        SalesShptLine: Record 111;
+        SpecialFields: Page 50007;
     BEGIN
-        //TODO
-        /*  IF (Type <> Type::Item) OR ("No." = '') THEN
-             EXIT;
-         SalesShptLine.SETRANGE("Document No.", "Document No.");
-         SalesShptLine.SETRANGE("Line No.", "Line No.");
-         SpecialFields.SETTABLEVIEW(SalesShptLine);
-         SpecialFields.RUN; */
-        //TODO
+        IF (Type <> Type::Item) OR ("No." = '') THEN
+            EXIT;
+        SalesShptLine.SETRANGE("Document No.", "Document No.");
+        SalesShptLine.SETRANGE("Line No.", "Line No.");
+        SpecialFields.SETTABLEVIEW(SalesShptLine);
+        SpecialFields.RUN();
     END;
 
     PROCEDURE ShowItemTrackingLines_gFnc(VAR TempItemLedgEntry_vRecTmp: Record 32 temporary);
     VAR
-       // ItemTrackingMgt: Codeunit 6500;
+        ItemTrackingMgt: Codeunit 6500;
     BEGIN
         //TODO
-        /*  //>> NF1.00:CIS.NG    09/12/16
-         ItemTrackingMgt.CallPostedItemTrackingForm_gFnc(DATABASE::"Sales Shipment Line", 0, "Document No.", '', 0, "Line No.", TempItemLedgEntry_vRecTmp);
-         //<< NF1.00:CIS.NG    09/12/16 */
+        //>> NF1.00:CIS.NG    09/12/16
+        ItemTrackingMgt.CallPostedItemTrackingForm_gFnc(DATABASE::"Sales Shipment Line", 0, "Document No.", '', 0, "Line No.", TempItemLedgEntry_vRecTmp);
+        //<< NF1.00:CIS.NG    09/12/16 
         //TODO
     END;
 }

@@ -145,7 +145,7 @@ table 50002 "Lot Entry"
         LotEntry: Record 50002;
         TempSalesLine: Record 37 temporary;
         TrackingSpecificationTmp: Record 336 temporary;
-        // TrackingSpecification: Record 336 temporary;
+        TrackingSpecification: Record 336 temporary;
         LotEntry2: Record 50002;
         ReserveSalesLine: Codeunit 99000832;
         ItemTrackingForm: Page "Item Tracking Lines";
@@ -177,10 +177,8 @@ table 50002 "Lot Entry"
                 //get initial lots
                 CLEAR(ReserveSalesLine);
                 CLEAR(ItemTrackingForm);
-                //TODO
-                /*  ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
-                 ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date"); */
-                //TODO
+                ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
+                ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date");
                 ItemTrackingForm.EShipOpenForm();
                 TrackingSpecificationTmp.RESET();
                 TrackingSpecificationTmp.DELETEALL();
@@ -250,11 +248,11 @@ table 50002 "Lot Entry"
     var
         PurchLine: Record 39;
         LotEntry: Record 50002;
-        /*  Item: Record 27;
-         ItemTrackingCode: Record 6502; */
+        Item: Record 27;
+        ItemTrackingCode: Record 6502;
         TempPurchLine: Record 39 temporary;
         TrackingSpecificationTmp: Record 336 temporary;
-        //TrackingSpecification: Record 336 temporary;
+        TrackingSpecification: Record 336 temporary;
         LotEntry2: Record 50002;
         ReservePurchLine: Codeunit 99000834;
         ItemTrackingForm: Page 6510;
@@ -282,73 +280,71 @@ table 50002 "Lot Entry"
         UseLineNo := 10000;
 
 
-        WITH PurchLine DO
-            REPEAT
-                IF IsLotTracking("No.") THEN BEGIN
+        //WITH PurchLine DO
+        REPEAT
+            IF IsLotTracking(PurchLine."No.") THEN BEGIN
 
-                    //get initial lots
-                    CLEAR(ReservePurchLine);
-                    CLEAR(ItemTrackingForm);
-                    //TODO
-                    /* ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-                    ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date"); */
-                    //TODO
-                    ItemTrackingForm.EShipOpenForm();
-                    TrackingSpecificationTmp.RESET();
-                    TrackingSpecificationTmp.DELETEALL();
+                //get initial lots
+                CLEAR(ReservePurchLine);
+                CLEAR(ItemTrackingForm);
+                ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+                ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
+                ItemTrackingForm.EShipOpenForm();
+                TrackingSpecificationTmp.RESET();
+                TrackingSpecificationTmp.DELETEALL();
 
-                    ItemTrackingForm.EShipGetRecords(TrackingSpecificationTmp);
-                    IF TrackingSpecificationTmp.FIND('-') THEN BEGIN
-                        REPEAT
-                            //insert these lots
-                            IF (TrackingSpecificationTmp."Quantity (Base)" - TrackingSpecificationTmp."Quantity Handled (Base)") <> 0 THEN BEGIN
-                                LotEntry.INIT();
-                                LotEntry."Document Type" := LotEntry."Document Type"::"Purchase Order";
-                                LotEntry."Document No." := "Document No.";
-                                LotEntry."Order Line No." := "Line No.";
-                                LotEntry."Line No." := UseLineNo;
-                                LotEntry."Item No." := "No.";
-                                LotEntry.Description := Description;
-                                LotEntry."Location Code" := "Location Code";
-                                LotEntry."Variant Code" := "Variant Code";
-                                LotEntry."Unit of Measure Code" := "Unit of Measure Code";
-                                LotEntry.Quantity := TrackingSpecificationTmp."Quantity (Base)" -
-                                                       TrackingSpecificationTmp."Quantity Handled (Base)";
-                                LotEntry."Lot No." := TrackingSpecificationTmp."Lot No.";
-                                GetLotInfo("No.", "Variant Code", TrackingSpecificationTmp."Lot No.", LotNoInfo);
-                                LotEntry."External Lot No." := LotNoInfo."Mfg. Lot No.";
-                                LotEntry."Creation Date" := LotNoInfo."Lot Creation Date";
-                                LotEntry."Expiration Date" := TrackingSpecificationTmp."Expiration Date";
-                                LotEntry.INSERT();
-                                UseLineNo := UseLineNo + 10000;
-                            END;
-                        UNTIL TrackingSpecificationTmp.NEXT() = 0;
+                ItemTrackingForm.EShipGetRecords(TrackingSpecificationTmp);
+                IF TrackingSpecificationTmp.FIND('-') THEN BEGIN
+                    REPEAT
+                        //insert these lots
+                        IF (TrackingSpecificationTmp."Quantity (Base)" - TrackingSpecificationTmp."Quantity Handled (Base)") <> 0 THEN BEGIN
+                            LotEntry.INIT();
+                            LotEntry."Document Type" := LotEntry."Document Type"::"Purchase Order";
+                            LotEntry."Document No." := PurchLine."Document No.";
+                            LotEntry."Order Line No." := PurchLine."Line No.";
+                            LotEntry."Line No." := UseLineNo;
+                            LotEntry."Item No." := PurchLine."No.";
+                            LotEntry.Description := PurchLine.Description;
+                            LotEntry."Location Code" := PurchLine."Location Code";
+                            LotEntry."Variant Code" := PurchLine."Variant Code";
+                            LotEntry."Unit of Measure Code" := PurchLine."Unit of Measure Code";
+                            LotEntry.Quantity := TrackingSpecificationTmp."Quantity (Base)" -
+                                                   TrackingSpecificationTmp."Quantity Handled (Base)";
+                            LotEntry."Lot No." := TrackingSpecificationTmp."Lot No.";
+                            GetLotInfo(PurchLine."No.", PurchLine."Variant Code", TrackingSpecificationTmp."Lot No.", LotNoInfo);
+                            LotEntry."External Lot No." := LotNoInfo."Mfg. Lot No.";
+                            LotEntry."Creation Date" := LotNoInfo."Lot Creation Date";
+                            LotEntry."Expiration Date" := TrackingSpecificationTmp."Expiration Date";
+                            LotEntry.INSERT();
+                            UseLineNo := UseLineNo + 10000;
+                        END;
+                    UNTIL TrackingSpecificationTmp.NEXT() = 0;
 
-                        ItemTrackingForm.EShipCloseForm();
-                    END;  //end for if find lots
+                    ItemTrackingForm.EShipCloseForm();
+                END;  //end for if find lots
 
-                    //now get remaining quantity
-                    LotEntry2.SETRANGE("Document Type", LotEntry."Document Type"::"Purchase Order");
-                    LotEntry2.SETRANGE("Document No.", "Document No.");
-                    LotEntry2.SETRANGE("Order Line No.", "Line No.");
-                    LotEntry2.CALCSUMS(Quantity);
+                //now get remaining quantity
+                LotEntry2.SETRANGE("Document Type", LotEntry."Document Type"::"Purchase Order");
+                LotEntry2.SETRANGE("Document No.", "Document No.");
+                LotEntry2.SETRANGE("Order Line No.", "Line No.");
+                LotEntry2.CALCSUMS(Quantity);
 
-                    IF (LotEntry2.Quantity < "Outstanding Quantity") THEN BEGIN
-                        LotEntry.INIT();
-                        LotEntry."Document Type" := LotEntry."Document Type"::"Purchase Order";
-                        LotEntry."Document No." := "Document No.";
-                        LotEntry."Order Line No." := "Line No.";
-                        LotEntry."Line No." := UseLineNo;
-                        LotEntry."Item No." := "No.";
-                        LotEntry.Description := Description;
-                        LotEntry."Location Code" := "Location Code";
-                        LotEntry."Variant Code" := "Variant Code";
-                        LotEntry."Unit of Measure Code" := "Unit of Measure Code";
-                        LotEntry.Quantity := "Outstanding Quantity" - LotEntry2.Quantity;
-                        LotEntry.INSERT();
-                    END;
+                IF (LotEntry2.Quantity < PurchLine."Outstanding Quantity") THEN BEGIN
+                    LotEntry.INIT();
+                    LotEntry."Document Type" := LotEntry."Document Type"::"Purchase Order";
+                    LotEntry."Document No." := PurchLine."Document No.";
+                    LotEntry."Order Line No." := PurchLine."Line No.";
+                    LotEntry."Line No." := UseLineNo;
+                    LotEntry."Item No." := PurchLine."No.";
+                    LotEntry.Description := PurchLine.Description;
+                    LotEntry."Location Code" := PurchLine."Location Code";
+                    LotEntry."Variant Code" := PurchLine."Variant Code";
+                    LotEntry."Unit of Measure Code" := PurchLine."Unit of Measure Code";
+                    LotEntry.Quantity := PurchLine."Outstanding Quantity" - LotEntry2.Quantity;
+                    LotEntry.INSERT();
                 END;
-            UNTIL PurchLine.NEXT() = 0;
+            END;
+        UNTIL PurchLine.NEXT() = 0;
 
         IF LotEntry.ISEMPTY() THEN
             ERROR('No Items are lot tracked on this order.');
@@ -358,24 +354,24 @@ table 50002 "Lot Entry"
     var
         TransferLine: Record 5741;
         LotEntry: Record 50002;
-        /*  Item: Record 27;
-         ItemTrackingCode: Record 6502; */
+        Item: Record 27;
+        ItemTrackingCode: Record 6502;
         TempTransferLine: Record 5741 temporary;
         TrackingSpecificationTmp: Record 336 temporary;
-        // TrackingSpecification: Record 336 temporary;
+        TrackingSpecification: Record 336 temporary;
         LotEntry2: Record 50002;
         ReserveTransferLine: Codeunit 99000836;
         ItemTrackingForm: Page 6510;
         UseLineNo: Integer;
     begin
         //set filter
-        WITH TransferLine DO BEGIN
-            SETRANGE("Document No.", DocNo);
-            SETRANGE("Derived From Line No.", 0);
-            SETFILTER("Outstanding Quantity", '<>0');
-            IF NOT FIND('-') THEN
-                ERROR('No Outstanding Lines found.');
-        END;
+        // WITH TransferLine DO BEGIN
+        TransferLine.SETRANGE("Document No.", DocNo);
+        TransferLine.SETRANGE("Derived From Line No.", 0);
+        TransferLine.SETFILTER("Outstanding Quantity", '<>0');
+        IF NOT TransferLine.FIND('-') THEN
+            ERROR('No Outstanding Lines found.');
+        //END;
 
         //delete existing lines
         LotEntry.LOCKTABLE();
@@ -388,73 +384,71 @@ table 50002 "Lot Entry"
         UseLineNo := 10000;
 
 
-        WITH TransferLine DO
-            REPEAT
-                IF IsLotTracking("Item No.") THEN BEGIN
+        //WITH TransferLine DO
+        REPEAT
+            IF IsLotTracking("Item No.") THEN BEGIN
 
-                    //get initial lots
-                    CLEAR(ReserveTransferLine);
-                    CLEAR(ItemTrackingForm);
-                    //TODO
-                    /*  ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
-                     ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date"); */
-                    //TODO
-                    ItemTrackingForm.EShipOpenForm();
-                    TrackingSpecificationTmp.RESET();
-                    TrackingSpecificationTmp.DELETEALL();
+                //get initial lots
+                CLEAR(ReserveTransferLine);
+                CLEAR(ItemTrackingForm);
+                ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
+                ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date");
+                ItemTrackingForm.EShipOpenForm();
+                TrackingSpecificationTmp.RESET();
+                TrackingSpecificationTmp.DELETEALL();
 
-                    ItemTrackingForm.EShipGetRecords(TrackingSpecificationTmp);
-                    IF TrackingSpecificationTmp.FIND('-') THEN BEGIN
-                        REPEAT
-                            //insert these lots
-                            IF (TrackingSpecificationTmp."Quantity (Base)" - TrackingSpecificationTmp."Quantity Handled (Base)") <> 0 THEN BEGIN
-                                LotEntry.INIT();
-                                LotEntry."Document Type" := LotEntry."Document Type"::"Transfer Order";
-                                LotEntry."Document No." := "Document No.";
-                                LotEntry."Order Line No." := "Line No.";
-                                LotEntry."Line No." := UseLineNo;
-                                LotEntry."Item No." := "Item No.";
-                                LotEntry.Description := Description;
-                                LotEntry."Location Code" := "Transfer-from Code";
-                                LotEntry."Variant Code" := "Variant Code";
-                                LotEntry."Unit of Measure Code" := "Unit of Measure Code";
-                                LotEntry.Quantity := TrackingSpecificationTmp."Quantity (Base)" -
-                                                       TrackingSpecificationTmp."Quantity Handled (Base)";
-                                LotEntry."Lot No." := TrackingSpecificationTmp."Lot No.";
-                                GetLotInfo("Item No.", "Variant Code", TrackingSpecificationTmp."Lot No.", LotNoInfo);
-                                LotEntry."External Lot No." := LotNoInfo."Mfg. Lot No.";
-                                LotEntry."Creation Date" := LotNoInfo."Lot Creation Date";
-                                LotEntry."Expiration Date" := TrackingSpecificationTmp."Expiration Date";
-                                LotEntry.INSERT();
-                                UseLineNo := UseLineNo + 10000;
-                            END;
-                        UNTIL TrackingSpecificationTmp.NEXT() = 0;
+                ItemTrackingForm.EShipGetRecords(TrackingSpecificationTmp);
+                IF TrackingSpecificationTmp.FIND('-') THEN BEGIN
+                    REPEAT
+                        //insert these lots
+                        IF (TrackingSpecificationTmp."Quantity (Base)" - TrackingSpecificationTmp."Quantity Handled (Base)") <> 0 THEN BEGIN
+                            LotEntry.INIT();
+                            LotEntry."Document Type" := LotEntry."Document Type"::"Transfer Order";
+                            LotEntry."Document No." := "Document No.";
+                            LotEntry."Order Line No." := "Line No.";
+                            LotEntry."Line No." := UseLineNo;
+                            LotEntry."Item No." := "Item No.";
+                            LotEntry.Description := Description;
+                            LotEntry."Location Code" := TransferLine."Transfer-from Code";
+                            LotEntry."Variant Code" := "Variant Code";
+                            LotEntry."Unit of Measure Code" := "Unit of Measure Code";
+                            LotEntry.Quantity := TrackingSpecificationTmp."Quantity (Base)" -
+                                                   TrackingSpecificationTmp."Quantity Handled (Base)";
+                            LotEntry."Lot No." := TrackingSpecificationTmp."Lot No.";
+                            GetLotInfo("Item No.", "Variant Code", TrackingSpecificationTmp."Lot No.", LotNoInfo);
+                            LotEntry."External Lot No." := LotNoInfo."Mfg. Lot No.";
+                            LotEntry."Creation Date" := LotNoInfo."Lot Creation Date";
+                            LotEntry."Expiration Date" := TrackingSpecificationTmp."Expiration Date";
+                            LotEntry.INSERT();
+                            UseLineNo := UseLineNo + 10000;
+                        END;
+                    UNTIL TrackingSpecificationTmp.NEXT() = 0;
 
-                        ItemTrackingForm.EShipCloseForm();
-                    END;  //end for if find lots
+                    ItemTrackingForm.EShipCloseForm();
+                END;  //end for if find lots
 
-                    //now get remaining quantity
-                    LotEntry2.SETRANGE("Document Type", LotEntry2."Document Type"::"Transfer Order");
-                    LotEntry2.SETRANGE("Document No.", "Document No.");
-                    LotEntry2.SETRANGE("Order Line No.", "Line No.");
-                    LotEntry2.CALCSUMS(Quantity);
+                //now get remaining quantity
+                LotEntry2.SETRANGE("Document Type", LotEntry2."Document Type"::"Transfer Order");
+                LotEntry2.SETRANGE("Document No.", "Document No.");
+                LotEntry2.SETRANGE("Order Line No.", "Line No.");
+                LotEntry2.CALCSUMS(Quantity);
 
-                    IF (LotEntry2.Quantity < "Outstanding Quantity") THEN BEGIN
-                        LotEntry.INIT();
-                        LotEntry."Document Type" := LotEntry."Document Type"::"Transfer Order";
-                        LotEntry."Document No." := "Document No.";
-                        LotEntry."Order Line No." := "Line No.";
-                        LotEntry."Line No." := UseLineNo;
-                        LotEntry."Item No." := "Item No.";
-                        LotEntry.Description := Description;
-                        LotEntry."Location Code" := "Transfer-from Code";
-                        LotEntry."Variant Code" := "Variant Code";
-                        LotEntry."Unit of Measure Code" := "Unit of Measure Code";
-                        LotEntry.Quantity := "Outstanding Quantity" - LotEntry2.Quantity;
-                        LotEntry.INSERT();
-                    END;
+                IF (LotEntry2.Quantity < TransferLine."Outstanding Quantity") THEN BEGIN
+                    LotEntry.INIT();
+                    LotEntry."Document Type" := LotEntry."Document Type"::"Transfer Order";
+                    LotEntry."Document No." := "Document No.";
+                    LotEntry."Order Line No." := "Line No.";
+                    LotEntry."Line No." := UseLineNo;
+                    LotEntry."Item No." := "Item No.";
+                    LotEntry.Description := Description;
+                    LotEntry."Location Code" := TransferLine."Transfer-from Code";
+                    LotEntry."Variant Code" := "Variant Code";
+                    LotEntry."Unit of Measure Code" := "Unit of Measure Code";
+                    LotEntry.Quantity := TransferLine."Outstanding Quantity" - LotEntry2.Quantity;
+                    LotEntry.INSERT();
                 END;
-            UNTIL TransferLine.NEXT() = 0;
+            END;
+        UNTIL TransferLine.NEXT() = 0;
 
         IF LotEntry.ISEMPTY THEN
             ERROR('No Items are lot tracked on this order.');
@@ -488,69 +482,69 @@ table 50002 "Lot Entry"
         UseLineNo := 10000;
 
 
-        WITH WhseShptLine DO
-            REPEAT
-                IF IsLotTracking("Item No.") THEN BEGIN
-                    //get existing lines
-                    WhseItemTrkgLines.RESET();
-                    WhseItemTrkgLines.SETRANGE("Source ID", "No.");
-                    WhseItemTrkgLines.SETRANGE("Source Type", DATABASE::"Warehouse Shipment Line");
-                    WhseItemTrkgLines.SETRANGE("Source Ref. No.", "Line No.");
-                    WhseItemTrkgLines.SETRANGE("Location Code", "Location Code");
-                    WhseItemTrkgLines.SETRANGE("Pick Qty. (Base)", 0);
-                    WhseItemTrkgLines.SETRANGE("Qty. Registered (Base)", 0);
-                    IF WhseItemTrkgLines.FIND('-') THEN
-                        REPEAT
-                            LotEntry.INIT();
-                            LotEntry."Document Type" := LotEntry."Document Type"::"Whse. Shipment";
-                            LotEntry."Document No." := WhseItemTrkgLines."Source ID";
-                            LotEntry."Order Line No." := WhseItemTrkgLines."Source Ref. No.";
-                            LotEntry."Line No." := UseLineNo;
-                            LotEntry."Item No." := WhseItemTrkgLines."Item No.";
-                            LotEntry.Description := WhseItemTrkgLines.Description;
-                            LotEntry."Location Code" := WhseItemTrkgLines."Location Code";
-                            LotEntry."Variant Code" := WhseItemTrkgLines."Variant Code";
-                            LotEntry."Unit of Measure Code" := "Unit of Measure Code";
-                            LotEntry.Quantity := WhseItemTrkgLines."Quantity (Base)";
-                            LotEntry."Lot No." := WhseItemTrkgLines."Lot No.";
-                            GetLotInfo("No.", "Variant Code", WhseItemTrkgLines."Lot No.", LotNoInfo);
-                            //LotEntry."External Lot No." := LotNoInfo."Mfg. Lot No.";
-                            LotEntry."Creation Date" := LotNoInfo."Lot Creation Date";
-                            LotEntry."Expiration Date" := WhseItemTrkgLines."Expiration Date";
-                            LotEntry.INSERT();
-                            UseLineNo := UseLineNo + 10000;
-                        UNTIL WhseItemTrkgLines.NEXT() = 0;
-
-
-                    //now get remaining quantity
-                    LotEntry2.SETRANGE("Document Type", LotEntry2."Document Type"::"Whse. Shipment");
-                    LotEntry2.SETRANGE("Document No.", "No.");
-                    LotEntry2.SETRANGE("Order Line No.", "Line No.");
-                    LotEntry2.CALCSUMS(Quantity);
-
-                    CALCFIELDS("Pick Qty. (Base)");
-                    LineQtyToPick :=
-                      ROUND(("Qty. (Base)" - ("Qty. Picked (Base)" + "Pick Qty. (Base)")) /
-                                      "Qty. per Unit of Measure", 0.00001);
-
-
-                    IF (LotEntry2.Quantity < LineQtyToPick) THEN BEGIN
+        // WITH WhseShptLine DO
+        REPEAT
+            IF IsLotTracking("Item No.") THEN BEGIN
+                //get existing lines
+                WhseItemTrkgLines.RESET();
+                WhseItemTrkgLines.SETRANGE("Source ID", WhseShptLine."No.");
+                WhseItemTrkgLines.SETRANGE("Source Type", DATABASE::"Warehouse Shipment Line");
+                WhseItemTrkgLines.SETRANGE("Source Ref. No.", WhseShptLine."Line No.");
+                WhseItemTrkgLines.SETRANGE("Location Code", WhseShptLine."Location Code");
+                WhseItemTrkgLines.SETRANGE("Pick Qty. (Base)", 0);
+                WhseItemTrkgLines.SETRANGE("Qty. Registered (Base)", 0);
+                IF WhseItemTrkgLines.FIND('-') THEN
+                    REPEAT
                         LotEntry.INIT();
                         LotEntry."Document Type" := LotEntry."Document Type"::"Whse. Shipment";
-                        LotEntry."Document No." := "No.";
-                        LotEntry."Order Line No." := "Line No.";
+                        LotEntry."Document No." := WhseItemTrkgLines."Source ID";
+                        LotEntry."Order Line No." := WhseItemTrkgLines."Source Ref. No.";
                         LotEntry."Line No." := UseLineNo;
-                        LotEntry."Item No." := "Item No.";
-                        LotEntry.Description := Description;
-                        LotEntry."Location Code" := "Location Code";
-                        LotEntry."Variant Code" := "Variant Code";
+                        LotEntry."Item No." := WhseItemTrkgLines."Item No.";
+                        LotEntry.Description := WhseItemTrkgLines.Description;
+                        LotEntry."Location Code" := WhseItemTrkgLines."Location Code";
+                        LotEntry."Variant Code" := WhseItemTrkgLines."Variant Code";
                         LotEntry."Unit of Measure Code" := "Unit of Measure Code";
-                        LotEntry.Quantity := LineQtyToPick - LotEntry2.Quantity;
+                        LotEntry.Quantity := WhseItemTrkgLines."Quantity (Base)";
+                        LotEntry."Lot No." := WhseItemTrkgLines."Lot No.";
+                        GetLotInfo(WhseShptLine."No.", WhseShptLine."Variant Code", WhseItemTrkgLines."Lot No.", LotNoInfo);
+                        //LotEntry."External Lot No." := LotNoInfo."Mfg. Lot No.";
+                        LotEntry."Creation Date" := LotNoInfo."Lot Creation Date";
+                        LotEntry."Expiration Date" := WhseItemTrkgLines."Expiration Date";
                         LotEntry.INSERT();
-                    END;
+                        UseLineNo := UseLineNo + 10000;
+                    UNTIL WhseItemTrkgLines.NEXT() = 0;
 
+
+                //now get remaining quantity
+                LotEntry2.SETRANGE("Document Type", LotEntry2."Document Type"::"Whse. Shipment");
+                LotEntry2.SETRANGE("Document No.", WhseShptLine."No.");
+                LotEntry2.SETRANGE("Order Line No.", WhseShptLine."Line No.");
+                LotEntry2.CALCSUMS(Quantity);
+
+                WhseShptLine.CALCFIELDS("Pick Qty. (Base)");
+                LineQtyToPick :=
+                  ROUND((WhseShptLine."Qty. (Base)" - (WhseShptLine."Qty. Picked (Base)" + WhseShptLine."Pick Qty. (Base)")) /
+                                 WhseShptLine."Qty. per Unit of Measure", 0.00001);
+
+
+                IF (LotEntry2.Quantity < LineQtyToPick) THEN BEGIN
+                    LotEntry.INIT();
+                    LotEntry."Document Type" := LotEntry."Document Type"::"Whse. Shipment";
+                    LotEntry."Document No." := WhseShptLine."No.";
+                    LotEntry."Order Line No." := WhseShptLine."Line No.";
+                    LotEntry."Line No." := UseLineNo;
+                    LotEntry."Item No." := WhseShptLine."Item No.";
+                    LotEntry.Description := WhseShptLine.Description;
+                    LotEntry."Location Code" := WhseShptLine."Location Code";
+                    LotEntry."Variant Code" := WhseShptLine."Variant Code";
+                    LotEntry."Unit of Measure Code" := WhseShptLine."Unit of Measure Code";
+                    LotEntry.Quantity := LineQtyToPick - LotEntry2.Quantity;
+                    LotEntry.INSERT();
                 END;
-            UNTIL WhseShptLine.NEXT() = 0;
+
+            END;
+        UNTIL WhseShptLine.NEXT() = 0;
 
         IF LotEntry.ISEMPTY() THEN
             ERROR('No Line found for this shipment.');
@@ -742,10 +736,8 @@ table 50002 "Lot Entry"
 
             //get the qty to process
             SalesLine.GET(LotEntry."Document Type", LotEntry."Document No.", LotEntry."Order Line No.");
-            //TODO
-            /*  ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
-             ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date"); */
-            //TODO
+            ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
+            ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date");
             LotNoToSet := LotEntry."Lot No.";
             ExpirationDateToSet := LotEntry."Expiration Date";
             LineQty := LotEntry.Quantity;
@@ -880,10 +872,8 @@ table 50002 "Lot Entry"
 
             //get the qty to process
             PurchLine.GET(LotEntry."Document Type", LotEntry."Document No.", LotEntry."Order Line No.");
-            //TODO
-            /* ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-            ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date"); */
-            //TODO
+            ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+            ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
             LotNoToSet := LotEntry."Lot No.";
             ExpirationDateToSet := LotEntry."Expiration Date";
             LineQty := LotEntry.Quantity;
@@ -1017,10 +1007,8 @@ table 50002 "Lot Entry"
 
             //get the qty to process
             TransferLine.GET(LotEntry."Document No.", LotEntry."Order Line No.");
-            //TODO
-            /* ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
-            ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date"); */
-            //TODO
+            ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
+            ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date");
             LotNoToSet := LotEntry."Lot No.";
             ExpirationDateToSet := LotEntry."Expiration Date";
             LineQty := LotEntry.Quantity;
@@ -1202,7 +1190,7 @@ table 50002 "Lot Entry"
     var
         SalesLine: Record "Sales Line";
         TrackingSpecificationTmp: Record "Tracking Specification" temporary;
-        //  TrackingSpecification: Record "Tracking Specification" temporary;
+        TrackingSpecification: Record "Tracking Specification" temporary;
         TransferLine: Record "Transfer Line";
         PurchLine: Record "Purchase Line";
         ReserveSalesLine: Codeunit "Sales Line-Reserve";
@@ -1220,32 +1208,25 @@ table 50002 "Lot Entry"
         //init tracking specification
         CASE SourceType OF
             DATABASE::"Sales Line":
-                // BEGIN
-                SalesLine.GET(SourceSubType, SourceNo, SourceLineNo);
-            //TODO
-            /*    ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
-               ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date"); */
-            //TODO
-            // END;
+                BEGIN
+                    SalesLine.GET(SourceSubType, SourceNo, SourceLineNo);
+                    ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
+                    ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date");
+                END;
 
             DATABASE::"Purchase Line":
-                // BEGIN
-                PurchLine.GET(SourceSubType, SourceNo, SourceLineNo);
-            //TODO
-            /*  ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-             ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date"); */
-            //TODO
-            // END;
+                BEGIN
+                    PurchLine.GET(SourceSubType, SourceNo, SourceLineNo);
+                    ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+                    ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
+                END;
 
             DATABASE::"Transfer Line":
-                // BEGIN
-                TransferLine.GET(SourceNo, SourceLineNo);
-            //TODO
-            /*   ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
-              ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date"); */
-            //TODO
-            // END;
-
+                BEGIN
+                    TransferLine.GET(SourceNo, SourceLineNo);
+                    ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
+                    ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date");
+                END;
             ELSE
                 ERROR('Source Type %1 not supported.', SourceType);
         END;

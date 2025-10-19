@@ -298,9 +298,7 @@ table 70032 "TEMP - Fix ILE Blank Dims"
             Caption = 'Lot No.';
             trigger OnLookup()
             begin
-                //TODO
-                // ItemTrackingMgt.LookupLotSerialNoInfo("Item No.", '', 1, "Lot No.");
-                //TODO
+                ItemTrackingMgt.LookupLotSerialNoInfo("Item No.", '', 1, "Lot No.");
             end;
         }
         field(50000; "Inspected Parts"; Boolean)
@@ -340,13 +338,11 @@ table 70032 "TEMP - Fix ILE Blank Dims"
     }
 
     var
-    /*   GLSetup: Record 98;
-      ReservEntry: Record 337;
-      ReservEngineMgt: Codeunit 99000831;
-      ReserveItemLedgEntry: Codeunit 99000841; */
-    //TODO
-    //  ItemTrackingMgt: Codeunit "Item Tracking Management";
-    //TODO
+        /*   GLSetup: Record 98;
+          ReservEntry: Record 337;
+          ReservEngineMgt: Codeunit 99000831;
+          ReserveItemLedgEntry: Codeunit 99000841; */
+        ItemTrackingMgt: Codeunit "Item Tracking Management";
     // GLSetupRead: Boolean;
 
     procedure "External Lot No."(): Text[30]

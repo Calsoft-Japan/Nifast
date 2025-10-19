@@ -137,16 +137,14 @@ table 50001 "Lot Bin Content"
         }
         field(26; Quantity; Decimal)
         {
-            //TODO
-            /* CalcFormula = Sum("Warehouse Entry".Quantity WHERE("Location Code" = FIELD("Location Code"),
+            CalcFormula = Sum("Warehouse Entry".Quantity WHERE("Location Code" = FIELD("Location Code"),
                                                                 "Bin Code" = FIELD("Bin Code"),
                                                                 "Item No." = FIELD("Item No."),
                                                                 "Variant Code" = FIELD("Variant Code"),
                                                                 "Unit of Measure Code" = FIELD("Unit of Measure Code"),
                                                                 "Lot No." = FIELD("Lot No."),
                                                                 "Serial No." = FIELD("Serial No. Filter"),
-                                                                "License Plate No." = FIELD("License Plate No. Filter"))); */
-            //TODO
+                                                                "License Plate No." = FIELD("License Plate No. Filter")));
             Caption = 'Quantity';
             DecimalPlaces = 0 : 5;
             Editable = false;
@@ -506,14 +504,13 @@ table 50001 "Lot Bin Content"
           "Max. Qty." -
           CalcQtyAvailable(ExcludeQty); // Same as above, but modified to ensure consistency w/ replenishment batch
 
-        //TODO
-        /*   IF ("Min. Replenishment Qty." <> 0) AND (QtyToReplenish_ < "Min. Replenishment Qty.") THEN
-              QtyToReplenish_ := 0;
-          IF ("Max. Replenishment Qty." <> 0) AND (QtyToReplenish_ > "Max. Replenishment Qty.") THEN
-              QtyToReplenish_ := "Max. Replenishment Qty.";
-          IF ("Replenishment Multiple" <> 0) THEN
-              QtyToReplenish_ := ROUND(QtyToReplenish_, "Replenishment Multiple", '<'); */
-        //TODO
+
+        IF ("Min. Replenishment Qty." <> 0) AND (QtyToReplenish_ < "Min. Replenishment Qty.") THEN
+            QtyToReplenish_ := 0;
+        IF ("Max. Replenishment Qty." <> 0) AND (QtyToReplenish_ > "Max. Replenishment Qty.") THEN
+            QtyToReplenish_ := "Max. Replenishment Qty.";
+        IF ("Replenishment Multiple" <> 0) THEN
+            QtyToReplenish_ := ROUND(QtyToReplenish_, "Replenishment Multiple", '<');
 
         EXIT(QtyToReplenish_);
         // << NV - 09/19/03 MV

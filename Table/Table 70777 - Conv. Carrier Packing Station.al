@@ -1,9 +1,7 @@
 table 70777 "Conv. Carrier Packing Station"
 {
     Caption = 'Packing Station';
-    //TODO
-    // LookupPageID = 14000722;
-    //TODO
+    LookupPageID = 14000722;
     fields
     {
         field(1; "Code"; Code[10])

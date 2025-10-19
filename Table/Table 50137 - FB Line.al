@@ -141,9 +141,7 @@ table 50137 "FB Line"
         field(170; "Salesperson Code"; Code[10])
         {
             Caption = 'Salesperson Code';
-            //TODO
-            // TableRelation = "Salesperson/Purchaser" WHERE(Sales = CONST(true));
-            //TODO
+            TableRelation = "Salesperson/Purchaser" WHERE(Sales = CONST(true));
 
             trigger OnValidate()
             var
@@ -157,25 +155,25 @@ table 50137 "FB Line"
         field(175; "Inside Salesperson Code"; Code[10])
         {
             // cleaned
-            //TODO
-            // TableRelation = "Salesperson/Purchaser" WHERE("Inside Sales" = CONST(true));
-            //TODO
+
+            TableRelation = "Salesperson/Purchaser" WHERE("Inside Sales" = CONST(true));
+
         }
         field(180; "Selling Location"; Code[10])
         {
             // cleaned
-            //TODO
-            /*  TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                             "Rework Location" = CONST(false)); */
-            //TODO
+
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                             "Rework Location" = CONST(false));
+
         }
         field(190; "Shipping Location"; Code[10])
         {
             // cleaned
-            //TODO
-            /*   TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                              "Rework Location" = CONST(false)); */
-            //TODO
+
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                              "Rework Location" = CONST(false));
+
         }
         field(200; "Contract No."; Code[20])
         {
@@ -219,9 +217,9 @@ table 50137 "FB Line"
             begin
                 ReturnedCrossRef.INIT();
                 IF "Cross-Reference No." <> '' THEN BEGIN
-                    //TODO
-                    //DistIntegration.ICRLookupFBItem(Rec, ReturnedCrossRef);
-                    //TODO
+
+                    DistIntegration.ICRLookupFBItem(Rec, ReturnedCrossRef);
+
                     VALIDATE("Item No.", ReturnedCrossRef."Item No.");
                     IF ReturnedCrossRef."Variant Code" <> '' THEN
                         VALIDATE("Variant Code", ReturnedCrossRef."Variant Code");
@@ -231,7 +229,7 @@ table 50137 "FB Line"
                 END;
 
                 "Unit of Measure (Cross Ref.)" := ReturnedCrossRef."Unit of Measure";
-                "Cross-Reference Type" := ReturnedCrossRef."Reference Type";
+                "Cross-Reference Type" := ReturnedCrossRef."Reference Type".AsInteger();
                 "Cross-Reference Type No." := ReturnedCrossRef."Reference Type No.";
                 "Cross-Reference No." := ReturnedCrossRef."Reference No.";
             end;
@@ -271,7 +269,7 @@ table 50137 "FB Line"
 
     var
         Item: Record 27;
-        // DistIntegration: Codeunit 5702;
+        DistIntegration: Codeunit 5702;
         FBTag: Record 50134;
         FBHeader: Record 50136;
         ItemAvailByDate: Page 157;
@@ -379,14 +377,11 @@ table 50137 "FB Line"
         IF NOT FBMgt.GetContractLine(SalesPrice, Rec) THEN
             EXIT;
 
-        IF SalesPrice.FindFirst() THEN
-            //BEGIN
-            //TODO
-            /*  "External Document No." := SalesPrice."External Document No.";
-             "Replenishment Method" := SalesPrice."Replenishment Method";
-             "FB Order Type" := SalesPrice."FB Order Type"; */
-            //TODO
+        IF SalesPrice.FindFirst() THEN BEGIN
+            "External Document No." := SalesPrice."External Document No.";
+            "Replenishment Method" := SalesPrice."Replenishment Method";
+            "FB Order Type" := SalesPrice."FB Order Type";
             "Customer Bin" := SalesPrice."Customer Bin";
-        // END;
+        END;
     end;
 }

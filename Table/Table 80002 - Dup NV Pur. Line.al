@@ -160,23 +160,23 @@ table 80002 "Dup NV Pur. Line"
         field(47; "Phase Code"; Code[10])
         {
             Caption = 'Phase Code';
-            //TODO
-            //  TableRelation = Table161;
-            //TODO
+             
+            TableRelation = Table161;
+             
         }
         field(48; "Task Code"; Code[10])
         {
             Caption = 'Task Code';
-            //TODO
-            //TableRelation = Table162;
-            //TODO
+             
+            TableRelation = Table162;
+             
         }
         field(49; "Step Code"; Code[10])
         {
             Caption = 'Step Code';
-            //TODO
-            // TableRelation = Table163;
-            //TODO
+             
+            TableRelation = Table163;
+             
         }
         field(54; "Indirect Cost %"; Decimal)
         {
@@ -227,10 +227,10 @@ table 80002 "Dup NV Pur. Line"
         {
             Caption = 'Attached to Line No.';
             Editable = false;
-            //TODO
-            /*   TableRelation = "Purchase Line"."Line No." WHERE("Document Type" = FIELD("Document Type"),
-                                                                "Document No." = FIELD("Document No.")); */
-            //TODO
+             
+            TableRelation = "Purchase Line"."Line No." WHERE("Document Type" = FIELD("Document Type"),
+                                                                "Document No." = FIELD("Document No."));
+             
         }
         field(85; "Tax Area Code"; Code[20])
         {

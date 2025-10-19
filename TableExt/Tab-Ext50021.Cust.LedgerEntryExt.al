@@ -132,14 +132,10 @@ tableextension 50021 "Cust. Ledger Entry Ext" extends "Cust. Ledger Entry"
         {
         }
     }
-    //TODO
-    //trigger OnDelete();
-    //begin
-    /*
-    //>> NV 4.32 05.21.04 JWW: Added for Cr. Mgmt
-    //CreditManagement.DeleteDocComments(11,'');  //NF1.00:CIS.CM 09-29-15
-    //<< NV 4.32 05.21.04 JWW: Added for Cr. Mgmt
-    */
-    //end;
-    //TODO
+    trigger OnDelete();
+    begin
+        //>> NV 4.32 05.21.04 JWW: Added for Cr. Mgmt
+        //CreditManagement.DeleteDocComments(11,'');  //NF1.00:CIS.CM 09-29-15
+        //<< NV 4.32 05.21.04 JWW: Added for Cr. Mgmt
+    end;
 }

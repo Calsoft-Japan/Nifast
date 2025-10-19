@@ -22,9 +22,8 @@ table 70784 "E.D.I. SendDocFld Old SE054.21"
         field(11; "Trade Partner No."; Code[20])
         {
             Caption = 'Trade Partner No.';
-            //TODO
-            //  TableRelation = "E.D.I. Receive Document Hdr."."Trade Partner No.";
-            //TODO
+            // TableRelation = "E.D.I. Receive Document Hdr."."Trade Partner No.";
+            TableRelation = "LAX EDI Receive Document Hdr."."Trade Partner No.";
         }
         field(12; "Navision Document"; Code[10])
         {

@@ -16,12 +16,11 @@ table 70776 "SE0.52 Conversion"
         {
             Editable = false;
             NotBlank = false;
-            //TODO
-            /*  TableRelation = IF (Type = CONST(Package)) Package
-             ELSE IF (Type = CONST(Item)) Item
-             ELSE IF (Type = CONST(Resource)) Resource
-             ELSE IF (Type = CONST("Standard Option")) "Standard Option Setup"; */
-            //TODO
+            TableRelation = IF (Type = CONST(Package)) Package
+            ELSE IF (Type = CONST(Item)) Item
+            ELSE IF (Type = CONST(Resource)) Resource
+            ELSE IF (Type = CONST("Standard Option")) "LAX Standard Option Setup";
+
             //This property is currently not supported
             //TestTableRelation = false;
         }
