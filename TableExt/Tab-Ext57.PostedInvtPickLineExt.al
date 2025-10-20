@@ -1,4 +1,4 @@
-tableextension 57357 "Posted Invt. Pick Line Ext" extends "Posted Invt. Pick Line"
+tableextension 57353 "Posted Invt. Pick Line Ext" extends "Posted Invt. Pick Line"
 {
     fields
     {
