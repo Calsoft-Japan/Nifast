@@ -134,53 +134,143 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
             Description = 'CE 1.2';
         }
 
-        field(50001; "Inside Salesperson Code"; Code[10])//NV-FB 14017617->50001 BC Upgrade
-        { }
+        /*  field(50001; "Inside Salesperson Code"; Code[10])//NV-FB 14017617->50001 BC Upgrade
+         { } */
+        //TODO
+        /*  field(14000350; "EDI Order"; Boolean)
+         {
+             Caption = 'EDI Order';
+         }
+
+         field(14000351; "EDI Internal Doc. No."; Code[10])
+         {
+             TableRelation = "E.D.I. Receive Document Hdr.";
+             Caption = 'EDI Internal Doc. No.';
+             Editable = false;
+         }
+
+         field(14000352; "EDI Cr. Memo Generated"; Boolean)
+         {
+             Caption = 'EDI Cr. Memo Generated';
+             Editable = false;
+         }
+
+         field(14000353; "EDI Cr. Memo Gen. Date"; Date)
+         {
+             Caption = 'EDI Cr. Memo Gen. Date';
+             Editable = false;
+         }
+
+         field(14000366; "EDI Trade Partner"; Code[20])
+         {
+             TableRelation = "LAX EDI Trade Partner";
+             Caption = 'EDI Trade Partner';
+             Editable = true;
+         }
+
+         field(14000367; "EDI Sell-to Code"; Code[20])
+         {
+             Caption = 'EDI Sell-to Code';
+             Editable = false;
+         }
+
+         field(14000368; "EDI Ship-to Code"; Code[20])
+         {
+             Caption = 'EDI Ship-to Code';
+             Editable = false;
+         }
+
+         field(14000369; "EDI Ship-for Code"; Code[20])
+         {
+             Caption = 'EDI Ship-for Code';
+             Editable = false;
+         }
+  */
+        //TODO
         field(14017610; "Entered User ID"; Code[50])
         {
-            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
             TableRelation = User."User Name";
-            //This property is currently not supported
-            //TestTableRelation = false;
+            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
             ValidateTableRelation = false;
-
-            trigger OnLookup();
-            var
+            TestTableRelation = false;
+            trigger OnValidate()
+            VAR
                 LoginMgt: Codeunit 418;
-            begin
-            end;
+            BEGIN
+            END;
 
-            trigger OnValidate();
-            var
+            trigger OnLookup()
+            VAR
                 LoginMgt: Codeunit 418;
-            begin
-            end;
-        } 
-         field(14017617;"Inside Salesperson Code";Code[10])
-        {
-            Description = 'NV-FB';
-            TableRelation = Salesperson/Purchaser.Code WHERE (Inside Sales=CONST(Yes),
-                                                              Sales=CONST(Yes));
+            BEGIN
+            END;
+
         }
-        field(14017618;"Phone No.";Text[30])
+
+        field(14017611; "Entered Date"; Date)
         {
-            Description = 'NV-FB';
         }
-          field(14017645;"Contract No.";Code[20])
+
+        field(14017612; "Entered Time"; Time)
         {
-            Description = 'NV-FB';
-            TableRelation = "Price Contract" WHERE (Customer No.=FIELD(Sell-to Customer No.));
         }
-        field(14017650;"Broker/Agent Code";Code[10])
+
+        field(14017617; "Inside Salesperson Code"; Code[10])
         {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true), Sales = CONST(true));
             Description = 'NV-FB';
         }
-         field(14018050;"Cr. Mgmt. Comment";Boolean)
+
+        field(14017618; "Phone No."; Text[30])
         {
+            Description = 'NV-FB';
+        }
+
+        field(14017619; "Fax No."; Text[30])
+        {
+        }
+
+        field(14017620; "E-Mail"; Text[80])
+        {
+        }
+
+        field(14017640; "Ship-to PO No."; Code[20])
+        {
+        }
+
+        field(14017645; "Contract No."; Code[20])
+        {
+            TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
+            Description = 'NV-FB';
+        }
+
+        field(14017650; "Broker/Agent Code"; Code[10])
+        {
+            Description = 'NV-FB';
+        }
+
+        field(14017810; "Tool Repair Parts Warranty"; DateFormula)
+        {
+        }
+
+        field(14017811; "Tool Repair Labor Warranty"; DateFormula)
+        {
+        }
+
+        field(14018050; "No;Cr. Mgmt. Comment"; Boolean)
+        {
+            // FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
-            Enabled = false;
-            FieldClass = FlowField;
+        }
+
+    }
+
+    Keys
+    {
+        key(key10; "LAX EDI Order", "LAX EDI Cr. Memo Generated", "LAX EDI Trade Partner", "LAX EDI Internal Doc. No.")
+        {
+
         }
     }
 

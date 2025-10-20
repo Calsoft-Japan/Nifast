@@ -139,61 +139,382 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
             Caption = 'National';
             Description = 'AKK1606.01';
         }
-        
-          field(14017611; "Order Date"; Date)
-          {
-              Description = 'NV';
-          }
-          field(14017615; "Salesperson Code"; Code[10])
-          {
-              Description = 'NV';
-              TableRelation = "Salesperson/Purchaser".Code WHERE("Sales" = CONST(Yes));
-          }
-          field(14017616; "Inside Salesperson Code"; Code[10])
-          {
-              Description = 'NV';
-              TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(Yes));
-          }
-          field(14017618; "External Document No."; Code[20])
-          {
-              Description = 'NV';
-          }
-          field(14017633; "Line Comment"; Boolean)
-          {
-              Description = 'NF1.00:CIS.CM 09-29-15';
-              Editable = false;
-              Enabled = false;
-              FieldClass = FlowField;
-          }
-          field(14017645; "Contract No."; Code[20])
-          {
-              Description = 'NV';
-              TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
-          }
-          field(14017752; "Ship-to Code"; Code[10])
-          {
-              Description = 'NV';
-          }
-          field(14017756; "Item Group Code"; Code[10])
-          {
-              Description = 'NF1.00:CIS.CM 09-29-15';
-          }
-          field(37015330; "FB Order No."; Code[20])
-          {
-              Description = 'NV';
-          }
-          field(37015331; "FB Line No."; Integer)
-          {
-              Description = 'NV';
-          }
-          field(37015332; "FB Tag No."; Code[20])
-          {
-              Description = 'NV';
-          }
-          field(37015333; "FB Customer Bin"; Code[20])
-          {
-              Description = 'NV';
-          } 
+        //TODO
+
+        /*  field(14000351; "EDI Item Cross Ref."; Code[20])
+         {
+             CaptionML = ENU = 'EDI Item Cross Ref.';
+         }
+
+         field(14000352; "EDI Unit of Measure"; Code[10])
+         {
+             CaptionML = ENU = 'EDI Unit of Measure';
+         }
+
+         field(14000353; "EDI Unit Price"; Decimal)
+         {
+             CaptionML = ENU = 'EDI Unit Price';
+         }
+
+         field(14000354; "EDI Price Discrepancy"; Boolean)
+         {
+             CaptionML = ENU = 'EDI Price Discrepancy';
+         }
+
+         field(14000355; "EDI Segment Group"; Integer)
+         {
+             CaptionML = ENU = 'EDI Segment Group';
+             Editable = false;
+         }
+
+         field(14000356; "EDI Original Qty."; Decimal)
+         {
+             CaptionML = ENU = 'EDI Original Qty.';
+             DecimalPlaces = 0 : 5;
+             Editable = false;
+         }
+
+         field(14000357; "EDI Status Pending"; Boolean)
+         {
+             CaptionML = ENU = 'EDI Status Pending';
+             Editable = false;
+         }
+
+         field(14000358; "EDI Release No."; Code[20])
+         {
+             CaptionML = ENU = 'EDI Release No.';
+         }
+
+         field(14000359; "EDI Ship Req. Date"; Date)
+         {
+             CaptionML = ENU = 'EDI Ship Req. Date';
+         }
+
+         field(14000360; "EDI Kanban No."; Code[20])
+         {
+             CaptionML = ENU = 'EDI Kanban No.';
+         }
+
+         field(14000361; "EDI Line Type"; Option)
+         {
+             CaptionML = ENU = 'EDI Line Type';
+             OptionCaptionML = ENU = ' ,Forecast,Release,Change,Forecast & Release';
+             OptionMembers = " ",Forecast,Release,Change,"Forecast & Release";
+         }
+
+         field(14000362; "EDI Line Status"; Option)
+         {
+             CaptionML = ENU = 'EDI Line Status';
+             OptionCaptionML = ENU = ' ,New,Order Exists,Shipment Exists,Release Created,Change Made,Cancellation,Add Item';
+             OptionMembers = " ",New,"Order Exists","Shipment Exists","Release Created","Change Made",Cancellation,"Add Item";
+         }
+
+         field(14000363; "EDI Cumulative Quantity"; Decimal)
+         {
+             CaptionML = ENU = 'EDI Cumulative Quantity';
+         }
+
+         field(14000364; "EDI Forecast Begin Date"; Date)
+         {
+             CaptionML = ENU = 'EDI Forecast Begin Date';
+         }
+
+         field(14000365; "EDI Forecast End Date"; Date)
+         {
+             CaptionML = ENU = 'EDI Forecast End Date';
+         }
+
+         field(14000366; "EDI Code"; Code[35])
+         {
+             CaptionML = ENU = 'EDI Code';
+         }
+
+         field(14000701; "Shipping Charge"; Boolean)
+         {
+             CaptionML = ENU = 'Shipping Charge';
+         }
+
+         field(14000702; "Qty. Packed (Base)"; Decimal)
+         {
+             CaptionML = ENU = 'Qty. Packed (Base)';
+             Editable = false;
+         }
+
+         field(14000703; "Pack"; Boolean)
+         {
+             CaptionML = ENU = 'Pack';
+             Editable = false;
+         }
+
+         field(14000704; "Rate Quoted"; Boolean)
+         {
+             CaptionML = ENU = 'Rate Quoted';
+         }
+
+         field(14000705; "Std. Package Unit of Meas Code"; Code[10])
+         {
+             TableRelation = IF (Type = CONST(Item)) "Item Unit of Measure".Code WHERE("Item No." = FIELD("No."));
+             CaptionML = ENU = 'Std. Package Unit of Meas Code';
+         }
+
+         field(14000706; "Std. Package Quantity"; Decimal)
+         {
+             CaptionML = ENU = 'Std. Package Quantity';
+             DecimalPlaces = 0 : 5;
+             BlankZero = true;
+             Editable = false;
+         }
+
+         field(14000707; "Qty. per Std. Package"; Decimal)
+         {
+             CaptionML = ENU = 'Qty. per Std. Package';
+             DecimalPlaces = 0 : 5;
+             Editable = false;
+         }
+
+         field(14000708; "Std. Package Qty. to Ship"; Decimal)
+         {
+             CaptionML = ENU = 'Std. Package Qty. to Ship';
+             DecimalPlaces = 0 : 5;
+             BlankZero = true;
+             Editable = false;
+         }
+
+         field(14000709; "Std. Packs per Package"; Integer)
+         {
+             CaptionML = ENU = 'Std. Packs per Package';
+         }
+
+         field(14000710; "Package Quantity"; Decimal)
+         {
+             CaptionML = ENU = 'Package Quantity';
+             DecimalPlaces = 0 : 5;
+             BlankZero = true;
+             Editable = false;
+         }
+
+         field(14000711; "Package Qty. to Ship"; Decimal)
+         {
+             CaptionML = ENU = 'Package Qty. to Ship';
+             DecimalPlaces = 0 : 5;
+             BlankZero = true;
+             Editable = false;
+         }
+
+         field(14000712; "E-Ship Whse. Outst. Qty (Base)"; Decimal)
+         {
+             CaptionML = ENU = 'E-Ship Whse. Outst. Qty (Base)';
+             Editable = false;
+         }
+
+         field(14000713; "Shipping Charge BOL No."; Code[20])
+         {
+             TableRelation = "LAX Bill of Lading";
+             CaptionML = ENU = 'Shipping Charge BOL No.';
+         }
+
+         field(14000715; "Required Shipping Agent Code"; Code[10])
+         {
+             TableRelation = "Shipping Agent";
+             CaptionML = ENU = 'Required Shipping Agent Code';
+         }
+
+         field(14000716; "Required E-Ship Agent Service"; Code[30])
+         {
+             TableRelation = "LAX EShip Agent Service".Code WHERE("Shipping Agent Code" = FIELD("Required Shipping Agent Code"));
+             CaptionML = ENU = 'Required E-Ship Agent Service';
+         }
+
+         field(14000717; "Allow Other Ship. Agent/Serv."; Boolean)
+         {
+             CaptionML = ENU = 'Allow Other Ship. Agent/Serv.';
+         }
+
+         field(14000720; "E-Ship Agent Code"; Code[10])
+         {
+             TableRelation = "Shipping Agent";
+             CaptionML = ENU = 'E-Ship Agent Code';
+         }
+
+         field(14000721; "E-Ship Agent Service"; Code[30])
+         {
+             CaptionML = ENU = 'E-Ship Agent Service';
+         }
+
+         field(14000722; "Shipping Payment Type"; Option)
+         {
+             CaptionML = ENU = 'Shipping Payment Type';
+             OptionCaptionML = ENU = 'Prepaid,Third Party,Freight Collect,Consignee';
+             OptionMembers = Prepaid,"Third Party","Freight Collect",Consignee;
+         }
+
+         field(14000723; "Third Party Ship. Account No."; Code[20])
+         {
+             CaptionML = ENU = 'Third Party Ship. Account No.';
+         }
+
+         field(14000724; "Shipping Insurance"; Option)
+         {
+             CaptionML = ENU = 'Shipping Insurance';
+             OptionCaptionML = ENU = ' ,Never,Always';
+             OptionMembers = "",Never,Always;
+         }
+  */
+        //TODO
+        field(14017611; "Order Date"; Date)
+        {
+            Description = 'NV';
+        }
+
+        field(14017612; "Manufacturer Code"; Code[10])
+        {
+            TableRelation = Manufacturer.Code;
+        }
+
+        field(14017614; "Tool Repair Tech"; Code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(true));
+        }
+
+        field(14017615; "Salesperson Code"; Code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE(Sales = CONST(true));
+            Description = 'NV';
+        }
+
+        field(14017616; "Inside Salesperson Code"; Code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true));
+            Description = 'NV';
+        }
+
+        field(14017617; "NV Posting Date"; Date)
+        {
+        }
+
+        field(14017618; "External Document No."; Code[20])
+        {
+            Description = 'NV';
+        }
+
+        field(14017621; "List Price"; Decimal)
+        {
+        }
+
+        field(14017631; "Net Unit Price"; Decimal)
+        {
+            DecimalPlaces = 2 : 5;
+            Editable = false;
+        }
+
+        field(14017633; "Line Comment"; Boolean)
+        {
+            FieldClass = FlowField;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+
+        field(14017640; "Ship-to PO No."; Code[20])
+        {
+        }
+
+        field(14017641; "Shipping Advice"; Option)
+        {
+            OptionCaptionML = ENU = 'Partial,Complete';
+            OptionMembers = Partial,Complete;
+        }
+
+        field(14017645; "Contract No."; Code[20])
+        {
+            TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
+            Description = 'NV';
+        }
+
+        field(14017650; "Resource Group No."; Code[20])
+        {
+            TableRelation = "Resource Group";
+        }
+
+        field(14017660; "Order Outstanding Qty. (Base)"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+        }
+
+        field(14017661; "Order Quantity (Base)"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+        }
+        field(14017671; "Tag No."; Code[20])
+        {
+        }
+
+        field(14017672; "Customer Bin"; Text[12])
+        {
+        }
+
+        field(14017750; "Line Gross Weight"; Decimal)
+        {
+        }
+
+        field(14017751; "Line Net Weight"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+        }
+
+        field(14017752; "Ship-to Code"; Code[10])
+        {
+            Description = 'NV';
+        }
+
+        field(14017753; "Line Cost"; Decimal)
+        {
+            Editable = false;
+        }
+
+        field(14017756; "Item Group Code"; Code[10])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+
+        field(14017757; "Vendor No."; Code[20])
+        {
+        }
+
+        field(14017758; "Vendor Item No."; Text[20])
+        {
+        }
+
+        field(14017903; "BOM Item"; Boolean)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Exist("BOM Component" WHERE("Parent Item No." = FIELD("No.")));
+            Editable = false;
+        }
+
+        field(14017904; "Prod. Order No."; Code[20])
+        {
+        }
+
+        field(37015330; "FB Order No."; Code[20])
+        {
+            Description = 'NV';
+        }
+
+        field(37015331; "FB Line No."; Integer)
+        {
+            Description = 'NV';
+        }
+
+        field(37015332; "FB Tag No."; Code[20])
+        {
+            Description = 'NV';
+        }
+
+        field(37015333; "FB Customer Bin"; Code[20])
+        {
+            Description = 'NV';
+        }
+
     }
     keys
     {
@@ -204,7 +525,7 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
          {
              SumIndexFields = Quantity, "Quantity (Base)";
          }
-         key(Key11; "Sell-to Customer No.", "No.", "EDI Release No.", "EDI Ship Req. Date")
+         key(Key11; "Sell-to Customer No.", "No.", "LAX EDI Release No.", "LAX EDI Ship Req. Date")
          {
          } */
     }

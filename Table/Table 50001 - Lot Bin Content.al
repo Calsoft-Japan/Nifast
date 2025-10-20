@@ -333,6 +333,42 @@ table 50001 "Lot Bin Content"
             FieldClass = FlowField;
             TableRelation = "CVE Pedimento";
         }
+        field(14017610; "Wksh. Pos. Adjmt. Qty."; Decimal)
+        {
+            CalcFormula = Sum("Whse. Worksheet Line"."Qty. Outstanding (Base)" WHERE("Location Code" = FIELD("Location Code"),
+                                                                                      "To Bin Code" = FIELD("Bin Code"),
+                                                                                      "Item No." = FIELD("Item No."),
+                                                                                      "Variant Code" = FIELD("Variant Code"),
+                                                                                      "Unit of Measure Code" = FIELD("Unit of Measure Code")));
+            DecimalPlaces = 0 : 5;
+            Description = 'NV';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(14017615; "Min. Replenishment Qty."; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            MinValue = 0;
+        }
+        field(14017616; "Max. Replenishment Qty."; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            MinValue = 0;
+        }
+        field(14017617; "Replenishment Multiple"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            MinValue = 0;
+        }
+        field(14017620; "Break Pick when Qty. on Hand"; Option)
+        {
+            OptionMembers = " ",">= Min. Qty. (no split pick)","= Max. Qty. (allow split pick)";
+        }
+        field(14017999; "License Plate No. Filter"; Code[20])
+        {
+            FieldClass = FlowFilter;
+        }
+
     }
     keys
     {

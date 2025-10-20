@@ -42,27 +42,26 @@ tableextension 50003 "Payment Terms Ext" extends "Payment Terms"
          {
              Caption = 'COD Cashiers Check';
              Description = 'NV';
-         }
-         field(14017610; Deferred; Boolean)
-         {
-             Description = 'NV';
-
-             trigger OnValidate();
-             begin
-                 TESTFIELD("Discount %", 0);
-             end;
-         }
-         field(14017611; "No. of Payments"; Integer)
-         {
-             Description = 'NV';
-             MaxValue = 12;
-             MinValue = 0;
-         }
-         field(14017612; "Deferred Delay Date Calc."; DateFormula)
-         {
-             Description = 'NV';
-         }
-  */
+         } */
         //TODO
+        field(14017610; Deferred; Boolean)
+        {
+            Description = 'NV';
+
+            trigger OnValidate();
+            begin
+                TESTFIELD("Discount %", 0);
+            end;
+        }
+        field(14017611; "No. of Payments"; Integer)
+        {
+            Description = 'NV';
+            MaxValue = 12;
+            MinValue = 0;
+        }
+        field(14017612; "Deferred Delay Date Calc."; DateFormula)
+        {
+            Description = 'NV';
+        }
     }
 }

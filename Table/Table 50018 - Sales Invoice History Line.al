@@ -693,6 +693,126 @@ table 50018 "Sales Invoice History Line"
         {
             Caption = 'Package Tracking No.';
         }
+        field(14017611; "Order Date"; Date)
+        {
+        }
+        field(14017612; "Manufacturer Code"; Code[10])
+        {
+            TableRelation = Manufacturer.Code;
+        }
+        field(14017614; "Tool Repair Tech"; Code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(Yes));
+        }
+        field(14017615; "Salesperson Code"; Code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE(Sales = CONST(Yes));
+        }
+        field(14017616; "Inside Salesperson Code"; Code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(Yes));
+        }
+        field(14017617; "Posting Date"; Date)
+        {
+        }
+        field(14017618; "External Document No."; Code[20])
+        {
+        }
+        field(14017621; "List Price"; Decimal)
+        {
+            DecimalPlaces = 2 : 5;
+        }
+        field(14017631; "Net Unit Price"; Decimal)
+        {
+            DecimalPlaces = 2 : 5;
+            Editable = false;
+        }
+        field(14017633; "Line Comment"; Boolean)
+        {
+            CalcFormula = Exist("Sales Comment Line" WHERE("Document Type" = FIELD("Document Type"),
+                                                            "No." = FIELD("Document No."),
+                                                            "Document Line No." = FIELD("Line No.")));
+            Description = 'NF1.00:CIS.NG  10-10-15';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(14017640; "Ship-to PO No."; Code[20])
+        {
+        }
+        field(14017641; "Shipping Advice"; Option)
+        {
+            OptionCaption = 'Partial,Complete';
+            OptionMembers = Partial,Complete;
+        }
+        field(14017642; "Purchase Order Exists"; Boolean)
+        {
+            CalcFormula = Exist("Purchase Line" WHERE(Type = CONST(Item),
+                                                       "No." = FIELD("No."),
+                                                       "Outstanding Quantity" = FILTER(<> 0)));
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(14017649; "Requisition Exists"; Boolean)
+        {
+            CalcFormula = Exist("Requisition Line" WHERE(Type = FIELD(Type),
+                                                          "No." = FIELD("No.")));
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(14017650; "Resource Group No."; Code[20])
+        {
+            TableRelation = "Resource Group";
+        }
+        field(14017671; "Tag No."; Code[20])
+        {
+        }
+        field(14017672; "Customer Bin"; Text[12])
+        {
+        }
+        field(14017673; "FB Order No."; Code[20])
+        {
+        }
+        field(14017674; "FB Line No."; Integer)
+        {
+        }
+        field(14017750; "Line Gross Weight"; Decimal)
+        {
+            Editable = false;
+        }
+        field(14017751; "Line Net Weight"; Decimal)
+        {
+            Editable = false;
+        }
+        field(14017752; "Ship-to Code"; Code[10])
+        {
+        }
+        field(14017753; "Line Cost"; Decimal)
+        {
+            Editable = false;
+        }
+        field(14017756; "Item Group Code"; Code[10])
+        {
+            Description = 'NF1.00:CIS.NG  10-10-15';
+        }
+        field(14017757; "Vendor No."; Code[20])
+        {
+            TableRelation = Vendor."No.";
+        }
+        field(14017758; "Vendor Item No."; Text[20])
+        {
+        }
+        field(14017800; "Tool Repair Order No."; Code[20])
+        {
+        }
+        field(14017903; "BOM Item"; Boolean)
+        {
+            CalcFormula = Exist("BOM Component" WHERE("Parent Item No." = FIELD("No.")));
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(14017904; "Prod. Kit Order No."; Code[20])
+        {
+        }
     }
 
     keys
@@ -700,7 +820,7 @@ table 50018 "Sales Invoice History Line"
         key(Key1; "Document Type", "Document No.", "Line No.")
         {
             MaintainSIFTIndex = false;
-            SumIndexFields = Amount, "Amount Including VAT", "Line Amount";
+            SumIndexFields = Amount, "Amount Including VAT", "Line Amount", "Line Gross Weight", "Line Net Weight", "Line Cost";
         }
         key(Key2; "Document Type", Type, "No.", "Variant Code", "Drop Shipment", "Location Code", "Shipment Date")
         {
@@ -710,6 +830,7 @@ table 50018 "Sales Invoice History Line"
             MaintainSIFTIndex = false;
         }
     }
+
 
     fieldgroups
     {

@@ -12,18 +12,71 @@ tableextension 57320 "Warehouse Shipment Header Ext" extends "Warehouse Shipment
                 //<<PFC
             end;
         }
-        //TODO
-        /* field(37015680; "Delivery Load No."; Code[20])
+        field(14017632; "Carrier Trailer ID"; Code[20])
+        {
+        }
+
+        field(14017640; "Destination Code"; Code[10])
+        {
+            CaptionML = ENU = 'Destination Code';
+            Editable = false;
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Warehouse Shipment Line".Field3427764 WHERE("No." = FIELD("No.")));
+            TableRelation = IF ("Destination Type" = FILTER(Customer)) "Ship-to Address".Code WHERE("Customer No." = FIELD("Destination No."))
+            ELSE IF ("Destination Type" = CONST(Vendor)) "Order Address".Code WHERE("Vendor No." = FIELD("Destination No."));
+            trigger OnValidate()
+            VAR
+            // SellToCustTemplate: Record 5105;
+            BEGIN
+            END;
+
+        }
+
+        field(14017990; "Total Ship Weight"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Warehouse Shipment Line"."Qty. to Ship" WHERE("No." = FIELD("No.")));
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+
+        field(14017991; "Placed In Whse. Queue"; Boolean)
+        {
+        }
+
+        field(37015592; "Destination Name"; Text[50])
+        {
+            Editable = false;
+        }
+
+        field(37015593; "Destination Type"; Option)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Warehouse Shipment Line"."Destination Type" WHERE("No." = FIELD("No.")));
+            CaptionML = ENU = 'Destination Type';
+            OptionCaptionML = ENU = ' ,Customer,Vendor,Location';
+            OptionMembers = " ",Customer,Vendor,Location;
+            Editable = false;
+        }
+
+        field(37015594; "Destination No."; Code[20])
+        {
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Warehouse Shipment Line"."Destination No." WHERE("No." = FIELD("No.")));
+            CaptionML = ENU = 'Destination No.';
+            Editable = false;
+        }
+
+        field(37015680; "Delivery Load No."; Code[20])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
-
-            trigger OnValidate();
-            var
+            trigger OnValidate()
+            VAR
                 WhseShipLine: Record 7321;
                 WhseActLine: Record 5767;
                 WhseEntry: Record 7312;
                 RegWhseActLine: Record 5773;
-            begin
+            BEGIN
                 WhseShipLine.LOCKTABLE;
                 WhseShipLine.SETRANGE("No.", "No.");
                 WhseShipLine.MODIFYALL("Delivery Load No.", "Delivery Load No.");
@@ -44,17 +97,17 @@ tableextension 57320 "Warehouse Shipment Header Ext" extends "Warehouse Shipment
                     WhseEntry.FIND('-');
                     REPEAT
                     //>> NF1.00:CIS.CM 09-29-15
-                    //IF LPN.GET(WhseEntry."License Plate No.") THEN BEGIN
-                    //    LPN."Delivery Load No." := "Delivery Load No.";
-                    //    LPN."Delivery Load Seq." := "Delivery Load Seq.";
-                    //    LPN.MODIFY;
-                    //END;
-                    //<< NF1.00:CIS.CM 09-29-15
+                    // LPN processing commented
                     UNTIL WhseEntry.NEXT = 0;
                 END;
-            end;
-        } */
-        //TODO
+            END;
+
+        }
+
+        field(37015681; "Delivery Load Seq."; Code[20])
+        {
+        }
+
     }
     procedure UpdateWhseShipLines(ChangedFieldName: Text[100]);
     var

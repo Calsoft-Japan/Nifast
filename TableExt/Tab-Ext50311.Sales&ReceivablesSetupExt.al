@@ -81,7 +81,141 @@ tableextension 50311 "Sales & Receivables Setup Ext" extends "Sales & Receivable
             TableRelation = "No. Series";
             ToolTip = 'Specifies the code for the number series that will be used to assign numbers to EDI Control Nos.';
         }
+        //TODO
+        /* field(14000350; "EDI Software Version"; Option)
+        {
+            Caption = 'EDI Software Version';
+            OptionMembers = "Generation 1","Generation 2";
+            OptionCaption = 'Generation 1,Generation 2';
+        }
+
+        field(14000601; "Enable Receive"; Boolean)
+        {
+            Caption = 'Enable Receive';
+            trigger OnValidate()
+            begin
+                if xRec."Enable Receive" and not "Enable Receive" then
+                    if not Confirm(Text14000701, false) then
+                        "Enable Receive" := true;
+            end;
+        }
+
+        field(14000701; "Enable Shipping"; Boolean)
+        {
+            Caption = 'Enable Shipping';
+            trigger OnValidate()
+            begin
+                if xRec."Enable Shipping" and not "Enable Shipping" then
+                    if not Confirm(Text14000702, false) then
+                        "Enable Shipping" := true;
+            end;
+        }
+
+        field(14000702; "Blank Drop Shipm. Qty. to Ship"; Boolean)
+        {
+            Caption = 'Blank Drop Shipm. Qty. to Ship';
+        }
+
+        field(14000703; "Allow External Doc. No. Reuse"; Boolean)
+        {
+            Caption = 'Allow External Doc. No. Reuse';
+        }
+
+        field(14000704; "E-Ship Locking Optimization"; Option)
+        {
+            Caption = 'E-Ship Locking Optimization';
+            OptionMembers = Base,Packing;
+            OptionCaption = 'Base,Packing';
+            InitValue = Packing;
+        }
+
+        field(14000901; "Enable E-Mail"; Boolean)
+        {
+            Caption = 'Enable E-Mail';
+            trigger OnValidate()
+            begin
+                if xRec."Enable E-Mail" and not "Enable E-Mail" then
+                    if not Confirm(Text14000703, false) then
+                        "Enable E-Mail" := true;
+            end;
+        }
+ */
+        //TODO
+        field(14017610; "Review Days"; Decimal)
+        {
+            Caption = 'Review Days';
+            DecimalPlaces = 0 : 0;
+            BlankZero = true;
+        }
+
+        field(14017611; "Call Days"; Decimal)
+        {
+            Caption = 'Call Days';
+            DecimalPlaces = 0 : 0;
+            BlankZero = true;
+        }
+
+        field(14017612; "Hold Days"; Decimal)
+        {
+            Caption = 'Hold Days';
+            DecimalPlaces = 0 : 0;
+            BlankZero = true;
+        }
+
+        field(14017613; "Auto Credit Hold"; Boolean)
+        {
+            Caption = 'Auto Credit Hold';
+        }
+
+        field(14017620; "Freight Account Type"; Option)
+        {
+            Caption = 'Freight Account Type';
+            OptionMembers = "G/L Account",Resource;
+            OptionCaption = 'G/L Account,Resource';
+        }
+
+        field(14017645; "Price Contract Nos."; Code[10])
+        {
+            Caption = 'Price Contract Nos.';
+            TableRelation = "No. Series".Code;
+        }
+
+        field(14017647; "Quote Expiration Calculation"; Code[20])
+        {
+            Caption = 'Quote Expiration Calculation';
+            DateFormula = true;
+        }
+
+        field(14017650; "Multiple Contacts"; Boolean)
+        {
+            Caption = 'Multiple Contacts';
+        }
+
+        field(14017710; "Sales Desk Worksheet Nos."; Code[10])
+        {
+            Caption = 'Sales Desk Worksheet Nos.';
+            TableRelation = "No. Series".Code;
+        }
+
+        field(14017752; "Sales Counter Invoice Nos."; Code[10])
+        {
+            Caption = 'Sales Counter Invoice Nos.';
+            TableRelation = "No. Series".Code;
+        }
+
+        field(14017812; "Tool Repair Ticket Nos."; Code[10])
+        {
+            Caption = 'Tool Repair Ticket Nos.';
+            TableRelation = "No. Series".Code;
+        }
     }
+    var
+        ShippingSetup: Record 14000707;
+        EMailSetup: Record 14000905;
+        Text001: Label 'Job Queue Priority must be zero or positive.';
+        Text14000701: Label 'Are you sure you want to turn receiving off.';
+        Text14000702: Label 'Are you sure you want to turn shipping off.';
+        Text14000703: Label 'Are you sure you want to turn E-Mail off.';
 
     procedure ">>NIF_fcn"();
     begin

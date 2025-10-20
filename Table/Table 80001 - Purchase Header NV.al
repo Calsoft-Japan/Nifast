@@ -387,6 +387,13 @@ table 80001 "Purchase Header NV"
             Caption = '1099 Code';
             TableRelation = "IRS 1099 Form-Box";
         }
+        field(14017640; "Ship-to PO No."; Code[20])
+        {
+        }
+        field(14017650; "Broker/Agent Code"; Code[10])
+        {
+            TableRelation = "Broker/Agent";
+        }
     }
     keys
     {

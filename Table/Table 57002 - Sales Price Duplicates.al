@@ -84,17 +84,159 @@ table 57002 "Sales Price Duplicates"
             Caption = 'Allow Line Disc.';
             InitValue = true;
         }
+        field(14017614; "Alt. Price"; Decimal)
+        {
+            Description = 'NV';
+            Editable = false;
+        }
+        field(14017615; "Alt. Price UOM"; Code[10])
+        {
+            Description = 'NV';
+            Editable = false;
+        }
+        field(14017618; "External Document No."; Code[20])
+        {
+            Description = 'NV';
+        }
+        field(14017645; "Contract No."; Code[20])
+        {
+            Description = 'NV';
+        }
+        field(14017646; "Item Description"; Text[50])
+        {
+            CalcFormula = Lookup(Item.Description WHERE("No." = FIELD("Item No.")));
+            Description = 'NV';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(14017647; "Est. Usage"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Description = 'NV';
+        }
+        field(14017648; Comments; Boolean)
+        {
+            Description = 'NV - NF1.00:CIS.NG 10-10-15';
+            Editable = false;
+            Enabled = false;
+            FieldClass = FlowField;
+        }
+        field(14017649; "Contract Customer No."; Code[20])
+        {
+            Description = 'NV';
+        }
+        field(14017650; "Contract Ship-to Code"; Code[10])
+        {
+            Description = 'NV';
+        }
+        field(14017651; "Contract Location Code"; Code[10])
+        {
+            Description = 'NV';
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                            "Rework Location" = CONST(false));
+        }
+        field(14017652; "Actual Usage"; Decimal)
+        {
+            CalcFormula = - Sum("Item Ledger Entry".Quantity WHERE("Contract No." = FIELD("Contract No."),
+                                                                   "Item No." = FIELD("Item No."),
+                                                                   "Entry Type" = CONST(Sale)));
+            DecimalPlaces = 0 : 5;
+            Description = 'NV';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(14017653; "Method of Fullfillment"; Option)
+        {
+            Description = 'NV';
+            OptionCaption = 'Standard,FillBill';
+            OptionMembers = Standard,FillBill;
+        }
+        field(14017654; "Min. Qty. on Hand"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Description = 'NV';
+        }
+        field(14017655; "Initial Stocking Qty."; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Description = 'NV';
+        }
+        field(14017656; "Blanket Orders"; Boolean)
+        {
+            CalcFormula = Exist("Sales Line" WHERE("Document Type" = CONST("Blanket Order"),
+                                                    "Contract No." = FIELD("Contract No."),
+                                                    Type = CONST(Item),
+                                                    "No." = FIELD("Item No.")));
+            Description = 'NV';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(14017657; "Contract Ship Location Code"; Code[10])
+        {
+            Description = 'NV';
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                            "Rework Location" = CONST(false));
+        }
+        field(14017658; "Replenishment Method"; Option)
+        {
+            Caption = 'Replenishment Method';
+            Description = 'NV';
+            OptionCaption = ' ,Automatic,Manual';
+            OptionMembers = " ",Automatic,Manual;
+        }
+        field(14017659; "Reorder Quantity"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Description = 'NV';
+        }
+        field(14017660; "Max. Quantity"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Description = 'NV';
+        }
+        field(14017661; "Min. Quantity"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Description = 'NV';
+        }
+        field(14017662; "Customer Bin"; Code[20])
+        {
+            Description = 'NV';
+        }
+        field(14017663; "Contract Selling Location Code"; Code[10])
+        {
+            Description = 'NV';
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                            "Rework Location" = CONST(false));
+        }
+        field(37015330; "FB Tags"; Boolean)
+        {
+            CalcFormula = Exist("FB Tag" WHERE("Customer No." = FIELD("Contract Customer No."),
+                                                "Ship-to Code" = FIELD("Contract Ship-to Code"),
+                                                "Item No." = FIELD("Item No."),
+                                                "Variant Code" = FIELD("Variant Code"),
+                                                "Unit of Measure Code" = FIELD("Unit of Measure Code"),
+                                                "Contract No." = FIELD("Contract No.")));
+            Description = 'NV';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(37015331; "FB Order Type"; Option)
+        {
+            Description = 'NV';
+            OptionCaption = ' ,Consigned,Non-Consigned';
+            OptionMembers = " ",Consigned,"Non-Consigned";
+        }
     }
     keys
     {
-        key(Key1; "Item No.", "Sales Type", "Sales Code", "Starting Date", "Currency Code", "Variant Code", "Unit of Measure Code", "Minimum Quantity", "Item No. 2")
+        key(Key1; "Item No.", "Sales Type", "Sales Code", "Starting Date", "Currency Code", "Variant Code", "Unit of Measure Code", "Minimum Quantity", "Contract No.", "Item No. 2")
         {
         }
         key(Key2; "Sales Type", "Sales Code", "Item No.", "Starting Date", "Currency Code", "Variant Code", "Unit of Measure Code", "Minimum Quantity")
         {
         }
     }
-
     fieldgroups
     {
     }

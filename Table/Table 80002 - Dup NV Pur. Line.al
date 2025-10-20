@@ -160,23 +160,23 @@ table 80002 "Dup NV Pur. Line"
         field(47; "Phase Code"; Code[10])
         {
             Caption = 'Phase Code';
-             
+
             TableRelation = Table161;
-             
+
         }
         field(48; "Task Code"; Code[10])
         {
             Caption = 'Task Code';
-             
+
             TableRelation = Table162;
-             
+
         }
         field(49; "Step Code"; Code[10])
         {
             Caption = 'Step Code';
-             
+
             TableRelation = Table163;
-             
+
         }
         field(54; "Indirect Cost %"; Decimal)
         {
@@ -227,10 +227,10 @@ table 80002 "Dup NV Pur. Line"
         {
             Caption = 'Attached to Line No.';
             Editable = false;
-             
+
             TableRelation = "Purchase Line"."Line No." WHERE("Document Type" = FIELD("Document Type"),
                                                                 "Document No." = FIELD("Document No."));
-             
+
         }
         field(85; "Tax Area Code"; Code[20])
         {
@@ -371,6 +371,56 @@ table 80002 "Dup NV Pur. Line"
         field(10022; "1099 Liable"; Boolean)
         {
             Caption = '1099 Liable';
+        }
+        field(14017612; "Posting Date"; Date)
+        {
+        }
+        field(14017613; "Purchaser Code"; Code[10])
+        {
+            Description = 'set filters';
+            TableRelation = "Salesperson/Purchaser" WHERE(Purchase = CONST(true));
+        }
+        field(14017614; "Vendor Shipment No."; Code[20])
+        {
+        }
+        field(14017615; "Vendor Invoice No."; Code[20])
+        {
+        }
+        field(14017616; "Vendor Cr. Memo No."; Code[20])
+        {
+        }
+        field(14017633; "Line Comment"; Boolean)
+        {
+            Editable = false;
+        }
+        field(14017639; "Shelf/Bin Tracking No."; Integer)
+        {
+        }
+        field(14017640; "Ship-to PO No."; Code[20])
+        {
+        }
+        field(14017650; "Resource Group No."; Code[20])
+        {
+            TableRelation = "Resource Group";
+        }
+        field(14017750; "Line Gross Weight"; Decimal)
+        {
+        }
+        field(14017751; "Line Net Weight"; Decimal)
+        {
+        }
+        field(14017756; "Item Group Code"; Code[10])
+        {
+            TableRelation = "Item Group".Code;
+        }
+        field(14017761; "Prod. Kit Order No."; Code[20])
+        {
+            Editable = false;
+            TableRelation = "Production Kit Header"."Production Kit No.";
+        }
+        field(14017762; "Prod. Kit Order Line No."; Integer)
+        {
+            Editable = false;
         }
     }
     keys

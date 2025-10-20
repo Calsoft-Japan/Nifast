@@ -215,6 +215,43 @@ table 80020 "Duplicate Lot Info"
             Editable = false;
             FieldClass = FlowField;
         }
+        field(14018070; "QC Hold"; Boolean)
+        {
+        }
+        field(14018071; "QC Hold Reason Code"; Code[10])
+        {
+            TableRelation = "Reason Code".Code WHERE(Type = CONST(QC));
+        }
+        field(14018072; "QC External Test"; Boolean)
+        {
+        }
+        field(14018073; "QC Tech"; Code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("QC Tech" = CONST(Yes));
+        }
+        field(14018074; "QC Inspection Date"; Date)
+        {
+        }
+        field(14018075; "QC Inventory"; Decimal)
+        {
+            CalcFormula = Sum("Item Ledger Entry".Quantity WHERE("Item No." = FIELD("Item No."),
+                                                                  "Variant Code" = FIELD("Variant Code"),
+                                                                  "Lot No." = FIELD("Lot No."),
+                                                                  "Location Code" = FIELD("Location Filter"),
+                                                                  "QC Hold" = CONST(true)));
+            Caption = 'Qty. on QC Hold';
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(14018076; "QC Select"; Code[20])
+        {
+            Caption = 'QC Select';
+            Editable = false;
+        }
+        field(14018077; "Lot Creation Date"; Date)
+        {
+        }
     }
     keys
     {

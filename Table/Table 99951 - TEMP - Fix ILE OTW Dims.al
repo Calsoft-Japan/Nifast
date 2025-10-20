@@ -332,6 +332,20 @@ table 99951 "TEMP - Fix ILE OTW Dims"
         {
             // cleaned
         }
+        field(37015330; "FB Order No."; Code[20])
+        {
+        }
+        field(37015331; "FB Line No."; Integer)
+        {
+        }
+        field(37015332; "FB Tag No."; Code[20])
+        {
+            Description = 'NV';
+        }
+        field(37015333; "FB Customer Bin"; Code[20])
+        {
+            Description = 'NV';
+        }
     }
     keys
     {

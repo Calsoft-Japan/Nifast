@@ -217,55 +217,426 @@ tableextension 50027 "Item Ext" extends "Item"
         {
             DataClassification = ToBeClassified;
         }
+        //TODO
 
-        
-         field(14017622; "Harmonizing Tariff Code"; Code[20])
+        /*  field(14000601; "Receive Rule Code"; Code[10])
+         {
+             TableRelation = "LAX Receive Rule";
+             Caption = 'Receive Rule Code';
+         }
+
+         field(14000701; "Export License Required"; Boolean)
+         {
+             Caption = 'Export License Required';
+         }
+
+         field(14000703; "Dimmed Weight"; Decimal)
+         {
+             DecimalPlaces = 0 : 5;
+             BlankZero = true;
+             Caption = 'Dimmed Weight';
+         }
+
+         field(14000704; "Std. Pack Unit of Measure Code"; Code[10])
+         {
+             TableRelation = "Item Unit of Measure".Code where("Item No." = Field("No."));
+             Caption = 'Std. Pack Unit of Measure Code';
+         }
+
+         field(14000705; "Std. Packs per Package"; Integer)
+         {
+             Caption = 'Std. Packs per Package';
+         }
+
+         field(14000708; "Always Enter Quantity"; Boolean)
+         {
+             Caption = 'Always Enter Quantity';
+         }
+
+         field(14000709; "Schedule B Code"; Code[10])
+         {
+             TableRelation = "LAX Schedule B Code".Code;
+             Caption = 'Schedule B Code';
+             trigger OnValidate()
+             var
+                 ScheduleBCode: Record "LAX Schedule B Code";
+             begin
+                 if "Schedule B Code" = '' then begin
+                     "Schedule B Unit of Measure 1" := '';
+                     "Schedule B Unit of Measure 2" := '';
+                     "Schedule B Quantity 1" := 0;
+                     "Schedule B Quantity 2" := 0;
+                 end else begin
+                     ScheduleBCode.Get("Schedule B Code");
+                     "Schedule B Unit of Measure 1" := ScheduleBCode."Unit of Measure 1";
+                     "Schedule B Unit of Measure 2" := ScheduleBCode."Unit of Measure 2";
+                 end;
+             end;
+         }
+
+         field(14000712; "Quantity Packed"; Decimal)
+         {
+             FieldClass = FlowField;
+             CalcFormula = Sum("Package Line"."Quantity (Base)" where(Type = Const(Item), "No." = Field("No.")));
+             DecimalPlaces = 0 : 5;
+             Caption = 'Quantity Packed';
+             Editable = false;
+         }
+
+         field(14000716; "E-Ship Tracking Code"; Code[10])
+         {
+             TableRelation = "LAX EShip Tracking Code".Code;
+             Caption = 'E-Ship Tracking Code';
+             trigger OnValidate()
+             var
+                 EShipTrackingCode: Record "LAX EShip Tracking Code";
+                 ItemTrackingCode: Record "Item Tracking Code";
+             begin
+                 if "E-Ship Tracking Code" <> '' then begin
+                     EShipTrackingCode.Get("E-Ship Tracking Code");
+                     if EShipTrackingCode."Transfer Serial Numbers" or
+                        EShipTrackingCode."Transfer Lot Numbers" or
+                        EShipTrackingCode."Transfer Warranty Date" or
+                        EShipTrackingCode."Transfer Expiration Date" or
+                        EShipTrackingCode."Rec. Transfer Serial Numbers" or
+                        EShipTrackingCode."Rec. Transfer Lot Numbers" or
+                        EShipTrackingCode."Rec. Transfer Warranty Date" or
+                        EShipTrackingCode."Rec. Transfer Expiration Date" then begin
+                         TestField("Item Tracking Code");
+                         ItemTrackingCode.Get("Item Tracking Code");
+                     end;
+                 end;
+             end;
+         }
+
+         field(14000717; "Schedule B Quantity 1"; Decimal)
+         {
+             DecimalPlaces = 0 : 5;
+             Caption = 'Schedule B Quantity 1';
+         }
+
+         field(14000718; "Schedule B Unit of Measure 1"; Code[10])
+         {
+             TableRelation = "LAX Schedule B Unit of Measure".Code;
+             Caption = 'Schedule B Unit of Measure 1';
+         }
+
+         field(14000719; "Schedule B Quantity 2"; Decimal)
+         {
+             DecimalPlaces = 0 : 5;
+             Caption = 'Schedule B Quantity 2';
+         }
+
+         field(14000720; "Schedule B Unit of Measure 2"; Code[10])
+         {
+             TableRelation = "LAX Schedule B Unit of Measure".Code;
+             Caption = 'Schedule B Unit of Measure 2';
+         }
+
+         field(14000721; "Use Unit of Measure Dimensions"; Boolean)
+         {
+             Caption = 'Use Unit of Measure Dimensions';
+         }
+
+         field(14000722; "NMFC Code"; Code[10])
+         {
+             TableRelation = "LAX LTL Freight NMFC Code".Code;
+             Caption = 'NMFC Code';
+         }
+
+         field(14000761; "Certificate of Origin No."; Code[10])
+         {
+             Caption = 'Certificate of Origin No.';
+         }
+
+         field(14000762; "Goods Not In Free Circulation"; Boolean)
+         {
+             Caption = 'Goods Not In Free Circulation';
+         }
+
+         field(14000782; "Export Control Class No."; Code[15])
+         {
+             TableRelation = "LAX Export Controls Class Number".Code;
+             Caption = 'Export Control Class No.';
+         }
+
+         field(14000783; "Preference Criteria"; Option)
+         {
+             OptionCaption = ' ,A,B,C,D,E,F';
+             OptionMembers = "",A,B,C,D,E,F;
+             Caption = 'Preference Criteria';
+         }
+
+         field(14000784; "Producer of Good Indicator"; Option)
+         {
+             OptionCaption = ' ,YES,1,2,3';
+             OptionMembers = " ",YES,"1","2","3";
+             Caption = 'Producer of Good Indicator';
+         }
+
+         field(14000785; "RVC in Net Cost Method"; Boolean)
+         {
+             Caption = 'RVC in Net Cost Method';
+         }
+
+         field(14000801; "LTL Freight Type"; Code[10])
+         {
+             TableRelation = "LAX LTL Freight Type".Code;
+             Caption = 'LTL Freight Type';
+         }
+
+         field(14000821; "Item UPC/EAN Number"; Code[20])
+         {
+             Caption = 'Item UPC/EAN Number';
+             trigger OnValidate()
+             begin
+                 if not (StrLen("Item UPC/EAN Number") in [0, 12]) then
+                     if not Confirm(Text14000701, false, FieldName("Item UPC/EAN Number")) then
+                         Error(Text14000702);
+             end;
+         }
+  */
+        //TODO
+        field(14017611; "Qty. on Blanket PO"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Purchase Line"."Outstanding Qty. (Base)" where(
+        "Document Type" = Const("Blanket Order"),
+        "Type" = Const(Item),
+        "No." = Field("No."),
+        "Shortcut Dimension 1 Code" = Field("Global Dimension 1 Filter"),
+        "Shortcut Dimension 2 Code" = Field("Global Dimension 2 Filter"),
+        "Location Code" = Field("Location Filter"),
+        "Drop Shipment" = Field("Drop Shipment Filter"),
+        "Variant Code" = Field("Variant Filter"),
+        "Bin Code" = Field("Bin Filter"),
+        "Expected Receipt Date" = Field("Date Filter")
+    ));
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+
+        field(14017612; "Qty. on Blanket SO"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Sales Line"."Outstanding Qty. (Base)" where
+    (
+        "Document Type" = Const("Blanket Order"),
+        "Type" = Const(Item),
+        "No." = Field("No."),
+        "Shortcut Dimension 1 Code" = Field("Global Dimension 1 Filter"),
+        "Shortcut Dimension 2 Code" = Field("Global Dimension 2 Filter"),
+        "Location Code" = Field("Location Filter"),
+        "Drop Shipment" = Field("Drop Shipment Filter"),
+        "Variant Code" = Field("Variant Filter"),
+        "Bin Code" = Field("Bin Filter"),
+        "Shipment Date" = Field("Date Filter")
+    ));
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+
+        field(14017613; "Default Purchasing Code"; Code[10])
+        {
+            TableRelation = Purchasing.Code;
+        }
+
+        field(14017615; "Inactive"; Boolean) { }
+        field(14017616; "Supply Item"; Boolean) { }
+        field(14017620; "Min. Sales Qty."; Decimal) { }
+        field(14017621; "Date Created"; Date) { }
+        field(14017622; "Harmonizing Tariff Code"; Code[20])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+
+        field(14017672; "Usage Velocity Code"; Code[10])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+
+        field(14017676; "Turn Ranking Code"; Code[10])
+        {
+            TableRelation = "Shipping Vessels"."Vessel Name";
+            trigger OnValidate()
+            begin
+                SKU.Reset();
+                SKU.SetRange("Item No.", "No.");
+                SKU.ModifyAll("Turn Ranking Code", "Turn Ranking Code");
+            end;
+        }
+
+        field(14017712; "Customer Filter"; Code[20])
+        {
+            FieldClass = FlowFilter;
+            TableRelation = Customer."No.";
+        }
+
+        field(14017756; "Item Group Code"; Code[10])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+
+        field(14017813; "Tool Tracking"; Boolean) { }
+
+        field(14017901; "Qty. on Prod. Kit"; Decimal)
+        {
+            FieldClass = FlowField;
+            DecimalPlaces = 0 : 2;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+
+        field(14017902; "Qty. on Prod. Kit Lines"; Decimal)
+        {
+            FieldClass = FlowField;
+            DecimalPlaces = 0 : 2;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+
+        field(14017930; "Rework Process Item"; Boolean) { }
+
+        field(14018070; "QC Hold"; Boolean)
+        {
+            trigger OnValidate()
+            begin
+                if not UserSetup.Get(UserId) then
+                    Error('You are not set up as an authorized user to change the value of this field.');
+
+                if (("QC Hold") and (not UserSetup."Edit QC Hold - On")) or
+                   ((not "QC Hold") and (not UserSetup."Edit QC Hold - Off")) then
+                    Error('You are not authorized to change the value of this field.');
+
+                UpdateQCHoldFromItem("No.", "QC Hold");
+            end;
+        }
+
+        field(14018071; "QC Hold Reason Code"; Code[10])
+        {
+            TableRelation = "Reason Code" where(Type = Filter(QC));
+        }
+
+        field(14018072; "Qty. on QC Hold"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Item Ledger Entry".Quantity where
+    (
+        "Item No." = Field("No."),
+        "Global Dimension 1 Code" = Field("Global Dimension 1 Filter"),
+        "Global Dimension 2 Code" = Field("Global Dimension 2 Filter"),
+        "Location Code" = Field("Location Filter"),
+        "Drop Shipment" = Field("Drop Shipment Filter"),
+        "Variant Code" = Field("Variant Filter"),
+        "Lot No." = Field("Lot No. Filter"),
+        "Serial No." = Field("Serial No. Filter"),
+        "QC Hold" = Const(Yes)
+    ));
+            DecimalPlaces = 0 : 5;
+            Caption = 'Qty. on QC Hold';
+            Editable = false;
+        }
+
+        field(14018073; "Gross Inventory"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Item Ledger Entry".Quantity where
+    (
+        "Item No." = Field("No."),
+        "Global Dimension 1 Code" = Field("Global Dimension 1 Filter"),
+        "Global Dimension 2 Code" = Field("Global Dimension 2 Filter"),
+        "Location Code" = Field("Location Filter"),
+        "Drop Shipment" = Field("Drop Shipment Filter"),
+        "Variant Code" = Field("Variant Filter"),
+        "Lot No." = Field("Lot No. Filter"),
+        "Serial No." = Field("Serial No. Filter")
+    ));
+            DecimalPlaces = 0 : 5;
+            Caption = 'Gross Inventory';
+            Editable = false;
+        }
+
+        field(14018077; "QS/TS Item"; Boolean) { }
+        field(14018079; "First Article Approval"; Boolean) { }
+        field(14018080; "PPAP Approval"; Boolean) { }
+
+        field(14018081; "Special Gauge/Fixture"; Code[20])
+        {
+            Description = 'NF1.00:CIS.NG  10-10-15';
+        }
+
+        field(14018082; "First Article Waiver"; Boolean) { }
+
+        field(14018084; "Inspection Type"; Code[10])
+        {
+            Description = 'NF1.00:CIS.NG  10-10-15';
+        }
+
+        field(14018085; "QC Comment"; Boolean)
+        {
+            FieldClass = FlowField;
+            Caption = 'QC Comment';
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+
+        field(14018086; "Customer No."; Code[20])
+        {
+            TableRelation = "Item Reference"."Reference Type No." where
+                    ("Item No." = Field("No."),
+                     "Reference Type" = Filter(Customer));
+
+            trigger OnLookup()
+            begin
+                ItemCrossReference.SetRange("Item No.", "No.");
+                ItemCrossReference.SetRange("Reference Type", ItemCrossReference."Reference Type"::Customer);
+                if Page.RunModal(Page::"Item Reference Entries", ItemCrossReference) = Action::LookupOK then
+                    Validate("Customer No.", ItemCrossReference."Reference Type No.");
+            end;
+        }
+
+        field(14018088; "Drawing No."; Code[30])
+        {
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Cust./Item Drawing2"."Drawing No." where
+                        ("Item No." = Field("No."),
+                         Active = Const(true),
+                         "Customer No." = Filter('')));
+            Editable = false;
+        }
+
+        field(14018089; "Revision No."; Code[20])
+        {
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Cust./Item Drawing2"."Revision No." where
+                        ("Item No." = Field("No."),
+                         Active = Const(true),
+                         "Customer No." = Filter('')));
+            TableRelation = "Cust./Item Drawing2"."Revision No." where("Item No." = Field("No."));
+            Editable = false;
+        }
+
+        field(14018090; "Revision Date"; Date)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Cust./Item Drawing2"."Revision Date" where
+                        ("Item No." = Field("No."),
+                         Active = Const(true),
+                         "Customer No." = Filter('')));
+            Editable = false;
+        }
+        //TODO
+        /*   field(14050001; "UPS ISC Type"; Option)
           {
-              Description = 'NF1.00:CIS.CM 09-29-15';
+              Caption = 'UPS ISC Type';
+              OptionCaption = ' ,Seeds,Perishables,Tobacco,Plants,Alcoholic Beverages,Biological Substance,Special Exceptions';
+              OptionMembers = "",Seeds,Perishables,Tobacco,Plants,"Alcoholic Beverages","Biological Substance","Special Exceptions";
           }
-          field(14017672; "Usage Velocity Code"; Code[10])
-          {
-              Description = 'NF1.00:CIS.CM 09-29-15';
-              Editable = false;
-          }
-          field(14017756; "Item Group Code"; Code[10])
-          {
-              Description = 'NF1.00:CIS.CM 09-29-15';
-          }
-          field(14017901; "Qty. on Prod. Kit"; Decimal)
-          {
-              DecimalPlaces = 0 : 2;
-              Description = 'NF1.00:CIS.CM 09-29-15';
-              Editable = false;
-              Enabled = false;
-              FieldClass = FlowField;
-          }
-          field(14017902; "Qty. on Prod. Kit Lines"; Decimal)
-          {
-              DecimalPlaces = 0 : 2;
-              Description = 'NF1.00:CIS.CM 09-29-15';
-              Editable = false;
-              Enabled = false;
-              FieldClass = FlowField;
-          }
-          field(14018081; "Special Gauge/Fixture"; Code[20])
-          {
-              Description = 'NF1.00:CIS.NG  10-10-15';
-          }
-          field(14018084; "Inspection Type"; Code[10])
-          {
-              Description = 'NF1.00:CIS.NG  10-10-15';
-          }
-          field(14018085; "QC Comment"; Boolean)
-          {
-              Caption = 'QC Comment';
-              Description = 'NF1.00:CIS.CM 09-29-15';
-              Editable = false;
-              Enabled = false;
-              FieldClass = FlowField;
-          }
-        
+   */
+        //TODO
     }
+
     var
         ItemCrossReference: Record 5777;
         SKU: Record "Stockkeeping Unit";
@@ -291,8 +662,8 @@ tableextension 50027 "Item Ext" extends "Item"
 
         IF NVM.TestPermission(14018070) THEN BEGIN
             GetInvtSetup();
-            "QC Hold" := InvtSetup."Default New Item QC Hold";
-            "QC Hold Reason Code" := InvtSetup."New Item QC Reason Code";
+            "QC Hold" := InventorySetup."Default New Item QC Hold";
+            "QC Hold Reason Code" := InventorySetup."New Item QC Reason Code";
             //QCMgmt.InsertNewQCItemTask(Rec); //NF1.00:CIS.CM 09-29-15
         END;
         //<<NV 
