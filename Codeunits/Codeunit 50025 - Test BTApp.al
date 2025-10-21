@@ -1129,7 +1129,7 @@ codeunit 50025 "Test BTApp"
     begin
         //CLEAR(BtApplication);
         //CLEAR(BtFormat);
-       // CREATE(BtApplication, TRUE, TRUE);
+        // CREATE(BtApplication, TRUE, TRUE);
         //CREATE(BtFormat, TRUE, TRUE);
         //BtApplication.Visible(Preview);
         /*
@@ -1167,7 +1167,7 @@ codeunit 50025 "Test BTApp"
 
         IF CONFIRM('Check BT Instance') THEN;
         //close application
-       // BtApplication.Quit(1);
+        // BtApplication.Quit(1);
         //BtApplication.stop();
         //CLEAR(BtApplication);
         //CLEAR(BtFormat);

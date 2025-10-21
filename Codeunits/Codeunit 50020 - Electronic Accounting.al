@@ -7,7 +7,7 @@ codeunit 50020 "Electronic Accounting"
 
     var
         ElectronicAccSetup: Record 50035;
-        TempBlob: Record 99008535 temporary;
+        TempBlob: Codeunit "Temp Blob";
         FileManagement: Codeunit 419;
         XMLDOMManagement: Codeunit 6224;
         AuxiliaryAccountNamespaceTxt: Label 'AuxiliarCtas', Locked = true;
@@ -48,19 +48,19 @@ codeunit 50020 "Electronic Accounting"
         xmlDoc: XmlDocument;
     begin
         ElectronicAccSetup.FIND('-');
-        IF FileManagement.IsWebClient THEN
-            ERROR(WebClientErr);
-        //Upload
-        ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.xml'));
-        IF ClientFileName = '' THEN
-            EXIT;
-        ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
+        // IF FileManagement.IsWebClient THEN
+        //     ERROR(WebClientErr);
+        // //Upload
+        // ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.xml'));
+        // IF ClientFileName = '' THEN
+        //     EXIT;
+        // ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
 
-        //Extract
-        xmlDoc := xmlDoc;
-        xmlDoc.LoadXml(XMLWellFormed(ServerFileName));
+        // //Extract
+        // xmlDoc := xmlDoc;//TODO
+        // xmlDoc.LoadXml(XMLWellFormed(ServerFileName));
         //xmlDoc.Load(ServerFileName);
-        ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
+       // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
 
         //VALIDATE
         SalesInvHeader.CALCFIELDS("Amount Including VAT");
@@ -75,7 +75,7 @@ codeunit 50020 "Electronic Accounting"
         IF NOT SalesInvXMLData.GET(SalesInvHeader."No.") THEN BEGIN
             SalesInvXMLData.INIT();
             SalesInvXMLData."No." := SalesInvHeader."No.";
-            SalesInvXMLData.XML.IMPORT(ServerFileName);
+           // SalesInvXMLData.XML.IMPORT(ServerFileName);//TODO
             SalesInvXMLData."XML - UUID" := UUID;
             SalesInvXMLData."XML - Invoice Folio" := InvoiceFolio;
             SalesInvXMLData."XML - Certified No" := CertifiedNo;
@@ -89,7 +89,7 @@ codeunit 50020 "Electronic Accounting"
             SalesInvXMLData."XML - Currency Factor" := CurrencyFactor;
             SalesInvXMLData.INSERT();
         END ELSE BEGIN
-            SalesInvXMLData.XML.IMPORT(ServerFileName);
+            //SalesInvXMLData.XML.IMPORT(ServerFileName);//TODO
             SalesInvXMLData."XML - UUID" := UUID;
             SalesInvXMLData."XML - Invoice Folio" := InvoiceFolio;
             SalesInvXMLData."XML - Certified No" := CertifiedNo;
@@ -126,19 +126,19 @@ codeunit 50020 "Electronic Accounting"
         xmlDoc: XmlDocument;
     begin
         ElectronicAccSetup.FIND('-');
-        IF FileManagement.IsWebClient THEN
-            ERROR(WebClientErr);
-        //Upload
-        ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.xml'));
-        IF ClientFileName = '' THEN
-            EXIT;
-        ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
+        // IF FileManagement.IsWebClient THEN
+        //     ERROR(WebClientErr);
+        // //Upload
+        // ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.xml'));
+        // IF ClientFileName = '' THEN
+        //     EXIT;
+        // ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
 
-        //Extract
-        xmlDoc := xmlDoc;
-        //xmlDoc.Load(ServerFileName);
-        xmlDoc.LoadXml(XMLWellFormed(ServerFileName));
-        ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
+        // //Extract
+        // xmlDoc := xmlDoc;
+        // //xmlDoc.Load(ServerFileName);
+        // xmlDoc.LoadXml(XMLWellFormed(ServerFileName));//TODO
+       // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
 
         //Validate
         SalesCrMHeader.CALCFIELDS("Amount Including VAT");
@@ -149,7 +149,7 @@ codeunit 50020 "Electronic Accounting"
         IF ElectronicAccSetup."EA Chk Amount" THEN ValidateAmount(SalesCrMHeader."Amount Including VAT", Total);
 
         //Assign
-        SalesCrMHeader.XML.IMPORT(ServerFileName);
+       // SalesCrMHeader.XML.IMPORT(ServerFileName);//TODO
         SalesCrMHeader."XML - UUID" := UUID;
         SalesCrMHeader."XML - Invoice Folio" := InvoiceFolio;
         SalesCrMHeader."XML - Certified No" := CertifiedNo;
@@ -173,18 +173,18 @@ codeunit 50020 "Electronic Accounting"
     begin
         IF SalesInvXMLData.GET(SalesInvHeader."No.") THEN BEGIN
             SalesInvXMLData.CALCFIELDS(XML);
-            TempBlob.INIT;
-            TempBlob."Primary Key" := 1;
-            IF SalesInvXMLData.XML.HASVALUE THEN BEGIN
-                TempBlob.Blob := SalesInvXMLData.XML;
-                FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
-            END ELSE
-                MESSAGE(FieldEmpty);
+            // TempBlob.INIT;
+            // TempBlob."Primary Key" := 1;
+            // IF SalesInvXMLData.XML.HASVALUE THEN BEGIN
+            //     TempBlob.Blob := SalesInvXMLData.XML;
+            //     FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
+            // END ELSE
+            //     MESSAGE(FieldEmpty);
         END ELSE
             MESSAGE(FieldEmpty);
     end;
 
-    procedure ExportXMLFromSalesCrMHeader(SalesCrMHeader: Record 114)
+  /*  procedure ExportXMLFromSalesCrMHeader(SalesCrMHeader: Record 114)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNameXMl: Label 'XML File.xml';
@@ -197,7 +197,7 @@ codeunit 50020 "Electronic Accounting"
             FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
         END ELSE
             MESSAGE(FieldEmpty);
-    end;
+    end;*/
 
     procedure DeleteFileFromSalesInvHeader(var SalesInvHeader: Record 112)
     var
@@ -246,18 +246,18 @@ codeunit 50020 "Electronic Accounting"
         xmlDoc: XmlDocument;
     begin
         ElectronicAccSetup.FIND('-');
-        IF FileManagement.IsWebClient THEN
-            ERROR(WebClientErr);
-        //Upload
-        ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.xml'));
-        IF ClientFileName = '' THEN
-            EXIT;
-        ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
-        //Extract
-        xmlDoc := xmlDoc.XmlDocument;
-        //xmlDoc.Load(ServerFileName);
-        xmlDoc.LoadXml(XMLWellFormed(ServerFileName));
-        ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
+        // IF FileManagement.IsWebClient THEN
+        //     ERROR(WebClientErr);
+        // //Upload
+        // ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.xml'));
+        // IF ClientFileName = '' THEN
+        //     EXIT;
+        // ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
+        // //Extract
+        // xmlDoc := xmlDoc;
+        // //xmlDoc.Load(ServerFileName);
+        // xmlDoc.LoadXml(XMLWellFormed(ServerFileName));//TODO
+       // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
 
         //Validate
         PurchInvHeader.CALCFIELDS("Amount Including VAT");
@@ -268,7 +268,7 @@ codeunit 50020 "Electronic Accounting"
         IF ElectronicAccSetup."EA Chk Amount" THEN ValidateAmount(PurchInvHeader."Amount Including VAT", Total);
 
         //Assign
-        PurchInvHeader.XML.IMPORT(ServerFileName);
+      //  PurchInvHeader.XML.IMPORT(ServerFileName);//TODO
         PurchInvHeader."XML - UUID" := UUID;
         PurchInvHeader."XML - Invoice Folio" := InvoiceFolio;
         PurchInvHeader."XML - Certified No" := CertifiedNo;
@@ -303,19 +303,19 @@ codeunit 50020 "Electronic Accounting"
         xmlDoc: XmlDocument;
     begin
         ElectronicAccSetup.FIND('-');
-        IF FileManagement.IsWebClient THEN
-            ERROR(WebClientErr);
-        //Upload
-        ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.xml'));
-        IF ClientFileName = '' THEN
-            EXIT;
-        ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
+        // IF FileManagement.IsWebClient THEN
+        //     ERROR(WebClientErr);
+        // //Upload
+        // ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.xml'));
+        // IF ClientFileName = '' THEN
+        //     EXIT;
+        // ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
 
-        //Extract
-        xmlDoc := xmlDoc;
-        //xmlDoc.Load(ServerFileName);
-        xmlDoc.LoadXml(XMLWellFormed(ServerFileName));
-        ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
+        // //Extract
+        // xmlDoc := xmlDoc;
+        // //xmlDoc.Load(ServerFileName);
+        // xmlDoc.LoadXml(XMLWellFormed(ServerFileName));//TODO
+       // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
 
         //Validate
         PurchCrMHeader.CALCFIELDS("Amount Including VAT");
@@ -326,7 +326,7 @@ codeunit 50020 "Electronic Accounting"
         IF ElectronicAccSetup."EA Chk Amount" THEN ValidateAmount(PurchCrMHeader."Amount Including VAT", Total);
 
         //Assign
-        PurchCrMHeader.XML.IMPORT(ServerFileName);
+        //PurchCrMHeader.XML.IMPORT(ServerFileName);
         PurchCrMHeader."XML - UUID" := UUID;
         PurchCrMHeader."XML - Invoice Folio" := InvoiceFolio;
         PurchCrMHeader."XML - Certified No" := CertifiedNo;
@@ -347,17 +347,17 @@ codeunit 50020 "Electronic Accounting"
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNameXMl: Label 'XML File.xml';
     begin
-        TempBlob.INIT;
-        TempBlob."Primary Key" := 1;
-        PurchInvHeader.CALCFIELDS(XML);
-        IF PurchInvHeader.XML.HASVALUE THEN BEGIN
-            TempBlob.Blob := PurchInvHeader.XML;
-            FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
-        END ELSE
-            MESSAGE(FieldEmpty);
+        // TempBlob.INIT;
+        // TempBlob."Primary Key" := 1;
+        // PurchInvHeader.CALCFIELDS(XML);
+        // IF PurchInvHeader.XML.HASVALUE THEN BEGIN
+        //     TempBlob.Blob := PurchInvHeader.XML;
+        //     FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
+        // END ELSE
+        //     MESSAGE(FieldEmpty);//TODO
     end;
 
-    procedure ExportXMLFromPurchCrMHeader(PurchCrMHeader: Record 124)
+   /* procedure ExportXMLFromPurchCrMHeader(PurchCrMHeader: Record 124)
     var
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNameXMl: Label 'XML File.xml';
@@ -370,7 +370,7 @@ codeunit 50020 "Electronic Accounting"
             FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
         END ELSE
             MESSAGE(FieldEmpty);
-    end;
+    end;*/
 
     procedure DeleteFileFromPurchInvHeader(var PurchInvHeader: Record 122)
     begin
@@ -420,22 +420,22 @@ codeunit 50020 "Electronic Accounting"
         ClientFileName: Text;
         ServerFileName: Text;
     begin
-        IF FileManagement.IsWebClient THEN
-            ERROR(WebClientErr);
+        // IF FileManagement.IsWebClient THEN
+        //     ERROR(WebClientErr);
 
-        ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.pdf'));
-        IF ClientFileName = '' THEN
-            EXIT;
-        ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
-        IF SalesInvXMLData.GET(SalesInvHeader."No.") THEN BEGIN
-            SalesInvXMLData.PDF.IMPORT(ServerFileName);
-            SalesInvXMLData.MODIFY();
-        END ELSE BEGIN
-            SalesInvXMLData.INIT();
-            SalesInvXMLData."No." := SalesInvHeader."No.";
-            SalesInvXMLData.PDF.IMPORT(ServerFileName);
-            SalesInvXMLData.INSERT();
-        END;
+        // ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.pdf'));
+        // IF ClientFileName = '' THEN
+        //     EXIT;
+        // ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
+        // IF SalesInvXMLData.GET(SalesInvHeader."No.") THEN BEGIN
+        //     SalesInvXMLData.PDF.IMPORT(ServerFileName);
+        //     SalesInvXMLData.MODIFY();
+        // END ELSE BEGIN
+        //     SalesInvXMLData.INIT();
+        //     SalesInvXMLData."No." := SalesInvHeader."No.";
+        //     SalesInvXMLData.PDF.IMPORT(ServerFileName);
+        //     SalesInvXMLData.INSERT();
+        // END;
     end;
 
     procedure ImportPDFToSalesCrMHeader(var SalesCrMHeader: Record 114)
@@ -445,15 +445,15 @@ codeunit 50020 "Electronic Accounting"
         ClientFileName: Text;
         ServerFileName: Text;
     begin
-        IF FileManagement.IsWebClient THEN
-            ERROR(WebClientErr);
+        // IF FileManagement.IsWebClient THEN
+        //     ERROR(WebClientErr);
 
-        ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.pdf'));
-        IF ClientFileName = '' THEN
-            EXIT;
-        ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
-        SalesCrMHeader.PDF.IMPORT(ServerFileName);
-        SalesCrMHeader.MODIFY();
+        // ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.pdf'));
+        // IF ClientFileName = '' THEN
+        //     EXIT;
+        // ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
+        // SalesCrMHeader.PDF.IMPORT(ServerFileName);
+        // SalesCrMHeader.MODIFY();//TODO
     end;
 
     procedure ExportPDFFromSalesInvHeader(SalesInvHeader: Record 112)
@@ -463,14 +463,14 @@ codeunit 50020 "Electronic Accounting"
         FileNamePDF: Label 'PDF File.pdf';
     begin
         IF SalesInvXMLData.GET(SalesInvHeader) THEN BEGIN
-            TempBlob.INIT;
-            TempBlob."Primary Key" := 1;
-            SalesInvXMLData.CALCFIELDS(PDF);
-            IF SalesInvXMLData.PDF.HASVALUE THEN BEGIN
-                TempBlob.Blob := SalesInvXMLData.PDF;
-                FileManagement.BLOBExport(TempBlob, FileNamePDF, TRUE);
-            END ELSE
-                MESSAGE(FieldEmpty);
+            // TempBlob.INIT;
+            // TempBlob."Primary Key" := 1;
+            // SalesInvXMLData.CALCFIELDS(PDF);
+            // IF SalesInvXMLData.PDF.HASVALUE THEN BEGIN
+            //     TempBlob.Blob := SalesInvXMLData.PDF;
+            //     FileManagement.BLOBExport(TempBlob, FileNamePDF, TRUE);
+            // END ELSE
+            //     MESSAGE(FieldEmpty);//TODO
         END ELSE
             MESSAGE(FieldEmpty);
     end;
@@ -480,14 +480,14 @@ codeunit 50020 "Electronic Accounting"
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNamePDF: Label 'PDF File.pdf';
     begin
-        TempBlob.INIT;
-        TempBlob."Primary Key" := 1;
-        SalesCrMHeader.CALCFIELDS(PDF);
-        IF SalesCrMHeader.PDF.HASVALUE THEN BEGIN
-            TempBlob.Blob := SalesCrMHeader.PDF;
-            FileManagement.BLOBExport(TempBlob, FileNamePDF, TRUE);
-        END ELSE
-            MESSAGE(FieldEmpty);
+        // TempBlob.INIT;
+        // TempBlob."Primary Key" := 1;
+        // SalesCrMHeader.CALCFIELDS(PDF);
+        // IF SalesCrMHeader.PDF.HASVALUE THEN BEGIN
+        //     TempBlob.Blob := SalesCrMHeader.PDF;
+        //     FileManagement.BLOBExport(TempBlob, FileNamePDF, TRUE);
+        // END ELSE
+        //     MESSAGE(FieldEmpty);//TODO
     end;
 
     procedure ImportPDFToPurchInvHeader(var PurchInvHeader: Record 122)
@@ -497,15 +497,15 @@ codeunit 50020 "Electronic Accounting"
         ClientFileName: Text;
         ServerFileName: Text;
     begin
-        IF FileManagement.IsWebClient THEN
-            ERROR(WebClientErr);
+        // IF FileManagement.IsWebClient THEN
+        //     ERROR(WebClientErr);
 
-        ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.pdf'));
-        IF ClientFileName = '' THEN
-            EXIT;
-        ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
-        PurchInvHeader.PDF.IMPORT(ServerFileName);
-        PurchInvHeader.MODIFY();
+        // ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.pdf'));
+        // IF ClientFileName = '' THEN
+        //     EXIT;
+        // ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
+        // PurchInvHeader.PDF.IMPORT(ServerFileName);
+        // PurchInvHeader.MODIFY();//TODO
     end;
 
     procedure ImportPDFToPurchCrMHeader(var PurchCrMHeader: Record 124)
@@ -515,15 +515,15 @@ codeunit 50020 "Electronic Accounting"
         ClientFileName: Text;
         ServerFileName: Text;
     begin
-        IF FileManagement.IsWebClient THEN
-            ERROR(WebClientErr);
+        // IF FileManagement.IsWebClient THEN
+        //     ERROR(WebClientErr);
 
-        ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.pdf'));
-        IF ClientFileName = '' THEN
-            EXIT;
-        ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
-        PurchCrMHeader.PDF.IMPORT(ServerFileName);
-        PurchCrMHeader.MODIFY();
+        // ClientFileName := FileManagement.OpenFileDialog(FileDialogTxt, '', FileManagement.GetToFilterText('', '.pdf'));
+        // IF ClientFileName = '' THEN
+        //     EXIT;
+        // ServerFileName := FileManagement.UploadFileSilent(ClientFileName);
+        // PurchCrMHeader.PDF.IMPORT(ServerFileName);
+        // PurchCrMHeader.MODIFY();//TODO
     end;
 
     procedure ExportPDFFromPurchInvHeader(PurchInvHeader: Record 122)
@@ -531,14 +531,14 @@ codeunit 50020 "Electronic Accounting"
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNamePDF: Label 'PDF File.pdf';
     begin
-        TempBlob.INIT;
-        TempBlob."Primary Key" := 1;
-        PurchInvHeader.CALCFIELDS(PDF);
-        IF PurchInvHeader.PDF.HASVALUE THEN BEGIN
-            TempBlob.Blob := PurchInvHeader.PDF;
-            FileManagement.BLOBExport(TempBlob, FileNamePDF, TRUE);
-        END ELSE
-            MESSAGE(FieldEmpty);
+        // TempBlob.INIT;
+        // TempBlob."Primary Key" := 1;
+        // PurchInvHeader.CALCFIELDS(PDF);
+        // IF PurchInvHeader.PDF.HASVALUE THEN BEGIN
+        //     TempBlob.Blob := PurchInvHeader.PDF;
+        //     FileManagement.BLOBExport(TempBlob, FileNamePDF, TRUE);
+        // END ELSE
+        //     MESSAGE(FieldEmpty);//TODO
     end;
 
     procedure ExportPDFFromPurchCrmHeader(PurchCrMHeader: Record 124)
@@ -546,21 +546,21 @@ codeunit 50020 "Electronic Accounting"
         FieldEmpty: Label 'Field is empty, file doesn''t exist';
         FileNamePDF: Label 'PDF File.pdf';
     begin
-        TempBlob.INIT;
-        TempBlob."Primary Key" := 1;
-        PurchCrMHeader.CALCFIELDS(PDF);
-        IF PurchCrMHeader.PDF.HASVALUE THEN BEGIN
-            TempBlob.Blob := PurchCrMHeader.PDF;
-            FileManagement.BLOBExport(TempBlob, FileNamePDF, TRUE);
-        END ELSE
-            MESSAGE(FieldEmpty);
+        // TempBlob.INIT;
+        // TempBlob."Primary Key" := 1;
+        // PurchCrMHeader.CALCFIELDS(PDF);
+        // IF PurchCrMHeader.PDF.HASVALUE THEN BEGIN
+        //     TempBlob.Blob := PurchCrMHeader.PDF;
+        //     FileManagement.BLOBExport(TempBlob, FileNamePDF, TRUE);
+        // END ELSE
+        //     MESSAGE(FieldEmpty);//TODO
     end;
 
     local procedure "---Extract---"()
     begin
     end;
-
-    local procedure ExtractFiscalInformation(xmlDoc: XmlDocument; var UUID: Code[36]; var FolioInvoice: Code[50]; var CertifiedNo: Text[20]; var SATCertifiedNo: Text[20]; var DateTimeStamped: Text[50]; var VAT: Code[13]; var "VAT Receptor": Code[13]; var TotalInvoice: Decimal; var PaymentMethod: Code[50]; var Currency: Code[50]; var CurrencyFactor: Decimal)
+//TODO
+    /*local procedure ExtractFiscalInformation(xmlDoc: XmlDocument; var UUID: Code[36]; var FolioInvoice: Code[50]; var CertifiedNo: Text[20]; var SATCertifiedNo: Text[20]; var DateTimeStamped: Text[50]; var VAT: Code[13]; var "VAT Receptor": Code[13]; var TotalInvoice: Decimal; var PaymentMethod: Code[50]; var Currency: Code[50]; var CurrencyFactor: Decimal)
     var
         ImportFailedErr: Label 'The import failed. The XML document is not a valid electronic invoice.';
         NamespaceManager: XmlNamespaceManager;
@@ -620,9 +620,9 @@ codeunit 50020 "Electronic Accounting"
             "VAT Receptor" := Node.Attributes.GetNamedItem('rfc').Value;
         END ELSE
             ERROR(ImportFailedErr);
-    end;
-
-    local procedure HasAttribute(xmlElement: XmlElement; AttributeName: Text): Boolean
+    end;*/
+//TODO
+   /* local procedure HasAttribute(xmlElement: XmlElement; AttributeName: Text): Boolean
     var
         Indice: Integer;
         xmlNode: XmlNode;
@@ -633,7 +633,7 @@ codeunit 50020 "Electronic Accounting"
         FOR Indice := 0 TO xmlNode.Attributes.Count - 1 DO
             IF xmlNode.Attributes.ItemOf(Indice).Name = AttributeName THEN EXIT(TRUE);
         EXIT(FALSE)
-    end;
+    end;*/
 
     local procedure "---Validates---"()
     begin
@@ -1148,7 +1148,7 @@ codeunit 50020 "Electronic Accounting"
             UNTIL GLEntry.NEXT() = 0;
     end;
 
-    local procedure TransPurchCrMToVendLedgEntry(PurchCrMHeader: Record "124"; var VendLedgEntry: Record "25")
+    local procedure TransPurchCrMToVendLedgEntry(PurchCrMHeader: Record 124; var VendLedgEntry: Record 25)
     begin
         VendLedgEntry."XML - UUID" := PurchCrMHeader."XML - UUID";
         VendLedgEntry."XML - Invoice Folio" := PurchCrMHeader."XML - Invoice Folio";
@@ -1419,7 +1419,7 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttributeWithPrefix(RootNode, 'schemaLocation', 'xsi',
           NamespaceW3Txt, FullNameSpace + ' ' + 'http://' + FullNameSpace + '/' + NodeNameSpace + '_1_1.xsd');
 
-        XMLDOMManagement.AddDeclaration(XMLDoc, '1.0', 'UTF-8', '');
+       // XMLDOMManagement.AddDeclaration(XMLDoc, '1.0', 'UTF-8', '');//TODO
     end;
 
     procedure ExportChartOfAccounts(Year: Integer; Month: Integer; ScheduleName: Code[10])
@@ -1461,9 +1461,9 @@ codeunit 50020 "Electronic Accounting"
                 XMLDOMManagement.AddAttribute(Node, 'Natur', FORMAT(AccScheduleLine."SAT Nature"));
                 XMLDOMManagement.AddAttribute(Node, 'Nivel', FORMAT(AccScheduleLine."SAT Level"));
             UNTIL AccScheduleLine.NEXT() = 0;
-        TempBigText.ADDTEXT(Document.InnerXml);
+        //TempBigText.ADDTEXT(Document.InnerXml);//TODO
         //ExportFile(TempBigText,CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month,2,'<Integer,2><Filler Character,0>') + 'CT.xml');
-        SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'CT');
+        //SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'CT');
     end;
 
     procedure ExportBalanceSheet(Year: Integer; Month: Integer; DeliveryType: Option Normal,Complementary; UpdateDate: Date; ScheduleName: Code[10])
@@ -1520,10 +1520,10 @@ codeunit 50020 "Electronic Accounting"
             REPEAT
                 Totaling := AccScheduleLine.Totaling;
 
-                AccScheduleName.RESET();
-                AccScheduleName.SETRANGE(Name, ScheduleName);
-                IF AccScheduleName.FINDFIRST() THEN
-                    DefaultColumnLayout := AccScheduleName."Default Column Layout";
+                // AccScheduleName.RESET();
+                // AccScheduleName.SETRANGE(Name, ScheduleName);
+                // IF AccScheduleName.FINDFIRST() THEN
+                //     DefaultColumnLayout := AccScheduleName."Default Column Layout";//TODO
 
                 x += 1;
                 y := 0;
@@ -1557,7 +1557,7 @@ codeunit 50020 "Electronic Accounting"
             FileType := 'BC';
 
         //BigTextTmp.ADDTEXT(Document.InnerXml);
-        SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + FileType);
+       // SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + FileType);
         ExportFile(BigTextTmp, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + FileType + '.xml');
     end;
 
@@ -1652,7 +1652,7 @@ codeunit 50020 "Electronic Accounting"
             UNTIL GLAccount.NEXT() = 0;
 
         //BigTextTmp.ADDTEXT(Document.InnerXml);
-        SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'XC');
+       // SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'XC');
         ExportFile(BigTextTmp, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'XC.xml');
     end;
 
@@ -1707,7 +1707,7 @@ codeunit 50020 "Electronic Accounting"
             UNTIL GLEntry.NEXT() = 0;
 
         //BigTextTmp.ADDTEXT(Document.InnerXml);
-        SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'PL');
+        //SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'PL');
         //ExportFile(BigTextTmp,CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month,2,'<Integer,2><Filler Character,0>') + 'PL.xml');
     end;
 
@@ -1854,8 +1854,8 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttribute(Node, 'RFC', RFC);
         XMLDOMManagement.AddAttribute(Node, 'Monto', DecimalFormat(GLEntry.Amount));
     end;
-
-    local procedure SaveXMLToClient(var Document: XmlDocument; FileName: Text): Boolean
+//TODO
+   /* local procedure SaveXMLToClient(var Document: XmlDocument; FileName: Text): Boolean
     var
         GeneralLedgerSetup: Record 50035;
         Text001: Label 'Created File %1.', Comment = '%1';
@@ -1869,7 +1869,7 @@ codeunit 50020 "Electronic Accounting"
         FileManagement.CopyServerFile(TempXMLFile, TestFileName, TRUE);
 
         MESSAGE(Text001, TestFileName);
-    end;
+    end;*///TODO
 
     procedure ExportFile(Content: BigText; DefaultName: Text)
     var

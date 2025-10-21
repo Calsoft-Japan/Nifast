@@ -5,7 +5,7 @@ codeunit 50041 CU5815Subscriber
     local procedure OnPostItemJnlLineOnAfterInsertTempWhseJnlLine(SalesShptLine: Record "Sales Shipment Line"; var ItemJnlLine: Record "Item Journal Line"; var TempWhseJnlLine: Record "Warehouse Journal Line" temporary; var NextLineNo: Integer)
     var
         SalesLine: Record 37;
-        WhseUndoQty: Codeunit 7320;
+        WhseUndoQty: Codeunit CU_7320;
     //  HideDialog: Boolean;
     begin
         //>> NF1.00:CIS.NG    09/12/16

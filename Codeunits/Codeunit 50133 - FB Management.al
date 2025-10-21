@@ -48,12 +48,13 @@ codeunit 50133 "FB Management"
             Item.SETRANGE("Location Filter", FBLine."Location Code");
         Item.SETRANGE("Drop Shipment Filter", FALSE);
 
-        EXIT(AvailableToPromise.QtyAvailabletoPromise(Item,
+        EXIT(AvailableToPromise.CalcQtyAvailableToPromise(Item,
                                                       GrossRequirement,
                                                       ScheduledReceipt,
                                                       AvailabilityDate,
                                                       PeriodType,
                                                       LookaheadDateformula));
+        
     end;
 
     procedure GetItem(ItemNo: Code[20])

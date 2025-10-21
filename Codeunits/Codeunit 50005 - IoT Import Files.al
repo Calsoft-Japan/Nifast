@@ -26,7 +26,7 @@ codeunit 50005 "IoT Import Files"
     var
         EDISetup: record "LAX EDI Setup";
         InvtSetup: Record 313;
-        MyFile: Record 2000000022;
+        // MyFile: Record 2000000022;
         FileMgt: Codeunit "File Management";
         TempBlobg: codeunit "Temp Blob";
         //  ImportIoTInvtPickData: XMLport 50002;
@@ -68,39 +68,39 @@ codeunit 50005 "IoT Import Files"
 
         CheckSetup();
 
-        MyFile.RESET();
+        // MyFile.RESET();
 
-        MyFile.SETRANGE(Path, Sourcepath);
-        MyFile.SETRANGE("Is a file", TRUE);
-        MyFile.SETFILTER(Name, '@*.csv');
-        IF MyFile.FINDSET() THEN BEGIN
-            IF GUIALLOWED THEN
-                Window.OPEN(DIALOG_TEXT1 + DIALOG_TEXT2);
+        // MyFile.SETRANGE(Path, Sourcepath);
+        // MyFile.SETRANGE("Is a file", TRUE);
+        // MyFile.SETFILTER(Name, '@*.csv');
+        // IF MyFile.FINDSET() THEN BEGIN
+        IF GUIALLOWED THEN
+            Window.OPEN(DIALOG_TEXT1 + DIALOG_TEXT2);
 
 
-            IoTFileImportLog.RESET();
-            IF IoTFileImportLog.FINDLAST() THEN
-                LastUsedLineNo := IoTFileImportLog."Entry No.";
+        IoTFileImportLog.RESET();
+        IF IoTFileImportLog.FINDLAST() THEN
+            LastUsedLineNo := IoTFileImportLog."Entry No.";
 
-            REPEAT
-                CASE TRUE OF
-                    pString = UPPERCASE(DocType1):
-                        ProcessInvtPickFiles();
-                    pString = UPPERCASE(DocType2):
-                        ProcessInvtTransRcptFiles();
-                    pString = UPPERCASE(DocType3):
-                        ProcessInvtSalesShipFiles();
-                END;
-            UNTIL MyFile.NEXT() = 0;
+        //REPEAT
+        CASE TRUE OF
+            pString = UPPERCASE(DocType1):
+                ProcessInvtPickFiles();
+            pString = UPPERCASE(DocType2):
+                ProcessInvtTransRcptFiles();
+            pString = UPPERCASE(DocType3):
+                ProcessInvtSalesShipFiles();
+        END;
+        //UNTIL MyFile.NEXT() = 0;
 
-            IF GUIALLOWED THEN
-                Window.CLOSE();
+        IF GUIALLOWED THEN
+            Window.CLOSE();
 
-            IF parShowMsg THEN
-                ShowMessage();
-        END ELSE
-            IF GUIALLOWED THEN
-                MESSAGE(NOTHING_MSG);
+        IF parShowMsg THEN
+            ShowMessage();
+        // END ELSE
+        //     IF GUIALLOWED THEN
+        //         MESSAGE(NOTHING_MSG);
     end;
 
     procedure CheckSetup()
@@ -170,8 +170,8 @@ codeunit 50005 "IoT Import Files"
         CLEAR(Ins);
         CLEAR(SourceFile);
 
-        IF GUIALLOWED THEN
-            Window.UPDATE(1, MyFile.Name);
+        // IF GUIALLOWED THEN
+        //     Window.UPDATE(1, MyFile.Name);
 
         // SourceFile.TEXTMODE(TRUE);
         // SourceFile.OPEN(MyFile.Path + MyFile.Name);
@@ -189,8 +189,8 @@ codeunit 50005 "IoT Import Files"
         //         FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name);
         //         ERASE(MyFile.Path + MyFile.Name);
         //     END;
-        if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
-            exit;
+        // if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
+        //     exit;//TODO
 
         Clear(ImportIoTTransRcptData);
         ImportIoTTransRcptData.SetSource(InS);
@@ -206,7 +206,7 @@ codeunit 50005 "IoT Import Files"
 
             IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
-            IoTFileImportLog."File Name" := MyFile.Name;
+            // IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
             IoTFileImportLog."Import Time" := TIME;
             IoTFileImportLog."Import By" := USERID;
@@ -223,7 +223,7 @@ codeunit 50005 "IoT Import Files"
 
             IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
-            IoTFileImportLog."File Name" := MyFile.Name;
+            // IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
             IoTFileImportLog."Import Time" := TIME;
             IoTFileImportLog."Import By" := USERID;
@@ -242,8 +242,8 @@ codeunit 50005 "IoT Import Files"
         CLEAR(Ins);
         CLEAR(SourceFile);
 
-        IF GUIALLOWED THEN
-            Window.UPDATE(1, MyFile.Name);
+        // IF GUIALLOWED THEN
+        //     Window.UPDATE(1, MyFile.Name);
 
         // SourceFile.TEXTMODE(TRUE);
         // SourceFile.OPEN(MyFile.Path + MyFile.Name);
@@ -261,8 +261,8 @@ codeunit 50005 "IoT Import Files"
         //         FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name);
         //         ERASE(MyFile.Path + MyFile.Name);
         //     END;
-        if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
-            exit;
+        // if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
+        //     exit;
 
         Clear(ImportIoTTransRcptData);
         ImportIoTTransRcptData.SetSource(InS);
@@ -273,13 +273,13 @@ codeunit 50005 "IoT Import Files"
             //AddToDocNos(LastDocNo_lCod);
             TempBlobg.CreateOutStream(Outstreamg);
             CopyStream(Outstreamg, InS);
-            DownloadFromStream(Ins,'','','',EDISetup."XML Success Folder");
-           // FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+            DownloadFromStream(Ins, '', '', '', EDISetup."XML Success Folder");
+            // FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
 
 
             IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
-            IoTFileImportLog."File Name" := MyFile.Name;
+            //IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
             IoTFileImportLog."Import Time" := TIME;
             IoTFileImportLog."Import By" := USERID;
@@ -296,7 +296,7 @@ codeunit 50005 "IoT Import Files"
 
             IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
-            IoTFileImportLog."File Name" := MyFile.Name;
+            //IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
             IoTFileImportLog."Import Time" := TIME;
             IoTFileImportLog."Import By" := USERID;
@@ -315,8 +315,8 @@ codeunit 50005 "IoT Import Files"
         CLEAR(Ins);
         CLEAR(SourceFile);
 
-        IF GUIALLOWED THEN
-            Window.UPDATE(1, MyFile.Name);
+        // IF GUIALLOWED THEN
+        //     Window.UPDATE(1, MyFile.Name);
 
         // SourceFile.TEXTMODE(TRUE);
         // SourceFile.OPEN(MyFile.Path + MyFile.Name);
@@ -334,8 +334,8 @@ codeunit 50005 "IoT Import Files"
         //         FILE.COPY(MyFile.Path + MyFile.Name, Successpath + MyFile.Name);
         //         ERASE(MyFile.Path + MyFile.Name);
         //     END;
-        if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
-            exit;
+        // if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
+        //     exit;
 
         Clear(ImportIoTTransRcptData);
         ImportIoTTransRcptData.SetSource(InS);
@@ -352,7 +352,7 @@ codeunit 50005 "IoT Import Files"
 
             IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
-            IoTFileImportLog."File Name" := MyFile.Name;
+            // IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
             IoTFileImportLog."Import Time" := TIME;
             IoTFileImportLog."Import By" := USERID;
@@ -369,7 +369,7 @@ codeunit 50005 "IoT Import Files"
 
             IoTFileImportLog.RESET();
             CLEAR(IoTFileImportLog);
-            IoTFileImportLog."File Name" := MyFile.Name;
+            // IoTFileImportLog."File Name" := MyFile.Name;
             IoTFileImportLog."Import Date" := TODAY;
             IoTFileImportLog."Import Time" := TIME;
             IoTFileImportLog."Import By" := USERID;

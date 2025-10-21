@@ -14,7 +14,7 @@ codeunit 50000 "Not used"
 
     var
         EDISetup: Record 14002367;
-        MyFile: Record 2000000022;
+        //MyFile: Record 2000000022;
         ImportEDISalesOrder: XMLport 50000;
         DocNos: Code[50];
         Window: Dialog;
@@ -48,34 +48,34 @@ codeunit 50000 "Not used"
                 EXIT;
 
         CheckSetup();
+        //TODO
+        // MyFile.RESET();
+        // MyFile.SETRANGE(Path, EDISetup."XML Source Document Folder");
+        // MyFile.SETRANGE("Is a file", TRUE);
+        // MyFile.SETFILTER(Name, '@*.xml');
+        // IF MyFile.FINDSET() THEN BEGIN
+        IF GUIALLOWED THEN
+            Window.OPEN(DIALOG_TEXT1 + DIALOG_TEXT2);
 
-        MyFile.RESET();
-        MyFile.SETRANGE(Path, EDISetup."XML Source Document Folder");
-        MyFile.SETRANGE("Is a file", TRUE);
-        MyFile.SETFILTER(Name, '@*.xml');
-        IF MyFile.FINDSET() THEN BEGIN
-            IF GUIALLOWED THEN
-                Window.OPEN(DIALOG_TEXT1 + DIALOG_TEXT2);
 
+        EDISalesOrderImportLog.RESET();
+        IF EDISalesOrderImportLog.FINDLAST() THEN
+            LastUsedLineNo := EDISalesOrderImportLog."Entry No.";
 
-            EDISalesOrderImportLog.RESET();
-            IF EDISalesOrderImportLog.FINDLAST() THEN
-                LastUsedLineNo := EDISalesOrderImportLog."Entry No.";
+        //REPEAT
+        ProcessEDISalesOrderIn();
 
-            REPEAT
-                ProcessEDISalesOrderIn();
+        // UNTIL MyFile.NEXT() = 0;
 
-            UNTIL MyFile.NEXT() = 0;
+        IF GUIALLOWED THEN
+            Window.CLOSE();
 
-            IF GUIALLOWED THEN
-                Window.CLOSE();
-
-            SendStatusEmail();
-            IF parShowMsg THEN
-                ShowMessage();
-        END ELSE
-            IF GUIALLOWED THEN
-                MESSAGE(NOTHING_MSG);
+        SendStatusEmail();
+        IF parShowMsg THEN
+            ShowMessage();
+        // END ELSE
+        //     IF GUIALLOWED THEN
+        //         MESSAGE(NOTHING_MSG);//TODO
     end;
 
     procedure CheckSetup()
@@ -131,9 +131,9 @@ codeunit 50000 "Not used"
         CLEARLASTERROR();
         CLEAR(Ins);
         CLEAR(SourceFile);
-
-        IF GUIALLOWED THEN
-            Window.UPDATE(1, MyFile.Name);
+        //TODO
+        // IF GUIALLOWED THEN
+        //     Window.UPDATE(1, MyFile.Name);
 
         // SourceFile.TEXTMODE(TRUE);
         // SourceFile.OPEN(MyFile.Path + MyFile.Name);
@@ -154,8 +154,9 @@ codeunit 50000 "Not used"
         //     END;
 
 
-        if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
-            exit;
+
+        //if not UploadIntoStream('Select EDI XML File', '', '', SourceFile, InS) then
+        //    exit;//TODO
 
         Clear(ImportEDISalesOrder);
         ImportEDISalesOrder.SetSource(InS);
@@ -174,7 +175,7 @@ codeunit 50000 "Not used"
             EDISalesOrderImportLog.RESET();
             CLEAR(EDISalesOrderImportLog);
             EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            // EDISalesOrderImportLog."File Name" := MyFile.Name;//TODO
             EDISalesOrderImportLog."Import Date" := TODAY;
             EDISalesOrderImportLog."Import Time" := TIME;
             EDISalesOrderImportLog."Import By" := USERID;
@@ -193,7 +194,7 @@ codeunit 50000 "Not used"
             EDISalesOrderImportLog.RESET();
             CLEAR(EDISalesOrderImportLog);
             EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            // EDISalesOrderImportLog."File Name" := MyFile.Name;//TODO
             EDISalesOrderImportLog."Import Date" := TODAY;
             EDISalesOrderImportLog."Import Time" := TIME;
             EDISalesOrderImportLog."Import By" := USERID;

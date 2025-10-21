@@ -31,10 +31,10 @@ codeunit 50097 "Get Next License Object No."
         LicPermission_lRec.SETRANGE("Read Permission", LicPermission_lRec."Read Permission"::Yes);
         IF LicPermission_lRec.FINDSET() THEN
             REPEAT
-                IF NOT ObjectExists_lFnc(LicPermission_lRec."Object Number") THEN BEGIN
-                    MESSAGE('New Object No. = %1', LicPermission_lRec."Object Number");
-                    EXIT;
-                END;
+               // IF NOT ObjectExists_lFnc(LicPermission_lRec."Object Number") THEN BEGIN
+                 //   MESSAGE('New Object No. = %1', LicPermission_lRec."Object Number");
+                   // EXIT;
+                //END;//TODO
             UNTIL LicPermission_lRec.NEXT() = 0
         ELSE BEGIN
             MESSAGE('New Object No. = %1', 50000);
@@ -49,14 +49,14 @@ codeunit 50097 "Get Next License Object No."
         TypeLicPermission_gRec: Record 2000000043;
         Text000: Label 'Table,Page,Report,Codeunit,XMLport';
 
-    procedure ObjectExists_lFnc(No_iInt: Integer): Boolean
-    var
-        Object_lRec: Record 2000000001;
-    begin
-        Object_lRec.RESET();
-        Object_lRec.SETRANGE(Type, TypeLicPermission_gRec."Object Type");
-        Object_lRec.SETRANGE(ID, No_iInt);
-        EXIT(Object_lRec.FINDFIRST());
-    end;
+    // procedure ObjectExists_lFnc(No_iInt: Integer): Boolean
+    // var
+    //     Object_lRec: Record 2000000001;
+    // begin
+    //     Object_lRec.RESET();
+    //     Object_lRec.SETRANGE(Type, TypeLicPermission_gRec."Object Type");
+    //     Object_lRec.SETRANGE(ID, No_iInt);
+    //     EXIT(Object_lRec.FINDFIRST());
+    // end;
 }
 

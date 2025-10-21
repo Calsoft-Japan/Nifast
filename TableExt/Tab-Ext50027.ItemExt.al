@@ -531,8 +531,7 @@ tableextension 50027 "Item Ext" extends "Item"
         "Variant Code" = Field("Variant Filter"),
         "Lot No." = Field("Lot No. Filter"),
         "Serial No." = Field("Serial No. Filter"),
-        "QC Hold" = Const(Yes)
-    ));
+        "QC Hold" = Const(true)));
             DecimalPlaces = 0 : 5;
             Caption = 'Qty. on QC Hold';
             Editable = false;

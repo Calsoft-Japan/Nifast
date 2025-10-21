@@ -1,4 +1,4 @@
-tableextension 50252 "General Ledger Setup _Ext" extends "General Ledger Setup"
+tableextension 50252 "General Posting Setup _Ext" extends "General Posting Setup"
 {
     fields
     {

@@ -25,7 +25,7 @@ codeunit 50001 "Process EDI XML File JRR"
 
     var
         EDISetup: Record 14002367;
-        MyFile: Record 2000000022;
+        // MyFile: Record 2000000022;
         FileMgt: Codeunit "File Management";
         TempBlobg: codeunit "Temp Blob";
         ImportEDISalesOrder: XMLport 50000;
@@ -75,36 +75,36 @@ codeunit 50001 "Process EDI XML File JRR"
 
         CheckSetup();
 
-        MyFile.RESET();
-        //MyFile.SETRANGE(Path,EDISetup."XML Source Document Folder");
-        MyFile.SETRANGE(Path, Sourcepath);
-        MyFile.SETRANGE("Is a file", TRUE);
-        MyFile.SETFILTER(Name, '@*.xml');
-        IF MyFile.FINDSET() THEN BEGIN
-            IF GUIALLOWED THEN
-                Window.OPEN(DIALOG_TEXT1 + DIALOG_TEXT2);
+        // MyFile.RESET();
+        // //MyFile.SETRANGE(Path,EDISetup."XML Source Document Folder");
+        // MyFile.SETRANGE(Path, Sourcepath);
+        // MyFile.SETRANGE("Is a file", TRUE);
+        // MyFile.SETFILTER(Name, '@*.xml');
+        // IF MyFile.FINDSET() THEN BEGIN
+        IF GUIALLOWED THEN
+            Window.OPEN(DIALOG_TEXT1 + DIALOG_TEXT2);
 
 
-            EDISalesOrderImportLog.RESET();
-            IF EDISalesOrderImportLog.FINDLAST() THEN
-                LastUsedLineNo := EDISalesOrderImportLog."Entry No.";
+        EDISalesOrderImportLog.RESET();
+        IF EDISalesOrderImportLog.FINDLAST() THEN
+            LastUsedLineNo := EDISalesOrderImportLog."Entry No.";
 
-            REPEAT
-                IF pString = 'SALESORDER' THEN       //jrr
-                    ProcessEDISalesOrderIn()       // ***************()       // ***************
-                ELSE
-                    ProcessEDIForecastIn();
-            UNTIL MyFile.NEXT() = 0;
+        // REPEAT
+        IF pString = 'SALESORDER' THEN       //jrr
+            ProcessEDISalesOrderIn()       // ***************()       // ***************
+        ELSE
+            ProcessEDIForecastIn();
+        //UNTIL MyFile.NEXT() = 0;
 
-            IF GUIALLOWED THEN
-                Window.CLOSE();
+        IF GUIALLOWED THEN
+            Window.CLOSE();
 
-            SendStatusEmail();
-            IF parShowMsg THEN
-                ShowMessage();
-        END ELSE
-            IF GUIALLOWED THEN
-                MESSAGE(NOTHING_MSG);
+        SendStatusEmail();
+        IF parShowMsg THEN
+            ShowMessage();
+        // END ELSE
+        //     IF GUIALLOWED THEN
+        //         MESSAGE(NOTHING_MSG);
     end;
 
     procedure CheckSetup()
@@ -188,8 +188,8 @@ codeunit 50001 "Process EDI XML File JRR"
         CLEAR(Ins);
         CLEAR(SourceFile);
 
-        IF GUIALLOWED THEN
-            Window.UPDATE(1, MyFile.Name);
+        // IF GUIALLOWED THEN
+        //   Window.UPDATE(1, MyFile.Name);
 
         // SourceFile.TEXTMODE(TRUE);
         // SourceFile.OPEN(MyFile.Path + MyFile.Name);
@@ -208,8 +208,8 @@ codeunit 50001 "Process EDI XML File JRR"
         //         FILE.COPY(MyFile.Path + MyFile.Name, EDISetup."XML Success Folder" + MyFile.Name);
         //         ERASE(MyFile.Path + MyFile.Name);
         //     END;
-        if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
-            exit;
+        //if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
+        //  exit;//TODO
 
         Clear(ImportEDISalesOrder);
         ImportEDISalesOrder.SetSource(InS);
@@ -220,14 +220,14 @@ codeunit 50001 "Process EDI XML File JRR"
             AddToDocNos(LastDocNo_lCod);
             TempBlobg.CreateOutStream(Outstreamg);
             CopyStream(Outstreamg, InS);
-            DownloadFromStream(Ins,'','','',EDISetup."XML Success Folder");
-           // FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+            DownloadFromStream(Ins, '', '', '', EDISetup."XML Success Folder");
+            // FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
 
 
             EDISalesOrderImportLog.RESET();
             CLEAR(EDISalesOrderImportLog);
             EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            // EDISalesOrderImportLog."File Name" := MyFile.Name;
             EDISalesOrderImportLog."Import Date" := TODAY;
             EDISalesOrderImportLog."Import Time" := TIME;
             EDISalesOrderImportLog."Import By" := USERID;
@@ -246,7 +246,7 @@ codeunit 50001 "Process EDI XML File JRR"
             EDISalesOrderImportLog.RESET();
             CLEAR(EDISalesOrderImportLog);
             EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            //EDISalesOrderImportLog."File Name" := MyFile.Name;
             EDISalesOrderImportLog."Import Date" := TODAY;
             EDISalesOrderImportLog."Import Time" := TIME;
             EDISalesOrderImportLog."Import By" := USERID;
@@ -447,9 +447,9 @@ codeunit 50001 "Process EDI XML File JRR"
     begin
         if not EDISetup."Send Email on Error" then
             exit;
-        
-         EDISetup.TestField("Email Title");
-         EDISetup.TestField("Email Subject");
+
+        EDISetup.TestField("Email Title");
+        EDISetup.TestField("Email Subject");
 
         GetEmailAddress('SalesOrder_EDI', EmailTo, EmailCC, EmailBCC);
 
@@ -623,11 +623,11 @@ codeunit 50001 "Process EDI XML File JRR"
         CLEAR(Ins);
         CLEAR(SourceFile);
 
-        IF GUIALLOWED THEN
-            Window.UPDATE(1, MyFile.Name);
+        // IF GUIALLOWED THEN
+        //   Window.UPDATE(1, MyFile.Name);
 
-        if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
-            exit;
+        //if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
+        //  exit;//TODO
 
         Clear(ImportEDISalesOrder);
         ImportEDISalesOrder.SetSource(InS);
@@ -645,7 +645,7 @@ codeunit 50001 "Process EDI XML File JRR"
             EDISalesOrderImportLog.RESET();
             CLEAR(EDISalesOrderImportLog);
             EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            //EDISalesOrderImportLog."File Name" := MyFile.Name;
             EDISalesOrderImportLog."Import Date" := TODAY;
             EDISalesOrderImportLog."Import Time" := TIME;
             EDISalesOrderImportLog."Import By" := USERID;
@@ -664,7 +664,7 @@ codeunit 50001 "Process EDI XML File JRR"
             EDISalesOrderImportLog.RESET();
             CLEAR(EDISalesOrderImportLog);
             EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-            EDISalesOrderImportLog."File Name" := MyFile.Name;
+            //EDISalesOrderImportLog."File Name" := MyFile.Name;
             EDISalesOrderImportLog."Import Date" := TODAY;
             EDISalesOrderImportLog."Import Time" := TIME;
             EDISalesOrderImportLog."Import By" := USERID;

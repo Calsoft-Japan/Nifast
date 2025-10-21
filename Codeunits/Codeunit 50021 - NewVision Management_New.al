@@ -911,15 +911,15 @@ codeunit 50021 "NewVision Management_New"
         //<< NF1.00:CIS.CM 09-29-15
     end;
 
-    procedure TestPermission(TableID: Integer): Boolean
+   /* procedure TestPermission(TableID: Integer): Boolean
     var
-        PermissionRange: Record 2000000044;
+        PermissionRange: Record "Permission Range";
     begin
         PermissionRange.SETRANGE("Object Type", PermissionRange."Object Type"::TableData);
         PermissionRange.SETRANGE(From, 0, TableID);
         PermissionRange.SETFILTER("To", '>=%1', TableID);
         EXIT(PermissionRange.FIND('-'));
-    end;
+    end;*/
 
     procedure ItemQtyAvailable(ItemNo: Code[20]; VariantCode: Code[10]) ReturnValue: Decimal
     var
@@ -1047,9 +1047,9 @@ codeunit 50021 "NewVision Management_New"
                     Item.GET(SalesLine."No.");
                     IF Item."Item Tracking Code" = '' THEN
                         EXIT;
-                    SalesLine.CALCFIELDS("E-Ship Whse. Ship. Qty (Base)", "E-Ship Whse. Outst. Qty (Base)");
-                    WhseShipQtyBase := "E-Ship Whse. Ship. Qty (Base)";
-                    WhsePickQtyBase := "E-Ship Whse. Outst. Qty (Base)";
+                    SalesLine.CALCFIELDS("LAX EShip Whse Ship. Qty(Base)", "LAX EShip Whse Outst.Qty(Base)");
+                    WhseShipQtyBase := SalesLine."LAX EShip Whse Ship. Qty(Base)";
+                    WhsePickQtyBase := SalesLine."LAX EShip Whse Outst.Qty(Base)";
                     ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
                     ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date");
                 END;
@@ -1730,7 +1730,7 @@ codeunit 50021 "NewVision Management_New"
             UNTIL WhseItemTrkgLines.NEXT() = 0;
     end;
 
-    procedure AddWhseItemTrackingLines(SourceType: Integer; SourceSubType: Integer; SourceNo: Code[20]; SourceLineNo: Integer; var TempLotBinContent: Record "50001" temporary)
+    procedure AddWhseItemTrackingLines(SourceType: Integer; SourceSubType: Integer; SourceNo: Code[20]; SourceLineNo: Integer; var TempLotBinContent: Record 50001 temporary)
     var
         WhseItemTrkgLines: Record 6550;
         WhseShptLine: Record 7321;
@@ -1854,7 +1854,7 @@ codeunit 50021 "NewVision Management_New"
     begin
     end;
 
-    procedure DebugCreateFile()
+   /* procedure DebugCreateFile()
     var
         RFDebugFile: File;
     begin
@@ -1866,9 +1866,9 @@ codeunit 50021 "NewVision Management_New"
         RFDebugFile.WRITEMODE := TRUE;
         //RFDebugFile.QUERYREPLACE := FALSE;
         RFDebugFile.CREATE(RFDebugFileName);
-    end;
+    end;*/
 
-    procedure DebugWriteFile(TextString: Text[250])
+   /* procedure DebugWriteFile(TextString: Text[250])
     var
         RFDebugFile: File;
     begin
@@ -1878,7 +1878,7 @@ codeunit 50021 "NewVision Management_New"
         RFDebugFile.SEEK(RFDebugFile.LEN);
         RFDebugFile.WRITE(TextString);
         RFDebugFile.CLOSE;
-    end;
+    end;*/
 
     procedure "<<Movement Form>>"()
     begin

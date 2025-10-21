@@ -126,7 +126,7 @@ tableextension 50083 "Item Journal Line Ext" extends "Item Journal Line"
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14017932; " Rework Line No."; Integer)
+        field(14017932; "Rework Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }

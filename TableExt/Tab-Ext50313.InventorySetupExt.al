@@ -184,7 +184,7 @@ tableextension 50313 "Inventory Setup Ext" extends "Inventory Setup"
         field(14018071; "New Item QC Reason Code"; Code[10])
         {
             DataClassification = ToBeClassified;
-            TableRelation = "Reason Code" WHERE(Type = CONST(QC));
+            TableRelation = "Reason Code";
         }
         field(14018072; "New Item QC Task Code"; Code[10])
         {

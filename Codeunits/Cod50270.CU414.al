@@ -11,8 +11,8 @@ codeunit 50270 CU_414
     begin
         // >> Shipping
         SalesSetup.get();
-        IF SalesSetup."Enable Shipping" AND NOT RunFromEship THEN
-            NameAndAddressMgt.CheckNameAddressSalesHeader(SalesHeader, "Shipping Agent Code");
+        IF SalesSetup."LAX Enable Shipping" AND NOT RunFromEship THEN
+            NameAndAddressMgt.CheckNameAddressSalesHeader(SalesHeader, SalesHeader."Shipping Agent Code");
         // << Shipping
 
     end;
@@ -22,12 +22,12 @@ codeunit 50270 CU_414
     begin
         // >> Shipping
         SalesSetup.Get();
-        IF (SalesSetup."Enable E-Mail") and (NOT RunFromEship) THEN
+        IF (SalesSetup."LAX Enable E-Mail") and (NOT RunFromEship) THEN
             EMailMgt.SendSalesConfirmation(SalesHeader, FALSE, FALSE);
         // << Shipping
 
         // >> EDI
-        IF (SalesHeader."EDI Order") and (SalesHeader."EDI Cancellation Request") and (NOT RunFromEship) THEN
+        IF (SalesHeader."LAX EDI Order") and (SalesHeader."LAX EDI Cancellation Request") and (NOT RunFromEship) THEN
             ERROR(Text14000351);
         // << EDI
     end;

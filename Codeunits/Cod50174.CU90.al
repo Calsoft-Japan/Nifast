@@ -44,14 +44,14 @@ codeunit 50174 CU_90
         // >> Receiving
         PurchSetup.get();
         IF PurchSetup."Enable Receive" AND
-           (PurchSetup."E-Receive Locking Optimization" =
-            PurchSetup."E-Receive Locking Optimization"::Base)
+           (PurchSetup."LAX E-Rec Locking Optimization" =
+            PurchSetup."LAX E-Rec Locking Optimization"::Base)
         THEN
             Receiving.CheckPurchHeader(PurchHeader);
         // << Receiving
 
         // >> Shipping
-        IF PurchHeader.Receive AND PurchSetup."Enable Shipping" THEN
+        IF PurchHeader.Receive AND PurchSetup."LAX Enable Shipping" THEN
             Shipping.CheckPurchHeader(PurchHeader);
         // << Shipping
 
@@ -74,9 +74,9 @@ codeunit 50174 CU_90
         PurchSetup.get();
         // >> Receiving
         IF (PurchHeader."Document Type" IN [PurchHeader."Document Type"::Order, PurchHeader."Document Type"::Invoice]) AND
-           PurchSetup."Enable Receive" AND
-           (PurchSetup."E-Receive Locking Optimization" =
-            PurchSetup."E-Receive Locking Optimization"::Base)
+           PurchSetup."LAX Enable Receive" AND
+           (PurchSetup."LAX E-Rec Locking Optimization" =
+            PurchSetup."LAX E-Rec Locking Optimization"::Base)
         THEN
             Receiving.PostReceivePurchHeader(PurchHeader, PurchRcptHeader);
         // << Receiving
@@ -89,7 +89,7 @@ codeunit 50174 CU_90
         PurchSetup.get();
         // >> Shipping
         IF (PurchHeader."Document Type" IN [PurchHeader."Document Type"::"Return Order"]) AND
-           PurchSetup."Enable Shipping"
+           PurchSetup."LAX Enable Shipping"
         THEN
             Shipping.PostPackagePurchReturnOrder(PurchHeader, ReturnShptHeader);
         // << Shipping
@@ -101,8 +101,8 @@ codeunit 50174 CU_90
     local procedure OnBeforePurchInvHeaderInsert(var PurchInvHeader: Record "Purch. Inv. Header"; var PurchHeader: Record "Purchase Header"; CommitIsSupressed: Boolean)
     begin
         //>>IST 052405 DPC #9806
-        PurchInvHeader."Contract Note No." := "Contract Note No.";
-        PurchInvHeader."Exchange Contract No." := "Exchange Contract No.";
+        PurchInvHeader."Contract Note No." := PurchHeader."Contract Note No.";
+        PurchInvHeader."Exchange Contract No." := PurchHeader."Exchange Contract No.";
         PurchInvHeader."MOSP Reference No." := PurchHeader."MOSP Reference No.";
 
         "4XContractNote".SETRANGE("Contract Note No.", PurchHeader."Contract Note No.");
@@ -121,7 +121,7 @@ codeunit 50174 CU_90
         // >> Shipping
         PurchSetup.Get();
         IF (PurchHeader."Document Type" IN [PurchHeader."Document Type"::"Credit Memo"]) AND
-           PurchSetup."Enable Shipping"
+           PurchSetup."LAX Enable Shipping"
         THEN
             Shipping.PostPackagePurchCrMemo(PurchHeader, PurchCrMemoHeader);
         // << Shipping
@@ -158,9 +158,9 @@ codeunit 50174 CU_90
     begin
         // >> Receiving
         PurchSetup.Get();
-        IF PurchSetup."Enable Receive" AND
-           (PurchSetup."E-Receive Locking Optimization" =
-            PurchSetup."E-Receive Locking Optimization"::Receiving)
+        IF PurchSetup."LAX Enable Receive" AND
+           (PurchSetup."LAX E-Rec Locking Optimization" =
+            PurchSetup."LAX E-Rec Locking Optimization"::Receiving)
         THEN BEGIN
             Receiving.CheckPurchHeader(PurchaseHeader);
 
@@ -179,10 +179,10 @@ codeunit 50174 CU_90
 
     begin
         //>>NV 03.31.04 JWW:
-        IF NVM.TestPermission(14017931) THEN BEGIN
+        //IF NVM.TestPermission(14017931) THEN BEGIN
             ItemJournalLine."Rework No." := PurchaseHeader."Rework No.";
             ItemJournalLine."Rework Line No." := PurchaseHeader."Rework Line No.";
-        END;
+       // END;
         //<<NV 03.31.04 JWW:
         //-AKK1606.01--
         ItemJournalLine."Entry/Exit No." := PurchaseLine."Entry/Exit No.";
@@ -217,7 +217,7 @@ codeunit 50174 CU_90
         //<<NIF 050806 MAK
 
         //>>> NV
-        IF NVM.TestPermission(14018070) THEN BEGIN
+       // IF NVM.TestPermission(14018070) THEN BEGIN
             InvtSetup.GET();
 
             IF (PurchaseLine."Document Type" <> PurchaseLine."Document Type"::"Return Order") AND
@@ -239,7 +239,7 @@ codeunit 50174 CU_90
                     //ItemJnlLine."QC Reference No." := QCMgmt.PurchFindQCReference(PurchLine,PurchRcptHeader."No.");  //NF1.00:CIS.NG 12-18-15
                     ItemJournalLine."QC Hold" := TRUE;
                 END;
-        END;
+       // END;
         //<<< NV
     end;
 
