@@ -24,6 +24,7 @@ codeunit 50005 "IoT Import Files"
     end;
 
     var
+        EDISetup: record "LAX EDI Setup";
         InvtSetup: Record 313;
         MyFile: Record 2000000022;
         FileMgt: Codeunit "File Management";
@@ -272,7 +273,8 @@ codeunit 50005 "IoT Import Files"
             //AddToDocNos(LastDocNo_lCod);
             TempBlobg.CreateOutStream(Outstreamg);
             CopyStream(Outstreamg, InS);
-            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+            DownloadFromStream(Ins,'','','',EDISetup."XML Success Folder");
+           // FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
 
 
             IoTFileImportLog.RESET();

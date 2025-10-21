@@ -220,7 +220,8 @@ codeunit 50001 "Process EDI XML File JRR"
             AddToDocNos(LastDocNo_lCod);
             TempBlobg.CreateOutStream(Outstreamg);
             CopyStream(Outstreamg, InS);
-            FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+            DownloadFromStream(Ins,'','','',EDISetup."XML Success Folder");
+           // FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
 
 
             EDISalesOrderImportLog.RESET();
@@ -446,9 +447,9 @@ codeunit 50001 "Process EDI XML File JRR"
     begin
         if not EDISetup."Send Email on Error" then
             exit;
-        //TODO
-        // EDISetup.TestField("Email Title");
-        // EDISetup.TestField("Email Subject");
+        
+         EDISetup.TestField("Email Title");
+         EDISetup.TestField("Email Subject");
 
         GetEmailAddress('SalesOrder_EDI', EmailTo, EmailCC, EmailBCC);
 
@@ -480,12 +481,9 @@ codeunit 50001 "Process EDI XML File JRR"
 
         //  Create message with To, CC, and BCC
         EmailMessage.Create(
-            EDISetup."Email Subject",
             EmailTo,
-            EmailCC,
-            EmailBCC,
-            BodyBuilder.ToText(),
-            true
+            EDISetup."Email Subject",
+            BodyBuilder.ToText(), true
         );
 
         // Send using configured account/scenario
@@ -544,10 +542,8 @@ codeunit 50001 "Process EDI XML File JRR"
 
         //  Create message with To, CC, and BCC
         EmailMessage.Create(
-            EDISetup."Email Subject",
             EmailTo,
-            EmailCC,
-            EmailBCC,
+            EDISetup."Email Subject",
             BodyBuilder.ToText(),
             true
         );

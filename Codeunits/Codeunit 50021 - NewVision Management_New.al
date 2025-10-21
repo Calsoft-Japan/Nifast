@@ -1120,7 +1120,7 @@ codeunit 50021 "NewVision Management_New"
         //end if TrackingSpecificationTmp.FIND then begin
     end;
 
-    procedure AddItemTrackingLines(SourceType: Integer; SourceSubType: Integer; SourceNo: Code[20]; SourceLineNo: Integer; var TempLotBinContent: Record "50001" temporary)
+    procedure AddItemTrackingLines(SourceType: Integer; SourceSubType: Integer; SourceNo: Code[20]; SourceLineNo: Integer; var TempLotBinContent: Record 50001 temporary)
     var
         Location: Record 14;
         Item: Record 27;
@@ -1427,7 +1427,7 @@ codeunit 50021 "NewVision Management_New"
     begin
     end;
 
-    procedure SuggestLotEntryLines(DocType: Integer; DocNo: Code[20]; var LotEntry: Record "50002")
+    procedure SuggestLotEntryLines(DocType: Integer; DocNo: Code[20]; var LotEntry: Record 50002)
     var
         Location: Record 14;
         Item: Record 27;
@@ -3175,7 +3175,7 @@ codeunit 50021 "NewVision Management_New"
     begin
     end;
 
-    procedure FillDimSetEntry_gFnc(OldDimSetID_lInt: Integer; var DimSetEntry_vRec: Record "480" temporary)
+    procedure FillDimSetEntry_gFnc(OldDimSetID_lInt: Integer; var DimSetEntry_vRec: Record 480 temporary)
     begin
         //>>NF1.00:CIS.NG  10-12-15
         CLEAR(DimMgt_gCdu);

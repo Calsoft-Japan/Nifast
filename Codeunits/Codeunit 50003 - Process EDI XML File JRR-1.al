@@ -456,10 +456,8 @@ codeunit 50003 "Process EDI XML File JRR-1"
 
         //  Create message with To, CC, and BCC
         EmailMessage.Create(
-            EDISetup."Email Subject",
             EmailTo,
-            EmailCC,
-            EmailBCC,
+            EDISetup."Email Subject",
             BodyBuilder.ToText(),
             true
         );
@@ -518,14 +516,7 @@ codeunit 50003 "Process EDI XML File JRR-1"
         BodyBuilder.Append('</body></html>');
 
         //  Create message with To, CC, and BCC
-        EmailMessage.Create(
-            EDISetup."Email Subject",
-            EmailTo,
-            EmailCC,
-            EmailBCC,
-            BodyBuilder.ToText(),
-            true
-        );
+        EmailMessage.Create(EmailTo,EDISetup."Email Subject",BodyBuilder.ToText(),true);
 
         Email.Send(EmailMessage, Enum::"Email Scenario"::Default);
     end;

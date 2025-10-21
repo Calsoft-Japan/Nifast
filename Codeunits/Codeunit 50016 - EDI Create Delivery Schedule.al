@@ -39,9 +39,9 @@ codeunit 50016 "EDI Create Delivery Schedule"
           'Item No.             #5##################\' +
           'Creating Lines       @6@@@@@@@@@@@@@@@@@@');
 
-        ProgressWindow.UPDATE(1, "Trade Partner No.");
-        ProgressWindow.UPDATE(3, "Internal Doc. No.");
-        ProgressWindow.UPDATE(4, "Customer No.");
+        ProgressWindow.UPDATE(1, EDIReceviceDocument."Trade Partner No.");
+        ProgressWindow.UPDATE(3, EDIReceviceDocument."Internal Doc. No.");
+        ProgressWindow.UPDATE(4, EDIReceviceDocument."Customer No.");
 
         EDITradePartner.GET(EDIRecDocHdr2."Trade Partner No.");
 
@@ -84,8 +84,8 @@ codeunit 50016 "EDI Create Delivery Schedule"
             DeliverySchBatch.INIT();
             CLEAR(DeliverySchBatch);
 
-            DeliverySchBatch."EDI Trade Partner" := "Trade Partner No.";
-            EDITradePartner.GET("ITrade Partner No.");
+            DeliverySchBatch."EDI Trade Partner" := EDIReceviceDocument."Trade Partner No.";
+            EDITradePartner.GET(EDIReceviceDocument."Trade Partner No.");
             DeliverySchBatch.VALIDATE("Customer No.", LastCustomerNo);
 
             EDIRecDocHdr2."Customer No." := DeliverySchBatch."Customer No.";
@@ -96,7 +96,7 @@ codeunit 50016 "EDI Create Delivery Schedule"
             EDIRecDocHdr2."Customer No." := DeliverySchBatch."Customer No.";
             EDIRecDocHdr2.MODIFY;
 
-            DeliverySchBatch."EDI Internal Doc. No." := "Internal Doc. No.";
+            DeliverySchBatch."EDI Internal Doc. No." := EDIReceviceDocument."Internal Doc. No.";
             MapPlnSchFields();
             DeliverySchBatch.INSERT(TRUE);
 
@@ -110,7 +110,7 @@ codeunit 50016 "EDI Create Delivery Schedule"
         CmdCount := 0;
         EDIRecDocFields.RESET;
         EDIRecDocFields.SETCURRENTKEY("Internal Doc. No.", "Line No.");
-        EDIRecDocFields.SETRANGE("Internal Doc. No.", "Internal Doc. No.");
+        EDIRecDocFields.SETRANGE("Internal Doc. No.", EDIReceviceDocument."Internal Doc. No.");
         ResetFSValues();
         ResetFSLValues();
         TotalLineElements := EDIRecDocFields.COUNT;

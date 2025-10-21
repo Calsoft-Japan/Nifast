@@ -221,6 +221,8 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
         modify("Order Address Code")
         {
             trigger OnBeforeValidate()
+            VAR
+                NVM: Codeunit 50021;
             begin
                 //>>NV
                 IF NVM.CheckSoftBlock(1, "Buy-from Vendor No.", "Order Address Code", '', "Document Type", SoftBlockError) THEN
@@ -238,8 +240,88 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
 
             end;
         }
+        field(14017610; "Entered User ID"; cODE[50])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
+            //TestTableRelation =false;
+            Description = '20-->50';
+            trigger OnValidate()
+            var
+                LoginMgt: Codeunit LogInManagement;
+            begin
+                LoginMgt.ValidateUserID("Entered User ID");
+            end;
+
+            trigger OnLookup()
+            var
+                LoginMgt: Codeunit LogInManagement;
+            begin
+                LoginMgt.LookupUserID("Entered User ID");
+            end;
+        }
+        field(14017611; "Entered Date"; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017612; "Entered Time"; Time)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017620; "Bill of Lading No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017621; "Carrier Vendor No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = Vendor."No.";
+        }
+        field(14017622; "Carrier Trailer ID"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017630; "Priority Code"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(14017640; "Ship-to PO No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017650; "Broker/Agent Code"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017660; "Outstanding Gross Weight"; Decimal)
+        {
+            //DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = Sum("Purchase Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
+                                                                                                                     "Document No." = FIELD("No.")));
+            Editable = false;
+        }
+        field(14017661; "Outstanding Net Weight"; Decimal)
+        {
+            //DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = Sum("Purchase Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
+                                                                                                                     "Document No." = FIELD("No.")));
+            Editable = FALSE;
+        }
+        field(14017930; "Rework No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017931; "Rework Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
 
     }
+
 
     trigger OnAfterInsert()
     begin
@@ -257,12 +339,12 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
     end;
 
     var
-        
+
         SuspendStatusChk_gBln: Boolean;
         SoftBlockError: Text[80];
         PurchRep: Record 13;
         GLSetup: Record "General Ledger Setup";
-        Text006: Label 'ENU=You cannot change %1 because the order is associated with one or more sales orders.';
+        Text006: Label 'ENU=You cannot change %1 because the order is associated with one or more sales orders.',Comment = '%1';
 
 }
 

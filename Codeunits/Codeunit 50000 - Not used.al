@@ -81,12 +81,14 @@ codeunit 50000 "Not used"
     procedure CheckSetup()
     begin
         // check EDI setup
-        //TODO
-        // EDISetup.GET();
-        // EDISetup.TESTFIELD("XML Source Document Folder");
-        // EDISetup.TESTFIELD("XML Error Folder");
-        // IF NOT EDISetup."Delete XML on Success" THEN
-        //     EDISetup.TESTFIELD("XML Success Folder");
+
+        EDISetup.GET();
+        EDISetup.TESTFIELD("XML Source Document Folder");
+        EDISetup.TESTFIELD("XML Error Folder");
+        IF NOT EDISetup."Delete XML on Success" THEN
+            EDISetup.TESTFIELD("XML Success Folder");
+
+
 
         // check folders
         // IF NOT ValidateDirectoryPath(EDISetup."XML Error Folder") THEN
@@ -424,14 +426,7 @@ codeunit 50000 "Not used"
         BodyBuilder.Append('</body></html>');
 
         //  Create message with To, CC, and BCC
-        EmailMessage.Create(
-            EDISetup."Email Subject",
-            EmailTo,
-            EmailCC,
-            EmailBCC,
-            BodyBuilder.ToText(),
-            true
-        );
+        EmailMessage.Create(EmailTo, EDISetup."Email Subject", BodyBuilder.ToText(), true);
 
         //  Send using configured account/scenario
         Email.Send(EmailMessage, Enum::"Email Scenario"::Default);
@@ -489,12 +484,9 @@ codeunit 50000 "Not used"
 
         // Create message with To, CC, and BCC
         EmailMessage.Create(
-            EDISetup."Email Subject",
             EmailTo,
-            EmailCC,
-            EmailBCC,
-            BodyBuilder.ToText(),
-            true
+            EDISetup."Email Subject",
+            BodyBuilder.ToText()
         );
 
         Email.Send(EmailMessage, Enum::"Email Scenario"::Default);

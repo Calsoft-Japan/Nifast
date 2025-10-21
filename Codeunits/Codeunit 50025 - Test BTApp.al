@@ -51,8 +51,8 @@ codeunit 50025 "Test BTApp"
         TempLabelValue: Record 50006 temporary;
         ReceiveStation: Record 14000608;
         PackingStation: Record 14000709;
-        BtApplication: Automation;
-        BtFormat: Automation;
+        //BtApplication: Automation;
+        //BtFormat: Automation;
         ItemCrossRefLoaded: Boolean;
         LotInfoLoaded: Boolean;
         SalesHeaderLoaded: Boolean;
@@ -355,15 +355,15 @@ codeunit 50025 "Test BTApp"
                         IF NOT ItemCrossRefLoaded THEN
                             LoadItemCrossRef(Package, "Package Line");
                         //>> RTT 07-29-05 if ASN customer, use customer part number
-                        IF TempItemCrossRef."Cross-Reference No." = '' THEN BEGIN
+                        IF TempItemCrossRef."Reference No." = '' THEN BEGIN
                             IF NOT SalesHeaderLoaded THEN
                                 LoadSalesHeader(Package, "Package Line");
                             PackingRule.GetPackingRule(0, TempSalesHeader."Sell-to Customer No.", TempSalesHeader."Ship-to Code");  //0=customer
                             IF (PackingRule."ASN Summary Type" <> PackingRule."ASN Summary Type"::" ") THEN
-                                TempItemCrossRef."Cross-Reference No." := "Package Line"."No.";
+                                TempItemCrossRef."Reference No." := "Package Line"."No.";
                         END;
                         //<< RTT 07-29-05 if ASN customer, use customer part number
-                        TempLabelValue."Print Value" := FORMAT(TempItemCrossRef."Cross-Reference No.");
+                        TempLabelValue."Print Value" := FORMAT(TempItemCrossRef."Reference No.");
                     END;
                 'CUST_NO':
                     BEGIN
@@ -375,7 +375,7 @@ codeunit 50025 "Test BTApp"
                     BEGIN
                         IF NOT SalesLineLoaded THEN
                             LoadSalesLine(Package, "Package Line");
-                        TempLabelValue."Print Value" := FORMAT(TempSalesLine."External Document No.");
+                        TempLabelValue."Print Value" := FORMAT(TempSalesLine."Document No.");
                     END;
                 'DEL_ORD_NO':
                     BEGIN
@@ -745,15 +745,15 @@ codeunit 50025 "Test BTApp"
                         IF NOT ItemCrossRefLoaded THEN
                             LoadItemCrossRef(Package, "Package Line");
                         //>> RTT 07-29-05 if ASN customer, use customer part number
-                        IF TempItemCrossRef."Cross-Reference No." = '' THEN BEGIN
+                        IF TempItemCrossRef."Reference No." = '' THEN BEGIN
                             IF NOT SalesHeaderLoaded THEN
                                 LoadSalesHeader(Package, "Package Line");
                             PackingRule.GetPackingRule(0, TempSalesHeader."Sell-to Customer No.", TempSalesHeader."Ship-to Code");  //0=customer
                             IF (PackingRule."ASN Summary Type" <> PackingRule."ASN Summary Type"::" ") THEN
-                                TempItemCrossRef."Cross-Reference No." := "Package Line"."No.";
+                                TempItemCrossRef."Reference No." := "Package Line"."No.";
                         END;
                         //<< RTT 07-29-05 if ASN customer, use customer part number
-                        TempLabelValue."Print Value" := FORMAT(TempItemCrossRef."Cross-Reference No.");
+                        TempLabelValue."Print Value" := FORMAT(TempItemCrossRef."Reference No.");
                     END;
                 'CUST_NO':
                     BEGIN
@@ -765,7 +765,7 @@ codeunit 50025 "Test BTApp"
                     BEGIN
                         IF NOT SalesLineLoaded THEN
                             LoadSalesLine(Package, "Package Line");
-                        TempLabelValue."Print Value" := FORMAT(TempSalesLine."External Document No.");
+                        TempLabelValue."Print Value" := FORMAT(TempSalesLine."Document No.");
                     END;
                 'DEL_ORD_NO':
                     BEGIN
@@ -1032,6 +1032,7 @@ codeunit 50025 "Test BTApp"
         LabelContent: Record 50006;
         ContractHeader: Record 50110;
         LabelHeader: Record 14000841;
+        ItemL: record Item;
     begin
         TempLabelValue.RESET();
         TempLabelValue.DELETEALL();
@@ -1060,11 +1061,11 @@ codeunit 50025 "Test BTApp"
         IF NOT ContractHeader.GET(ContractLine."Contract No.") THEN
             CLEAR(ContractHeader);
 
-        SETCURRENTKEY("Item No.", "Variant Code", "Unit of Measure", "Reference Type", "Reference Type No.");
-        SETRANGE("Item No.", ContractLine."Item No.");
-        SETRANGE("Reference Type", ItemCrossRefl."Reference Type"::Customer);
-        SETRANGE("Reference Type No.", ContractLine."Sales Code");
-        IF NOT FIND('-') THEN
+        ItemCrossRefl.SETCURRENTKEY("Item No.", "Variant Code", "Unit of Measure", "Reference Type", "Reference Type No.");
+        ItemCrossRefl.SETRANGE("Item No.", ContractLine."Item No.");
+        ItemCrossRefl.SETRANGE("Reference Type", ItemCrossRefl."Reference Type"::Customer);
+        ItemCrossRefl.SETRANGE("Reference Type No.", ContractLine."Sales Code");
+        IF NOT ItemCrossRefl.IsEmpty() THEN
             CLEAR(ItemCrossRefl);
 
         //now get the label lines
@@ -1085,7 +1086,7 @@ codeunit 50025 "Test BTApp"
                 'CROSS_REF_DESC':
                     TempLabelValue."Print Value" := ItemCrossRefl.Description;
                 'CROSS_REF_NO':
-                    TempLabelValue."Print Value" := ItemCrossRefl."Cross-Reference No.";
+                    TempLabelValue."Print Value" := ItemCrossRefl."Reference No.";
                 'CUST_BIN':
                     TempLabelValue."Print Value" := ContractLine."Customer Bin";
                 'CUST_BIN_QTY':
@@ -1100,8 +1101,9 @@ codeunit 50025 "Test BTApp"
                     TempLabelValue."Print Value" := ContractHeader."External Document No.";
                 'ITEM_DESC':
                     BEGIN
-                        ContractLine.CALCFIELDS("Item Description");
-                        TempLabelValue."Print Value" := ContractLine."Item Description";
+                        if ItemL.get(ContractLine."Item No.") then;
+                        //ContractLine.CALCFIELDS("Item Description");
+                        TempLabelValue."Print Value" := ItemL.Description;
                     END;
                 'ITEM_NO':
                     TempLabelValue."Print Value" := ContractLine."Item No.";
@@ -1127,8 +1129,8 @@ codeunit 50025 "Test BTApp"
     begin
         //CLEAR(BtApplication);
         //CLEAR(BtFormat);
-        CREATE(BtApplication, TRUE, TRUE);
-        CREATE(BtFormat, TRUE, TRUE);
+       // CREATE(BtApplication, TRUE, TRUE);
+        //CREATE(BtFormat, TRUE, TRUE);
         //BtApplication.Visible(Preview);
         /*
         //get path of format
@@ -1165,7 +1167,7 @@ codeunit 50025 "Test BTApp"
 
         IF CONFIRM('Check BT Instance') THEN;
         //close application
-        BtApplication.Quit(1);
+       // BtApplication.Quit(1);
         //BtApplication.stop();
         //CLEAR(BtApplication);
         //CLEAR(BtFormat);
@@ -1573,7 +1575,7 @@ codeunit 50025 "Test BTApp"
                 PackingControl."Input No." := WhseActvLine."Item No.";
                 PackingControl."Input Variant Code" := WhseActvLine."Variant Code";
                 PackingControl."Input Unit of Measure Code" := WhseActvLine."Unit of Measure Code";
-               // PackingControl."Order Line No." := WhseActvLine."Source Line No.";
+                // PackingControl."Order Line No." := WhseActvLine."Source Line No.";
                 PackingControl."Pack Lot Number" := (WhseActvLine."Lot No." <> '');
                 PackingControl."Input Lot Number" := WhseActvLine."Lot No.";
                 PackageMgt.CreatePackageLineNIF(Package, PackingControl, WhseActvLine.Quantity, FALSE);  //FALSE=no summary
@@ -1830,7 +1832,7 @@ codeunit 50025 "Test BTApp"
         PostedPackage."Packing Date" := WORKDATE();
         PostedPackage.INSERT;
 
-        // PackageLine.SETRANGE("Package No.", Package."No.");//TODO
+        PackageLine.SETRANGE("Package No.", Package."No.");
         IF PackageLine.FIND('-') THEN
             REPEAT
                 PostedPackageLine.INIT;

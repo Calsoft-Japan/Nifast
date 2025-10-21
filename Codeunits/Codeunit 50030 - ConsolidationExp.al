@@ -329,7 +329,7 @@ codeunit 50030 ConsolidationExp
         Text018: Label 'Clear Previous Consolidation';
         Text019: Label 'Update Prior Period Balances';
         Text020: Label 'Consolidate Current Data';
-        Text021: Label 'Within the Subsidiary (%5), there are two G/L Accounts: %1 and %4; which refer to the same %2, but with a different %3.', Comment = '%1 %2 %3 %4 %5' ;
+        Text021: Label 'Within the Subsidiary (%5), there are two G/L Accounts: %1 and %4; which refer to the same %2, but with a different %3.', Comment = '%1 %2 %3 %4 %5';
         Text022: Label '%1 %2, referenced by %5 %3 %4, does not exist in the consolidated %3 table.', Comment = '%1 %2 %3 %4 %5';
         Text023: Label '%7 %1 %2 must have the same %3 as consolidated %1 %4. (%5 and %6, respectively)', Comment = '%1 %2 %3 %4 %5 %6 %7';
         Text024: Label '%1 at %2 %3', Comment = '%1 %2 %3';
@@ -486,55 +486,123 @@ codeunit 50030 ConsolidationExp
             UNTIL TempSubsidGLEntry.NEXT() = 0;
     end;
 
-    procedure ImportFromXML(FileName: Text)
+    // procedure ImportFromXML(FileName: Text)
+    // var
+    //     Consolidation: XMLport 1;
+    //     InputFile: File;
+    //     InputStream: InStream;
+    // begin
+    //     InputFile.TEXTMODE(TRUE);
+    //     InputFile.WRITEMODE(FALSE);
+    //     InputFile.OPEN(FileName);
+
+    //     InputFile.CREATEINSTREAM(InputStream);
+
+    //     Consolidation.SETSOURCE(InputStream);
+    //     Consolidation.IMPORT();
+    //     InputFile.CLOSE;
+
+    //     Consolidation.GetGLAccount(TempSubsidGLAcc);
+    //     Consolidation.GetGLEntry(TempSubsidGLEntry);
+    //     Consolidation.GetEntryDim(TempSubsidDimBuf);
+    //     Consolidation.GetExchRate(TempSubsidCurrExchRate);
+    //     Consolidation.GetGlobals(
+    //       ProductVersion, FormatVersion, SubCompanyName, CurrencyLCY, CurrencyACY, CurrencyPCY,
+    //       StoredCheckSum, StartingDate, EndingDate);
+
+    //     SelectAllImportedDimensions();
+    // end;
+
+    procedure ImportConsolidationFile()
     var
-        Consolidation: XMLport 1;
-        InputFile: File;
-        InputStream: InStream;
+        FileName: Text;
+        InStream: InStream;
+        Consolidation: XmlPort 1; // your existing codeunit
+        TempSubsidGLAcc: Record "G/L Account" temporary;
+        TempSubsidGLEntry: Record "G/L Entry" temporary;
+        TempSubsidDimBuf: Record "Dimension Buffer" temporary;
+        TempSubsidCurrExchRate: Record "Currency Exchange Rate" temporary;
+        // ProductVersion: Text;
+        //FormatVersion: Text;
+        SubCompanyName: Text;
+        CurrencyLCY: Code[10];
+        CurrencyACY: Code[10];
+        CurrencyPCY: Code[10];
+        // StoredCheckSum: Text;
+        StartingDate: Date;
+        EndingDate: Date;
     begin
-        InputFile.TEXTMODE(TRUE);
-        InputFile.WRITEMODE(FALSE);
-        InputFile.OPEN(FileName);
+        // Upload file from the user
+        if not UploadIntoStream('Select Consolidation File', '', '', FileName, InStream) then
+            exit;
 
-        InputFile.CREATEINSTREAM(InputStream);
-
-        Consolidation.SETSOURCE(InputStream);
+        // Import the data from the uploaded file
+        Consolidation.SETSOURCE(InStream);
         Consolidation.IMPORT();
-        InputFile.CLOSE;
 
+        // Get imported data
         Consolidation.GetGLAccount(TempSubsidGLAcc);
         Consolidation.GetGLEntry(TempSubsidGLEntry);
         Consolidation.GetEntryDim(TempSubsidDimBuf);
         Consolidation.GetExchRate(TempSubsidCurrExchRate);
-        Consolidation.GetGlobals(
-          ProductVersion, FormatVersion, SubCompanyName, CurrencyLCY, CurrencyACY, CurrencyPCY,
-          StoredCheckSum, StartingDate, EndingDate);
+
+        Consolidation.GetGlobals(ProductVersion, FormatVersion, SubCompanyName, CurrencyLCY, CurrencyACY, CurrencyPCY, StoredCheckSum, StartingDate, EndingDate);
 
         SelectAllImportedDimensions();
     end;
 
-    procedure ExportToXML(FileName: Text)
+
+    // procedure ExportToXML(FileName: Text)
+    // var
+    //     Consolidation: XMLport 1;
+    //     OutputFile: File;
+    //     OutputStream: OutStream;
+    // begin
+    //     OutputFile.TEXTMODE(TRUE);
+    //     OutputFile.WRITEMODE(TRUE);
+    //     OutputFile.CREATE(FileName);
+
+    //     OutputFile.CREATEOUTSTREAM(OutputStream);
+
+    //     Consolidation.SetGlobals(SubCompanyName, CurrencyLCY, CurrencyACY, CurrencyPCY, StoredCheckSum, StartingDate, EndingDate);
+    //     Consolidation.SetGLAccount(TempSubsidGLAcc);
+    //     Consolidation.SetGLEntry(TempSubsidGLEntry);
+    //     Consolidation.SetEntryDim(TempSubsidDimBuf);
+    //     Consolidation.SetExchRate(TempSubsidCurrExchRate);
+
+    //     Consolidation.SETDESTINATION(OutputStream);
+    //     Consolidation.EXPORT();
+    //     OutputFile.CLOSE;
+    // end;
+    procedure ExportToXML()
     var
         Consolidation: XMLport 1;
-        OutputFile: File;
         OutputStream: OutStream;
+        TempBlob: Codeunit "Temp Blob";
+        FileName: Text;
+        InS: InStream;
     begin
-        OutputFile.TEXTMODE(TRUE);
-        OutputFile.WRITEMODE(TRUE);
-        OutputFile.CREATE(FileName);
-
-        OutputFile.CREATEOUTSTREAM(OutputStream);
-
+        // Prepare the XMLport input
         Consolidation.SetGlobals(SubCompanyName, CurrencyLCY, CurrencyACY, CurrencyPCY, StoredCheckSum, StartingDate, EndingDate);
         Consolidation.SetGLAccount(TempSubsidGLAcc);
         Consolidation.SetGLEntry(TempSubsidGLEntry);
         Consolidation.SetEntryDim(TempSubsidDimBuf);
         Consolidation.SetExchRate(TempSubsidCurrExchRate);
 
+        // Create a temporary blob for output
+        TempBlob.CreateOutStream(OutputStream);
+
+        // Export the XML into the stream
         Consolidation.SETDESTINATION(OutputStream);
         Consolidation.EXPORT();
-        OutputFile.CLOSE;
+
+        // Generate a download for the user
+        FileName := 'ConsolidationExport.xml';
+        CopyStream(OutputStream, InS);
+        DownloadFromStream(Ins, '', '', '', FileName);
+        //DownloadFromStream(TempBlob, '', '', '', FileName);
     end;
+
 
     procedure GetGlobals(var ImpProductVersion: Code[10]; var ImpFormatVersion: Code[10]; var ImpCompanyName: Text[30]; var ImpCurrencyLCY: Code[10]; var ImpCurrencyACY: Code[10]; var ImpCurrencyPCY: Code[10]; var ImpCheckSum: Decimal; var ImpStartingDate: Date; var ImpEndingDate: Date)
     begin

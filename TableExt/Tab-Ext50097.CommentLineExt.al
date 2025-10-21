@@ -50,9 +50,40 @@ tableextension 50097 "Comment Line Ext" extends "Comment Line"
         {
             OptionMembers = "Foreign&Domestic",Foreign,Domestic;
         }
+        field(14017650; "User ID"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = user."User Name";
+            
+            trigger OnValidate()
+            var
+                UserMgt: Codeunit "User Management";
+            begin
+                UserMgt.ValidateUserID("User ID");
+            end;
+
+            trigger OnLookup()
+            var
+                UserMgt: Codeunit "User Management";
+            begin
+                UserMgt.LookupUserID("User ID");
+            end;
+        }
+        field(14017651; "Time Stamp"; Time)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017652;"Include in Sales Orders";Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017653; "Include in Purchase Orders"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+
     }
 
-    
-    
 
 }
+

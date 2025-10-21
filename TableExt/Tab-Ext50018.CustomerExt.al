@@ -144,9 +144,108 @@ tableextension 50018 "Customer Ext" extends "Customer"
                 // << Shipping
             end;
         }
-
+        field(14017610; "Past Due Date"; Date)
+        {
+            // DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = Min("Cust. Ledger Entry"."Due Date" WHERE("Customer No." = FIELD("No."),
+                                                                                                          "Document Type" = CONST(Invoice),
+                                                                                                          Open = CONST(True)));
+            Description = 'NV';
+            Editable = false;
+        }
+        field(14017612; "Review Days"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            DecimalPlaces = 0 : 0;
+            BlankZero = true;
+            Description = 'NV';
+        }
+        field(14017613; "Call Days"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            DecimalPlaces = 0 : 0;
+            BlankZero = true;
+            Description = 'NV';
+        }
+        field(14017614; "Hold Days"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            DecimalPlaces = 0 : 0;
+            BlankZero = true;
+            Description = 'NV';
+        }
+        field(14017615; "Default Ship-To Code"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = "Ship-to Address".Code WHERE("Customer No." = FIELD("No."));
+            Description = 'NV - FB';
+        }
+        field(14017616; "Account Opened"; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017617; "Inside Salesperson"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(True),
+                                                                                                   Sales = CONST(True));
+        }
+        field(14017618; "Purchase Order Required"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017619; "Credit Update"; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017645; "Default Contract No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = "Price Contract" WHERE("Customer No." = FIELD("No."));
+            Description = 'NV - FB';
+        }
+        field(14017650; "Broker/Agent Code"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            ; Description = 'NV - FB NF1.00:CIS.NG  10-10-15';
+        }
+        field(14017801; "Tool Repair Priority"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(14017802; "Tool Repair Tech"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(True));
+            Description = 'NV';
+        }
+        field(14018050; "No Cr. Mgmt. Comment"; Boolean)
+        {
+            // DataClassification = ToBeClassified;
+            //FieldClass = FlowField;
+            Description = 'NV    NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+        field(37015680; "Delivery Route"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV - FB';
+        }
+        field(37015681; "Delivery Stop"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV-FB';
+        }
+        field(37015682; "Default Contract Ending Date"; Date)
+        {
+            // DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Price Contract"."Ending Date" WHERE("No." = FIELD("Default Contract No.")));
+        }
 
     }
+
     keys
     {
         key(MyFieldKey; "Master Customer No.")

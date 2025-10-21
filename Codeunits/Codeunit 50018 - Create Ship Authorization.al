@@ -4,7 +4,7 @@ codeunit 50018 "Create Ship Authorization"
 
     trigger OnRun()
     var
-    LaxEDIreceive: record "LAX EDI Receive Document Hdr.";
+        LaxEDIreceive: record "LAX EDI Receive Document Hdr.";
     begin
         IF LaxEDIreceive."Document" <> 'I_DELJIT' THEN
             ERROR('EDI Navision Document %1 does not match this function.', LaxEDIreceive."Document");
@@ -33,9 +33,9 @@ codeunit 50018 "Create Ship Authorization"
 
         EDIRecDocHdr2."Data Error" := TRUE;
 
-        ProgressWindow.UPDATE(1, "Trade Partner No.");
-        ProgressWindow.UPDATE(3, "Internal Doc. No.");
-        ProgressWindow.UPDATE(4, "Customer No.");
+        ProgressWindow.UPDATE(1, LaxEDIreceive."Trade Partner No.");
+        ProgressWindow.UPDATE(3, LaxEDIreceive."Internal Doc. No.");
+        ProgressWindow.UPDATE(4, LaxEDIreceive."Customer No.");
 
         EDITradePartner.GET(EDIRecDocHdr2."Trade Partner No.");
 
@@ -207,7 +207,7 @@ codeunit 50018 "Create Ship Authorization"
 
             UNTIL EDIRecDocFields.NEXT() = 0;
 
-       // EDIRecDocHdr2."Document Created" := EDIRecDocHdr2."Document Created"::"Ship Auth.";
+        // EDIRecDocHdr2."Document Created" := EDIRecDocHdr2."Document Created"::"Ship Auth.";
         EDIRecDocHdr2."Created Date" := WORKDATE();
         EDIRecDocHdr2."Created Time" := TIME;
         EDIRecDocHdr2."Data Error" := FALSE;
@@ -220,6 +220,8 @@ codeunit 50018 "Create Ship Authorization"
     end;
 
     var
+        LastCustomerNo: Code[20];
+        LastItemNo: Code[20];
         ShipAuthorization: Record 50015;
         ShipAuthorizationLine: Record 50016;
         EDIRecDocHdr: Record 14002358;
