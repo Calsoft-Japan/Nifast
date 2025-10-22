@@ -42,14 +42,16 @@ tableextension 50043 "Purch. Comment Line Ext" extends "Purch. Comment Line"
             var
                 LoginMgt: Codeunit "User Management";
             begin
-                LoginMgt.ValidateUserID("User ID");
+                //LoginMgt.ValidateUserID("User ID");
+                LoginMgt.DisplayUserInformation("User ID");
             end;
 
             trigger OnLookup()
             var
                 LoginMgt: Codeunit "User Management";
             begin
-                LoginMgt.LookupUserID("User ID");
+                //LoginMgt.LookupUserID("User ID");
+                LoginMgt.DisplayUserInformation("User ID");
             end;
         }
         field(14017651; "Time Stamp"; Time)

@@ -149,7 +149,7 @@ xmlport 50018 "Purchase Line Maker"
                 fieldelement(ItemCatgCode; "Purchase Line"."Item Category Code")
                 {
                 }
-                fieldelement(ProdGrpCd; "Purchase Line"."Product Group Code")
+                fieldelement(ProdGrpCd; "Purchase Line"."Item Group Code")
                 {
                 }
                 fieldelement(LineAmtToRecv; "Purchase Line"."Line Amount to Receive")

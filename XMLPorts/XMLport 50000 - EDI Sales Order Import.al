@@ -40,7 +40,7 @@ xmlport 50000 "EDI Sales Order Import"
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(EDIOrder; "Sales Header"."EDI Order")
+                fieldelement(EDIOrder; "Sales Header"."lax EDI Order")
                 {
                 }
                 fieldelement(EDIBatchID; "Sales Header"."EDI Batch ID")
@@ -572,7 +572,7 @@ xmlport 50000 "EDI Sales Order Import"
                             //<< NF1.00:CIS.NG 10/30/15
                         end;
                     }
-                    fieldelement(EDICrossReference; "Sales Line"."EDI Item Cross Ref.")
+                    fieldelement(EDICrossReference; "Sales Line"."lax EDI Item Cross Ref.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
@@ -934,7 +934,7 @@ xmlport 50000 "EDI Sales Order Import"
                                 NewSalesLine.DELETE(TRUE);
                             END;
                         ELSE
-                            ERROR(Text001, "Sales Line"."Prod. Kit Order No.");
+                            ERROR('Error', "Sales Line"."Prod. Kit Order No.");
                     END;
                 UNTIL "Sales Line".NEXT() = 0;
         END;
@@ -960,8 +960,8 @@ xmlport 50000 "EDI Sales Order Import"
         IF NOT ("Sales Header"."EDI PO ID" = '') THEN
             NewSalesHeader.VALIDATE("EDI PO ID", "Sales Header"."EDI PO ID");
 
-        IF NOT ("Sales Header"."EDI Order" = FALSE) THEN
-            NewSalesHeader.VALIDATE("EDI Order", "Sales Header"."EDI Order");
+        IF NOT ("Sales Header"."lax EDI Order" = FALSE) THEN
+            NewSalesHeader.VALIDATE("lax EDI Order", "Sales Header"."lax EDI Order");
 
         IF NOT ("Sales Header"."EDI Batch ID" = '') THEN
             NewSalesHeader.VALIDATE("EDI Batch ID", "Sales Header"."EDI Batch ID");
@@ -1106,8 +1106,8 @@ xmlport 50000 "EDI Sales Order Import"
         IF NOT ("Sales Line"."EDI Line No." = 0) THEN
             NewSalesLine.VALIDATE("EDI Line No.", "Sales Line"."EDI Line No.");
 
-        IF NOT ("Sales Line"."EDI Item Cross Ref." = '') THEN
-            NewSalesLine.VALIDATE("EDI Item Cross Ref.", "Sales Line"."EDI Item Cross Ref.");
+        IF NOT ("Sales Line"."lax EDI Item Cross Ref." = '') THEN
+            NewSalesLine.VALIDATE("lax EDI Item Cross Ref.", "Sales Line"."lax EDI Item Cross Ref.");
 
         IF NOT ("Sales Line"."Location Code" = '') THEN
             NewSalesLine.VALIDATE("Location Code", "Sales Line"."Location Code");

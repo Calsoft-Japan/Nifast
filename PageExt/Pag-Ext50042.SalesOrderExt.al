@@ -52,7 +52,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                     EMailListEntry.SETRANGE("Table ID", DATABASE::"Sales Header");
                     EMailListEntry.SETRANGE(Type, Rec."Document Type");
                     EMailListEntry.SETRANGE(Code, Rec."No.");
-                    PAGE.RUNMODAL(PAGE::"E-Mail List Entries", EMailListEntry);
+                    PAGE.RUNMODAL(PAGE::"lax E-Mail List Entries", EMailListEntry);
                 END;
             }
             group("E-ship")
@@ -118,9 +118,9 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                     ToolTip = 'Receive';
                     trigger OnAction()
                     BEGIN
-                        Rec.TESTFIELD("EDI Order");
+                        Rec.TESTFIELD("lax EDI Order");
 
-                        EDIIntegration.ViewRecElements("EDI Internal Doc. No.");
+                        EDIIntegration.ViewRecElements(rec."LAX EDI Internal Doc. No.");
                     END;
                 }
                 action("Send &EDI Warehouse Shipping Order")
@@ -132,8 +132,8 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                         EDIIntegration: Codeunit 14000363;
                     BEGIN
 
-                        Rec.TESTFIELD("EDI Order");
-                        rec.TESTFIELD("EDI Released");
+                        Rec.TESTFIELD("LAX EDI Order");
+                        rec.TESTFIELD("LAX EDI Released");
                         rec.TESTFIELD("Location Code");
 
                         EDIIntegration.SendWarehouseShippingOrder(Rec);
@@ -148,7 +148,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                         EDITrace: Page 14002386;
                     BEGIN
                         CLEAR(EDITrace);
-                        EDITrace.SetDoc("EDI Internal Doc. No.");
+                        EDITrace.SetDoc(rec."lax EDI Internal Doc. No.");
                         EDITrace.RUNMODAL;
                     END;
                 }
@@ -192,12 +192,12 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 VAR
                     SalesLotEntry: Record 50002;
                 BEGIN
-                    SalesLotEntry.GetSalesLines("Document Type", rec."No.");
+                    SalesLotEntry.GetSalesLines(rec."Document Type".AsInteger(), rec."No.");
                     COMMIT();
                     SalesLotEntry.SETRANGE("Document Type", rec."Document Type");
                     SalesLotEntry.SETRANGE("Document No.", rec."No.");
                     IF PAGE.RUNMODAL(0, SalesLotEntry) = ACTION::LookupOK THEN
-                        SalesLotEntry.AssignLots("Document Type", rec."No.");
+                        SalesLotEntry.AssignLots(rec."Document Type".AsInteger(), rec."No.");
                 END;
             }
             action("Create Pick")
@@ -223,12 +223,12 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 VAR
                     SalesLotEntry: Record 50002;
                 BEGIN
-                    SalesLotEntry.GetSalesLines("Document Type", Rec."No.");
+                    SalesLotEntry.GetSalesLines(rec."Document Type".AsInteger(), Rec."No.");
                     COMMIT();
                     SalesLotEntry.SETRANGE("Document Type", Rec."Document Type");
                     SalesLotEntry.SETRANGE("Document No.", rec."No.");
                     IF PAGE.RUNMODAL(0, SalesLotEntry) = ACTION::LookupOK THEN
-                        SalesLotEntry.AssignLots("Document Type", rec."No.");
+                        SalesLotEntry.AssignLots(rec."Document Type".AsInteger(), rec."No.");
                 END;
             }
 
@@ -292,8 +292,8 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
         SalesLineTotal.RESET();
         SalesLineTotal.SETRANGE("Document Type", Rec."Document Type");
         SalesLineTotal.SETRANGE("Document No.", rec."No.");
-        SalesLineTotal.CALCSUMS("Line Amount", rec."Line Gross Weight", rec."Line Cost",
-                                rec."Line Amount to Ship", rec."Line Amount to Invoice");
+        SalesLineTotal.CALCSUMS("Line Amount", "Line Gross Weight", "Line Cost",
+                                "Line Amount to Ship","Line Amount to Invoice");
         OrderAmount_gDec := SalesLineTotal."Line Amount";
         OrderWeight_gDec := SalesLineTotal."Line Gross Weight";
         //<< NF1.00:CIS.NG  12/14/16

@@ -14,14 +14,16 @@ tableextension 50050 "Requisition Wksh. Name Ext" extends "Requisition Wksh. Nam
             var
                 LoginMgt: Codeunit 418;
             begin
-                LoginMgt.LookupUserID("User ID");
+                //LoginMgt.LookupUserID("User ID");
+                LoginMgt.DisplayUserInformation("User ID");
             end;
 
             trigger OnValidate();
             var
                 LoginMgt: Codeunit 418;
             begin
-                LoginMgt.ValidateUserID("User ID");
+                //LoginMgt.ValidateUserID("User ID");
+                LoginMgt.DisplayUserInformation("User ID");
             end;
         }
 

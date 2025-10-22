@@ -18,7 +18,7 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
         }
         addafter("Unit Price")
         {
-            field("Units per Parcel"; Rec."Units per Parcel")
+            field("Units per Parcels"; Rec."Units per Parcel")
             {
                 BlankZero = true;
                 Editable = false;

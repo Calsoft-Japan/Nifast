@@ -59,14 +59,16 @@ tableextension 50097 "Comment Line Ext" extends "Comment Line"
             var
                 UserMgt: Codeunit "User Management";
             begin
-                UserMgt.ValidateUserID("User ID");
+                //UserMgt.ValidateUserID("User ID");
+                UserMgt.DisplayUserInformation("User ID");
             end;
 
             trigger OnLookup()
             var
                 UserMgt: Codeunit "User Management";
             begin
-                UserMgt.LookupUserID("User ID");
+                //UserMgt.LookupUserID("User ID");
+                UserMgt.DisplayUserInformation("User ID");
             end;
         }
         field(14017651; "Time Stamp"; Time)
