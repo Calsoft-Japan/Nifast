@@ -146,7 +146,8 @@ page 50037 "Receive Line Label Request"
                             ReceiveLineLabel.InitializeRequest(ReceiveRule."QC Label Code", NoOfCopies)
                         ELSE
                             ReceiveLineLabel.InitializeRequest(ReceiveRule."Item Label Code", NoOfCopies);
-                        ReceiveLineLabel.InitializeRequest2(QtyToPrint);
+                            //TODO
+                        //ReceiveLineLabel.InitializeRequest2(QtyToPrint);
                         //ReceiveLineLabel.USEREQUESTFORM(TRUE);
                         ReceiveLineLabel.USEREQUESTPAGE(FALSE);
                         ReceiveLineLabel.RUNMODAL();
