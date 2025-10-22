@@ -325,7 +325,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
     VAR
         rSalesLine: Record 37;
         rSalesLine2: Record 37;
-        cItemCheckAvail: Codeunit 311;
+        cItemCheckAvail: Codeunit CU_311;
 
     BEGIN
         //-AKK1606.01--
@@ -353,7 +353,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
 
         NVM: Codeunit 50021;
         EDIIntegration: Codeunit 14000363;
-        ReleaseSalesDoc: Codeunit "Release Sales Document";
+        ReleaseSalesDoc: Codeunit CU_414;
         wNo: Code[20];
 
         wNoCte: Code[20];
