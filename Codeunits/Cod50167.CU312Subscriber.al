@@ -25,8 +25,8 @@ codeunit 50167 CU312Subscriber
 
             //>> NIF #10053 RTT 05-23-05
             //TODO
-            if CalledFromRelease then
-                CustCheckCreditLimit.SetCalledFromRelease();
+            // if CalledFromRelease then
+            //     CustCheckCreditLimit.SetCalledFromRelease();
             //TODO
             CustCheckCreditLimit.EDITABLE(true);  //NF1.00:CIS.NG  05/27/16
 
@@ -44,8 +44,8 @@ codeunit 50167 CU312Subscriber
 
                 //TODO
                 //>> NF1.00:CIS.NG  05/27/16
-                IF NOT CustCheckCreditLimit.GetPasswordValue() THEN
-                    ERROR(Text000);
+                // IF NOT CustCheckCreditLimit.GetPasswordValue() THEN
+                //     ERROR(Text000);
                 //<< NF1.00:CIS.NG  05/27/16 
                 //TODO
             end;
