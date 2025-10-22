@@ -21,7 +21,7 @@ page 50037 "Receive Line Label Request"
     PageType = Document;
     ApplicationArea = All;
     UsageCategory = None;
-    SourceTable = 14000602;
+    SourceTable = "LAX Receive Line";
 
     layout
     {
@@ -100,6 +100,7 @@ page 50037 "Receive Line Label Request"
                 action("Shipment History")
                 {
                     Caption = 'Shipment History';
+                    Image = Shipment;
                     RunObject = Page "Item Ledger Entries";
                     RunPageLink = "Item No." = FIELD("No.");
                     RunPageView = SORTING("Entry Type", "Item No.", "Variant Code", "Source Type", "Source No.", "Posting Date")
@@ -110,7 +111,8 @@ page 50037 "Receive Line Label Request"
                 action("Sales Order Lines")
                 {
                     Caption = 'Sales Order Lines';
-                    RunObject = Page 516;
+                    RunObject = Page "Sales Lines";
+                    Image = Sales;
                     RunPageLink = Type = FILTER(Item),
                                   "No." = FIELD("No.");
                     RunPageView = SORTING("Document Type", "Document No.", Type, "No.", "Variant Code", "Drop Shipment", Pack)
@@ -124,13 +126,15 @@ page 50037 "Receive Line Label Request"
             action(OK)
             {
                 Caption = 'OK';
+                Image = "1099Form";
                 Promoted = true;
+                PromotedOnly = true;
                 PromotedCategory = Process;
                 ToolTip = 'Executes the OK action.';
 
                 trigger OnAction()
                 begin
-                    ReceiveRule.GetReceiveRule("No.");
+                    ReceiveRule.GetReceiveRule(Rec."No.");
 
                     IF ReceiveRule."Item Label Code" <> '' THEN BEGIN
                         CLEAR(ReceiveLineLabel);
@@ -145,7 +149,7 @@ page 50037 "Receive Line Label Request"
                         ReceiveLineLabel.InitializeRequest2(QtyToPrint);
                         //ReceiveLineLabel.USEREQUESTFORM(TRUE);
                         ReceiveLineLabel.USEREQUESTPAGE(FALSE);
-                        ReceiveLineLabel.RUNMODAL;
+                        ReceiveLineLabel.RUNMODAL();
                         CLEAR(ReceiveLineLabel);
                     END;
                 end;
@@ -155,33 +159,32 @@ page 50037 "Receive Line Label Request"
 
     trigger OnAfterGetRecord()
     begin
-        OnAfterGetCurrRecord;
+        OnAfterGetCurrRecord();
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        OnAfterGetCurrRecord;
+        OnAfterGetCurrRecord();
     end;
 
     var
+        BOMComponent: Record "BOM Component";
+        ReceiveLine: Record "LAX Receive Line";
+        ReceiveRule: Record "LAX Receive Rule";
+        ReceiveLineLabel: Report "LAX Receive Line Label";
         QtyToPrint: Decimal;
         NoOfCopies: Integer;
-        ReceiveRule: Record 14000612;
-        ReceiveLineLabel: Report 14000847;
-        ReceiveLine: Record 14000602;
-        BOMComponent: Record "BOM Component";
-        WhereUsedList: Page "Where-Used List";
 
     procedure IsComponent(): Boolean
     begin
-        CASE Type OF
-            Type::Item:
+        CASE Rec.Type OF
+            Rec.Type::Item:
                 BOMComponent.SETRANGE(Type, BOMComponent.Type::Item);
             ELSE
                 EXIT(FALSE);
         END;
 
-        BOMComponent.SETRANGE("No.", "No.");
+        BOMComponent.SETRANGE("No.", Rec."No.");
         BOMComponent.SETFILTER("Quantity per", '<>%1', 0);
         EXIT(BOMComponent.FIND('-'));
     end;
@@ -190,7 +193,7 @@ page 50037 "Receive Line Label Request"
     begin
         xRec := Rec;
         IF QtyToPrint = 0 THEN
-            QtyToPrint := Quantity;
+            QtyToPrint := Rec.Quantity;
 
         IF NoOfCopies = 0 THEN
             NoOfCopies := 1;

@@ -37,11 +37,9 @@ xmlport 50012 "YAT/SMAC Sales Order Import"
                 fieldelement(UOM; "Sales Line"."Unit of Measure")
                 {
                 }
-                //TODO
-                /*  fieldelement(ExtDoc; "Sales Line"."External Document No.")
-                 {
-                 } */
-                //TODO
+                fieldelement(ExtDoc; "Sales Line"."External Document No.")
+                {
+                }
                 fieldelement(RanNo; "Sales Line"."Ran No.")
                 {
                 }

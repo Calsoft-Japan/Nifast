@@ -41,22 +41,18 @@ xmlport 50018 "Purchase Line Maker"
                 fieldelement(Numb; "Purchase Line"."No.")
                 {
                 }
-                //TODO
-                /* fieldelement(AltQty; "Purchase Line"."Alt. Quantity")
+                fieldelement(AltQty; "Purchase Line"."Alt. Quantity")
                 {
                 }
                 fieldelement(AltQtyUOM; "Purchase Line"."Alt. Qty. UOM")
                 {
-                } */
-                //TODO
+                }
                 fieldelement(AltPrice; "Purchase Line"."Alt. Price")
                 {
                 }
-                //TODO
-                /* fieldelement(AltPrcUOM; "Purchase Line"."Alt. Qty. UOM")
+                fieldelement(AltPrcUOM; "Purchase Line"."Alt. Qty. UOM")
                 {
-                } */
-                //TODO
+                }
                 fieldelement(PlannedRecptDt; "Purchase Line"."Planned Receipt Date")
                 {
                 }
@@ -66,8 +62,7 @@ xmlport 50018 "Purchase Line Maker"
                 fieldelement(AllowItemChgAssign; "Purchase Line"."Allow Item Charge Assignment")
                 {
                 }
-                //TODO
-                /* fieldelement(OutstGrossWt; "Purchase Line"."Outstanding Gross Weight")
+                fieldelement(OutstGrossWt; "Purchase Line"."Outstanding Gross Weight")
                 {
                 }
                 fieldelement(OutstNetWt; "Purchase Line"."Outstanding Net Weight")
@@ -78,8 +73,7 @@ xmlport 50018 "Purchase Line Maker"
                 }
                 fieldelement(LineNetWt; "Purchase Line"."Line Net Weight")
                 {
-                } */
-                //TODO
+                }
                 fieldelement(BuyFmVenNo; "Purchase Line"."Buy-from Vendor No.")
                 {
                 }
@@ -155,8 +149,7 @@ xmlport 50018 "Purchase Line Maker"
                 fieldelement(ItemCatgCode; "Purchase Line"."Item Category Code")
                 {
                 }
-                //TODO
-                /* fieldelement(ProdGrpCd; "Purchase Line"."Product Group Code")
+                fieldelement(ProdGrpCd; "Purchase Line"."Product Group Code")
                 {
                 }
                 fieldelement(LineAmtToRecv; "Purchase Line"."Line Amount to Receive")
@@ -164,8 +157,7 @@ xmlport 50018 "Purchase Line Maker"
                 }
                 fieldelement(LineAmtToInv; "Purchase Line"."Line Amount to Invoice")
                 {
-                } */
-                //TODO
+                }
                 fieldelement(TaxGrpCode; "Purchase Line"."Tax Group Code")
                 {
                 }

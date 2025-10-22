@@ -243,7 +243,6 @@ page 50066 "Lot Reclass Screen"
         Location: Record Location;
         PurchRcptHdrGRec: Record "Purch. Rcpt. Header";
         NVM: Codeunit "NewVision Management_New";
-        [InDataSet]
         FromBinVisible: Boolean;
         FromBin: Code[10];
         FromLocation: Code[10];
@@ -516,8 +515,8 @@ page 50066 "Lot Reclass Screen"
 
     procedure PrintLabel()
     var
-        Receive: Record 14000601;
-        ReceiveLine: Record 14000602;
+        Receive: Record "LAX Receive";
+        ReceiveLine: Record "LAX Receive Line";
         Item: Record Item;
         LabelMgt: Codeunit "Label Mgmt NIF";
         NoSeriesMgt: Codeunit NoSeriesManagement;
@@ -547,15 +546,15 @@ page 50066 "Lot Reclass Screen"
         IF Receive.GET(UseReceiveNo) THEN
             Receive.DELETE(TRUE);
 
-        Receive.INIT;
+        Receive.INIT();
         Receive."No." := UseReceiveNo;
         //>>IST 032309 CCL $12797 #12797
         //Receive."Purchase Order No." := OrderNo;
         Receive."Source ID" := OrderNo;
         //<<IST 032309 CCL $12797 #12797
-        Receive.INSERT;
+        Receive.INSERT();
 
-        ReceiveLine.INIT;
+        ReceiveLine.INIT();
         ReceiveLine."Receive No." := Receive."No.";
         ReceiveLine.Type := ReceiveLine.Type::Item;
         ReceiveLine."No." := ItemNo;
@@ -568,7 +567,7 @@ page 50066 "Lot Reclass Screen"
         ReceiveLine."Source ID" := OrderNo;
         //<<IST 032309 CCL $12797 #12797
         ReceiveLine."Mfg. Lot No." := MfgLotNo;
-        ReceiveLine.INSERT;
+        ReceiveLine.INSERT();
 
         LabelMgt.PromptReceiveLineLabel(ReceiveLine, Qty, Qty, TRUE);
 

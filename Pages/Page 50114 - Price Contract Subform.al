@@ -501,7 +501,7 @@ page 50114 "Price Contract Subform"
             UseUOM := SalesPrice."Unit of Measure Code" + '01';
 
         UnitOfMeas.GET(Rec."Unit of Measure Code");
-        ItemUOM.GET("Item No.", Rec."Unit of Measure Code");
+        ItemUOM.GET(Rec."Item No.", Rec."Unit of Measure Code");
 
         LineCount := SalesPrice.COUNT;
 

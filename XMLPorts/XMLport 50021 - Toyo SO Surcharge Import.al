@@ -57,11 +57,9 @@ xmlport 50021 "Toyo SO Surcharge Import"
                 fieldelement(UOMCode; "Sales Line"."Unit of Measure Code")
                 {
                 }
-                //TODO
-                /*  fieldelement(ExtDocNo; "Sales Line"."External Document No.")
+                 fieldelement(ExtDocNo; "Sales Line"."External Document No.")
                  {
-                 } */
-                //TODO
+                 }
                 fieldelement(Desc; "Sales Line".Description)
                 {
                 }
@@ -125,14 +123,12 @@ xmlport 50021 "Toyo SO Surcharge Import"
                 fieldelement(ShippingAgntCd; "Sales Line"."Shipping Agent Code")
                 {
                 }
-                //TODO
-                /*   fieldelement(SlsPerCode; "Sales Line"."Salesperson Code")
+                  fieldelement(SlsPerCode; "Sales Line"."Salesperson Code")
                   {
                   }
                   fieldelement(OrdDt; "Sales Line"."Order Date")
                   {
-                  } */
-                //TODO
+                  }
                 fieldelement(Amt; "Sales Line".Amount)
                 {
                 }
@@ -151,11 +147,9 @@ xmlport 50021 "Toyo SO Surcharge Import"
                 fieldelement(LineAmt; "Sales Line"."Line Amount")
                 {
                 }
-                //TODO
-                /* fieldelement(NetUPrc; "Sales Line"."Net Unit Price")
+                fieldelement(NetUPrc; "Sales Line"."Net Unit Price")
                 {
-                } */
-                //TODO
+                }
                 trigger OnBeforeInsertRecord()
                 begin
                 end;

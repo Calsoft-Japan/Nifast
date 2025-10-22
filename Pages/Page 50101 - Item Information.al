@@ -31,7 +31,7 @@ page 50101 "Item Information"
                 trigger OnDrillDown()
                 begin
                     //ItemAvailFormsMgt.ShowItemAvailFromPurchLine(Rec,ItemAvailFormsMgt.ByEvent);
-                    ItemAvailability(0);
+                    Rec.ItemAvailability(0);
                     CurrPage.UPDATE(TRUE);
                 end;
             }
@@ -45,7 +45,7 @@ page 50101 "Item Information"
                 trigger OnDrillDown()
                 begin
                     //ShowPrices;
-                    ItemAvailability(2);
+                    Rec.ItemAvailability(2);
                     CurrPage.UPDATE();
                 end;
             }

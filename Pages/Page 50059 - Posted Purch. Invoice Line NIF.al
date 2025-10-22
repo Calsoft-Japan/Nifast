@@ -280,7 +280,7 @@ page 50059 "Posted Purch. Invoice Line NIF"
                 }
                 action(Dimensionss)
                 {
-                    AccessByPermission = TableData 348 = R;
+                    AccessByPermission = TableData Dimension = R;
                     Caption = 'Dimensions';
                     Image = Dimensions;
                     ShortCutKey = 'Shift+Ctrl+D';
@@ -299,7 +299,7 @@ page 50059 "Posted Purch. Invoice Line NIF"
 
                     trigger OnAction()
                     var
-                        EMailListEntry: Record 14000908;
+                        EMailListEntry: Record "LAX E-Mail List Entry";
                     begin
                         EMailListEntry.RESET();
                         EMailListEntry.SETRANGE("Table ID", DATABASE::"Purch. Inv. Header");
@@ -349,7 +349,7 @@ page 50059 "Posted Purch. Invoice Line NIF"
 
                 trigger OnAction()
                 begin
-                    PurchInvHdr.GET("Document No.");
+                    PurchInvHdr.GET(Rec."Document No.");
                     PurchInvHdr.Navigate();
                 end;
             }
@@ -357,8 +357,8 @@ page 50059 "Posted Purch. Invoice Line NIF"
     }
 
     var
-        PurchInvHdr: Record 122;
-        PurchInvHdrForm: Page 138;
+        PurchInvHdr: Record "Purch. Inv. Header";
+        PurchInvHdrForm: Page "Posted Purchase Invoice";
 
     procedure ShowDimensions()
     begin

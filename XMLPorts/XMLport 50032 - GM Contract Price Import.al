@@ -40,20 +40,18 @@ xmlport 50032 "GM Contract Price Import"
                 fieldelement(ContractNo; "Sales Price"."Contract No.")
                 {
                 }
-                //TODO
-                /*  fieldelement(ContractCustomerNo; "Sales Price"."Contract Customer No.")
-                 {
-                 }
-                 fieldelement(ContractShipToCode; "Sales Price"."Contract Ship-to Code")
-                 {
-                 }
-                 fieldelement(ContractLocationCode; "Sales Price"."Contract Location Code")
-                 {
-                 }
-                 fieldelement(ContractShipLocationCode; "Sales Price"."Contract Ship Location Code")
-                 {
-                 } */
-                //TODO
+                fieldelement(ContractCustomerNo; "Sales Price"."Contract Customer No.")
+                {
+                }
+                fieldelement(ContractShipToCode; "Sales Price"."Contract Ship-to Code")
+                {
+                }
+                fieldelement(ContractLocationCode; "Sales Price"."Contract Location Code")
+                {
+                }
+                fieldelement(ContractShipLocationCode; "Sales Price"."Contract Ship Location Code")
+                {
+                }
             }
         }
     }

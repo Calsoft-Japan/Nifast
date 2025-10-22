@@ -1,5 +1,4 @@
-//TODO
-/* xmlport 50014 "Standard Sales Comment Import"
+xmlport 50014 "Standard Sales Comment Import"
 {
     Direction = Import;
     Format = VariableText;
@@ -58,8 +57,6 @@
                 }
 
                 trigger OnBeforeInsertRecord()
-                var
-                    PermissionSet_lRec: Record Permission;
                 begin
                 end;
             }
@@ -83,6 +80,3 @@
         MESSAGE('Import Completed');
     end;
 }
-
- */
-//TODO

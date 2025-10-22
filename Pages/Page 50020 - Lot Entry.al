@@ -100,7 +100,7 @@ page 50020 "Lot Entry"
                         SourceQuantityArray: array[5] of Decimal;
                         CurrentSignFactor: Integer;
                     begin
-                        MaxQuantity := CalcQtyOutstanding - CalcQtyAssigned + Rec.Quantity;
+                        MaxQuantity := Rec.CalcQtyOutstanding - Rec.CalcQtyAssigned + Rec.Quantity;
 
                         //determine whether location is WMS to pick lookup method
                         IF NOT Location.GET(Rec."Location Code") THEN
@@ -232,9 +232,7 @@ page 50020 "Lot Entry"
     var
         SalesHeader: Record "Sales Header";
         TransferHeader: Record "Transfer Header";
-        [InDataSet]
         "CVE Pediment No.Visible": Boolean;
-        [InDataSet]
         SplitLinesVisible: Boolean;
         QtyAssigned: Decimal;
         QtyOutstanding: Decimal;
@@ -300,14 +298,14 @@ page 50020 "Lot Entry"
         LotEntry: Record "Lot Entry";
     begin
         LotEntry.COPY(Rec);
-        SplitLine(LotEntry);
+        Rec.SplitLine(LotEntry);
         CurrPage.UPDATE(FALSE);
     end;
 
     procedure CalcQuantities()
     begin
-        QtyAssigned := CalcQtyAssigned;
-        QtyOutstanding := CalcQtyOutstanding;
+        QtyAssigned := Rec.CalcQtyAssigned;
+        QtyOutstanding := Rec.CalcQtyOutstanding;
 
         QtyRemaining := QtyOutstanding - QtyAssigned;
     end;
@@ -323,7 +321,7 @@ page 50020 "Lot Entry"
         LotEntry.FIND('-');
         REPEAT
             //IF (CalcQtyAssigned<>CalcQtyOutstanding) THEN
-            IF (Rec.CalcQtyAssigned <> Rec.CalcQtyToShip) THEN BEGIN
+            IF (Rec.CalcQtyAssigned() <> Rec.CalcQtyToShip()) THEN BEGIN
                 ErrorMsg := STRSUBSTNO(TextLbl, LotEntry."Item No.", LotEntry."Order Line No.");
                 EXIT(FALSE);
             END;

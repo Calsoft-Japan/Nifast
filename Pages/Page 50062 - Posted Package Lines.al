@@ -1,7 +1,9 @@
 page 50062 "Posted Package Lines"
 {
+    ApplicationArea = All;
+    UsageCategory = Lists;
     PageType = List;
-    SourceTable = 14000705;
+    SourceTable = "LAX Posted Package Line";
 
     layout
     {

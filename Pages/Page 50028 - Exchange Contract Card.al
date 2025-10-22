@@ -5,7 +5,7 @@ page 50028 "Exchange Contract Card"
 
     PageType = Document;
     SourceTable = "4X Bank Exchange Contract";
-    SourceTableView = WHERE("No." = FILTER(<> SPOT));
+    SourceTableView = WHERE("No." = FILTER(<> 'SPOT'));
     UsageCategory = None;
     ApplicationArea = All;
     layout
@@ -261,10 +261,10 @@ page 50028 "Exchange Contract Card"
                     begin
                         IF Rec.AmountYen <> Rec."Posted Amount" THEN BEGIN
                             IF CONFIRM(LText50000Lbl, FALSE, (Rec.AmountYen - Rec."Posted Amount")) THEN
-                                CloseContract(Rec);
+                                Rec.CloseContract(Rec);
                         END ELSE
                             IF CONFIRM(LText50001Lbl, FALSE) THEN
-                                CloseContract(Rec);
+                                Rec.CloseContract(Rec);
                     end;
                 }
             }
@@ -335,7 +335,7 @@ page 50028 "Exchange Contract Card"
         BankExchangeContract: Record "4X Bank Exchange Contract";
     begin
         BankExchangeContract.COPY(Rec);
-        CheckExpiration;
+        Rec.CheckExpiration();
         Rec.COPY(BankExchangeContract);
     end;
 

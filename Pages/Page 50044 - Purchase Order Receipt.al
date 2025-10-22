@@ -445,7 +445,7 @@ page 50044 "Purchase Order Receipt"
     trigger OnDeleteRecord(): Boolean
     begin
         CurrPage.SAVERECORD();
-        EXIT(ConfirmDeletion);
+        EXIT(Rec.ConfirmDeletion);
     end;
 
     trigger OnInit()
@@ -487,35 +487,20 @@ page 50044 "Purchase Order Receipt"
     var
         PurchSetup: Record "Purchases & Payables Setup";
         UserMgt: Codeunit "User Setup Management";
-        [InDataSet]
         "Document DateEditable": Boolean;
-        [InDataSet]
         "Location CodeEditable": Boolean;
-        [InDataSet]
         "Posting DateEditable": Boolean;
-        [InDataSet]
         "Purchaser CodeEditable": Boolean;
-        [InDataSet]
         "Ship-to Address 2Editable": Boolean;
-        [InDataSet]
         "Ship-to AddressEditable": Boolean;
-        [InDataSet]
         "Ship-to CityEditable": Boolean;
-        [InDataSet]
         "Ship-to CodeEditable": Boolean;
-        [InDataSet]
         "Ship-to ContactEditable": Boolean;
-        [InDataSet]
         "Ship-to CountyEditable": Boolean;
-        [InDataSet]
         "Ship-to NameEditable": Boolean;
-        [InDataSet]
         "Ship-to Post CodeEditable": Boolean;
-        [InDataSet]
         "Ship-to UPS ZoneEditable": Boolean;
-        [InDataSet]
         "Shipment Method CodeEditable": Boolean;
-        [InDataSet]
         "Tax Area CodeEditable": Boolean;
         FreightAmount: Decimal;
         Text000: Label 'Unable to execute this function while in view only mode.';

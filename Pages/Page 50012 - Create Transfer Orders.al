@@ -148,7 +148,6 @@ page 50012 "Create Transfer Orders"
     end;
 
     var
-        [InDataSet]
         RcptLinesEditable: Boolean;
         FromLocationCode: Code[10];
         ToLocationCode: Code[10];

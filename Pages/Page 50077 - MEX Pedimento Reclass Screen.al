@@ -287,7 +287,6 @@ page 50077 "MEX Pedimento Reclass Screen"
         Location: Record Location;
         PurchRcptHdrGRec: Record "Purch. Rcpt. Header";
         NVM: Codeunit "NewVision Management_New";
-        [InDataSet]
         FromBinVisible: Boolean;
         FromAuduanaES: Code[10];
         FromBin: Code[10];
@@ -567,8 +566,8 @@ page 50077 "MEX Pedimento Reclass Screen"
 
     procedure PrintLabel()
     var
-        Receive: Record 14000601;
-        ReceiveLine: Record 14000602;
+        Receive: Record "LAX Receive";
+        ReceiveLine: Record "LAX Receive Line";
         Item: Record Item;
         LabelMgt: Codeunit "Label Mgmt NIF";
         NoSeriesMgt: Codeunit NoSeriesManagement;
@@ -598,12 +597,12 @@ page 50077 "MEX Pedimento Reclass Screen"
         IF Receive.GET(UseReceiveNo) THEN
             Receive.DELETE(TRUE);
 
-        Receive.INIT;
+        Receive.INIT();
         Receive."No." := UseReceiveNo;
         //Receive."Purchase Order No." := OrderNo;
-        Receive.INSERT;
+        Receive.INSERT();
 
-        ReceiveLine.INIT;
+        ReceiveLine.INIT();
         ReceiveLine."Receive No." := Receive."No.";
         ReceiveLine.Type := ReceiveLine.Type::Item;
         ReceiveLine."No." := ItemNo;
@@ -613,7 +612,7 @@ page 50077 "MEX Pedimento Reclass Screen"
         ReceiveLine."Lot No." := ToLot;
         //ReceiveLine."Purchase Order No." := OrderNo;
         ReceiveLine."Mfg. Lot No." := MfgLotNo;
-        ReceiveLine.INSERT;
+        ReceiveLine.INSERT();
 
         LabelMgt.PromptReceiveLineLabel(ReceiveLine, Qty, Qty, TRUE);
 

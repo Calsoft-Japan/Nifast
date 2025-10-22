@@ -141,7 +141,6 @@ page 50067 "Ship Authorization"
 
     var
         SalesShipAuthtoOrder: Codeunit "Sales-ShipAuth to Order";
-        [InDataSet]
         MakeOrderEnable: Boolean;
 }
 

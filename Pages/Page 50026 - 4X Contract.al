@@ -228,12 +228,8 @@ page 50026 "4X Contract"
         PurchaseHeader: Record "Purchase Header";
         PurchLine: Record "Purchase Line";
         POLookup: Page "Get PO Headers";
-        [InDataSet]
         but1Visible: Boolean;
-        [InDataSet]
-
         subformEditable: Boolean;
-        [InDataSet]
         subformEnable: Boolean;
 }
 

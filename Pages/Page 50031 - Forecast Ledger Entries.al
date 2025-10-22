@@ -7,7 +7,7 @@ page 50031 "Forecast Ledger Entries"
     SaveValues = false;
     UsageCategory = None;
     SourceTable = "Dimension Value";
-    SourceTableView = WHERE("Dimension Code" = CONST(DIV));
+    SourceTableView = WHERE("Dimension Code" = CONST('DIV'));
     ApplicationArea = All;
 
     layout

@@ -262,7 +262,7 @@ page 50021 "Lot Bin Contents"
                     group("Qty. on Adjustment Bin")
                     {
                         Caption = 'Qty. on Adjustment Bin';
-                        field(CalcQtyonAdjmtBin; CalcQtyonAdjmtBin)
+                        field(CalcQtyonAdjmtBin; Rec.CalcQtyonAdjmtBin)
                         {
                             //DecimalPlaces = 0 : 5;
                             Editable = false;
@@ -339,7 +339,7 @@ page 50021 "Lot Bin Contents"
         IF NOT Location.GET(LocationCode) THEN
             CLEAR(LocationCode);
 
-        GetWhseLocation(LocationCode, ZoneCode);
+        Rec.GetWhseLocation(LocationCode, ZoneCode);
     end;
 
     var
@@ -412,7 +412,7 @@ page 50021 "Lot Bin Contents"
     local procedure OnAfterGetCurrRecord()
     begin
         xRec := Rec;
-        GetItemDescr(Rec."Item No.", Rec."Variant Code", ItemDescription);
+        Rec.GetItemDescr(Rec."Item No.", Rec."Variant Code", ItemDescription);
         DataCaption := STRSUBSTNO('%1 ', Rec."Bin Code");
     end;
 }

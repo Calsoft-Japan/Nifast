@@ -70,34 +70,30 @@ xmlport 50026 "SP  Import - JRR"
                 {
                     Width = 20;
                 }
-                //TODO
-                /*  fieldattribute(CiscoCd; "Sales Price"."Contract Ship-to Code")
-                 {
-                     Width = 20;
-                 } */
-                //TODO
+                fieldattribute(CiscoCd; "Sales Price"."Contract Ship-to Code")
+                {
+                    Width = 20;
+                }
                 textelement(iContno)
                 {
                     Width = 20;
                 }
-                //TODO
-                /*   fieldelement(icontslc; "Sales Price"."Contract Ship-to Code")
-                  {
-                      Width = 10;
-                  }
-                  fieldelement(icontlc; "Sales Price"."Contract Location Code")
-                  {
-                      Width = 10;
-                  }
-                  fieldelement(iContcn; "Sales Price"."Contract Customer No.")
-                  {
-                      Width = 20;
-                  }
-                  fieldelement(icontedn; "Sales Price"."External Document No.")
-                  {
-                      Width = 20;
-                  } */
-                //TODO
+                fieldelement(icontslc; "Sales Price"."Contract Ship-to Code")
+                {
+                    Width = 10;
+                }
+                fieldelement(icontlc; "Sales Price"."Contract Location Code")
+                {
+                    Width = 10;
+                }
+                fieldelement(iContcn; "Sales Price"."Contract Customer No.")
+                {
+                    Width = 20;
+                }
+                fieldelement(icontedn; "Sales Price"."External Document No.")
+                {
+                    Width = 20;
+                }
                 trigger OnAfterInsertRecord()
                 begin
 
@@ -122,28 +118,21 @@ xmlport 50026 "SP  Import - JRR"
                             PrcCont."Customer No." := "Sales Price"."Sales Code";
                             PrcCont."Starting Date" := "Sales Price"."Starting Date";
                             PrcCont."Ending Date" := "Sales Price"."Ending Date";
-                            //TODO
-                            /* PrcCont."External Document No." := "Sales Price"."External Document No."; */
-                            //TODO
+                            PrcCont."External Document No." := "Sales Price"."External Document No.";
                             PrcCont."No. Series" := 'S-PCT';
-                            //TODO
-                            /*   PrcCont."Location Code" := "Sales Price"."Contract Location Code";
-                              PrcCont."Shipping Location Code" := "Sales Price"."Contract Ship Location Code"; */
-                            //TODO
+                            PrcCont."Location Code" := "Sales Price"."Contract Location Code";
+                            PrcCont."Shipping Location Code" := "Sales Price"."Contract Ship Location Code";
                             PrcCont."E-Mail" := 'test@test.com';
                             PrcCont.INSERT();
                         END ELSE BEGIN
                             PrcCont."Customer No." := "Sales Price"."Sales Code";
                             PrcCont."Starting Date" := "Sales Price"."Starting Date";
                             PrcCont."Ending Date" := "Sales Price"."Ending Date";
-                            //TODO
-                            /* PrcCont."External Document No." := "Sales Price"."External Document No."; */
-                            //TODO
+                            PrcCont."External Document No." := "Sales Price"."External Document No.";
                             PrcCont."No. Series" := 'S-PCT';
-                            //TODO
-                            /*   PrcCont."Location Code" := "Sales Price"."Contract Location Code";
-                              PrcCont."Shipping Location Code" := "Sales Price"."Contract Ship Location Code"; */
-                            //TODO
+                            PrcCont."Location Code" := "Sales Price"."Contract Location Code";
+                            PrcCont."Shipping Location Code" := "Sales Price"."Contract Ship Location Code";
+
                             PrcCont."E-Mail" := 'test@test.com';
                             PrcCont.MODIFY();
                         END;

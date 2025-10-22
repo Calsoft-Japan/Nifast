@@ -40,11 +40,9 @@ xmlport 50000 "EDI Sales Order Import"
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                //TODO
-                /* fieldelement(EDIOrder; "Sales Header"."EDI Order")
+                fieldelement(EDIOrder; "Sales Header"."EDI Order")
                 {
-                } */
-                //TODO
+                }
                 fieldelement(EDIBatchID; "Sales Header"."EDI Batch ID")
                 {
                     MaxOccurs = Once;
@@ -517,8 +515,7 @@ xmlport 50000 "EDI Sales Order Import"
                     MinOccurs = Zero;
                     XmlName = 'SalesLine';
                     UseTemporary = true;
-                    //TODO
-                    /* fieldelement(LINACTION; "Sales Line"."Prod. Kit Order No.")
+                    fieldelement(LINACTION; "Sales Line"."Prod. Kit Order No.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Once;
@@ -532,8 +529,7 @@ xmlport 50000 "EDI Sales Order Import"
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
-                    } */
-                    //TODO
+                    }
                     fieldelement(EDILineNo; "Sales Line"."EDI Line No.")
                     {
                         MaxOccurs = Once;
@@ -576,13 +572,11 @@ xmlport 50000 "EDI Sales Order Import"
                             //<< NF1.00:CIS.NG 10/30/15
                         end;
                     }
-                    //TODO
-                    /* fieldelement(EDICrossReference; "Sales Line"."EDI Item Cross Ref.")
+                    fieldelement(EDICrossReference; "Sales Line"."EDI Item Cross Ref.")
                     {
                         MaxOccurs = Once;
                         MinOccurs = Zero;
-                    } */
-                    //TODO
+                    }
                     fieldelement(Description; "Sales Line".Description)
                     {
                         FieldValidate = No;
@@ -660,12 +654,10 @@ xmlport 50000 "EDI Sales Order Import"
                         MaxOccurs = Once;
                         MinOccurs = Zero;
                     }
-                    //TODO
-                    /*   fieldelement(ExternalDocumentNo; "Sales Line"."External Document No.")
-                      {
-                          MinOccurs = Zero;
-                      } */
-                    //TODO
+                    fieldelement(ExternalDocumentNo; "Sales Line"."External Document No.")
+                    {
+                        MinOccurs = Zero;
+                    }
                     fieldelement(CertificateNo; "Sales Line"."Certificate No.")
                     {
                         MaxOccurs = Once;
@@ -863,7 +855,7 @@ xmlport 50000 "EDI Sales Order Import"
     var
         NewSalesHeader: Record "Sales Header";
         NewSalesLine: Record "Sales Line";
-        EDISetup: Record 14002367;
+        EDISetup: Record "LAX EDI Setup";
         CustomerSellTo: Record Customer;
         CustomerBillTo: Record Customer;
         MyLineNo: Integer;
@@ -878,7 +870,7 @@ xmlport 50000 "EDI Sales Order Import"
 
     procedure CreateSalesOrder()
     begin
-        EDISetup.GET;
+        EDISetup.GET();
 
         "Sales Header".RESET();
         IF "Sales Header".FINDFIRST() THEN BEGIN
@@ -924,32 +916,25 @@ xmlport 50000 "EDI Sales Order Import"
                                 NewSalesLine."Document No." := NewSalesHeader."No.";
                                 NewSalesLine."Line No." := GetNewLineNo();
                                 NewSalesLine.INSERT(TRUE);
-
                                 ModSalesLines();
                             END;
                         'UPDATE':
                             BEGIN
                                 CLEAR(NewSalesLine);
                                 NewSalesLine.RESET();
-                                //TODO
-                                /* NewSalesLine.GET("Sales Line"."Document Type"::Order, "Sales Line"."FB Order No.", "Sales Line"."FB Line No."); */
-                                //TODO
+                                NewSalesLine.GET("Sales Line"."Document Type"::Order, "Sales Line"."FB Order No.", "Sales Line"."FB Line No.");
                                 ModSalesLines();
                             END;
                         'DELETE':
                             BEGIN
                                 CLEAR(NewSalesLine);
                                 NewSalesLine.RESET();
-                                //TODO
-                                /* NewSalesLine.GET("Sales Line"."Document Type"::Order, "Sales Line"."FB Order No.", "Sales Line"."FB Line No."); */
-                                //TODO
+                                NewSalesLine.GET("Sales Line"."Document Type"::Order, "Sales Line"."FB Order No.", "Sales Line"."FB Line No.");
                                 DeleteItemTracking(NewSalesLine);  //NF1.00:CIS.NG 11/16/15
                                 NewSalesLine.DELETE(TRUE);
                             END;
                         ELSE
-                    //TODO
-                    /*  ERROR(Text001, "Sales Line"."Prod. Kit Order No."); */
-                    //TODO
+                            ERROR(Text001, "Sales Line"."Prod. Kit Order No.");
                     END;
                 UNTIL "Sales Line".NEXT() = 0;
         END;
@@ -975,10 +960,8 @@ xmlport 50000 "EDI Sales Order Import"
         IF NOT ("Sales Header"."EDI PO ID" = '') THEN
             NewSalesHeader.VALIDATE("EDI PO ID", "Sales Header"."EDI PO ID");
 
-        //TODO
-        /*   IF NOT ("Sales Header"."EDI Order" = FALSE) THEN
-              NewSalesHeader.VALIDATE("EDI Order", "Sales Header"."EDI Order"); */
-        //TODO
+        IF NOT ("Sales Header"."EDI Order" = FALSE) THEN
+            NewSalesHeader.VALIDATE("EDI Order", "Sales Header"."EDI Order");
 
         IF NOT ("Sales Header"."EDI Batch ID" = '') THEN
             NewSalesHeader.VALIDATE("EDI Batch ID", "Sales Header"."EDI Batch ID");
@@ -1123,10 +1106,8 @@ xmlport 50000 "EDI Sales Order Import"
         IF NOT ("Sales Line"."EDI Line No." = 0) THEN
             NewSalesLine.VALIDATE("EDI Line No.", "Sales Line"."EDI Line No.");
 
-        //TODO
-        /*  IF NOT ("Sales Line"."EDI Item Cross Ref." = '') THEN
-             NewSalesLine.VALIDATE("EDI Item Cross Ref.", "Sales Line"."EDI Item Cross Ref."); */
-        //TODO
+        IF NOT ("Sales Line"."EDI Item Cross Ref." = '') THEN
+            NewSalesLine.VALIDATE("EDI Item Cross Ref.", "Sales Line"."EDI Item Cross Ref.");
 
         IF NOT ("Sales Line"."Location Code" = '') THEN
             NewSalesLine.VALIDATE("Location Code", "Sales Line"."Location Code");
@@ -1157,13 +1138,12 @@ xmlport 50000 "EDI Sales Order Import"
             NewSalesLine.VALIDATE("Line Discount %", "Sales Line"."Line Discount %");
         IF NOT ("Sales Line"."Line Discount Amount" = 0) THEN
             NewSalesLine.VALIDATE("Line Discount Amount", "Sales Line"."Line Discount Amount");
-        //TODO
-        /*  //jrr 17Mar16
-         IF NOT ("Sales Line"."External Document No." = '') THEN
-             NewSalesLine.VALIDATE("External Document No.", "Sales Line"."External Document No.");
-         //jrr 17Mar16 end
-        */
-        //TODO
+
+        //jrr 17Mar16
+        IF NOT ("Sales Line"."External Document No." = '') THEN
+            NewSalesLine.VALIDATE("External Document No.", "Sales Line"."External Document No.");
+        //jrr 17Mar16 end
+
         IF NOT ("Sales Line"."Certificate No." = '') THEN
             NewSalesLine.VALIDATE("Certificate No.", "Sales Line"."Certificate No.");
 

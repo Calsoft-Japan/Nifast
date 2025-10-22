@@ -20,8 +20,7 @@ xmlport 50029 "Import Sales Prices"
                 fieldelement(UnitPrice; "Sales Price"."Unit Price")
                 {
                 }
-                //TODO
-                /* fieldelement(ContractShiptoCode; "Sales Price"."Contract Ship-to Code")
+                fieldelement(ContractShiptoCode; "Sales Price"."Contract Ship-to Code")
                 {
                 }
                 fieldelement(AltPrice; "Sales Price"."Alt. Price")
@@ -29,8 +28,7 @@ xmlport 50029 "Import Sales Prices"
                 }
                 fieldelement(AltPriceUOM; "Sales Price"."Alt. Price UOM")
                 {
-                } */
-                //TODO
+                }
             }
         }
     }

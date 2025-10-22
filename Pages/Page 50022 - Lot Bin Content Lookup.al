@@ -161,7 +161,6 @@ page 50022 "Lot Bin Content Lookup"
 
     var
         TempLotBinContent: Record "Lot Bin Content" temporary;
-        [InDataSet]
         "CVE Pediment No.Visible": Boolean;
 
     procedure SetSources(var LotBinContent: Record "Lot Bin Content")

@@ -76,7 +76,7 @@ page 50029 "Exchange Contract List"
 
     trigger OnOpenPage()
     begin
-        CheckExpiration;
+        Rec.CheckExpiration();
     end;
 }
 

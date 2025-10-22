@@ -50,13 +50,11 @@ page 50007 "Sales Shpt. Line Spec. Fields"
                 {
                     ToolTip = 'Specifies the value of the Container No. field.';
                 }
-                //TODO
-                /*   field("External Document No."; Rec."External Document No.")
-                  {
-                      Caption = 'Customer P.O. No.';
-                      ToolTip = 'Specifies the value of the Customer P.O. No. field.';
-                  } */
-                //TODO
+                field("External Document No."; Rec."External Document No.")
+                {
+                    Caption = 'Customer P.O. No.';
+                    ToolTip = 'Specifies the value of the Customer P.O. No. field.';
+                }
                 field("Dock Code"; Rec."Dock Code")
                 {
                     ToolTip = 'Specifies the value of the Dock Code field.';

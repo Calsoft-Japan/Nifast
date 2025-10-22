@@ -229,9 +229,7 @@ page 50076 "Purch. Receipt Line List"
         ItemChargeAssgntPurch: Record "Item Charge Assignment (Purch)";
         AssignItemChargePurch: Codeunit "Item Charge Assgnt. (Purch.)";
         UnitCost: Decimal;
-        [InDataSet]
         "Document No.HideValue": Boolean;
-        [InDataSet]
         "Document No.Emphasize": Boolean;
 
     procedure Initialize(NewItemChargeAssgntPurch: Record "Item Charge Assignment (Purch)"; NewUnitCost: Decimal)

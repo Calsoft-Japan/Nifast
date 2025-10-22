@@ -65,11 +65,9 @@ xmlport 50019 "Standard Sales Order Import"
                 fieldelement(UOMCode; "Sales Line"."Unit of Measure Code")
                 {
                 }
-                //TODO
-                /* fieldelement(ExtDocNo; "Sales Line"."External Document No.")
+                fieldelement(ExtDocNo; "Sales Line"."External Document No.")
                 {
-                } */
-                //TODO
+                }
                 fieldelement(Desc; "Sales Line".Description)
                 {
                 }
@@ -133,14 +131,12 @@ xmlport 50019 "Standard Sales Order Import"
                 fieldelement(ShippingAgntCd; "Sales Line"."Shipping Agent Code")
                 {
                 }
-                //TODO
-                /*   fieldelement(OrdDt; "Sales Line"."Order Date")
-                  {
-                  }
-                  fieldelement(SlsPerCode; "Sales Line"."Salesperson Code")
-                  {
-                  } */
-                //TODO
+                fieldelement(OrdDt; "Sales Line"."Order Date")
+                {
+                }
+                fieldelement(SlsPerCode; "Sales Line"."Salesperson Code")
+                {
+                }
 
                 trigger OnAfterInsertRecord()
                 begin
@@ -167,9 +163,7 @@ xmlport 50019 "Standard Sales Order Import"
 
                     IF SalesHeader.FINDSET() THEN
                         REPEAT
-                            //TODO
-                            /* "Sales Line".VALIDATE("Salesperson Code", SalesHeader."Salesperson Code"); */
-                            //TODO
+                            "Sales Line".VALIDATE("Salesperson Code", SalesHeader."Salesperson Code"); 
                             "Sales Line".VALIDATE("Shipping Agent Code", SalesHeader."Shipping Agent Code");
                             "Sales Line".MODIFY(TRUE);
                         UNTIL SalesHeader.NEXT() = 0;

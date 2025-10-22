@@ -121,7 +121,6 @@ page 50024 "Lot No. Information List_1"
     end;
 
     var
-        [InDataSet]
         "CVE PedimentoVisible": Boolean;
 }
 

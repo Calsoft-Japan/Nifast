@@ -29,26 +29,24 @@ xmlport 50016 "Purchase Comment Import"
                 fieldelement(Comment; "Purch. Comment Line".Comment)
                 {
                 }
-                //TODO
-                /*   fieldelement(PrintOnQuote; "Purch. Comment Line"."Print On Quote")
-                  {
-                  }
-                  fieldelement(PrintOnPutAway; "Purch. Comment Line"."Print On Put Away")
-                  {
-                  }
-                  fieldelement(PrintOnOrder; "Purch. Comment Line"."Print On Order")
-                  {
-                  }
-                  fieldelement(PrintOnReceipt; "Purch. Comment Line"."Print On Receipt")
-                  {
-                  }
-                  fieldelement(PrintOnInvoice; "Purch. Comment Line"."Print On Invoice")
-                  {
-                  }
-                  fieldelement(PrintOnCredtiMemo; "Purch. Comment Line"."Print On Credit Memo")
-                  {
-                  } */
-                //TODO
+                fieldelement(PrintOnQuote; "Purch. Comment Line"."Print On Quote")
+                {
+                }
+                fieldelement(PrintOnPutAway; "Purch. Comment Line"."Print On Put Away")
+                {
+                }
+                fieldelement(PrintOnOrder; "Purch. Comment Line"."Print On Order")
+                {
+                }
+                fieldelement(PrintOnReceipt; "Purch. Comment Line"."Print On Receipt")
+                {
+                }
+                fieldelement(PrintOnInvoice; "Purch. Comment Line"."Print On Invoice")
+                {
+                }
+                fieldelement(PrintOnCredtiMemo; "Purch. Comment Line"."Print On Credit Memo")
+                {
+                }
                 fieldelement(PrintOnBlanket; "Purch. Comment Line"."Print On Blanket")
                 {
                 }

@@ -351,21 +351,13 @@ page 50043 "Purch. Order Receipt Subform"
         ItemCrossReference: Record "Item Reference";
         SalesHeader: Record "Sales Header";
         TransferExtendedText: Codeunit "Transfer Extended Text";
-        [InDataSet]
         AllowItemChargeAssignmentEdita: Boolean;
-        [InDataSet]
         "Appl.-to Item EntryEditable": Boolean;
-        [InDataSet]
         "Expected Receipt DateEditable": Boolean;
-        [InDataSet]
         "FA Posting DateEditable": Boolean;
-        [InDataSet]
         "Planned Receipt DateEditable": Boolean;
-        [InDataSet]
         "Promised Receipt DateEditable": Boolean;
-        [InDataSet]
         "Qty. to ReceiveEditable": Boolean;
-        [InDataSet]
         "Variant CodeEditable": Boolean;
         ShortcutDimCode: array[8] of Code[20];
         CartonsToReceive: Decimal;

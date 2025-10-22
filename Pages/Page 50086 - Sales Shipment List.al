@@ -550,7 +550,7 @@ page 50086 "Sales Shipment List"
                     ToolTip = 'Specifies the value of the Release No. field.';
                     Caption = 'Release No.';
                 }
-                field("Mfg. Date"; "Mfg. Date")
+                field("Mfg. Date"; Rec."Mfg. Date")
                 {
                     ToolTip = 'Specifies the value of the Mfg. Date field.';
                     Caption = 'Mfg. Date';

@@ -150,8 +150,8 @@ page 50018 "Label Print"
 
     procedure PrintReceivingLabel()
     var
-        Receive: Record 14000601;
-        ReceiveLine: Record 14000602;
+        Receive: Record "LAX Receive";
+        ReceiveLine: Record "LAX Receive Line";
         Item: Record Item;
         ItemLedgEntry2: Record "Item Ledger Entry";
         LotNoInfo: Record "Lot No. Information";
@@ -179,12 +179,12 @@ page 50018 "Label Print"
         IF Receive.GET(UseReceiveNo) THEN
             Receive.DELETE(TRUE);
 
-        Receive.INIT;
+        Receive.INIT();
         Receive."No." := UseReceiveNo;
         //Receive."Purchase Order No." := PurchRcptLine."Order No.";
-        Receive.INSERT;
+        Receive.INSERT();
 
-        ReceiveLine.INIT;
+        ReceiveLine.INIT();
         ReceiveLine."Receive No." := Receive."No.";
         ReceiveLine.Type := ReceiveLine.Type::Item;
         ReceiveLine."No." := PurchRcptLineLRec."No.";
@@ -194,7 +194,7 @@ page 50018 "Label Print"
         ReceiveLine."Lot No." := Rec."Lot No.";
         //ReceiveLine."Purchase Order No." := PurchRcptLine."Order No.";
         ReceiveLine."Mfg. Lot No." := LotNoInfo."Mfg. Lot No.";
-        ReceiveLine.INSERT;
+        ReceiveLine.INSERT();
 
         LabelMgt.PromptReceiveLineLabel(ReceiveLine, ReceiveLine.Quantity, ReceiveLine.Quantity, TRUE);
 

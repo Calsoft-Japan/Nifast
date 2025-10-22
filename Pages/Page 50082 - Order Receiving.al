@@ -292,9 +292,9 @@ page 50082 "Order Receiving"
 
                     trigger OnAction()
                     var
-                        EMailListEntry: Record 14000908;
+                        EMailListEntry: Record "LAX E-Mail List Entry";
                     begin
-                        EMailListEntry.RESET;
+                        EMailListEntry.RESET();
                         EMailListEntry.SETRANGE("Table ID", DATABASE::"Purchase Header");
                         EMailListEntry.SETRANGE(Type, Rec."Document Type");
                         EMailListEntry.SETRANGE(Code, Rec."No.");
@@ -308,7 +308,7 @@ page 50082 "Order Receiving"
                     {
                         Caption = '&EDI Received Elements';
                         Image = Receivables;
-                        RunObject = Page 14000365;
+                        RunObject = Page "LAX EDI Retention Policy List";
                         RunPageLink = "Internal Doc No." = FIELD("EDI Internal Doc. No.");
                         RunPageView = SORTING("Internal Doc No.", "Line No.")
                                       ORDER(Ascending)
@@ -323,11 +323,11 @@ page 50082 "Order Receiving"
 
                         trigger OnAction()
                         var
-                            EDITrace: Page 14002386;
+                            EDITrace: Page "LAX EDI Trace";
                         begin
                             CLEAR(EDITrace);
                             EDITrace.SetDoc("EDI Internal Doc. No.");
-                            EDITrace.RUNMODAL;
+                            EDITrace.RUNMODAL();
                         end;
                     }
                 }
@@ -338,7 +338,7 @@ page 50082 "Order Receiving"
                     {
                         Caption = 'Receives';
                         Image = Receivables;
-                        RunObject = Page 14000608;
+                        RunObject = Page "LAX Receives";
                         RunPageLink = "Source Type" = CONST(38),
                                       "Source Subtype" = FIELD("Document Type"),
                                       "Source ID" = FIELD("No.");
@@ -541,7 +541,7 @@ page 50082 "Order Receiving"
 
                     trigger OnAction()
                     var
-                        EMailMgt: Codeunit 14000903;
+                        EMailMgt: Codeunit "LAX E-Mail Management";
                     begin
                         Rec.TESTFIELD("E-Mail Confirmation Handled", FALSE);
 
@@ -560,9 +560,9 @@ page 50082 "Order Receiving"
 
                         trigger OnAction()
                         var
-                            FastReceiveLine: Record 14000609;
+                            FastReceiveLine: Record "LAX Fast Receive Line";
                         begin
-                            FastReceiveLine.RESET;
+                            FastReceiveLine.RESET();
                             FastReceiveLine.SETRANGE("Source Type", DATABASE::"Purchase Header");
                             FastReceiveLine.SETRANGE("Source Subtype", Rec."Document Type");
                             FastReceiveLine.SETRANGE("Source ID", Rec."No.");
@@ -576,11 +576,12 @@ page 50082 "Order Receiving"
                     action("Send EDI Purchase Order")
                     {
                         Caption = 'Send EDI Purchase Order';
+                        Image = SendTo;
                         ToolTip = 'Executes the Send EDI Purchase Order action.';
 
                         trigger OnAction()
                         var
-                            EDIIntegration: Codeunit 14000363;
+                            EDIIntegration: Codeunit "LAX EDI Integration";
                         begin
                             EDIIntegration.SendPurchaseOrder(Rec);
                         end;
@@ -728,7 +729,6 @@ page 50082 "Order Receiving"
         DimMgt: Codeunit DimensionManagement;
         DocPrint: Codeunit "Document-Print";
         ReportPrint: Codeunit "Test Report-Print";
-        [InDataSet]
         JobQueueActive: Boolean;
 }
 
