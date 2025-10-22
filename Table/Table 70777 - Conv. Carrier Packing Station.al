@@ -62,7 +62,8 @@ table 70777 "Conv. Carrier Packing Station"
         field(14000785; "FedEx Global Registration No."; Code[40])
         {
             Caption = 'FedEx Global Registration No.';
-            TableRelation = "FedEx Global Registration"."Transaction ID";
+            //TODO
+            //TableRelation = "FedEx Global Registration"."Transaction ID";
         }
         field(14000786; "FedEx Label Printer Type"; Option)
         {
@@ -97,7 +98,8 @@ table 70777 "Conv. Carrier Packing Station"
         field(14000792; "FedEx Shipping Agent Acc. No."; Code[10])
         {
             Caption = 'FedEx Shipping Agent Acc. No.';
-            TableRelation = "FedEx Shipping Agent Account";
+            //TODO
+            //TableRelation = "FedEx Shipping Agent Account";
         }
         field(14000793; "FedEx Print From"; Option)
         {
@@ -133,7 +135,8 @@ table 70777 "Conv. Carrier Packing Station"
         field(14000881; "USPS Shipping Agent Acc. No"; Code[10])
         {
             Caption = 'USPS Shipping Agent Acc. No';
-            TableRelation = "USPS Shipping Agent Account";
+            //TODO
+            //TableRelation = "USPS Shipping Agent Account";
         }
         field(14000882; "USPS Label Printer Port"; Code[10])
         {
@@ -146,7 +149,8 @@ table 70777 "Conv. Carrier Packing Station"
         field(14000941; "Airborne Shipping Agent Acc No"; Code[10])
         {
             Caption = 'Airborne Shipping Agent Acc No';
-            TableRelation = "Airborne Ship. Agent Account";
+            //TODO
+            //TableRelation = "Airborne Ship. Agent Account";
         }
         field(14000942; "Airborne Label Printer Port"; Code[10])
         {

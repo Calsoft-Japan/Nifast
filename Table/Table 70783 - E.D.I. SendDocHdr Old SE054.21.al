@@ -15,7 +15,9 @@ table 70783 "E.D.I. SendDocHdr Old SE054.21"
         {
             Caption = 'Navision Document';
             Editable = false;
-            TableRelation = "LAX E.D.I. Navision Available Doc.".Document;
+            //TODO
+            //TableRelation = "LAX E.D.I. Navision Available Doc.".Document;
+
         }
         field(3; "Document No."; Code[20])
         {

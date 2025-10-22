@@ -300,7 +300,8 @@ table 99951 "TEMP - Fix ILE OTW Dims"
             Caption = 'Lot No.';
             trigger OnLookup()
             begin
-                ItemTrackingMgt.LookupLotSerialNoInfo("Item No.", '', 1, "Lot No.");
+                // ItemTrackingMgt.LookupLotSerialNoInfo("Item No.", '', 1, "Lot No.");
+                ItemTrackingMgt.LookupTrackingNoInfo("Item No.", '', 1, "Lot No.")
             end;
         }
         field(50000; "Inspected Parts"; Boolean)
