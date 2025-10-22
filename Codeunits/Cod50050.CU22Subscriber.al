@@ -225,15 +225,15 @@ codeunit 50050 CU22Subscriber
         //+AKK1606.01++
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", OnInitValueEntryOnAfterAssignFields, '', false, false)]
-    local procedure OnInitValueEntryOnAfterAssignFields(var ValueEntry: Record "Value Entry"; ItemLedgEntry: Record "Item Ledger Entry"; ItemJnlLine: Record "Item Journal Line")
-    begin
-        //TODO
-        //>> NV #9752
-        ValueEntry."Contract No." := ItemJnlLine."Contract No.";
-        //<< NV #9752 
-        //TODO
-    end;
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", OnInitValueEntryOnAfterAssignFields, '', false, false)]
+    // local procedure OnInitValueEntryOnAfterAssignFields(var ValueEntry: Record "Value Entry"; ItemLedgEntry: Record "Item Ledger Entry"; ItemJnlLine: Record "Item Journal Line")
+    // begin
+    //     //TODO
+    //     //>> NV #9752
+    //     ValueEntry."Contract No." := ItemJnlLine."Contract No.";
+    //     //<< NV #9752 
+    //     //TODO
+    // end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", OnAfterCalcPosShares, '', false, false)]
     local procedure OnAfterCalcPosShares(var ItemJournalLine: Record "Item Journal Line"; var DirCost: Decimal; var OvhdCost: Decimal; var PurchVar: Decimal; var DirCostACY: Decimal; var OvhdCostACY: Decimal; var PurchVarACY: Decimal; var CalcUnitCost: Boolean; CalcPurchVar: Boolean; Expected: Boolean; GlobalItemLedgerEntry: Record "Item Ledger Entry")

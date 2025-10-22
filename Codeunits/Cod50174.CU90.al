@@ -139,16 +139,17 @@ codeunit 50174 CU_90
     end;
 
     [EventSubscriber(ObjectType::Codeunit, 90, 'OnAfterPurchRcptLineInsert', '', True, false)]
-    local procedure OnAfterPurchRcptLineInsert(var PurchRcptLine: Record "Purch. Rcpt. Line"; var PurchRcptHeader: Record "Purch. Rcpt. Header"; var PurchLine: Record "Purchase Line"; CommitIsSupressed: Boolean; PostedWhseRcptLine: Record "Posted Whse. Receipt Line"; var IsHandled: Boolean; ItemLedgShptEntryNo: Integer)
+    //local procedure OnAfterPurchRcptLineInsert(var PurchRcptLine: Record "Purch. Rcpt. Line"; var PurchRcptHeader: Record "Purch. Rcpt. Header"; var PurchLine: Record "Purchase Line"; CommitIsSupressed: Boolean; PostedWhseRcptLine: Record "Posted Whse. Receipt Line"; var IsHandled: Boolean; ItemLedgShptEntryNo: Integer)
+    local procedure OnAfterPurchRcptLineInsert(PurchaseLine: Record "Purchase Line"; var PurchRcptLine: Record "Purch. Rcpt. Line"; ItemLedgShptEntryNo: Integer; WhseShip: Boolean; WhseReceive: Boolean; CommitIsSupressed: Boolean; PurchInvHeader: Record "Purch. Inv. Header"; var TempTrackingSpecification: Record "Tracking Specification" temporary; PurchRcptHeader: Record "Purch. Rcpt. Header"; TempWhseRcptHeader: Record "Warehouse Receipt Header"; xPurchLine: Record "Purchase Line"; var TempPurchLineGlobal: Record "Purchase Line" temporary)
     begin
         //>>NV
         IF PurchSetup."Copy Comments Order to Receipt" THEN
             CopyLineCommentLines(
-              PurchLine."Document Type",
+              PurchaseLine."Document Type",
               PurchLineCommentLine."Document Type"::Receipt,
-              PurchLine."Document No.",
+              PurchaseLine."Document No.",
               PurchRcptLine."Document No.",
-              PurchLine."Line No.",
+              PurchaseLine."Line No.",
               PurchRcptLine."Line No.");
         //<<NV
     end;
@@ -180,9 +181,9 @@ codeunit 50174 CU_90
     begin
         //>>NV 03.31.04 JWW:
         //IF NVM.TestPermission(14017931) THEN BEGIN
-            ItemJournalLine."Rework No." := PurchaseHeader."Rework No.";
-            ItemJournalLine."Rework Line No." := PurchaseHeader."Rework Line No.";
-       // END;
+        ItemJournalLine."Rework No." := PurchaseHeader."Rework No.";
+        ItemJournalLine."Rework Line No." := PurchaseHeader."Rework Line No.";
+        // END;
         //<<NV 03.31.04 JWW:
         //-AKK1606.01--
         ItemJournalLine."Entry/Exit No." := PurchaseLine."Entry/Exit No.";
@@ -194,6 +195,7 @@ codeunit 50174 CU_90
 
 
     [EventSubscriber(ObjectType::Codeunit, 90, 'OnPostItemJnlLineOnBeforeCopyDocumentFields', '', True, false)]
+    // local procedure OnPostItemJnlLineOnAfterPrepareItemJnlLine(var ItemJournalLine: Record "Item Journal Line"; PurchaseLine: Record "Purchase Line"; PurchaseHeader: Record "Purchase Header"; PreviewMode: Boolean; var GenJnlLineDocNo: code[20]; TrackingSpecification: Record "Tracking Specification"; QtyToBeReceived: Decimal; QtyToBeInvoiced: Decimal)
     local procedure OnPostItemJnlLineOnAfterPrepareItemJnlLine(var ItemJournalLine: Record "Item Journal Line"; PurchaseLine: Record "Purchase Line"; PurchaseHeader: Record "Purchase Header"; PreviewMode: Boolean; var GenJnlLineDocNo: code[20]; TrackingSpecification: Record "Tracking Specification"; QtyToBeReceived: Decimal; QtyToBeInvoiced: Decimal)
     var
         InvtSetup: record "Inventory Setup";
@@ -217,29 +219,29 @@ codeunit 50174 CU_90
         //<<NIF 050806 MAK
 
         //>>> NV
-       // IF NVM.TestPermission(14018070) THEN BEGIN
-            InvtSetup.GET();
+        // IF NVM.TestPermission(14018070) THEN BEGIN
+        InvtSetup.GET();
 
-            IF (PurchaseLine."Document Type" <> PurchaseLine."Document Type"::"Return Order") AND
-               (PurchaseLine."Document Type" <> PurchaseLine."Document Type"::"Credit Memo") AND
-               (InvtSetup."QC Hold On Purch. Receipts") AND
-               (PurchaseLine."Qty. to Receive" <> 0) AND (PurchaseLine.Type = PurchaseLine.Type::Item) THEN
-                //>> NF1.00:CIS.NG 12-18-15
-                //IF (PurchLine."QC Hold") OR (QCMgmt.CheckPeriodicInspection("No.",TODAY)) THEN
-                IF PurchaseLine."QC Hold" THEN
-                //<< NF1.00:CIS.NG 12-18-15
+        IF (PurchaseLine."Document Type" <> PurchaseLine."Document Type"::"Return Order") AND
+           (PurchaseLine."Document Type" <> PurchaseLine."Document Type"::"Credit Memo") AND
+           (InvtSetup."QC Hold On Purch. Receipts") AND
+           (PurchaseLine."Qty. to Receive" <> 0) AND (PurchaseLine.Type = PurchaseLine.Type::Item) THEN
+            //>> NF1.00:CIS.NG 12-18-15
+            //IF (PurchLine."QC Hold") OR (QCMgmt.CheckPeriodicInspection("No.",TODAY)) THEN
+            IF PurchaseLine."QC Hold" THEN
+                  //<< NF1.00:CIS.NG 12-18-15
                   begin
-                    //only way reach this point, is if either qc hold or per insp
-                    //so if not qc hold, must be periodic inspection
-                    //give message
-                    IF (NOT PurchaseLine."QC Hold") AND (GUIALLOWED) THEN
-                        MESSAGE('ALERT: Item %1 has been put on QC Hold for Periodic Inspection.\' +
-                                '       Please take this item to the QC lab.', PurchaseLine."No.");
+                //only way reach this point, is if either qc hold or per insp
+                //so if not qc hold, must be periodic inspection
+                //give message
+                IF (NOT PurchaseLine."QC Hold") AND (GUIALLOWED) THEN
+                    MESSAGE('ALERT: Item %1 has been put on QC Hold for Periodic Inspection.\' +
+                            '       Please take this item to the QC lab.', PurchaseLine."No.");
 
-                    //ItemJnlLine."QC Reference No." := QCMgmt.PurchFindQCReference(PurchLine,PurchRcptHeader."No.");  //NF1.00:CIS.NG 12-18-15
-                    ItemJournalLine."QC Hold" := TRUE;
-                END;
-       // END;
+                //ItemJnlLine."QC Reference No." := QCMgmt.PurchFindQCReference(PurchLine,PurchRcptHeader."No.");  //NF1.00:CIS.NG 12-18-15
+                ItemJournalLine."QC Hold" := TRUE;
+            END;
+        // END;
         //<<< NV
     end;
 
@@ -327,7 +329,7 @@ codeunit 50174 CU_90
     var
         //">>IST": Integer;
         "4XContractNote": Record 50011;
-        PurchLineCommentLine: Record 14017611;
+       PurchLineCommentLine: Record 14017611;
         PurchSetup: Record "Purchases & Payables Setup";
 
         NVM: Codeunit 50021;

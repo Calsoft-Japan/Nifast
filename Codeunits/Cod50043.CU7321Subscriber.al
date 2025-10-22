@@ -16,12 +16,12 @@ codeunit 50043 CU7321Subscriber
         //TODO
         // >> NV
         //if Item is on QC Hold then assign to inbound bin
-        IF NVM.TestPermission(14018070) THEN BEGIN
+       // IF NVM.TestPermission(14018070) THEN BEGIN
             InvtSetup.GET();
             Item.GET(WarehouseActivityLine."Item No.");
             IF (Item."QC Hold") AND (CurrLocation."Bin Mandatory") AND (InvtSetup."QC Hold On Purch. Receipts") THEN
                 WarehouseActivityLine."Bin Code" := CurrLocation."Inbound QC Bin Code";
-        END;
+        //END;
         // << NV 
         //TODO
     end;

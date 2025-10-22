@@ -99,7 +99,7 @@ codeunit 50178 CU_6500
                 TempReservEntry."Serial No." := ItemLedgEntry."Serial No.";
                 TempReservEntry."Lot No." := ItemLedgEntry."Lot No.";
                 TempReservEntry."Variant Code" := ItemLedgEntry."Variant Code";
-               // TempReservEntry."Mfg. Lot No." := ItemLedgEntry."External Lot No.";
+                // TempReservEntry."Mfg. Lot No." := ItemLedgEntry."External Lot No.";
                 IF TempReservEntry.Positive THEN BEGIN
                     TempReservEntry."Warranty Date" := ItemLedgEntry."Warranty Date";
                     TempReservEntry."Expiration Date" := ItemLedgEntry."Expiration Date";
@@ -180,7 +180,7 @@ codeunit 50178 CU_6500
 
         TempEntrySummary.RESET();
 
-        ItemTrackingSummaryForm.SetSources(TempReservEntry, TempEntrySummary);
+        // ItemTrackingSummaryForm.SetSource(TempReservEntry, TempEntrySummary);//TODO
         ItemTrackingSummaryForm.LOOKUPMODE(SearchForSupply);
         //xTempEntrySummary.SETRANGE("Serial No.",LotEntry."Serial No.");
         TempEntrySummary.SETRANGE("Lot No.", LotEntry."Lot No.");
@@ -399,7 +399,7 @@ codeunit 50178 CU_6500
             EXIT(Value2);
     END;
 
-    PROCEDURE CallPostedItemTrackingForm_gFnc(Type: Integer; Subtype: Integer; ID: Code[20]; BatchName: Code[10]; ProdOrderLine: Integer; RefNo: Integer; VAR TempItemLedgEntry_vRecTmp:  Record 32 TEMPORARY): Boolean;
+    PROCEDURE CallPostedItemTrackingForm_gFnc(Type: Integer; Subtype: Integer; ID: Code[20]; BatchName: Code[10]; ProdOrderLine: Integer; RefNo: Integer; VAR TempItemLedgEntry_vRecTmp: Record 32 TEMPORARY): Boolean;
     VAR
         TempItemLedgEntry: Record 32 TEMPORARY;
         TrackingSpecification: Codeunit 6500;

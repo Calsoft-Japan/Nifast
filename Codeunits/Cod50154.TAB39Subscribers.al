@@ -84,12 +84,12 @@ codeunit 50154 TAB39Subscribers
         //<< NIF #9850
     end;
 
-    [EventSubscriber(ObjectType::Page, Page::"Purchase Order Subform", OnBeforeInsertExtendedText, '', false, false)]
-    local procedure "Purchase Order Subform_OnBeforeInsertExtendedText"(var PurchaseLine: Record "Purchase Line"; var IsHandled: Boolean)
-    begin
-        //>> NIF #10088 RTT 06-07-05
-        PurchaseLine.HandleCommentLines();
-        //>> NIF #10088 RTT 06-07-05
-    end;
+    // [EventSubscriber(ObjectType::Page, Page::"Purchase Order Subform", OnBeforeInsertExtendedText, '', false, false)]
+    // local procedure "Purchase Order Subform_OnBeforeInsertExtendedText"(var PurchaseLine: Record "Purchase Line"; var IsHandled: Boolean)
+    // begin
+    //     //>> NIF #10088 RTT 06-07-05
+    //     PurchaseLine.HandleCommentLines();
+    //     //>> NIF #10088 RTT 06-07-05
+    // end;
 
 }

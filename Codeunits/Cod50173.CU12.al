@@ -9,7 +9,7 @@ codeunit 50173 CU_12
         //<< FOREX
 
         //>>IST 053105 DPC #9806
-        GLEntry."Contract Note No." := GenJournalLine."Contract Note No.";
+        //GLEntry."Contract Note No." := GenJournalLine."Contract Note No.";
         GLEntry."Exchange Contract No." := GenJournalLine."Exchange Contract No.";
         GLEntry."4X Currency Rate" := GenJournalLine."Currency Factor";
         GLEntry."4X Amount JPY" := ABS(GenJournalLine.Amount);
@@ -41,11 +41,11 @@ codeunit 50173 CU_12
         //<< CE 1.2
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, 12, 'OnBeforeCheckPurchExtDocNo', '', True, false)]
-    local procedure OnBeforeCheckPurchExtDocNo(GenJournalLine: Record "Gen. Journal Line"; VendorLedgerEntry: Record "Vendor Ledger Entry"; CVLedgerEntryBuffer: Record "CV Ledger Entry Buffer"; var Handled: Boolean)
-    begin
-        GenJournalLine.SetCVNo(CVLedgerEntryBuffer."CV No.");  //Added during merge
-    end;
+    // [EventSubscriber(ObjectType::Codeunit, 12, 'OnBeforeCheckPurchExtDocNo', '', True, false)]
+    // local procedure OnBeforeCheckPurchExtDocNo(GenJournalLine: Record "Gen. Journal Line"; VendorLedgerEntry: Record "Vendor Ledger Entry"; CVLedgerEntryBuffer: Record "CV Ledger Entry Buffer"; var Handled: Boolean)
+    // begin
+    //     GenJournalLine.SetCVNo(CVLedgerEntryBuffer."CV No.");  //Added during merge
+    // end;//TODO
 
     [EventSubscriber(ObjectType::Codeunit, 12, 'OnBeforeVendLedgEntryInsert', '', True, false)]
     local procedure OnBeforeVendLedgEntryInsert(var VendorLedgerEntry: Record "Vendor Ledger Entry"; var GenJournalLine: Record "Gen. Journal Line"; GLRegister: Record "G/L Register")
