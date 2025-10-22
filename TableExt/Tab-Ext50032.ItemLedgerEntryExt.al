@@ -165,4 +165,9 @@ tableextension 50032 "Item Ledger Entry Ext" extends "Item Ledger Entry"
 
         }
     }
+    PROCEDURE "External Lot No."(): Text[30];
+    VAR
+        LotNoInfo: Record 6505;
+    BEGIN
+    END;
 }
