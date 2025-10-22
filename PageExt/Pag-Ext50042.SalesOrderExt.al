@@ -244,7 +244,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 VAR
                     EMailMgt: Codeunit 14000903;
                 BEGIN
-                    Rec.TESTFIELD("E-Mail Confirmation Handled", FALSE);
+                    Rec.TESTFIELD("LAX E-Mail Confirm. Handled" , FALSE);
 
                     EMailMgt.SendSalesConfirmation(Rec, TRUE, FALSE);
                 END;

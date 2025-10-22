@@ -705,10 +705,10 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
     LOCAL PROCEDURE OnActivateForm();
     BEGIN
         //>>NV4.32 03.31.04 JWW:
-        IF NVM.TestPermission(14017931) THEN
-            "Rework Process ItemVisible" := TRUE
-        ELSE
-            "Rework Process ItemVisible" := FALSE;
+        // IF NVM.TestPermission(14017931) THEN
+        //     "Rework Process ItemVisible" := TRUE
+        // ELSE
+        //     "Rework Process ItemVisible" := FALSE;
         //>>NV4.32 03.31.04 JWW:
     END;
 
