@@ -113,7 +113,8 @@ table 99953 "TEMP - Fix Reservation Entry"
                 LoginMgt: Codeunit "User Management";
             begin
                  
-                LoginMgt.LookupUserID("Created By");
+                //LoginMgt.LookupUserID("Created By");
+                LoginMgt.DisplayUserInformation("Created By");
                  
             end;
 
@@ -132,7 +133,8 @@ table 99953 "TEMP - Fix Reservation Entry"
                 LoginMgt: Codeunit "User Management";
             begin
                  
-                LoginMgt.LookupUserID("Changed By");
+                //LoginMgt.LookupUserID("Changed By");
+                LoginMgt.DisplayUserInformation("Changed By");
                  
             end;
 

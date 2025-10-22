@@ -31,12 +31,14 @@ table 50031 "EDI Sales Order Import Log"
 
             trigger OnLookup()
             begin
-                UserMgt.LookupUserID("Import By");
+                //UserMgt.LookupUserID("Import By");
+                UserMgt.DisplayUserInformation("Import By");
             end;
 
             trigger OnValidate()
             begin
-                UserMgt.ValidateUserID("Import By");
+                //UserMgt.ValidateUserID("Import By");
+                UserMgt.DisplayUserInformation("Import By");
             end;
         }
         field(25; "Sales Orders"; Code[250])

@@ -41,14 +41,16 @@ table 50111 "Price Contract Comment Line"
             var
                 LoginMgt: Codeunit 418;
             begin
-                LoginMgt.LookupUserID("User ID");
+                //LoginMgt.LookupUserID("User ID");
+                LoginMgt.DisplayUserInformation("User ID");
             end;
 
             trigger OnValidate()
             var
                 LoginMgt: Codeunit 418;
             begin
-                LoginMgt.ValidateUserID("User ID");
+                //LoginMgt.ValidateUserID("User ID");
+                LoginMgt.DisplayUserInformation("User ID");
             end;
         }
         field(50118; "Time Stamp"; Time)

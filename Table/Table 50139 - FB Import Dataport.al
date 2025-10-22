@@ -21,10 +21,10 @@ table 50139 "FB Import Dataport"
         field(20; "Location Code"; Code[10])
         {
             // cleaned
-             
+
             TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
                                               "Rework Location" = CONST(false));
-             
+
         }
         field(25; "Dataport ID"; Integer)
         {
@@ -62,14 +62,16 @@ table 50139 "FB Import Dataport"
             var
                 LoginMgt: Codeunit 418;
             begin
-                LoginMgt.LookupUserID("User ID");
+                //LoginMgt.LookupUserID("User ID");
+                LoginMgt.DisplayUserInformation("User ID");
             end;
 
             trigger OnValidate()
             var
                 LoginMgt: Codeunit 418;
-            begin  
-                LoginMgt.ValidateUserID("User ID");
+            begin
+                // LoginMgt.ValidateUserID("User ID");
+                LoginMgt.DisplayUserInformation("User ID");
             end;
 
 
