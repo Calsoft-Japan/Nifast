@@ -2191,7 +2191,7 @@ codeunit 50021 "NewVision Management_New"
 
         //if still none found, then take packing station state and match agains resp center  //032306
         IF RespCenter.Code = '' THEN
-            IF PackingStation.GET(UserSetup."Packing Station") THEN BEGIN
+            IF PackingStation.GET(UserSetup."LAX Packing Station") THEN BEGIN
                 RespCenter.RESET();
                 RespCenter.SETRANGE(County, PackingStation."Ship-from State");
                 IF NOT RespCenter.FIND('-') THEN

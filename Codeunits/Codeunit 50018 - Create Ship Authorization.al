@@ -220,6 +220,7 @@ codeunit 50018 "Create Ship Authorization"
     end;
 
     var
+        ProgressWindow: Dialog;
         LastCustomerNo: Code[20];
         LastItemNo: Code[20];
         ShipAuthorization: Record 50015;

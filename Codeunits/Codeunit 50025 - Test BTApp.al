@@ -1748,7 +1748,8 @@ codeunit 50025 "Test BTApp"
         PostedPackageLine: Record 14000705;
         PackingControl: Record 14000717 temporary;
         Shipping: Codeunit 14000701;
-        PackageMgt: Codeunit 14000702;
+        //PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
     begin
         //if a posted pick exists for this shipment, with a posted package, then exit
         PostedInvtPickHdr.SETRANGE("Source No.", SalesShptHdr."No.");
