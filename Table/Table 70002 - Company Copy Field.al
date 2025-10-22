@@ -3,7 +3,8 @@ table 70002 "Company Copy Field"
     // CC1.0, Company Copy, Emiel Romein eromein@home.nl
 
     DataPerCompany = false;
-    DrillDownPageID = 70002;
+    //TODO
+    //DrillDownPageID = 70002;
     fields
     {
         field(1; "Template Name"; Code[10])

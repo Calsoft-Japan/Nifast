@@ -298,7 +298,7 @@ table 70032 "TEMP - Fix ILE Blank Dims"
             Caption = 'Lot No.';
             trigger OnLookup()
             begin
-                ItemTrackingMgt.LookupLotSerialNoInfo("Item No.", '', 1, "Lot No.");
+                ItemTrackingMgt.LookupTrackingNoInfo("Item No.", '', 1, "Lot No.");
             end;
         }
         field(50000; "Inspected Parts"; Boolean)

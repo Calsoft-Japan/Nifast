@@ -392,7 +392,8 @@ table 80001 "Purchase Header NV"
         }
         field(14017650; "Broker/Agent Code"; Code[10])
         {
-            TableRelation = "Broker/Agent";
+            //TODO
+            //TableRelation = "Broker/Agent";
         }
     }
     keys

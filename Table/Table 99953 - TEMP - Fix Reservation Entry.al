@@ -104,7 +104,7 @@ table 99953 "TEMP - Fix Reservation Entry"
         field(25; "Created By"; Code[20])
         {
             Caption = 'Created By';
-            TableRelation = Table2000000002;
+            TableRelation = user;
             //This property is currently not supported
             //TestTableRelation = false;
 
@@ -123,7 +123,7 @@ table 99953 "TEMP - Fix Reservation Entry"
         {
             Caption = 'Changed By';
              
-            TableRelation = Table2000000002;
+            TableRelation = User;
              
             //This property is currently not supported
             //TestTableRelation = false;

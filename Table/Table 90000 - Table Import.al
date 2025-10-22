@@ -2,8 +2,9 @@ table 90000 "Table Import"
 {
     DataCaptionFields = "Code", Description;
     DataPerCompany = false;
-    DrillDownPageID = 90004;
-    LookupPageID = 90004;
+    //TODO
+    // DrillDownPageID = 90004;
+    // LookupPageID = 90004;
     fields
     {
         field(1; "Code"; Code[10])

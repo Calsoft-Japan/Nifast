@@ -3,7 +3,8 @@ table 70000 "Company Copy Template"
     // CC1.5, Company Copy, Emiel Romein eromein@home.nl
 
     DataPerCompany = false;
-    LookupPageID = 70000;
+    //TODO
+    //LookupPageID = 70000;
     fields
     {
         field(1; Name; Code[10])

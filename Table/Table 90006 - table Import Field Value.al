@@ -2,8 +2,9 @@ table 90006 "table Import Field Value"
 {
     DataCaptionFields = "Table Import Code", "File Field No.";
     DataPerCompany = false;
-    DrillDownPageID = 90009;
-    LookupPageID = 90009;
+    //TODO
+    // DrillDownPageID = 90009;
+    // LookupPageID = 90009;
     fields
     {
         field(1; "Table Import Code"; Code[10])

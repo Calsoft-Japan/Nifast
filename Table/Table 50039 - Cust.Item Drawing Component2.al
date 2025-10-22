@@ -1,9 +1,9 @@
 table 50039 "Cust./Item Drawing Component2"
 {
     // NF1.00:CIS.NG    08/04/16 Create New Missing table for NV Series in NAV 2015 (Save As the Old Table  - 37015303)
-
-    DrillDownPageID = 37015305;
-    LookupPageID = 37015305;
+    //TODO
+    // DrillDownPageID = 37015305;
+    // LookupPageID = 37015305;
 
     fields
     {
