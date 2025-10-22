@@ -99,7 +99,7 @@ page 50003 "Item Comment Sheet"
                     ToolTip = 'Specifies the value of the Time Stamp field.';
                     Caption = 'Time Stamp';
                 }
-                field("Include in E-Mail"; Rec."Include in E-Mail")
+                field("Include in E-Mail"; Rec."lax Include in E-Mail")
                 {
                     ToolTip = 'Specifies the value of the Include in E-Mail field.';
                     Caption = 'Include in E-Mail';

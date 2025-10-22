@@ -436,16 +436,18 @@ page 50001 "Master Customer List"
                     {
                         Caption = 'C&redit Cards';
                         Image = CreditCard;
-                        RunObject = Page 828;
-                        RunPageLink = "Customer No." = FIELD("No.");
+                        //TODO
+                        // RunObject = Page 828;
+                        // RunPageLink = "Customer No." = FIELD("No.");
                         ToolTip = 'Executes the C&redit Cards action.';
                     }
                     action("Credit Cards Transaction Lo&g Entries")
                     {
                         Caption = 'Credit Cards Transaction Lo&g Entries';
                         Image = CreditCardLog;
-                        RunObject = Page 829;
-                        RunPageLink = "Customer No." = FIELD("No.");
+                        //TODO
+                        // RunObject = Page 829;
+                        // RunPageLink = "Customer No." = FIELD("No.");
                         ToolTip = 'Executes the Credit Cards Transaction Lo&g Entries action.';
                     }
                 }

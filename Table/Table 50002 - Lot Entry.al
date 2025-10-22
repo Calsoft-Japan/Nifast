@@ -147,7 +147,8 @@ table 50002 "Lot Entry"
         TrackingSpecificationTmp: Record 336 temporary;
         TrackingSpecification: Record 336 temporary;
         LotEntry2: Record 50002;
-        ReserveSalesLine: Codeunit 99000832;
+        //ReserveSalesLine: Codeunit 99000832;
+        ReserveSalesLine: Codeunit AddOnCustomizations;
         ItemTrackingForm: Page "Item Tracking Lines";
         UseLineNo: Integer;
     begin
@@ -177,7 +178,7 @@ table 50002 "Lot Entry"
                 //get initial lots
                 CLEAR(ReserveSalesLine);
                 CLEAR(ItemTrackingForm);
-                ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
+                ReserveSalesLine.InitTrackingSpecificationSalesLine(SalesLine, TrackingSpecification);
                 ItemTrackingForm.SetSourceSpec(TrackingSpecification, SalesLine."Shipment Date");
                 ItemTrackingForm.EShipOpenForm();
                 TrackingSpecificationTmp.RESET();
@@ -254,7 +255,8 @@ table 50002 "Lot Entry"
         TrackingSpecificationTmp: Record 336 temporary;
         TrackingSpecification: Record 336 temporary;
         LotEntry2: Record 50002;
-        ReservePurchLine: Codeunit 99000834;
+        //ReservePurchLine: Codeunit 99000834;
+        ReservePurchLine: Codeunit AddOnCustomizations;
         ItemTrackingForm: Page 6510;
         UseLineNo: Integer;
     begin
@@ -287,7 +289,7 @@ table 50002 "Lot Entry"
                 //get initial lots
                 CLEAR(ReservePurchLine);
                 CLEAR(ItemTrackingForm);
-                ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+                ReservePurchLine.InitTrackingSpecificationPurchLine(PurchLine, TrackingSpecification);
                 ItemTrackingForm.SetSourcespec(TrackingSpecification, PurchLine."Expected Receipt Date");
                 ItemTrackingForm.EShipOpenForm();
                 TrackingSpecificationTmp.RESET();
@@ -360,7 +362,8 @@ table 50002 "Lot Entry"
         TrackingSpecificationTmp: Record 336 temporary;
         TrackingSpecification: Record 336 temporary;
         LotEntry2: Record 50002;
-        ReserveTransferLine: Codeunit 99000836;
+        //ReserveTransferLine: Codeunit 99000836;
+        ReserveTransferLine: Codeunit AddOnCustomizations;
         ItemTrackingForm: Page 6510;
         UseLineNo: Integer;
     begin
@@ -391,7 +394,7 @@ table 50002 "Lot Entry"
                 //get initial lots
                 CLEAR(ReserveTransferLine);
                 CLEAR(ItemTrackingForm);
-                ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
+                ReserveTransferLine.InitTrackingSpecificationTransLine(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
                 ItemTrackingForm.SetSourcespec(TrackingSpecification, TransferLine."Shipment Date");
                 ItemTrackingForm.EShipOpenForm();
                 TrackingSpecificationTmp.RESET();
@@ -692,7 +695,8 @@ table 50002 "Lot Entry"
         SalesLine: Record 37;
         TrackingSpecificationTmp: Record 336 temporary;
         TrackingSpecification: Record 336 temporary;
-        ReserveSalesLine: Codeunit 99000832;
+        //ReserveSalesLine: Codeunit 99000832;
+        ReserveSalesLine: Codeunit AddOnCustomizations;
         ItemTrackingForm: Page 6510;
         LotNoToSet: Code[20];
         WarrantyDateToSet: Date;
@@ -736,7 +740,7 @@ table 50002 "Lot Entry"
 
             //get the qty to process
             SalesLine.GET(LotEntry."Document Type", LotEntry."Document No.", LotEntry."Order Line No.");
-            ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
+            ReserveSalesLine.InitTrackingSpecificationSalesLine(SalesLine, TrackingSpecification);
             ItemTrackingForm.SetSourcespec(TrackingSpecification, SalesLine."Shipment Date");
             LotNoToSet := LotEntry."Lot No.";
             ExpirationDateToSet := LotEntry."Expiration Date";
@@ -828,7 +832,8 @@ table 50002 "Lot Entry"
         PurchLine: Record 39;
         TrackingSpecificationTmp: Record 336 temporary;
         TrackingSpecification: Record 336 temporary;
-        ReservePurchLine: Codeunit 99000834;
+        //ReservePurchLine: Codeunit 99000834;
+        ReservePurchLine: Codeunit AddOnCustomizations;
         ItemTrackingForm: Page "Item Tracking Lines";
         LotNoToSet: Code[20];
         WarrantyDateToSet: Date;
@@ -872,7 +877,7 @@ table 50002 "Lot Entry"
 
             //get the qty to process
             PurchLine.GET(LotEntry."Document Type", LotEntry."Document No.", LotEntry."Order Line No.");
-            ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+            ReservePurchLine.InitTrackingSpecificationPurchLine(PurchLine, TrackingSpecification);
             ItemTrackingForm.SetSourcespec(TrackingSpecification, PurchLine."Expected Receipt Date");
             LotNoToSet := LotEntry."Lot No.";
             ExpirationDateToSet := LotEntry."Expiration Date";
@@ -964,7 +969,8 @@ table 50002 "Lot Entry"
         TransferLine: Record 5741;
         TrackingSpecificationTmp: Record 336 temporary;
         TrackingSpecification: Record 336 temporary;
-        ReserveTransferLine: Codeunit 99000836;
+        //ReserveTransferLine: Codeunit 99000836;
+        ReserveTransferLine: Codeunit AddOnCustomizations;
         ItemTrackingForm: Page 6510;
         LotNoToSet: Code[20];
         WarrantyDateToSet: Date;
@@ -1007,7 +1013,7 @@ table 50002 "Lot Entry"
 
             //get the qty to process
             TransferLine.GET(LotEntry."Document No.", LotEntry."Order Line No.");
-            ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
+            ReserveTransferLine.InitTrackingSpecificationTransLine(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
             ItemTrackingForm.SetSourcespec(TrackingSpecification, TransferLine."Shipment Date");
             LotNoToSet := LotEntry."Lot No.";
             ExpirationDateToSet := LotEntry."Expiration Date";
@@ -1193,9 +1199,12 @@ table 50002 "Lot Entry"
         TrackingSpecification: Record "Tracking Specification" temporary;
         TransferLine: Record "Transfer Line";
         PurchLine: Record "Purchase Line";
-        ReserveSalesLine: Codeunit "Sales Line-Reserve";
-        ReservePurchLine: Codeunit "Purch. Line-Reserve";
-        ReserveTransferLine: Codeunit "Transfer Line-Reserve";
+        //ReserveSalesLine: Codeunit "Sales Line-Reserve";
+        ReserveSalesLine: Codeunit AddOnCustomizations;
+        //ReservePurchLine: Codeunit "Purch. Line-Reserve";
+        ReservePurchLine: Codeunit AddOnCustomizations;
+        //ReserveTransferLine: Codeunit "Transfer Line-Reserve";
+        ReserveTransferLine: Codeunit AddOnCustomizations;
         ItemTrackingForm: Page 6510;
         ModifyRecord: Boolean;
     begin
@@ -1210,21 +1219,21 @@ table 50002 "Lot Entry"
             DATABASE::"Sales Line":
                 BEGIN
                     SalesLine.GET(SourceSubType, SourceNo, SourceLineNo);
-                    ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
+                    ReserveSalesLine.InitTrackingSpecificationSalesLine(SalesLine, TrackingSpecification);
                     ItemTrackingForm.SetSourcespec(TrackingSpecification, SalesLine."Shipment Date");
                 END;
 
             DATABASE::"Purchase Line":
                 BEGIN
                     PurchLine.GET(SourceSubType, SourceNo, SourceLineNo);
-                    ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+                    ReservePurchLine.InitTrackingSpecificationPurchLine(PurchLine, TrackingSpecification);
                     ItemTrackingForm.SetSourcespec(TrackingSpecification, PurchLine."Expected Receipt Date");
                 END;
 
             DATABASE::"Transfer Line":
                 BEGIN
                     TransferLine.GET(SourceNo, SourceLineNo);
-                    ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
+                    ReserveTransferLine.InitTrackingSpecificationTransLine(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
                     ItemTrackingForm.SetSourcespec(TrackingSpecification, TransferLine."Shipment Date");
                 END;
             ELSE

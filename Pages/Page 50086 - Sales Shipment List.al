@@ -640,7 +640,7 @@ page 50086 "Sales Shipment List"
                     ToolTip = 'Specifies the value of the National field.';
                     Caption = 'National';
                 }
-                field("EDI Item Cross Ref."; Rec."EDI Item Cross Ref.")
+                field("EDI Item Cross Ref."; Rec."Item Cross Ref.")
                 {
                     ToolTip = 'Specifies the value of the EDI Item Cross Ref. field.';
                     Caption = 'EDI Item Cross Ref.';

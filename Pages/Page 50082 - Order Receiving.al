@@ -298,7 +298,7 @@ page 50082 "Order Receiving"
                         EMailListEntry.SETRANGE("Table ID", DATABASE::"Purchase Header");
                         EMailListEntry.SETRANGE(Type, Rec."Document Type");
                         EMailListEntry.SETRANGE(Code, Rec."No.");
-                        PAGE.RUNMODAL(PAGE::"E-Mail List Entries", EMailListEntry);
+                        PAGE.RUNMODAL(PAGE::"lax E-Mail List Entries", EMailListEntry);
                     end;
                 }
                 group(EDIs)
@@ -564,9 +564,9 @@ page 50082 "Order Receiving"
                         begin
                             FastReceiveLine.RESET();
                             FastReceiveLine.SETRANGE("Source Type", DATABASE::"Purchase Header");
-                            FastReceiveLine.SETRANGE("Source Subtype", Rec."Document Type");
+                            FastReceiveLine.SETRANGE("Source Subtype", Rec."Document Type".AsInteger());
                             FastReceiveLine.SETRANGE("Source ID", Rec."No.");
-                            PAGE.RUNMODAL(PAGE::"Fast Receive Order", FastReceiveLine);
+                            PAGE.RUNMODAL(PAGE::"lax Fast Receive Order", FastReceiveLine);
                         end;
                     }
                 }

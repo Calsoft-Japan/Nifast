@@ -304,7 +304,7 @@ page 50059 "Posted Purch. Invoice Line NIF"
                         EMailListEntry.RESET();
                         EMailListEntry.SETRANGE("Table ID", DATABASE::"Purch. Inv. Header");
                         EMailListEntry.SETRANGE(Code, Rec."No.");
-                        PAGE.RUNMODAL(PAGE::"E-Mail List Entries", EMailListEntry);
+                        PAGE.RUNMODAL(PAGE::"LAX E-Mail List Entries", EMailListEntry);
                     end;
                 }
             }

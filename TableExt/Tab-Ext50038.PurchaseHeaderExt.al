@@ -249,16 +249,18 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
             Description = '20-->50';
             trigger OnValidate()
             var
-                LoginMgt: Codeunit LogInManagement;
+                LoginMgt: Codeunit 418;
             begin
-                LoginMgt.ValidateUserID("Entered User ID");
+                //LoginMgt.ValidateUserID("Entered User ID");
+                LoginMgt.DisplayUserInformation("Entered User ID");
             end;
 
             trigger OnLookup()
             var
-                LoginMgt: Codeunit LogInManagement;
+                LoginMgt: Codeunit "User Management";
             begin
-                LoginMgt.LookupUserID("Entered User ID");
+                //LoginMgt.LookupUserID("Entered User ID");
+                LoginMgt.DisplayUserInformation("Entered User ID");
             end;
         }
         field(14017611; "Entered Date"; Date)

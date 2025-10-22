@@ -16,7 +16,7 @@ page 50089 "User Packing Station"
                     ToolTip = 'Specifies the value of the User ID field.';
                     Caption = 'User ID';
                 }
-                field("Packing Station"; Rec."Packing Station")
+                field("Packing Station"; Rec."lax Packing Station")
                 {
                     ToolTip = 'Specifies the value of the Packing Station field.';
                     Caption = 'Packing Station';

@@ -115,7 +115,7 @@ page 50037 "Receive Line Label Request"
                     Image = Sales;
                     RunPageLink = Type = FILTER(Item),
                                   "No." = FIELD("No.");
-                    RunPageView = SORTING("Document Type", "Document No.", Type, "No.", "Variant Code", "Drop Shipment", Pack)
+                    RunPageView = SORTING("Document Type", "Document No.", Type, "No.", "Variant Code", "Drop Shipment", "LAX Pack")
                                   WHERE("Document Type" = FILTER(Order));
                     ToolTip = 'Executes the Sales Order Lines action.';
                 }

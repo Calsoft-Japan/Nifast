@@ -117,7 +117,7 @@ page 50038 "Package Line Label Request"
                     RunObject = Page "Sales Lines";
                     RunPageLink = Type = FILTER(Item),
                                   "No." = FIELD("No.");
-                    RunPageView = SORTING("Document Type", "Document No.", Type, "No.", "Variant Code", "Drop Shipment", Pack)
+                    RunPageView = SORTING("Document Type", "Document No.", Type, "No.", "Variant Code", "Drop Shipment", "lax pack")
                                   WHERE("Document Type" = FILTER(Order));
                     ToolTip = 'Executes the Sales Order Lines action.';
                 }
