@@ -126,7 +126,7 @@ page 50067 "Ship Authorization"
 
     trigger OnAfterGetRecord()
     begin
-        MakeOrderEnable := NOT Archive;
+        MakeOrderEnable := NOT rec.Archive;
     end;
 
     trigger OnDeleteRecord(): Boolean

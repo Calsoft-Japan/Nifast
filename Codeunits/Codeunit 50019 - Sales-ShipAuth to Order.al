@@ -65,10 +65,10 @@ codeunit 50019 "Sales-ShipAuth to Order"
         PurchOrderNo: Code[20];
         NextLineNo: Integer;
 
-    // procedure GetSalesOrderHeader(var SalesHeader2: Record 36)
-    // begin
-    //     SalesHeader2 := SalesOrderHeader;
-    // end;
+    procedure GetSalesOrderHeader(var SalesHeader2: Record 36)
+    begin
+        SalesHeader2 := SalesOrderHeader;
+    end;
 
     // procedure SetHideValidationDialog(NewHideValidationDialog: Boolean)
     // begin

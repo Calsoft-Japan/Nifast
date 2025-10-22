@@ -385,7 +385,7 @@ page 50044 "Purchase Order Receipt"
                         //ReportPrint.PrintPurchHeader(Rec);
                         PurchHeader := Rec;
                         PurchHeader.SETRECFILTER();
-                        PurchTestReport.SetCalledFromReceiving;
+                        // PurchTestReport.SetCalledFromReceiving;//TODO
                         PurchTestReport.SETTABLEVIEW(PurchHeader);
                         PurchTestReport.RUN();
                         //<< RTT 09-26-05
@@ -405,8 +405,9 @@ page 50044 "Purchase Order Receipt"
                     trigger OnAction()
                     var
                         PurchPostYN: Codeunit "Purch.-Post (Yes/No)";
+                        PurchPostYN1: Codeunit CU_91;
                     begin
-                        PurchPostYN.SetReceiveOnly;
+                        PurchPostYN1.SetReceiveOnly;
                         PurchPostYN.RUN(Rec);
                         IF Rec."Receiving No." = '-1' THEN
                             ERROR('');
@@ -426,8 +427,9 @@ page 50044 "Purchase Order Receipt"
                     trigger OnAction()
                     var
                         PurchPostPrint: Codeunit "Purch.-Post + Print";
+                        PurchPostPrint1: Codeunit CU_92;
                     begin
-                        PurchPostPrint.SetReceiveOnly;
+                        PurchPostPrint1.SetReceiveOnly;
                         PurchPostPrint.RUN(Rec);
                         IF Rec."Receiving No." = '-1' THEN
                             ERROR('');
