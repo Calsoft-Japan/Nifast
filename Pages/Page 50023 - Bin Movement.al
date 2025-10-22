@@ -80,7 +80,7 @@ page 50023 "Bin Movement"
                     LookupLotNo: Code[20];
                 begin
                     IF Bin.GET(FromLocationCode, FromBinCode) THEN
-                        IF ItemTrackingMgt.LotBinContentLookupBin2(Bin, LookupItemNo, LookupLotNo, Quantity) THEN BEGIN
+                        IF LotBinContentLookupBin2(Bin, LookupItemNo, LookupLotNo, Quantity) THEN BEGIN
                             IF NOT LotNoInfo.GET(LookupItemNo, '', LookupLotNo) THEN
                                 CLEAR(LotNoInfo);
                             UseItemNo := LotNoInfo."Item No.";
@@ -375,6 +375,46 @@ page 50023 "Bin Movement"
             IF NOT Bin.GET(ToLocationCode, ToBinCode) THEN
                 ERROR('Invalid Bin %1 for Location %2.', ToBinCode, ToLocationCode);
     end;
+
+    PROCEDURE LotBinContentLookupBin2(VAR Bin: Record 7354; VAR ItemNo: Code[20]; VAR LotNo: Code[20]; VAR UseQty: Decimal): Boolean;
+    VAR
+        ItemTrackingSummaryForm: Page 50022;
+        TempLotBinContent: Record 50001 temporary;
+        NVM: Codeunit 50021;
+    BEGIN
+        Bin.GetLotBinContents(TempLotBinContent);
+
+        ItemTrackingSummaryForm.SetSources(TempLotBinContent);
+
+        ItemTrackingSummaryForm.LOOKUPMODE(TRUE);
+
+        IF TempLotBinContent.FIND('-') THEN
+            ItemTrackingSummaryForm.SETRECORD(TempLotBinContent);
+
+        TempLotBinContent.RESET;
+
+        IF ItemTrackingSummaryForm.RUNMODAL = ACTION::LookupOK THEN BEGIN
+
+            ItemTrackingSummaryForm.GETRECORD(TempLotBinContent);
+
+            ItemNo := TempLotBinContent."Item No.";
+
+            LotNo := TempLotBinContent."Lot No.";
+
+            TempLotBinContent.CALCFIELDS(Quantity, "Pick Qty.", "Neg. Adjmt. Qty.");
+
+            UseQty := TempLotBinContent.Quantity - TempLotBinContent."Pick Qty." - TempLotBinContent."Neg. Adjmt. Qty.";
+
+            IF UseQty < 0 THEN
+                UseQty := 0;
+
+            EXIT(TRUE);
+
+        END
+
+        ELSE
+            EXIT(FALSE);
+    END;
 
     /*   local procedure Bins1441OnActivate()
       begin
