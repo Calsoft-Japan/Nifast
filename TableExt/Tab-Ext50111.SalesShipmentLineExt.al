@@ -552,7 +552,7 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
     BEGIN
         //TODO
         //>> NF1.00:CIS.NG    09/12/16
-        ItemTrackingMgt.CallPostedItemTrackingForm_gFnc(DATABASE::"Sales Shipment Line", 0, "Document No.", '', 0, "Line No.", TempItemLedgEntry_vRecTmp);
+        // ItemTrackingMgt.CallPostedItemTrackingForm_gFnc(DATABASE::"Sales Shipment Line", 0, "Document No.", '', 0, "Line No.", TempItemLedgEntry_vRecTmp);
         //<< NF1.00:CIS.NG    09/12/16 
         //TODO
     END;

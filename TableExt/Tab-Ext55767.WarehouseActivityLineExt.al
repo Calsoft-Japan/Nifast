@@ -125,9 +125,9 @@ tableextension 55767 "Warehouse Activity Line Ext" extends "Warehouse Activity L
         field(14017999; "License Plate No."; Code[20])
         {
             DataClassification = ToBeClassified;
-            TableRelation = IF ("Action Type" = FILTER(Take)) "License Plate"."License Plate No." WHERE("Current Zone" = FIELD("Zone Code"),
-                                                                                                                                          "Current Bin" = FIELD("Bin Code"))
-            ELSE IF ("Action Type" = FILTER(Place)) "License Plate"."License Plate No.";
+            // TableRelation = IF ("Action Type" = FILTER(Take)) "License Plate"."License Plate No." WHERE("Current Zone" = FIELD("Zone Code"),
+            //                                                                                                                               "Current Bin" = FIELD("Bin Code"))
+            // ELSE IF ("Action Type" = FILTER(Place)) "License Plate"."License Plate No.";//TODO
             trigger OnValidate()
             var
                 BinContent: Record 7302;

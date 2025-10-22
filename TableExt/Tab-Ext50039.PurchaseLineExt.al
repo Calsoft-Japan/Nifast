@@ -277,7 +277,8 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         TrackingSpecification: Record "Tracking Specification";
         TrackingSpecificationTmp: Record "Tracking Specification" temporary;
         Item: Record Item;
-        ReservePurchLine: Codeunit "Purch. Line-Reserve";
+        //ReservePurchLine: Codeunit "Purch. Line-Reserve";
+        ReservePurchLine: Codeunit 70003;
         ItemTrackingForm: Page "Item Tracking Lines";
         ModifyRecord: Boolean;
         QtyToInvoice: Decimal;
@@ -295,14 +296,14 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         CLEAR(ItemTrackingForm);
         CLEAR(ModifyRecord);
         CLEAR(LastEntryNo);
-        ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+        ReservePurchLine.InitTrackingSpecificationPurchLine(PurchLine, TrackingSpecification);
         ItemTrackingForm.SetSourceSpec(
            TrackingSpecification, PurchLine."Expected Receipt Date");
         ItemTrackingForm.NVOpenForm;
 
         CLEAR(ReservePurchLine);
         CLEAR(ItemTrackingForm);
-        ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
+        ReservePurchLine.InitTrackingSpecificationPurchLine(PurchLine, TrackingSpecification);
         ItemTrackingForm.SetSourceSpec(TrackingSpecification, PurchLine."Expected Receipt Date");
 
         ItemTrackingForm.NVOpenForm;

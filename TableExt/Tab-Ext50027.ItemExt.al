@@ -669,25 +669,25 @@ tableextension 50027 "Item Ext" extends "Item"
         //TODO
     end;
 
-    trigger OnAfterDelete()
-    var
-        SocialListeningSearchTopic: Record 871;
-    begin
-        //TODO
-        IF NOT SocialListeningSearchTopic.ISEMPTY THEN BEGIN
-            SocialListeningSearchTopic.FindSearchTopic(SocialListeningSearchTopic."Source Type"::Item, "No.");
-            SocialListeningSearchTopic.DELETEALL;
-        END;
-        //TODO
+    // trigger OnAfterDelete()
+    // var
+    //     SocialListeningSearchTopic: Record 871;
+    // begin
+    //     //TODO
+    //     IF NOT SocialListeningSearchTopic.ISEMPTY THEN BEGIN
+    //         SocialListeningSearchTopic.FindSearchTopic(SocialListeningSearchTopic."Source Type"::Item, "No.");
+    //         SocialListeningSearchTopic.DELETEALL;
+    //     END;
+    //     //TODO
 
-        //>>NV
-        // >>NF1.00:CIS.CM 09-29-15
-        //QCItemTask.SETRANGE("Item No.","No.");
-        //IF QCItemTask.FIND('-') THEN
-        //  ERROR('QC Item Task %1 is not complete',QCItemTask."Task Code");
-        // <<NF1.00:CIS.CM 09-29-15
-        //NV
-    end;
+    //     //>>NV
+    //     // >>NF1.00:CIS.CM 09-29-15
+    //     //QCItemTask.SETRANGE("Item No.","No.");
+    //     //IF QCItemTask.FIND('-') THEN
+    //     //  ERROR('QC Item Task %1 is not complete',QCItemTask."Task Code");
+    //     // <<NF1.00:CIS.CM 09-29-15
+    //     //NV
+    // end;
 
     PROCEDURE "<<NIF>>"();
     BEGIN

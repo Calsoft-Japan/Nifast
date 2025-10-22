@@ -115,15 +115,15 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
         }
         field(14017648; Comments; Boolean)
         {
-            CalcFormula = Exist("Sales Price Comment Line" WHERE("Item No." = FIELD("Item No."),
-                                                                    "Sales Type" = FIELD("Sales Type"),
-                                                                    "Sales Code" = FIELD("Sales Code"),
-                                                                    "Starting Date" = FIELD("Starting Date"),
-                                                                    "Currency Code" = FIELD("Currency Code"),
-                                                                    "Variant Code" = FIELD("Variant Code"),
-                                                                    "Unit of Measure Code" = FIELD("Unit of Measure Code"),
-                                                                   "Minimum Quantity" = FIELD("Minimum Quantity"),
-                                                                    "Contract No." = FIELD("Contract No.")));
+            // CalcFormula = Exist("Sales Price Comment Line" WHERE("Item No." = FIELD("Item No."),
+            //                                                         "Sales Type" = FIELD("Sales Type"),
+            //                                                         "Sales Code" = FIELD("Sales Code"),
+            //                                                         "Starting Date" = FIELD("Starting Date"),
+            //                                                         "Currency Code" = FIELD("Currency Code"),
+            //                                                         "Variant Code" = FIELD("Variant Code"),
+            //                                                         "Unit of Measure Code" = FIELD("Unit of Measure Code"),
+            //                                                        "Minimum Quantity" = FIELD("Minimum Quantity"),
+            //                                                         "Contract No." = FIELD("Contract No.")));//TODO
             Description = 'NV';
             Editable = false;
             Enabled = false;

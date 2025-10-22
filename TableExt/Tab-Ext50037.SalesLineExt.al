@@ -889,10 +889,10 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             OptionCaption = 'Partial,Complete';
             OptionMembers = Partial,Complete;
 
-            trigger OnValidate()
-            begin
-                WhseValidateSourceLine.SalesLineVerifyChange(Rec, xRec);
-            end;
+            // trigger OnValidate()
+            // begin
+            //     WhseValidateSourceLine.SalesLineVerifyChange(Rec, xRec);
+            // end;
         }
 
         field(14017642; "Purchase Order Exists"; Boolean)

@@ -75,14 +75,14 @@ tableextension 55740 "Transfer Header Ext" extends "Transfer Header"
         }
         field(14017660; "No;Outstanding Gross Weight"; Decimal)
         {
-            FieldClass = FlowField;
-            CalcFormula = Sum("Transfer Line".Field2837012 WHERE("Document No." = FIELD("No.")));
+            //  FieldClass = FlowField;
+            //CalcFormula = Sum("Transfer Line".Field2837012 WHERE("Document No." = FIELD("No.")));//TODO
             Editable = false;
         }
         field(14017661; "No;Outstanding Net Weight"; Decimal)
         {
-            FieldClass = FlowField;
-            CalcFormula = Sum("Transfer Line".Field2837012 WHERE("Document No." = FIELD("No.")));
+            //FieldClass = FlowField;
+            //CalcFormula = Sum("Transfer Line".Field2837012 WHERE("Document No." = FIELD("No.")));//TODO
             Editable = false;
         }
         field(14017790; "Container No."; code[20])

@@ -21,7 +21,7 @@ tableextension 57320 "Warehouse Shipment Header Ext" extends "Warehouse Shipment
             CaptionML = ENU = 'Destination Code';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = Lookup("Warehouse Shipment Line".Field3427764 WHERE("No." = FIELD("No.")));
+            // CalcFormula = Lookup("Warehouse Shipment Line".Field3427764 WHERE("No." = FIELD("No.")));//TODO
             TableRelation = IF ("Destination Type" = FILTER(Customer)) "Ship-to Address".Code WHERE("Customer No." = FIELD("Destination No."))
             ELSE IF ("Destination Type" = CONST(Vendor)) "Order Address".Code WHERE("Vendor No." = FIELD("Destination No."));
             trigger OnValidate()
