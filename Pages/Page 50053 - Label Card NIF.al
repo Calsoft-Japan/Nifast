@@ -109,7 +109,8 @@ page 50053 "Label Card NIF"
                         LabelHeader.RESET();
                         LabelHeader := Rec;
                         LabelHeader.SETRECFILTER();
-                        REPORT.RUN(REPORT::"Label Layout - NIF", TRUE, TRUE, LabelHeader);
+                        //TODO
+                        //REPORT.RUN(REPORT::"Label Layout - NIF", TRUE, TRUE, LabelHeader);
                     end;
                 }
             }

@@ -108,7 +108,8 @@ page 50052 "Labels NIF"
                         LabelHeader.RESET();
                         LabelHeader := Rec;
                         LabelHeader.SETRECFILTER();
-                        REPORT.RUN(REPORT::"Label Layout - NIF", TRUE, TRUE, LabelHeader);
+                        //TODO
+                        //REPORT.RUN(REPORT::"Label Layout - NIF", TRUE, TRUE, LabelHeader);
                     end;
                 }
             }

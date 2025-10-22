@@ -119,7 +119,8 @@ page 50061 "Availability Projection NonUSA"
                 }
                 action("Shortage Report")
                 {
-                    RunObject = Report 50089;
+                    //TODO
+                    //RunObject = Report 50089;
                     Image = Report;
                     ToolTip = 'Executes the Shortage Report action.';
                 }

@@ -134,7 +134,8 @@ page 50040 "Lot Qty. Inquiry"
                     var
                         ItemTrackingMgt: Codeunit "Item Tracking Management";
                     begin
-                        ItemTrackingMgt.CallItemTrackingEntryForm(0, '', Rec."Item No.", Rec."Variant Code", '', Rec."Lot No.", Rec."Location Filter");
+                        //TODO
+                        //ItemTrackingMgt.CallItemTrackingEntryForm(0, '', Rec."Item No.", Rec."Variant Code", '', Rec."Lot No.", Rec."Location Filter");
                     end;
                 }
                 action(Comment)

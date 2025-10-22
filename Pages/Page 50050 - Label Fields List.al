@@ -67,7 +67,8 @@ page 50050 "Label Fields List"
 
                     trigger OnAction()
                     begin
-                        REPORT.RUN(REPORT::"Label Field Listing", TRUE, FALSE);
+                        //TODO
+                        //REPORT.RUN(REPORT::"Label Field Listing", TRUE, FALSE);
                     end;
                 }
                 action("&Where Used")
