@@ -610,7 +610,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 trigger OnAction()
                 VAR
                     Item: Record 27;
-                    ItemTrkgMgmt: Codeunit 6500;
+                    ItemTrkgMgmt: Codeunit 50178;
                 BEGIN
                     Item.GET(Rec."No.");
                     Item.COPYFILTERS(Rec);
