@@ -543,7 +543,7 @@ page 50082 "Order Receiving"
                     var
                         EMailMgt: Codeunit "LAX E-Mail Management";
                     begin
-                        Rec.TESTFIELD("E-Mail Confirmation Handled", FALSE);
+                        Rec.TESTFIELD("LAX E-Mail Confirm. Handled" , FALSE);
 
                         EMailMgt.SendPurchaseConfirmation(Rec, TRUE, FALSE);
                     end;

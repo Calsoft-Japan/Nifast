@@ -370,22 +370,22 @@ page 50086 "Sales Shipment List"
                     ToolTip = 'Specifies the value of the Responsibility Center field.';
                     Caption = 'Responsibility Center';
                 }
-                field("Cross-Reference No."; Rec."Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Item Reference No.")
                 {
                     ToolTip = 'Specifies the value of the Cross-Reference No. field.';
                     Caption = 'Cross-Reference No.';
                 }
-                field("Unit of Measure (Cross Ref.)"; Rec."Unit of Measure (Cross Ref.)")
+                field("Unit of Measure (Cross Ref.)"; Rec."Unit of Measure")
                 {
                     ToolTip = 'Specifies the value of the Unit of Measure (Cross Ref.) field.';
                     Caption = 'Unit of Measure (Cross Ref.)';
                 }
-                field("Cross-Reference Type"; Rec."Cross-Reference Type")
+                field("Cross-Reference Type"; Rec."Item Reference Type")
                 {
                     ToolTip = 'Specifies the value of the Cross-Reference Type field.';
                     Caption = 'Cross-Reference Type';
                 }
-                field("Cross-Reference Type No."; Rec."Cross-Reference Type No.")
+                field("Cross-Reference Type No."; Rec."Item Reference Type No.")
                 {
                     ToolTip = 'Specifies the value of the Cross-Reference Type No. field.';
                     Caption = 'Cross-Reference Type No.';
@@ -405,7 +405,7 @@ page 50086 "Sales Shipment List"
                     ToolTip = 'Specifies the value of the Purchasing Code field.';
                     Caption = 'Purchasing Code';
                 }
-                field("Product Group Code"; Rec."Product Group Code")
+                field("Product Group Code"; Rec."Item Group Code")
                 {
                     ToolTip = 'Specifies the value of the Product Group Code field.';
                     Caption = 'Product Group Code';
@@ -640,187 +640,187 @@ page 50086 "Sales Shipment List"
                     ToolTip = 'Specifies the value of the National field.';
                     Caption = 'National';
                 }
-                field("EDI Item Cross Ref."; Rec."Item Cross Ref.")
+                field("EDI Item Cross Ref."; Rec."LAX EDI Item Cross Ref.")
                 {
                     ToolTip = 'Specifies the value of the EDI Item Cross Ref. field.';
                     Caption = 'EDI Item Cross Ref.';
                 }
-                field("EDI Unit of Measure"; Rec."EDI Unit of Measure")
+                field("EDI Unit of Measure"; Rec."LAX EDI Unit of Measure")
                 {
                     ToolTip = 'Specifies the value of the EDI Unit of Measure field.';
                     Caption = 'EDI Unit of Measure';
                 }
-                field("EDI Unit Price"; Rec."EDI Unit Price")
+                field("EDI Unit Price"; Rec."LAX EDI Unit Price")
                 {
                     ToolTip = 'Specifies the value of the EDI Unit Price field.';
                     Caption = 'EDI Unit Price';
                 }
-                field("EDI Price Discrepancy"; Rec."EDI Price Discrepancy")
+                field("EDI Price Discrepancy"; Rec."LAX EDI Price Discrepancy")
                 {
                     ToolTip = 'Specifies the value of the EDI Price Discrepancy field.';
                     Caption = 'EDI Price Discrepancy';
                 }
-                field("EDI Segment Group"; Rec."EDI Segment Group")
+                field("EDI Segment Group"; Rec."LAX EDI Segment Group")
                 {
                     ToolTip = 'Specifies the value of the EDI Segment Group field.';
                     Caption = 'EDI Segment Group';
                 }
-                field("EDI Original Qty."; Rec."EDI Original Qty.")
+                field("EDI Original Qty."; Rec."LAX EDI Original Qty.")
                 {
                     ToolTip = 'Specifies the value of the EDI Original Qty. field.';
                     Caption = 'EDI Original Qty.';
                 }
-                field("EDI Status Pending"; Rec."EDI Status Pending")
+                field("EDI Status Pending"; Rec."LAX EDI Status Pending")
                 {
                     ToolTip = 'Specifies the value of the EDI Status Pending field.';
                     Caption = 'EDI Status Pending';
                 }
-                field("EDI Release No."; Rec."EDI Release No.")
+                field("EDI Release No."; Rec."LAX EDI Release No.")
                 {
                     ToolTip = 'Specifies the value of the EDI Release No. field.';
                     Caption = 'EDI Release No.';
                 }
-                field("EDI Ship Req. Date"; Rec."EDI Ship Req. Date")
+                field("EDI Ship Req. Date"; Rec."LAX EDI Ship Req. Date")
                 {
                     ToolTip = 'Specifies the value of the EDI Ship Req. Date field.';
                     Caption = 'EDI Ship Req. Date';
                 }
-                field("EDI Kanban No."; Rec."EDI Kanban No.")
+                field("EDI Kanban No."; Rec."LAX EDI Kanban No.")
                 {
                     ToolTip = 'Specifies the value of the EDI Kanban No. field.';
                     Caption = 'EDI Kanban No.';
                 }
-                field("EDI Line Type"; Rec."EDI Line Type")
+                field("EDI Line Type"; Rec."LAX EDI Line Type")
                 {
                     ToolTip = 'Specifies the value of the EDI Line Type field.';
                     Caption = 'EDI Line Type';
                 }
-                field("EDI Line Status"; Rec."EDI Line Status")
+                field("EDI Line Status"; Rec."LAX EDI Line Status")
                 {
                     ToolTip = 'Specifies the value of the EDI Line Status field.';
                     Caption = 'EDI Line Status';
                 }
-                field("EDI Cumulative Quantity"; Rec."EDI Cumulative Quantity")
+                field("EDI Cumulative Quantity"; Rec."LAX EDI Cumulative Quantity")
                 {
                     ToolTip = 'Specifies the value of the EDI Cumulative Quantity field.';
                     Caption = 'EDI Cumulative Quantity';
                 }
-                field("EDI Forecast Begin Date"; Rec."EDI Forecast Begin Date")
+                field("EDI Forecast Begin Date"; Rec."LAX EDI Forecast Begin Date")
                 {
                     ToolTip = 'Specifies the value of the EDI Forecast Begin Date field.';
                     Caption = 'EDI Forecast Begin Date';
                 }
-                field("EDI Forecast End Date"; Rec."EDI Forecast End Date")
+                field("EDI Forecast End Date"; Rec."LAX EDI Forecast End Date")
                 {
                     ToolTip = 'Specifies the value of the EDI Forecast End Date field.';
                     Caption = 'EDI Forecast End Date';
                 }
-                field("EDI Code"; Rec."EDI Code")
+                field("EDI Code"; Rec."LAX EDI Code")
                 {
                     ToolTip = 'Specifies the value of the EDI Code field.';
                     Caption = 'EDI Code';
                 }
-                field("Shipping Charge"; Rec."Shipping Charge")
+                field("Shipping Charge"; Rec."LAX Shipping Charge")
                 {
                     ToolTip = 'Specifies the value of the Shipping Charge field.';
                     Caption = 'Shipping Charge';
                 }
-                field("Qty. Packed (Base)"; Rec."Qty. Packed (Base)")
+                field("Qty. Packed (Base)"; Rec."LAX Qty. Packed (Base)")
                 {
                     ToolTip = 'Specifies the value of the Qty. Packed (Base) field.';
                     Caption = 'Qty. Packed (Base)';
                 }
-                field(Pack; Rec.Pack)
+                field(Pack; Rec."LAX Pack")
                 {
                     ToolTip = 'Specifies the value of the Pack field.';
                     Caption = 'Pack';
                 }
-                field("Rate Quoted"; Rec."Rate Quoted")
+                field("Rate Quoted"; Rec."LAX Rate Quoted")
                 {
                     ToolTip = 'Specifies the value of the Rate Quoted field.';
                     Caption = 'Rate Quoted';
                 }
-                field("Std. Package Unit of Meas Code"; Rec."Std. Package Unit of Meas Code")
+                field("Std. Package Unit of Meas Code"; Rec."LAX Std. Package UoM Code")
                 {
                     ToolTip = 'Specifies the value of the Std. Package Unit of Meas Code field.';
                     Caption = 'Std. Package Unit of Meas Code';
                 }
-                field("Std. Package Quantity"; Rec."Std. Package Quantity")
+                field("Std. Package Quantity"; Rec."LAX Std. Package Quantity")
                 {
                     ToolTip = 'Specifies the value of the Std. Package Quantity field.';
                     Caption = 'Std. Package Quantity';
                 }
-                field("Qty. per Std. Package"; Rec."Qty. per Std. Package")
+                field("Qty. per Std. Package"; Rec."LAX Qty. per Std. Package")
                 {
                     ToolTip = 'Specifies the value of the Qty. per Std. Package field.';
                     Caption = 'Qty. per Std. Package';
                 }
-                field("Std. Package Qty. to Ship"; Rec."Std. Package Qty. to Ship")
+                field("Std. Package Qty. to Ship"; Rec."LAX Std. Package Qty. to Ship")
                 {
                     ToolTip = 'Specifies the value of the Std. Package Qty. to Ship field.';
                     Caption = 'Std. Package Qty. to Ship';
                 }
-                field("Std. Packs per Package"; Rec."Std. Packs per Package")
+                field("Std. Packs per Package"; Rec."LAX Std. Packs per Package")
                 {
                     ToolTip = 'Specifies the value of the Std. Packs per Package field.';
                     Caption = 'Std. Packs per Package';
                 }
-                field("Package Quantity"; Rec."Package Quantity")
+                field("Package Quantity"; Rec."LAX Package Quantity")
                 {
                     ToolTip = 'Specifies the value of the Package Quantity field.';
                     Caption = 'Package Quantity';
                 }
-                field("Package Qty. to Ship"; Rec."Package Qty. to Ship")
+                field("Package Qty. to Ship"; Rec."LAX Package Qty. to Ship")
                 {
                     ToolTip = 'Specifies the value of the Package Qty. to Ship field.';
                     Caption = 'Package Qty. to Ship';
                 }
-                field("E-Ship Whse. Outst. Qty (Base)"; Rec."E-Ship Whse. Outst. Qty (Base)")
+                field("E-Ship Whse. Outst. Qty (Base)"; Rec."LAX EShip Whse Outst.Qty(Base)")
                 {
                     ToolTip = 'Specifies the value of the E-Ship Whse. Outst. Qty (Base) field.';
                     Caption = 'E-Ship Whse. Outst. Qty (Base)';
                 }
-                field("Shipping Charge BOL No."; Rec."Shipping Charge BOL No.")
+                field("Shipping Charge BOL No."; Rec."LAX Shipping Charge BOL No.")
                 {
                     ToolTip = 'Specifies the value of the Shipping Charge BOL No. field.';
                     Caption = 'Shipping Charge BOL No.';
                 }
-                field("Required Shipping Agent Code"; Rec."Required Shipping Agent Code")
+                field("Required Shipping Agent Code"; Rec."LAX Req. Shipping Agent Code")
                 {
                     ToolTip = 'Specifies the value of the Required Shipping Agent Code field.';
                     Caption = 'Required Shipping Agent Code';
                 }
-                field("Required E-Ship Agent Service"; Rec."Required E-Ship Agent Service")
+                field("Required E-Ship Agent Service"; Rec."LAX Req. E-Ship Agent Service")
                 {
                     ToolTip = 'Specifies the value of the Required E-Ship Agent Service field.';
                     Caption = 'Required E-Ship Agent Service';
                 }
-                field("Allow Other Ship. Agent/Serv."; Rec."Allow Other Ship. Agent/Serv.")
+                field("Allow Other Ship. Agent/Serv."; Rec."LAX Allow Other ShipAgent/Serv")
                 {
                     ToolTip = 'Specifies the value of the Allow Other Ship. Agent/Serv. field.';
                     Caption = 'Allow Other Ship. Agent/Serv.';
                 }
-                field("E-Ship Agent Code"; Rec."E-Ship Agent Code")
+                field("E-Ship Agent Code"; Rec."LAX E-Ship Agent Code")
                 {
                     ToolTip = 'Specifies the value of the E-Ship Agent Code field.';
                     Caption = 'E-Ship Agent Code';
                 }
-                field("E-Ship Agent Service"; Rec."E-Ship Agent Service")
+                field("E-Ship Agent Service"; Rec."LAX E-Ship Agent Service")
                 {
                     ToolTip = 'Specifies the value of the E-Ship Agent Service field.';
                     Caption = 'E-Ship Agent Service';
                 }
-                field("Shipping Payment Type"; Rec."Shipping Payment Type")
+                field("Shipping Payment Type"; Rec."LAX Shipping Payment Type")
                 {
                     ToolTip = 'Specifies the value of the Shipping Payment Type field.';
                     Caption = 'Shipping Payment Type';
                 }
-                field("Third Party Ship. Account No."; Rec."Third Party Ship. Account No.")
+                field("Third Party Ship. Account No."; Rec."LAX Third Party Ship. Acct No.")
                 {
                     ToolTip = 'Specifies the value of the Third Party Ship. Account No. field.';
                     Caption = 'Third Party Ship. Account No.';
                 }
-                field("Shipping Insurance"; Rec."Shipping Insurance")
+                field("Shipping Insurance"; Rec."LAX Shipping Insurance")
                 {
                     ToolTip = 'Specifies the value of the Shipping Insurance field.';
                     Caption = 'Shipping Insurance';

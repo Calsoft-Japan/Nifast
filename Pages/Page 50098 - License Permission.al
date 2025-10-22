@@ -5,7 +5,7 @@ page 50098 "License Permission"
     UsageCategory = Lists;
     SourceTable = "License Permission";
     SourceTableView = SORTING("Object Type", "Object Number")
-                      WHERE("Read Permission" = CONST(true));
+                      WHERE("Read Permission"  = CONST(Yes));
 
     layout
     {

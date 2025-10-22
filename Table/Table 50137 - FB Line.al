@@ -217,8 +217,8 @@ table 50137 "FB Line"
             begin
                 ReturnedCrossRef.INIT();
                 IF "Cross-Reference No." <> '' THEN BEGIN
-
-                    DistIntegration.ICRLookupFBItem(Rec, ReturnedCrossRef);
+                    //TODO
+                    //DistIntegration.ICRLookupFBItem(Rec, ReturnedCrossRef);
 
                     VALIDATE("Item No.", ReturnedCrossRef."Item No.");
                     IF ReturnedCrossRef."Variant Code" <> '' THEN

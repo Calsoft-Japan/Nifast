@@ -151,102 +151,102 @@ page 50083 "Ship-to Address Entire List"
                     ToolTip = 'Specifies the value of the Freight Code field.';
                     Caption = 'Freight Code';
                 }
-                field("Effective Date"; Rec."Effective Date")
+                field("Effective Date"; Rec."lax edi Effective Date")
                 {
                     ToolTip = 'Specifies the value of the Effective Date field.';
                     Caption = 'Effective Date';
                 }
-                field("Open Date"; Rec."Open Date")
+                field("Open Date"; Rec."lax edi Open Date")
                 {
                     ToolTip = 'Specifies the value of the Open Date field.';
                     Caption = 'Open Date';
                 }
-                field("Close Date"; Rec."Close Date")
+                field("Close Date"; Rec."lax edi Close Date")
                 {
                     ToolTip = 'Specifies the value of the Close Date field.';
                     Caption = 'Close Date';
                 }
-                field("Change Date"; Rec."Change Date")
+                field("Change Date"; Rec."lax edi Change Date")
                 {
                     ToolTip = 'Specifies the value of the Change Date field.';
                     Caption = 'Change Date';
                 }
-                field("EDI Internal Doc. No."; Rec."EDI Internal Doc. No.")
+                field("EDI Internal Doc. No."; Rec."LAX EDI Internal Doc. No.")
                 {
                     ToolTip = 'Specifies the value of the EDI Internal Doc. No. field.';
                     Caption = 'EDI Internal Doc. No.';
                 }
-                field("Dist. Center Ext. Code"; Rec."Dist. Center Ext. Code")
+                field("Dist. Center Ext. Code"; Rec."LAX EDI Dist. Center Ext. Code")
                 {
                     ToolTip = 'Specifies the value of the Dist. Center Ext. Code field.';
                     Caption = 'Dist. Center Ext. Code';
                 }
-                field("E-Ship Agent Service"; Rec."E-Ship Agent Service")
+                field("E-Ship Agent Service"; Rec."LAX E-Ship Agent Service")
                 {
                     ToolTip = 'Specifies the value of the E-Ship Agent Service field.';
                     Caption = 'E-Ship Agent Service';
                 }
-                field("Free Freight"; Rec."Free Freight")
+                field("Free Freight"; Rec."LAX Free Freight")
                 {
                     ToolTip = 'Specifies the value of the Free Freight field.';
                     Caption = 'Free Freight';
                 }
-                field("Residential Delivery"; Rec."Residential Delivery")
+                field("Residential Delivery"; Rec."lax Residential Delivery")
                 {
                     ToolTip = 'Specifies the value of the Residential Delivery field.';
                     Caption = 'Residential Delivery';
                 }
-                field("Blind Shipment"; Rec."Blind Shipment")
+                field("Blind Shipment"; Rec."lax Blind Shipment")
                 {
                     ToolTip = 'Specifies the value of the Blind Shipment field.';
                     Caption = 'Blind Shipment';
                 }
-                field("Double Blind Ship-from Cust No"; Rec."Double Blind Ship-from Cust No")
+                field("Double Blind Ship-from Cust No"; Rec."LAX Dbl Blind Ship-from CustNo")
                 {
                     ToolTip = 'Specifies the value of the Double Blind Ship-from Cust No field.';
                     Caption = 'Double Blind Ship-from Cust No';
                 }
-                field("Double Blind Shipment"; Rec."Double Blind Shipment")
+                field("Double Blind Shipment"; Rec."lax Double Blind Shipment")
                 {
                     ToolTip = 'Specifies the value of the Double Blind Shipment field.';
                     Caption = 'Double Blind Shipment';
                 }
-                field("No Free Freight Lines on Order"; Rec."No Free Freight Lines on Order")
+                field("No Free Freight Lines on Order"; Rec."LAX No Free Frght Lines on Ord")
                 {
                     ToolTip = 'Specifies the value of the No Free Freight Lines on Order field.';
                     Caption = 'No Free Freight Lines on Order';
                 }
-                field("Shipping Payment Type"; Rec."Shipping Payment Type")
+                field("Shipping Payment Type"; Rec."lax Shipping Payment Type")
                 {
                     ToolTip = 'Specifies the value of the Shipping Payment Type field.';
                     Caption = 'Shipping Payment Type';
                 }
-                field("Shipping Insurance"; Rec."Shipping Insurance")
+                field("Shipping Insurance"; Rec."lax Shipping Insurance")
                 {
                     ToolTip = 'Specifies the value of the Shipping Insurance field.';
                     Caption = 'Shipping Insurance';
                 }
-                field("External No."; Rec."External No.")
+                field("External No."; Rec."lax External No.")
                 {
                     ToolTip = 'Specifies the value of the External No. field.';
                     Caption = 'External No.';
                 }
-                field("Distribition Center"; Rec."Distribition Center")
+                field("Distribition Center"; Rec."LAX Distribution Center")
                 {
                     ToolTip = 'Specifies the value of the Distribition Center field.';
                     Caption = 'Distribition Center';
                 }
-                field("Dist. Center Ship-to Code"; Rec."Dist. Center Ship-to Code")
+                field("Dist. Center Ship-to Code"; Rec."LAX Dist. Center Ship-to Code")
                 {
                     ToolTip = 'Specifies the value of the Dist. Center Ship-to Code field.';
                     Caption = 'Dist. Center Ship-to Code';
                 }
-                field("Packing Rule Code"; Rec."Packing Rule Code")
+                field("Packing Rule Code"; Rec."lax Packing Rule Code")
                 {
                     ToolTip = 'Specifies the value of the Packing Rule Code field.';
                     Caption = 'Packing Rule Code';
                 }
-                field("E-Mail Rule Code"; Rec."E-Mail Rule Code")
+                field("E-Mail Rule Code"; Rec."lax E-Mail Rule Code")
                 {
                     ToolTip = 'Specifies the value of the E-Mail Rule Code field.';
                     Caption = 'E-Mail Rule Code';

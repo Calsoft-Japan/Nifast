@@ -77,7 +77,7 @@ tableextension 50027 "Item Ext" extends "Item"
                 SKU.RESET;
                 SKU.SETRANGE("Item No.", "No.");
                 SKU.MODIFYALL("Item Category Code", "Item Category Code");
-                SKU.MODIFYALL("Product Group Code", "Product Group Code");
+                SKU.MODIFYALL("Product Group Code", "Item Group Code");
                 //<< NV 
                 //TODO
             end;
@@ -659,12 +659,12 @@ tableextension 50027 "Item Ext" extends "Item"
         //MDM.CreateNotification('300',0,"No.",0,'',0,'');
         //<< NF1.00:CIS.CM 09-29-15
 
-        IF NVM.TestPermission(14018070) THEN BEGIN
-            GetInvtSetup();
-            "QC Hold" := InventorySetup."Default New Item QC Hold";
-            "QC Hold Reason Code" := InventorySetup."New Item QC Reason Code";
-            //QCMgmt.InsertNewQCItemTask(Rec); //NF1.00:CIS.CM 09-29-15
-        END;
+        // IF NVM.TestPermission(14018070) THEN BEGIN
+        //     GetInvtSetup();
+        //     "QC Hold" := InventorySetup."Default New Item QC Hold";
+        //     "QC Hold Reason Code" := InventorySetup."New Item QC Reason Code";
+        //     //QCMgmt.InsertNewQCItemTask(Rec); //NF1.00:CIS.CM 09-29-15
+        // END;
         //<<NV 
         //TODO
     end;
