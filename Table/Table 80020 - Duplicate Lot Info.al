@@ -179,13 +179,14 @@ table 80020 "Duplicate Lot Info"
         }
         field(50155; "QC Order Lines"; Integer)
         {
+            //TODO
 
-            CalcFormula = Count("QC Line" WHERE("Item No." = FIELD("Item No."),
-                                                  "Variant Code" = FIELD("Variant Code"),
-                                                  "Lot No." = FIELD("Lot No.")));
+            // CalcFormula = Count("QC Line" WHERE("Item No." = FIELD("Item No."),
+            //                                       "Variant Code" = FIELD("Variant Code"),
+            //                                       "Lot No." = FIELD("Lot No.")));
 
-            Editable = false;
-            FieldClass = FlowField;
+            // Editable = false;
+            // FieldClass = FlowField;
         }
         field(50160; "PO Number"; Code[20])
         {

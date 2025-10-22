@@ -178,7 +178,7 @@ table 50002 "Lot Entry"
                 CLEAR(ReserveSalesLine);
                 CLEAR(ItemTrackingForm);
                 ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
-                ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date");
+                ItemTrackingForm.SetSourceSpec(TrackingSpecification, SalesLine."Shipment Date");
                 ItemTrackingForm.EShipOpenForm();
                 TrackingSpecificationTmp.RESET();
                 TrackingSpecificationTmp.DELETEALL();
@@ -288,7 +288,7 @@ table 50002 "Lot Entry"
                 CLEAR(ReservePurchLine);
                 CLEAR(ItemTrackingForm);
                 ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-                ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
+                ItemTrackingForm.SetSourcespec(TrackingSpecification, PurchLine."Expected Receipt Date");
                 ItemTrackingForm.EShipOpenForm();
                 TrackingSpecificationTmp.RESET();
                 TrackingSpecificationTmp.DELETEALL();
@@ -392,7 +392,7 @@ table 50002 "Lot Entry"
                 CLEAR(ReserveTransferLine);
                 CLEAR(ItemTrackingForm);
                 ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
-                ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date");
+                ItemTrackingForm.SetSourcespec(TrackingSpecification, TransferLine."Shipment Date");
                 ItemTrackingForm.EShipOpenForm();
                 TrackingSpecificationTmp.RESET();
                 TrackingSpecificationTmp.DELETEALL();
@@ -737,7 +737,7 @@ table 50002 "Lot Entry"
             //get the qty to process
             SalesLine.GET(LotEntry."Document Type", LotEntry."Document No.", LotEntry."Order Line No.");
             ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
-            ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date");
+            ItemTrackingForm.SetSourcespec(TrackingSpecification, SalesLine."Shipment Date");
             LotNoToSet := LotEntry."Lot No.";
             ExpirationDateToSet := LotEntry."Expiration Date";
             LineQty := LotEntry.Quantity;
@@ -873,7 +873,7 @@ table 50002 "Lot Entry"
             //get the qty to process
             PurchLine.GET(LotEntry."Document Type", LotEntry."Document No.", LotEntry."Order Line No.");
             ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-            ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
+            ItemTrackingForm.SetSourcespec(TrackingSpecification, PurchLine."Expected Receipt Date");
             LotNoToSet := LotEntry."Lot No.";
             ExpirationDateToSet := LotEntry."Expiration Date";
             LineQty := LotEntry.Quantity;
@@ -1008,7 +1008,7 @@ table 50002 "Lot Entry"
             //get the qty to process
             TransferLine.GET(LotEntry."Document No.", LotEntry."Order Line No.");
             ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
-            ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date");
+            ItemTrackingForm.SetSourcespec(TrackingSpecification, TransferLine."Shipment Date");
             LotNoToSet := LotEntry."Lot No.";
             ExpirationDateToSet := LotEntry."Expiration Date";
             LineQty := LotEntry.Quantity;
@@ -1211,21 +1211,21 @@ table 50002 "Lot Entry"
                 BEGIN
                     SalesLine.GET(SourceSubType, SourceNo, SourceLineNo);
                     ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
-                    ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date");
+                    ItemTrackingForm.SetSourcespec(TrackingSpecification, SalesLine."Shipment Date");
                 END;
 
             DATABASE::"Purchase Line":
                 BEGIN
                     PurchLine.GET(SourceSubType, SourceNo, SourceLineNo);
                     ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-                    ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
+                    ItemTrackingForm.SetSourcespec(TrackingSpecification, PurchLine."Expected Receipt Date");
                 END;
 
             DATABASE::"Transfer Line":
                 BEGIN
                     TransferLine.GET(SourceNo, SourceLineNo);
                     ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
-                    ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date");
+                    ItemTrackingForm.SetSourcespec(TrackingSpecification, TransferLine."Shipment Date");
                 END;
             ELSE
                 ERROR('Source Type %1 not supported.', SourceType);
