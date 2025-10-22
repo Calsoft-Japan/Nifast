@@ -633,7 +633,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
             {
                 Image = Forecast;
                 CaptionML = ENU = 'forecast';
-                RunObject = Report 50089;
+               // RunObject = Report 50089;
                 ToolTip = 'Executes the forecast action.';
                 ApplicationArea = All;
             }

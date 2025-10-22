@@ -244,7 +244,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 VAR
                     EMailMgt: Codeunit 14000903;
                 BEGIN
-                    Rec.TESTFIELD("LAX E-Mail Confirm. Handled" , FALSE);
+                    Rec.TESTFIELD("LAX E-Mail Confirm. Handled", FALSE);
 
                     EMailMgt.SendSalesConfirmation(Rec, TRUE, FALSE);
                 END;
@@ -293,7 +293,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
         SalesLineTotal.SETRANGE("Document Type", Rec."Document Type");
         SalesLineTotal.SETRANGE("Document No.", rec."No.");
         SalesLineTotal.CALCSUMS("Line Amount", "Line Gross Weight", "Line Cost",
-                                "Line Amount to Ship","Line Amount to Invoice");
+                                "Line Amount to Ship", "Line Amount to Invoice");
         OrderAmount_gDec := SalesLineTotal."Line Amount";
         OrderWeight_gDec := SalesLineTotal."Line Gross Weight";
         //<< NF1.00:CIS.NG  12/14/16

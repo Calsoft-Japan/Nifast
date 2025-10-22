@@ -31,13 +31,13 @@ pageextension 50392 "Phys. Inventory Journal Ext" extends "Phys. Inventory Journ
                 trigger OnAction()
                 VAR
                     ItemJnlBatch: Record 233;
-                    TestReportNIF: Report 50053;
+                // TestReportNIF: Report 50053;
                 BEGIN
                     ItemJnlBatch.SETRANGE("Journal Template Name", Rec."Journal Template Name");
                     ItemJnlBatch.SETRANGE(Name, Rec."Journal Batch Name");
-                    TestReportNIF.SETTABLEVIEW(ItemJnlBatch);
+                    //   TestReportNIF.SETTABLEVIEW(ItemJnlBatch);
 
-                    TestReportNIF.RUN;
+                    // TestReportNIF.RUN;
                 END;
             }
         }
@@ -52,7 +52,7 @@ pageextension 50392 "Phys. Inventory Journal Ext" extends "Phys. Inventory Journ
                 trigger OnAction()
                 VAR
                     Item: Record 27;
-                    ItemTrackingMgmt: Codeunit 6500;
+                    ItemTrackingMgmt: Codeunit CU_6500;
                 //">>NIF_LV": Integer;
                 BEGIN
                     IF NOT Item.GET(Rec."Item No.") THEN
