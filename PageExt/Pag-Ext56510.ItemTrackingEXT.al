@@ -83,7 +83,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
                 TempItemTrackLineInsert.TRANSFERFIELDS(Rec);
                 TempItemTrackLineInsert.INSERT();
                 rec.INSERT();
-                ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+                ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
                   TempItemTrackLineInsert, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 0);
             END;
         CalculateSums();
@@ -109,7 +109,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
 
         IF (xRec."Lot No." <> Rec."Lot No.") OR (xRec."Serial No." <> REc."Serial No.") THEN BEGIN
             xTempTrackingSpec := xRec;
-            ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+            ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
               xTempTrackingSpec, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 2);
         END;
 
@@ -118,7 +118,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
         IF TempItemTrackLineInsert.GET(Rec."Entry No.") THEN BEGIN
             TempItemTrackLineInsert.TRANSFERFIELDS(Rec);
             TempItemTrackLineInsert.MODIFY();
-            ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+            ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
               TempItemTrackLineInsert, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 1);
         END ELSE BEGIN
             TempItemTrackLineModify.TRANSFERFIELDS(Rec);
@@ -149,7 +149,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
             TempItemTrackLineDelete.TRANSFERFIELDS(Rec);
             IF NOT AlreadyDeleted THEN
                 TempItemTrackLineDelete.INSERT();
-            ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+            ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
               TempItemTrackLineDelete, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 2);
             IF TempItemTrackLineInsert.GET(Rec."Entry No.") THEN
                 TempItemTrackLineInsert.DELETE();
@@ -197,7 +197,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
                 TempItemTrackLineInsert.TRANSFERFIELDS(Rec);
                 TempItemTrackLineInsert.INSERT;
                 rec.INSERT();
-                ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+                ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
                   TempItemTrackLineInsert, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 0);
             END;
         CalculateSums();
@@ -216,7 +216,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
 
         IF (xRec."Lot No." <> rec."Lot No.") OR (xRec."Serial No." <> rec."Serial No.") THEN BEGIN
             xTempTrackingSpec := xRec;
-            ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+            ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
               xTempTrackingSpec, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 2);
         END;
 
@@ -225,12 +225,12 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
         IF TempItemTrackLineInsert.GET(rec."Entry No.") THEN BEGIN
             TempItemTrackLineInsert.TRANSFERFIELDS(Rec);
             TempItemTrackLineInsert.MODIFY();
-            ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+            ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
               TempItemTrackLineInsert, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 1);
         END ELSE BEGIN
             TempItemTrackLineModify.TRANSFERFIELDS(Rec);
             TempItemTrackLineModify.INSERT();
-            ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+            ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
               TempItemTrackLineModify, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 1);
         END;
         CalculateSums();
@@ -256,7 +256,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
             TempItemTrackLineDelete.TRANSFERFIELDS(Rec);
             IF NOT AlreadyDeleted THEN
                 TempItemTrackLineDelete.INSERT();
-            ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+            ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
               TempItemTrackLineDelete, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 2);
             IF TempItemTrackLineInsert.GET(rec."Entry No.") THEN
                 TempItemTrackLineInsert.DELETE();
