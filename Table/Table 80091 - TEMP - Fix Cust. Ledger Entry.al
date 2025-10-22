@@ -134,7 +134,7 @@ table 80091 "TEMP - Fix Cust. Ledger Entry"
         {
             Caption = 'User ID';
              
-            TableRelation = Table2000000002;
+            TableRelation = User;
              
             //This property is currently not supported
             //TestTableRelation = false;

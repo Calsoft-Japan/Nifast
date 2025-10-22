@@ -175,6 +175,7 @@ table 80020 "Duplicate Lot Info"
         field(50150; "Tested Time"; Time)
         {
             // cleaned
+            
         }
         field(50155; "QC Order Lines"; Integer)
         {

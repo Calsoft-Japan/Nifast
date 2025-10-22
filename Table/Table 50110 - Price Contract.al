@@ -368,6 +368,11 @@ table 50110 "Price Contract"
         {
             // cleaned
         }
+        field(37014331; "FB Order Type"; Option)
+        {
+            OptionCaption = ' ,Consigned,Non-Consigned';
+            OptionMembers = " ",Consigned,"Non-Consigned";
+        }
     }
     keys
     {
