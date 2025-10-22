@@ -296,14 +296,14 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         CLEAR(ModifyRecord);
         CLEAR(LastEntryNo);
         ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-        ItemTrackingForm.SetSource(
+        ItemTrackingForm.SetSourceSpec(
            TrackingSpecification, PurchLine."Expected Receipt Date");
         ItemTrackingForm.NVOpenForm;
 
         CLEAR(ReservePurchLine);
         CLEAR(ItemTrackingForm);
         ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-        ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
+        ItemTrackingForm.SetSourceSpec(TrackingSpecification, PurchLine."Expected Receipt Date");
 
         ItemTrackingForm.NVOpenForm;
         TrackingSpecificationTmp.RESET();

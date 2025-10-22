@@ -344,7 +344,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
         SoftBlockError: Text[80];
         PurchRep: Record 13;
         GLSetup: Record "General Ledger Setup";
-        Text006: Label 'ENU=You cannot change %1 because the order is associated with one or more sales orders.',Comment = '%1';
+        Text006: Label 'ENU=You cannot change %1 because the order is associated with one or more sales orders.', Comment = '%1';
 
 }
 

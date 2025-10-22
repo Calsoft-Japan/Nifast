@@ -216,6 +216,7 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
             trigger OnValidate()
             var
                 Contract: Record "Price Contract";
+                Cust: Record Customer;
             begin
                 IF ("Sell-to Customer No." = xRec."Sell-to Customer No.") AND ("Contract No." = xRec."Contract No.") THEN
                     EXIT;

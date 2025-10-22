@@ -50,4 +50,29 @@ tableextension 55766 "Warehouse Activity Header Ext" extends "Warehouse Activity
             OptionMembers = ,"Put-Away",Pick,Replinishment;
         }
     }
+    PROCEDURE UpdateWhseActLines(ChangedFieldName: Text[100]);
+    VAR
+        WhseActLine: Record "Warehouse Activity Line";
+    BEGIN
+        //PFC
+        WhseActLine.RESET();
+        WhseActLine.SETRANGE("No.", "No.");
+
+        IF WhseActLine.FIND('-') THEN
+            REPEAT
+                CASE ChangedFieldName OF
+                    FIELDCAPTION("Assigned User ID"):
+                        BEGIN
+                            WhseActLine."Assigned User ID" := "Assigned User ID";
+                            WhseActLine."Assignment Date" := "Assignment Date";
+                            WhseActLine."Assignment Time" := "Assignment Time";
+                        END;
+                    FIELDCAPTION("Pick Task No."):
+                        WhseActLine."Pick Task No." := "Pick Task No.";
+                    FIELDCAPTION("Task Priority"):
+                        WhseActLine."Task Priority" := "Task Priority";
+                END;
+                WhseActLine.MODIFY();
+            UNTIL WhseActLine.NEXT() = 0;
+    END;
 }

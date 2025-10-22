@@ -64,6 +64,7 @@ tableextension 50023 "Vendor Ext" extends "Vendor"
     }
     var
         RMSetup: Record "Marketing Setup";
+        UpdateContFromVend: Codeunit "VendCont-Update";
 }
 
 

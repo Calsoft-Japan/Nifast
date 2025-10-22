@@ -55,4 +55,27 @@ tableextension 50099 ItemVendorExt extends "Item Vendor"
         {
         }
     }
+    PROCEDURE UpdateQCWaiverFromItemVend(ItemVend: Record "Item Vendor"; WaiveQCHold: Boolean; CalledFromItem: Boolean);
+    VAR
+        PurchLine: Record "Purchase Line";
+    BEGIN
+
+        //exit if item is blank
+        IF ItemVend."Item No." = '' THEN
+            EXIT;
+
+        //if called from item, use internal value for hold
+        IF CalledFromItem THEN
+            WaiveQCHold := ItemVend."Waive QC Hold";
+
+        PurchLine.SETCURRENTKEY(Type, "No.");
+        PurchLine.SETRANGE(Type, PurchLine.Type::Item);
+        PurchLine.SETRANGE("No.", ItemVend."Item No.");
+        PurchLine.SETRANGE("Buy-from Vendor No.", ItemVend."Vendor No.");
+        IF PurchLine.FIND('-') THEN
+            REPEAT
+                PurchLine."QC Hold" := (NOT WaiveQCHold);
+                PurchLine.MODIFY;
+            UNTIL PurchLine.NEXT = 0;
+    END;
 }
