@@ -181,7 +181,7 @@ page 50001 "Master Customer List"
                             DefaultDimMultiple: Page "Default Dimensions-Multiple";
                         begin
                             CurrPage.SETSELECTIONFILTER(Cust);
-                            DefaultDimMultiple.SetMultiCust(Cust);
+                            DefaultDimMultiple.SetMultiRecord(Database::Customer, Cust.FieldNo("No."));
                             DefaultDimMultiple.RUNMODAL();
                         end;
                     }
@@ -295,19 +295,19 @@ page 50001 "Master Customer List"
                                   "Date Filter" = FIELD("Date Filter");
                     ToolTip = 'Executes the Statistics by C&urrencies action.';
                 }
-                action("Item &Tracking Entries")
-                {
-                    Caption = 'Item &Tracking Entries';
-                    Image = ItemTrackingLedger;
-                    ToolTip = 'Executes the Item &Tracking Entries action.';
+                // action("Item &Tracking Entries")
+                // {
+                //     Caption = 'Item &Tracking Entries';
+                //     Image = ItemTrackingLedger;
+                //     ToolTip = 'Executes the Item &Tracking Entries action.';
 
-                    trigger OnAction()
-                    var
-                        ItemTrackingMgt: Codeunit "Item Tracking Management";
-                    begin
-                        ItemTrackingMgt.CallItemTrackingEntryForm(1, Rec."No.", '', '', '', '', '');
-                    end;
-                }
+                //     trigger OnAction()
+                //     var
+                //         ItemTrackingMgt: Codeunit "Item Tracking Management";
+                //     begin
+                //         ItemTrackingMgt.CallItemTrackingEntryForm(1, Rec."No.", '', '', '', '', '');
+                //     end;
+                // }
             }
             group("S&aless")
             {
