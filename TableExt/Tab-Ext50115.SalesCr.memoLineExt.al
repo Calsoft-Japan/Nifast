@@ -59,18 +59,18 @@ tableextension 50115 "Sales Cr.Memo Line Ext" extends "Sales Cr.Memo Line"
 
         field(14017614; "Tool Repair Tech"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(Yes));
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(true));
         }
 
         field(14017615; "Salesperson Code"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code WHERE("Sales" = CONST(Yes));
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Sales" = CONST(true));
             Description = 'NV';
         }
 
         field(14017616; "Inside Salesperson Code"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(Yes));
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true));
             Description = 'NV';
         }
 

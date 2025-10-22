@@ -120,7 +120,7 @@ table 70777 "Conv. Carrier Packing Station"
         field(14000861; "Generic Shipping Agent Acc. No"; Code[10])
         {
             Caption = 'Generic Shipping Agent Acc. No';
-            TableRelation = "LAX Generic Ship. Agent Acct."
+            TableRelation = "LAX Generic Ship. Agent Acct.";
         }
         field(14000862; "Generic Label Printer Port"; Code[10])
         {
@@ -197,7 +197,7 @@ table 70777 "Conv. Carrier Packing Station"
         field(14050401; "DHL Shipping Agent Acc. No"; Code[10])
         {
             Caption = 'DHL Shipping Agent Acc. No';
-            TableRelation = "LAX Generic Ship. Agent Acct."
+            TableRelation = "LAX Generic Ship. Agent Acct.";
         }
         field(14050402; "DHL Label Printer Port"; Code[10])
         {
@@ -210,7 +210,7 @@ table 70777 "Conv. Carrier Packing Station"
         field(14050451; "Rating Shipping Agent Acc. No"; Code[10])
         {
             Caption = 'Rating Shipping Agent Acc. No';
-            TableRelation = "LAX Generic Ship. Agent Acct."
+            TableRelation = "LAX Generic Ship. Agent Acct.";
         }
         field(14050452; "Rating Label Printer Port"; Code[10])
         {
@@ -223,7 +223,7 @@ table 70777 "Conv. Carrier Packing Station"
         field(14050501; "USPS2 Shipping Agent Acc. No"; Code[10])
         {
             Caption = 'USPS2 Shipping Agent Acc. No';
-            TableRelation = "LAX Generic Ship. Agent Acct."
+            TableRelation = "LAX Generic Ship. Agent Acct.";
         }
         field(14050502; "USPS2 Label Printer Port"; Code[10])
         {

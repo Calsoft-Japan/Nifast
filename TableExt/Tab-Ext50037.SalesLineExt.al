@@ -181,7 +181,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         {
             Description = 'CIS.Ram IoT';
         }
-         
+
 
         /*  field(14000350; "EDI Ship Confirmed"; Boolean)
          {
@@ -767,7 +767,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             Editable = false;
         }
          */
-         
+
 
         field(14017611; "Order Date"; Date)
         {
@@ -781,18 +781,18 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
 
         field(14017614; "Tool Repair Tech"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code where(RepairTech = const(Yes));
+            TableRelation = "Salesperson/Purchaser".Code where("Repair Tech" = const(true));
         }
 
         field(14017615; "Salesperson Code"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code where(Sales = const(Yes));
+            TableRelation = "Salesperson/Purchaser".Code where(Sales = const(true));
             Description = 'NV - FB';
         }
 
         field(14017616; "Inside Salesperson Code"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code where(InsideSales = const(Yes));
+            TableRelation = "Salesperson/Purchaser".Code where("Inside Sales" = const(true));
             Description = 'NV - FB';
         }
 
@@ -1268,7 +1268,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
     VAR
         CommentLine: Record 97;
     BEGIN
-         
+
         CommentLine.SETRANGE("Table Name", CommentLine."Table Name"::Item);
         CommentLine.SETRANGE("No.", "No.");
         CommentLine.SETRANGE("Include in Sales Orders", TRUE);
@@ -1290,7 +1290,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             //SalesLineCommentLine.INSERT(TRUE);
             //<< NF1.00:CIS.CM 09-29-15
             UNTIL CommentLine.NEXT() = 0;
-         
+
     END;
 
     PROCEDURE CheckIfLineComments(): Boolean;
@@ -1301,14 +1301,14 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         CommentLine.SETRANGE("No.", "No.");
         CommentLine.SETRANGE("Include in Sales Orders", TRUE);
         EXIT(CommentLine.FIND('-'));
-         
+
     END;
 
     PROCEDURE GetAltUOM();
     VAR
         ItemUOMRec: Record 5404;
     BEGIN
-         
+
         IF "Quantity (Base)" = 0 THEN EXIT;
         ItemUOMRec.RESET;
         ItemUOMRec.SETRANGE("Item No.", "No.");
@@ -1334,14 +1334,14 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             "Alt. Price UOM" := "Unit of Measure Code";
         END;
         //<< NIF 06-21-05 
-         
+
     END;
 
     PROCEDURE GetAltPrice(CalledByFieldNo: Integer);
     VAR
         ItemUOMRec: Record 5404;
     BEGIN
-         
+
         //>> NIF RTT 04-25-05
         //if alt. price was entered, then do not recalc
         IF (CalledByFieldNo = FIELDNO("Alt. Price")) THEN
@@ -1361,17 +1361,17 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             "Alt. Sales Cost" := ROUND("Unit Cost" / ItemUOMRec."Qty. per Unit of Measure", 0.01, '>');
         END;
         //<< NIF 06-12-05 
-         
+
     END;
 
     PROCEDURE UpdateWeight();
     BEGIN
-         
+
         "Line Gross Weight" := Quantity * "Gross Weight";
         "Line Net Weight" := Quantity * "Net Weight";
         "Outstanding Gross Weight" := "Outstanding Quantity" * "Gross Weight";
         "Outstanding Net Weight" := "Outstanding Quantity" * "Net Weight";
-         
+
     END;
 
     PROCEDURE ShowVendor();

@@ -9,8 +9,8 @@ table 99953 "TEMP - Fix Reservation Entry"
     // <<NIF
 
     Caption = 'TEMP - Fix Reservation Entry';
-    DrillDownPageID = 497;
-    LookupPageID = 497;
+    DrillDownPageID = "Reservation Entries";
+    LookupPageID = "Reservation Entries";
     fields
     {
         field(1; "Entry No."; Integer)
@@ -110,7 +110,7 @@ table 99953 "TEMP - Fix Reservation Entry"
 
             trigger OnLookup()
             var
-                LoginMgt: Codeunit 418;
+                LoginMgt: Codeunit "User Management";
             begin
                  
                 LoginMgt.LookupUserID("Created By");
@@ -129,7 +129,7 @@ table 99953 "TEMP - Fix Reservation Entry"
 
             trigger OnLookup()
             var
-                LoginMgt: Codeunit 418;
+                LoginMgt: Codeunit "User Management";
             begin
                  
                 LoginMgt.LookupUserID("Changed By");

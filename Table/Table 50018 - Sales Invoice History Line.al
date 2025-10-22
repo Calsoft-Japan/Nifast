@@ -702,15 +702,15 @@ table 50018 "Sales Invoice History Line"
         }
         field(14017614; "Tool Repair Tech"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(Yes));
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(true));
         }
         field(14017615; "Salesperson Code"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code WHERE(Sales = CONST(Yes));
+            TableRelation = "Salesperson/Purchaser".Code WHERE(Sales = CONST(true));
         }
         field(14017616; "Inside Salesperson Code"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(Yes));
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true));
         }
         field(14017617; "Posting Date"; Date)
         {

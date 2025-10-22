@@ -227,7 +227,7 @@ table 80020 "Duplicate Lot Info"
         }
         field(14018073; "QC Tech"; Code[10])
         {
-            TableRelation = "Salesperson/Purchaser".Code WHERE("QC Tech" = CONST(Yes));
+            TableRelation = "Salesperson/Purchaser".Code WHERE("QC Tech" = CONST(true));
         }
         field(14018074; "QC Inspection Date"; Date)
         {

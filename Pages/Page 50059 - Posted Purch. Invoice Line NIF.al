@@ -47,7 +47,7 @@ page 50059 "Posted Purch. Invoice Line NIF"
                     Caption = 'Order No.';
                     ToolTip = 'Specifies the value of the Order No. field.';
                 }
-                field("Cross-Reference No."; Rec."Cross-Reference No.")
+                field("Cross-Reference No."; Rec."Item Reference No.")
                 {
                     Visible = false;
                     Caption = 'Cross-Reference No.';
