@@ -43,7 +43,7 @@ codeunit 50174 CU_90
     begin
         // >> Receiving
         PurchSetup.get();
-        IF PurchSetup."Enable Receive" AND
+        IF PurchSetup."LAX Enable Receive" AND
            (PurchSetup."LAX E-Rec Locking Optimization" =
             PurchSetup."LAX E-Rec Locking Optimization"::Base)
         THEN
@@ -194,7 +194,7 @@ codeunit 50174 CU_90
     end;
 
 
-    [EventSubscriber(ObjectType::Codeunit, 90, 'OnPostItemJnlLineOnBeforeCopyDocumentFields', '', True, false)]
+    [EventSubscriber(ObjectType::Codeunit, 90, 'OnPostItemJnlLineOnAfterPrepareItemJnlLine', '', True, false)]
     // local procedure OnPostItemJnlLineOnAfterPrepareItemJnlLine(var ItemJournalLine: Record "Item Journal Line"; PurchaseLine: Record "Purchase Line"; PurchaseHeader: Record "Purchase Header"; PreviewMode: Boolean; var GenJnlLineDocNo: code[20]; TrackingSpecification: Record "Tracking Specification"; QtyToBeReceived: Decimal; QtyToBeInvoiced: Decimal)
     local procedure OnPostItemJnlLineOnAfterPrepareItemJnlLine(var ItemJournalLine: Record "Item Journal Line"; PurchaseLine: Record "Purchase Line"; PurchaseHeader: Record "Purchase Header"; PreviewMode: Boolean; var GenJnlLineDocNo: code[20]; TrackingSpecification: Record "Tracking Specification"; QtyToBeReceived: Decimal; QtyToBeInvoiced: Decimal)
     var
@@ -329,7 +329,7 @@ codeunit 50174 CU_90
     var
         //">>IST": Integer;
         "4XContractNote": Record 50011;
-       PurchLineCommentLine: Record 14017611;
+        PurchLineCommentLine: Record "Purch. Comment Line";
         PurchSetup: Record "Purchases & Payables Setup";
 
         NVM: Codeunit 50021;
