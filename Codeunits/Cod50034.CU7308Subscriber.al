@@ -43,7 +43,7 @@ codeunit 50034 CU7308Subscriber
         IF UseBreakWhenQtyOnHand = UseBreakWhenQtyOnHand::">= Min. Qty." THEN BEGIN
             ToBinContent.TESTFIELD("Min. Qty.");
             BreakAtRemainQtyToReplenish :=
-              RemainQtyToReplenishBase - (ToBinContent."Min. Qty." - ToBinContent.CalcQtyAvailable(0)); // New function -- must be consistent w/ "CalcQtyToReplenish"
+              RemainQtyToReplenishBase - (ToBinContent."Min. Qty." - ToBinContent.CalcQtyAvailToTake(0)); // New function -- must be consistent w/ "CalcQtyToReplenish"
         END ELSE
             BreakAtRemainQtyToReplenish := 0;
         // << NV - 09/19/03 MV

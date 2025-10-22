@@ -31,7 +31,7 @@ tableextension 57302 BinContentExt extends "Bin Content"
         }
         field(14017620; "Break Pick when Qty. on Hand"; Option)
         {
-            OptionMembers = ,">= Min. Qty. (no split pick)","= Max. Qty. (allow split pick)";
+            OptionMembers = " ",">= Min. Qty. (no split pick)","= Max. Qty. (allow split pick)";
         }
         field(14017990; "Pick Bin Ranking"; Integer)
         {

@@ -110,7 +110,7 @@ codeunit 50051 CU391Subscriber
         PurchInvoiceHeader2.LOCKTABLE();
         PurchInvoiceHeader2.FIND();
 
-        PurchInvoiceHeader2."E-Mail Invoice Notice Handled" := PurchInvoiceHeader."E-Mail Invoice Notice Handled";
+       // PurchInvoiceHeader2."LAX E-Mail Invoice Notice Handled" := PurchInvoiceHeader."LAX E-Mail Invoice Notice Handled";
         PurchInvoiceHeader2."LAX EDI Order" := PurchInvoiceHeader."LAX EDI Order";
 
         PurchInvoiceHeader2.MODIFY();
