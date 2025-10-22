@@ -447,4 +447,57 @@ codeunit 70003 AddOnCustomizations
         TrackingSpecification."Qty. per Unit of Measure" := ProdOrderComp."Qty. per Unit of Measure";
     END;
 
+    local procedure UpdatePkgLineFromOrderLine(var PkgLine: Record "Package Line"; PkgControl: Record 14000717)
+    var
+        SalesLine: Record 37;
+        SalesHdr: Record 36;
+    begin
+
+        //>>IST 081208 CCL $12797 #12797
+        //IF NOT SalesLine.GET(SalesLine."Document Type"::Order,PkgLine."Sales Order No.",PkgLine."Order Line No.") THEN
+        IF NOT SalesLine.GET(SalesLine."Document Type"::Order, PkgLine."Source ID", PkgLine."Order Line No.") THEN
+            //<<IST 081208 CCL $12797 #12797
+            EXIT;
+
+        WITH SalesLine DO BEGIN
+            PkgLine."Certificate No." := SalesLine."Certificate No.";
+            PkgLine."Drawing No." := SalesLine."Drawing No.";
+            PkgLine."Revision No." := SalesLine."Revision No.";
+            PkgLine."Revision Date" := SalesLine."Revision Date";
+            PkgLine."Location Code" := "Location Code";
+            //PkgLine."Cross Reference No." := "Cross-Reference No.";
+            PkgLine."Storage Location" := "Storage Location";
+            PkgLine."Line Supply Location" := "Line Supply Location";
+            PkgLine."Deliver To" := "Deliver To";
+            PkgLine."Receiving Area" := "Receiving Area";
+            PkgLine."Ran No." := "Ran No.";
+            PkgLine."Container No." := "Container No.";
+            PkgLine."Kanban No." := "Kanban No.";
+            PkgLine."Res. Mfg." := "Res. Mfg.";
+            PkgLine."Release No." := "Release No.";
+            PkgLine."Mfg. Date" := "Mfg. Date";
+            PkgLine."Man No." := "Man No.";
+            PkgLine."Delivery Order No." := "Delivery Order No.";
+            PkgLine."Dock Code" := "Dock Code";
+            PkgLine."Box Weight" := "Box Weight";
+            PkgLine."Store Address" := "Store Address";
+            PkgLine."FRS No." := "FRS No.";
+            PkgLine."Main Route" := "Main Route";
+            PkgLine."Line Side Address" := "Line Side Address";
+            PkgLine."Sub Route Number" := "Sub Route Number";
+            PkgLine."Special Markings" := "Special Markings";
+            PkgLine."Eng. Change No." := "Eng. Change No.";
+            //>> NIF 06-22-05
+            IF "External Document No." <> '' THEN
+                PkgLine."External Document No." := "External Document No."
+            //>>IST 081208 CCL $12797 #12797
+            //  ELSE IF SalesHdr.GET(SalesHdr."Document Type"::Order,PkgLine."Sales Order No.") THEN
+            ELSE IF SalesHdr.GET(SalesHdr."Document Type"::Order, PkgLine."Source ID") THEN
+                //<<IST 081208 CCL $12797 #12797
+                PkgLine."External Document No." := SalesHdr."External Document No."
+            //<<
+        END;
+    end;
+
+
 }

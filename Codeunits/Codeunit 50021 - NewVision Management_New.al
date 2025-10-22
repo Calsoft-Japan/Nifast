@@ -394,7 +394,7 @@ codeunit 50021 "NewVision Management_New"
             LocationItem.COPYFILTERS(LineItem);
             IF SalesLine."Location Code" <> '' THEN
                 LocationItem.SETRANGE("Location Filter", SalesLine."Location Code");
-            AvailToPromise.QtyAvailabletoPromise(LocationItem, GrossReq, SchedRcpt, LocationItem.GETRANGEMAX("Date Filter"),
+            AvailToPromise.CalcQtyAvailabletoPromise(LocationItem, GrossReq, SchedRcpt, LocationItem.GETRANGEMAX("Date Filter"),
                                                  CompanyInfo."Check-Avail. Time Bucket", CompanyInfo."Check-Avail. Period Calc.");
             LocationItem.CALCFIELDS(Inventory, "Reserved Qty. on Inventory");
             LDec[13] := LocationItem.Inventory - LocationItem."Reserved Qty. on Inventory" + SchedRcpt - GrossReq;
@@ -911,15 +911,15 @@ codeunit 50021 "NewVision Management_New"
         //<< NF1.00:CIS.CM 09-29-15
     end;
 
-   /* procedure TestPermission(TableID: Integer): Boolean
-    var
-        PermissionRange: Record "Permission Range";
-    begin
-        PermissionRange.SETRANGE("Object Type", PermissionRange."Object Type"::TableData);
-        PermissionRange.SETRANGE(From, 0, TableID);
-        PermissionRange.SETFILTER("To", '>=%1', TableID);
-        EXIT(PermissionRange.FIND('-'));
-    end;*/
+    /* procedure TestPermission(TableID: Integer): Boolean
+     var
+         PermissionRange: Record "Permission Range";
+     begin
+         PermissionRange.SETRANGE("Object Type", PermissionRange."Object Type"::TableData);
+         PermissionRange.SETRANGE(From, 0, TableID);
+         PermissionRange.SETFILTER("To", '>=%1', TableID);
+         EXIT(PermissionRange.FIND('-'));
+     end;*/
 
     procedure ItemQtyAvailable(ItemNo: Code[20]; VariantCode: Code[10]) ReturnValue: Decimal
     var
@@ -939,7 +939,7 @@ codeunit 50021 "NewVision Management_New"
             Item.FIND('-');
 
             CompanyInfo.GET();
-            AvailToPromise.QtyAvailabletoPromise(Item, GrossReq, SchedRcpt, Item.GETRANGEMAX("Date Filter"),
+            AvailToPromise.CalcQtyAvailabletoPromise(Item, GrossReq, SchedRcpt, Item.GETRANGEMAX("Date Filter"),
                                                  CompanyInfo."Check-Avail. Time Bucket", CompanyInfo."Check-Avail. Period Calc.");
             //>> NF1.00:CIS.CM  09/29/15
             //Item.CALCFIELDS(Inventory,"Qty. on Sales Order","Qty. on Purch. Order",
@@ -974,7 +974,7 @@ codeunit 50021 "NewVision Management_New"
         LocationItem.SETRANGE("Date Filter", 0D, WORKDATE());
         IF LocCode <> '' THEN
             LocationItem.SETRANGE("Location Filter", LocCode);
-        AvailToPromise.QtyAvailabletoPromise(LocationItem, GrossReq, SchedRcpt, LocationItem.GETRANGEMAX("Date Filter"),
+        AvailToPromise.CalcQtyAvailabletoPromise(LocationItem, GrossReq, SchedRcpt, LocationItem.GETRANGEMAX("Date Filter"),
                                              CompanyInfo."Check-Avail. Time Bucket", CompanyInfo."Check-Avail. Period Calc.");
         LocationItem.CALCFIELDS(Inventory, "Reserved Qty. on Inventory");
         ReturnValue := LocationItem.Inventory - LocationItem."Reserved Qty. on Inventory" + SchedRcpt - GrossReq;
@@ -1023,9 +1023,13 @@ codeunit 50021 "NewVision Management_New"
         TrackingSpecification: Record 336;
         TrackingSpecificationTmp: Record 336 temporary;
         TransferLine: Record 5741;
-        ReserveSalesLine: Codeunit 99000832;
-        ReservePurchLine: Codeunit 99000834;
-        ReserveTransferLine: Codeunit 99000836;
+        //ReserveSalesLine: Codeunit 99000832;
+        ReserveSalesLine: Codeunit 70003;
+
+        // ReservePurchLine: Codeunit 99000834;
+        ReservePurchLine: Codeunit 70003;
+        // ReserveTransferLine: Codeunit 99000836;
+        ReserveTransferLine: Codeunit 70003;
         ItemTrackingForm: Page 6510;
         ModifyRecord: Boolean;
         SecondSourceQtyArray: array[3] of Decimal;
@@ -1050,8 +1054,8 @@ codeunit 50021 "NewVision Management_New"
                     SalesLine.CALCFIELDS("LAX EShip Whse Ship. Qty(Base)", "LAX EShip Whse Outst.Qty(Base)");
                     WhseShipQtyBase := SalesLine."LAX EShip Whse Ship. Qty(Base)";
                     WhsePickQtyBase := SalesLine."LAX EShip Whse Outst.Qty(Base)";
-                    ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
-                    ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date");
+                    ReserveSalesLine.InitTrackingSpecificationSalesLine(SalesLine, TrackingSpecification);
+                    ItemTrackingForm.SetSourceSpec(TrackingSpecification, SalesLine."Shipment Date");
                 END;
 
             DATABASE::"Purchase Line":
@@ -1062,8 +1066,8 @@ codeunit 50021 "NewVision Management_New"
                         EXIT;
                     WhseShipQtyBase := 0;
                     WhsePickQtyBase := 0;
-                    ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-                    ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
+                    ReservePurchLine.InitTrackingSpecificationPurchLine(PurchLine, TrackingSpecification);
+                    ItemTrackingForm.SetSourceSpec(TrackingSpecification, PurchLine."Expected Receipt Date");
                 END;
 
             DATABASE::"Transfer Line":
@@ -1075,8 +1079,8 @@ codeunit 50021 "NewVision Management_New"
                     TransferLine.CALCFIELDS("Whse. Ship. Qty (Base)", "Whse. Pick Outst. Qty (Base)");
                     WhseShipQtyBase := TransferLine."Whse. Ship. Qty (Base)";
                     WhsePickQtyBase := TransferLine."Whse. Pick Outst. Qty (Base)";
-                    ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
-                    ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date");
+                    ReserveTransferLine.InitTrackingSpecificationTransLine(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
+                    ItemTrackingForm.SetSourceSpec(TrackingSpecification, TransferLine."Shipment Date");
                 END;
             //leave if not transfer line or sales line
             ELSE
@@ -1129,10 +1133,13 @@ codeunit 50021 "NewVision Management_New"
         TrackingSpecification: Record 336;
         TrackingSpecificationTmp: Record 336 temporary;
         TransferLine: Record 5741;
-        WMSMgt: Codeunit 7302;
-        ReserveSalesLine: Codeunit 99000832;
-        ReservePurchLine: Codeunit 99000834;
-        ReserveTransferLine: Codeunit 99000836;
+        WMSMgt: Codeunit CU_7302;
+        // ReserveSalesLine: Codeunit 99000832;
+        // ReservePurchLine: Codeunit 99000834;
+        // ReserveTransferLine: Codeunit 99000836;
+        ReserveSalesLine: Codeunit 70003;
+        ReservePurchLine: Codeunit 70003;
+        ReserveTransferLine: Codeunit 70003;
         ItemTrackingForm: Page 6510;
         LinesInserted: Boolean;
         LotNoToSet: Code[20];
@@ -1178,23 +1185,23 @@ codeunit 50021 "NewVision Management_New"
                     SalesLine.GET(SourceSubType, SourceNo, SourceLineNo);
                     //LineQtyToShip := "Outstanding Qty. (Base)";
                     LineQtyToShip := SalesLine."Qty. to Ship (Base)";
-                    ReserveSalesLine.InitTrackingSpecification(SalesLine, TrackingSpecification);
-                    ItemTrackingForm.SetSource(TrackingSpecification, SalesLine."Shipment Date");
+                    ReserveSalesLine.InitTrackingSpecificationSalesLine(SalesLine, TrackingSpecification);
+                    ItemTrackingForm.SetSourceSpec(TrackingSpecification, SalesLine."Shipment Date");
                 END;
             DATABASE::"Purchase Line":
                 BEGIN
                     PurchLine.GET(SourceSubType, SourceNo, SourceLineNo);
                     LineQtyToShip := PurchLine."Outstanding Qty. (Base)";
-                    ReservePurchLine.InitTrackingSpecification(PurchLine, TrackingSpecification);
-                    ItemTrackingForm.SetSource(TrackingSpecification, PurchLine."Expected Receipt Date");
+                    ReservePurchLine.InitTrackingSpecificationPurchLine(PurchLine, TrackingSpecification);
+                    ItemTrackingForm.SetSourceSpec(TrackingSpecification, PurchLine."Expected Receipt Date");
                 END;
 
             DATABASE::"Transfer Line":
                 BEGIN
                     TransferLine.GET(SourceNo, SourceLineNo);
                     LineQtyToShip := TransferLine."Outstanding Qty. (Base)";
-                    ReserveTransferLine.InitTrackingSpecification(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
-                    ItemTrackingForm.SetSource(TrackingSpecification, TransferLine."Shipment Date");
+                    ReserveTransferLine.InitTrackingSpecificationTransLine(TransferLine, TrackingSpecification, TransferLine."Shipment Date", 0);
+                    ItemTrackingForm.SetSourceSpec(TrackingSpecification, TransferLine."Shipment Date");
                 END;
             ELSE
                 EXIT;  //shouldn't reach here, but exit just in case
@@ -1854,31 +1861,31 @@ codeunit 50021 "NewVision Management_New"
     begin
     end;
 
-   /* procedure DebugCreateFile()
-    var
-        RFDebugFile: File;
-    begin
-        IF EXISTS(RFDebugFileName) THEN
-            ERASE(RFDebugFileName);
+    /* procedure DebugCreateFile()
+     var
+         RFDebugFile: File;
+     begin
+         IF EXISTS(RFDebugFileName) THEN
+             ERASE(RFDebugFileName);
 
-        CLEAR(RFDebugFile);
-        RFDebugFile.TEXTMODE := TRUE;
-        RFDebugFile.WRITEMODE := TRUE;
-        //RFDebugFile.QUERYREPLACE := FALSE;
-        RFDebugFile.CREATE(RFDebugFileName);
-    end;*/
+         CLEAR(RFDebugFile);
+         RFDebugFile.TEXTMODE := TRUE;
+         RFDebugFile.WRITEMODE := TRUE;
+         //RFDebugFile.QUERYREPLACE := FALSE;
+         RFDebugFile.CREATE(RFDebugFileName);
+     end;*/
 
-   /* procedure DebugWriteFile(TextString: Text[250])
-    var
-        RFDebugFile: File;
-    begin
-        RFDebugFile.TEXTMODE := TRUE;
-        RFDebugFile.WRITEMODE := TRUE;
-        RFDebugFile.OPEN(RFDebugFileName);
-        RFDebugFile.SEEK(RFDebugFile.LEN);
-        RFDebugFile.WRITE(TextString);
-        RFDebugFile.CLOSE;
-    end;*/
+    /* procedure DebugWriteFile(TextString: Text[250])
+     var
+         RFDebugFile: File;
+     begin
+         RFDebugFile.TEXTMODE := TRUE;
+         RFDebugFile.WRITEMODE := TRUE;
+         RFDebugFile.OPEN(RFDebugFileName);
+         RFDebugFile.SEEK(RFDebugFile.LEN);
+         RFDebugFile.WRITE(TextString);
+         RFDebugFile.CLOSE;
+     end;*/
 
     procedure "<<Movement Form>>"()
     begin

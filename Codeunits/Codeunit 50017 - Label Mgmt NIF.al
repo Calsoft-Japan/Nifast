@@ -53,9 +53,9 @@ codeunit 50017 "Label Mgmt NIF"
         TempLabelValue: Record 50006 temporary;
         ReceiveStation: Record 14000608;
         PackingStation: Record 14000709;
-        BtApplication: Automation;
-        BtFormat: Automation;
-        BtSubstrings: Automation;
+        // BtApplication: Automation;
+        // BtFormat: Automation;
+        // BtSubstrings: Automation;
         ItemCrossRefLoaded: Boolean;
         LotInfoLoaded: Boolean;
         MastLbl: Boolean;
@@ -91,8 +91,8 @@ codeunit 50017 "Label Mgmt NIF"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+        //IF NOT EXISTS(LabelHeader."Format Path") THEN
+          //  ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -199,8 +199,8 @@ codeunit 50017 "Label Mgmt NIF"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+       // IF NOT EXISTS(LabelHeader."Format Path") THEN
+         //   ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -220,8 +220,8 @@ codeunit 50017 "Label Mgmt NIF"
                     TempLabelValue."Print Value" := "Receive Line"."No.";
                 'LOT_NO':
                     TempLabelValue."Print Value" := "Receive Line"."Lot No.";
-                'MFG_LOT_NO':
-                    TempLabelValue."Print Value" := "Receive Line"."Mfg. Lot No.";
+                //'MFG_LOT_NO':
+                  //  TempLabelValue."Print Value" := "Receive Line"."Mfg. Lot No.";//TODO
                 'ITEM_DESC':
                     TempLabelValue."Print Value" := "Receive Line".Description;
                 'QTY':
@@ -310,8 +310,8 @@ codeunit 50017 "Label Mgmt NIF"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+        //IF NOT EXISTS(LabelHeader."Format Path") THEN
+          //  ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -364,15 +364,15 @@ codeunit 50017 "Label Mgmt NIF"
                         IF NOT ItemCrossRefLoaded THEN
                             LoadItemCrossRef(Package, "Package Line");
                         //>> RTT 07-29-05 if ASN customer, use customer part number
-                        IF TempItemCrossRef."Cross-Reference No." = '' THEN BEGIN
+                        IF TempItemCrossRef."Reference No." = '' THEN BEGIN
                             IF NOT SalesHeaderLoaded THEN
                                 LoadSalesHeader(Package, "Package Line");
                             PackingRule.GetPackingRule(0, TempSalesHeader."Sell-to Customer No.", TempSalesHeader."Ship-to Code");  //0=customer
                             IF (PackingRule."ASN Summary Type" <> PackingRule."ASN Summary Type"::" ") THEN
-                                TempItemCrossRef."Cross-Reference No." := "Package Line"."No.";
+                                TempItemCrossRef."Reference No." := "Package Line"."No.";
                         END;
                         //<< RTT 07-29-05 if ASN customer, use customer part number
-                        TempLabelValue."Print Value" := FORMAT(TempItemCrossRef."Cross-Reference No.");
+                        TempLabelValue."Print Value" := FORMAT(TempItemCrossRef."Reference No.");
                     END;
                 'CUST_NO':
                     BEGIN
@@ -746,8 +746,8 @@ codeunit 50017 "Label Mgmt NIF"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+       // IF NOT EXISTS(LabelHeader."Format Path") THEN
+         //   ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -1202,8 +1202,8 @@ codeunit 50017 "Label Mgmt NIF"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+       // IF NOT EXIST(LabelHeader."Format Path") THEN
+         //   ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -1293,14 +1293,14 @@ codeunit 50017 "Label Mgmt NIF"
         //PRINT THE LABEL
         //1 - prep
         // Start the Bar Tender as a separate process
-        CLEAR(BtApplication);
-        CLEAR(BtFormat);
+        // CLEAR(BtApplication);
+        // CLEAR(BtFormat);//TODO
 
         //>> NF1.00:CIS.NG  07/07/16
         //CREATE(BtApplication);
         //CREATE(BtFormat);
-        CREATE(BtApplication, TRUE, TRUE);
-        CREATE(BtFormat, TRUE, TRUE);
+      //  CREATE(BtApplication, TRUE, TRUE);
+        //CREATE(BtFormat, TRUE, TRUE);//TODO
         //<< NF1.00:CIS.NG  07/07/16
 
         //xx debug
@@ -1316,14 +1316,14 @@ codeunit 50017 "Label Mgmt NIF"
         //xx
 
         //Hide the Bar Tender Visible.  Set True to see Bar Tender
-        BtApplication.Visible(Preview);
+      //  BtApplication.Visible(Preview);//TODO
 
         //get path of format
         FormatPath := LabelHeader."Format Path";
 
         //open format
-        BtFormat := BtApplication.Formats.Open(FormatPath, FALSE, PrinterName);
-        BtSubstrings := BtFormat.NamedSubStrings;
+        // BtFormat := BtApplication.Formats.Open(FormatPath, FALSE, PrinterName);
+        // BtSubstrings := BtFormat.NamedSubStrings;//TODO
 
         CartonFirstSrNo := '';   //jrr
         CartonLastSrNo := '';   //jrr
@@ -1331,7 +1331,7 @@ codeunit 50017 "Label Mgmt NIF"
         //2 - set values
         TempLabelValue.FIND('-');
         REPEAT
-            BtFormat.SetNamedSubStringValue(TempLabelValue."Field Code", TempLabelValue."Print Value");
+          //  BtFormat.SetNamedSubStringValue(TempLabelValue."Field Code", TempLabelValue."Print Value");//TODO
 
             //added jrrs
             IF TempLabelValue."Field Code" = 'SERIAL_NO' THEN
@@ -1341,7 +1341,7 @@ codeunit 50017 "Label Mgmt NIF"
 
         UNTIL TempLabelValue.NEXT() = 0;
 
-        BtFormat.EnablePrompting(FALSE);
+        //BtFormat.EnablePrompting(FALSE);//TODO
 
         //print label
         IF (NOT Preview) THEN
@@ -1358,19 +1358,19 @@ codeunit 50017 "Label Mgmt NIF"
                                 TempLabelValue."Print Value" := PrintValue +
                                    FORMAT(NoSeriesMgt.GetNextNo(TempLabelValue."No. Series", TODAY, TRUE));
                             //<<CIS.RAM051322
-                            BtFormat.SetNamedSubStringValue(TempLabelValue."Field Code", TempLabelValue."Print Value");
+                           // BtFormat.SetNamedSubStringValue(TempLabelValue."Field Code", TempLabelValue."Print Value");//TODO
                             CartonLastSrNo := TempLabelValue."Print Value";   //jrr
                         UNTIL TempLabelValue.NEXT() = 0;
                 END;
-                BtFormat.PrintOut(TRUE, FALSE);   //show print dialog
+               // BtFormat.PrintOut(TRUE, FALSE);   //show print dialog//TODO
             END;
 
         //close application
-        IF (NOT Preview) THEN    //added 082316
-            BtApplication.Quit(1);   //jrr 081516
-        //BtApplication.stop;
-        CLEAR(BtApplication);
-        CLEAR(BtFormat);
+        // IF (NOT Preview) THEN    //added 082316
+        //     BtApplication.Quit(1);   //jrr 081516
+        // //BtApplication.stop;
+        // CLEAR(BtApplication);
+        // CLEAR(BtFormat);//TOTO
 
         //jrrs
         IF CartonFirstSrNo <> '' THEN BEGIN
@@ -1712,7 +1712,8 @@ codeunit 50017 "Label Mgmt NIF"
         Package: Record 14000701;
         PackageLine: Record 14000702;
         PackingRule: Record 14000715;
-        LabelMgt: Codeunit 14000841;
+        //LabelMgt: Codeunit 14000841;
+        LabelMgt: Codeunit 70003;
         LabelHeaderCode: Code[10];
         SNP: Decimal;
         UseQty: Decimal;
@@ -1760,7 +1761,8 @@ codeunit 50017 "Label Mgmt NIF"
         Package: Record 14000701;
         PackageLine: Record 14000702;
         PackingRule: Record 14000715;
-        LabelMgt: Codeunit 14000841;
+        //LabelMgt: Codeunit 14000841;
+        LabelMgt: Codeunit 70003;
         LabelHeaderCode: Code[10];
         UsePkgNo: Code[20];
         SNP: Decimal;
@@ -1805,7 +1807,8 @@ codeunit 50017 "Label Mgmt NIF"
         WhseActvLine: Record 5767;
         Package: Record 14000701;
         PackingControl: Record 14000717 temporary;
-        PackageMgt: Codeunit 14000702;
+        // PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
     begin
         //make sure sales setup allows
         SalesSetup.GET();
@@ -1856,7 +1859,8 @@ codeunit 50017 "Label Mgmt NIF"
         WhseActvHdr: Record 5766;
         Package: Record 14000701;
         PackingControl: Record 14000717 temporary;
-        PackageMgt: Codeunit 14000702;
+        //PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
     begin
         //<< used to print single line of labels >>
 
@@ -1886,7 +1890,7 @@ codeunit 50017 "Label Mgmt NIF"
         PackingControl."Input No." := WhseActvLine."Item No.";
         PackingControl."Input Variant Code" := WhseActvLine."Variant Code";
         PackingControl."Input Unit of Measure Code" := WhseActvLine."Unit of Measure Code";
-       // PackingControl."Order Line No." := WhseActvLine."Source Line No.";
+        // PackingControl."Order Line No." := WhseActvLine."Source Line No.";
         PackingControl."Pack Lot Number" := (WhseActvLine."Lot No." <> '');
         PackingControl."Input Lot Number" := WhseActvLine."Lot No.";
         PackageMgt.CreatePackageLineNIF(Package, PackingControl, WhseActvLine.Quantity, FALSE);  //FALSE=No Summary
@@ -1907,7 +1911,8 @@ codeunit 50017 "Label Mgmt NIF"
         PackingRule: Record 14000715;
         PackingControl: Record 14000717 temporary;
         Shipping: Codeunit 14000701;
-        PackageMgt: Codeunit 14000702;
+        //PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
         Summary: Boolean;
     begin
         //delete, recreate package
@@ -1952,7 +1957,7 @@ codeunit 50017 "Label Mgmt NIF"
                 PackingControl."Input No." := PostedInvtPickLine."Item No.";
                 PackingControl."Input Variant Code" := PostedInvtPickLine."Variant Code";
                 PackingControl."Input Unit of Measure Code" := PostedInvtPickLine."Unit of Measure Code";
-               // PackingControl."Order Line No." := PostedInvtPickLine."Source Line No.";
+                // PackingControl."Order Line No." := PostedInvtPickLine."Source Line No.";
                 PackingControl."Pack Lot Number" := (PostedInvtPickLine."Lot No." <> '');
                 PackingControl."Input Lot Number" := PostedInvtPickLine."Lot No.";
 
@@ -2011,7 +2016,8 @@ codeunit 50017 "Label Mgmt NIF"
         PostedPackageLine: Record 14000705;
         PackingControl: Record 14000717 temporary;
         Shipping: Codeunit 14000701;
-        PackageMgt: Codeunit 14000702;
+        //PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
     begin
         //if a posted pick exists for this shipment, with a posted package, then exit
         PostedInvtPickHdr.SETRANGE("Source No.", SalesShptHdr."No.");
@@ -2048,7 +2054,7 @@ codeunit 50017 "Label Mgmt NIF"
                 PackingControl."Input No." := SalesShptLine."No.";
                 PackingControl."Input Variant Code" := SalesShptLine."Variant Code";
                 PackingControl."Input Unit of Measure Code" := SalesShptLine."Unit of Measure Code";
-               // PackingControl."Order Line No." := SalesShptLine."Order Line No.";
+                // PackingControl."Order Line No." := SalesShptLine."Order Line No.";
 
                 //use entry relation if found, otherwise use sales shipment line record
                 ItemEntryRelation.SETCURRENTKEY(
@@ -2115,7 +2121,8 @@ codeunit 50017 "Label Mgmt NIF"
         PostedInvtPickHdr: Record 7342;
         Package: Record 14000701;
         PackingControl: Record 14000717 temporary;
-        PackageMgt: Codeunit 14000702;
+        //PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
     begin
         //delete, recreate package
         PostedInvtPickHdr.GET(PostedInvtPickLine."No.");

@@ -85,8 +85,8 @@ codeunit 50025 "Test BTApp"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+        // IF NOT EXISTS(LabelHeader."Format Path") THEN
+        //   ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -193,8 +193,8 @@ codeunit 50025 "Test BTApp"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+        //  IF NOT EXISTS(LabelHeader."Format Path") THEN
+        //    ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -214,8 +214,8 @@ codeunit 50025 "Test BTApp"
                     TempLabelValue."Print Value" := "Receive Line"."No.";
                 'LOT_NO':
                     TempLabelValue."Print Value" := "Receive Line"."Lot No.";
-                'MFG_LOT_NO':
-                    TempLabelValue."Print Value" := "Receive Line"."Mfg. Lot No.";
+                // 'MFG_LOT_NO':
+                //   TempLabelValue."Print Value" := "Receive Line"."Mfg. Lot No.";//TODO
                 'ITEM_DESC':
                     TempLabelValue."Print Value" := "Receive Line".Description;
                 'QTY':
@@ -301,8 +301,8 @@ codeunit 50025 "Test BTApp"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+        // IF NOT EXISTS(LabelHeader."Format Path") THEN
+        //   ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -664,8 +664,8 @@ codeunit 50025 "Test BTApp"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+        // IF NOT EXISTS(LabelHeader."Format Path") THEN
+        //   ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -1049,8 +1049,8 @@ codeunit 50025 "Test BTApp"
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
-        IF NOT EXISTS(LabelHeader."Format Path") THEN
-            ERROR('Format Path %1 not found.', LabelHeader."Format Path");
+        //IF NOT EXISTS(LabelHeader."Format Path") THEN
+          //  ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -1449,7 +1449,8 @@ codeunit 50025 "Test BTApp"
         Package: Record 14000701;
         PackageLine: Record 14000702;
         PackingRule: Record 14000715;
-        LabelMgt: Codeunit 14000841;
+        // LabelMgt: Codeunit 14000841;
+        LabelMgt: Codeunit 70003;
         LabelHeaderCode: Code[10];
         SNP: Decimal;
         UseQty: Decimal;
@@ -1497,7 +1498,8 @@ codeunit 50025 "Test BTApp"
         Package: Record 14000701;
         PackageLine: Record 14000702;
         PackingRule: Record 14000715;
-        LabelMgt: Codeunit 14000841;
+        // LabelMgt: Codeunit 14000841;
+        LabelMgt: Codeunit 70003;
         LabelHeaderCode: Code[10];
         UsePkgNo: Code[20];
         SNP: Decimal;
@@ -1542,7 +1544,8 @@ codeunit 50025 "Test BTApp"
         WhseActvLine: Record 5767;
         Package: Record 14000701;
         PackingControl: Record 14000717 temporary;
-        PackageMgt: Codeunit 14000702;
+        //PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
     begin
         //make sure sales setup allows
         SalesSetup.GET();
@@ -1593,7 +1596,8 @@ codeunit 50025 "Test BTApp"
         WhseActvHdr: Record 5766;
         Package: Record 14000701;
         PackingControl: Record 14000717 temporary;
-        PackageMgt: Codeunit 14000702;
+        //PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
     begin
         //<< used to print single line of labels >>
 
@@ -1644,7 +1648,8 @@ codeunit 50025 "Test BTApp"
         PackingRule: Record 14000715;
         PackingControl: Record 14000717 temporary;
         Shipping: Codeunit 14000701;
-        PackageMgt: Codeunit 14000702;
+        // PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
         Summary: Boolean;
     begin
         //delete, recreate package
@@ -1853,7 +1858,7 @@ codeunit 50025 "Test BTApp"
         PostedInvtPickHdr: Record 7342;
         Package: Record 14000701;
         PackingControl: Record 14000717 temporary;
-        PackageMgt: Codeunit 14000702;
+        PackageMgt: Codeunit 70003;
     begin
         //delete, recreate package
         PostedInvtPickHdr.GET(PostedInvtPickLine."No.");
