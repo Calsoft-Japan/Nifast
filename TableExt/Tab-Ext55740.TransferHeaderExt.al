@@ -47,6 +47,71 @@ tableextension 55740 "Transfer Header Ext" extends "Transfer Header"
         {
             Editable = false;
         }
+        field(14017619; "Total Net Weight"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Transfer Line"."Line Net Weight" WHERE("Document No." = FIELD("No.")));
+            Editable = false;
+        }
+        field(14017620; "Total Gross Weight"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Transfer Line"."Line Gross Weight" WHERE("Document No." = FIELD("No.")));
+            Editable = false;
+        }
+        field(14017621; "Reason Code"; code[10])
+        {
+            TableRelation = "Reason Code";
+        }
+        field(14017630; "Inbound Bill of Lading"; code[20])
+        {
+        }
+        field(14017631; "Carrier Vendor No."; code[20])
+        {
+            TableRelation = Vendor."No.";
+        }
+        field(14017632; "Carrier Trailer ID"; code[20])
+        {
+        }
+        field(14017660; "No;Outstanding Gross Weight"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Transfer Line".Field2837012 WHERE("Document No." = FIELD("No.")));
+            Editable = false;
+        }
+        field(14017661; "No;Outstanding Net Weight"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Transfer Line".Field2837012 WHERE("Document No." = FIELD("No.")));
+            Editable = false;
+        }
+        field(14017790; "Container No."; code[20])
+        {
+            Editable = false;
+        }
+        field(14017930; "Rework No."; code[20])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(14017931; "Rework Line No."; Integer)
+        {
+        }
+        field(37015330; "FB Order No."; code[20])
+        {
+            Description = 'NV-FB';
+        }
+        field(37015590; "In-Transit Lines"; Integer)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Count("Transfer Line" WHERE("Document No." = FIELD("No."), "Qty. in Transit" = FILTER(<> 0)));
+            Editable = false;
+        }
+        field(37015680; "Delivery Route"; code[10])
+        {
+        }
+        field(37015681; "Delivery Stop"; code[10])
+        {
+        }
     }
     trigger OnAfterDelete()
     var

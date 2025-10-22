@@ -184,6 +184,222 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         {
             Caption = 'Inside Salesperson Code';
         }
+        field(14017611; "Entered Date"; Date)
+        {
+        }
+        field(14017612; "Entered Time"; Time)
+        {
+        }
+        field(14017614; "Tool Repair Tech"; code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(true));
+        }
+        field(14017618; "Phone No."; text[30])
+        {
+        }
+        field(14017619; "Fax No."; text[30])
+        {
+        }
+        field(14017620; "E-Mail"; text[80])
+        {
+        }
+        field(14017630; "Priority Code"; code[10])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(14017640; "Ship-to PO No."; code[20])
+        {
+        }
+        field(14017645; "Contract No."; code[20])
+        {
+            TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
+            trigger OnValidate()
+            var
+                Contract: Record "Price Contract";
+            begin
+                IF ("Sell-to Customer No." = xRec."Sell-to Customer No.") AND ("Contract No." = xRec."Contract No.") THEN
+                    EXIT;
+
+                //use Contract info if "Contract No." is not blank, else revert to customer defaults
+                IF ("Contract No." <> '')
+                THEN BEGIN
+                    Contract.GET("Contract No.");
+
+                    //shipping info
+                    "Ship-to Name" := Contract."Ship-to Name";
+                    "Ship-to Name 2" := Contract."Ship-to Name 2";
+                    "Ship-to Address" := Contract."Ship-to Address";
+                    "Ship-to Address 2" := Contract."Ship-to Address 2";
+                    "Ship-to City" := Contract."Ship-to City";
+                    "Ship-to Post Code" := Contract."Ship-to Post Code";
+                    "Ship-to County" := Contract."Ship-to County";
+                    VALIDATE("Ship-to Country/Region Code", Contract."Ship-to Country Code");
+                    "Ship-to Contact" := Contract."Ship-to Contact";
+                    "Shipment Method Code" := Contract."Shipment Method Code";
+                    //>> NIF 07-06-05 RTT
+                    //"Tax Area Code" := Contract."Tax Area Code";
+                    //"Tax Liable" := Contract."Tax Liable";
+                    IF Contract."Tax Area Code" <> '' THEN BEGIN
+                        "Tax Area Code" := Contract."Tax Area Code";
+                        "Tax Liable" := Contract."Tax Liable";
+                    END;
+                    //<< NIF 07-06-05 RTT
+                    IF Contract."Location Code" <> '' THEN
+                        VALIDATE("Location Code", Contract."Location Code");
+                    //>> NIF 07-06-05 RTT
+                    //"Shipping Agent Code" := Contract."Shipping Agent Code";
+                    IF Contract."Shipping Agent Code" <> '' THEN "Shipping Agent Code" := Contract."Shipping Agent Code";
+                    //<< NIF 07-06-05 RTT
+                    "Shipping Agent Service Code" := Contract."Shipping Agent Service Code";
+                    "Phone No." := Contract."Phone No.";
+                    //>> NIF 07-06-05 RTT
+                    //IF Contract."Tax Area Code" <> '' THEN
+                    //  "Tax Area Code" := Contract."Tax Area Code";
+                    //"Tax Liable" := Contract."Tax Liable";
+                    //<< NIF 07-06-05 RTT
+                    IF Contract."Phone No." <> '' THEN "Phone No." := Contract."Phone No.";
+                    IF Contract."Salesperson Code" <> '' THEN "Salesperson Code" := Contract."Salesperson Code";
+                    IF Contract."Inside Salesperson" <> '' THEN "Inside Salesperson Code" := Contract."Inside Salesperson";
+                    IF Contract."Broker/Agent Code" <> '' THEN "Broker/Agent Code" := Contract."Broker/Agent Code";
+
+                    //invoicing/other info
+                    IF Contract."Payment Terms Code" <> '' THEN VALIDATE("Payment Terms Code", Contract."Payment Terms Code");
+                    IF Contract."External Document No." <> '' THEN VALIDATE("External Document No.", Contract."External Document No.");
+                END ELSE BEGIN
+                    //restore default shipping info
+                    GetCust("Sell-to Customer No.");
+                    VALIDATE("Ship-to Code", Cust."Default Ship-To Code");
+
+                    //restore default billing info
+                    GetCust("Bill-to Customer No.");
+                    VALIDATE("Payment Terms Code", Cust."Payment Terms Code");
+                    "External Document No." := '';
+                END;
+
+                //now, recreate sales lines
+                IF ("Contract No." <> xRec."Contract No.") AND ("Sell-to Customer No." = xRec."Sell-to Customer No.") THEN
+                    RecreateSalesLines(FIELDCAPTION("Contract No."));
+
+
+                IF xRec."Shipping Agent Code" <> "Shipping Agent Code" THEN
+                    MessageIfSalesLinesExist(FIELDCAPTION("Shipping Agent Code"));
+                IF xRec."Shipping Agent Service Code" <> "Shipping Agent Service Code" THEN
+                    MessageIfSalesLinesExist(FIELDCAPTION("Shipping Agent Service Code"));
+                IF xRec."Tax Liable" <> "Tax Liable" THEN
+                    VALIDATE("Tax Liable");
+            end;
+        }
+        field(14017646; "Quote Expiration Date"; Date)
+        {
+        }
+        field(14017647; "NV Quote No."; code[20])
+        {
+        }
+        field(14017648; "Return No."; code[20])
+        {
+        }
+        field(14017650; "Broker/Agent Code"; code[10])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(14017660; "Outstanding Gross Weight"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Sales Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
+                                                                                                                  "Document No." = FIELD("No.")));
+            Editable = false;
+        }
+        field(14017661; "Outstanding Net Weight"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Sales Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
+                                                                                                                  "Document No." = FIELD("No.")));
+            Editable = false;
+        }
+        field(14017711; "Sales Desk Worksheet"; Boolean)
+        {
+            trigger OnValidate()
+            begin
+                IF "Document Type" <> "Document Type"::Quote THEN ERROR('Document Type must be Quote');
+            end;
+        }
+        field(14017753; "Sales Counter Invoice"; Boolean)
+        {
+            trigger OnValidate()
+            begin
+                IF "Document Type" <> "Document Type"::Invoice THEN ERROR('Document Type must be Invoice');
+            end;
+        }
+        field(14017801; "Tool Repair Priority"; Boolean)
+        {
+        }
+        field(14017803; "Manufacturer Code"; code[5])
+        {
+            TableRelation = Manufacturer.Code;
+        }
+        field(14017804; "Serial No."; code[20])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            trigger OnValidate()
+            begin
+                //>> NF1.00:CIS.CM 09-29-15
+                //IF Tool.GET("Manufacturer Code","Serial No.") THEN BEGIN
+                // IF Tool.Stolen THEN MESSAGE('Tool has been reported STOLEN');
+                // "Tool Model No." := Tool."Tool Model No.";
+                // "Tool Item No." := Tool."Tool Item No.";
+                // "Tool Description" := Tool.Description;
+                //END;
+                //<< NF1.00:CIS.CM 09-29-15
+            end;
+        }
+        field(14017805; "Tool Model No."; code[20])
+        {
+        }
+        field(14017806; "Tool Item No."; code[20])
+        {
+            TableRelation = Item."No.";
+        }
+        field(14017807; "Tool Description"; Text[50])
+        {
+        }
+        field(14017808; "Tool Repair Ticket"; Boolean)
+        {
+        }
+        field(14017809; "No;Tool Repair Status"; code[10])
+        {
+            FieldClass = FlowField;
+            Description = 'NF1.00:CIS.NG 10-10-15';
+            Editable = false;
+        }
+        field(14017810; "Tool Repair Parts Warranty"; DateFormula)
+        {
+        }
+        field(14017811; "Tool Repair Labor Warranty"; DateFormula)
+        {
+        }
+        field(14018050; "No;Cr. Mgmt. Comment"; Boolean)
+        {
+            FieldClass = FlowField;
+            Description = 'NF1.00:CIS.NG 10-10-15';
+            Editable = false;
+        }
+        field(37015330; "FB Order No."; code[20])
+        {
+        }
+        field(37015680; "Delivery Route"; code[10])
+        {
+            trigger OnValidate()
+            begin
+                UpdateSalesLines(FIELDCAPTION("Delivery Route"), FALSE);
+            end;
+        }
+        field(37015681; "Delivery Stop"; code[10])
+        {
+            trigger OnValidate()
+            begin
+                UpdateSalesLines(FIELDCAPTION("Delivery Stop"), FALSE);
+            end;
+        }
     }
     procedure InsertCustomerComments(Cust2: Record Customer);
     var

@@ -170,7 +170,44 @@ tableextension 56505 "Lot No. Information Ext" extends "Lot No. Information"
         }
 
         field(50000; "Lot Creation Date"; Date)//NV-Lot From 14018077->50000
-        { }
+        {
+            Description = 'NV-Lot';
+        }
+        field(14018070; "QC Hold"; Boolean)
+        {
+            Description = 'NV-QC';
+        }
+        field(14018071; "QC Hold Reason Code"; code[10])
+        {
+            TableRelation = "Reason Code".Code WHERE(Type = CONST(QC));
+        }
+        field(14018072; "QC External Test"; Boolean)
+        {
+        }
+        field(14018073; "QC Tech"; code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("QC Tech" = CONST(true));
+        }
+        field(14018074; "QC Inspection Date"; Date)
+        {
+        }
+        field(14018075; "QC Inventory"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Item Ledger Entry".Quantity WHERE("Item No." = FIELD("Item No."),
+                                                                                                               "Variant Code" = FIELD("Variant Code"),
+                                                                                                               "Lot No." = FIELD("Lot No."),
+                                                                                                               "Location Code" = FIELD("Location Filter"),
+                                                                                                               "QC Hold" = CONST(true)));
+            CaptionML = ENU = 'Qty. on QC Hold';
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+        field(14018076; "QC Select"; code[20])
+        {
+            CaptionML = ENU = 'QC Select';
+            Editable = false;
+        }
         modify(Blocked)
         {
             trigger OnAfterValidate()

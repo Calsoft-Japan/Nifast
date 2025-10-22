@@ -71,6 +71,47 @@ tableextension 50013 "Salesperson/Purchaser Ext" extends "Salesperson/Purchaser"
             DataClassification = ToBeClassified;
             Description = 'NIF';
         }
+        field(14017610; "Inside Sales"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV';
+        }
+        field(14017612; "Sales"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV';
+        }
+        field(14017613; "Purchase"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV';
+        }
+        field(14017614; "Repair Tech"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV';
+        }
+        field(14017615; "Resource No."; code[20])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV';
+            TableRelation = Resource;
+        }
+        field(14017616; "Fax No."; Text[30])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV';
+        }
+        field(14017617; "QC Tech"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV';
+        }
+        field(14017620; "Purchase Limit"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV';
+        }
     }
     procedure ValidateUserID(UserName: Code[50]);
     var

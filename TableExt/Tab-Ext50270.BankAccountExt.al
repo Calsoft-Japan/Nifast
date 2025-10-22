@@ -69,5 +69,83 @@ tableextension 50270 "Bank Account Ext" extends "Bank Account"
                 //<< NF1.00:CIS.NG    06/18/16
             end;
         }
+        field(14017610; "MICR Layout Picture"; Text[50])
+        {
+        }
+        field(14017611; "Leading Zeros"; Boolean)
+        {
+        }
+        field(14017612; "Check No. Width"; Integer)
+        {
+        }
+        field(14017613; "Company Address 1"; Text[50])
+        {
+        }
+        field(14017614; "Company Address 2"; Text[50])
+        {
+        }
+        field(14017615; "Company Address 3"; Text[50])
+        {
+        }
+        field(14017616; "Company Address 4"; Text[50])
+        {
+        }
+        field(14017617; "Company Address 5"; Text[50])
+        {
+        }
+        field(14017618; "Bank Address 1"; Text[50])
+        {
+        }
+        field(14017619; "Bank Address 2"; Text[50])
+        {
+        }
+        field(14017620; "Bank Address 3"; Text[50])
+        {
+        }
+        field(14017621; "Bank Address 4"; Text[50])
+        {
+        }
+        field(14017622; "Bank Address 5"; Text[50])
+        {
+        }
+        field(14017623; "Currency Name"; Text[20])
+        {
+        }
+        field(14017624; "Currency Symbole"; Text[10])
+        {
+        }
+        field(14017625; "Signature Line 1"; Boolean)
+        {
+            trigger OnValidate()
+            begin
+                IF NOT "Signature Line 1" AND "Signature Line 2" THEN
+                    ERROR(NV001);
+            end;
+        }
+        field(14017626; "Signature Line 2"; Boolean)
+        {
+            trigger OnValidate()
+            begin
+                IF NOT "Signature Line 1" AND "Signature Line 2" THEN
+                    ERROR(NV001);
+            end;
+        }
+        field(14017627; "Check Format"; Option)
+        {
+            OptionCaptionML = ENU = 'Preprinted, Blank';
+            OptionMembers = Preprinted,Blank;
+        }
+        field(14017640; "Check Layout"; Option)
+        {
+            OptionCaptionML = ENU = 'Stub Stub Check, Stub Check Stub, Check Stub Stub, Long Stub Check';
+            OptionMembers = "Stub Stub Check","Stub Check Stub","Check Stub Stub","Long Stub Check";
+        }
+        field(14017642; "Copy Check"; Option)
+        {
+            OptionCaptionML = ENU = '" ,Stub 1,Stub 2"';
+            OptionMembers = " ","Stub 1","Stub 2";
+        }
     }
+    var
+        NV001: TextConst ENU = 'Signature Line 2 can not be selected without Signature Line 2';
 }

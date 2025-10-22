@@ -96,9 +96,113 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         }
 
         field(50003; "Alt. Price"; Decimal)//14017672->50003 BC Upgrade 
-        { }
+        {
+            DecimalPlaces = 2 : 5;
+            trigger OnValidate()
+            var
+                ItemUOMRec2: Record "Item Unit of Measure";
+            BEGIN
+                IF ItemUOMRec2.GET("No.", "Alt. Price UOM") THEN BEGIN
+                    VALIDATE("Line Discount Amount", 0);
+                    VALIDATE("Direct Unit Cost", "Alt. Price" * ItemUOMRec2."Alt. Base Qty.");
+                END;
+                UpdateAmounts;
+            end;
+        }
         field(50004; "Alt. Price UOM"; Decimal)//14017673->50004 BC Upgrade 
-        { }
+        {
+            Editable = false;
+        }
+        field(14017612; "Posting Date"; Date)
+        {
+        }
+        field(14017613; "Purchaser Code"; Code[10])
+        {
+            TableRelation = "Salesperson/Purchaser" WHERE(Purchase = CONST(true));
+        }
+        field(14017614; "Vendor Shipment No"; Code[20])
+        {
+        }
+        field(14017615; "Vendor Invoice No."; Code[20])
+        {
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Purchase Header"."Vendor Invoice No." WHERE("No." = FIELD("Document No.")));
+        }
+        field(14017616; "Vendor Cr. Memo No."; Code[20])
+        {
+        }
+        field(14017620; "Line Amount to Receive"; Decimal)
+        {
+            Editable = false;
+        }
+        field(14017621; "Line Amount to Invoice"; Decimal)
+        {
+            Editable = false;
+        }
+        field(14017633; "No;Line Comment"; Boolean)
+        {
+            FieldClass = FlowField;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+        field(14017640; "Ship-to PO No."; code[20])
+        {
+        }
+        field(14017650; "Resource Group No."; code[20])
+        {
+            TableRelation = "Resource Group";
+        }
+        field(14017660; "Status"; Option)
+        {
+            OptionCaptionML = ENU = 'Open, Released';
+            OptionMembers = Open,Released;
+            Editable = false;
+        }
+        field(14017670; "Alt. Quantity"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+        field(14017671; "Alt. Qty. UOM"; code[10])
+        {
+            Editable = false;
+        }
+        field(14017748; "Outstanding Gross Weight"; Decimal)
+        {
+        }
+        field(14017749; "Outstanding Net Weight"; Decimal)
+        {
+        }
+        field(14017750; "Line Gross Weight"; Decimal)
+        {
+        }
+        field(14017751; "Line Net Weight"; Decimal)
+        {
+        }
+        field(14017756; "Item Group Code"; code[10])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(14017761; "Prod. Kit Order No."; code[20])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+        field(14017762; "Prod. Kit Order Line No."; Integer)
+        {
+            Editable = false;
+        }
+        field(14017930; "Rework No."; code[20])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(14017931; "Rework Line No."; Integer)
+        {
+        }
+        field(14018070; "QC Hold"; Boolean)
+        {
+            Editable = false;
+        }
         modify("Qty. to Invoice")
         {
             trigger OnAfterValidate()
@@ -151,13 +255,14 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
 
         //exit if not confirmed
         if not CONFIRM(
-          STRSUBSTNO(ConfirmTxt1 +
+            STRSUBSTNO(ConfirmTxt1 +
                      ConfirmTxt2 +
-                     ConfirmTxt3,
+                       ConfirmTxt3,
+
                          Item."No.", OrderMultiple,
-                            ParcelOrderQty, ParcelOrderQty div OrderMultiple,
-                               OrderQty, ParcelOrderQty, Item."Base Unit of Measure"))
-             then
+                              ParcelOrderQty, ParcelOrderQty div OrderMultiple,
+                                 OrderQty, ParcelOrderQty, Item."Base Unit of Measure"))
+               then
             exit;
 
 
