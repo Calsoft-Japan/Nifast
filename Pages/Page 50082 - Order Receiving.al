@@ -270,7 +270,7 @@ page 50082 "Order Receiving"
                     var
                         ApprovalEntries: Page "Approval Entries";
                     begin
-                        ApprovalEntries.Setfilters(DATABASE::"Purchase Header", Rec."Document Type", Rec."No.");
+                        ApprovalEntries.SetRecordFilters(DATABASE::"Purchase Header", Rec."Document Type", Rec."No.");
                         ApprovalEntries.RUN();
                     end;
                 }
@@ -308,12 +308,13 @@ page 50082 "Order Receiving"
                     {
                         Caption = '&EDI Received Elements';
                         Image = Receivables;
-                        RunObject = Page "LAX EDI Retention Policy List";
-                        RunPageLink = "Internal Doc No." = FIELD("EDI Internal Doc. No.");
-                        RunPageView = SORTING("Internal Doc No.", "Line No.")
+                        RunObject = Page "LAX EDI Receive Elements";
+                        RunPageLink = "Internal Doc. No." = FIELD("LAX EDI Internal Doc. No.");
+                        RunPageView = SORTING("Internal Doc. No.", "Line No.")
                                       ORDER(Ascending)
                                       WHERE(Viewable = CONST(true));
                         ToolTip = 'Executes the &EDI Received Elements action.';
+
                     }
                     action(Trace)
                     {
@@ -326,7 +327,7 @@ page 50082 "Order Receiving"
                             EDITrace: Page "LAX EDI Trace";
                         begin
                             CLEAR(EDITrace);
-                            EDITrace.SetDoc("EDI Internal Doc. No.");
+                            EDITrace.SetDoc(Rec."LAX EDI Internal Doc. No.");
                             EDITrace.RUNMODAL();
                         end;
                     }
@@ -496,9 +497,10 @@ page 50082 "Order Receiving"
 
                     trigger OnAction()
                     var
-                        ApprovalMgt: Codeunit "Export F/O Consolidation";
+                        // ApprovalMgt: Codeunit "Export F/O Consolidation";
+                        ApprovalMgt: Codeunit "ApprovalS Mgmt.";
                     begin
-                        IF ApprovalMgt.SendPurchaseApprovalRequest(Rec) THEN;
+                        ApprovalMgt.OnSendPurchaseDocForApproval(Rec);
                     end;
                 }
                 action("Cancel Approval Re&quest")
@@ -509,9 +511,10 @@ page 50082 "Order Receiving"
 
                     trigger OnAction()
                     var
-                        ApprovalMgt: Codeunit "Export F/O Consolidation";
+                        // ApprovalMgt: Codeunit "Export F/O Consolidation";
+                        ApprovalMgt: Codeunit "Approvals Mgmt.";
                     begin
-                        IF ApprovalMgt.CancelPurchaseApprovalRequest(Rec, TRUE, TRUE) THEN;
+                        ApprovalMgt.OnCancelPurchaseApprovalRequest(Rec)
                     end;
                 }
                 separator("    ")
@@ -526,11 +529,12 @@ page 50082 "Order Receiving"
 
                     trigger OnAction()
                     var
-                        SalesHeader: Record "Sales Header";
-                        ApprovalMgt: Codeunit "Export F/O Consolidation";
+                        //SalesHeader: Record "Sales Header";
+                        //ApprovalMgt: Codeunit "Export F/O Consolidation";
+                        ApprovalMgt: Codeunit "Approvals Mgmt.";
                         ICInOutboxMgt: Codeunit ICInboxOutboxMgt;
                     begin
-                        IF ApprovalMgt.PrePostApprovalCheck(SalesHeader, Rec) THEN
+                        IF ApprovalMgt.PrePostApprovalCheckPurch(Rec) THEN
                             ICInOutboxMgt.SendPurchDoc(Rec, FALSE);
                     end;
                 }
@@ -543,7 +547,7 @@ page 50082 "Order Receiving"
                     var
                         EMailMgt: Codeunit "LAX E-Mail Management";
                     begin
-                        Rec.TESTFIELD("LAX E-Mail Confirm. Handled" , FALSE);
+                        Rec.TESTFIELD("LAX E-Mail Confirm. Handled", FALSE);
 
                         EMailMgt.SendPurchaseConfirmation(Rec, TRUE, FALSE);
                     end;

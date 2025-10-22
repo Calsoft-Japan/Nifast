@@ -400,7 +400,7 @@ page 50114 "Price Contract Subform"
         Item.SETRANGE("Location Filter", Rec."Contract Location Code");
 
         EXIT(
-          AvailableToPromise.QtyAvailabletoPromise(
+          AvailableToPromise.CalcQtyAvailabletoPromise(
             Item,
             GrossRequirement,
             ScheduledReceipt,
@@ -475,7 +475,7 @@ page 50114 "Price Contract Subform"
     begin
 
         d.OPEN('Number of lines to insert #1.');
-        d.INPUT(1, NoLinesToInsert);
+        // d.INPUT(1, NoLinesToInsert);
 
         IF (NoLinesToInsert <= 0) THEN
             ERROR('Number must be greater than zero.')
@@ -547,7 +547,7 @@ page 50114 "Price Contract Subform"
     procedure _PrintLabel()
     var
         ContractLine: Record "Sales Price";
-        ContractLabel: Report 50035;
+    //ContractLabel: Report 50035;//TODO
     begin
         CLEAR(ContractLine);
         ContractLine.SETRANGE("Item No.", Rec."Item No.");
@@ -556,15 +556,15 @@ page 50114 "Price Contract Subform"
         ContractLine.SETRANGE("Unit of Measure Code", Rec."Unit of Measure Code");
         ContractLine.SETRANGE("Contract No.", Rec."Contract No.");
         ContractLine.SETRANGE("Customer Bin", Rec."Customer Bin");
-        ContractLabel.InitializeRequest('', 1, TRUE);
-        ContractLabel.SETTABLEVIEW(ContractLine);
-        ContractLabel.RUN();
+        // ContractLabel.InitializeRequest('', 1, TRUE);
+        // ContractLabel.SETTABLEVIEW(ContractLine);
+        // ContractLabel.RUN();//TODO
     end;
 
     procedure PrintLabel()
     var
         ContractLine: Record "Sales Price";
-        ContractLabel: Report 50035;
+    //ContractLabel: Report 50035;//TODO
     begin
         CLEAR(ContractLine);
         ContractLine.SETRANGE("Item No.", Rec."Item No.");
@@ -573,9 +573,9 @@ page 50114 "Price Contract Subform"
         ContractLine.SETRANGE("Unit of Measure Code", Rec."Unit of Measure Code");
         ContractLine.SETRANGE("Contract No.", Rec."Contract No.");
         ContractLine.SETRANGE("Customer Bin", Rec."Customer Bin");
-        ContractLabel.InitializeRequest('', 1, TRUE);
-        ContractLabel.SETTABLEVIEW(ContractLine);
-        ContractLabel.RUN();
+        // ContractLabel.InitializeRequest('', 1, TRUE);
+        // ContractLabel.SETTABLEVIEW(ContractLine);
+        // ContractLabel.RUN();//TODO
     end;
 
     local procedure OnAfterGetCurrRecord()

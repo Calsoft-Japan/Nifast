@@ -102,7 +102,7 @@ page 50081 "Purchase Invoice Line FactBox"
     trigger OnAfterGetRecord()
     begin
         //>>NV
-        NVM.UpdatePurchaseLineInfo(Rec, LDec, LDate, LineItem, LocationItem);
+        //NVM.UpdatePurchaseLineInfo(Rec, LDec, LDate, LineItem, LocationItem);//TODO
         //<<NV
     end;
 

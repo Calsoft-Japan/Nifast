@@ -93,7 +93,7 @@ page 50141 "FB Import Dataport List"
 
     procedure ProcessImport()
     var
-        FileSys: Record "File";
+        //FileSys: Record "File";//TODO
         OldFileName: Text[250];
         NewFileName: Text[250];
         InFile: File;
@@ -106,38 +106,38 @@ page 50141 "FB Import Dataport List"
         TotalImport := 0;
         //<< NF1.00:CIS.NG 10/26/15
 
-        FileSys.SETRANGE(Path, Rec."Import File Path");
-        FileSys.SETRANGE("Is a file", TRUE);
-        IF FileSys.FIND('-') THEN BEGIN
-            REPEAT
-                TotalImport += 1;  //NF1.00:CIS.NG 10/26/15
-                IF STRPOS(FileSys.Name, '.FBX') = 0 THEN BEGIN
-                    OldFileName := FileSys.Path + '\' + FileSys.Name;
-                    Rec.TempFileName := OldFileName;
-                    Rec.MODIFY();
-                    COMMIT();
-                    NewFileName := OldFileName + '.FBX';
-                    IF (NOT FILE.EXISTS(NewFileName)) THEN
-                        IF FILE.COPY(OldFileName, NewFileName) THEN BEGIN
-                            //>> NF1.00:CIS.NG 09/28/15
-                            //XMLPORT.RUN("Dataport ID",FALSE);
-                            CLEAR(InFile);
-                            CLEAR(InputStream);
-                            InFile.OPEN(TempFileName);
-                            InFile.CREATEINSTREAM(InputStream);
-                            XMLPORT.IMPORT(Rec."Dataport ID", InputStream);
-                            InFile.CLOSE;
-                            //<< NF1.00:CIS.NG 09/28/15
-                            FILE.ERASE(OldFileName);
-                            SuccessImport += 1;  //NF1.00:CIS.NG 10/26/15
-                        END;
-                END;
-            UNTIL FileSys.NEXT() = 0;
-            //>> NF1.00:CIS.NG 10/26/15
-            MESSAGE(Text001, TotalImport, SuccessImport, TotalImport - SuccessImport);
-        END ELSE
-            MESSAGE(Text000);
-        //<< NF1.00:CIS.NG 10/26/15
+        // FileSys.SETRANGE(Path, Rec."Import File Path");
+        // FileSys.SETRANGE("Is a file", TRUE);
+        // IF FileSys.FIND('-') THEN BEGIN
+        //     REPEAT
+        //         TotalImport += 1;  //NF1.00:CIS.NG 10/26/15
+        //         IF STRPOS(FileSys.Name, '.FBX') = 0 THEN BEGIN
+        //             OldFileName := FileSys.Path + '\' + FileSys.Name;
+        //             Rec.TempFileName := OldFileName;
+        //             Rec.MODIFY();
+        //             COMMIT();
+        //             NewFileName := OldFileName + '.FBX';
+        //             IF (NOT FILE.EXISTS(NewFileName)) THEN
+        //                 IF FILE.COPY(OldFileName, NewFileName) THEN BEGIN
+        //                     //>> NF1.00:CIS.NG 09/28/15
+        //                     //XMLPORT.RUN("Dataport ID",FALSE);
+        //                     CLEAR(InFile);
+        //                     CLEAR(InputStream);
+        //                     InFile.OPEN(TempFileName);
+        //                     InFile.CREATEINSTREAM(InputStream);
+        //                     XMLPORT.IMPORT(Rec."Dataport ID", InputStream);
+        //                     InFile.CLOSE;
+        //                     //<< NF1.00:CIS.NG 09/28/15
+        //                     FILE.ERASE(OldFileName);
+        //                     SuccessImport += 1;  //NF1.00:CIS.NG 10/26/15
+        //                 END;
+        //         END;
+        //     UNTIL FileSys.NEXT() = 0;
+        //     //>> NF1.00:CIS.NG 10/26/15
+        //     MESSAGE(Text001, TotalImport, SuccessImport, TotalImport - SuccessImport);
+        // END ELSE
+        //     MESSAGE(Text000);//TODO
+        // //<< NF1.00:CIS.NG 10/26/15
     end;
 }
 

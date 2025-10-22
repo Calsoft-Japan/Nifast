@@ -29,11 +29,11 @@ page 50147 "Lot Bin Content Buffer"
                     ToolTip = 'Specifies the value of the Bin Code field.';
                     Caption = 'Bin Code';
                 }
-                field("QC Bin"; Rec."QC Bin")
-                {
-                    ToolTip = 'Specifies the value of the QC Bin field.';
-                    Caption = 'QC Bin';
-                }
+                // field("QC Bin"; Rec."QC Bin")
+                // {
+                //     ToolTip = 'Specifies the value of the QC Bin field.';
+                //     Caption = 'QC Bin';
+                // }
                 field("Item No."; Rec."Item No.")
                 {
                     ToolTip = 'Specifies the value of the Item No. field.';
