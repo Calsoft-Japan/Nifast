@@ -251,4 +251,200 @@ codeunit 70003 AddOnCustomizations
         EXIT(TRUE);
 
     end;
+
+    PROCEDURE InitTrackingSpecificationSalesLine(VAR SalesLine: Record 37; VAR TrackingSpecification: Record 336);
+    BEGIN
+        TrackingSpecification.INIT;
+        TrackingSpecification."Source Type" := DATABASE::"Sales Line";
+        TrackingSpecification."Item No." := SalesLine."No.";
+        TrackingSpecification."Location Code" := SalesLine."Location Code";
+        TrackingSpecification.Description := SalesLine.Description;
+        TrackingSpecification."Variant Code" := SalesLine."Variant Code";
+        TrackingSpecification."Source Subtype" := SalesLine."Document Type".AsInteger();
+        TrackingSpecification."Source ID" := SalesLine."Document No.";
+        TrackingSpecification."Source Batch Name" := '';
+        TrackingSpecification."Source Prod. Order Line" := 0;
+        TrackingSpecification."Source Ref. No." := SalesLine."Line No.";
+        TrackingSpecification."Quantity (Base)" := SalesLine."Quantity (Base)";
+        TrackingSpecification."Qty. to Invoice (Base)" := SalesLine."Qty. to Invoice (Base)";
+        TrackingSpecification."Qty. to Invoice" := SalesLine."Qty. to Invoice";
+        TrackingSpecification."Quantity Invoiced (Base)" := SalesLine."Qty. Invoiced (Base)";
+        TrackingSpecification."Qty. per Unit of Measure" := SalesLine."Qty. per Unit of Measure";
+        TrackingSpecification."Bin Code" := SalesLine."Bin Code";
+
+        IF SalesLine."Document Type" IN [SalesLine."Document Type"::"Return Order", SalesLine."Document Type"::"Credit Memo"] THEN BEGIN
+            TrackingSpecification."Qty. to Handle (Base)" := SalesLine."Return Qty. to Receive (Base)";
+            TrackingSpecification."Quantity Handled (Base)" := SalesLine."Return Qty. Received (Base)";
+            TrackingSpecification."Qty. to Handle" := SalesLine."Return Qty. to Receive";
+        END ELSE BEGIN
+            TrackingSpecification."Qty. to Handle (Base)" := SalesLine."Qty. to Ship (Base)";
+            TrackingSpecification."Quantity Handled (Base)" := SalesLine."Qty. Shipped (Base)";
+            TrackingSpecification."Qty. to Handle" := SalesLine."Qty. to Ship";
+        END;
+    END;
+
+    PROCEDURE InitTrackingSpecificationReqLine(VAR ReqLine: Record 246; VAR TrackingSpecification: Record 336);
+    BEGIN
+        TrackingSpecification.INIT;
+        TrackingSpecification."Source Type" := DATABASE::"Requisition Line";
+        TrackingSpecification."Item No." := ReqLine."No.";
+        TrackingSpecification."Location Code" := ReqLine."Location Code";
+        TrackingSpecification.Description := ReqLine.Description;
+        TrackingSpecification."Variant Code" := ReqLine."Variant Code";
+        TrackingSpecification."Source Subtype" := 0;
+        TrackingSpecification."Source ID" := ReqLine."Worksheet Template Name";
+        TrackingSpecification."Source Batch Name" := ReqLine."Journal Batch Name";
+        TrackingSpecification."Source Prod. Order Line" := 0;
+        TrackingSpecification."Source Ref. No." := ReqLine."Line No.";
+        TrackingSpecification."Quantity (Base)" := ReqLine."Quantity (Base)";
+        TrackingSpecification."Qty. to Handle" := ReqLine.Quantity;
+        TrackingSpecification."Qty. to Handle (Base)" := ReqLine."Quantity (Base)";
+        TrackingSpecification."Qty. to Invoice" := ReqLine.Quantity;
+        TrackingSpecification."Qty. to Invoice (Base)" := ReqLine."Quantity (Base)";
+        TrackingSpecification."Quantity Handled (Base)" := 0;
+        TrackingSpecification."Quantity Invoiced (Base)" := 0;
+        TrackingSpecification."Qty. per Unit of Measure" := ReqLine."Qty. per Unit of Measure";
+    END;
+
+    PROCEDURE InitTrackingSpecificationPurchLine(VAR PurchLine: Record 39; VAR TrackingSpecification: Record 336);
+    BEGIN
+        TrackingSpecification.INIT;
+        TrackingSpecification."Source Type" := DATABASE::"Purchase Line";
+        TrackingSpecification."Item No." := PurchLine."No.";
+        TrackingSpecification."Location Code" := PurchLine."Location Code";
+        TrackingSpecification.Description := PurchLine.Description;
+        TrackingSpecification."Variant Code" := PurchLine."Variant Code";
+        TrackingSpecification."Source Subtype" := PurchLine."Document Type".AsInteger();
+        TrackingSpecification."Source ID" := PurchLine."Document No.";
+        TrackingSpecification."Source Batch Name" := '';
+        TrackingSpecification."Source Prod. Order Line" := 0;
+        TrackingSpecification."Source Ref. No." := PurchLine."Line No.";
+        TrackingSpecification."Quantity (Base)" := PurchLine."Quantity (Base)";
+        TrackingSpecification."Qty. to Invoice (Base)" := PurchLine."Qty. to Invoice (Base)";
+        TrackingSpecification."Qty. to Invoice" := PurchLine."Qty. to Invoice";
+        TrackingSpecification."Quantity Invoiced (Base)" := PurchLine."Qty. Invoiced (Base)";
+        TrackingSpecification."Qty. per Unit of Measure" := PurchLine."Qty. per Unit of Measure";
+        TrackingSpecification."Bin Code" := PurchLine."Bin Code";
+
+        IF PurchLine."Document Type" IN [PurchLine."Document Type"::"Return Order", PurchLine."Document Type"::"Credit Memo"] THEN BEGIN
+            TrackingSpecification."Qty. to Handle (Base)" := PurchLine."Return Qty. to Ship (Base)";
+            TrackingSpecification."Quantity Handled (Base)" := PurchLine."Return Qty. Shipped (Base)";
+            TrackingSpecification."Qty. to Handle" := PurchLine."Return Qty. to Ship";
+        END ELSE BEGIN
+            TrackingSpecification."Qty. to Handle (Base)" := PurchLine."Qty. to Receive (Base)";
+            TrackingSpecification."Quantity Handled (Base)" := PurchLine."Qty. Received (Base)";
+            TrackingSpecification."Qty. to Handle" := PurchLine."Qty. to Receive";
+        END;
+    END;
+
+    PROCEDURE InitTrackingSpecificationItemJnlLine(VAR ItemJnlLine: Record 83; VAR TrackingSpecification: Record 336);
+    BEGIN
+        TrackingSpecification.INIT;
+        TrackingSpecification."Source Type" := DATABASE::"Item Journal Line";
+        TrackingSpecification."Item No." := ItemJnlLine."Item No.";
+        TrackingSpecification."Location Code" := ItemJnlLine."Location Code";
+        TrackingSpecification.Description := ItemJnlLine.Description;
+        TrackingSpecification."Variant Code" := ItemJnlLine."Variant Code";
+        TrackingSpecification."Source Subtype" := ItemJnlLine."Entry Type".AsInteger();
+        TrackingSpecification."Source ID" := ItemJnlLine."Journal Template Name";
+        TrackingSpecification."Source Batch Name" := ItemJnlLine."Journal Batch Name";
+        TrackingSpecification."Source Prod. Order Line" := 0;
+        TrackingSpecification."Source Ref. No." := ItemJnlLine."Line No.";
+        TrackingSpecification."Quantity (Base)" := ItemJnlLine."Quantity (Base)";
+        TrackingSpecification."Qty. to Handle" := ItemJnlLine.Quantity;
+        TrackingSpecification."Qty. to Handle (Base)" := ItemJnlLine."Quantity (Base)";
+        TrackingSpecification."Qty. to Invoice" := ItemJnlLine.Quantity;
+        TrackingSpecification."Qty. to Invoice (Base)" := ItemJnlLine."Quantity (Base)";
+        TrackingSpecification."Quantity Handled (Base)" := 0;
+        TrackingSpecification."Quantity Invoiced (Base)" := 0;
+        TrackingSpecification."Qty. per Unit of Measure" := ItemJnlLine."Qty. per Unit of Measure";
+        TrackingSpecification."Bin Code" := ItemJnlLine."Bin Code";
+    END;
+
+    PROCEDURE InitTrackingSpecificationTransLine(VAR TransLine: Record 5741; VAR TrackingSpecification: Record 336; VAR AvalabilityDate: Date; Direction: option Outbound,Inbound);
+    BEGIN
+        TrackingSpecification."Source Type" := DATABASE::"Transfer Line";
+        TrackingSpecification."Item No." := TransLine."Item No.";
+        TrackingSpecification.Description := TransLine.Description;
+        TrackingSpecification."Variant Code" := TransLine."Variant Code";
+        TrackingSpecification."Source Subtype" := Direction;
+        TrackingSpecification."Source ID" := TransLine."Document No.";
+        TrackingSpecification."Source Batch Name" := '';
+        TrackingSpecification."Source Prod. Order Line" := TransLine."Derived From Line No.";
+        TrackingSpecification."Source Ref. No." := TransLine."Line No.";
+        TrackingSpecification."Quantity (Base)" := TransLine."Quantity (Base)";
+        TrackingSpecification."Qty. to Invoice (Base)" := TransLine."Quantity (Base)";
+        TrackingSpecification."Qty. to Invoice" := TransLine.Quantity;
+        TrackingSpecification."Quantity Invoiced (Base)" := 0;
+        TrackingSpecification."Qty. per Unit of Measure" := TransLine."Qty. per Unit of Measure";
+        TrackingSpecification."Location Code" := '';
+        CASE Direction OF
+            Direction::Outbound:
+                BEGIN
+                    TrackingSpecification."Location Code" := TransLine."Transfer-from Code";
+                    TrackingSpecification."Bin Code" := TransLine."Transfer-from Bin Code";
+                    TrackingSpecification."Qty. to Handle (Base)" := TransLine."Qty. to Ship (Base)";
+                    TrackingSpecification."Qty. to Handle" := TransLine."Qty. to Ship";
+                    TrackingSpecification."Quantity Handled (Base)" := TransLine."Qty. Shipped (Base)";
+                    AvalabilityDate := TransLine."Shipment Date";
+                END;
+            Direction::Inbound:
+                BEGIN
+                    TrackingSpecification."Location Code" := TransLine."Transfer-to Code";
+                    TrackingSpecification."Bin Code" := TransLine."Transfer-To Bin Code";
+                    TrackingSpecification."Qty. to Handle (Base)" := TransLine."Qty. to Receive (Base)";
+                    TrackingSpecification."Qty. to Handle" := TransLine."Qty. to Receive";
+                    TrackingSpecification."Quantity Handled (Base)" := TransLine."Qty. Received (Base)";
+                    AvalabilityDate := TransLine."Receipt Date";
+                END;
+        END;
+    END;
+
+    PROCEDURE InitTrackingSpecificationProdOrderLine(VAR ProdOrderLine: Record 5406; VAR TrackingSpecification: Record 336);
+    BEGIN
+        TrackingSpecification.INIT;
+        TrackingSpecification."Source Type" := DATABASE::"Prod. Order Line";
+        TrackingSpecification."Item No." := ProdOrderLine."Item No.";
+        TrackingSpecification."Location Code" := ProdOrderLine."Location Code";
+        TrackingSpecification.Description := ProdOrderLine.Description;
+        TrackingSpecification."Variant Code" := ProdOrderLine."Variant Code";
+        TrackingSpecification."Source Subtype" := ProdOrderLine.Status.AsInteger();
+        TrackingSpecification."Source ID" := ProdOrderLine."Prod. Order No.";
+        TrackingSpecification."Source Batch Name" := '';
+        TrackingSpecification."Source Prod. Order Line" := ProdOrderLine."Line No.";
+        TrackingSpecification."Source Ref. No." := 0;
+        TrackingSpecification."Quantity (Base)" := ProdOrderLine."Quantity (Base)";
+        TrackingSpecification."Qty. to Handle" := ProdOrderLine."Remaining Quantity";
+        TrackingSpecification."Qty. to Handle (Base)" := ProdOrderLine."Remaining Qty. (Base)";
+        TrackingSpecification."Qty. to Invoice" := ProdOrderLine."Remaining Quantity";
+        TrackingSpecification."Qty. to Invoice (Base)" := ProdOrderLine."Remaining Qty. (Base)";
+        TrackingSpecification."Quantity Handled (Base)" := ProdOrderLine."Finished Qty. (Base)";
+        TrackingSpecification."Quantity Invoiced (Base)" := ProdOrderLine."Finished Qty. (Base)";
+        TrackingSpecification."Qty. per Unit of Measure" := ProdOrderLine."Qty. per Unit of Measure";
+    END;
+
+    PROCEDURE InitTrackingSpecificationProdOrderComp(VAR ProdOrderComp: Record 5407; VAR TrackingSpecification: Record 336);
+    BEGIN
+        TrackingSpecification.INIT;
+        TrackingSpecification."Source Type" := DATABASE::"Prod. Order Component";
+        TrackingSpecification."Item No." := ProdOrderComp."Item No.";
+        TrackingSpecification."Location Code" := ProdOrderComp."Location Code";
+        TrackingSpecification."Bin Code" := ProdOrderComp."Bin Code";
+        TrackingSpecification.Description := ProdOrderComp.Description;
+        TrackingSpecification."Variant Code" := ProdOrderComp."Variant Code";
+        TrackingSpecification."Source Subtype" := ProdOrderComp.Status.AsInteger();
+        TrackingSpecification."Source ID" := ProdOrderComp."Prod. Order No.";
+        TrackingSpecification."Source Batch Name" := '';
+        TrackingSpecification."Source Prod. Order Line" := ProdOrderComp."Prod. Order Line No.";
+        TrackingSpecification."Source Ref. No." := ProdOrderComp."Line No.";
+        TrackingSpecification."Quantity (Base)" := ProdOrderComp."Remaining Qty. (Base)";
+        TrackingSpecification."Qty. to Handle" := ProdOrderComp."Remaining Quantity";
+        TrackingSpecification."Qty. to Handle (Base)" := ProdOrderComp."Remaining Qty. (Base)";
+        TrackingSpecification."Qty. to Invoice" := ProdOrderComp."Remaining Quantity";
+        TrackingSpecification."Qty. to Invoice (Base)" := ProdOrderComp."Remaining Qty. (Base)";
+        TrackingSpecification."Quantity Handled (Base)" := ProdOrderComp."Expected Qty. (Base)" - ProdOrderComp."Remaining Qty. (Base)";
+        TrackingSpecification."Quantity Invoiced (Base)" := ProdOrderComp."Expected Qty. (Base)" - ProdOrderComp."Remaining Qty. (Base)";
+        TrackingSpecification."Qty. per Unit of Measure" := ProdOrderComp."Qty. per Unit of Measure";
+    END;
+
 }
