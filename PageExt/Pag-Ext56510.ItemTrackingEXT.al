@@ -123,7 +123,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
         END ELSE BEGIN
             TempItemTrackLineModify.TRANSFERFIELDS(Rec);
             TempItemTrackLineModify.INSERT();
-            ItemTrackingDataCollection.UpdateLotSNDataSetWithChange(
+            ItemTrackingDataCollection.UpdateTrackingDataSetWithChange(
               TempItemTrackLineModify, CurrentSignFactor * SourceQuantityArray[1] < 0, CurrentSignFactor, 1);
         END;
         CalculateSums();
