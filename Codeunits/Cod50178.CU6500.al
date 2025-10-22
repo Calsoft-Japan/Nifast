@@ -418,6 +418,7 @@ codeunit 50178 CU_6500
         EXIT(FALSE);
         //<< NF1.00:CIS.NG    09/12/16
     END;
+    
 
     var
         Text004: Label 'ENU=Counting records...';
