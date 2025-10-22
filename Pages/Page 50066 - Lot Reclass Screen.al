@@ -447,7 +447,7 @@ page 50066 "Lot Reclass Screen"
 
 
         //now call selection
-        IF ItemTrackingMgt.LotBinContentLookupBin3(TempLotBinContent, LookupFromBin, LookupItemNo, LookupFromLotNo, LookupQty) THEN BEGIN
+        IF LotBinContentLookupBin3(TempLotBinContent, LookupFromBin, LookupItemNo, LookupFromLotNo, LookupQty) THEN BEGIN
             FromBin := LookupFromBin;
             ItemNo := LookupItemNo;
             FromLot := LookupFromLotNo;
@@ -455,6 +455,34 @@ page 50066 "Lot Reclass Screen"
         END;
 
     end;
+
+    PROCEDURE LotBinContentLookupBin3(VAR TempLotBinContent: Record 50001 temporary; VAR BinCode: Code[10]; VAR ItemNo: Code[20]; VAR LotNo: Code[20]; VAR UseQty: Decimal): Boolean;
+    VAR
+        ItemTrackingSummaryForm: Page 50022;
+        NVM: Codeunit 50021;
+    BEGIN
+        //used for reclass
+        ItemTrackingSummaryForm.SetSources(TempLotBinContent);
+        ItemTrackingSummaryForm.LOOKUPMODE(TRUE);
+        IF TempLotBinContent.FIND('-') THEN
+            ItemTrackingSummaryForm.SETRECORD(TempLotBinContent);
+        TempLotBinContent.RESET;
+
+        IF ItemTrackingSummaryForm.RUNMODAL = ACTION::LookupOK THEN BEGIN
+            ItemTrackingSummaryForm.GETRECORD(TempLotBinContent);
+            ItemNo := TempLotBinContent."Item No.";
+            LotNo := TempLotBinContent."Lot No.";
+            BinCode := TempLotBinContent."Bin Code";
+            TempLotBinContent.CALCFIELDS(Quantity, "Pick Qty.", "Neg. Adjmt. Qty.");
+            UseQty := TempLotBinContent.Quantity - TempLotBinContent."Pick Qty." - TempLotBinContent."Neg. Adjmt. Qty.";
+            IF UseQty < 0 THEN
+                UseQty := 0;
+
+            EXIT(TRUE);
+        END
+        ELSE
+            EXIT(FALSE);
+    END;
 
     procedure FromLocationBinEnabled(): Boolean
     begin
@@ -669,7 +697,7 @@ page 50066 "Lot Reclass Screen"
 
 
         //now call selection
-        IF ItemTrackingMgt.LotBinContentLookupBin3(TempLotBinContent, LookupFromBin, LookupItemNo, LookupFromLotNo, LookupQty) THEN BEGIN
+        IF LotBinContentLookupBin3(TempLotBinContent, LookupFromBin, LookupItemNo, LookupFromLotNo, LookupQty) THEN BEGIN
             FromBin := LookupFromBin;
             ItemNo := LookupItemNo;
             FromLot := LookupFromLotNo;
