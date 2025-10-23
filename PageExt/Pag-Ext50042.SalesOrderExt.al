@@ -160,7 +160,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
             trigger OnBeforeAction()
             begin
                 //>> NIF #10045 RTT 05-19-05
-                ReleaseSalesDoc.SetCalledFromSalesOrder;
+                SetCalledFromSalesOrder;
                 //<< NIF #10045 RTT 05-19-05
             end;
         }
@@ -264,7 +264,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
 
             end;
         }
-        modify("&Print")
+        modify("Work Order")
         {
 
             trigger OnBeforeAction()
@@ -325,7 +325,8 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
     VAR
         rSalesLine: Record 37;
         rSalesLine2: Record 37;
-        cItemCheckAvail: Codeunit CU_311;
+        //cItemCheckAvail: Codeunit 311;
+        cItemCheckAvail: Codeunit CU311Subscriber;
 
     BEGIN
         //-AKK1606.01--
@@ -348,14 +349,19 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
         //+AKK1606.01++
     END;
 
+    procedure SetCalledFromSalesOrder()
+    begin
+        CalledFromSalesOrder := TRUE
+    end;
+
 
     var
 
         NVM: Codeunit 50021;
         EDIIntegration: Codeunit 14000363;
-        ReleaseSalesDoc: Codeunit CU_414;
+        ReleaseSalesDoc: Codeunit "Release Sales Document";
         wNo: Code[20];
-
+        CalledFromSalesOrder: Boolean;
         wNoCte: Code[20];
         wNoSerie: Code[20];
         OrderAmount_gDec: Decimal;

@@ -48,11 +48,12 @@ page 50039 "Posted Receive Line Label Req."
                     ToolTip = 'Specifies the value of the Mfg. Lot No. field.';
                     Caption = 'Mfg. Lot No.';
                 }
-                field("QC Hold"; Rec."QC Hold")
-                {
-                    ToolTip = 'Specifies the value of the QC Hold field.';
-                    Caption = 'QC Hold';
-                }
+                //TODO
+                // field("QC Hold"; Rec."QC Hold")
+                // {
+                //     ToolTip = 'Specifies the value of the QC Hold field.';
+                //     Caption = 'QC Hold';
+                // }
                 field(IsComponent; IsComponents())
                 {
                     Caption = 'Component';
@@ -133,10 +134,11 @@ page 50039 "Posted Receive Line Label Req."
                         CLEAR(ReceiveLineLabel);
                         ReceiveLine.COPYFILTERS(Rec);
                         //determine whether qc
-                        IF "QC Hold" THEN
-                            ReceiveLineLabel.InitializeRequest(ReceiveRule."QC Label Code", NoOfCopies)
-                        ELSE
-                            ReceiveLineLabel.InitializeRequest(ReceiveRule."Item Label Code", NoOfCopies);
+                        //TODO
+                        // IF "QC Hold" THEN
+                        //     ReceiveLineLabel.InitializeRequest(ReceiveRule."QC Label Code", NoOfCopies)
+                        // ELSE
+                        //     ReceiveLineLabel.InitializeRequest(ReceiveRule."Item Label Code", NoOfCopies);
                         //TODO
                         //ReceiveLineLabel.InitializeRequest2(QtyToPrint);
                         ReceiveLineLabel.SETTABLEVIEW(ReceiveLine);

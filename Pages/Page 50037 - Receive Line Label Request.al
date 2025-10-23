@@ -142,10 +142,10 @@ page 50037 "Receive Line Label Request"
                         //XReceiveLine.SETRECFILTER;
                         ReceiveLineLabel.SETTABLEVIEW(ReceiveLine);
                         //determine whether qc
-                        IF "QC Hold" THEN
-                            ReceiveLineLabel.InitializeRequest(ReceiveRule."QC Label Code", NoOfCopies)
-                        ELSE
-                            ReceiveLineLabel.InitializeRequest(ReceiveRule."Item Label Code", NoOfCopies);
+                        // IF "QC Hold" THEN//TODO
+                        //     ReceiveLineLabel.InitializeRequest(ReceiveRule."QC Label Code", NoOfCopies)
+                        // ELSE
+                        //     ReceiveLineLabel.InitializeRequest(ReceiveRule."Item Label Code", NoOfCopies);
                             //TODO
                         //ReceiveLineLabel.InitializeRequest2(QtyToPrint);
                         //ReceiveLineLabel.USEREQUESTFORM(TRUE);

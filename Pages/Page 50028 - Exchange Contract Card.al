@@ -171,14 +171,14 @@ page 50028 "Exchange Contract Card"
                     Image = GetOrder;
                     ToolTip = 'Executes the &Get Purchase Orders action.';
 
-                    trigger OnAction()
-                    var
-                        Get4XPOLines: Report 50005;
-                    begin
-                        Get4XPOLines."SetExchange Contract No."(Rec."No.");
-                        Get4XPOLines.RUN;
-                        //CurrPage.Subform.PAGE.UPDATECONTROLS;
-                    end;
+                    // trigger OnAction()//TODO
+                    // var
+                    //     Get4XPOLines: Report 50005;
+                    // begin
+                    //     Get4XPOLines."SetExchange Contract No."(Rec."No.");
+                    //     Get4XPOLines.RUN;
+                    //     //CurrPage.Subform.PAGE.UPDATECONTROLS;
+                    // end;
                 }
                 action("&Update PO with Foreign Exchange No.")
                 {
@@ -283,12 +283,12 @@ page 50028 "Exchange Contract Card"
                     trigger OnAction()
                     var
                         BankExchangeRec: Record "4X Bank Exchange Contract";
-                        "4XBankReport": Report 50012;
+                        //"4XBankReport": Report 50012;//TODO
                     begin
                         BankExchangeRec.COPY(Rec);
                         Rec.SETRANGE("No.", Rec."No.");
-                        "4XBankReport".SETTABLEVIEW(Rec);
-                        "4XBankReport".RUN;
+                        // "4XBankReport".SETTABLEVIEW(Rec);
+                        // "4XBankReport".RUN;
                         Rec.COPY(BankExchangeRec);
                     end;
                 }
@@ -301,11 +301,11 @@ page 50028 "Exchange Contract Card"
                     trigger OnAction()
                     var
                         t4XContract: Record "4X Bank Exchange Contract";
-                        tDetailReport: Report 50013;
+                        //tDetailReport: Report 50013;//TODO
                     begin
                         t4XContract.SETRANGE("No.", Rec."No.");
-                        tDetailReport.SETTABLEVIEW(t4XContract);
-                        tDetailReport.RUN;
+                        // tDetailReport.SETTABLEVIEW(t4XContract);
+                        // tDetailReport.RUN;
                     end;
                 }
             }
