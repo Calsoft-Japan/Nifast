@@ -17,9 +17,9 @@ report 50026 "Purchase Order CNF"
                                 WHERE("Document Type" = CONST(Order));
             PrintOnlyIfDetail = true;
             RequestFilterFields = "No.", "Buy-from Vendor No.", "Pay-to Vendor No.", "No. Printed";
-            column(POAuthority_User; UserSetup."PO Authority")
-            {
-            }
+            // column(POAuthority_User; UserSetup."PO Authority")
+            // {
+            // }
             column(CompanyInformation__Document_Logo_; CompanyInformation.Picture)//."Document Logo")
             {
             }
@@ -670,7 +670,7 @@ report 50026 "Purchase Order CNF"
         //User.SETRANGE("User Name", USERID);//BC Upgrad 2025-06-23
         UserSetup.SETRANGE("User ID", USERID);//BC Upgrad 2025-06-23
         IF UserSetup.FINDFIRST THEN;
-           // UserSetup.CALCFIELDS("E-Signature");
+        // UserSetup.CALCFIELDS("E-Signature");
         //<< NF1.00:CIS.CM 08-28-15
     end;
 

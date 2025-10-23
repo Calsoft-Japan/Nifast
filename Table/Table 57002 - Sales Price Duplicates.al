@@ -251,15 +251,4 @@ table 57002 "Sales Price Duplicates"
      Text002: Label 'You can only change the %1 and %2 from the Campaign Card when %3 = %4';
      ">>GV_NV": Integer;
      Contract: Record 50110; */
-    keys
-    {
-        // key(Key1; "Item No.", "Sales Type", "Sales Code", "Starting Date", "Currency Code", "Variant Code", "Unit of Measure Code", "Minimum Quantity", "Contract No.", "Item No. 2")
-        // Removed add-on field (Contract No.)
-        key(Key1; "Item No.", "Sales Type", "Sales Code", "Starting Date", "Currency Code", "Variant Code", "Unit of Measure Code", "Minimum Quantity", "Item No. 2")
-        {
-        }
-        key(Key2; "Sales Type", "Sales Code", "Item No.", "Starting Date", "Currency Code", "Variant Code", "Unit of Measure Code", "Minimum Quantity")
-        {
-        }
-    }
 }

@@ -328,13 +328,4 @@ table 76505 "Renamed due to error(NIF Dupl)"
     // UserSetup: Record 91;
     begin
     end;
-    keys
-    {
-        key(Key1; "Item No.", "Variant Code", "Lot No.")
-        {
-        }
-        key(Key2; "Item No.", "Mfg. Lot No.")
-        {
-        }
-    }
 }
