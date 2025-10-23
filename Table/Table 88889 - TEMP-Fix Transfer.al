@@ -29,12 +29,4 @@ table 88889 "TEMP-Fix Transfer"
         {
         }
     }
-
-    fieldgroups
-    {
-    }
-
-    var
-      /*   Item: Record 27;
-        ItemTrkgMgmt: Codeunit 6500; */
 }

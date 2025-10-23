@@ -42,19 +42,15 @@ table 99801 "TEMP - Fix Prod Kit Lots"
                                                                     "Location Code"=FIELD("Location Code")));
             FieldClass = FlowField;
         }
-        field(50;Fix;Boolean)
+        field(50; Fix; Boolean)
         {
             // cleaned
         }
     }
-     keys
+    keys
     {
-        key(Key1;"Location Code","Item No.","Lot No.")
+        key(Key1; "Location Code", "Item No.", "Lot No.")
         {
         }
-    }
-
-    fieldgroups
-    {
     }
 }

@@ -8737,7 +8737,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>5.076cm</Top>
+              <Top>5.3935cm</Top>
               <Height>0.423cm</Height>
               <Width>3.15cm</Width>
               <ZIndex>1</ZIndex>
@@ -8760,7 +8760,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>4.20727cm</Top>
+              <Top>4.65177cm</Top>
               <Left>11.54025cm</Left>
               <Height>0.423cm</Height>
               <Width>2.1cm</Width>
@@ -8784,7 +8784,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>3.78427cm</Top>
+              <Top>4.22877cm</Top>
               <Left>11.54025cm</Left>
               <Height>0.423cm</Height>
               <Width>2.1cm</Width>
@@ -8810,7 +8810,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>6.32227cm</Top>
+              <Top>6.76677cm</Top>
               <Left>14.90025cm</Left>
               <Height>0.423cm</Height>
               <Width>2.1cm</Width>
@@ -8834,7 +8834,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.98027cm</Top>
+              <Top>3.42477cm</Top>
               <Left>11.54025cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -8858,7 +8858,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.55727cm</Top>
+              <Top>3.00177cm</Top>
               <Left>11.54025cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -8882,7 +8882,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>3.82627cm</Top>
+              <Top>4.27077cm</Top>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
               <ZIndex>7</ZIndex>
@@ -8905,7 +8905,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>3.40327cm</Top>
+              <Top>3.84777cm</Top>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
               <ZIndex>8</ZIndex>
@@ -8977,7 +8977,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>5.89927cm</Top>
+              <Top>6.345cm</Top>
               <Left>14.90025cm</Left>
               <Height>0.423cm</Height>
               <Width>2.1cm</Width>
@@ -9002,7 +9002,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                 </Paragraph>
               </Paragraphs>
               <Top>6.345cm</Top>
-              <Left>3.35025cm</Left>
+              <Left>3.37671cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
               <ZIndex>12</ZIndex>
@@ -9048,7 +9048,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>5.05327cm</Top>
+              <Top>5.3935cm</Top>
               <Left>11.54025cm</Left>
               <Height>0.423cm</Height>
               <Width>4.41cm</Width>
@@ -9074,7 +9074,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>5.076cm</Top>
+              <Top>5.3935cm</Top>
               <Left>3.35025cm</Left>
               <Height>0.423cm</Height>
               <Width>2.1cm</Width>
@@ -9098,7 +9098,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>4.20727cm</Top>
+              <Top>4.65177cm</Top>
               <Left>13.85025cm</Left>
               <Height>0.423cm</Height>
               <Width>4.2cm</Width>
@@ -9122,7 +9122,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.98027cm</Top>
+              <Top>3.42477cm</Top>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
               <ZIndex>17</ZIndex>
@@ -9145,7 +9145,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>3.78427cm</Top>
+              <Top>4.22877cm</Top>
               <Left>13.85025cm</Left>
               <Height>0.423cm</Height>
               <Width>4.2cm</Width>
@@ -9169,7 +9169,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.55727cm</Top>
+              <Top>3.00177cm</Top>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
               <ZIndex>19</ZIndex>
@@ -9192,7 +9192,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.13427cm</Top>
+              <Top>2.57877cm</Top>
               <Left>11.54025cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -9216,7 +9216,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.13427cm</Top>
+              <Top>2.57877cm</Top>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
               <ZIndex>21</ZIndex>
@@ -9239,7 +9239,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.71127cm</Top>
+              <Top>2.15577cm</Top>
               <Left>11.54025cm</Left>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
@@ -9263,7 +9263,7 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.71127cm</Top>
+              <Top>2.15577cm</Top>
               <Height>0.423cm</Height>
               <Width>6.3cm</Width>
               <ZIndex>23</ZIndex>
@@ -9287,13 +9287,10 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                 </Paragraph>
               </Paragraphs>
               <Top>1.66927cm</Top>
-              <Left>18.12837cm</Left>
+              <Left>11.54025cm</Left>
               <Height>0.423cm</Height>
-              <Width>0.98188cm</Width>
+              <Width>6.3cm</Width>
               <ZIndex>24</ZIndex>
-              <Visibility>
-                <Hidden>true</Hidden>
-              </Visibility>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -9316,14 +9313,10 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.66927cm</Top>
-              <Left>6.79979cm</Left>
+              <Top>1.70102cm</Top>
               <Height>0.423cm</Height>
-              <Width>1.08771cm</Width>
+              <Width>6.3cm</Width>
               <ZIndex>25</ZIndex>
-              <Visibility>
-                <Hidden>true</Hidden>
-              </Visibility>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -9434,8 +9427,8 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>5.89927cm</Top>
-              <Left>11.54025cm</Left>
+              <Top>6.345cm</Top>
+              <Left>11.56671cm</Left>
               <Height>0.423cm</Height>
               <Width>3.15cm</Width>
               <ZIndex>30</ZIndex>
@@ -9458,8 +9451,8 @@ Cstr(Fields!PricesInclVAT_SalesHdr.Value),1)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>6.32227cm</Top>
-              <Left>11.54025cm</Left>
+              <Top>6.768cm</Top>
+              <Left>11.56671cm</Left>
               <Height>0.423cm</Height>
               <Width>3.15cm</Width>
               <ZIndex>31</ZIndex>

@@ -115,7 +115,6 @@ table 50002 "Lot Entry"
             TableRelation = "CVE Pedimento";
         }
     }
-
     keys
     {
         key(Key1; "Document Type", "Document No.", "Order Line No.", "Line No.")

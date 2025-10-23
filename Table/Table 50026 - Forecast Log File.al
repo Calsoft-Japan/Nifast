@@ -33,9 +33,4 @@ table 50026 "Forecast Log File"
         {
         }
     }
-
-    fieldgroups
-    {
-    }
-
 }

@@ -42,7 +42,7 @@ report 50027 "Sales Invoice CNF"
             {
                 DataItemLink = "Document No." = FIELD("No.");
                 DataItemTableView = SORTING("Document No.", "Line No.");
-                dataitem(SalesLineComments; "Sales Comment Line")
+                /* dataitem(SalesLineComments; "Sales Comment Line")
                 {
                     DataItemLink = "No." = FIELD("Document No."),
                                    "Document Line No." = FIELD("Line No.");
@@ -74,7 +74,7 @@ report 50027 "Sales Invoice CNF"
                         //TempSalesInvoiceLine.INSERT;
                         //<< NF1.00:CIS.NG 08-28-15
                     end;
-                }
+                } */
 
                 trigger OnAfterGetRecord()
                 begin
@@ -94,7 +94,7 @@ report 50027 "Sales Invoice CNF"
                     TempSalesInvoiceLineAsm.DELETEALL;
                 end;
             }
-            dataitem("Sales Comment Line"; "Sales Comment Line")
+            /* dataitem("Sales Comment Line"; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
                 DataItemTableView = SORTING("Document Type", "No.", "Document Line No.", "Line No.")
@@ -134,7 +134,7 @@ report 50027 "Sales Invoice CNF"
 
                     TempSalesInvoiceLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -283,7 +283,7 @@ report 50027 "Sales Invoice CNF"
                     column(SalesSetup__Remit_To_Description_; SalesSetup."Remit-To Description")
                     {
                     }
-                    column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+                    column(CompanyInformation__Document_Logo_; CompanyInformation.Picture) //"Document Logo")
                     {
                     }
                     column(BillCaption; BillCaptionLbl)
@@ -607,7 +607,8 @@ report 50027 "Sales Invoice CNF"
                             CollectAsmInformation(TempSalesInvoiceLine);
 
                             //>> NF1.00:CIS.NG 08-28-15
-                            CLEAR(SalesLineComments);
+                            SalesLineCommentsText := ''; //BC Upgrade not need show comment line
+                            /* CLEAR(SalesLineComments);
                             SalesLineCommentsText := '';
                             SalesLineCommentLine.RESET;
                             SalesLineCommentLine.SETRANGE("Document Type", SalesLineCommentLine."Document Type"::"Posted Invoice");
@@ -622,7 +623,7 @@ report 50027 "Sales Invoice CNF"
                                     ELSE
                                         SalesLineCommentsText := SalesLineCommentLine.Comment;
                                 UNTIL SalesLineCommentLine.NEXT = 0;
-                            END;
+                            END; */
                             //<< NF1.00:CIS.NG 08-28-15
                         end;
 
@@ -663,10 +664,15 @@ report 50027 "Sales Invoice CNF"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempSInvHdr: Record "Sales Invoice Header" temporary;
+                tempRespCenter: Record "Responsibility Center" temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
-                        FormatAddress.RespCenter(CompanyAddress, RespCenter);
+                        tempRespCenter := RespCenter;
+                        tempRespCenter.Contact := '';
+                        FormatAddress.RespCenter(CompanyAddress, tempRespCenter);//RespCenter); BC Upgrade
                         CompanyInformation."Phone No." := RespCenter."Phone No.";
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
@@ -696,6 +702,12 @@ report 50027 "Sales Invoice CNF"
 
                 FormatAddress.SalesInvBillTo(BillToAddress, "Sales Invoice Header");
                 FormatAddress.SalesInvShipTo(ShipToAddress, ShipToAddress, "Sales Invoice Header");//ShipToAddress BC Upgrade
+                /* 
+                tempSInvHdr := "Sales Invoice Header";
+                tempSInvHdr."Bill-to Contact" := '';
+                tempSInvHdr."Ship-to Contact" := '';
+                FormatAddress.SalesInvBillTo(BillToAddress, tempSInvHdr);//"Sales Invoice Header");
+                FormatAddress.SalesInvShipTo(ShipToAddress, ShipToAddress, tempSInvHdr);//"Sales Invoice Header");//ShipToAddress BC Upgrade */
 
                 IF "Payment Terms Code" = '' THEN
                     CLEAR(PaymentTerms)
@@ -867,6 +879,7 @@ report 50027 "Sales Invoice CNF"
 
         CompanyInformation.GET;
         CompanyInformation.CALCFIELDS("Document Logo");
+        CompanyInformation.CalcFields(Picture);//BC Upgrade
         SalesSetup.GET;
 
         CASE SalesSetup."Logo Position on Documents" OF

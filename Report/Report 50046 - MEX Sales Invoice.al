@@ -147,6 +147,7 @@ report 50046 "MEX Sales Invoice"
                     TempSalesInvoiceLine.DELETEALL;
                 end;
             }
+            /* BC Upgrade No need show any comment line in report===================
             dataitem("Sales Comment Line"; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -175,7 +176,7 @@ report 50046 "MEX Sales Invoice"
                     END;
                     TempSalesInvoiceLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -319,6 +320,8 @@ report 50046 "MEX Sales Invoice"
                                 SETRANGE("No.", TempSalesInvoiceLine."Document No.");
                                 //SETRANGE("Doc. Line No.",TempSalesInvoiceLine."Line No.");  //NF1.00:CIS.CM 09-29-15
                                 SETRANGE("Document Line No.", TempSalesInvoiceLine."Line No.");
+
+                                SETRANGE("Document Line No.", -11);//BC Upgrade to skip all the comment lines.
                             end;
                         }
 

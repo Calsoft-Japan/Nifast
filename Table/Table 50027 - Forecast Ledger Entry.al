@@ -106,11 +106,12 @@ table 50027 "Forecast Ledger Entry"
 
     keys
     {
-        key(PK; "Entry No.")
+        key(Key1; "Entry No.", "Item No.", "Customer No.", "Shipping Date", "Forecast Quantity", "Division Code")
         {
-            Clustered = true;
+            SumIndexFields = "Forecast Quantity";
         }
-        key(RPTSort; "Customer No.", "Division Code")
-        { }
+        key(Key2; "Customer No.", "Division Code")
+        {
+        }
     }
 }

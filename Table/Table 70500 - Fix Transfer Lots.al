@@ -16,11 +16,7 @@ table 70500 "Fix Transfer Lots"
         }
         field(4; "Bin Code"; Code[20])
         {
-            trigger OnLookup()
-            var
-               // BinContent: Record 7302;
-            begin
-            end;
+
         }
         field(5; "Location Code"; Code[20])
         {
@@ -75,18 +71,14 @@ table 70500 "Fix Transfer Lots"
                                                                       "Location Code"=FIELD("Location Code")));
         }
     }
-       keys
+    keys
     {
-        key(Key1;"Entry No.")
+        key(Key1; "Entry No.")
         {
         }
-        key(Key2;"Location Code","Item No.","Lot No.")
+        key(Key2; "Location Code", "Item No.", "Lot No.")
         {
             SumIndexFields = "Adjmt. Qty";
         }
-    }
-
-    fieldgroups
-    {
     }
 }

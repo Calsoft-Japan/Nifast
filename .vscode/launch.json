@@ -5,14 +5,15 @@
             "name": "Microsoft cloud sandbox",
             "request": "launch",
             "type": "al",
-            "tenant": "3c3f5b8d-35df-48ff-bf52-b6e873fe7687",
+            // "tenant": "3c3f5b8d-35df-48ff-bf52-b6e873fe7687",
+            "tenant": "fac1b8b2-441f-4dbf-a3c7-b29b0cbd6c05",
             "environmentType": "Sandbox",
-            "environmentName": "TestNifast2",
+            "environmentName": "Sandbox2",
             "startupObjectId": 22,
             "startupObjectType": "Page",
             "breakOnError": "All",
             "launchBrowser": true,
-            "schemaUpdateMode": "ForceSync",
+            // "schemaUpdateMode": "ForceSync",
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true
         }

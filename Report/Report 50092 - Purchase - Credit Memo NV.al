@@ -46,7 +46,7 @@ report 50092 "Purchase - Credit Memo NV"
                     column(CompanyAddress6; CompanyAddress[6])
                     {
                     }
-                    column(DocumentLogo_CompanyInformation; CompanyInformation."Document Logo")
+                    column(DocumentLogo_CompanyInformation; CompanyInformation.Picture)// "Document Logo")
                     {
                     }
                     column(CopyTxt; CopyTxt)
@@ -394,6 +394,8 @@ report 50092 "Purchase - Credit Memo NV"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempPurCrHdr: Record "Purch. Cr. Memo Hdr." temporary;
             begin
                 IF PrintCompany THEN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
@@ -417,8 +419,11 @@ report 50092 "Purchase - Credit Memo NV"
                     "Ship-to Name" := Text009;
                 END;
 
-                FormatAddress.PurchCrMemoPayTo(BuyFromAddress, "Purch. Cr. Memo Hdr.");
-                FormatAddress.PurchCrMemoShipTo(ShipToAddress, "Purch. Cr. Memo Hdr.");
+                /* tempPurCrHdr := "Purch. Cr. Memo Hdr.";
+                tempPurCrHdr."Pay-to Contact" := '';
+                tempPurCrHdr."Ship-to Contact" := ''; */
+                FormatAddress.PurchCrMemoPayTo(BuyFromAddress, "Purch. Cr. Memo Hdr.");//BC Upgrade tempPurCrHdr);
+                FormatAddress.PurchCrMemoShipTo(ShipToAddress, "Purch. Cr. Memo Hdr.");//tempPurCrHdr);
 
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN
@@ -549,6 +554,7 @@ report 50092 "Purchase - Credit Memo NV"
     begin
         CompanyInformation.GET('');
         CompanyInformation.CALCFIELDS("Document Logo");
+        CompanyInformation.CALCFIELDS(Picture);//BC Upgrade
     end;
 
     var

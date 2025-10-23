@@ -21,7 +21,7 @@
                   <Width>0.70866in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.65354in</Width>
+                  <Width>2.2441in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.64961in</Width>
@@ -576,6 +576,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Item_Description">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -592,6 +593,9 @@
                           </Paragraphs>
                           <rd:DefaultName>Item_Description</rd:DefaultName>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -895,6 +899,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Item_Description3">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -911,6 +916,9 @@
                           </Paragraphs>
                           <rd:DefaultName>Item_Description</rd:DefaultName>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1711,7 +1719,7 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.49961in</Top>
             <Height>2.47737in</Height>
-            <Width>5.96458in</Width>
+            <Width>6.55514in</Width>
             <Style />
           </Tablix>
           <Textbox Name="Item_TABLECAPTION__________ItemFilter">

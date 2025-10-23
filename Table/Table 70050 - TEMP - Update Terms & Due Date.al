@@ -37,8 +37,4 @@ table 70050 "TEMP - Update Terms & Due Date"
         {
         }
     }
-
-    fieldgroups
-    {
-    }
 }

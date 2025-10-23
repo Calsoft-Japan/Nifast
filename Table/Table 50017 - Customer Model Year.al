@@ -30,6 +30,14 @@ table 50017 "Customer Model Year"
                             ModelYear.FieldCaption(Default), ModelYear.FieldCaption(Code), ModelYear.Code);
                 END;
             end;
+        {
+
+        }
+    }
+    keys
+    {
+        key(Key1; "Customer No.", "Code")
+        {
         }
     }
     keys

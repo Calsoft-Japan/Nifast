@@ -147,12 +147,7 @@ table 76505 "Renamed due to error(NIF Dupl)"
         }
         field(50120; "Passed Inspection"; Boolean)
         {
-            trigger OnValidate()
-            var
-            /*   ">>NIF_LV": Integer;
-              LotNoInfo2: Record 6505; */
-            begin
-            end;
+
         }
         field(50125; "Inspection Comments"; Text[100])
         {
@@ -333,4 +328,13 @@ table 76505 "Renamed due to error(NIF Dupl)"
     // UserSetup: Record 91;
     begin
     end;
+    keys
+    {
+        key(Key1; "Item No.", "Variant Code", "Lot No.")
+        {
+        }
+        key(Key2; "Item No.", "Mfg. Lot No.")
+        {
+        }
+    }
 }

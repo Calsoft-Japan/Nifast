@@ -19,15 +19,10 @@ table 88850 "RenameBins"
             // cleaned
         }
     }
-
     keys
     {
         key(Key1; "Location Code", "Old Bin")
         {
         }
-    }
-
-    fieldgroups
-    {
     }
 }

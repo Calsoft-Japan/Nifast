@@ -29,8 +29,4 @@ table 81240 "MEX - Temp Lots"
         {
         }
     }
-
-    fieldgroups
-    {
-    }
 }

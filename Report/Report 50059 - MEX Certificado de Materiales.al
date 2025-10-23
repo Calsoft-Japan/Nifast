@@ -24,7 +24,7 @@ report 50059 "MEX Certificado de Materiales"
             column(Sales_Invoice_Header_No_; "No.")
             {
             }
-            column(CompanyInformation__Document_Logo_; CompanyInformation."Document Logo")
+            column(CompanyInformation__Document_Logo_; CompanyInformation.Picture)// "Document Logo")
             {
             }
             dataitem("Sales Invoice Line"; "Sales Invoice Line")
@@ -46,6 +46,7 @@ report 50059 "MEX Certificado de Materiales"
                     TempSalesInvoiceLine.DELETEALL;
                 end;
             }
+            /* BC Upgrade No need show any comment line in report===================
             dataitem("Sales Comment Line"; "Sales Comment Line")
             {
                 DataItemLink = "No." = FIELD("No.");
@@ -74,7 +75,7 @@ report 50059 "MEX Certificado de Materiales"
                     END;
                     TempSalesInvoiceLine.INSERT;
                 end;
-            }
+            } */
             dataitem(CopyLoop; Integer)
             {
                 DataItemTableView = SORTING(Number);
@@ -369,10 +370,15 @@ report 50059 "MEX Certificado de Materiales"
             }
 
             trigger OnAfterGetRecord()
+            var
+                tempSInvHdr: Record "Sales Invoice Header" temporary;
+                tempResCenter: Record "Responsibility Center" temporary;
             begin
                 IF PrintCompany THEN BEGIN
                     IF RespCenter.GET("Responsibility Center") THEN BEGIN
-                        FormatAddress.RespCenter(CompanyAddress, RespCenter);
+                        tempResCenter := RespCenter;
+                        tempResCenter.Contact := '';
+                        FormatAddress.RespCenter(CompanyAddress, tempResCenter);//RespCenter); BC Upgrade
                         CompanyInformation."Phone No." := RespCenter."Phone No.";
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
@@ -423,6 +429,12 @@ report 50059 "MEX Certificado de Materiales"
 
                 FormatAddress.SalesInvBillTo(BillToAddress, "Sales Invoice Header");
                 FormatAddress.SalesInvShipTo(ShipToAddress, BillToAddress, "Sales Invoice Header");//BC Upgrade
+                /* 
+                tempSInvHdr := "Sales Invoice Header";
+                tempSInvHdr."Bill-to Contact" := '';
+                tempSInvHdr."Ship-to Contact" := '';
+                FormatAddress.SalesInvBillTo(BillToAddress, tempSInvHdr);//"Sales Invoice Header");
+                FormatAddress.SalesInvShipTo(ShipToAddress, BillToAddress, tempSInvHdr);//"Sales Invoice Header");//BC Upgrade */
 
                 IF "Payment Terms Code" = '' THEN
                     CLEAR(PaymentTerms)
@@ -510,6 +522,7 @@ report 50059 "MEX Certificado de Materiales"
             begin
                 CompanyInformation.GET;
                 CompanyInformation.CALCFIELDS("Document Logo");
+                CompanyInformation.CALCFIELDS(Picture);
                 IF PrintCompany THEN BEGIN
                     //FormatAddress.Company(CompanyAddress,CompanyInformation);
                     //FormatAddress.NifastMexCompanySlsDocs(CompanyAddress, CompanyInformation);   //NIF MAK 050206 BC Upgrade

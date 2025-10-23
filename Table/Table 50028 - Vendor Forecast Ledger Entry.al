@@ -36,8 +36,4 @@ table 50028 "Vendor Forecast Ledger Entry"
         {
         }
     }
-
-    fieldgroups
-    {
-    }
 }

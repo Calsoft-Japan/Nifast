@@ -43,8 +43,4 @@ table 50041 "Bin Movement Lines"
         {
         }
     }
-
-    fieldgroups
-    {
-    }
 }

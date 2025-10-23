@@ -74,8 +74,4 @@ table 50025 "PPS File Buffer"
         {
         }
     }
-
-    fieldgroups
-    {
-    }
 }
