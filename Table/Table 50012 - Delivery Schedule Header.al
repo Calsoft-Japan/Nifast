@@ -1,5 +1,6 @@
 table 50012 "Delivery Schedule Header"
 {
+    LookupPageID = 50074;
     fields
     {
         field(1; "Delivery Schedule Batch No."; Code[20])
@@ -9,6 +10,7 @@ table 50012 "Delivery Schedule Header"
         field(2; "Customer No."; Code[20])
         {
             // cleaned
+            TableRelation = Customer;
         }
         field(3; "No."; Code[20])
         {
@@ -16,13 +18,59 @@ table 50012 "Delivery Schedule Header"
         }
         field(10; "Item No."; Code[20])
         {
+            TableRelation = Item;
+            ValidateTableRelation = false;
 
+            trigger OnValidate()
+            var
+                Item: Record 27;
+            begin
+                IF Item.GET("Item No.") THEN
+                    Description := Item.Description
+                ELSE
+                    "Item Not Found" := TRUE;
+            end;
         }
         field(11; "Cross-Reference No."; Code[30])
         {
             Caption = 'Cross-Reference No.';
 
+            trigger OnLookup()
+            var
+            //  ItemCrossReference: Record 5717;
+            begin
+            end;
 
+            trigger OnValidate()
+            var
+                ReturnedCrossRef: Record 5777;
+                SalesLine: Record 37;
+                DistIntegration: Codeunit 5702;
+                CustomerNo: Code[20];
+            begin
+                CustomerNo := "Customer No.";
+                ReturnedCrossRef.INIT();
+                IF "Cross-Reference No." <> '' THEN BEGIN
+                    SalesLine.INIT();
+                    SalesLine."Item Reference No." := "Cross-Reference No.";
+                    //TODO
+                    //DistIntegration.ICRLookupSalesItem(SalesLine, ReturnedCrossRef);
+                    VALIDATE("Item No.", ReturnedCrossRef."Item No.");
+                END;
+
+                IF ReturnedCrossRef."Reference No." <> '' THEN BEGIN
+                    "Cross-Reference Type" := ReturnedCrossRef."Reference Type".AsInteger();
+                    "Cross-Reference Type No." := ReturnedCrossRef."Reference Type No.";
+                    "Cross-Reference No." := ReturnedCrossRef."Reference No.";
+
+                    IF ReturnedCrossRef.Description <> '' THEN
+                        Description := ReturnedCrossRef.Description
+
+                END ELSE BEGIN
+                    DelvieryScheduleHdr."Cross-Reference No. Not Found" := TRUE;
+                    DelvieryScheduleHdr."Item Not Found" := TRUE;
+                END;
+            end;
         }
         field(12; "Cross-Reference Type"; Option)
         {
@@ -124,4 +172,33 @@ table 50012 "Delivery Schedule Header"
         {
         }
     }
+
+    fieldgroups
+    {
+    }
+
+    trigger OnDelete()
+    begin
+
+        DelvieryScheduleLine.SETRANGE("Delivery Schedule Batch No.", "Delivery Schedule Batch No.");
+        DelvieryScheduleLine.SETRANGE("Customer No.", "Customer No.");
+        DelvieryScheduleLine.SETRANGE("Document No.", "No.");
+        DelvieryScheduleLine.DELETEALL(TRUE);
+    end;
+
+    trigger OnInsert()
+    begin
+        SalesReceivablesSetup.GET();
+        IF "No." = '' THEN BEGIN
+            SalesReceivablesSetup.TESTFIELD("Delivery Schedule Nos.");
+            NoSeriesMgt.AreRelated(SalesReceivablesSetup."Delivery Schedule Nos.", '');
+        END;
+    end;
+
+    var
+        SalesReceivablesSetup: Record 311;
+        DelvieryScheduleHdr: Record 50012;
+        DelvieryScheduleLine: Record 50013;
+        NoSeriesMgt: Codeunit "No. Series";
+
 }

@@ -155,20 +155,20 @@ table 99995 "Label Header"
     end;
 
     var
-        Text001: Label 'Label Lines has been updated, but not all lines can be changed correctly.';
-        Text002: Label 'Please test the label.';
-        Text003: Label 'Lines will maybe not be correct when changing the %1, ';
-        Text004: Label 'Are you sure you want to change this value?';
-        Text005: Label 'Nothing changed.';
-        Text007: Label 'Label Code cannot be blank.';
-        Text008: Label 'New Label %1 has been inserted.';
-        Text009: Label 'No lines to renumber.';
-        Text010: Label 'cannot be %1.';
-        Text011: Label 'Header Text arguments %1 = User ID, %2 = Today and %3 = Time';
-        Text012: Label 'Footer Text arguments %1 = No. of Copies, %2 = User ID, %3 = Today and %4 = Time';
-        Text013: Label 'Text File Command String will have %1 = Temporary Filename, %2 = Reference No., %3 = Printer Port, %4 = User ID, %5 = Today and %6 = Time';
-        Text014: Label 'Remove old data in unused fields?';
-        "<<NIF_GV>>": Integer;
+        /*  Text001: Label 'Label Lines has been updated, but not all lines can be changed correctly.';
+         Text002: Label 'Please test the label.';
+         Text003: Label 'Lines will maybe not be correct when changing the %1, ';
+         Text004: Label 'Are you sure you want to change this value?';
+         Text005: Label 'Nothing changed.';
+         Text007: Label 'Label Code cannot be blank.';
+         Text008: Label 'New Label %1 has been inserted.';
+         Text009: Label 'No lines to renumber.';
+         Text010: Label 'cannot be %1.'; */
+        Text011: Label 'Header Text arguments',Comment='%1 = User ID, %2 = Today and %3 = Time';
+        Text012: Label 'Footer Text arguments',Comment='%1 = No. of Copies, %2 = User ID, %3 = Today and %4 = Time';
+        Text013: Label 'Text File Command String will have',Comment='%1 = Temporary Filename, %2 = Reference No., %3 = Printer Port, %4 = User ID, %5 = Today and %6 = Time';
+    /*  Text014: Label 'Remove old data in unused fields?';
+     "<<NIF_GV>>": Integer; */
 
     procedure CopyLabelAskNewCode()
     begin

@@ -73,6 +73,8 @@ table 50021 "Commercial Invoice MEX"
         field(50001; "Invoice No"; Code[20])
         {
             // cleaned
+            CalcFormula = Lookup("Sales Invoice Header"."Mex. Factura No." WHERE("No." = FIELD("Doc No")));
+            FieldClass = FlowField;
         }
     }
 
@@ -92,25 +94,25 @@ table 50021 "Commercial Invoice MEX"
         SalesInvLine: Record "Sales Invoice Line";
         SalesCrMemoHdr: Record "Sales Cr.Memo Header";
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
-        UseEntryNo: Integer;
-        ItemEntryRel: Record "Item Entry Relation";
-        ValueEntryRel: Record "Value Entry Relation";
-        LotNoInfo: Record "Lot No. Information";
-        RowText: Text[100];
-        ItemTrackingMgt: Codeunit "Item Tracking Management";
         ValueEntryRelation: Record "Value Entry Relation";
         ValueEntry: Record "Value Entry";
         ItemLedgEntry: Record "Item Ledger Entry";
+        VirtualInvoice: Record "Commercial Invoice MEX";
+        ItemTrackingMgt: Codeunit "Item Tracking Management";
+        /* UseEntryNo: Integer;
+        ItemEntryRel: Record "Item Entry Relation";
+        ValueEntryRel: Record "Value Entry Relation";
+        LotNoInfo: Record "Lot No. Information"; */
+        RowText: Text[100];
         EntryNo: Integer;
         d: Dialog;
-        VirtualInvoice: Record "Commercial Invoice MEX";
         RemLineAmount: Decimal;
         RemLineAmtIncTax: Decimal;
         LineAmount: Decimal;
         LineAmtIncTax: Decimal;
         QtyFactor: Decimal;
     begin
-        IF VirtualInvoice.FIND('+') THEN
+        IF VirtualInvoice.FindLast() THEN
             EntryNo := VirtualInvoice."Entry No." + 1;
 
         IF ShowStatus THEN
@@ -132,12 +134,12 @@ table 50021 "Commercial Invoice MEX"
                     RemLineAmtIncTax := SalesInvLine."Amount Including VAT";
 
                     IF NOT TempSalesHdr.GET(TempSalesHdr."Document Type"::Invoice, SalesInvHdr."No.") THEN BEGIN
-                        TempSalesHdr.INIT;
+                        TempSalesHdr.INIT();
                         TempSalesHdr."Document Type" := TempSalesHdr."Document Type"::Invoice;
                         TempSalesHdr."No." := SalesInvHdr."No.";
                         TempSalesHdr."Posting Date" := SalesInvHdr."Posting Date";
                         TempSalesHdr."Mex. Factura No." := SalesInvHdr."Mex. Factura No.";
-                        TempSalesHdr.INSERT;
+                        TempSalesHdr.INSERT();
                     END;
 
                     REPEAT
@@ -145,7 +147,7 @@ table 50021 "Commercial Invoice MEX"
                                                         SalesInvLine."Document No.", '', 0, SalesInvLine."Line No.");
                         ValueEntryRelation.SETCURRENTKEY("Source RowId");
                         ValueEntryRelation.SETRANGE("Source RowId", RowText);
-                        IF ValueEntryRelation.FIND('-') THEN BEGIN
+                        IF ValueEntryRelation.FIND('-') THEN
                             REPEAT
                                 IF ShowStatus THEN
                                     d.UPDATE(2, SalesInvLine."No.");
@@ -159,11 +161,10 @@ table 50021 "Commercial Invoice MEX"
                                        SalesInvLine."Document No.", SalesInvLine."Line No.", EntryNo);
                                     EntryNo := EntryNo + 1;
                                 END;
-                            UNTIL ValueEntryRelation.NEXT = 0;
-                        END;
-                    UNTIL SalesInvLine.NEXT = 0;
+                            UNTIL ValueEntryRelation.NEXT() = 0;
+                    UNTIL SalesInvLine.NEXT() = 0;
                 END;
-            UNTIL SalesInvHdr.NEXT = 0;
+            UNTIL SalesInvHdr.NEXT() = 0;
 
 
         SalesCrMemoHdr.SETCURRENTKEY("Sell-to Customer No.");
@@ -183,12 +184,12 @@ table 50021 "Commercial Invoice MEX"
                     RemLineAmtIncTax := SalesCrMemoLine."Amount Including VAT";
 
                     IF NOT TempSalesHdr.GET(TempSalesHdr."Document Type"::"Credit Memo", SalesCrMemoHdr."No.") THEN BEGIN
-                        TempSalesHdr.INIT;
+                        TempSalesHdr.INIT();
                         TempSalesHdr."Document Type" := TempSalesHdr."Document Type"::"Credit Memo";
                         TempSalesHdr."No." := SalesCrMemoHdr."No.";
                         TempSalesHdr."Posting Date" := SalesCrMemoHdr."Posting Date";
                         TempSalesHdr."Mex. Factura No." := SalesCrMemoHdr."Mex. Factura No.";
-                        TempSalesHdr.INSERT;
+                        TempSalesHdr.INSERT();
                     END;
 
                     REPEAT
@@ -196,7 +197,7 @@ table 50021 "Commercial Invoice MEX"
                                                         SalesCrMemoLine."Document No.", '', 0, SalesCrMemoLine."Line No.");
                         ValueEntryRelation.SETCURRENTKEY("Source RowId");
                         ValueEntryRelation.SETRANGE("Source RowId", RowText);
-                        IF ValueEntryRelation.FIND('-') THEN BEGIN
+                        IF ValueEntryRelation.FIND('-') THEN
                             REPEAT
                                 IF ShowStatus THEN
                                     d.UPDATE(2, SalesCrMemoLine."No.");
@@ -211,18 +212,17 @@ table 50021 "Commercial Invoice MEX"
                                        SalesCrMemoLine."Document No.", SalesCrMemoLine."Line No.", EntryNo);
                                     EntryNo := EntryNo + 1;
                                 END;
-                            UNTIL ValueEntryRelation.NEXT = 0;
-                        END;
-                    UNTIL SalesCrMemoLine.NEXT = 0;
+                            UNTIL ValueEntryRelation.NEXT() = 0;
+                    UNTIL SalesCrMemoLine.NEXT() = 0;
                 END;
-            UNTIL SalesCrMemoHdr.NEXT = 0;
+            UNTIL SalesCrMemoHdr.NEXT() = 0;
     end;
 
     procedure AddToRecordSet(ItemLedgEntry: Record "Item Ledger Entry"; Amt: Decimal; AmtInclTax: Decimal; Qty: Decimal; DocNo: Code[20]; DocLineNo: Integer; EntryNo: Integer)
     var
         LotNoInfo: Record "Lot No. Information";
         Item: Record Item;
-        CVEPedimento: Record "CVE Pedimento";
+    // CVEPedimento: Record "CVE Pedimento";
     begin
 
         //            TempItemLedgEntry.Quantity := ;
@@ -253,8 +253,9 @@ table 50021 "Commercial Invoice MEX"
             "Line Amount" := "Line Amount" + Amt;
             "Tax Amount" := "Tax Amount" + (AmtInclTax - Amt);
             "Amount Incl Tax" := "Amount Incl Tax" + AmtInclTax;
-            MODIFY;
-        END ELSE BEGIN
+            MODIFY();
+        END
+        ELSE BEGIN
             "Entry No." := EntryNo;
             "Customer No." := ItemLedgEntry."Source No.";
             "Virtural Operation No." := Item."HS Tariff Code";
@@ -272,10 +273,10 @@ table 50021 "Commercial Invoice MEX"
             "Amount Incl Tax" := AmtInclTax;
             "Doc No" := DocNo;
             "Doc Line No" := DocLineNo;
-            INSERT;
+            INSERT();
         END;
 
-        RESET;
+        RESET();
 
     end;
 }

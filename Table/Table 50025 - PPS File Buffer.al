@@ -45,6 +45,11 @@ table 50025 "PPS File Buffer"
         field(50; "EDI Control No."; Code[20])
         {
             // cleaned
+            trigger OnValidate()
+            var
+            // EDISetup: Record "14002367";
+            begin
+            end;
         }
         field(100; "Error Found"; Boolean)
         {

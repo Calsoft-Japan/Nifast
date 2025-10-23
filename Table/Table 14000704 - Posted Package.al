@@ -1095,9 +1095,9 @@ table 99998 "Posted Package"
     end;
 
     var
-        ShippingAgent: Record "Shipping Agent";
+        // ShippingAgent: Record "Shipping Agent";
         NavigateForm: Page Navigate;
-        ShippingSetupRetrieved: Boolean;
+        // ShippingSetupRetrieved: Boolean;
         Text001: Label 'Before you can use Online Map, you must fill in the Online Map Setup window.\See Setting Up Online Map in Help.';
 
     procedure StartTrackingPackage()
@@ -1123,7 +1123,7 @@ table 99998 "Posted Package"
     procedure Navigate()
     begin
         NavigateForm.SetDoc("Posting Date", "Posted Source ID");
-        NavigateForm.RUN;
+        NavigateForm.RUN();
     end;
 
     procedure LookupMultiDocPackage()
@@ -1134,27 +1134,28 @@ table 99998 "Posted Package"
 
     procedure PackageLevel(): Integer
     var
-        MinimumLevel: Integer;
-        TempLevel: Integer;
+    /*  MinimumLevel: Integer;
+     TempLevel: Integer; */
     begin
 
     end;
 
-    local procedure GetShippingSetup()
-    begin
+    /*  local procedure GetShippingSetup()
+     begin
 
-    end;
+     end; */
 
     procedure DisplayMap()
     var
         MapPoint: Record 800;
         MapMgt: Codeunit 802;
     begin
-        IF MapPoint.FIND('-') THEN
-            MapMgt.MakeSelection(DATABASE::"Posted Package", GETPOSITION)
-        ELSE
-            MESSAGE(Text001);
+        if not MapPoint.IsEmpty() then
+            MapMgt.MakeSelection(Database::"Posted Package", GetPosition())
+        else
+            Message(Text001);
     end;
+
 
     procedure ">>NIF_fcn"()
     begin

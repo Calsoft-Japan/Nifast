@@ -273,7 +273,7 @@ table 99994 "Receive Station"
 
             trigger OnValidate()
             begin
-                CALCFIELDS("Scanning Form Name");
+                // CALCFIELDS("Scanning Form Name");
             end;
         }
         field(60; "Scanning Form Name"; Text[30])
@@ -288,7 +288,7 @@ table 99994 "Receive Station"
 
             trigger OnValidate()
             begin
-                CALCFIELDS("Scanning Form Name");
+                // CALCFIELDS("Scanning Form Name");
             end;
         }
         field(62; "RTC Scanning Form Name"; Text[30])
