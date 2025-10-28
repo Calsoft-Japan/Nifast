@@ -268,10 +268,7 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
 
     Keys
     {
-        key(key10; "LAX EDI Order", "LAX EDI Cr. Memo Generated", "LAX EDI Trade Partner", "LAX EDI Internal Doc. No.")
-        {
 
-        }
     }
 
     trigger OnAfterDelete()

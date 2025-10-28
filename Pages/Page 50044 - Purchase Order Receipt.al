@@ -129,6 +129,7 @@ page 50044 "Purchase Order Receipt"
             part(PurchLines; "Purch. Order Receipt Subform")
             {
                 SubPageLink = "Document No." = FIELD("No.");
+                UpdatePropagation = Both;
             }
             group(Shipping)
             {

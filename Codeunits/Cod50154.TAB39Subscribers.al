@@ -5,10 +5,12 @@ codeunit 50154 TAB39Subscribers
     var
         PurchHeader: Record "Purchase Header";
     begin
-        PurchHeader.Get(Rec."Document No.");
-        //>>NIF MAK 060905
-        Rec."Vessel Name" := PurchHeader."Vessel Name";
-        Rec."Sail-on Date" := PurchHeader."Sail-on Date";
+
+        if PurchHeader.Get(Rec."Document Type", Rec."Document No.") then begin
+            //>>NIF MAK 060905
+            Rec."Vessel Name" := PurchHeader."Vessel Name";
+            Rec."Sail-on Date" := PurchHeader."Sail-on Date";
+        end;
         //<<NIF
     end;
 

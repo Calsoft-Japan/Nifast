@@ -11,6 +11,7 @@ page 50043 "Purch. Order Receipt Subform"
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = ListPart;
+    ApplicationArea = all;
     SourceTable = "Purchase Line";
     SourceTableView = WHERE("Document Type" = FILTER(Order),
                             "Outstanding Quantity" = FILTER(<> 0));
@@ -19,8 +20,9 @@ page 50043 "Purch. Order Receipt Subform"
     {
         area(content)
         {
-            repeater(General)
+            repeater(Control1)
             {
+                ShowCaption = false;
                 field(Type; Rec.Type)
                 {
                     Editable = false;
