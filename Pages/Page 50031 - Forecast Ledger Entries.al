@@ -5,7 +5,7 @@ page 50031 "Forecast Ledger Entries"
     Editable = true;
     PageType = Document;
     SaveValues = false;
-    UsageCategory = None;
+    UsageCategory = Lists;
     SourceTable = "Dimension Value";
     SourceTableView = WHERE("Dimension Code" = CONST('DIV'));
     ApplicationArea = All;

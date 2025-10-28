@@ -25,7 +25,7 @@ page 50066 "Lot Reclass Screen"
 
     PageType = Card;
     ApplicationArea = All;
-    UsageCategory = None;
+    UsageCategory = Documents;
 
     layout
     {

@@ -325,57 +325,103 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
             group(Forecast_)
             {
                 Caption = 'Forecast';
+                field("Global Dimension 1 Code"; Rec."Global Dimension 1 Code")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Global Dimension 1 Code field.';
+                }
+                field("Forecast on/off"; rec."Forecast on/off")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Forecast on/off field.';
+                }
+                field("Minimum Inventory Level"; rec."Minimum Inventory Level")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Minimum Inventory Level field.';
+                }
+                field("Maximum Inventory Level"; Rec."Maximum Inventory Level")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Maximum Inventory Level field.';
+                }
+                field("Lead Time"; Rec."Lead Time")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Lead Time field.';
+                }
+                field("Order Qty."; Rec."Order Qty.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Order Qty. field.';
+                }
+                field("Shipping Agent Code"; Rec."Shipping Agent Code")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Shipping Agent Code field.';
+                }
+                field("Free Form"; Rec."Free Form")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Free Form field.';
+                }
+                field("Purchasing Policy"; Rec."Purchasing Policy")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Purchasing Policy field.';
+                }
+
             }
         }
-        moveafter(Forecast_; "No.")
-        addafter("No.")
-        {
-            field("Global Dimension 1 Code"; Rec."Global Dimension 1 Code")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Global Dimension 1 Code field.';
-            }
-            field("Forecast on/off"; rec."Forecast on/off")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Forecast on/off field.';
-            }
-            field("Minimum Inventory Level"; rec."Minimum Inventory Level")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Minimum Inventory Level field.';
-            }
-            field("Maximum Inventory Level"; Rec."Maximum Inventory Level")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Maximum Inventory Level field.';
-            }
-            field("Lead Time"; Rec."Lead Time")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Lead Time field.';
-            }
-            field("Order Qty."; Rec."Order Qty.")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Order Qty. field.';
-            }
-            field("Shipping Agent Code"; Rec."Shipping Agent Code")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Shipping Agent Code field.';
-            }
-            field("Free Form"; Rec."Free Form")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Free Form field.';
-            }
-            field("Purchasing Policy"; Rec."Purchasing Policy")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Purchasing Policy field.';
-            }
-        }
+        // moveafter(Forecast_; "No.")
+        // addafter("No.")
+        // {
+        //     field("Global Dimension 1 Code"; Rec."Global Dimension 1 Code")
+        //     {
+        //         ApplicationArea = All;
+        //         ToolTip = 'Specifies the value of the Global Dimension 1 Code field.';
+        //     }
+        //     field("Forecast on/off"; rec."Forecast on/off")
+        //     {
+        //         ApplicationArea = All;
+        //         ToolTip = 'Specifies the value of the Forecast on/off field.';
+        //     }
+        //     field("Minimum Inventory Level"; rec."Minimum Inventory Level")
+        //     {
+        //         ApplicationArea = All;
+        //         ToolTip = 'Specifies the value of the Minimum Inventory Level field.';
+        //     }
+        //     field("Maximum Inventory Level"; Rec."Maximum Inventory Level")
+        //     {
+        //         ApplicationArea = All;
+        //         ToolTip = 'Specifies the value of the Maximum Inventory Level field.';
+        //     }
+        //     field("Lead Time"; Rec."Lead Time")
+        //     {
+        //         ApplicationArea = All;
+        //         ToolTip = 'Specifies the value of the Lead Time field.';
+        //     }
+        //     field("Order Qty."; Rec."Order Qty.")
+        //     {
+        //         ApplicationArea = All;
+        //         ToolTip = 'Specifies the value of the Order Qty. field.';
+        //     }
+        //     field("Shipping Agent Code"; Rec."Shipping Agent Code")
+        //     {
+        //         ApplicationArea = All;
+        //         ToolTip = 'Specifies the value of the Shipping Agent Code field.';
+        //     }
+        //     field("Free Form"; Rec."Free Form")
+        //     {
+        //         ApplicationArea = All;
+        //         ToolTip = 'Specifies the value of the Free Form field.';
+        //     }
+        //     field("Purchasing Policy"; Rec."Purchasing Policy")
+        //     {
+        //         ApplicationArea = All;
+        //         ToolTip = 'Specifies the value of the Purchasing Policy field.';
+        //     }
+        // }
     }
     actions
     {
@@ -633,7 +679,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
             {
                 Image = Forecast;
                 CaptionML = ENU = 'forecast';
-               // RunObject = Report 50089;
+                // RunObject = Report 50089;
                 ToolTip = 'Executes the forecast action.';
                 ApplicationArea = All;
             }
