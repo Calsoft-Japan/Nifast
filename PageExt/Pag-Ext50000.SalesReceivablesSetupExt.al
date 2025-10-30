@@ -84,5 +84,14 @@ pageextension 50000 "Sales & Receivables Setup Ext" extends "Sales & Receivables
                 ToolTip = 'Specifies the value of the Create Pack & Enable Ship field.';
             }
         }
+        addafter("LAX EDI Software Version")
+        {
+            field("EDI Control Nos."; Rec."EDI Control Nos.")
+            {
+                ApplicationArea = All;
+                Caption = 'EDI Control No.';
+                ToolTip = 'Specifies the value of the EDI Control Nos. field.';
+            }
+        }
     }
 }
