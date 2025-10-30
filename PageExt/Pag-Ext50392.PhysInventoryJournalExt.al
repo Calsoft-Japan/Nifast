@@ -28,6 +28,7 @@ pageextension 50392 "Phys. Inventory Journal Ext" extends "Phys. Inventory Journ
                 CaptionML = ENU = 'Test Report - NIF';
                 ToolTip = 'Test report';
                 Image = Report;
+                ApplicationArea = All;
                 trigger OnAction()
                 VAR
                     ItemJnlBatch: Record 233;
@@ -49,6 +50,7 @@ pageextension 50392 "Phys. Inventory Journal Ext" extends "Phys. Inventory Journ
                 CaptionML = ENU = 'Lot Bin Content';
                 ToolTip = ' Lot for Bin contents';
                 Image = BinContent;
+                ApplicationArea = All;
                 trigger OnAction()
                 VAR
                     Item: Record 27;
@@ -76,6 +78,7 @@ pageextension 50392 "Phys. Inventory Journal Ext" extends "Phys. Inventory Journ
                 CaptionML = ENU = 'Physical Inv. Count';
                 ToolTip = 'Physical Invenroty count';
                 Image = Inventory;
+                ApplicationArea = All;
                 trigger OnAction()
                 BEGIN
                     ItemJnlLine := Rec;
@@ -90,6 +93,7 @@ pageextension 50392 "Phys. Inventory Journal Ext" extends "Phys. Inventory Journ
                 CaptionML = ENU = 'Physical Inv. List';
                 ToolTip = 'Physical Inventory list';
                 Image = Inventory;
+                ApplicationArea = All;
                 trigger OnAction()
                 BEGIN
                     ItemJnlLine := Rec;

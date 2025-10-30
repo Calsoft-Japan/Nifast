@@ -42,6 +42,7 @@ report 50001 "Customer/Item Statistics New"
     RDLCLayout = '.\RDLC\CustomerItemStatistics.rdl';
 
     Caption = 'Customer/Item Statistics New';
+    ApplicationArea = All;
 
     dataset
     {
@@ -448,18 +449,22 @@ report 50001 "Customer/Item Statistics New"
                     field(OnlyOnePerPage; OnlyOnePerPage)
                     {
                         Caption = 'New Page per Account';
+                        ApplicationArea = All;
                     }
                     field(PrintToExcel; PrintToExcel)
                     {
                         Caption = 'Print To Excel';
+                        ApplicationArea = All;
                     }
                     field(ShowDetails; ShowDetails)
                     {
                         Caption = 'Show Countries, Manufacturers and Vendors';
+                        ApplicationArea = All;
                     }
                     field(ShowARC; ShowARC)
                     {
                         Caption = 'Show in Additional Reporting Currency';
+                        ApplicationArea = All;
                     }
                 }
             }

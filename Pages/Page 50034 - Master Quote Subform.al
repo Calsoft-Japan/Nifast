@@ -9,6 +9,7 @@ page 50034 "Master Quote Subform"
     MultipleNewLines = true;
     PageType = ListPart;
     SourceTable = "Purchase Header";
+    ApplicationArea = All;
 
     layout
     {

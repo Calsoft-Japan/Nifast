@@ -43,6 +43,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 Promoted = true;
                 Image = Email;
                 ToolTip = 'Email List';
+                ApplicationArea = All;
                 trigger OnAction()
                 var
 
@@ -67,6 +68,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                                   Type = CONST(Order),
                                   "No." = FIELD("No.");
                     Image = Document;
+                    ApplicationArea = All;
 
                 }
                 action("P&ackages")
@@ -85,6 +87,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 {
 
                     CaptionML = ENU = 'E-Ship Agent Options';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     VAR
@@ -104,6 +107,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
 
                     CaptionML = ENU = 'Associated Receive Documents';
                     ToolTip = '';
+                    ApplicationArea = All;
                     trigger OnAction()
                     VAR
                         EDIDocumentStatus: Codeunit 14000379;
@@ -116,6 +120,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 {
                     CaptionML = ENU = '&EDI Receive Elements';
                     ToolTip = 'Receive';
+                    ApplicationArea = All;
                     trigger OnAction()
                     BEGIN
                         Rec.TESTFIELD("lax EDI Order");
@@ -127,6 +132,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 {
                     CaptionML = ENU = 'Send &EDI Warehouse Shipping Order';
                     ToolTip = '';
+                    ApplicationArea = All;
                     trigger OnAction()
                     VAR
                         EDIIntegration: Codeunit 14000363;
@@ -143,6 +149,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 {
                     CaptionML = ENU = 'Trace';
                     Image = Trace;
+                    ApplicationArea = All;
                     Trigger OnAction()
                     VAR
                         EDITrace: Page 14002386;
@@ -173,6 +180,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 ToolTipML = ENU = 'ALT-F3   -   Get Standard Sales Lines For This Customer';
                 Promoted = true;
                 PromotedCategory = Process;
+                ApplicationArea = All;
                 trigger OnAction()
                 VAR
                     StdCustSalesCode: Record 172;
@@ -188,6 +196,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 Promoted = true;
                 PromotedCategory = Process;
                 Image = Entry;
+                ApplicationArea = All;
                 trigger OnAction()
                 VAR
                     SalesLotEntry: Record 50002;
@@ -206,6 +215,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 Promoted = true;
                 Image = CreateInventoryPickup;
                 PromotedCategory = Process;
+                ApplicationArea = All;
                 trigger OnAction()
                 BEGIN
                     Rec.CreateInvtPutAwayPick();
@@ -219,6 +229,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
             action("Lot ENtry1")
             {
                 CaptionML = ENU = '&Lot Entry';
+                ApplicationArea = All;
                 trigger OnAction()
                 VAR
                     SalesLotEntry: Record 50002;
@@ -240,6 +251,7 @@ pageextension 50042 "Sale Order Ext" extends "Sales Order"
                 CaptionML = ENU = 'E-&Mail Confirmation';
                 ToolTip = '';
                 Image = Email;
+                ApplicationArea = All;
                 trigger OnAction()
                 VAR
                     EMailMgt: Codeunit 14000903;

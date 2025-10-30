@@ -8,6 +8,7 @@ page 50015 "Receive Control"
 
     PageType = Card;
     UsageCategory = None;
+    ApplicationArea = All;
     layout
     {
         area(content)

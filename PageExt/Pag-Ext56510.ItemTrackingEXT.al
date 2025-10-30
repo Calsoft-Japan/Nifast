@@ -15,6 +15,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
                 PromotedCategory = Process;
                 ToolTip = 'Assign lot';
                 Image = Lot;
+                ApplicationArea = All;
                 trigger OnAction()
                 BEGIN
                     //>>NIF MAK 071205
@@ -37,6 +38,7 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
                 Visible = FALSE;
                 Image = Lot;
                 PromotedCategory = Process;
+                ApplicationArea = All;
                 trigger OnAction()
                 BEGIN
                     //>>NIF MAK 071205

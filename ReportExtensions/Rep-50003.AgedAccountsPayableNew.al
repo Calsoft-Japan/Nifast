@@ -4,6 +4,7 @@ report 50003 "Aged Accounts Payable New"
     DefaultLayout = RDLC;
     RDLCLayout = '.\RDLC\AgedAccountsPayable.rdl';
     Caption = 'Aged Accounts Payable New';
+    ApplicationArea = All;
 
     dataset
     {
@@ -662,6 +663,7 @@ report 50003 "Aged Accounts Payable New"
                     field(AgedAsOf; PeriodEndingDate[1])
                     {
                         Caption = 'Aged as of';
+                        ApplicationArea = All;
 
                         trigger OnValidate()
                         begin
@@ -673,10 +675,12 @@ report 50003 "Aged Accounts Payable New"
                     {
                         Caption = 'Aging Method';
                         OptionCaption = 'Due Date,Trans Date,Document Date';
+                        ApplicationArea = All;
                     }
                     field(LengthOfAgingPeriods; PeriodCalculation)
                     {
                         Caption = 'Length of Aging Periods';
+                        ApplicationArea = All;
 
                         trigger OnValidate()
                         begin
@@ -687,6 +691,7 @@ report 50003 "Aged Accounts Payable New"
                     field(ShowOnlyOverDueBy; ShowOnlyOverDueBy)
                     {
                         Caption = 'Show If Overdue By';
+                        ApplicationArea = All;
                         // DateFormula = true;
 
                         trigger OnValidate()
@@ -700,6 +705,7 @@ report 50003 "Aged Accounts Payable New"
                     field(ShowAllForOverdue; ShowAllForOverdue)
                     {
                         Caption = 'Show All for Overdue By Vendor';
+                        ApplicationArea = All;
 
                         trigger OnValidate()
                         begin
@@ -713,6 +719,7 @@ report 50003 "Aged Accounts Payable New"
                     {
                         Caption = 'Print Amounts in Vendor''s Currency';
                         MultiLine = true;
+                        ApplicationArea = All;
 
                         trigger OnValidate()
                         begin
@@ -723,18 +730,22 @@ report 50003 "Aged Accounts Payable New"
                     field(PrintDetail; PrintDetail)
                     {
                         Caption = 'Print Detail';
+                        ApplicationArea = All;
                     }
                     field(UseExternalDocNo; UseExternalDocNo)
                     {
                         Caption = 'Use External Doc. No.';
+                        ApplicationArea = All;
                     }
                     field(PrintToExcel; PrintToExcel)
                     {
                         Caption = 'Print to Excel';
+                        ApplicationArea = All;
                     }
                     field(ShowARC; ShowARC)
                     {
                         Caption = 'Show Additional Reporting Currency';
+                        ApplicationArea = All;
                     }
                 }
             }

@@ -4,6 +4,7 @@ page 50068 "Ship Authorization Line"
 
     PageType = ListPart;
     SourceTable = "Ship Authorization Line";
+    ApplicationArea = All;
 
     layout
     {

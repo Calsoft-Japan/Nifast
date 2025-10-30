@@ -51,6 +51,7 @@ pageextension 50055 "Purch. Invoice Subform Ext" extends "Purch. Invoice Subform
                 CaptionML = ENU = 'Calc Tax WithHolding';
                 Image = Calculate;
                 ToolTip = 'Executes the Calc. Tax Withholding action.';
+                ApplicationArea = All;
                 trigger OnAction()
                 BEGIN
                     //AKK1607.01---

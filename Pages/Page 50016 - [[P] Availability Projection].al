@@ -5,6 +5,7 @@ page 50016 "[[P] Availability Projection]"
 
     PageType = ListPart;
     SourceTable = "Forecast Ledger Entry";
+    ApplicationArea = All;
 
     layout
     {

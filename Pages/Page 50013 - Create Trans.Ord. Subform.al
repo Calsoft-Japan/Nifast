@@ -15,6 +15,7 @@ page 50013 "Create Trans.Ord. Subform"
     SourceTable = "Purch. Rcpt. Line";
     SourceTableView = SORTING("Document No.", "Line No.")
                       ORDER(Ascending);
+    ApplicationArea = All;
 
     layout
     {

@@ -46,6 +46,7 @@ pageextension 50047 "Sales Invoice Subform Ext" extends "Sales Invoice Subform"
                     ToolTip = 'view the vendor card';
                     Image = Card;
                     CaptionML = ENU = 'Vendor Card';
+                    ApplicationArea = All;
                     trigger OnAction()
                     BEGIN
                         //{CurrPage.SalesLines.FORM.}
@@ -57,6 +58,7 @@ pageextension 50047 "Sales Invoice Subform Ext" extends "Sales Invoice Subform"
                     ToolTip = 'View the list of Item vendor';
                     Image = List;
                     CaptionML = ENU = 'Item Vendor';
+                    ApplicationArea = All;
                     trigger OnAction()
                     BEGIN
                         //This functionality was copied from page #43. Unsupported part was commented. Please check it.

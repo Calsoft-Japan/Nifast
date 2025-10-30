@@ -6,6 +6,7 @@ page 50081 "Purchase Invoice Line FactBox"
     PageType = CardPart;
     UsageCategory = None;
     SourceTable = "Purchase Line";
+    ApplicationArea = All;
 
     layout
     {

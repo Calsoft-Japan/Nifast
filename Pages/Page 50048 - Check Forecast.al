@@ -12,6 +12,7 @@ page 50048 "Check Forecast"
     ModifyAllowed = false;
     PageType = ConfirmationDialog;
     SourceTable = Item;
+    ApplicationArea = All;
 
     layout
     {

@@ -5,6 +5,7 @@ report 50004 "Item Sales Statistics New"
     RDLCLayout = '.\RDLC\ItemSalesStatistics.rdl';
 
     Caption = 'Item Sales Statistics New';
+    ApplicationArea = All;
 
     dataset
     {
@@ -524,18 +525,22 @@ report 50004 "Item Sales Statistics New"
                     field(PrintOnlyIfSales; PrintOnlyIfSales)
                     {
                         Caption = 'Only Items with Sales';
+                        ApplicationArea = All;
                     }
                     field(IncludeItemDescriptions; IncludeItemDescriptions)
                     {
                         Caption = 'Include Item Descriptions';
+                        ApplicationArea = All;
                     }
                     field(BreakdownByVariant; BreakdownByVariant)
                     {
                         Caption = 'Breakdown By Variant';
+                        ApplicationArea = All;
                     }
                     field(ExporttoExcel; ExporttoExcel)
                     {
                         Caption = 'Export To Excel';
+                        ApplicationArea = All;
                     }
                 }
             }

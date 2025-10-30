@@ -5,6 +5,7 @@ report 50002 "Daily Invoicing Report New"
     RDLCLayout = '.\RDLC\DailyInvoicingReport.rdl';
 
     Caption = 'Daily Invoicing Report New';
+    ApplicationArea = All;
 
     dataset
     {
@@ -446,10 +447,12 @@ report 50002 "Daily Invoicing Report New"
                     field(IncludeInvoices; IncludeInvoices)
                     {
                         Caption = 'Include Invoices';
+                        ApplicationArea = All;
                     }
                     field(IncludeCreditMemos; IncludeCreditMemos)
                     {
                         Caption = 'Include Credit Memos';
+                        ApplicationArea = All;
                     }
                 }
             }

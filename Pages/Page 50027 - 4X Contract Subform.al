@@ -15,6 +15,7 @@ page 50027 "4X Contract Subform"
     SourceTableView = SORTING("Document Type", "Document No.")
                       WHERE("Document Type" = CONST(Order),
                             "Contract Note No." = FILTER(<> ''));
+    ApplicationArea = All;
 
     layout
     {

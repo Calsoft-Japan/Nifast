@@ -10,10 +10,12 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
             {
                 Visible = false;
                 ToolTip = 'Specifies the value of the Revision No. field.';
+                ApplicationArea = All;
             }
             field(National; Rec.National)
             {
                 ToolTip = 'Specifies the value of the National field.';
+                ApplicationArea = All;
             }
         }
         addafter("Unit Price")
@@ -23,12 +25,14 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
                 BlankZero = true;
                 Editable = false;
                 ToolTip = 'Specifies the value of the Units per Parcel field.';
+                ApplicationArea = All;
             }
             field("Total Parcels"; Rec."Total Parcels")
             {
                 BlankZero = true;
                 Editable = false;
                 ToolTip = 'Specifies the value of the Total Parcels field.';
+                ApplicationArea = All;
             }
         }
         modify("Line Amount")
@@ -47,18 +51,21 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
                 Caption = 'Location Qty';
                 Editable = false;
                 ToolTip = 'Specifies the value of the Location Qty field.';
+                ApplicationArea = All;
             }
             field("Available Qty"; LDec[2])
             {
                 Caption = 'Available Qty';
                 Editable = false;
                 ToolTip = 'Specifies the value of the Available Qty field.';
+                ApplicationArea = All;
             }
             field("Last Sale"; LDate[1])
             {
                 Caption = 'Last Sale';
                 Editable = false;
                 ToolTip = 'Specifies the value of the Last Sale field.';
+                ApplicationArea = All;
             }
         }
         moveafter("Description 2"; Nonstock, "Substitution Available")
@@ -75,6 +82,7 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
                     Caption = 'Vendor Card';
                     ToolTip = 'Executes the Vendor Card action.';
                     Image = Vendor;
+                    ApplicationArea = All;
 
                     trigger OnAction();
                     begin
@@ -89,6 +97,7 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
                     Caption = 'Item Vendors';
                     ToolTip = 'Executes the Item Vendors action.';
                     Image = Vendor;
+                    ApplicationArea = All;
 
                     trigger OnAction();
                     begin
@@ -107,6 +116,7 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
                 Caption = 'Purchase Order Lines';
                 ToolTip = 'Executes the Purchase Order Lines action.';
                 Image = Line;
+                ApplicationArea = All;
 
                 trigger OnAction();
                 begin
@@ -121,6 +131,7 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
                 Caption = 'Req. Worksheet Lines';
                 ToolTip = 'Executes the Req. Worksheet Lines action.';
                 Image = Line;
+                ApplicationArea = All;
 
                 trigger OnAction();
                 begin
@@ -138,6 +149,7 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
                 Caption = '&Special Fields';
                 ToolTip = 'Executes the &Special Fields action.';
                 Image = Filed;
+                ApplicationArea = All;
 
                 trigger OnAction();
                 begin
@@ -155,6 +167,7 @@ pageextension 50046 SalesOrderSubformExt extends "Sales Order Subform"
                 Caption = 'Calculate &Invoice Discount';
                 Image = CalculateInvoiceDiscount;
                 ToolTip = 'Executes the Calculate &Invoice Discount action.';
+                ApplicationArea = All;
 
                 trigger OnAction();
                 begin

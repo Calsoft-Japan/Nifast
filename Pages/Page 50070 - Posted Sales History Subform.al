@@ -7,6 +7,7 @@ page 50070 "Posted Sales History Subform"
     Editable = false;
     PageType = ListPart;
     SourceTable = "Sales Invoice History Line";
+    ApplicationArea = All;
 
     layout
     {
