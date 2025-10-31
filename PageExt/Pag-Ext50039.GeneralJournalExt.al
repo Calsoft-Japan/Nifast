@@ -13,16 +13,16 @@ pageextension 50039 GeneralJournalExt extends "General Journal"
     {
         addafter("Insert Conv. LCY Rndg. Lines")
         {
-            // action("Import Gen Journal Lines")
-            // {
-            //     Caption = 'Import Gen Journal Lines';
-            //     //RunObject = XMLport 50078; //TODO
-            // }
-            // action("Import Demensions")
-            // {
-            //     Caption = 'Import Demensions';
-            //     //RunObject = XMLport 50079; //TODO
-            // }
+            action("Import Gen Journal Lines")
+            {
+                Caption = 'Import Gen Journal Lines';
+                RunObject = XMLport 50078;
+            }
+            action("Import Demensions")
+            {
+                Caption = 'Import Demensions';
+                //RunObject = XMLport 50079; //TODO
+            }
         }
     }
 }

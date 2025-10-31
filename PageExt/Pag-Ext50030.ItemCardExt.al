@@ -184,8 +184,8 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Require Revision No. field.';
                 }
-                //TODO
-                /*  field("Revision No."; Rec."Revision No.")
+                
+                  field("Revision No."; Rec."Revision No.")
                  {
                      Caption = 'Revision No.';
                      DrillDown = false;
@@ -207,7 +207,8 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                          //<< NIF 06-29-05 RTT
                      end;
                  }
-                //TODO
+                 //TODO
+                
                 /*  field("Revision Date"; Rec."Revision Date")
                  {
                      ApplicationArea = All;

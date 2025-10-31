@@ -149,26 +149,26 @@ pageextension 50021 CustomerCardExt extends "Customer Card"
     actions
     {
 
-        // addafter("Prepa&yment Percentages") //TODO
-        // {
-        //     action("&Contracts")
-        //     {
-        //         Caption = '&Contracts';
-        //         RunObject = Page 50113;
-        //         RunPageLink = "Customer No." = FIELD("No.");
-        //         ApplicationArea = All;
-        //     }
-        // }
-        // addafter("Action 147")
-        // {
-        //     action("Sales Invoice Lines") //TODO
-        //     {
-        //         Caption = 'Sales Invoice Lines';
-        //         RunObject = Page 50058;
-        //         RunPageLink = "Sell-to Customer No." = field("No.");
-        //         ApplicationArea = All;
-        //     }
-        // }
+        addafter("Prepa&yment Percentages")
+        {
+            action("&Contracts")
+            {
+                Caption = '&Contracts';
+                RunObject = Page 50113;
+                RunPageLink = "Customer No." = FIELD("No.");
+                ApplicationArea = All;
+            }
+        }
+        addafter(Action140)
+        {
+            action("Sales Invoice Lines")
+            {
+                Caption = 'Sales Invoice Lines';
+                RunObject = Page 50058;
+                RunPageLink = "Sell-to Customer No." = field("No.");
+                ApplicationArea = All;
+            }
+        }
     }
 
     var

@@ -71,13 +71,11 @@ pageextension 55404 "Item Units of Measure Ext" extends "Item Units of Measure"
         IF not TransferLine.IsEmpty THEN
             ERROR('Transfer Orders exist for Item %1 unit of measure %2', Rec."Item No.", Rec.Code);
 
-        //TODO
         WhseEntry.SETCURRENTKEY("Item No.", Open);
         WhseEntry.SETRANGE("Item No.", Rec."Item No.");
         WhseEntry.SETRANGE(Open, TRUE);
         WhseEntry.SETRANGE("Unit of Measure Code", Rec.Code);
         IF not WhseEntry.IsEmpty THEN
             ERROR('Open Whse Entries exist for Item %1, Unit of Measure %2', Rec."Item No.", Rec.Code);
-        //TODO
     END;
 }

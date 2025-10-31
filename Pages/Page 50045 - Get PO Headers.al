@@ -7,9 +7,7 @@ page 50045 "Get PO Headers"
     UsageCategory = Lists;
     ApplicationArea = All;
     SourceTable = "Purchase Header";
-    //TODO
-    /* SourceTableView = WHERE("Currency Code" = CONST(JPY)); */
-    //TODO
+    SourceTableView = WHERE("Currency Code" = CONST('JPY'));
 
     layout
     {

@@ -4,9 +4,7 @@ codeunit 50203 Tab37Subscriber
         //  SalesSetup: Record "Sales & Receivables Setup";
         NIFItemCrossRef: Record "Item Reference";
         SingleInstanceCu: Codeunit SingleInstance;
-        //TODO
-        // NVM: Codeunit 50021;
-        //TODO
+        NVM: Codeunit 50021;
         //SalesSetupRead: Boolean;
         EDITemp: Boolean;
 
@@ -27,19 +25,16 @@ codeunit 50203 Tab37Subscriber
         SalesLine."Entry/Exit Date" := SalesHeader."Entry/Exit Date";
         //+AKK1606++ PEDIMENTOS
 
-        //TODO
-        /*   //>>NIF GOLIVE 082905 MAK
+           //>>NIF GOLIVE 082905 MAK
           SalesLine."External Document No." := SalesHeader."External Document No.";
           //<<NIF GOLIVE 082905 MAK
-   */
-        //TODO
 
         //>>NIF #10076 07-06-05 RTT
         SalesLine."Model Year" := SalesHeader."Model Year";
         //<<NIF #10076 07-06-05 RTT
 
-        //TODO
-        /*   //>>NV
+        
+          //>>NV
           SalesLine."Order Date" := SalesHeader."Order Date";
           SalesLine."Salesperson Code" := SalesHeader."Salesperson Code";
           //<<NV
@@ -49,7 +44,7 @@ codeunit 50203 Tab37Subscriber
           ELSE
               SalesLine."Contract No." := '';
           //<< NV #9752 */
-        //TODO
+        
     end;
 
     [EventSubscriber(ObjectType::Table, database::"Sales Line", OnAfterAssignItemValues, '', false, false)]
@@ -59,11 +54,11 @@ codeunit 50203 Tab37Subscriber
         SalesLine.National := Item.National;
         //+AKK1606++ PEDIMENTOS
 
-        //TODO
-        /*  //>> NIF 06-29-05 RTT
+        
+          //>> NIF 06-29-05 RTT
          NVM.GetActiveDrawingRevision(Item."No.", SalesLine."Revision No.", SalesLine."Drawing No.", SalesLine."Revision Date");
-         //<< NIF 06-29-05 RTT  */
-        //TODO
+         //<< NIF 06-29-05 RTT  
+        
 
         //>> NIF 12-13-05 MAK
         IF Item."Net Weight" = 0 THEN
@@ -259,7 +254,7 @@ codeunit 50203 Tab37Subscriber
     [EventSubscriber(ObjectType::Table, database::"Sales Line", OnAfterUpdateAmountsDone, '', false, false)]
     local procedure OnAfterUpdateAmountsDone(var SalesLine: Record "Sales Line"; var xSalesLine: Record "Sales Line"; CurrentFieldNo: Integer)
     begin
-        //TODO
+        
         /*  // >> NV
          SalesLine."Net Unit Price" := 0;
          IF SalesLine.Quantity <> 0 THEN
