@@ -5,7 +5,7 @@ tableextension 50052 "Whse. Internal Put-awayLineExt" extends "Whse. Internal Pu
     fields
     {
          
-        field(14017999; "License Plate No."; Code[20])
+        field(70000; "License Plate No."; Code[20])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }

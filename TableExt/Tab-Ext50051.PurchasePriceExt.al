@@ -3,7 +3,7 @@ tableextension 50051 "Purchase Price Ext" extends "Purchase Price"
     // Version NAVW17.00,NV4.35;
     fields
     {
-        field(14017614; "Alt. Price"; Decimal)
+        field(70000; "Alt. Price"; Decimal)
         {
             DecimalPlaces = 2 : 2;
             Editable = false;
@@ -16,7 +16,7 @@ tableextension 50051 "Purchase Price Ext" extends "Purchase Price"
             end;
         }
 
-        field(14017615; "Alt. Price UOM"; Code[10])
+        field(70001; "Alt. Price UOM"; Code[10])
         {
             Editable = false;
         }

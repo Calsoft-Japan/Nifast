@@ -99,72 +99,72 @@ tableextension 50083 "Item Journal Line Ext" extends "Item Journal Line"
 
             end;
         }
-        field(14017611; "Item Group Code"; Code[10])
+        field(70000; "Item Group Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14017640; "Production Kit No."; Code[20])
+        field(70001; "Production Kit No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017641; "Contract No."; Code[20])
+        field(70002; "Contract No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "HS Tariff Code";
         }
-        field(14017671; "Tag No."; Code[20])
+        field(70003; "Tag No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017672; "Customer BiN"; TEXT[12])
+        field(70004; "Customer BiN"; TEXT[12])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017931; "Rework No."; Code[20])
+        field(70005; "Rework No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14017932; "Rework Line No."; Integer)
+        field(70006; "Rework Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017933; "Posting Confirmed"; Boolean)
+        field(70007; "Posting Confirmed"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018070; "QC Hold"; Boolean)
+        field(70008; "QC Hold"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018071; "QC Hold Reason Code"; Code[10])
+        field(70009; "QC Hold Reason Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14018072; "QC Reference No."; Code[20])
+        field(70010; "QC Reference No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14018073; "QC Ref. Line No."; Integer)
+        field(70011; "QC Ref. Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(37015330; "FB Order No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-            Description = 'NV-FB';
-        }
-        field(37015331; "FB Line No."; Integer)
+        field(70012; "FB Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Description = 'NV-FB';
         }
-        field(37015332; " FB Tag No."; Code[20])
+        field(70013; "FB Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NV-FB';
+        }
+        field(70014; " FB Tag No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(37015333; "FB Customer Bin"; Code[20])
+        field(70015; "FB Customer Bin"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
