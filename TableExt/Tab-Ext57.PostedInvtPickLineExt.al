@@ -3,7 +3,7 @@ tableextension 57353 "Posted Invt. Pick Line Ext" extends "Posted Invt. Pick Lin
     fields
     {
           
-        field(14017999; "License Plate No."; Code[20])
+        field(70000; "License Plate No."; Code[20])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }

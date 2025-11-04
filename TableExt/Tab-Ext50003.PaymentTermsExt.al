@@ -31,20 +31,9 @@ tableextension 50003 "Payment Terms Ext" extends "Payment Terms"
         {
             DataClassification = ToBeClassified;
         }
-        //TODO
-        /*  field(14000701; "COD Payment"; Boolean)
-         {
-             BlankZero = true;
-             Caption = 'COD Payment';
-             Description = 'NV';
-         }
-         field(14000702; "COD Cashiers Check"; Boolean)
-         {
-             Caption = 'COD Cashiers Check';
-             Description = 'NV';
-         } */
-        //TODO
-        field(14017610; Deferred; Boolean)
+        
+          
+        field(70000; Deferred; Boolean)
         {
             Description = 'NV';
 
@@ -53,13 +42,13 @@ tableextension 50003 "Payment Terms Ext" extends "Payment Terms"
                 TESTFIELD("Discount %", 0);
             end;
         }
-        field(14017611; "No. of Payments"; Integer)
+        field(70001; "No. of Payments"; Integer)
         {
             Description = 'NV';
             MaxValue = 12;
             MinValue = 0;
         }
-        field(14017612; "Deferred Delay Date Calc."; DateFormula)
+        field(70002; "Deferred Delay Date Calc."; DateFormula)
         {
             Description = 'NV';
         }

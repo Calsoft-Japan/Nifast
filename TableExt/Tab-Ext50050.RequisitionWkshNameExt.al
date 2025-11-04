@@ -2,7 +2,7 @@ tableextension 50050 "Requisition Wksh. Name Ext" extends "Requisition Wksh. Nam
 {
     fields
     {
-        field(14017730; "User ID"; Code[50])
+        field(70000; "User ID"; Code[50])
         {
             Description = '20-->50 NF1.00:CIS.NG  10-10-15';
             TableRelation = User."User Name";

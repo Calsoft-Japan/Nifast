@@ -183,655 +183,70 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         }
 
 
-        /*  field(14000350; "EDI Ship Confirmed"; Boolean)
-         {
-             Caption = 'EDI Ship Confirmed';
-             Editable = false;
-         }
-
-         field(14000351; "EDI Item Cross Ref."; Code[20])
-         {
-             Caption = 'EDI Item Cross Ref.';
-         }
-
-         field(14000352; "EDI Unit of Measure"; Code[10])
-         {
-             Caption = 'EDI Unit of Measure';
-         }
-
-         field(14000353; "EDI Unit Price"; Decimal)
-         {
-             Caption = 'EDI Unit Price';
-         }
-
-         field(14000354; "EDI Price Discrepancy"; Boolean)
-         {
-             Caption = 'EDI Price Discrepancy';
-         }
-
-         field(14000355; "EDI Segment Group"; Integer)
-         {
-             Caption = 'EDI Segment Group';
-             Editable = false;
-         }
-
-         field(14000356; "EDI Original Qty."; Decimal)
-         {
-             Caption = 'EDI Original Qty.';
-             DecimalPlaces = 0 : 5;
-             Editable = false;
-         }
-
-         field(14000357; "EDI Status Pending"; Boolean)
-         {
-             Caption = 'EDI Status Pending';
-             Editable = false;
-         }
-
-         field(14000358; "EDI Release No."; Code[20])
-         {
-             Caption = 'EDI Release No.';
-         }
-
-         field(14000359; "EDI Ship Req. Date"; Date)
-         {
-             Caption = 'EDI Ship Req. Date';
-         }
-
-         field(14000360; "EDI Kanban No."; Code[20])
-         {
-             Caption = 'EDI Kanban No.';
-         }
-
-         field(14000361; "EDI Line Type"; Option)
-         {
-             Caption = 'EDI Line Type';
-             OptionCaption = ' ,Forecast,Release,Change,Forecast & Release,Recreate';
-             OptionMembers = "",Forecast,Release,Change,"Forecast & Release",Recreate;
-         }
-
-         field(14000362; "EDI Line Status"; Option)
-         {
-             Caption = 'EDI Line Status';
-             OptionCaption = ' ,New,Order Exists,Shipment Exists,Release Created,Change Made,Cancellation,Add Item,Closed';
-             OptionMembers = "",New,"Order Exists","Shipment Exists","Release Created","Change Made",Cancellation,"Add Item",Closed;
-         }
-
-         field(14000363; "EDI Cumulative Quantity"; Decimal)
-         {
-             Caption = 'EDI Cumulative Quantity';
-         }
-
-         field(14000364; "EDI Forecast Begin Date"; Date)
-         {
-             Caption = 'EDI Forecast Begin Date';
-         }
-
-         field(14000365; "EDI Forecast End Date"; Date)
-         {
-             Caption = 'EDI Forecast End Date';
-         }
-
-         field(14000366; "EDI Code"; Code[35])
-         {
-             Caption = 'EDI Code';
-         }
-
-         field(14000602; "Over Receive"; Boolean)
-         {
-             Caption = 'Over Receive';
-             Editable = false;
-         }
-        field(14000603; "Over Receive Verified"; Boolean)
-        {
-            Caption = 'Over Receive Verified';
-            trigger OnValidate()
-            begin
-                if "Over Receive Verified" then
-                    TestField("Over Receive");
-            end;
-        }
-
-        field(14000701; "Shipping Charge"; Boolean)
-        {
-            Caption = 'Shipping Charge';
-        }
-
-        field(14000702; "Dimmed Weight"; Decimal)
-        {
-            Caption = 'Dimmed Weight';
-            DecimalPlaces = 0 : 5;
-        }
-
-        field(14000703; "Pack"; Boolean)
-        {
-            Caption = 'Pack';
-            Editable = false;
-        }
-
-        field(14000704; "Rate Quoted"; Boolean)
-        {
-            Caption = 'Rate Quoted';
-            trigger OnValidate()
-            var
-                ShippingAgent: Record 291;
-            begin
-                if "Rate Quoted" then begin
-                    TestField("Quantity Shipped", 0);
-
-                    GetSalesHeader();
-                    SalesHeader.TestField("Shipping Agent Code");
-                    ShippingAgent.Get(SalesHeader."Shipping Agent Code");
-                    TestField(Type, ShippingAgent."Prepaid Freight Type");
-                    TestField("No.", ShippingAgent."Prepaid Freight Code");
-                end;
-            end;
-        }
-         
-
-        field(14000705; "Std. Pack Unit of Measure Code"; Code[10])
-        {
-            Caption = 'Std. Pack Unit of Measure Code';
-            TableRelation = if (Type = Type::Item) then "Item Unit of Measure".Code where ("Item No." = field("No."));
-
-            trigger OnValidate()
-            begin
-                TestField(Type, Type::Item);
-                TestField("No.");
-
-                if "Std. Pack Unit of Measure Code" <> '' then begin
-                    GetItem();
-                    "Qty. per Std. Pack" := UOMMgt.GetQtyPerUnitOfMeasure(Item, "Std. Pack Unit of Measure Code");
-                end else
-                    "Qty. per Std. Pack" := 0;
-
-                "Std. Pack Quantity" := CalcStdPackQty("Quantity (Base)");
-                "Package Quantity" := CalcPackageQty("Std. Pack Quantity");
-                "Std. Pack Qty. to Ship" := CalcStdPackQty("Qty. to Ship (Base)");
-                "Package Qty. to Ship" := CalcPackageQty("Std. Pack Qty. to Ship");
-            end;
-        }
-       
-
-        field(14000706; "Std. Pack Quantity"; Decimal)
-        {
-            Caption = 'Std. Pack Quantity';
-            DecimalPlaces = 0 : 5;
-            BlankZero = true;
-            Editable = false;
-        }
-
-        field(14000707; "Qty. per Std. Pack"; Decimal)
-        {
-            Caption = 'Qty. per Std. Pack';
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-
-        field(14000708; "Std. Pack Qty. to Ship"; Decimal)
-        {
-            Caption = 'Std. Pack Qty. to Ship';
-            DecimalPlaces = 0 : 5;
-            BlankZero = true;
-            Editable = false;
-        }
-
-        field(14000709; "Std. Packs per Package"; Integer)
-        {
-            Caption = 'Std. Packs per Package';
-            trigger OnValidate()
-            begin
-                if "Std. Packs per Package" <> 0 then
-                    TestField("Std. Pack Unit of Measure Code");
-
-                "Package Quantity" := CalcPackageQty("Std. Pack Quantity");
-                "Package Qty. to Ship" := CalcPackageQty("Std. Pack Qty. to Ship");
-            end;
-        }
-        field(14000710; "Package Quantity"; Decimal)
-        {
-            Caption = 'Package Quantity';
-            DecimalPlaces = 0 : 5;
-            BlankZero = true;
-            Editable = false;
-        }
-
-        field(14000711; "Package Qty. to Ship"; Decimal)
-        {
-            Caption = 'Package Qty. to Ship';
-            DecimalPlaces = 0 : 5;
-            BlankZero = true;
-            Editable = false;
-        }
-
-        field(14000712; "E-Ship Whse. Outst. Qty (Base)"; Decimal)
-        {
-            Caption = 'E-Ship Whse. Outst. Qty (Base)';
-            FieldClass = FlowField;
-            CalcFormula = Sum("Warehouse Activity Line"."Qty. Outstanding (Base)"
-        where(
-            "Activity Type" = filter(Pick),
-            "Source Type" = const(37),
-            "Source Subtype" = field("Document Type"),
-            "Source No." = field("Document No."),
-            "Source Line No." = field("Line No."),
-            "Action Type" = filter(' ' | Take),
-            "Breakbulk No." = filter(0)
-        ));
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-
-        field(14000713; "Shipping Charge BOL No."; Code[20])
-        {
-            Caption = 'Shipping Charge BOL No.';
-            TableRelation = "LAX Bill of Lading";
-        }
-
-        field(14000714; "E-Ship Whse. Outstanding Qty."; Decimal)
-        {
-            Caption = 'E-Ship Whse. Outstanding Qty.';
-            FieldClass = FlowField;
-            CalcFormula = Sum("Warehouse Activity Line"."Qty. Outstanding"
-        where(
-            "Activity Type" = filter(Pick),
-            "Source Type" = const(37),
-            "Source Subtype" = field("Document Type"),
-            "Source No." = field("Document No."),
-            "Source Line No." = field("Line No."),
-            "Action Type" = filter(' ' | Take),
-            "Breakbulk No." = filter(0)
-        ));
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-
-        field(14000715; "Required Shipping Agent Code"; Code[10])
-        {
-            Caption = 'Required Shipping Agent Code';
-            TableRelation = "Shipping Agent";
-
-            trigger OnValidate()
-            var
-                PackageLine: Record "Package Line";
-            begin
-                if "Required Shipping Agent Code" <> '' then
-                    TestField("LAX Pack");
-
-                if "Required Shipping Agent Code" <> xRec."Required Shipping Agent Code" then begin
-                    if CurrFieldNo = FieldNo("Required Shipping Agent Code") then begin
-                        PackageLine.Reset();
-                        PackageLine.SetCurrentKey("Source Type", "Source Subtype", "Source ID", "No.", "Variant Code", Type);
-                        PackageLine.SetRange("Source Type", Database::"Sales Header");
-                        PackageLine.SetRange("Source Subtype", "Document Type");
-                        PackageLine.SetRange("Source ID", "Document No.");
-                        PackageLine.SetRange(Type, Type);
-                        PackageLine.SetRange("No.", "No.");
-                        PackageLine.SetRange("Variant Code", "Variant Code");
-                        if PackageLine.Find('-') then
-                            Message(Text14000701);
-                    end;
-
-                    Validate("Required E-Ship Agent Service", '');
-                    Validate("LAX Allow Other ShipAgent/Serv", false);
-                end;
-            end;
-        }
-
-        field(14000716; "Required E-Ship Agent Service"; Code[30])
-        {
-            Caption = 'Required E-Ship Agent Service';
-            TableRelation = "LAX EShip Agent Service".Code where("Shipping Agent Code" = field("Required Shipping Agent Code"));
-
-            trigger OnValidate()
-            var
-                PackageLine: Record "Package Line";
-                ShippingAgent: Record "Shipping Agent";
-                EShipAgentService: Record "LAX EShip Agent Service";
-            begin
-                if "Required E-Ship Agent Service" <> '' then begin
-                    TestField("LAX Pack");
-                    GetSalesHeader();
-                    TestField("Required Shipping Agent Code");
-                    ShippingAgent.Get("Required Shipping Agent Code");
-                    EShipAgentService.Get(
-                        "Required Shipping Agent Code", "Required E-Ship Agent Service", SalesHeader."World Wide Service");
-                    if EShipAgentService.UPSCanadianShipment(ShippingAgent, SalesHeader."Ship-to Country/Region Code") then
-                        EShipAgentService.TestField("UPS Canadian Service");
-                    if EShipAgentService.UPSPuertoRicoShipment(ShippingAgent, SalesHeader."Ship-to Country/Region Code") then
-                        EShipAgentService.TestField("UPS Puerto Rico Service");
-                end;
-
-                if ("Required E-Ship Agent Service" <> xRec."Required E-Ship Agent Service") and
-                   (CurrFieldNo = FieldNo("Required E-Ship Agent Service")) then begin
-                    PackageLine.Reset();
-                    PackageLine.SetCurrentKey("Source Type", "Source Subtype", "Source ID", "No.", "Variant Code", Type);
-                    PackageLine.SetRange("Source Type", Database::"Sales Header");
-                    PackageLine.SetRange("Source Subtype", "Document Type");
-                    PackageLine.SetRange("Source ID", "Document No.");
-                    PackageLine.SetRange(Type, Type);
-                    PackageLine.SetRange("No.", "No.");
-                    PackageLine.SetRange("Variant Code", "Variant Code");
-                    if PackageLine.Find('-') then
-                        Message(Text14000701);
-                end;
-            end;
-
-            trigger OnLookup()
-            var
-                ShippingAgent: Record "Shipping Agent";
-                EShipAgentService: Record "LAX EShip Agent Service";
-            begin
-                GetSalesHeader();
-                TestField("Required Shipping Agent Code");
-                ShippingAgent.Get("Required Shipping Agent Code");
-                EShipAgentService.Reset();
-                EShipAgentService.SetRange("Shipping Agent Code", ShippingAgent.Code);
-                EShipAgentService.SetRange(
-                    "World Wide Service",
-                    EShipAgentService.InternationalShipment(ShippingAgent, SalesHeader."Ship-to Country/Region Code"));
-                if EShipAgentService.UPSCanadianShipment(ShippingAgent, SalesHeader."Ship-to Country/Region Code") then
-                    EShipAgentService.SetRange("UPS Canadian Service", true);
-                if EShipAgentService.UPSPuertoRicoShipment(ShippingAgent, SalesHeader."Ship-to Country/Region Code") then
-                    EShipAgentService.SetRange("UPS Puerto Rico Service", true);
-                if PAGE.RunModal(0, EShipAgentService) = Action::LookupOK then
-                    Validate("Required E-Ship Agent Service", EShipAgentService.Code);
-            end;
-        }
-
-        field(14000717; "Allow Other Ship. Agent/Serv."; Boolean)
-        {
-            trigger OnValidate()
-            begin
-                if "Allow Other Ship. Agent/Serv." then begin
-                    TestField("LAX Pack");
-                    TestField("Required Shipping Agent Code");
-                    TestField("Required E-Ship Agent Service");
-                end;
-            end;
-        }
-
-        field(14000718; "E-Ship Whse. Ship. Qty (Base)"; Decimal)
-        {
-            Caption = 'E-Ship Whse. Ship. Qty (Base)';
-            FieldClass = FlowField;
-            CalcFormula = Sum("Warehouse Shipment Line"."Qty. to Ship (Base)"
-        where(
-            "Source Type" = const(37),
-            "Source Subtype" = field("Document Type"),
-            "Source No." = field("Document No."),
-            "Source Line No." = field("Line No.")
-        ));
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-
-        field(14000719; "E-Ship Whse. Shipment Qty."; Decimal)
-        {
-            Caption = 'E-Ship Whse. Shipment Qty.';
-            FieldClass = FlowField;
-            CalcFormula = Sum("Warehouse Shipment Line"."Qty. to Ship"
-        where(
-            "Source Type" = const(37),
-            "Source Subtype" = field("Document Type"),
-            "Source No." = field("Document No."),
-            "Source Line No." = field("Line No.")
-        ));
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-
-        field(14000720; "E-Ship Agent Code"; Code[10])
-        {
-            Caption = 'E-Ship Agent Code';
-            TableRelation = "Shipping Agent";
-
-            trigger OnValidate()
-            begin
-                GetSalesHeader();
-
-                if ("E-Ship Agent Code" <> xRec."E-Ship Agent Code") and (xRec."E-Ship Agent Code" <> '') then
-                    Validate("E-Ship Agent Service", '');
-
-                if "LAX EShip Agent Code" <> '' then begin
-                    ShippingAgent.Get("E-Ship Agent Code");
-                    Validate("E-Ship Agent Service", EShipAgentService.DefaultShipAgentService(ShippingAgent, SalesHeader."Ship-to Country/Region Code"));
-                end;
-
-                if "E-Ship Agent Code" <> xRec."E-Ship Agent Code" then begin
-                    if "E-Ship Agent Code" <> '' then begin
-                        Validate("Shipping Payment Type", SalesHeader."Shipping Payment Type");
-                        Validate("Shipping Insurance", SalesHeader."Shipping Insurance");
-                    end else begin
-                        Validate("Shipping Payment Type", "Shipping Payment Type"::Prepaid);
-                        Validate("Shipping Insurance", "Shipping Insurance"::" ");
-                    end;
-
-                    if CurrFieldNo = FieldNo("E-Ship Agent Code") then
-                        if "E-Ship Agent Code" <> '' then
-                            Validate("Shipping Agent Code", "E-Ship Agent Code")
-                        else
-                            Validate("Shipping Agent Code", SalesHeader."Shipping Agent Code");
-
-                    if "Shipping Payment Type" = "Shipping Payment Type"::Prepaid then
-                        Validate("Third Party Ship. Account No.", '')
-                    else
-                        if ShippingAccount.GetPrimaryShippingAccountNo(
-                            "E-Ship Agent Code",
-                            ShippingAccount."Ship-to Type"::Customer,
-                            SalesHeader."Sell-to Customer No.",
-                            SalesHeader."Ship-to Code")
-                        then
-                            Validate("Third Party Ship. Account No.", ShippingAccount."Account No.")
-                        else
-                            Validate("Third Party Ship. Account No.", '');
-                end;
-            end;
-        }
-
-        field(14000721; "E-Ship Agent Service"; Code[30])
-        {
-            Caption = 'E-Ship Agent Service';
-
-            trigger OnValidate()
-            begin
-                GetSalesHeader();
-
-                if "E-Ship Agent Service" <> '' then begin
-                    TestField("E-Ship Agent Code");
-                    ShippingAgent.Get("E-Ship Agent Code");
-                    EShipAgentService.ValidateEShipAgentService(ShippingAgent, "E-Ship Agent Service", SalesHeader."Ship-to Country/Region Code");
-                end;
-            end;
-
-            trigger OnLookup()
-            begin
-                GetSalesHeader();
-                TestField("E-Ship Agent Code");
-                ShippingAgent.Get("E-Ship Agent Code");
-                EShipAgentService.LookupEShipAgentService(ShippingAgent, "E-Ship Agent Service", SalesHeader."Ship-to Country/Region Code");
-                if PAGE.RunModal(0, EShipAgentService) = Action::LookupOK then
-                    Validate("E-Ship Agent Service", EShipAgentService.Code);
-            end;
-        }
-
-        field(14000722; "Shipping Payment Type"; Option)
-        {
-            Caption = 'Shipping Payment Type';
-            OptionCaption = 'Prepaid,Third Party,Freight Collect,Consignee';
-            OptionMembers = Prepaid,ThirdParty,FreightCollect,Consignee;
-
-            trigger OnValidate()
-            begin
-                GetSalesHeader();
-
-                if "Shipping Payment Type" = "Shipping Payment Type"::Prepaid then
-                    Validate("Third Party Ship. Account No.", '')
-                else
-                    if ShippingAccount.GetPrimaryShippingAccountNo(
-                        "E-Ship Agent Code",
-                        ShippingAccount."Ship-to Type"::Customer,
-                        SalesHeader."Sell-to Customer No.",
-                        SalesHeader."Ship-to Code")
-                    then
-                        Validate("Third Party Ship. Account No.", ShippingAccount."Account No.");
-            end;
-        }
-
-        field(14000723; "Third Party Ship. Account No."; Code[20])
-        {
-            Caption = 'Third Party Ship. Account No.';
-
-            trigger OnValidate()
-            begin
-                GetSalesHeader();
-                ShippingAccount."Shipping Agent Code" := "E-Ship Agent Code";
-                ShippingAccount.TestShippingAccountNo("Third Party Ship. Account No.");
-
-                if ("Third Party Ship. Account No." <> '') and
-               ("Shipping Payment Type" <> "Shipping Payment Type"::Prepaid) then begin
-                    Clear(ShippingAccount);
-
-                    if not ShippingAccount.Get(
-                        ShippingAccount."Ship-to Type"::Customer,
-                        SalesHeader."Sell-to Customer No.",
-                        SalesHeader."Ship-to Code",
-                        "E-Ship Agent Code",
-                        "Third Party Ship. Account No.") then begin
-                        ShippingAccount.Reset();
-                        ShippingAccount.SetCurrentKey("Shipping Agent Code", "Account No.");
-                        ShippingAccount.SetRange("Shipping Agent Code", "E-Ship Agent Code");
-                        ShippingAccount.SetRange("Account No.", "Third Party Ship. Account No.");
-                        if not ShippingAccount.Find('-') then;
-                    end;
-
-                    if (ShippingAccount."Account No." <> '') and
-                       ("Shipping Payment Type" <> "Shipping Payment Type"::Prepaid) then
-                        "Shipping Insurance" := ShippingAccount."Shipping Insurance";
-                end;
-            end;
-
-            trigger OnLookup()
-            begin
-                GetSalesHeader();
-
-                if ShippingAccount.LookupThirdPartyAccountNo(
-                    "E-Ship Agent Code",
-                    ShippingAccount."Ship-to Type"::Customer,
-                    SalesHeader."Sell-to Customer No.",
-                    SalesHeader."Ship-to Code") then
-                    Validate("Third Party Ship. Account No.", ShippingAccount.GetLookupAccountNo);
-            end;
-        }
-
-        field(14000724; "Shipping Insurance"; Option)
-        {
-            Caption = 'Shipping Insurance';
-            OptionCaption = ' ,Never,Always';
-            OptionMembers = " ","Never","Always";
-        }
-
-        field(14000725; "E-Ship Invt. Outst. Qty (Base)"; Decimal)
-        {
-            Caption = 'E-Ship Invt. Outst. Qty (Base)';
-            FieldClass = FlowField;
-            CalcFormula = Sum("Warehouse Activity Line"."Qty. Outstanding (Base)"
-        where(
-            "Activity Type" = filter("Invt. Pick"),
-            "Source Type" = const(37),
-            "Source Subtype" = field("Document Type"),
-            "Source No." = field("Document No."),
-            "Source Line No." = field("Line No."),
-            "Action Type" = filter(' ' | Take),
-            "Breakbulk No." = filter(0)
-        ));
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-
-        field(14000726; "E-Ship Invt. Outstanding Qty."; Decimal)
-        {
-            Caption = 'E-Ship Invt. Outstanding Qty.';
-            FieldClass = FlowField;
-            CalcFormula = Sum("Warehouse Activity Line"."Qty. Outstanding"
-        where(
-            "Activity Type" = filter("Invt. Pick"),
-            "Source Type" = const(37),
-            "Source Subtype" = field("Document Type"),
-            "Source No." = field("Document No."),
-            "Source Line No." = field("Line No."),
-            "Action Type" = filter(' ' | Take),
-            "Breakbulk No." = filter(0)
-        ));
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-         */
-
-
-        field(14017611; "Order Date"; Date)
+        
+        field(70000; "Order Date"; Date)
         {
             Description = 'NV - FB';
         }
 
-        field(14017612; "Manufacturer Code"; Code[50])
+        field(70001; "Manufacturer Code"; Code[50])
         {
             TableRelation = Manufacturer.Name;
         }
 
-        field(14017614; "Tool Repair Tech"; Code[10])
+        field(70002; "Tool Repair Tech"; Code[10])
         {
             TableRelation = "Salesperson/Purchaser".Code where("Repair Tech" = const(true));
         }
 
-        field(14017615; "Salesperson Code"; Code[10])
+        field(70003; "Salesperson Code"; Code[10])
         {
             TableRelation = "Salesperson/Purchaser".Code where(Sales = const(true));
             Description = 'NV - FB';
         }
 
-        field(14017616; "Inside Salesperson Code"; Code[10])
+        field(70004; "Inside Salesperson Code"; Code[10])
         {
             TableRelation = "Salesperson/Purchaser".Code where("Inside Sales" = const(true));
             Description = 'NV - FB';
         }
 
-        field(14017617; "NV Posting Date"; Date)
+        field(70005; "NV Posting Date"; Date)
         {
         }
 
-        field(14017618; "External Document No."; Code[20])
+        field(70006; "External Document No."; Code[20])
         {
             Description = 'NV - FB';
         }
 
-        field(14017619; "Line Amount to Ship"; Decimal)
+        field(70007; "Line Amount to Ship"; Decimal)
         {
             Editable = false;
         }
 
-        field(14017620; "Line Amount to Invoice"; Decimal)
+        field(70008; "Line Amount to Invoice"; Decimal)
         {
             Editable = false;
         }
 
-        field(14017621; "List Price"; Decimal)
+        field(70009; "List Price"; Decimal)
         {
             DecimalPlaces = 2 : 5;
         }
 
-        field(14017624; "Alt. Quantity"; Decimal)
+        field(70010; "Alt. Quantity"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             Editable = false;
         }
 
-        field(14017625; "Alt. Qty. UOM"; Code[10])
+        field(70011; "Alt. Qty. UOM"; Code[10])
         {
             Editable = false;
         }
 
-        field(14017626; "Alt. Price"; Decimal)
+        field(70012; "Alt. Price"; Decimal)
         {
             DecimalPlaces = 2 : 5;
 
@@ -850,7 +265,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             end;
         }
 
-        field(14017627; "Alt. Price UOM"; Code[10])
+        field(70013; "Alt. Price UOM"; Code[10])
         {
             TableRelation = if (Type = const(Item)) "Item Unit of Measure".Code where("Item No." = field("No."));
 
@@ -860,19 +275,19 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
                 Validate("Alt. Sales Cost");
             end;
         }
-        field(14017628; "Alt. Sales Cost"; Decimal)
+        field(70014; "Alt. Sales Cost"; Decimal)
         {
             DecimalPlaces = 2 : 5;
             Editable = false;
         }
 
-        field(14017631; "Net Unit Price"; Decimal)
+        field(70015; "Net Unit Price"; Decimal)
         {
             DecimalPlaces = 2 : 5;
             Editable = false;
         }
 
-        field(14017633; "Line Comment"; Boolean)
+        field(70016; "Line Comment"; Boolean)
         {
             FieldClass = FlowField;
             InitValue = false;
@@ -880,11 +295,11 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             Editable = false;
         }
 
-        field(14017640; "Ship-to PO No."; Code[20])
+        field(70017; "Ship-to PO No."; Code[20])
         {
         }
 
-        field(14017641; "Shipping Advice"; Option)
+        field(70018; "Shipping Advice"; Option)
         {
             OptionCaption = 'Partial,Complete';
             OptionMembers = Partial,Complete;
@@ -895,7 +310,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             // end;
         }
 
-        field(14017642; "Purchase Order Exists"; Boolean)
+        field(70019; "Purchase Order Exists"; Boolean)
         {
             FieldClass = FlowField;
             CalcFormula = Exist("Purchase Line"
@@ -907,7 +322,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             Editable = true;
         }
 
-        field(14017645; "Contract No."; Code[20])
+        field(70020; "Contract No."; Code[20])
         {
             TableRelation = "Price Contract" where("Customer No." = field("Sell-to Customer No."));
             Caption = 'NV - FB';
@@ -925,7 +340,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             end;
         }
 
-        field(14017649; "Requisition Exists"; Boolean)
+        field(70021; "Requisition Exists"; Boolean)
         {
             FieldClass = FlowField;
             CalcFormula = Exist("Requisition Line"
@@ -936,77 +351,77 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             Editable = false;
         }
 
-        field(14017650; "Resource Group No."; Code[20])
+        field(70022; "Resource Group No."; Code[20])
         {
             TableRelation = "Resource Group";
         }
 
-        field(14017667; "Status"; Option)
+        field(70023; "Status"; Option)
         {
             OptionCaption = 'Open,Released';
             OptionMembers = Open,Released;
             Editable = false;
         }
 
-        field(14017671; "Tag No."; Code[20])
+        field(70024; "Tag No."; Code[20])
         {
         }
 
-        field(14017672; "Customer Bin"; Text[12])
+        field(70025; "Customer Bin"; Text[12])
         {
         }
 
-        field(14017748; "Outstanding Gross Weight"; Decimal)
-        {
-            DecimalPlaces = 0 : 5;
-        }
-
-        field(14017749; "Outstanding Net Weight"; Decimal)
+        field(70026; "Outstanding Gross Weight"; Decimal)
         {
             DecimalPlaces = 0 : 5;
         }
 
-        field(14017750; "Line Gross Weight"; Decimal)
+        field(70027; "Outstanding Net Weight"; Decimal)
         {
             DecimalPlaces = 0 : 5;
-            Editable = false;
         }
 
-        field(14017751; "Line Net Weight"; Decimal)
+        field(70028; "Line Gross Weight"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             Editable = false;
         }
 
-        field(14017752; "Ship-to Code"; Code[10])
+        field(70029; "Line Net Weight"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+
+        field(70030; "Ship-to Code"; Code[10])
         {
             Description = 'NV - FB';
         }
 
-        field(14017753; "Line Cost"; Decimal)
+        field(70031; "Line Cost"; Decimal)
         {
             Editable = false;
         }
 
-        field(14017756; "Item Group Code"; Code[10])
+        field(70032; "Item Group Code"; Code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
 
-        field(14017757; "Vendor No."; Code[20])
+        field(70033; "Vendor No."; Code[20])
         {
             TableRelation = Vendor."No.";
         }
 
-        field(14017758; "Vendor Item No."; Text[20])
+        field(70034; "Vendor Item No."; Text[20])
         {
         }
 
-        field(14017800; "Tool Repair Order No."; Code[20])
+        field(70035; "Tool Repair Order No."; Code[20])
         {
         }
 
-        field(14017903; "BOM Item"; Boolean)
+        field(70036; "BOM Item"; Boolean)
         {
             FieldClass = FlowField;
             CalcFormula = Exist("BOM Component"
@@ -1014,35 +429,35 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             Editable = false;
         }
 
-        field(14017904; "Prod. Kit Order No."; Code[20])
+        field(70037; "Prod. Kit Order No."; Code[20])
         {
         }
 
-        field(37015330; "FB Order No."; Code[20])
-        {
-            Description = 'NV - FB';
-        }
-
-        field(37015331; "FB Line No."; Integer)
+        field(70038; "FB Order No."; Code[20])
         {
             Description = 'NV - FB';
         }
 
-        field(37015332; "FB Tag No."; Code[20])
+        field(70039; "FB Line No."; Integer)
         {
             Description = 'NV - FB';
         }
 
-        field(37015333; "FB Customer Bin"; Code[20])
+        field(70040; "FB Tag No."; Code[20])
         {
             Description = 'NV - FB';
         }
 
-        field(37015680; "Delivery Route"; Code[10])
+        field(70041; "FB Customer Bin"; Code[20])
+        {
+            Description = 'NV - FB';
+        }
+
+        field(70042; "Delivery Route"; Code[10])
         {
         }
 
-        field(37015681; "Delivery Stop"; Code[10])
+        field(70043; "Delivery Stop"; Code[10])
         {
         }
 

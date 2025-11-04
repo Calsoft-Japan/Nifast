@@ -2,7 +2,7 @@ tableextension 50009 "Warehouse Source Filter Ext" extends "Warehouse Source Fil
 {
     fields
     {
-        field(14017790; "Container No. Filter"; Code[100])
+        field(70000; "Container No. Filter"; Code[100])
         {
         }
 

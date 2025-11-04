@@ -50,11 +50,11 @@ tableextension 50097 "Comment Line Ext" extends "Comment Line"
         {
             OptionMembers = "Foreign&Domestic",Foreign,Domestic;
         }
-        field(14017650; "User ID"; Code[20])
+        field(70000; "User ID"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = user."User Name";
-            
+
             trigger OnValidate()
             var
                 UserMgt: Codeunit "User Management";
@@ -71,15 +71,15 @@ tableextension 50097 "Comment Line Ext" extends "Comment Line"
                 UserMgt.DisplayUserInformation("User ID");
             end;
         }
-        field(14017651; "Time Stamp"; Time)
+        field(70001; "Time Stamp"; Time)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017652;"Include in Sales Orders";Boolean)
+        field(70002; "Include in Sales Orders"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017653; "Include in Purchase Orders"; Boolean)
+        field(70003; "Include in Purchase Orders"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
