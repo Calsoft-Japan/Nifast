@@ -79,140 +79,140 @@ tableextension 50313 "Inventory Setup Ext" extends "Inventory Setup"
         {
             Description = 'CIS.IoT';
         }
-        field(14017610; "Incl ReservQty on Prod Order"; Boolean)
+        field(70000; "Incl ReservQty on Prod Order"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017611; "Incl PurchReq Receipt (Qty.)"; Boolean)
+        field(70001; "Incl PurchReq Receipt (Qty.)"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017612; "Incl Res. Qty on Req. Line"; Boolean)
+        field(70002; "Incl Res. Qty on Req. Line"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017613; "Incl Qty. on Purch. Order"; Boolean)
+        field(70003; "Incl Qty. on Purch. Order"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017614; "Incl ReservQty on PurchOrders"; Boolean)
+        field(70004; "Incl ReservQty on PurchOrders"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017615; "Incl TransOrd Receipt (Qty.)"; Boolean)
+        field(70005; "Incl TransOrd Receipt (Qty.)"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017616; "Incl Res.Qty Inbound Transfer"; Boolean)
+        field(70006; "Incl Res.Qty Inbound Transfer"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017617; "Incl Qty. in Transit"; Boolean)
+        field(70007; "Incl Qty. in Transit"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017618; "Incl Qty on Sales Return"; Boolean)
+        field(70008; "Incl Qty on Sales Return"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017653; "Auto Create SKU"; Boolean)
+        field(70009; "Auto Create SKU"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017901; "Outbound Bin Code"; Code[20])
+        field(70010; "Outbound Bin Code"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Bin.Code;
             CaptionML = ENU = 'Outbound Bin Code';
         }
-        field(14017902; "Inbound Bin Code"; Code[20])
+        field(70011; "Inbound Bin Code"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Bin.Code;
             CaptionML = ENU = 'Inbound Bin Code';
         }
-        field(14017930; "Rework Nos."; Code[10])
+        field(70012; "Rework Nos."; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
-        field(14017907; "Production Kit Nos."; Code[10])
+        field(70013; "Production Kit Nos."; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
-        field(14017931; "Rework Location Code"; Code[10])
+        field(70014; "Rework Location Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017932; "Rework In-Transit Code"; Code[10])
+        field(70015; "Rework In-Transit Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017933; "Rework Journal Template Name"; Code[10])
+        field(70016; "Rework Journal Template Name"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Item Journal Template";
             CaptionML = ENU = 'Rework Journal Template Name';
         }
-        field(14017934; "Rework Journal Batch Name"; Code[10])
+        field(70017; "Rework Journal Batch Name"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Item Journal Batch".Name WHERE("Journal Template Name" = FIELD("Rework Journal Template Name"));
             CaptionML = ENU = 'Rework Journal Batch Name';
         }
-        field(14017935; "ReWk Charge-Item No."; Code[20])
+        field(70018; "ReWk Charge-Item No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Item Charge";
         }
-        field(14017936; "ReWk Charge-Item Offset Acct."; Code[20])
+        field(70019; "ReWk Charge-Item Offset Acct."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Item Charge";
         }
-        field(14017937; "ReWk Charge-Item Vendor No."; Code[20])
+        field(70020; "ReWk Charge-Item Vendor No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Vendor."No.";
         }
-        field(14018070; "QC Order Nos"; Code[10])
+        field(70021; "QC Order Nos"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
-        field(14018071; "New Item QC Reason Code"; Code[10])
+        field(70022; "New Item QC Reason Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Reason Code";
         }
-        field(14018072; "New Item QC Task Code"; Code[10])
+        field(70023; "New Item QC Task Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14018073; "QC Request Nos."; Code[10])
+        field(70024; "QC Request Nos."; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
-        field(14018074; "Last Task Entry No."; Integer)
+        field(70025; "Last Task Entry No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018075; "Default New Item QC Hold"; Boolean)
+        field(70026; "Default New Item QC Hold"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018076; "QC Hold On Sales Return"; Boolean)
+        field(70027; "QC Hold On Sales Return"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018077; "QC Hold On Purch. Receipts"; Boolean)
+        field(70028; "QC Hold On Purch. Receipts"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018078; "QC Hold On Prod. Kits"; Boolean)
+        field(70029; "QC Hold On Prod. Kits"; Boolean)
         {
             DataClassification = ToBeClassified;
         }

@@ -67,7 +67,7 @@ tableextension 50124 "Purch. Cr. Memo Hdr. Ext" extends "Purch. Cr. Memo Hdr."
             Caption = 'PDF';
             Description = 'CE 1.2';
         }
-        field(14017610; "Entered User ID"; code[50])
+        field(70000; "Entered User ID"; code[50])
         {
             TableRelation = User."User Name";
             ValidateTableRelation = false;
@@ -85,16 +85,16 @@ tableextension 50124 "Purch. Cr. Memo Hdr. Ext" extends "Purch. Cr. Memo Hdr."
             begin
             end;
         }
-        field(14017611; "Entered Date"; date)
+        field(70001; "Entered Date"; date)
         {
         }
-        field(14017612; "Entered Time"; Time)
+        field(70002; "Entered Time"; Time)
         {
         }
-        field(14017640; "Ship-to PO No."; code[20])
+        field(70003; "Ship-to PO No."; code[20])
         {
         }
-        field(14017650; "Broker/Agent Code"; code[10])
+        field(70004; "Broker/Agent Code"; code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }

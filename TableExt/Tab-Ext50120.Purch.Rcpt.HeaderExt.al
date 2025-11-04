@@ -94,47 +94,47 @@ tableextension 50120 "Purch. Rcpt. Header Ext" extends "Purch. Rcpt. Header"
             MinValue = 0;
         }
 
-        field(14017610; "Entered User ID"; Code[50])
+        field(70000; "Entered User ID"; Code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = user."User Name";
         }
-        field(14017611; "Entered Date"; Date)
+        field(70001; "Entered Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017612; "Entered Time"; Time)
+        field(70002; "Entered Time"; Time)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017620; "Bill of Lading No."; Code[20])
+        field(70003; "Bill of Lading No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017621; "Carrier Vendor No."; Code[20])
+        field(70004; "Carrier Vendor No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Vendor."No.";
         }
-        field(14017622; "Carrier Trailer ID"; Code[20])
+        field(70005; "Carrier Trailer ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017640; "Ship-to PO No."; Code[20])
+        field(70006; "Ship-to PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017650; "Broker/Agent Code"; Code[10])
-        {
-            DataClassification = ToBeClassified;
-            Description = 'NF1.00:CIS.CM 09-29-15';
-        }
-        field(14017930; "Rework No."; Code[20])
+        field(70007; "Broker/Agent Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14017931; "Rework Line No."; Integer)
+        field(70008; "Rework No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(70009; "Rework Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }

@@ -2,17 +2,17 @@ tableextension 50246 "Requisition Line _Ext" extends "Requisition Line"
 {
     fields
     {
-        field(14017610; "Priority Code"; code[10])
+        field(70000; "Priority Code"; code[10])
         {
             Caption = '';
             Description = 'NF1.00:CIS.CM 09-29-15';
             DataClassification = ToBeClassified;
         }
-        field(14017640; "Ship-to PO No."; Code[20])
+        field(70001; "Ship-to PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017730; "Combine Lines"; Boolean)
+        field(70002; "Combine Lines"; Boolean)
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
@@ -33,34 +33,34 @@ tableextension 50246 "Requisition Line _Ext" extends "Requisition Line"
             END;
 
         }
-        field(14017760; "Salesperson Code"; Code[10])
+        field(70003; "Salesperson Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017761; "Prod. Kit Order No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-            Editable = false;
-        }
-        field(14017762; "Prod. Kit Order Line No."; Integer)
+        field(70004; "Prod. Kit Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Editable = false;
         }
-        field(37015330; "FB Order No."; Code[20])
+        field(70005; "Prod. Kit Order Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+            Editable = false;
+        }
+        field(70006; "FB Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Description = 'NV-FB';
         }
-        field(37015331; "FB Line No."; Integer)
+        field(70007; "FB Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(37015332; "FB Tag No."; Code[20])
+        field(70008; "FB Tag No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(37015333; "FB Customer Bin"; Code[20])
+        field(70009; "FB Customer Bin"; Code[20])
         {
             DataClassification = ToBeClassified;
         }

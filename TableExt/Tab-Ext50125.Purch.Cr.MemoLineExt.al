@@ -21,52 +21,52 @@ tableextension 50125 "Purch. Cr. Memo Line Ext" extends "Purch. Cr. Memo Line"
             // cleaned
             TableRelation = Manufacturer;
         }
-        field(14017612; "NV Posting Date"; Date)
+        field(70000; "NV Posting Date"; Date)
         {
         }
 
-        field(14017613; "Purchaser Code"; Code[10])
+        field(70001; "Purchaser Code"; Code[10])
         {
             TableRelation = "Salesperson/Purchaser" WHERE(Purchase = CONST(true));
         }
 
-        field(14017614; "Vendor Shipment No."; Code[20])
+        field(70002; "Vendor Shipment No."; Code[20])
         {
         }
 
-        field(14017615; "Vendor Invoice No."; Code[20])
+        field(70003; "Vendor Invoice No."; Code[20])
         {
         }
 
-        field(14017616; "Vendor Cr. Memo No."; Code[20])
+        field(70004; "Vendor Cr. Memo No."; Code[20])
         {
         }
 
-        field(14017633; "Line Comment"; Boolean)
+        field(70005; "Line Comment"; Boolean)
         {
             FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }
 
-        field(14017640; "Ship-to PO No."; Code[20])
+        field(70006; "Ship-to PO No."; Code[20])
         {
         }
 
-        field(14017650; "Resource Group No."; Code[20])
+        field(70007; "Resource Group No."; Code[20])
         {
             TableRelation = "Resource Group";
         }
 
-        field(14017750; "Line Gross Weight"; Decimal)
+        field(70008; "Line Gross Weight"; Decimal)
         {
         }
 
-        field(14017751; "Line Net Weight"; Decimal)
+        field(70009; "Line Net Weight"; Decimal)
         {
         }
 
-        field(14017756; "Item Group Code"; Code[10])
+        field(70010; "Item Group Code"; Code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }

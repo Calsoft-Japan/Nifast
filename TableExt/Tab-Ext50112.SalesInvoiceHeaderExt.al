@@ -143,7 +143,7 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
 
         field(50006; "Inside Salesperson Code"; Code[10])//NV-FB BC Upgrade From 14017617->50006
         { }
-        field(14017610; "Entered User ID"; Code[50])
+        field(70000; "Entered User ID"; Code[50])
         {
             DataClassification = ToBeClassified;
 
@@ -154,15 +154,15 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
 
 
         }
-        field(14017611; "Entered Date"; Date)
+        field(70001; "Entered Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017612; "Entered Time"; Time)
+        field(70002; "Entered Time"; Time)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017614; "Tool Repair Tech"; Code[10])
+        field(70003; "Tool Repair Tech"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(TRUE));
@@ -173,73 +173,73 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
         //     TableRelation=Salesperson/Purchaser.Code WHERE (Inside Sales=CONST(Yes),
         //                                                                                            Sales=CONST(Yes));
         // }
-        field(14017618; "Phone No."; Text[30])
+        field(70004; "Phone No."; Text[30])
         {
             DataClassification = ToBeClassified;
             Description = 'NV-FB';
         }
-        field(14017619; "Fax No."; Text[30])
+        field(70005; "Fax No."; Text[30])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017620; "E-Mail"; Text[30])
+        field(70006; "E-Mail"; Text[30])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017640; "Ship-to PO No."; Code[20])
+        field(70007; "Ship-to PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017645; "Contract No."; cODE[20])
+        field(70008; "Contract No."; cODE[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
             Description = 'NV-FB';
         }
-        field(14017650; "Broker/Agent Code"; Code[10])
+        field(70009; "Broker/Agent Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017801; "Tool Repair Priority"; Boolean)
+        field(70010; "Tool Repair Priority"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017803; ";Manufacturer Code"; Code[5])
+        field(70011; ";Manufacturer Code"; Code[5])
         {
             DataClassification = ToBeClassified;
             TableRelation = Manufacturer.Code;
         }
-        field(14017804; "Serial No."; Code[20])
+        field(70012; "Serial No."; Code[20])
         {
             DataClassification = ToBeClassified;
             //ValidateTableRelation = false;
             // TestTableRelation =No;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14017805; "Tool Model No."; Code[20])
+        field(70013; "Tool Model No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017806; "Tool Item No."; Code[20])
+        field(70014; "Tool Item No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Item."No.";
         }
-        field(14017807; "Tool Description"; Text[50])
+        field(70015; "Tool Description"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017808; "Tool Repair Ticket"; Boolean)
+        field(70016; "Tool Repair Ticket"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017809; "No;Tool Repair Status"; Boolean)
+        field(70017; "No;Tool Repair Status"; Boolean)
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
-        field(37015330; "FB Order No."; Code[20])
+        field(70018; "FB Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Description = 'NV-FB';

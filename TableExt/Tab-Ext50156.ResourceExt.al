@@ -30,18 +30,18 @@ tableextension 50156 "Resource Ext" extends "Resource"
         {
             // cleaned
         }
-        field(14017610; "Customer Filter"; Code[20])
+        field(70000; "Customer Filter"; Code[20])
         {
             // DataClassification = ToBeClassified;
             FieldClass = FlowFilter;
             TableRelation = customer."No.";
         }
-        field(14017761; "Default Purchasing Code"; Code[10])
+        field(70001; "Default Purchasing Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = Purchasing;
         }
-        field(14017905; "Reallocate Cost"; Boolean)
+        field(70002; "Reallocate Cost"; Boolean)
         {
             DataClassification = ToBeClassified;
         }

@@ -147,34 +147,34 @@ tableextension 50122 "Purch. Inv. Header Ext" extends "Purch. Inv. Header"
             DecimalPlaces = 0 : 15;
             MinValue = 0;
         }
-        field(14017610; "Entered User ID"; Code[50])
+        field(70000; "Entered User ID"; Code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = User."User Name";
         }
-        field(14017611; "Entered Date"; dATE)
+        field(70001; "Entered Date"; dATE)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017612; "Entered Time"; tiME)
+        field(70002; "Entered Time"; tiME)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017640; "Ship-to PO No."; Code[20])
+        field(70003; "Ship-to PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017650; "Broker/Agent Code"; Code[10])
-        {
-            DataClassification = ToBeClassified;
-            Description = 'NF1.00:CIS.CM 09-29-15';
-        }
-        field(14017930; "Rework No."; Code[20])
+        field(70004; "Broker/Agent Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14017931; "Rework Line No."; Integer)
+        field(70005; "Rework No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(70006; "Rework Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
