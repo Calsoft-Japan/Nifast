@@ -2,9 +2,10 @@ report 50003 "Aged Accounts Payable New"
 {
     // NF1.00:CIS.CM  08/13/15 Merged during upgrade
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\AgedAccountsPayable.rdl';
+    RDLCLayout = '.\RDLC\AgedAccountsPayable.rdlc';
     Caption = 'Aged Accounts Payable New';
     ApplicationArea = All;
+    UsageCategory=ReportsAndAnalysis;
 
     dataset
     {

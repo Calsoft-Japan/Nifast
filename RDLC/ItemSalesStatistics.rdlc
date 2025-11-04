@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -11,396 +11,6 @@
       <rd:DataSourceID>2a02ccf0-d169-4e53-b431-c70fb01a1382</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Title">
-          <DataField>Title</DataField>
-        </Field>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="TIME">
-          <DataField>TIME</DataField>
-        </Field>
-        <Field Name="CompanyInformation_Name">
-          <DataField>CompanyInformation_Name</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENO">
-          <DataField>CurrReport_PAGENO</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="ItemFilter">
-          <DataField>ItemFilter</DataField>
-        </Field>
-        <Field Name="BreakdownByVariant">
-          <DataField>BreakdownByVariant</DataField>
-        </Field>
-        <Field Name="IncludeItemDescriptions">
-          <DataField>IncludeItemDescriptions</DataField>
-        </Field>
-        <Field Name="PrintOnlyIfSales">
-          <DataField>PrintOnlyIfSales</DataField>
-        </Field>
-        <Field Name="TLGroup">
-          <DataField>TLGroup</DataField>
-        </Field>
-        <Field Name="GroupField">
-          <DataField>GroupField</DataField>
-        </Field>
-        <Field Name="NoShow">
-          <DataField>NoShow</DataField>
-        </Field>
-        <Field Name="ItemDateFilterExsit">
-          <DataField>ItemDateFilterExsit</DataField>
-        </Field>
-        <Field Name="Item_TABLECAPTION__________ItemFilter">
-          <DataField>Item_TABLECAPTION__________ItemFilter</DataField>
-        </Field>
-        <Field Name="GroupName_________GroupNo">
-          <DataField>GroupName_________GroupNo</DataField>
-        </Field>
-        <Field Name="GroupDesc">
-          <DataField>GroupDesc</DataField>
-        </Field>
-        <Field Name="Item__No__">
-          <DataField>Item__No__</DataField>
-        </Field>
-        <Field Name="Item__Base_Unit_of_Measure_">
-          <DataField>Item__Base_Unit_of_Measure_</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY__">
-          <DataField>Item__COGS__LCY__</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY__Format">
-          <DataField>Item__COGS__LCY__Format</DataField>
-        </Field>
-        <Field Name="Item__Unit_Price_">
-          <DataField>Item__Unit_Price_</DataField>
-        </Field>
-        <Field Name="Item__Unit_Price_Format">
-          <DataField>Item__Unit_Price_Format</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty___">
-          <DataField>Item__Sales__Qty___</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty___Format">
-          <DataField>Item__Sales__Qty___Format</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY__">
-          <DataField>Item__Sales__LCY__</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY__Format">
-          <DataField>Item__Sales__LCY__Format</DataField>
-        </Field>
-        <Field Name="Profit">
-          <DataField>Profit</DataField>
-        </Field>
-        <Field Name="ProfitFormat">
-          <DataField>ProfitFormat</DataField>
-        </Field>
-        <Field Name="UnitCost_Item">
-          <DataField>UnitCost_Item</DataField>
-        </Field>
-        <Field Name="UnitCost_ItemFormat">
-          <DataField>UnitCost_ItemFormat</DataField>
-        </Field>
-        <Field Name="ItemProfitPct">
-          <DataField>ItemProfitPct</DataField>
-        </Field>
-        <Field Name="ItemProfitPctFormat">
-          <DataField>ItemProfitPctFormat</DataField>
-        </Field>
-        <Field Name="QuantityReturned">
-          <DataField>QuantityReturned</DataField>
-        </Field>
-        <Field Name="QuantityReturnedFormat">
-          <DataField>QuantityReturnedFormat</DataField>
-        </Field>
-        <Field Name="NoVariant">
-          <DataField>NoVariant</DataField>
-        </Field>
-        <Field Name="Item_Description">
-          <DataField>Item_Description</DataField>
-        </Field>
-        <Field Name="Text003_________GroupName_________GroupNo">
-          <DataField>Text003_________GroupName_________GroupNo</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty____Control32">
-          <DataField>Item__Sales__Qty____Control32</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty____Control32Format">
-          <DataField>Item__Sales__Qty____Control32Format</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY___Control33">
-          <DataField>Item__Sales__LCY___Control33</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY___Control33Format">
-          <DataField>Item__Sales__LCY___Control33Format</DataField>
-        </Field>
-        <Field Name="Profit_Control34">
-          <DataField>Profit_Control34</DataField>
-        </Field>
-        <Field Name="Profit_Control34Format">
-          <DataField>Profit_Control34Format</DataField>
-        </Field>
-        <Field Name="ItemProfitPct_Control35">
-          <DataField>ItemProfitPct_Control35</DataField>
-        </Field>
-        <Field Name="ItemProfitPct_Control35Format">
-          <DataField>ItemProfitPct_Control35Format</DataField>
-        </Field>
-        <Field Name="QuantityReturned_Control3">
-          <DataField>QuantityReturned_Control3</DataField>
-        </Field>
-        <Field Name="QuantityReturned_Control3Format">
-          <DataField>QuantityReturned_Control3Format</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY___Control4">
-          <DataField>Item__COGS__LCY___Control4</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY___Control4Format">
-          <DataField>Item__COGS__LCY___Control4Format</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty____Control37">
-          <DataField>Item__Sales__Qty____Control37</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty____Control37Format">
-          <DataField>Item__Sales__Qty____Control37Format</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY___Control38">
-          <DataField>Item__Sales__LCY___Control38</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY___Control38Format">
-          <DataField>Item__Sales__LCY___Control38Format</DataField>
-        </Field>
-        <Field Name="Profit_Control39">
-          <DataField>Profit_Control39</DataField>
-        </Field>
-        <Field Name="Profit_Control39Format">
-          <DataField>Profit_Control39Format</DataField>
-        </Field>
-        <Field Name="ItemProfitPct_Control40">
-          <DataField>ItemProfitPct_Control40</DataField>
-        </Field>
-        <Field Name="ItemProfitPct_Control40Format">
-          <DataField>ItemProfitPct_Control40Format</DataField>
-        </Field>
-        <Field Name="QuantityReturned_Control5">
-          <DataField>QuantityReturned_Control5</DataField>
-        </Field>
-        <Field Name="QuantityReturned_Control5Format">
-          <DataField>QuantityReturned_Control5Format</DataField>
-        </Field>
-        <Field Name="Inventory_Item">
-          <DataField>Inventory_Item</DataField>
-        </Field>
-        <Field Name="Inventory_ItemFormat">
-          <DataField>Inventory_ItemFormat</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY___Control6">
-          <DataField>Item__COGS__LCY___Control6</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY___Control6Format">
-          <DataField>Item__COGS__LCY___Control6Format</DataField>
-        </Field>
-        <Field Name="Item_Inventory_Posting_Group">
-          <DataField>Item_Inventory_Posting_Group</DataField>
-        </Field>
-        <Field Name="Item_Vendor_No_">
-          <DataField>Item_Vendor_No_</DataField>
-        </Field>
-        <Field Name="GrpSalesQty">
-          <DataField>GrpSalesQty</DataField>
-        </Field>
-        <Field Name="GrpSalesQtyFormat">
-          <DataField>GrpSalesQtyFormat</DataField>
-        </Field>
-        <Field Name="GrpSalesLCY">
-          <DataField>GrpSalesLCY</DataField>
-        </Field>
-        <Field Name="GrpSalesLCYFormat">
-          <DataField>GrpSalesLCYFormat</DataField>
-        </Field>
-        <Field Name="GrpCogsLCY">
-          <DataField>GrpCogsLCY</DataField>
-        </Field>
-        <Field Name="GrpCogsLCYFormat">
-          <DataField>GrpCogsLCYFormat</DataField>
-        </Field>
-        <Field Name="GrpQuantityReturned">
-          <DataField>GrpQuantityReturned</DataField>
-        </Field>
-        <Field Name="GrpQuantityReturnedFormat">
-          <DataField>GrpQuantityReturnedFormat</DataField>
-        </Field>
-        <Field Name="GrpProfit">
-          <DataField>GrpProfit</DataField>
-        </Field>
-        <Field Name="GrpProfitFormat">
-          <DataField>GrpProfitFormat</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENOCaption">
-          <DataField>CurrReport_PAGENOCaption</DataField>
-        </Field>
-        <Field Name="Inventory_items_without_sales_are_not_included_on_this_report_Caption">
-          <DataField>Inventory_items_without_sales_are_not_included_on_this_report_Caption</DataField>
-        </Field>
-        <Field Name="Inventory_items_without_sales_during_the_above_period_are_not_included_on_this_report_Caption">
-          <DataField>Inventory_items_without_sales_during_the_above_period_are_not_included_on_this_report_Caption</DataField>
-        </Field>
-        <Field Name="Item__No__Caption">
-          <DataField>Item__No__Caption</DataField>
-        </Field>
-        <Field Name="Item__Base_Unit_of_Measure_Caption">
-          <DataField>Item__Base_Unit_of_Measure_Caption</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY__Caption">
-          <DataField>Item__COGS__LCY__Caption</DataField>
-        </Field>
-        <Field Name="Item__Unit_Price_Caption">
-          <DataField>Item__Unit_Price_Caption</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty___Caption">
-          <DataField>Item__Sales__Qty___Caption</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY__Caption">
-          <DataField>Item__Sales__LCY__Caption</DataField>
-        </Field>
-        <Field Name="ProfitCaption">
-          <DataField>ProfitCaption</DataField>
-        </Field>
-        <Field Name="ItemProfitPctCaption">
-          <DataField>ItemProfitPctCaption</DataField>
-        </Field>
-        <Field Name="QuantityReturnedCaption">
-          <DataField>QuantityReturnedCaption</DataField>
-        </Field>
-        <Field Name="Item__No__Caption_Control41">
-          <DataField>Item__No__Caption_Control41</DataField>
-        </Field>
-        <Field Name="Item__Base_Unit_of_Measure_Caption_Control43">
-          <DataField>Item__Base_Unit_of_Measure_Caption_Control43</DataField>
-        </Field>
-        <Field Name="Item__Unit_Price_Caption_Control44">
-          <DataField>Item__Unit_Price_Caption_Control44</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty___Caption_Control45">
-          <DataField>Item__Sales__Qty___Caption_Control45</DataField>
-        </Field>
-        <Field Name="QuantityReturnedCaption_Control46">
-          <DataField>QuantityReturnedCaption_Control46</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY__Caption_Control47">
-          <DataField>Item__Sales__LCY__Caption_Control47</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY__Caption_Control48">
-          <DataField>Item__COGS__LCY__Caption_Control48</DataField>
-        </Field>
-        <Field Name="ProfitCaption_Control49">
-          <DataField>ProfitCaption_Control49</DataField>
-        </Field>
-        <Field Name="ItemProfitPctCaption_Control50">
-          <DataField>ItemProfitPctCaption_Control50</DataField>
-        </Field>
-        <Field Name="Item_Variant_CodeCaption">
-          <DataField>Item_Variant_CodeCaption</DataField>
-        </Field>
-        <Field Name="Report_TotalCaption">
-          <DataField>Report_TotalCaption</DataField>
-        </Field>
-        <Field Name="Item_Variant_Code">
-          <DataField>Item_Variant_Code</DataField>
-        </Field>
-        <Field Name="Item__No___Control53">
-          <DataField>Item__No___Control53</DataField>
-        </Field>
-        <Field Name="Item__Base_Unit_of_Measure__Control55">
-          <DataField>Item__Base_Unit_of_Measure__Control55</DataField>
-        </Field>
-        <Field Name="Item__Unit_Price__Control56">
-          <DataField>Item__Unit_Price__Control56</DataField>
-        </Field>
-        <Field Name="Item__Unit_Price__Control56Format">
-          <DataField>Item__Unit_Price__Control56Format</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty____Control57">
-          <DataField>Item__Sales__Qty____Control57</DataField>
-        </Field>
-        <Field Name="Item__Sales__Qty____Control57Format">
-          <DataField>Item__Sales__Qty____Control57Format</DataField>
-        </Field>
-        <Field Name="QuantityReturned_Control58">
-          <DataField>QuantityReturned_Control58</DataField>
-        </Field>
-        <Field Name="QuantityReturned_Control58Format">
-          <DataField>QuantityReturned_Control58Format</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY___Control59">
-          <DataField>Item__Sales__LCY___Control59</DataField>
-        </Field>
-        <Field Name="Item__Sales__LCY___Control59Format">
-          <DataField>Item__Sales__LCY___Control59Format</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY___Control60">
-          <DataField>Item__COGS__LCY___Control60</DataField>
-        </Field>
-        <Field Name="Item__COGS__LCY___Control60Format">
-          <DataField>Item__COGS__LCY___Control60Format</DataField>
-        </Field>
-        <Field Name="Profit_Control61">
-          <DataField>Profit_Control61</DataField>
-        </Field>
-        <Field Name="Profit_Control61Format">
-          <DataField>Profit_Control61Format</DataField>
-        </Field>
-        <Field Name="ItemProfitPct_Control62">
-          <DataField>ItemProfitPct_Control62</DataField>
-        </Field>
-        <Field Name="ItemProfitPct_Control62Format">
-          <DataField>ItemProfitPct_Control62Format</DataField>
-        </Field>
-        <Field Name="Item_Description_Control63">
-          <DataField>Item_Description_Control63</DataField>
-        </Field>
-        <Field Name="Item_Variant_Description">
-          <DataField>Item_Variant_Description</DataField>
-        </Field>
-        <Field Name="Item_Variant_Item_No_">
-          <DataField>Item_Variant_Item_No_</DataField>
-        </Field>
-        <Field Name="ValueEntryGroup">
-          <DataField>ValueEntryGroup</DataField>
-        </Field>
-        <Field Name="EntryNo_ValueEntry">
-          <DataField>EntryNo_ValueEntry</DataField>
-        </Field>
-        <Field Name="CostAmountActual_ValueEntry">
-          <DataField>CostAmountActual_ValueEntry</DataField>
-        </Field>
-        <Field Name="CostAmountActual_ValueEntryFormat">
-          <DataField>CostAmountActual_ValueEntryFormat</DataField>
-        </Field>
-        <Field Name="SalesAmountActual_ValueEntry">
-          <DataField>SalesAmountActual_ValueEntry</DataField>
-        </Field>
-        <Field Name="SalesAmountActual_ValueEntryFormat">
-          <DataField>SalesAmountActual_ValueEntryFormat</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -4135,15 +3745,6 @@ iif(Fields!GroupField.Value=3,Fields!Item_Vendor_No_.Value,1))
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="UnitCost_ItemCaption">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>UnitCost_ItemCaption</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>UnitCost_ItemCaption</Prompt>
-    </ReportParameter>
     <ReportParameter Name="DescriptionLbl">
       <DataType>String</DataType>
       <DefaultValue>
@@ -4179,6 +3780,15 @@ iif(Fields!GroupField.Value=3,Fields!Item_Vendor_No_.Value,1))
         </Values>
       </DefaultValue>
       <Prompt>UnitpriceLbl</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="UnitCost_ItemCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>UnitCost_ItemCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>UnitCost_ItemCaption</Prompt>
     </ReportParameter>
   </ReportParameters>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
@@ -4279,4 +3889,389 @@ End Function</Code>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>3ea9022d-42dc-4afa-96d2-1333e8349999</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Title">
+          <DataField>Title</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="TIME">
+          <DataField>TIME</DataField>
+        </Field>
+        <Field Name="CompanyInformation_Name">
+          <DataField>CompanyInformation_Name</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO">
+          <DataField>CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="ItemFilter">
+          <DataField>ItemFilter</DataField>
+        </Field>
+        <Field Name="BreakdownByVariant">
+          <DataField>BreakdownByVariant</DataField>
+        </Field>
+        <Field Name="IncludeItemDescriptions">
+          <DataField>IncludeItemDescriptions</DataField>
+        </Field>
+        <Field Name="PrintOnlyIfSales">
+          <DataField>PrintOnlyIfSales</DataField>
+        </Field>
+        <Field Name="TLGroup">
+          <DataField>TLGroup</DataField>
+        </Field>
+        <Field Name="GroupField">
+          <DataField>GroupField</DataField>
+        </Field>
+        <Field Name="NoShow">
+          <DataField>NoShow</DataField>
+        </Field>
+        <Field Name="ItemDateFilterExsit">
+          <DataField>ItemDateFilterExsit</DataField>
+        </Field>
+        <Field Name="Item_TABLECAPTION__________ItemFilter">
+          <DataField>Item_TABLECAPTION__________ItemFilter</DataField>
+        </Field>
+        <Field Name="GroupName_________GroupNo">
+          <DataField>GroupName_________GroupNo</DataField>
+        </Field>
+        <Field Name="GroupDesc">
+          <DataField>GroupDesc</DataField>
+        </Field>
+        <Field Name="Item__No__">
+          <DataField>Item__No__</DataField>
+        </Field>
+        <Field Name="Item__Base_Unit_of_Measure_">
+          <DataField>Item__Base_Unit_of_Measure_</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY__">
+          <DataField>Item__COGS__LCY__</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY__Format">
+          <DataField>Item__COGS__LCY__Format</DataField>
+        </Field>
+        <Field Name="Item__Unit_Price_">
+          <DataField>Item__Unit_Price_</DataField>
+        </Field>
+        <Field Name="Item__Unit_Price_Format">
+          <DataField>Item__Unit_Price_Format</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty___">
+          <DataField>Item__Sales__Qty___</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty___Format">
+          <DataField>Item__Sales__Qty___Format</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY__">
+          <DataField>Item__Sales__LCY__</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY__Format">
+          <DataField>Item__Sales__LCY__Format</DataField>
+        </Field>
+        <Field Name="Profit">
+          <DataField>Profit</DataField>
+        </Field>
+        <Field Name="ProfitFormat">
+          <DataField>ProfitFormat</DataField>
+        </Field>
+        <Field Name="UnitCost_Item">
+          <DataField>UnitCost_Item</DataField>
+        </Field>
+        <Field Name="UnitCost_ItemFormat">
+          <DataField>UnitCost_ItemFormat</DataField>
+        </Field>
+        <Field Name="ItemProfitPct">
+          <DataField>ItemProfitPct</DataField>
+        </Field>
+        <Field Name="ItemProfitPctFormat">
+          <DataField>ItemProfitPctFormat</DataField>
+        </Field>
+        <Field Name="QuantityReturned">
+          <DataField>QuantityReturned</DataField>
+        </Field>
+        <Field Name="QuantityReturnedFormat">
+          <DataField>QuantityReturnedFormat</DataField>
+        </Field>
+        <Field Name="NoVariant">
+          <DataField>NoVariant</DataField>
+        </Field>
+        <Field Name="Item_Description">
+          <DataField>Item_Description</DataField>
+        </Field>
+        <Field Name="Text003_________GroupName_________GroupNo">
+          <DataField>Text003_________GroupName_________GroupNo</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty____Control32">
+          <DataField>Item__Sales__Qty____Control32</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty____Control32Format">
+          <DataField>Item__Sales__Qty____Control32Format</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY___Control33">
+          <DataField>Item__Sales__LCY___Control33</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY___Control33Format">
+          <DataField>Item__Sales__LCY___Control33Format</DataField>
+        </Field>
+        <Field Name="Profit_Control34">
+          <DataField>Profit_Control34</DataField>
+        </Field>
+        <Field Name="Profit_Control34Format">
+          <DataField>Profit_Control34Format</DataField>
+        </Field>
+        <Field Name="ItemProfitPct_Control35">
+          <DataField>ItemProfitPct_Control35</DataField>
+        </Field>
+        <Field Name="ItemProfitPct_Control35Format">
+          <DataField>ItemProfitPct_Control35Format</DataField>
+        </Field>
+        <Field Name="QuantityReturned_Control3">
+          <DataField>QuantityReturned_Control3</DataField>
+        </Field>
+        <Field Name="QuantityReturned_Control3Format">
+          <DataField>QuantityReturned_Control3Format</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY___Control4">
+          <DataField>Item__COGS__LCY___Control4</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY___Control4Format">
+          <DataField>Item__COGS__LCY___Control4Format</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty____Control37">
+          <DataField>Item__Sales__Qty____Control37</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty____Control37Format">
+          <DataField>Item__Sales__Qty____Control37Format</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY___Control38">
+          <DataField>Item__Sales__LCY___Control38</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY___Control38Format">
+          <DataField>Item__Sales__LCY___Control38Format</DataField>
+        </Field>
+        <Field Name="Profit_Control39">
+          <DataField>Profit_Control39</DataField>
+        </Field>
+        <Field Name="Profit_Control39Format">
+          <DataField>Profit_Control39Format</DataField>
+        </Field>
+        <Field Name="ItemProfitPct_Control40">
+          <DataField>ItemProfitPct_Control40</DataField>
+        </Field>
+        <Field Name="ItemProfitPct_Control40Format">
+          <DataField>ItemProfitPct_Control40Format</DataField>
+        </Field>
+        <Field Name="QuantityReturned_Control5">
+          <DataField>QuantityReturned_Control5</DataField>
+        </Field>
+        <Field Name="QuantityReturned_Control5Format">
+          <DataField>QuantityReturned_Control5Format</DataField>
+        </Field>
+        <Field Name="Inventory_Item">
+          <DataField>Inventory_Item</DataField>
+        </Field>
+        <Field Name="Inventory_ItemFormat">
+          <DataField>Inventory_ItemFormat</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY___Control6">
+          <DataField>Item__COGS__LCY___Control6</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY___Control6Format">
+          <DataField>Item__COGS__LCY___Control6Format</DataField>
+        </Field>
+        <Field Name="Item_Inventory_Posting_Group">
+          <DataField>Item_Inventory_Posting_Group</DataField>
+        </Field>
+        <Field Name="Item_Vendor_No_">
+          <DataField>Item_Vendor_No_</DataField>
+        </Field>
+        <Field Name="GrpSalesQty">
+          <DataField>GrpSalesQty</DataField>
+        </Field>
+        <Field Name="GrpSalesQtyFormat">
+          <DataField>GrpSalesQtyFormat</DataField>
+        </Field>
+        <Field Name="GrpSalesLCY">
+          <DataField>GrpSalesLCY</DataField>
+        </Field>
+        <Field Name="GrpSalesLCYFormat">
+          <DataField>GrpSalesLCYFormat</DataField>
+        </Field>
+        <Field Name="GrpCogsLCY">
+          <DataField>GrpCogsLCY</DataField>
+        </Field>
+        <Field Name="GrpCogsLCYFormat">
+          <DataField>GrpCogsLCYFormat</DataField>
+        </Field>
+        <Field Name="GrpQuantityReturned">
+          <DataField>GrpQuantityReturned</DataField>
+        </Field>
+        <Field Name="GrpQuantityReturnedFormat">
+          <DataField>GrpQuantityReturnedFormat</DataField>
+        </Field>
+        <Field Name="GrpProfit">
+          <DataField>GrpProfit</DataField>
+        </Field>
+        <Field Name="GrpProfitFormat">
+          <DataField>GrpProfitFormat</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENOCaption">
+          <DataField>CurrReport_PAGENOCaption</DataField>
+        </Field>
+        <Field Name="Inventory_items_without_sales_are_not_included_on_this_report_Caption">
+          <DataField>Inventory_items_without_sales_are_not_included_on_this_report_Caption</DataField>
+        </Field>
+        <Field Name="Inventory_items_without_sales_during_the_above_period_are_not_included_on_this_report_Caption">
+          <DataField>Inventory_items_without_sales_during_the_above_period_are_not_included_on_this_report_Caption</DataField>
+        </Field>
+        <Field Name="Item__No__Caption">
+          <DataField>Item__No__Caption</DataField>
+        </Field>
+        <Field Name="Item__Base_Unit_of_Measure_Caption">
+          <DataField>Item__Base_Unit_of_Measure_Caption</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY__Caption">
+          <DataField>Item__COGS__LCY__Caption</DataField>
+        </Field>
+        <Field Name="Item__Unit_Price_Caption">
+          <DataField>Item__Unit_Price_Caption</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty___Caption">
+          <DataField>Item__Sales__Qty___Caption</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY__Caption">
+          <DataField>Item__Sales__LCY__Caption</DataField>
+        </Field>
+        <Field Name="ProfitCaption">
+          <DataField>ProfitCaption</DataField>
+        </Field>
+        <Field Name="ItemProfitPctCaption">
+          <DataField>ItemProfitPctCaption</DataField>
+        </Field>
+        <Field Name="QuantityReturnedCaption">
+          <DataField>QuantityReturnedCaption</DataField>
+        </Field>
+        <Field Name="Item__No__Caption_Control41">
+          <DataField>Item__No__Caption_Control41</DataField>
+        </Field>
+        <Field Name="Item__Base_Unit_of_Measure_Caption_Control43">
+          <DataField>Item__Base_Unit_of_Measure_Caption_Control43</DataField>
+        </Field>
+        <Field Name="Item__Unit_Price_Caption_Control44">
+          <DataField>Item__Unit_Price_Caption_Control44</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty___Caption_Control45">
+          <DataField>Item__Sales__Qty___Caption_Control45</DataField>
+        </Field>
+        <Field Name="QuantityReturnedCaption_Control46">
+          <DataField>QuantityReturnedCaption_Control46</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY__Caption_Control47">
+          <DataField>Item__Sales__LCY__Caption_Control47</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY__Caption_Control48">
+          <DataField>Item__COGS__LCY__Caption_Control48</DataField>
+        </Field>
+        <Field Name="ProfitCaption_Control49">
+          <DataField>ProfitCaption_Control49</DataField>
+        </Field>
+        <Field Name="ItemProfitPctCaption_Control50">
+          <DataField>ItemProfitPctCaption_Control50</DataField>
+        </Field>
+        <Field Name="Item_Variant_CodeCaption">
+          <DataField>Item_Variant_CodeCaption</DataField>
+        </Field>
+        <Field Name="Report_TotalCaption">
+          <DataField>Report_TotalCaption</DataField>
+        </Field>
+        <Field Name="Item_Variant_Code">
+          <DataField>Item_Variant_Code</DataField>
+        </Field>
+        <Field Name="Item__No___Control53">
+          <DataField>Item__No___Control53</DataField>
+        </Field>
+        <Field Name="Item__Base_Unit_of_Measure__Control55">
+          <DataField>Item__Base_Unit_of_Measure__Control55</DataField>
+        </Field>
+        <Field Name="Item__Unit_Price__Control56">
+          <DataField>Item__Unit_Price__Control56</DataField>
+        </Field>
+        <Field Name="Item__Unit_Price__Control56Format">
+          <DataField>Item__Unit_Price__Control56Format</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty____Control57">
+          <DataField>Item__Sales__Qty____Control57</DataField>
+        </Field>
+        <Field Name="Item__Sales__Qty____Control57Format">
+          <DataField>Item__Sales__Qty____Control57Format</DataField>
+        </Field>
+        <Field Name="QuantityReturned_Control58">
+          <DataField>QuantityReturned_Control58</DataField>
+        </Field>
+        <Field Name="QuantityReturned_Control58Format">
+          <DataField>QuantityReturned_Control58Format</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY___Control59">
+          <DataField>Item__Sales__LCY___Control59</DataField>
+        </Field>
+        <Field Name="Item__Sales__LCY___Control59Format">
+          <DataField>Item__Sales__LCY___Control59Format</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY___Control60">
+          <DataField>Item__COGS__LCY___Control60</DataField>
+        </Field>
+        <Field Name="Item__COGS__LCY___Control60Format">
+          <DataField>Item__COGS__LCY___Control60Format</DataField>
+        </Field>
+        <Field Name="Profit_Control61">
+          <DataField>Profit_Control61</DataField>
+        </Field>
+        <Field Name="Profit_Control61Format">
+          <DataField>Profit_Control61Format</DataField>
+        </Field>
+        <Field Name="ItemProfitPct_Control62">
+          <DataField>ItemProfitPct_Control62</DataField>
+        </Field>
+        <Field Name="ItemProfitPct_Control62Format">
+          <DataField>ItemProfitPct_Control62Format</DataField>
+        </Field>
+        <Field Name="Item_Description_Control63">
+          <DataField>Item_Description_Control63</DataField>
+        </Field>
+        <Field Name="Item_Variant_Description">
+          <DataField>Item_Variant_Description</DataField>
+        </Field>
+        <Field Name="Item_Variant_Item_No_">
+          <DataField>Item_Variant_Item_No_</DataField>
+        </Field>
+        <Field Name="ValueEntryGroup">
+          <DataField>ValueEntryGroup</DataField>
+        </Field>
+        <Field Name="EntryNo_ValueEntry">
+          <DataField>EntryNo_ValueEntry</DataField>
+        </Field>
+        <Field Name="CostAmountActual_ValueEntry">
+          <DataField>CostAmountActual_ValueEntry</DataField>
+        </Field>
+        <Field Name="CostAmountActual_ValueEntryFormat">
+          <DataField>CostAmountActual_ValueEntryFormat</DataField>
+        </Field>
+        <Field Name="SalesAmountActual_ValueEntry">
+          <DataField>SalesAmountActual_ValueEntry</DataField>
+        </Field>
+        <Field Name="SalesAmountActual_ValueEntryFormat">
+          <DataField>SalesAmountActual_ValueEntryFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

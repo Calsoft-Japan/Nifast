@@ -54,11 +54,21 @@ reportextension 50020 "Phys. Inventory List Ext" extends "Phys. Inventory List"
             }
         }
     }
+    rendering
+    {
+        layout(MyRDLCLayout)
+        {
+            Type = RDLC;
+            Caption = 'Phys. Inventory List';
+            LayoutFile = '.\RDLC\PhysInventoryList.rdlc';
+        }
+    }
     labels
     {
         SNPLbl = 'SNP';
         LotNoLbl = 'Lot No.';
     }
+    
     var
         Item: Record Item;
         ">>NIF_GV": Integer;

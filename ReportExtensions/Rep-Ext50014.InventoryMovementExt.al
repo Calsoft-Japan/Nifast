@@ -47,6 +47,15 @@ reportextension 50014 "Inventory Movement Ext" extends "Inventory Movement"
             }
         }
     }
+    rendering
+    {
+        layout(MyRDLCLayout)
+        {
+            Type = RDLC;
+            Caption = 'Inventory Movement';
+            LayoutFile = '.\RDLC\InventoryMovement.rdlc';
+        }
+    }
     var
         ReservationEntryCaptionLbl: TextConst ENU = 'Reservation Entry';
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -10,621 +10,6 @@
       <rd:DataSourceID>b5bdc3d0-62f0-42f9-b564-970bd4bd0ff9</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="TIME">
-          <DataField>TIME</DataField>
-        </Field>
-        <Field Name="CompanyInformation_Name">
-          <DataField>CompanyInformation_Name</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENO">
-          <DataField>CurrReport_PAGENO</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="FilterString">
-          <DataField>FilterString</DataField>
-        </Field>
-        <Field Name="FilterString_Control1400000">
-          <DataField>FilterString_Control1400000</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_2_">
-          <DataField>PeriodStartingDate_2_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_3_">
-          <DataField>PeriodStartingDate_3_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_4_">
-          <DataField>PeriodStartingDate_4_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_2__Control14">
-          <DataField>PeriodStartingDate_2__Control14</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_3__1">
-          <DataField>PeriodStartingDate_3__1</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_4__1">
-          <DataField>PeriodStartingDate_4__1</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_5__1">
-          <DataField>PeriodStartingDate_5__1</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_5__1_Control18">
-          <DataField>PeriodStartingDate_5__1_Control18</DataField>
-        </Field>
-        <Field Name="Customer__No__">
-          <DataField>Customer__No__</DataField>
-        </Field>
-        <Field Name="Customer_Name">
-          <DataField>Customer_Name</DataField>
-        </Field>
-        <Field Name="Sales___1_">
-          <DataField>Sales___1_</DataField>
-        </Field>
-        <Field Name="Sales___1_Format">
-          <DataField>Sales___1_Format</DataField>
-        </Field>
-        <Field Name="Sales___2_">
-          <DataField>Sales___2_</DataField>
-        </Field>
-        <Field Name="Sales___2_Format">
-          <DataField>Sales___2_Format</DataField>
-        </Field>
-        <Field Name="Sales___3_">
-          <DataField>Sales___3_</DataField>
-        </Field>
-        <Field Name="Sales___3_Format">
-          <DataField>Sales___3_Format</DataField>
-        </Field>
-        <Field Name="Sales___4_">
-          <DataField>Sales___4_</DataField>
-        </Field>
-        <Field Name="Sales___4_Format">
-          <DataField>Sales___4_Format</DataField>
-        </Field>
-        <Field Name="Sales___5_">
-          <DataField>Sales___5_</DataField>
-        </Field>
-        <Field Name="Sales___5_Format">
-          <DataField>Sales___5_Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___1_">
-          <DataField>CostOfSales___1_</DataField>
-        </Field>
-        <Field Name="CostOfSales___1_Format">
-          <DataField>CostOfSales___1_Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___2_">
-          <DataField>CostOfSales___2_</DataField>
-        </Field>
-        <Field Name="CostOfSales___2_Format">
-          <DataField>CostOfSales___2_Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___3_">
-          <DataField>CostOfSales___3_</DataField>
-        </Field>
-        <Field Name="CostOfSales___3_Format">
-          <DataField>CostOfSales___3_Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___4_">
-          <DataField>CostOfSales___4_</DataField>
-        </Field>
-        <Field Name="CostOfSales___4_Format">
-          <DataField>CostOfSales___4_Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___5_">
-          <DataField>CostOfSales___5_</DataField>
-        </Field>
-        <Field Name="CostOfSales___5_Format">
-          <DataField>CostOfSales___5_Format</DataField>
-        </Field>
-        <Field Name="Profits___1_">
-          <DataField>Profits___1_</DataField>
-        </Field>
-        <Field Name="Profits___1_Format">
-          <DataField>Profits___1_Format</DataField>
-        </Field>
-        <Field Name="Profits___2_">
-          <DataField>Profits___2_</DataField>
-        </Field>
-        <Field Name="Profits___2_Format">
-          <DataField>Profits___2_Format</DataField>
-        </Field>
-        <Field Name="Profits___3_">
-          <DataField>Profits___3_</DataField>
-        </Field>
-        <Field Name="Profits___3_Format">
-          <DataField>Profits___3_Format</DataField>
-        </Field>
-        <Field Name="Profits___4_">
-          <DataField>Profits___4_</DataField>
-        </Field>
-        <Field Name="Profits___4_Format">
-          <DataField>Profits___4_Format</DataField>
-        </Field>
-        <Field Name="Profits___5_">
-          <DataField>Profits___5_</DataField>
-        </Field>
-        <Field Name="Profits___5_Format">
-          <DataField>Profits___5_Format</DataField>
-        </Field>
-        <Field Name="Profit___1_">
-          <DataField>Profit___1_</DataField>
-        </Field>
-        <Field Name="Profit___1_Format">
-          <DataField>Profit___1_Format</DataField>
-        </Field>
-        <Field Name="Profit___2_">
-          <DataField>Profit___2_</DataField>
-        </Field>
-        <Field Name="Profit___2_Format">
-          <DataField>Profit___2_Format</DataField>
-        </Field>
-        <Field Name="Profit___3_">
-          <DataField>Profit___3_</DataField>
-        </Field>
-        <Field Name="Profit___3_Format">
-          <DataField>Profit___3_Format</DataField>
-        </Field>
-        <Field Name="Profit___4_">
-          <DataField>Profit___4_</DataField>
-        </Field>
-        <Field Name="Profit___4_Format">
-          <DataField>Profit___4_Format</DataField>
-        </Field>
-        <Field Name="Profit___5_">
-          <DataField>Profit___5_</DataField>
-        </Field>
-        <Field Name="Profit___5_Format">
-          <DataField>Profit___5_Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___1_">
-          <DataField>InvoiceDiscounts___1_</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___1_Format">
-          <DataField>InvoiceDiscounts___1_Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___2_">
-          <DataField>InvoiceDiscounts___2_</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___2_Format">
-          <DataField>InvoiceDiscounts___2_Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___3_">
-          <DataField>InvoiceDiscounts___3_</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___3_Format">
-          <DataField>InvoiceDiscounts___3_Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___4_">
-          <DataField>InvoiceDiscounts___4_</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___4_Format">
-          <DataField>InvoiceDiscounts___4_Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___5_">
-          <DataField>InvoiceDiscounts___5_</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___5_Format">
-          <DataField>InvoiceDiscounts___5_Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___1_">
-          <DataField>PaymentDiscounts___1_</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___1_Format">
-          <DataField>PaymentDiscounts___1_Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___2_">
-          <DataField>PaymentDiscounts___2_</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___2_Format">
-          <DataField>PaymentDiscounts___2_Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___3_">
-          <DataField>PaymentDiscounts___3_</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___3_Format">
-          <DataField>PaymentDiscounts___3_Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___4_">
-          <DataField>PaymentDiscounts___4_</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___4_Format">
-          <DataField>PaymentDiscounts___4_Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___5_">
-          <DataField>PaymentDiscounts___5_</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___5_Format">
-          <DataField>PaymentDiscounts___5_Format</DataField>
-        </Field>
-        <Field Name="Payments___1_">
-          <DataField>Payments___1_</DataField>
-        </Field>
-        <Field Name="Payments___1_Format">
-          <DataField>Payments___1_Format</DataField>
-        </Field>
-        <Field Name="Payments___2_">
-          <DataField>Payments___2_</DataField>
-        </Field>
-        <Field Name="Payments___2_Format">
-          <DataField>Payments___2_Format</DataField>
-        </Field>
-        <Field Name="Payments___3_">
-          <DataField>Payments___3_</DataField>
-        </Field>
-        <Field Name="Payments___3_Format">
-          <DataField>Payments___3_Format</DataField>
-        </Field>
-        <Field Name="Payments___4_">
-          <DataField>Payments___4_</DataField>
-        </Field>
-        <Field Name="Payments___4_Format">
-          <DataField>Payments___4_Format</DataField>
-        </Field>
-        <Field Name="Payments___5_">
-          <DataField>Payments___5_</DataField>
-        </Field>
-        <Field Name="Payments___5_Format">
-          <DataField>Payments___5_Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___1_">
-          <DataField>FinanceCharges___1_</DataField>
-        </Field>
-        <Field Name="FinanceCharges___1_Format">
-          <DataField>FinanceCharges___1_Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___2_">
-          <DataField>FinanceCharges___2_</DataField>
-        </Field>
-        <Field Name="FinanceCharges___2_Format">
-          <DataField>FinanceCharges___2_Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___3_">
-          <DataField>FinanceCharges___3_</DataField>
-        </Field>
-        <Field Name="FinanceCharges___3_Format">
-          <DataField>FinanceCharges___3_Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___4_">
-          <DataField>FinanceCharges___4_</DataField>
-        </Field>
-        <Field Name="FinanceCharges___4_Format">
-          <DataField>FinanceCharges___4_Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___5_">
-          <DataField>FinanceCharges___5_</DataField>
-        </Field>
-        <Field Name="FinanceCharges___5_Format">
-          <DataField>FinanceCharges___5_Format</DataField>
-        </Field>
-        <Field Name="Sales___1__Control71">
-          <DataField>Sales___1__Control71</DataField>
-        </Field>
-        <Field Name="Sales___1__Control71Format">
-          <DataField>Sales___1__Control71Format</DataField>
-        </Field>
-        <Field Name="Sales___2__Control72">
-          <DataField>Sales___2__Control72</DataField>
-        </Field>
-        <Field Name="Sales___2__Control72Format">
-          <DataField>Sales___2__Control72Format</DataField>
-        </Field>
-        <Field Name="Sales___3__Control73">
-          <DataField>Sales___3__Control73</DataField>
-        </Field>
-        <Field Name="Sales___3__Control73Format">
-          <DataField>Sales___3__Control73Format</DataField>
-        </Field>
-        <Field Name="Sales___4__Control74">
-          <DataField>Sales___4__Control74</DataField>
-        </Field>
-        <Field Name="Sales___4__Control74Format">
-          <DataField>Sales___4__Control74Format</DataField>
-        </Field>
-        <Field Name="Sales___5__Control75">
-          <DataField>Sales___5__Control75</DataField>
-        </Field>
-        <Field Name="Sales___5__Control75Format">
-          <DataField>Sales___5__Control75Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___1__Control77">
-          <DataField>CostOfSales___1__Control77</DataField>
-        </Field>
-        <Field Name="CostOfSales___1__Control77Format">
-          <DataField>CostOfSales___1__Control77Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___2__Control78">
-          <DataField>CostOfSales___2__Control78</DataField>
-        </Field>
-        <Field Name="CostOfSales___2__Control78Format">
-          <DataField>CostOfSales___2__Control78Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___3__Control79">
-          <DataField>CostOfSales___3__Control79</DataField>
-        </Field>
-        <Field Name="CostOfSales___3__Control79Format">
-          <DataField>CostOfSales___3__Control79Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___4__Control80">
-          <DataField>CostOfSales___4__Control80</DataField>
-        </Field>
-        <Field Name="CostOfSales___4__Control80Format">
-          <DataField>CostOfSales___4__Control80Format</DataField>
-        </Field>
-        <Field Name="CostOfSales___5__Control81">
-          <DataField>CostOfSales___5__Control81</DataField>
-        </Field>
-        <Field Name="CostOfSales___5__Control81Format">
-          <DataField>CostOfSales___5__Control81Format</DataField>
-        </Field>
-        <Field Name="Profits___1__Control83">
-          <DataField>Profits___1__Control83</DataField>
-        </Field>
-        <Field Name="Profits___1__Control83Format">
-          <DataField>Profits___1__Control83Format</DataField>
-        </Field>
-        <Field Name="Profits___2__Control84">
-          <DataField>Profits___2__Control84</DataField>
-        </Field>
-        <Field Name="Profits___2__Control84Format">
-          <DataField>Profits___2__Control84Format</DataField>
-        </Field>
-        <Field Name="Profits___3__Control85">
-          <DataField>Profits___3__Control85</DataField>
-        </Field>
-        <Field Name="Profits___3__Control85Format">
-          <DataField>Profits___3__Control85Format</DataField>
-        </Field>
-        <Field Name="Profits___4__Control86">
-          <DataField>Profits___4__Control86</DataField>
-        </Field>
-        <Field Name="Profits___4__Control86Format">
-          <DataField>Profits___4__Control86Format</DataField>
-        </Field>
-        <Field Name="Profits___5__Control87">
-          <DataField>Profits___5__Control87</DataField>
-        </Field>
-        <Field Name="Profits___5__Control87Format">
-          <DataField>Profits___5__Control87Format</DataField>
-        </Field>
-        <Field Name="Profit___1__Control89">
-          <DataField>Profit___1__Control89</DataField>
-        </Field>
-        <Field Name="Profit___1__Control89Format">
-          <DataField>Profit___1__Control89Format</DataField>
-        </Field>
-        <Field Name="Profit___2__Control90">
-          <DataField>Profit___2__Control90</DataField>
-        </Field>
-        <Field Name="Profit___2__Control90Format">
-          <DataField>Profit___2__Control90Format</DataField>
-        </Field>
-        <Field Name="Profit___3__Control91">
-          <DataField>Profit___3__Control91</DataField>
-        </Field>
-        <Field Name="Profit___3__Control91Format">
-          <DataField>Profit___3__Control91Format</DataField>
-        </Field>
-        <Field Name="Profit___4__Control92">
-          <DataField>Profit___4__Control92</DataField>
-        </Field>
-        <Field Name="Profit___4__Control92Format">
-          <DataField>Profit___4__Control92Format</DataField>
-        </Field>
-        <Field Name="Profit___5__Control93">
-          <DataField>Profit___5__Control93</DataField>
-        </Field>
-        <Field Name="Profit___5__Control93Format">
-          <DataField>Profit___5__Control93Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___1__Control95">
-          <DataField>InvoiceDiscounts___1__Control95</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___1__Control95Format">
-          <DataField>InvoiceDiscounts___1__Control95Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___2__Control96">
-          <DataField>InvoiceDiscounts___2__Control96</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___2__Control96Format">
-          <DataField>InvoiceDiscounts___2__Control96Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___3__Control97">
-          <DataField>InvoiceDiscounts___3__Control97</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___3__Control97Format">
-          <DataField>InvoiceDiscounts___3__Control97Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___4__Control98">
-          <DataField>InvoiceDiscounts___4__Control98</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___4__Control98Format">
-          <DataField>InvoiceDiscounts___4__Control98Format</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___5__Control99">
-          <DataField>InvoiceDiscounts___5__Control99</DataField>
-        </Field>
-        <Field Name="InvoiceDiscounts___5__Control99Format">
-          <DataField>InvoiceDiscounts___5__Control99Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___1__Control101">
-          <DataField>PaymentDiscounts___1__Control101</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___1__Control101Format">
-          <DataField>PaymentDiscounts___1__Control101Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___2__Control102">
-          <DataField>PaymentDiscounts___2__Control102</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___2__Control102Format">
-          <DataField>PaymentDiscounts___2__Control102Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___3__Control103">
-          <DataField>PaymentDiscounts___3__Control103</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___3__Control103Format">
-          <DataField>PaymentDiscounts___3__Control103Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___4__Control104">
-          <DataField>PaymentDiscounts___4__Control104</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___4__Control104Format">
-          <DataField>PaymentDiscounts___4__Control104Format</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___5__Control105">
-          <DataField>PaymentDiscounts___5__Control105</DataField>
-        </Field>
-        <Field Name="PaymentDiscounts___5__Control105Format">
-          <DataField>PaymentDiscounts___5__Control105Format</DataField>
-        </Field>
-        <Field Name="Payments___1__Control107">
-          <DataField>Payments___1__Control107</DataField>
-        </Field>
-        <Field Name="Payments___1__Control107Format">
-          <DataField>Payments___1__Control107Format</DataField>
-        </Field>
-        <Field Name="Payments___2__Control108">
-          <DataField>Payments___2__Control108</DataField>
-        </Field>
-        <Field Name="Payments___2__Control108Format">
-          <DataField>Payments___2__Control108Format</DataField>
-        </Field>
-        <Field Name="Payments___3__Control109">
-          <DataField>Payments___3__Control109</DataField>
-        </Field>
-        <Field Name="Payments___3__Control109Format">
-          <DataField>Payments___3__Control109Format</DataField>
-        </Field>
-        <Field Name="Payments___4__Control110">
-          <DataField>Payments___4__Control110</DataField>
-        </Field>
-        <Field Name="Payments___4__Control110Format">
-          <DataField>Payments___4__Control110Format</DataField>
-        </Field>
-        <Field Name="Payments___5__Control111">
-          <DataField>Payments___5__Control111</DataField>
-        </Field>
-        <Field Name="Payments___5__Control111Format">
-          <DataField>Payments___5__Control111Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___1__Control113">
-          <DataField>FinanceCharges___1__Control113</DataField>
-        </Field>
-        <Field Name="FinanceCharges___1__Control113Format">
-          <DataField>FinanceCharges___1__Control113Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___2__Control114">
-          <DataField>FinanceCharges___2__Control114</DataField>
-        </Field>
-        <Field Name="FinanceCharges___2__Control114Format">
-          <DataField>FinanceCharges___2__Control114Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___3__Control115">
-          <DataField>FinanceCharges___3__Control115</DataField>
-        </Field>
-        <Field Name="FinanceCharges___3__Control115Format">
-          <DataField>FinanceCharges___3__Control115Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___4__Control116">
-          <DataField>FinanceCharges___4__Control116</DataField>
-        </Field>
-        <Field Name="FinanceCharges___4__Control116Format">
-          <DataField>FinanceCharges___4__Control116Format</DataField>
-        </Field>
-        <Field Name="FinanceCharges___5__Control117">
-          <DataField>FinanceCharges___5__Control117</DataField>
-        </Field>
-        <Field Name="FinanceCharges___5__Control117Format">
-          <DataField>FinanceCharges___5__Control117Format</DataField>
-        </Field>
-        <Field Name="Customer_Sales_StatisticsCaption">
-          <DataField>Customer_Sales_StatisticsCaption</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENOCaption">
-          <DataField>CurrReport_PAGENOCaption</DataField>
-        </Field>
-        <Field Name="BeforeCaption">
-          <DataField>BeforeCaption</DataField>
-        </Field>
-        <Field Name="AfterCaption">
-          <DataField>AfterCaption</DataField>
-        </Field>
-        <Field Name="Customer__No__Caption">
-          <DataField>Customer__No__Caption</DataField>
-        </Field>
-        <Field Name="Customer_NameCaption">
-          <DataField>Customer_NameCaption</DataField>
-        </Field>
-        <Field Name="SalesCaption">
-          <DataField>SalesCaption</DataField>
-        </Field>
-        <Field Name="Cost_of_SalesCaption">
-          <DataField>Cost_of_SalesCaption</DataField>
-        </Field>
-        <Field Name="Contrib__MarginCaption">
-          <DataField>Contrib__MarginCaption</DataField>
-        </Field>
-        <Field Name="Contrib__Ratio__Caption">
-          <DataField>Contrib__Ratio__Caption</DataField>
-        </Field>
-        <Field Name="Invoice_DiscountCaption">
-          <DataField>Invoice_DiscountCaption</DataField>
-        </Field>
-        <Field Name="Payment_DiscountCaption">
-          <DataField>Payment_DiscountCaption</DataField>
-        </Field>
-        <Field Name="PaymentsCaption">
-          <DataField>PaymentsCaption</DataField>
-        </Field>
-        <Field Name="Finance_ChargesCaption">
-          <DataField>Finance_ChargesCaption</DataField>
-        </Field>
-        <Field Name="Report_TotalCaption">
-          <DataField>Report_TotalCaption</DataField>
-        </Field>
-        <Field Name="Cost_of_SalesCaption_Control82">
-          <DataField>Cost_of_SalesCaption_Control82</DataField>
-        </Field>
-        <Field Name="Contrib__MarginCaption_Control88">
-          <DataField>Contrib__MarginCaption_Control88</DataField>
-        </Field>
-        <Field Name="Contrib__Ratio__Caption_Control94">
-          <DataField>Contrib__Ratio__Caption_Control94</DataField>
-        </Field>
-        <Field Name="Invoice_DiscountCaption_Control100">
-          <DataField>Invoice_DiscountCaption_Control100</DataField>
-        </Field>
-        <Field Name="Payment_DiscountCaption_Control106">
-          <DataField>Payment_DiscountCaption_Control106</DataField>
-        </Field>
-        <Field Name="PaymentsCaption_Control112">
-          <DataField>PaymentsCaption_Control112</DataField>
-        </Field>
-        <Field Name="Finance_ChargesCaption_Control118">
-          <DataField>Finance_ChargesCaption_Control118</DataField>
-        </Field>
-        <Field Name="SalesCaption_Control1">
-          <DataField>SalesCaption_Control1</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -4690,4 +4075,614 @@ End Function</Code>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>42c17f4a-117f-4d3d-b342-3f4035831ce4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="TIME">
+          <DataField>TIME</DataField>
+        </Field>
+        <Field Name="CompanyInformation_Name">
+          <DataField>CompanyInformation_Name</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO">
+          <DataField>CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="FilterString">
+          <DataField>FilterString</DataField>
+        </Field>
+        <Field Name="FilterString_Control1400000">
+          <DataField>FilterString_Control1400000</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_2_">
+          <DataField>PeriodStartingDate_2_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_3_">
+          <DataField>PeriodStartingDate_3_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_4_">
+          <DataField>PeriodStartingDate_4_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_2__Control14">
+          <DataField>PeriodStartingDate_2__Control14</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_3__1">
+          <DataField>PeriodStartingDate_3__1</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_4__1">
+          <DataField>PeriodStartingDate_4__1</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_5__1">
+          <DataField>PeriodStartingDate_5__1</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_5__1_Control18">
+          <DataField>PeriodStartingDate_5__1_Control18</DataField>
+        </Field>
+        <Field Name="Customer__No__">
+          <DataField>Customer__No__</DataField>
+        </Field>
+        <Field Name="Customer_Name">
+          <DataField>Customer_Name</DataField>
+        </Field>
+        <Field Name="Sales___1_">
+          <DataField>Sales___1_</DataField>
+        </Field>
+        <Field Name="Sales___1_Format">
+          <DataField>Sales___1_Format</DataField>
+        </Field>
+        <Field Name="Sales___2_">
+          <DataField>Sales___2_</DataField>
+        </Field>
+        <Field Name="Sales___2_Format">
+          <DataField>Sales___2_Format</DataField>
+        </Field>
+        <Field Name="Sales___3_">
+          <DataField>Sales___3_</DataField>
+        </Field>
+        <Field Name="Sales___3_Format">
+          <DataField>Sales___3_Format</DataField>
+        </Field>
+        <Field Name="Sales___4_">
+          <DataField>Sales___4_</DataField>
+        </Field>
+        <Field Name="Sales___4_Format">
+          <DataField>Sales___4_Format</DataField>
+        </Field>
+        <Field Name="Sales___5_">
+          <DataField>Sales___5_</DataField>
+        </Field>
+        <Field Name="Sales___5_Format">
+          <DataField>Sales___5_Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___1_">
+          <DataField>CostOfSales___1_</DataField>
+        </Field>
+        <Field Name="CostOfSales___1_Format">
+          <DataField>CostOfSales___1_Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___2_">
+          <DataField>CostOfSales___2_</DataField>
+        </Field>
+        <Field Name="CostOfSales___2_Format">
+          <DataField>CostOfSales___2_Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___3_">
+          <DataField>CostOfSales___3_</DataField>
+        </Field>
+        <Field Name="CostOfSales___3_Format">
+          <DataField>CostOfSales___3_Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___4_">
+          <DataField>CostOfSales___4_</DataField>
+        </Field>
+        <Field Name="CostOfSales___4_Format">
+          <DataField>CostOfSales___4_Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___5_">
+          <DataField>CostOfSales___5_</DataField>
+        </Field>
+        <Field Name="CostOfSales___5_Format">
+          <DataField>CostOfSales___5_Format</DataField>
+        </Field>
+        <Field Name="Profits___1_">
+          <DataField>Profits___1_</DataField>
+        </Field>
+        <Field Name="Profits___1_Format">
+          <DataField>Profits___1_Format</DataField>
+        </Field>
+        <Field Name="Profits___2_">
+          <DataField>Profits___2_</DataField>
+        </Field>
+        <Field Name="Profits___2_Format">
+          <DataField>Profits___2_Format</DataField>
+        </Field>
+        <Field Name="Profits___3_">
+          <DataField>Profits___3_</DataField>
+        </Field>
+        <Field Name="Profits___3_Format">
+          <DataField>Profits___3_Format</DataField>
+        </Field>
+        <Field Name="Profits___4_">
+          <DataField>Profits___4_</DataField>
+        </Field>
+        <Field Name="Profits___4_Format">
+          <DataField>Profits___4_Format</DataField>
+        </Field>
+        <Field Name="Profits___5_">
+          <DataField>Profits___5_</DataField>
+        </Field>
+        <Field Name="Profits___5_Format">
+          <DataField>Profits___5_Format</DataField>
+        </Field>
+        <Field Name="Profit___1_">
+          <DataField>Profit___1_</DataField>
+        </Field>
+        <Field Name="Profit___1_Format">
+          <DataField>Profit___1_Format</DataField>
+        </Field>
+        <Field Name="Profit___2_">
+          <DataField>Profit___2_</DataField>
+        </Field>
+        <Field Name="Profit___2_Format">
+          <DataField>Profit___2_Format</DataField>
+        </Field>
+        <Field Name="Profit___3_">
+          <DataField>Profit___3_</DataField>
+        </Field>
+        <Field Name="Profit___3_Format">
+          <DataField>Profit___3_Format</DataField>
+        </Field>
+        <Field Name="Profit___4_">
+          <DataField>Profit___4_</DataField>
+        </Field>
+        <Field Name="Profit___4_Format">
+          <DataField>Profit___4_Format</DataField>
+        </Field>
+        <Field Name="Profit___5_">
+          <DataField>Profit___5_</DataField>
+        </Field>
+        <Field Name="Profit___5_Format">
+          <DataField>Profit___5_Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___1_">
+          <DataField>InvoiceDiscounts___1_</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___1_Format">
+          <DataField>InvoiceDiscounts___1_Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___2_">
+          <DataField>InvoiceDiscounts___2_</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___2_Format">
+          <DataField>InvoiceDiscounts___2_Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___3_">
+          <DataField>InvoiceDiscounts___3_</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___3_Format">
+          <DataField>InvoiceDiscounts___3_Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___4_">
+          <DataField>InvoiceDiscounts___4_</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___4_Format">
+          <DataField>InvoiceDiscounts___4_Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___5_">
+          <DataField>InvoiceDiscounts___5_</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___5_Format">
+          <DataField>InvoiceDiscounts___5_Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___1_">
+          <DataField>PaymentDiscounts___1_</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___1_Format">
+          <DataField>PaymentDiscounts___1_Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___2_">
+          <DataField>PaymentDiscounts___2_</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___2_Format">
+          <DataField>PaymentDiscounts___2_Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___3_">
+          <DataField>PaymentDiscounts___3_</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___3_Format">
+          <DataField>PaymentDiscounts___3_Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___4_">
+          <DataField>PaymentDiscounts___4_</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___4_Format">
+          <DataField>PaymentDiscounts___4_Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___5_">
+          <DataField>PaymentDiscounts___5_</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___5_Format">
+          <DataField>PaymentDiscounts___5_Format</DataField>
+        </Field>
+        <Field Name="Payments___1_">
+          <DataField>Payments___1_</DataField>
+        </Field>
+        <Field Name="Payments___1_Format">
+          <DataField>Payments___1_Format</DataField>
+        </Field>
+        <Field Name="Payments___2_">
+          <DataField>Payments___2_</DataField>
+        </Field>
+        <Field Name="Payments___2_Format">
+          <DataField>Payments___2_Format</DataField>
+        </Field>
+        <Field Name="Payments___3_">
+          <DataField>Payments___3_</DataField>
+        </Field>
+        <Field Name="Payments___3_Format">
+          <DataField>Payments___3_Format</DataField>
+        </Field>
+        <Field Name="Payments___4_">
+          <DataField>Payments___4_</DataField>
+        </Field>
+        <Field Name="Payments___4_Format">
+          <DataField>Payments___4_Format</DataField>
+        </Field>
+        <Field Name="Payments___5_">
+          <DataField>Payments___5_</DataField>
+        </Field>
+        <Field Name="Payments___5_Format">
+          <DataField>Payments___5_Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___1_">
+          <DataField>FinanceCharges___1_</DataField>
+        </Field>
+        <Field Name="FinanceCharges___1_Format">
+          <DataField>FinanceCharges___1_Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___2_">
+          <DataField>FinanceCharges___2_</DataField>
+        </Field>
+        <Field Name="FinanceCharges___2_Format">
+          <DataField>FinanceCharges___2_Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___3_">
+          <DataField>FinanceCharges___3_</DataField>
+        </Field>
+        <Field Name="FinanceCharges___3_Format">
+          <DataField>FinanceCharges___3_Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___4_">
+          <DataField>FinanceCharges___4_</DataField>
+        </Field>
+        <Field Name="FinanceCharges___4_Format">
+          <DataField>FinanceCharges___4_Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___5_">
+          <DataField>FinanceCharges___5_</DataField>
+        </Field>
+        <Field Name="FinanceCharges___5_Format">
+          <DataField>FinanceCharges___5_Format</DataField>
+        </Field>
+        <Field Name="Sales___1__Control71">
+          <DataField>Sales___1__Control71</DataField>
+        </Field>
+        <Field Name="Sales___1__Control71Format">
+          <DataField>Sales___1__Control71Format</DataField>
+        </Field>
+        <Field Name="Sales___2__Control72">
+          <DataField>Sales___2__Control72</DataField>
+        </Field>
+        <Field Name="Sales___2__Control72Format">
+          <DataField>Sales___2__Control72Format</DataField>
+        </Field>
+        <Field Name="Sales___3__Control73">
+          <DataField>Sales___3__Control73</DataField>
+        </Field>
+        <Field Name="Sales___3__Control73Format">
+          <DataField>Sales___3__Control73Format</DataField>
+        </Field>
+        <Field Name="Sales___4__Control74">
+          <DataField>Sales___4__Control74</DataField>
+        </Field>
+        <Field Name="Sales___4__Control74Format">
+          <DataField>Sales___4__Control74Format</DataField>
+        </Field>
+        <Field Name="Sales___5__Control75">
+          <DataField>Sales___5__Control75</DataField>
+        </Field>
+        <Field Name="Sales___5__Control75Format">
+          <DataField>Sales___5__Control75Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___1__Control77">
+          <DataField>CostOfSales___1__Control77</DataField>
+        </Field>
+        <Field Name="CostOfSales___1__Control77Format">
+          <DataField>CostOfSales___1__Control77Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___2__Control78">
+          <DataField>CostOfSales___2__Control78</DataField>
+        </Field>
+        <Field Name="CostOfSales___2__Control78Format">
+          <DataField>CostOfSales___2__Control78Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___3__Control79">
+          <DataField>CostOfSales___3__Control79</DataField>
+        </Field>
+        <Field Name="CostOfSales___3__Control79Format">
+          <DataField>CostOfSales___3__Control79Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___4__Control80">
+          <DataField>CostOfSales___4__Control80</DataField>
+        </Field>
+        <Field Name="CostOfSales___4__Control80Format">
+          <DataField>CostOfSales___4__Control80Format</DataField>
+        </Field>
+        <Field Name="CostOfSales___5__Control81">
+          <DataField>CostOfSales___5__Control81</DataField>
+        </Field>
+        <Field Name="CostOfSales___5__Control81Format">
+          <DataField>CostOfSales___5__Control81Format</DataField>
+        </Field>
+        <Field Name="Profits___1__Control83">
+          <DataField>Profits___1__Control83</DataField>
+        </Field>
+        <Field Name="Profits___1__Control83Format">
+          <DataField>Profits___1__Control83Format</DataField>
+        </Field>
+        <Field Name="Profits___2__Control84">
+          <DataField>Profits___2__Control84</DataField>
+        </Field>
+        <Field Name="Profits___2__Control84Format">
+          <DataField>Profits___2__Control84Format</DataField>
+        </Field>
+        <Field Name="Profits___3__Control85">
+          <DataField>Profits___3__Control85</DataField>
+        </Field>
+        <Field Name="Profits___3__Control85Format">
+          <DataField>Profits___3__Control85Format</DataField>
+        </Field>
+        <Field Name="Profits___4__Control86">
+          <DataField>Profits___4__Control86</DataField>
+        </Field>
+        <Field Name="Profits___4__Control86Format">
+          <DataField>Profits___4__Control86Format</DataField>
+        </Field>
+        <Field Name="Profits___5__Control87">
+          <DataField>Profits___5__Control87</DataField>
+        </Field>
+        <Field Name="Profits___5__Control87Format">
+          <DataField>Profits___5__Control87Format</DataField>
+        </Field>
+        <Field Name="Profit___1__Control89">
+          <DataField>Profit___1__Control89</DataField>
+        </Field>
+        <Field Name="Profit___1__Control89Format">
+          <DataField>Profit___1__Control89Format</DataField>
+        </Field>
+        <Field Name="Profit___2__Control90">
+          <DataField>Profit___2__Control90</DataField>
+        </Field>
+        <Field Name="Profit___2__Control90Format">
+          <DataField>Profit___2__Control90Format</DataField>
+        </Field>
+        <Field Name="Profit___3__Control91">
+          <DataField>Profit___3__Control91</DataField>
+        </Field>
+        <Field Name="Profit___3__Control91Format">
+          <DataField>Profit___3__Control91Format</DataField>
+        </Field>
+        <Field Name="Profit___4__Control92">
+          <DataField>Profit___4__Control92</DataField>
+        </Field>
+        <Field Name="Profit___4__Control92Format">
+          <DataField>Profit___4__Control92Format</DataField>
+        </Field>
+        <Field Name="Profit___5__Control93">
+          <DataField>Profit___5__Control93</DataField>
+        </Field>
+        <Field Name="Profit___5__Control93Format">
+          <DataField>Profit___5__Control93Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___1__Control95">
+          <DataField>InvoiceDiscounts___1__Control95</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___1__Control95Format">
+          <DataField>InvoiceDiscounts___1__Control95Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___2__Control96">
+          <DataField>InvoiceDiscounts___2__Control96</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___2__Control96Format">
+          <DataField>InvoiceDiscounts___2__Control96Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___3__Control97">
+          <DataField>InvoiceDiscounts___3__Control97</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___3__Control97Format">
+          <DataField>InvoiceDiscounts___3__Control97Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___4__Control98">
+          <DataField>InvoiceDiscounts___4__Control98</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___4__Control98Format">
+          <DataField>InvoiceDiscounts___4__Control98Format</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___5__Control99">
+          <DataField>InvoiceDiscounts___5__Control99</DataField>
+        </Field>
+        <Field Name="InvoiceDiscounts___5__Control99Format">
+          <DataField>InvoiceDiscounts___5__Control99Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___1__Control101">
+          <DataField>PaymentDiscounts___1__Control101</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___1__Control101Format">
+          <DataField>PaymentDiscounts___1__Control101Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___2__Control102">
+          <DataField>PaymentDiscounts___2__Control102</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___2__Control102Format">
+          <DataField>PaymentDiscounts___2__Control102Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___3__Control103">
+          <DataField>PaymentDiscounts___3__Control103</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___3__Control103Format">
+          <DataField>PaymentDiscounts___3__Control103Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___4__Control104">
+          <DataField>PaymentDiscounts___4__Control104</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___4__Control104Format">
+          <DataField>PaymentDiscounts___4__Control104Format</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___5__Control105">
+          <DataField>PaymentDiscounts___5__Control105</DataField>
+        </Field>
+        <Field Name="PaymentDiscounts___5__Control105Format">
+          <DataField>PaymentDiscounts___5__Control105Format</DataField>
+        </Field>
+        <Field Name="Payments___1__Control107">
+          <DataField>Payments___1__Control107</DataField>
+        </Field>
+        <Field Name="Payments___1__Control107Format">
+          <DataField>Payments___1__Control107Format</DataField>
+        </Field>
+        <Field Name="Payments___2__Control108">
+          <DataField>Payments___2__Control108</DataField>
+        </Field>
+        <Field Name="Payments___2__Control108Format">
+          <DataField>Payments___2__Control108Format</DataField>
+        </Field>
+        <Field Name="Payments___3__Control109">
+          <DataField>Payments___3__Control109</DataField>
+        </Field>
+        <Field Name="Payments___3__Control109Format">
+          <DataField>Payments___3__Control109Format</DataField>
+        </Field>
+        <Field Name="Payments___4__Control110">
+          <DataField>Payments___4__Control110</DataField>
+        </Field>
+        <Field Name="Payments___4__Control110Format">
+          <DataField>Payments___4__Control110Format</DataField>
+        </Field>
+        <Field Name="Payments___5__Control111">
+          <DataField>Payments___5__Control111</DataField>
+        </Field>
+        <Field Name="Payments___5__Control111Format">
+          <DataField>Payments___5__Control111Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___1__Control113">
+          <DataField>FinanceCharges___1__Control113</DataField>
+        </Field>
+        <Field Name="FinanceCharges___1__Control113Format">
+          <DataField>FinanceCharges___1__Control113Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___2__Control114">
+          <DataField>FinanceCharges___2__Control114</DataField>
+        </Field>
+        <Field Name="FinanceCharges___2__Control114Format">
+          <DataField>FinanceCharges___2__Control114Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___3__Control115">
+          <DataField>FinanceCharges___3__Control115</DataField>
+        </Field>
+        <Field Name="FinanceCharges___3__Control115Format">
+          <DataField>FinanceCharges___3__Control115Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___4__Control116">
+          <DataField>FinanceCharges___4__Control116</DataField>
+        </Field>
+        <Field Name="FinanceCharges___4__Control116Format">
+          <DataField>FinanceCharges___4__Control116Format</DataField>
+        </Field>
+        <Field Name="FinanceCharges___5__Control117">
+          <DataField>FinanceCharges___5__Control117</DataField>
+        </Field>
+        <Field Name="FinanceCharges___5__Control117Format">
+          <DataField>FinanceCharges___5__Control117Format</DataField>
+        </Field>
+        <Field Name="Customer_Sales_StatisticsCaption">
+          <DataField>Customer_Sales_StatisticsCaption</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENOCaption">
+          <DataField>CurrReport_PAGENOCaption</DataField>
+        </Field>
+        <Field Name="BeforeCaption">
+          <DataField>BeforeCaption</DataField>
+        </Field>
+        <Field Name="AfterCaption">
+          <DataField>AfterCaption</DataField>
+        </Field>
+        <Field Name="Customer__No__Caption">
+          <DataField>Customer__No__Caption</DataField>
+        </Field>
+        <Field Name="Customer_NameCaption">
+          <DataField>Customer_NameCaption</DataField>
+        </Field>
+        <Field Name="SalesCaption">
+          <DataField>SalesCaption</DataField>
+        </Field>
+        <Field Name="Cost_of_SalesCaption">
+          <DataField>Cost_of_SalesCaption</DataField>
+        </Field>
+        <Field Name="Contrib__MarginCaption">
+          <DataField>Contrib__MarginCaption</DataField>
+        </Field>
+        <Field Name="Contrib__Ratio__Caption">
+          <DataField>Contrib__Ratio__Caption</DataField>
+        </Field>
+        <Field Name="Invoice_DiscountCaption">
+          <DataField>Invoice_DiscountCaption</DataField>
+        </Field>
+        <Field Name="Payment_DiscountCaption">
+          <DataField>Payment_DiscountCaption</DataField>
+        </Field>
+        <Field Name="PaymentsCaption">
+          <DataField>PaymentsCaption</DataField>
+        </Field>
+        <Field Name="Finance_ChargesCaption">
+          <DataField>Finance_ChargesCaption</DataField>
+        </Field>
+        <Field Name="Report_TotalCaption">
+          <DataField>Report_TotalCaption</DataField>
+        </Field>
+        <Field Name="Cost_of_SalesCaption_Control82">
+          <DataField>Cost_of_SalesCaption_Control82</DataField>
+        </Field>
+        <Field Name="Contrib__MarginCaption_Control88">
+          <DataField>Contrib__MarginCaption_Control88</DataField>
+        </Field>
+        <Field Name="Contrib__Ratio__Caption_Control94">
+          <DataField>Contrib__Ratio__Caption_Control94</DataField>
+        </Field>
+        <Field Name="Invoice_DiscountCaption_Control100">
+          <DataField>Invoice_DiscountCaption_Control100</DataField>
+        </Field>
+        <Field Name="Payment_DiscountCaption_Control106">
+          <DataField>Payment_DiscountCaption_Control106</DataField>
+        </Field>
+        <Field Name="PaymentsCaption_Control112">
+          <DataField>PaymentsCaption_Control112</DataField>
+        </Field>
+        <Field Name="Finance_ChargesCaption_Control118">
+          <DataField>Finance_ChargesCaption_Control118</DataField>
+        </Field>
+        <Field Name="SalesCaption_Control1">
+          <DataField>SalesCaption_Control1</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

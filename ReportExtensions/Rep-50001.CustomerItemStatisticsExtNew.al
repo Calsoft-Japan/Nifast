@@ -39,10 +39,11 @@ report 50001 "Customer/Item Statistics New"
     // TotalMargin_ARC := 0;
     // //CIS.Ram Added on 10/06/23
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\CustomerItemStatistics.rdl';
+    RDLCLayout = '.\RDLC\CustomerItemStatistics.rdlc';
 
     Caption = 'Customer/Item Statistics New';
     ApplicationArea = All;
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

@@ -9,6 +9,8 @@ report 50013 "Customer Sales Statistics New"
     RDLCLayout = '.\RDLC\CustomerSalesStatistics.rdlc';
 
     Caption = 'Customer Sales Statistics New';
+    ApplicationArea=all;
+    UsageCategory=ReportsAndAnalysis;
 
     dataset
     {

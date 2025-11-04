@@ -4596,12 +4596,6 @@ End Function
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
-        <Field Name="POAuthority_User">
-          <DataField>POAuthority_User</DataField>
-        </Field>
-        <Field Name="E_Signature_User">
-          <DataField>E_Signature_User</DataField>
-        </Field>
         <Field Name="TennOnly">
           <DataField>TennOnly</DataField>
         </Field>

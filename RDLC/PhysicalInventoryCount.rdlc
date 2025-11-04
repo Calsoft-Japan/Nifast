@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -10,123 +10,6 @@
       <rd:DataSourceID>3c023981-fd29-438a-a794-d4135e24523c</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Item_Journal_Template_Name">
-          <DataField>Item_Journal_Template_Name</DataField>
-        </Field>
-        <Field Name="CompanyInformation_Name">
-          <DataField>CompanyInformation_Name</DataField>
-        </Field>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="TIME">
-          <DataField>TIME</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENO">
-          <DataField>CurrReport_PAGENO</DataField>
-        </Field>
-        <Field Name="Item_Journal_Template__TABLECAPTION__________ItemJnlTemplateFilter">
-          <DataField>Item_Journal_Template__TABLECAPTION__________ItemJnlTemplateFilter</DataField>
-        </Field>
-        <Field Name="Item_Journal_Batch__TABLECAPTION__________ItemJnlBatchFilter">
-          <DataField>Item_Journal_Batch__TABLECAPTION__________ItemJnlBatchFilter</DataField>
-        </Field>
-        <Field Name="Item_Journal_Line__TABLECAPTION__________ItemJnlLineFilter">
-          <DataField>Item_Journal_Line__TABLECAPTION__________ItemJnlLineFilter</DataField>
-        </Field>
-        <Field Name="ItemJnlTemplateFilter">
-          <DataField>ItemJnlTemplateFilter</DataField>
-        </Field>
-        <Field Name="ItemJnlBatchFilter">
-          <DataField>ItemJnlBatchFilter</DataField>
-        </Field>
-        <Field Name="ItemJnlLineFilter">
-          <DataField>ItemJnlLineFilter</DataField>
-        </Field>
-        <Field Name="Item_Journal_Batch_Journal_Template_Name">
-          <DataField>Item_Journal_Batch_Journal_Template_Name</DataField>
-        </Field>
-        <Field Name="Item_Journal_Batch_Name">
-          <DataField>Item_Journal_Batch_Name</DataField>
-        </Field>
-        <Field Name="Physical_Inventory_Count_SheetCaption">
-          <DataField>Physical_Inventory_Count_SheetCaption</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENOCaption">
-          <DataField>CurrReport_PAGENOCaption</DataField>
-        </Field>
-        <Field Name="Shelf_Bin_No_Caption">
-          <DataField>Shelf_Bin_No_Caption</DataField>
-        </Field>
-        <Field Name="Item_Journal_Line__Item_No__Caption">
-          <DataField>Item_Journal_Line__Item_No__Caption</DataField>
-        </Field>
-        <Field Name="Item_Journal_Line_DescriptionCaption">
-          <DataField>Item_Journal_Line_DescriptionCaption</DataField>
-        </Field>
-        <Field Name="Unit_of_MeasureCaption">
-          <DataField>Unit_of_MeasureCaption</DataField>
-        </Field>
-        <Field Name="EmptyStringCaption">
-          <DataField>EmptyStringCaption</DataField>
-        </Field>
-        <Field Name="EmptyString">
-          <DataField>EmptyString</DataField>
-        </Field>
-        <Field Name="Item_Journal_Line_Lot_No">
-          <DataField>Item_Journal_Line_Lot_No</DataField>
-        </Field>
-        <Field Name="SNPCaptionLbl">
-          <DataField>SNPCaptionLbl</DataField>
-        </Field>
-        <Field Name="LotString">
-          <DataField>LotString</DataField>
-        </Field>
-        <Field Name="Item__Units_Per_Parcel">
-          <DataField>Item__Units_Per_Parcel</DataField>
-        </Field>
-        <Field Name="Item__Units_Per_ParcelFormat">
-          <DataField>Item__Units_Per_ParcelFormat</DataField>
-        </Field>
-        <Field Name="Item__Base_Unit_of_Measure_">
-          <DataField>Item__Base_Unit_of_Measure_</DataField>
-        </Field>
-        <Field Name="Item_Journal_Line_Description">
-          <DataField>Item_Journal_Line_Description</DataField>
-        </Field>
-        <Field Name="Item_Journal_Line__Item_No__">
-          <DataField>Item_Journal_Line__Item_No__</DataField>
-        </Field>
-        <Field Name="Item__Shelf_No__">
-          <DataField>Item__Shelf_No__</DataField>
-        </Field>
-        <Field Name="Item_Journal_Line_Journal_Template_Name">
-          <DataField>Item_Journal_Line_Journal_Template_Name</DataField>
-        </Field>
-        <Field Name="Item_Journal_Line_Journal_Batch_Name">
-          <DataField>Item_Journal_Line_Journal_Batch_Name</DataField>
-        </Field>
-        <Field Name="Item_Journal_Line_Line_No_">
-          <DataField>Item_Journal_Line_Line_No_</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1229,4 +1112,113 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>094aa4f3-b341-4f34-91a8-7df3212ec151</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Item_Journal_Template_Name">
+          <DataField>Item_Journal_Template_Name</DataField>
+        </Field>
+        <Field Name="CompanyInformation_Name">
+          <DataField>CompanyInformation_Name</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="TIME">
+          <DataField>TIME</DataField>
+        </Field>
+        <Field Name="Item_Journal_Template__TABLECAPTION__________ItemJnlTemplateFilter">
+          <DataField>Item_Journal_Template__TABLECAPTION__________ItemJnlTemplateFilter</DataField>
+        </Field>
+        <Field Name="Item_Journal_Batch__TABLECAPTION__________ItemJnlBatchFilter">
+          <DataField>Item_Journal_Batch__TABLECAPTION__________ItemJnlBatchFilter</DataField>
+        </Field>
+        <Field Name="Item_Journal_Line__TABLECAPTION__________ItemJnlLineFilter">
+          <DataField>Item_Journal_Line__TABLECAPTION__________ItemJnlLineFilter</DataField>
+        </Field>
+        <Field Name="ItemJnlTemplateFilter">
+          <DataField>ItemJnlTemplateFilter</DataField>
+        </Field>
+        <Field Name="ItemJnlBatchFilter">
+          <DataField>ItemJnlBatchFilter</DataField>
+        </Field>
+        <Field Name="ItemJnlLineFilter">
+          <DataField>ItemJnlLineFilter</DataField>
+        </Field>
+        <Field Name="Item_Journal_Batch_Journal_Template_Name">
+          <DataField>Item_Journal_Batch_Journal_Template_Name</DataField>
+        </Field>
+        <Field Name="Item_Journal_Batch_Name">
+          <DataField>Item_Journal_Batch_Name</DataField>
+        </Field>
+        <Field Name="Physical_Inventory_Count_SheetCaption">
+          <DataField>Physical_Inventory_Count_SheetCaption</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENOCaption">
+          <DataField>CurrReport_PAGENOCaption</DataField>
+        </Field>
+        <Field Name="Shelf_Bin_No_Caption">
+          <DataField>Shelf_Bin_No_Caption</DataField>
+        </Field>
+        <Field Name="Item_Journal_Line__Item_No__Caption">
+          <DataField>Item_Journal_Line__Item_No__Caption</DataField>
+        </Field>
+        <Field Name="Item_Journal_Line_DescriptionCaption">
+          <DataField>Item_Journal_Line_DescriptionCaption</DataField>
+        </Field>
+        <Field Name="Unit_of_MeasureCaption">
+          <DataField>Unit_of_MeasureCaption</DataField>
+        </Field>
+        <Field Name="EmptyStringCaption">
+          <DataField>EmptyStringCaption</DataField>
+        </Field>
+        <Field Name="EmptyString">
+          <DataField>EmptyString</DataField>
+        </Field>
+        <Field Name="Item__Base_Unit_of_Measure_">
+          <DataField>Item__Base_Unit_of_Measure_</DataField>
+        </Field>
+        <Field Name="Item_Journal_Line_Description">
+          <DataField>Item_Journal_Line_Description</DataField>
+        </Field>
+        <Field Name="Item_Journal_Line__Item_No__">
+          <DataField>Item_Journal_Line__Item_No__</DataField>
+        </Field>
+        <Field Name="Item__Shelf_No__">
+          <DataField>Item__Shelf_No__</DataField>
+        </Field>
+        <Field Name="Item_Journal_Line_Journal_Template_Name">
+          <DataField>Item_Journal_Line_Journal_Template_Name</DataField>
+        </Field>
+        <Field Name="Item_Journal_Line_Journal_Batch_Name">
+          <DataField>Item_Journal_Line_Journal_Batch_Name</DataField>
+        </Field>
+        <Field Name="Item_Journal_Line_Line_No_">
+          <DataField>Item_Journal_Line_Line_No_</DataField>
+        </Field>
+        <Field Name="Item_Journal_Line_Lot_No">
+          <DataField>Item_Journal_Line_Lot_No</DataField>
+        </Field>
+        <Field Name="SNPCaptionLbl">
+          <DataField>SNPCaptionLbl</DataField>
+        </Field>
+        <Field Name="LotString">
+          <DataField>LotString</DataField>
+        </Field>
+        <Field Name="Item__Units_Per_Parcel">
+          <DataField>Item__Units_Per_Parcel</DataField>
+        </Field>
+        <Field Name="Item__Units_Per_ParcelFormat">
+          <DataField>Item__Units_Per_ParcelFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

@@ -2,11 +2,11 @@ report 50002 "Daily Invoicing Report New"
 {
     // NF1.00:CIS.NG  08-07-15 Merged during upgrade
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\DailyInvoicingReport.rdl';
+    RDLCLayout = '.\RDLC\DailyInvoicingReport.rdlc';
 
     Caption = 'Daily Invoicing Report New';
     ApplicationArea = All;
-
+    UsageCategory = ReportsAndAnalysis;
     dataset
     {
         dataitem(Currency; Currency)

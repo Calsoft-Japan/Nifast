@@ -2,10 +2,11 @@ report 50004 "Item Sales Statistics New"
 {
     // NF1.00:CIS.NU  08-18-15 Merged during upgrade
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\ItemSalesStatistics.rdl';
+    RDLCLayout = '.\RDLC\ItemSalesStatistics.rdlc';
 
     Caption = 'Item Sales Statistics New';
     ApplicationArea = All;
+    UsageCategory=ReportsAndAnalysis;
 
     dataset
     {

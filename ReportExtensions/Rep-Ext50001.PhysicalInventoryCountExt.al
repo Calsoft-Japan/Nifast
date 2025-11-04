@@ -44,7 +44,7 @@ reportextension 50001 "Physical Inventory Count Ext" extends "Physical Inventory
         {
             Type = RDLC;
             Caption = 'Physical Inventory Count';
-            LayoutFile = '.\RDLC\PhysicalInventoryCount.rdl';
+            LayoutFile = '.\RDLC\PhysicalInventoryCount.rdlc';
         }
     }
     var

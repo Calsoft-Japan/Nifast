@@ -13,4 +13,5 @@ reportextension 50033 "Trial Bal Detail/Summary Ext" extends "Trial Balance Deta
     {
         Label1 = '. . . . . . . .';
     }
+    
 }

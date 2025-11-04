@@ -41,7 +41,7 @@ reportextension 50000 "Outstanding SO Status Ext" extends "Outstanding Sales Ord
         {
             Type = RDLC;
             Caption = 'Outstanding Sales Order Status';
-            LayoutFile = '.\RDLC\OutstandingSalesOrderStatus.rdl';
+            LayoutFile = '.\RDLC\OutstandingSalesOrderStatus.rdlc';
         }
     }
     labels
