@@ -10,8 +10,8 @@ report 50015 "Inventory Posting - Test New"
     RDLCLayout = '.\RDLC\InventoryPostingTest.rdlc';
 
     Caption = 'Inventory Posting - Test New';
-    ApplicationArea=all;
-    UsageCategory=ReportsAndAnalysis;
+    ApplicationArea = all;
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {
@@ -810,6 +810,7 @@ report 50015 "Inventory Posting - Test New"
                     field(ShowDim; ShowDim)
                     {
                         Caption = 'Show Dimensions';
+                        ApplicationArea = All;
                     }
                 }
             }
