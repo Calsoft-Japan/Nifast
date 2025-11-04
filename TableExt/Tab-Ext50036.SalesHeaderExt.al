@@ -184,10 +184,10 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         {
             Caption = 'Inside Salesperson Code';
         }
-        field(70000; "Entered Date"; Date)
+        field(70100; "Entered Date"; Date)
         {
         }
-        field(70001; "Entered Time"; Time)
+        field(70101; "Entered Time"; Time)
         {
         }
         field(70002; "Tool Repair Tech"; code[10])

@@ -54,7 +54,7 @@ codeunit 50133 "FB Management"
                                                       AvailabilityDate,
                                                       PeriodType,
                                                       LookaheadDateformula));
-        
+
     end;
 
     procedure GetItem(ItemNo: Code[20])
@@ -408,7 +408,7 @@ codeunit 50133 "FB Management"
     procedure PostTagJnl(var TagJnlLine: Record 50141)
     var
         ImportDataLog: Record 50138;
-        NoSeriesMgt: Codeunit 396;
+        NoSeriesMgt: Codeunit "No. Series";
         DocNo: Code[20];
         Window: Dialog;
     begin
@@ -421,7 +421,7 @@ codeunit 50133 "FB Management"
                         'Document No. #3############################');
 
         CLEAR(NoSeriesMgt);
-        NoSeriesMgt.InitSeries(TagJnlLine."No. Series", TagJnlLine."No. Series", TagJnlLine."Order Date", DocNo, TagJnlLine."No. Series");
+        DocNo := NoSeriesMgt.GetNextNo(TagJnlLine."No. Series", TagJnlLine."Order Date");
 
         IF TagJnlLine.FIND('-') THEN
             REPEAT

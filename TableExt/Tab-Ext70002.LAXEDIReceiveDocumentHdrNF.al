@@ -1,4 +1,4 @@
-tableextension 70002 LAXEDIReceiveDocumentHdr_NF extends "LAX EDI Receive Document Hdr."
+tableextension 70102 LAXEDIReceiveDocumentHdr_NF extends "LAX EDI Receive Document Hdr."
 {
     fields
     {

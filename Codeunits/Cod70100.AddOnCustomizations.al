@@ -1,4 +1,4 @@
-codeunit 70003 AddOnCustomizations
+codeunit 70100 AddOnCustomizations
 {
     procedure PrintPackageLineLabel(PackageLine: Record "LAX Package Line"; QuantityAdded: Decimal; QuantityBaseAdded: Decimal; ManualPrinting: Boolean)
     var

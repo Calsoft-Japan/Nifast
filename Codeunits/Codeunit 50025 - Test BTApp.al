@@ -287,7 +287,7 @@ codeunit 50025 "Test BTApp"
         LabelContent: Record 50006;
         PackingRule: Record 14000715;
         LabelHeader: Record 14000841;
-        NoSeriesMgt: Codeunit 396;
+        NoSeriesMgt: Codeunit "No. Series";
     begin
         CLEAR(Item);
 
@@ -650,7 +650,7 @@ codeunit 50025 "Test BTApp"
         TempPackageLine: Record 14000702 temporary;
         PackingRule: Record 14000715;
         LabelHeader: Record 14000841;
-        NoSeriesMgt: Codeunit 396;
+        NoSeriesMgt: Codeunit "No. Series";
         MasterLabelReqForm: Page 50060;
     begin
         CLEAR(Item);
@@ -1050,7 +1050,7 @@ codeunit 50025 "Test BTApp"
         LabelHeader.GET(LabelHeaderCode);
         LabelHeader.TESTFIELD("Format Path");
         //IF NOT EXISTS(LabelHeader."Format Path") THEN
-          //  ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
+        //  ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
         LabelHeader.TESTFIELD("No. of Fields");
 
@@ -1450,7 +1450,7 @@ codeunit 50025 "Test BTApp"
         PackageLine: Record 14000702;
         PackingRule: Record 14000715;
         // LabelMgt: Codeunit 14000841;
-        LabelMgt: Codeunit 70003;
+        LabelMgt: codeunit 70100;
         LabelHeaderCode: Code[10];
         SNP: Decimal;
         UseQty: Decimal;
@@ -1499,7 +1499,7 @@ codeunit 50025 "Test BTApp"
         PackageLine: Record 14000702;
         PackingRule: Record 14000715;
         // LabelMgt: Codeunit 14000841;
-        LabelMgt: Codeunit 70003;
+        LabelMgt: codeunit 70100;
         LabelHeaderCode: Code[10];
         UsePkgNo: Code[20];
         SNP: Decimal;
@@ -1545,7 +1545,7 @@ codeunit 50025 "Test BTApp"
         Package: Record 14000701;
         PackingControl: Record 14000717 temporary;
         //PackageMgt: Codeunit 14000702;
-        PackageMgt: Codeunit 70003;
+        PackageMgt: codeunit 70100;
     begin
         //make sure sales setup allows
         SalesSetup.GET();
@@ -1597,7 +1597,7 @@ codeunit 50025 "Test BTApp"
         Package: Record 14000701;
         PackingControl: Record 14000717 temporary;
         //PackageMgt: Codeunit 14000702;
-        PackageMgt: Codeunit 70003;
+        PackageMgt: codeunit 70100;
     begin
         //<< used to print single line of labels >>
 
@@ -1649,7 +1649,7 @@ codeunit 50025 "Test BTApp"
         PackingControl: Record 14000717 temporary;
         Shipping: Codeunit 14000701;
         // PackageMgt: Codeunit 14000702;
-        PackageMgt: Codeunit 70003;
+        PackageMgt: codeunit 70100;
         Summary: Boolean;
     begin
         //delete, recreate package
@@ -1754,7 +1754,7 @@ codeunit 50025 "Test BTApp"
         PackingControl: Record 14000717 temporary;
         Shipping: Codeunit 14000701;
         //PackageMgt: Codeunit 14000702;
-        PackageMgt: Codeunit 70003;
+        PackageMgt: codeunit 70100;
     begin
         //if a posted pick exists for this shipment, with a posted package, then exit
         PostedInvtPickHdr.SETRANGE("Source No.", SalesShptHdr."No.");
@@ -1858,7 +1858,7 @@ codeunit 50025 "Test BTApp"
         PostedInvtPickHdr: Record 7342;
         Package: Record 14000701;
         PackingControl: Record 14000717 temporary;
-        PackageMgt: Codeunit 70003;
+        PackageMgt: codeunit 70100;
     begin
         //delete, recreate package
         PostedInvtPickHdr.GET(PostedInvtPickLine."No.");

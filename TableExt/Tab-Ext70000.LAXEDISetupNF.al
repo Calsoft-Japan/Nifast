@@ -1,4 +1,4 @@
-tableextension 70000 LAXEDISetup_NF extends "LAX EDI Setup"
+tableextension 70100 LAXEDISetup_NF extends "LAX EDI Setup"
 {
     fields
     {

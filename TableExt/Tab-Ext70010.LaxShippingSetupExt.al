@@ -1,4 +1,4 @@
-tableextension 70010 MyExtension extends "LAX Shipping Setup"
+tableextension 70110 LAXShippingSetup_NF extends "LAX Shipping Setup"
 {
     fields
     {

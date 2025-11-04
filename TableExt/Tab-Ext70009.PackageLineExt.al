@@ -1,4 +1,4 @@
-tableextension 70009 "Package Line _Ext" extends "LAX Package Line"
+tableextension 70109 "Package Line _Ext" extends "LAX Package Line"
 {
     fields
     {

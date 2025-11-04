@@ -1,4 +1,4 @@
-table 70002 "Company Copy Field"
+table 70102 "Company Copy Field"
 {
     // CC1.0, Company Copy, Emiel Romein eromein@home.nl
 

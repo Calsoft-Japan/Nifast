@@ -1,4 +1,4 @@
-codeunit 70001 "Temp JRR"
+codeunit 70102 "Temp JRR"
 {
     Permissions = TableData 21 = rimd,
                   TableData 379 = rimd,

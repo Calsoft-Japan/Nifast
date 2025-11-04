@@ -445,7 +445,7 @@ report 50031 "Suggest Vendor Payments New"
         VendorLedgEntryTemp: Record "Vendor Ledger Entry" temporary;
         DimBufMgt: Codeunit "Dimension Buffer Management";
         DimMgt: Codeunit DimensionManagement;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         VendEntryEdit: Codeunit "Vend. Entry-Edit";
         DueDateOffset: DateFormula;
         DocNoPerLine: Boolean;

@@ -59,7 +59,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
             TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true), Sales = CONST(true));
             Description = 'NV-FB';
         }
-        field(70000; "Entered User ID"; code[50])
+        field(70100; "Entered User ID"; code[50])
         {
             TableRelation = User."User Name";
             ValidateTableRelation = false;
@@ -77,7 +77,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
             begin
             end;
         }
-        field(70001; "Entered Date"; Date)
+        field(70101; "Entered Date"; Date)
         {
         }
         field(70002; "Entered Time"; Time)

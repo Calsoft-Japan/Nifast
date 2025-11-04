@@ -1,4 +1,4 @@
-tableextension 70001 "LAXEDITradePartner_NF" extends "LAX EDI Trade Partner"
+tableextension 70101 "LAXEDITradePartner_NF" extends "LAX EDI Trade Partner"
 {
     fields
     {

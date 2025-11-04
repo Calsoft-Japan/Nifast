@@ -183,7 +183,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         }
 
 
-        
+
         field(70000; "Order Date"; Date)
         {
             Description = 'NV - FB';
@@ -448,16 +448,16 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             Description = 'NV - FB';
         }
 
-        field(70041; "FB Customer Bin"; Code[20])
+        field(70141; "FB Customer Bin"; Code[20])
         {
             Description = 'NV - FB';
         }
 
-        field(70042; "Delivery Route"; Code[10])
+        field(70142; "Delivery Route"; Code[10])
         {
         }
 
-        field(70043; "Delivery Stop"; Code[10])
+        field(70143; "Delivery Stop"; Code[10])
         {
         }
 

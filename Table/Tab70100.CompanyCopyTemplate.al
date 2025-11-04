@@ -1,4 +1,4 @@
-table 70000 "Company Copy Template"
+table 70100 "Company Copy Template"
 {
     // CC1.5, Company Copy, Emiel Romein eromein@home.nl
 
@@ -48,6 +48,6 @@ table 70000 "Company Copy Template"
     end;
 
     var
-        "Table": Record 70001;
+        "Table": Record "Company Copy Table";
 
 }

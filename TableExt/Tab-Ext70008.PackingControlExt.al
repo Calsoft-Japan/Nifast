@@ -1,4 +1,4 @@
-tableextension 70008 "Packing Control Ext" extends "LAX Packing Control"
+tableextension 70108 "Packing Control Ext" extends "LAX Packing Control"
 {
     fields
     {

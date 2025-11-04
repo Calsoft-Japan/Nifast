@@ -1,4 +1,4 @@
-Tableextension 70004 "Packing Rule Ext" extends "Lax Packing Rule"
+Tableextension 70104 "Packing Rule Ext" extends "Lax Packing Rule"
 {
     fields
     {

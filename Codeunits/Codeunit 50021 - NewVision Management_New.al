@@ -1024,12 +1024,12 @@ codeunit 50021 "NewVision Management_New"
         TrackingSpecificationTmp: Record 336 temporary;
         TransferLine: Record 5741;
         //ReserveSalesLine: Codeunit 99000832;
-        ReserveSalesLine: Codeunit 70003;
+        ReserveSalesLine: codeunit 70100;
 
         // ReservePurchLine: Codeunit 99000834;
-        ReservePurchLine: Codeunit 70003;
+        ReservePurchLine: codeunit 70100;
         // ReserveTransferLine: Codeunit 99000836;
-        ReserveTransferLine: Codeunit 70003;
+        ReserveTransferLine: codeunit 70100;
         ItemTrackingForm: Page 6510;
         ModifyRecord: Boolean;
         SecondSourceQtyArray: array[3] of Decimal;
@@ -1137,9 +1137,9 @@ codeunit 50021 "NewVision Management_New"
         // ReserveSalesLine: Codeunit 99000832;
         // ReservePurchLine: Codeunit 99000834;
         // ReserveTransferLine: Codeunit 99000836;
-        ReserveSalesLine: Codeunit 70003;
-        ReservePurchLine: Codeunit 70003;
-        ReserveTransferLine: Codeunit 70003;
+        ReserveSalesLine: codeunit 70100;
+        ReservePurchLine: codeunit 70100;
+        ReserveTransferLine: codeunit 70100;
         ItemTrackingForm: Page 6510;
         LinesInserted: Boolean;
         LotNoToSet: Code[20];
@@ -1442,7 +1442,7 @@ codeunit 50021 "NewVision Management_New"
         TempLotBinContent: Record 50001 temporary;
         LotEntry2: Record 50002;
         TempLotEntry: Record 50002 temporary;
-        NoSeriesMgt: Codeunit 396;
+        NoSeriesMgt: Codeunit "No. Series";
         SourceNo: Code[20];
         SourceLineNo: Integer;
         SourceSubtype: Integer;
@@ -2251,7 +2251,7 @@ codeunit 50021 "NewVision Management_New"
         FromBin: Record 7354;
         ToBin: Record 7354;
         ItemJnlPostLine: Codeunit 22;
-        NoSeriesMgt: Codeunit 396;
+        NoSeriesMgt: Codeunit "No. Series";
         DimMgt: Codeunit 408;
         WhseJnlRegisterLine: Codeunit 7301;
         UseEntryNo: Integer;

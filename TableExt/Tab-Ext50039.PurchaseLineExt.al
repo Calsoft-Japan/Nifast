@@ -278,7 +278,7 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         TrackingSpecificationTmp: Record "Tracking Specification" temporary;
         Item: Record Item;
         //ReservePurchLine: Codeunit "Purch. Line-Reserve";
-        ReservePurchLine: Codeunit 70003;
+        ReservePurchLine: codeunit 70100;
         ItemTrackingForm: Page "Item Tracking Lines";
         ModifyRecord: Boolean;
         QtyToInvoice: Decimal;

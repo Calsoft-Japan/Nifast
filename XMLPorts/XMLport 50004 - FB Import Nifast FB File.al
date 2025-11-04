@@ -240,7 +240,7 @@ xmlport 50004 "FB Import Nifast FB File"
 
         FBSetup.GET();
         FBSetup.TESTFIELD("Import Data Log Nos.");
-        NoSeriesMgt.InitSeries(FBSetup."Import Data Log Nos.", OldNoSeries, WORKDATE(), ImportDataLogNo, NewNoSeries);
+        ImportDataLogNo := NoSeriesMgt.GetNextNo(FBSetup."Import Data Log Nos.", WorkDate());
     end;
 
     var
@@ -251,7 +251,7 @@ xmlport 50004 "FB Import Nifast FB File"
         Contract: Record "Price Contract";
         FBManagement: Codeunit "FB Management";
         NVV: Codeunit "NewVision Validation";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNoSeries: Code[10];
         OldNoSeries: Code[10];
         UOM2: Code[10];

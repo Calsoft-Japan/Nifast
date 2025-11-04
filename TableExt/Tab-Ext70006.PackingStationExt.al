@@ -1,4 +1,4 @@
-tableextension 70006 "Packing Station Ext" extends "LAX Packing Station"
+tableextension 70106 "Packing Station Ext" extends "LAX Packing Station"
 {
     fields
     {

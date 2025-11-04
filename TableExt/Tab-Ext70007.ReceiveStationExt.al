@@ -1,4 +1,4 @@
-tableextension 70007 "Receive Station Ext" extends "LAX Receive Station"
+tableextension 70107 "Receive Station Ext" extends "LAX Receive Station"
 {
     fields
     {

@@ -1,4 +1,4 @@
-tableextension 70013 PostedReceivelineExt extends "LAX Posted Receive Line"
+tableextension 70113 PostedReceivelineExt extends "LAX Posted Receive Line"
 {
     fields
     {
@@ -10,21 +10,21 @@ tableextension 70013 PostedReceivelineExt extends "LAX Posted Receive Line"
             Caption = 'Country of Origin Code';
             TableRelation = "Country/Region";
         }
-        field(50025;"Next Ship Date";Date)
+        field(50025; "Next Ship Date"; Date)
         {
         }
     }
-    
+
     keys
     {
         // Add changes to keys here
     }
-    
+
     fieldgroups
     {
         // Add changes to field groups here
     }
-    
+
     var
         myInt: Integer;
 }

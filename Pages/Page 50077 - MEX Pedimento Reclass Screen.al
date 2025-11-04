@@ -598,7 +598,7 @@ page 50077 "MEX Pedimento Reclass Screen"
         ReceiveLine: Record "LAX Receive Line";
         Item: Record Item;
         LabelMgt: Codeunit "Label Mgmt NIF";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         UseReceiveNo: Code[20];
     begin
         IF ItemNo = '' THEN BEGIN

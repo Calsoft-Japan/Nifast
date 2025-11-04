@@ -1,4 +1,4 @@
-tableextension 70003 LAXEDIReceiveDocumentField_NF extends "LAX EDI Receive Document Field"
+tableextension 70103 LAXEDIReceiveDocumentField_NF extends "LAX EDI Receive Document Field"
 {
     fields
     {

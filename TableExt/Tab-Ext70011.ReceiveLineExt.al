@@ -1,4 +1,4 @@
-tableextension 70011 LaxReceivelineExt extends "LAX Receive Line"
+tableextension 70111 LaxReceivelineExt extends "LAX Receive Line"
 {
     fields
     {

@@ -1,4 +1,4 @@
-tableextension 70005 "Label Header Ext" extends "LAX Label Header"
+tableextension 70105 "Label Header Ext" extends "LAX Label Header"
 {
     fields
     {

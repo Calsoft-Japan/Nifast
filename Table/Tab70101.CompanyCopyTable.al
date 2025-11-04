@@ -1,4 +1,4 @@
-table 70001 "Company Copy Table"
+table 70101 "Company Copy Table"
 {
     DataPerCompany = false;
     fields

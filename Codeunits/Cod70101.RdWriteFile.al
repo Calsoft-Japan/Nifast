@@ -1,4 +1,4 @@
-codeunit 70000 "RdWrite File"
+codeunit 70101 "RdWrite File"
 {
 
     trigger OnRun()
@@ -6,8 +6,8 @@ codeunit 70000 "RdWrite File"
         // DetStr: Text[3];
         // pName: Text[100];
         // pPath: Text[100];
-      //  FileMgt: Codeunit "File Management";
-       // TempBlobIn: Codeunit "Temp Blob";
+        //  FileMgt: Codeunit "File Management";
+        // TempBlobIn: Codeunit "Temp Blob";
         TempBlobOut: Codeunit "Temp Blob";
         InStr: InStream;
         OutStr: OutStream;
@@ -89,6 +89,6 @@ codeunit 70000 "RdWrite File"
         DownloadFromStream(ResultStream, 'Processed File', '', '', UploadName);
     end;
 
-    
+
 }
 

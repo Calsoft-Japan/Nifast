@@ -240,7 +240,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
 
             end;
         }
-        field(70000; "Entered User ID"; cODE[50])
+        field(70100; "Entered User ID"; cODE[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = User."User Name";
@@ -263,33 +263,33 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                 LoginMgt.DisplayUserInformation("Entered User ID");
             end;
         }
-        field(70001; "Entered Date"; Date)
+        field(70101; "Entered Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70002; "Entered Time"; Time)
+        field(70102; "Entered Time"; Time)
         {
             DataClassification = ToBeClassified;
         }
-        field(70003; "Bill of Lading No."; Code[20])
+        field(70103; "Bill of Lading No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70004; "Carrier Vendor No."; Code[20])
+        field(70104; "Carrier Vendor No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Vendor."No.";
         }
-        field(70005; "Carrier Trailer ID"; Code[20])
+        field(70105; "Carrier Trailer ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70006; "Priority Code"; Code[10])
+        field(70106; "Priority Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(70007; "Ship-to PO No."; Code[20])
+        field(70107; "Ship-to PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
