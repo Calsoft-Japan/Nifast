@@ -6,7 +6,7 @@ tableextension 70012 Receiverule extends "LAX Receive Rule"
         {
             TableRelation = "Label Header" WHERE("Label Usage"=CONST(Production));
         }
-        field(14018070; "QC Label Code"; Code[10])
+        field(70000; "QC Label Code"; Code[10])
         {
             TableRelation = "Label Header" WHERE("Label Usage"=CONST("Receive Line"));
         }

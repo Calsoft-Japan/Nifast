@@ -32,23 +32,23 @@ tableextension 70006 "Packing Station Ext" extends "LAX Packing Station"
         field(50037; "Def. Class Code"; Code[10])
         {
         }
-        field(14000841; "Std. Pack. Label Printer Port"; Code[100])
+        field(70000; "Std. Pack. Label Printer Port"; Code[100])
         {
             Caption = 'Std. Pack. Label Printer';
         }
-        field(14000842; "UCC/UPC Label Printer Port"; Code[100])
+        field(70001; "UCC/UPC Label Printer Port"; Code[100])
         {
             Caption = 'UCC/UPC Label Printer';
         }
-        field(14000844; "Label Buffer File"; Text[100])
+        field(70002; "Label Buffer File"; Text[100])
         {
             Caption = 'Label Buffer File';
         }
-        field(14000961; "RF-ID Label Printer Port"; Code[100])
+        field(70003; "RF-ID Label Printer Port"; Code[100])
         {
             Caption = 'RF-ID Label Printer';
         }
-        field(14000996; "Label Printing"; Option)
+        field(70005; "Label Printing"; Option)
         {
             Caption = 'Label Printing';
             OptionCaption = 'Ports,Printer Name';

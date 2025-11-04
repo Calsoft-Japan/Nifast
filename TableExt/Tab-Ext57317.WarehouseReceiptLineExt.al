@@ -80,7 +80,7 @@ tableextension 57317 "Warehouse Receipt Line Ext" extends "Warehouse Receipt Lin
         field(70009; "Qty. to Receive Weight"; Decimal)
         {
         }
-        field(700010; "License Plate No."; Code[20])
+        field(70010; "License Plate No."; Code[20])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }

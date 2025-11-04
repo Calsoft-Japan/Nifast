@@ -2,10 +2,10 @@ tableextension 70003 LAXEDIReceiveDocumentField_NF extends "LAX EDI Receive Docu
 {
     fields
     {
-        field(14017880; "Command ID"; Code[10])
+        field(70000; "Command ID"; Code[10])
         {
         }
-        field(14017881; "Code Qualifier"; Boolean)
+        field(70001; "Code Qualifier"; Boolean)
         {
         }
     }

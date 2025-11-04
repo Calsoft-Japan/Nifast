@@ -33,29 +33,29 @@ tableextension 50002 "Item Unit of Measure Ext" extends "Item Unit of Measure"
               end;
           } */
 
-        field(14017615; "Sales Qty Alt."; Boolean)
+        field(70000; "Sales Qty Alt."; Boolean)
         {
             Caption = 'Sales Qty Alt.';
         }
 
-        field(14017616; "Purchase Qty Alt."; Boolean)
+        field(70001; "Purchase Qty Alt."; Boolean)
         {
             Caption = 'Purchase Qty Alt.';
         }
 
-        field(14017619; "Sales Price Per Alt."; Code[10])
+        field(70002; "Sales Price Per Alt."; Code[10])
         {
             Caption = 'Sales Price Per Alt.';
             TableRelation = "Item Unit of Measure".Code where("Item No." = field("Item No."));
         }
 
-        field(14017620; "Purchase Price Per Alt."; Code[10])
+        field(70003; "Purchase Price Per Alt."; Code[10])
         {
             Caption = 'Purchase Price Per Alt.';
             TableRelation = "Item Unit of Measure".Code where("Item No." = field("Item No."));
         }
 
-        field(14017622; "Alt. Base Qty."; Decimal)
+        field(70004; "Alt. Base Qty."; Decimal)
         {
             Caption = 'Alt. Base Qty.';
             DecimalPlaces = 0 : 5;
@@ -67,7 +67,7 @@ tableextension 50002 "Item Unit of Measure Ext" extends "Item Unit of Measure"
             end;
         }
 
-        field(14017992; "Package Size Code"; Code[20])
+        field(70005; "Package Size Code"; Code[20])
         {
             Caption = 'Package Size Code';
             Description = 'NV';

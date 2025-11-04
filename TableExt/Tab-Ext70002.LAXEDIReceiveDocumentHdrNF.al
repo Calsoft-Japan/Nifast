@@ -2,18 +2,18 @@ tableextension 70002 LAXEDIReceiveDocumentHdr_NF extends "LAX EDI Receive Docume
 {
     fields
     {
-        field(14017880; "Document Created"; Option)
+        field(70000; "Document Created"; Option)
         {
             Description = 'EE';
             Editable = false;
             OptionMembers = " ","Planning Schedule","Vendor Availability","Sales Invoice","Sales Credit Memo","Cash Recp. Jrn.","General Message","Ship Auth.","Delivery Schedule";
         }
-        field(14017881; "Created Date"; Date)
+        field(70001; "Created Date"; Date)
         {
             Description = 'EE';
             Editable = false;
         }
-        field(14017882; "Created Time"; Time)
+        field(70002; "Created Time"; Time)
         {
             Description = 'EE';
             Editable = false;

@@ -397,7 +397,7 @@ tableextension 50027 "Item Ext" extends "Item"
          }
   */
         //TODO
-        field(14017611; "Qty. on Blanket PO"; Decimal)
+        field(70030; "Qty. on Blanket PO"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = Sum("Purchase Line"."Outstanding Qty. (Base)" where(
