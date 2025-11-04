@@ -8,24 +8,24 @@ tableextension 50090 "BOM Component Ext" extends "BOM Component"
             FieldClass = FlowField;
             Editable = false;
         }
-        field(14017633; "No;Line Comment"; Boolean)
+        field(70000; "No;Line Comment"; Boolean)
         {
             FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }
-        field(14017757; "Vendor No."; Code[20])
+        field(70001; "Vendor No."; Code[20])
         {
             TableRelation = Vendor;
         }
-        field(14017758; "Vendor Item No."; Text[20])
+        field(70002; "Vendor Item No."; Text[20])
         {
         }
-        field(14017759; "Purchasing Code"; Code[10])
+        field(70003; "Purchasing Code"; Code[10])
         {
             TableRelation = Purchasing;
         }
-        field(14017760; "Unit Cost "; Decimal)
+        field(70004; "Unit Cost "; Decimal)
         {
             DecimalPlaces = 2 : 5;
         }

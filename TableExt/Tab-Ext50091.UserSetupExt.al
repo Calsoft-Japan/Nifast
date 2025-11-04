@@ -28,76 +28,46 @@ tableextension 50091 "User Setup Ext" extends "User Setup"
             // cleaned
             TableRelation = "Responsibility Center";
         }
-        //TODO
-        /*  field(14000601; "Receive Station"; Code[10])
-         {
-             TableRelation = "Receive Station";
-             CaptionML = ENU = 'Receive Station';
-         }
-
-         field(14000701; "Packing Station"; Code[10])
-         {
-             TableRelation = "Packing Station".Code;
-             CaptionML = ENU = 'Packing Station';
-         }
-
-         field(14000901; "E-Mail User Rule"; Code[10])
-         {
-             TableRelation = "E-Mail User Rule";
-             CaptionML = ENU = 'E-Mail User Rule';
-         }
-
-         field(14000902; "E-Mail Sender Name"; Text[100])
-         {
-             CaptionML = ENU = 'E-Mail Sender Name';
-         }
-
-         field(14000903; "E-Mail Sender Address"; Text[50])
-         {
-             CaptionML = ENU = 'E-Mail Sender Address';
-         } */
-        //TODO
-
-        field(14017621; "Default Location Code"; Code[10])
+        field(70000; "Default Location Code"; Code[10])
         {
             TableRelation = Location;
             Description = 'NV-Lot';
         }
 
-        field(14017622; "Edit Customer"; Boolean)
+        field(70001; "Edit Customer"; Boolean)
         {
         }
 
-        field(14017623; "Edit Vendor"; Boolean)
+        field(70002; "Edit Vendor"; Boolean)
         {
         }
 
-        field(14017624; "Edit Item"; Boolean)
+        field(70003; "Edit Item"; Boolean)
         {
         }
 
-        field(14017625; "Gross Profit Override"; Boolean)
+        field(70004; "Gross Profit Override"; Boolean)
         {
         }
 
-        field(14017755; "Edit Resource"; Boolean)
+        field(70005; "Edit Resource"; Boolean)
         {
         }
 
-        field(14018050; "View Cr. Mgmt. Comments"; Boolean)
+        field(70006; "View Cr. Mgmt. Comments"; Boolean)
         {
         }
 
-        field(14018051; "Edit Cr. Mgmt. Comments"; Boolean)
+        field(70007; "Edit Cr. Mgmt. Comments"; Boolean)
         {
         }
 
-        field(14018070; "Edit QC Hold - On"; Boolean)
+        field(70008; "Edit QC Hold - On"; Boolean)
         {
             Description = 'NV-Lot';
         }
 
-        field(14018071; "Edit QC Hold - Off"; Boolean)
+        field(70009; "Edit QC Hold - Off"; Boolean)
         {
             Description = 'NV-Lot';
         }

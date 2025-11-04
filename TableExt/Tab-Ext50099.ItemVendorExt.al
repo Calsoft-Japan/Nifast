@@ -2,31 +2,31 @@ tableextension 50099 ItemVendorExt extends "Item Vendor"
 {
     fields
     {
-        field(14017610; "Minimum Order Quantity"; Decimal)
+        field(70000; "Minimum Order Quantity"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
-        field(14017611; "Minimum Order Amount"; Decimal)
+        field(70001; "Minimum Order Amount"; Decimal)
         {
             DecimalPlaces = 2 : 2;
             MinValue = 0;
         }
-        field(14017612; "Minimum Order Net Weight"; Decimal)
+        field(70002; "Minimum Order Net Weight"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
-        field(14017635; "Vendor Name"; text[50])
+        field(70003; "Vendor Name"; text[50])
         {
             FieldClass = FlowField;
             CalcFormula = Lookup(Vendor.Name WHERE("No." = FIELD("Vendor No.")));
             Editable = false;
         }
-        field(14017636; "Note"; text[50])
+        field(70004; "Note"; text[50])
         {
         }
-        field(14018070; "Waive QC Hold"; Boolean)
+        field(70005; "Waive QC Hold"; Boolean)
         {
             trigger onvalidate()
             var
