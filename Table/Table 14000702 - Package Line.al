@@ -609,39 +609,39 @@ table 99996 "Package Line"
 
     trigger OnDelete()
     begin
-        CheckModify;
+        CheckModify();
     end;
 
     trigger OnInsert()
     begin
-        CheckModify;
-        GetPackage;
+        CheckModify();
+        GetPackage();
         //>> 001 WC/HH
         //<< 001 WC/HH
         CalcValue(FALSE, FALSE);
 
-        UpdateOptionPage;
+        UpdateOptionPage();
     end;
 
     trigger OnModify()
     begin
-        CheckModify;
+        CheckModify();
 
         IF (Type <> xRec.Type) OR ("No." <> xRec."No.") THEN
-            UpdateOptionPage;
+            UpdateOptionPage();
     end;
 
     var
-        QtyToShip: Decimal;
-        QtyPacked: Decimal;
+        /*   QtyToShip: Decimal;
+          QtyPacked: Decimal; */
         ShippingSetupRetrieved: Boolean;
-        Text001: Label 'Mixed packages not allowed.';
-        Text002: Label 'Duplicate Serial Number on %1 package %2 is packed but not shipped.';
-        Text003: Label 'Serial No. %1 is not on inventory.';
-        Text004: Label 'Lot No. %1 is not on inventory.';
-        Text005: Label 'You are attempting to pack more of %1 %2 %3 than is scheduled to ship.';
-        Text006: Label 'Package is already packed in another package %1.';
-        ">>NIF_GV": Integer;
+        /*  Text001: Label 'Mixed packages not allowed.';
+         Text002: Label 'Duplicate Serial Number on %1 package %2 is packed but not shipped.';
+         Text003: Label 'Serial No. %1 is not on inventory.';
+         Text004: Label 'Lot No. %1 is not on inventory.';
+         Text005: Label 'You are attempting to pack more of %1 %2 %3 than is scheduled to ship.';
+         Text006: Label 'Package is already packed in another package %1.';
+         ">>NIF_GV": Integer; */
         CreatedFromPick: Boolean;
 
     procedure CalcBaseQty()
@@ -656,18 +656,18 @@ table 99996 "Package Line"
 
     procedure GetShippingAgent()
     begin
-        GetPackage;
+        GetPackage();
 
     end;
 
     procedure CalcValue(FromUnitOfMeasureCode: Boolean; FilterVariant: Boolean)
     var
-        TotalQuantityBase: Decimal;
-        TotalValueCostBase: Decimal;
-        TotalValuePriceBase: Decimal;
-        NewUnitOfMeasureCode: Code[10];
+    /*   TotalQuantityBase: Decimal;
+      TotalValueCostBase: Decimal;
+      TotalValuePriceBase: Decimal;
+      NewUnitOfMeasureCode: Code[10]; */
     begin
-        GetPackage;
+        GetPackage();
 
     end;
 
@@ -676,18 +676,18 @@ table 99996 "Package Line"
         IF ("Source ID" = '') OR ("No." = '') THEN
             EXIT(FALSE);
 
-        GetPackage;
+        GetPackage();
 
     end;
 
     procedure CheckModify()
     begin
-        GetPackage;
+        GetPackage();
     end;
 
     procedure UpdateExportDocumentTotals()
     begin
-        GetPackage;
+        GetPackage();
 
     end;
 
@@ -696,8 +696,8 @@ table 99996 "Package Line"
         IF (Type <> Type::Item) AND (Type <> Type::Resource) OR ("No." = '') THEN
             EXIT;
 
-        GetPackage;
-        GetShippingAgent;
+        GetPackage();
+        GetShippingAgent();
     end;
 
     procedure DivideQuantityAndValueFields(MultiDocPackageLine: Record "Package Line"; var TotalPackageLine: Record "Package Line"; CorrectionFactor: Decimal; UseRemainingAmounts: Boolean)
@@ -749,9 +749,8 @@ table 99996 "Package Line"
 
     local procedure GetShippingSetup()
     begin
-        IF NOT ShippingSetupRetrieved THEN BEGIN
+        IF NOT ShippingSetupRetrieved THEN
             ShippingSetupRetrieved := TRUE;
-        END;
     end;
 
     procedure LookupSerialNo()
@@ -766,7 +765,7 @@ table 99996 "Package Line"
 
     procedure GetWeight(): Decimal
     begin
-        GetShippingSetup;
+        GetShippingSetup();
 
     end;
 

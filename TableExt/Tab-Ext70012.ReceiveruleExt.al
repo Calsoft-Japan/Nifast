@@ -1,0 +1,27 @@
+tableextension 70012 Receiverule extends "LAX Receive Rule"
+{
+    fields
+    {
+        field(50900; "Production Label Code"; Code[10])
+        {
+            TableRelation = "Label Header" WHERE("Label Usage"=CONST(Production));
+        }
+        field(14018070; "QC Label Code"; Code[10])
+        {
+            TableRelation = "Label Header" WHERE("Label Usage"=CONST("Receive Line"));
+        }
+    }
+
+    keys
+    {
+        // Add changes to keys here
+    }
+
+    fieldgroups
+    {
+        // Add changes to field groups here
+    }
+
+    var
+        myInt: Integer;
+}

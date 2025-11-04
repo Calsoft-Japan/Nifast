@@ -11,10 +11,12 @@ table 50008 "4X Purchase Header"
         field(2; "Buy-from Vendor No."; Code[20])
         {
             Caption = 'Buy-from Vendor No.';
+            TableRelation = Vendor;
         }
         field(3; "Document No."; Code[20])
         {
             Caption = 'No.';
+            TableRelation = "Purchase Line"."Document No." WHERE("Document Type" = CONST(Order));
         }
         field(4; Amount; Decimal)
         {
@@ -34,6 +36,7 @@ table 50008 "4X Purchase Header"
         field(7; "Location Code"; Code[10])
         {
             // cleaned
+            TableRelation = Location;
         }
         field(8; "Division No."; Code[10])
         {
@@ -54,6 +57,7 @@ table 50008 "4X Purchase Header"
         field(110; "Item No."; Code[20])
         {
             // cleaned
+            TableRelation = Item;
         }
         field(115; "Item Description"; Text[50])
         {
@@ -74,6 +78,7 @@ table 50008 "4X Purchase Header"
         field(200; "4X Contract No."; Code[20])
         {
             // cleaned
+            TableRelation = "4X Contract"."No.";
         }
     }
     keys
@@ -91,4 +96,34 @@ table 50008 "4X Purchase Header"
             SumIndexFields = Amount, "Ext. Cost";
         }
     }
+
+    fieldgroups
+    {
+    }
+
+    trigger OnDelete()
+    begin
+        PurchHeader.SETRANGE("No.", "Document No.");
+        IF PurchHeader.FIND('-') THEN BEGIN
+            PurchHeader."Contract Note No." := '';
+            PurchHeader.MODIFY();
+        END;
+    end;
+
+    trigger OnInsert()
+    begin
+        IF xRec."Line No." = 0 THEN
+            "Line No." := 1000
+        ELSE
+            "Line No." := "Line No." + 1000;
+    end;
+
+    var
+        //"4xContract": Record 50011;
+        PurchHeader: Record 38;
+    //"Contract Note No. to use": Code[20];
+
+    procedure SetContractNoteToUse("_Contract No.": Code[20])
+    begin
+    end;
 }

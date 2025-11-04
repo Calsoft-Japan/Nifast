@@ -215,7 +215,7 @@ table 99997 "Packing Rule"
 
             trigger OnValidate()
             begin
-                CALCFIELDS("Close Package Report Name");
+                // CALCFIELDS("Close Package Report Name");
             end;
         }
         field(62; "Close Package Report Name"; Text[30])
@@ -228,7 +228,7 @@ table 99997 "Packing Rule"
             Caption = 'Close Sales Report ID';
             trigger OnValidate()
             begin
-                CALCFIELDS("Close Sales Report Name");
+                // CALCFIELDS("Close Sales Report Name");
             end;
         }
         field(64; "Close Sales Report Name"; Text[30])
@@ -310,7 +310,7 @@ table 99997 "Packing Rule"
 
             trigger OnValidate()
             begin
-                CALCFIELDS("Close Sales Report Name");
+                // CALCFIELDS("Close Sales Report Name");
             end;
         }
         field(78; "Close Purchase Report Name"; Text[30])
@@ -324,7 +324,7 @@ table 99997 "Packing Rule"
 
             trigger OnValidate()
             begin
-                CALCFIELDS("Close Sales Report Name");
+                // CALCFIELDS("Close Sales Report Name");
             end;
         }
         field(80; "Close Transfer Report Name"; Text[30])
@@ -439,10 +439,9 @@ table 99997 "Packing Rule"
 
             trigger OnValidate()
             begin
-                IF "UCC 128 Sequence Nos." <> '' THEN BEGIN
-                    CALCFIELDS("Last UCC 128 Sequence No.");
+                IF "UCC 128 Sequence Nos." <> '' THEN
+                    // CALCFIELDS("Last UCC 128 Sequence No.");
                     TESTFIELD("Last UCC 128 Sequence No.", '');
-                END;
             end;
         }
         field(96; "Last UCC 128 Sequence No."; Code[20])
@@ -457,10 +456,10 @@ table 99997 "Packing Rule"
 
             trigger OnValidate()
             begin
-                IF "RF-ID Sequence Nos." <> '' THEN BEGIN
-                    CALCFIELDS("Last RF-ID Sequence No.");
+                IF "RF-ID Sequence Nos." <> '' THEN
+                    //CALCFIELDS("Last RF-ID Sequence No.");
                     TESTFIELD("Last RF-ID Sequence No.", '');
-                END;
+
             end;
         }
         field(98; "Last RF-ID Sequence No."; Code[20])
@@ -603,12 +602,13 @@ table 99997 "Packing Rule"
 
     var
 
-        Numbers: Integer;
-        i: Integer;
+        /*   Numbers: Integer;
+          i: Integer;
+   */
         ShippingSetupRetrieved: Boolean;
-        Text001: Label 'Item UPC/EAN Number is normally 12 digit, use this string anyway?';
-        Text002: Label 'Nothing Changed.';
-        Text003: Label 'Std. Pack. UPC/EAN Number is normally 14 digit, use this string anyway?';
+        /*  Text001: Label 'Item UPC/EAN Number is normally 12 digit, use this string anyway?';
+         Text002: Label 'Nothing Changed.';
+         Text003: Label 'Std. Pack. UPC/EAN Number is normally 14 digit, use this string anyway?'; */
         Text004: Label 'M part is not consecutive.';
         Text005: Label 'S part is not consecutive.';
         Text006: Label 'C must be last.';
@@ -620,11 +620,13 @@ table 99997 "Packing Rule"
         Text012: Label 'are allowed in this field.';
         Text013: Label 'Maksimum 1 P is allowed.';
         Text014: Label 'Maksimum 1 C is allowed.';
-        Text015: Label 'Length is %1 it must be %2.';
+        Text015: Label 'Length is %1 it must be %2.',
+          Comment = '%1 = Current length, %2 = Required length.';
+
         Text016: Label 'Only digits allowed (1234567890).';
         Text017: Label 'A - VICS Bill of Lading (1 digit)\';
         Text018: Label 'Maksimum 1 A is allowed.';
-        Text019: Label 'Package Rule Code cannot be blank.';
+    // Text019: Label 'Package Rule Code cannot be blank.';
 
     procedure CheckMask(Mask: Code[30])
     var
@@ -634,6 +636,7 @@ table 99997 "Packing Rule"
         CDigits: Integer;
         MLast: Integer;
         SLast: Integer;
+        ErrTxt: Text;
     begin
         PDigits := 0;
         CDigits := 0;
@@ -660,14 +663,9 @@ table 99997 "Packing Rule"
                         CDigits := CDigits + 1;
             END;
 
+            ErrTxt := Text007 + Text008 + Text009 + Text010 + Text011 + Text012;
             IF Pos = 0 THEN
-                ERROR(
-                  Text007 +
-                  Text008 +
-                  Text009 +
-                  Text010 +
-                  Text011 +
-                  Text012);
+                ERROR(ErrTxt);
         END;
 
         IF PDigits > 1 THEN
@@ -690,10 +688,9 @@ table 99997 "Packing Rule"
         IF STRLEN(Weight) <> Length THEN
             ERROR(Text015, STRLEN(Weight), Length);
 
-        FOR i := 1 TO STRLEN(Weight) DO BEGIN
+        FOR i := 1 TO STRLEN(Weight) DO
             IF STRPOS('1234567890', COPYSTR(Weight, i, 1)) = 0 THEN
                 ERROR(Text016);
-        END;
     end;
 
     procedure CheckMaskVicsBOL(Mask: Code[30])
@@ -704,6 +701,7 @@ table 99997 "Packing Rule"
         CDigits: Integer;
         MLast: Integer;
         SLast: Integer;
+        ErrTxt: Text;
     begin
         ADigits := 0;
         CDigits := 0;
@@ -730,14 +728,14 @@ table 99997 "Packing Rule"
                         CDigits := CDigits + 1;
             END;
 
+            ErrTxt := Text007 +
+                              Text017 +
+                              Text009 +
+                              Text010 +
+                              Text011 +
+                              Text012;
             IF Pos = 0 THEN
-                ERROR(
-                  Text007 +
-                  Text017 +
-                  Text009 +
-                  Text010 +
-                  Text011 +
-                  Text012);
+                ERROR(ErrTxt);
         END;
 
         IF ADigits > 1 THEN
@@ -754,9 +752,7 @@ table 99997 "Packing Rule"
 
     procedure PackDetail(SourceType: Integer; SourceSubtype: Integer; ShippingAgentCode: Code[10]): Boolean
     begin
-        GetShippingSetup;
-
-
+        GetShippingSetup();
     end;
 
     procedure CopyToNewPackingRule()

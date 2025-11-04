@@ -1,14 +1,17 @@
 table 50029 "Vehicle Production"
 {
+    //  SM.001 - 09/21/16 - ADDED PPAP Approved
     fields
     {
         field(1; "Customer No."; Code[20])
         {
             // cleaned
+            TableRelation = Customer."No.";
         }
         field(2; "Item No."; Code[20])
         {
             // cleaned
+            TableRelation = Item."No.";
         }
         field(3; Model; Code[50])
         {
@@ -57,26 +60,40 @@ table 50029 "Vehicle Production"
         field(14; SNP; Decimal)
         {
             // cleaned
+            CalcFormula = Lookup(Item."Units per Parcel" WHERE("No." = FIELD("Item No.")));
+            FieldClass = FlowField;
         }
         field(15; Manufacturer; Code[50])
         {
             // cleaned
+            CalcFormula = Lookup(Item."Manufacturer Code" WHERE("No." = FIELD("Item No.")));
+            FieldClass = FlowField;
         }
         field(16; "Customer Name"; Text[100])
         {
             // cleaned
+            CalcFormula = Lookup(Customer.Name WHERE("No." = FIELD("Customer No.")));
+            FieldClass = FlowField;
         }
         field(17; "Cross Reference No."; Code[30])
         {
             // cleaned
+            CalcFormula = Lookup("Item Reference"."Reference No." WHERE("Item No." = FIELD("Item No."),
+                                                                                     "Reference Type No." = FIELD("Customer No."),
+                                                                                     "Reference Type" = CONST(Customer)));
+            FieldClass = FlowField;
         }
         field(18; "Flow Item"; Code[20])
         {
             // cleaned
+            CalcFormula = Lookup(Item."No." WHERE("No." = FIELD("Item No.")));
+            FieldClass = FlowField;
         }
         field(19; "Div Code"; Code[20])
         {
             // cleaned
+            CalcFormula = Lookup(Item."Global Dimension 1 Code" WHERE("No." = FIELD("Item No.")));
+            FieldClass = FlowField;
         }
         field(20; Active; Boolean)
         {
@@ -85,18 +102,28 @@ table 50029 "Vehicle Production"
         field(21; Selling; Decimal)
         {
             // cleaned
+            CalcFormula = Lookup("Sales Price"."Unit Price" WHERE("Item No." = FIELD("Item No."),
+                                                                   "Sales Code" = FIELD("Customer No."),
+                                                                   "Ending Date" = FILTER(> '01/21/09')));
+            FieldClass = FlowField;
         }
         field(22; Buying; Decimal)
         {
             // cleaned
+            CalcFormula = Lookup(Item."Unit Cost" WHERE("No." = FIELD("Item No.")));
+            FieldClass = FlowField;
         }
         field(23; "Vendor No."; Code[20])
         {
             // cleaned
+            CalcFormula = Lookup(Item."Vendor No." WHERE("No." = FIELD("Item No.")));
+            FieldClass = FlowField;
         }
         field(24; "Vendor Name"; Text[50])
         {
             // cleaned
+            CalcFormula = Lookup(Vendor.Name WHERE("No." = FIELD("Vendor No.")));
+            FieldClass = FlowField;
         }
         field(25; "Remark-2"; Text[250])
         {
@@ -109,6 +136,8 @@ table 50029 "Vehicle Production"
         field(27; "Revision No."; Code[20])
         {
             // cleaned
+            CalcFormula = Lookup("Cust./Item Drawing2"."Revision No." WHERE("Item No." = FIELD("Item No.")));
+            FieldClass = FlowField;
         }
         field(28; "PPAP Approved Date"; Date)
         {

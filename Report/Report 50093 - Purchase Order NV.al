@@ -19,12 +19,12 @@ report 50093 "Purchase Order NV"
                                 WHERE("Document Type" = CONST(Order));
             PrintOnlyIfDetail = true;
             RequestFilterFields = "No.", "Buy-from Vendor No.", "Pay-to Vendor No.", "No. Printed";
-            column(POAuthority_User; User."PO Authority")
-            {
-            }
-            column(E_Signature_User; User."E-Signature")
-            {
-            }
+            // column(POAuthority_User; User."PO Authority")
+            // {
+            // }
+            // column(E_Signature_User; User."E-Signature")
+            // {
+            // }
             column(TennOnly; TennOnly)
             {
             }
@@ -767,8 +767,8 @@ report 50093 "Purchase Order NV"
         CompanyInformation.GET('');
         //>> NF1.00:CIS.CM 08-28-15
         User.SETRANGE("User ID", USERID);//"User Name" BC Upgrade
-        IF User.FINDFIRST THEN
-            User.CALCFIELDS("E-Signature");
+        IF User.FINDFIRST THEN;
+        //  User.CALCFIELDS("E-Signature");
         //<< NF1.00:CIS.CM 08-28-15
     end;
 

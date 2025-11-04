@@ -48,15 +48,27 @@ table 70500 "Fix Transfer Lots"
         }
         field(70; "ILE OnHand"; Decimal)
         {
+            CalcFormula = Sum("Item Ledger Entry".Quantity WHERE("Item No." = FIELD("Item No."),
+                                                                  "Location Code" = FIELD("Location Code"),
+                                                                  "Lot No." = FIELD("Lot No.")));
             Editable = false;
+            FieldClass = FlowField;
         }
         field(71; "Whse OnHand"; Decimal)
         {
+            CalcFormula = Sum("Warehouse Entry".Quantity WHERE("Location Code" = FIELD("Location Code"),
+                                                                "Item No." = FIELD("Item No."),
+                                                                "Lot No." = FIELD("Lot No.")));
             Editable = false;
+            FieldClass = FlowField;
         }
         field(72; "Total Adjmt. Qty"; Decimal)
         {
             // cleaned
+            FieldClass = FlowField;
+            CalcFormula = Sum("Fix Transfer Lots"."Adjmt. Qty" WHERE("Item No." = FIELD("Item No."),
+                                                                      "Lot No."=FIELD("Lot No."),
+                                                                      "Location Code"=FIELD("Location Code")));
         }
     }
     keys

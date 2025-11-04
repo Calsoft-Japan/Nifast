@@ -1,5 +1,7 @@
 table 50041 "Bin Movement Lines"
 {
+    // NF2.00:CIS.RAM 02/22/17 Created to store data related to Bin movements
+
     fields
     {
         field(1; "From Location"; Code[20])

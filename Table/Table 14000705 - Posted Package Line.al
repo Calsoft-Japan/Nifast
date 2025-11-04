@@ -588,10 +588,10 @@ table 99999 "Posted Package Line"
     }
 
     var
-
+/* 
         Item: Record Item;
         ItemUnitOfMeasure: Record 5404;
-        ShippingSetupRetrieved: Boolean;
+        ShippingSetupRetrieved: Boolean; */
 
     local procedure GetShippingSetup()
     begin
@@ -600,7 +600,7 @@ table 99999 "Posted Package Line"
 
     procedure GetWeight(): Decimal
     begin
-        GetShippingSetup;
+        GetShippingSetup();
 
     end;
 }
