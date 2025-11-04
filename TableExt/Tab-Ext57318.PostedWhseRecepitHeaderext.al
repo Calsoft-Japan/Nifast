@@ -2,17 +2,17 @@ tableextension 57318 "Posted Whse Recepit Header_ext" extends "Posted Whse. Rece
 {
     fields
     {
-        field(14017630; "Inbound Bill of Lading No."; Code[20])
+        field(70000; "Inbound Bill of Lading No."; Code[20])
         {
             Caption = '';
             DataClassification = ToBeClassified;
         }
-        field(14017631; "Carrier Vendor No."; Code[20])
+        field(70001; "Carrier Vendor No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Vendor."No.";
         }
-        field(14017632; "Carrier Trailer ID"; Code[20])
+        field(70002; "Carrier Trailer ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }

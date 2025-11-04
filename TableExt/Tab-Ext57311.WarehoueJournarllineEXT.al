@@ -2,24 +2,24 @@ tableextension 57311 "Warehoue Journarl line EXT" extends "Warehouse Journal Lin
 {
     fields
     {
-        field(14017614; "Special Order Sales No."; Code[20])
+        field(70000; "Special Order Sales No."; Code[20])
         {
             Caption = '';
             DataClassification = ToBeClassified;
         }
-        field(14017615; "Special Order Sales Line No."; Integer)
+        field(70001; "Special Order Sales Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017620; "Posting Date"; Date)
+        field(70002; "Posting Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017621; "External Document No."; Code[20])
+        field(70003; "External Document No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017635; "Applies-to Entry No."; Integer)
+        field(70004; "Applies-to Entry No."; Integer)
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
@@ -67,41 +67,41 @@ tableextension 57311 "Warehoue Journarl line EXT" extends "Warehouse Journal Lin
                 // << NV - 09/11/03 MV
             end;
         }
-        field(14017761; "Prod. Kit Order No."; Code[20])
+        field(70005; "Prod. Kit Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Editable = false;
         }
-        field(14017762; "Prod. Kit Order Line No."; Integer)
+        field(70006; "Prod. Kit Order Line No."; Integer)
         {
             DataClassification = ToBeClassified;
             Editable = false;
         }
-        field(14017999; "From License Plate No."; Code[20])
+        field(70007; "From License Plate No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14018000; "To License Plate No."; Code[20])
+        field(70008; "To License Plate No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14018001; "License Plate Operation Type"; Option)
+        field(70009; "License Plate Operation Type"; Option)
         {
             DataClassification = ToBeClassified;
-            OptionCaptionML = ENU =' ,Create,Movement,Reassign,License Plate Movement';
+            OptionCaptionML = ENU = ' ,Create,Movement,Reassign,License Plate Movement';
             OptionMembers = ,Create,Movement,Reassign,"License Plate Movement";
         }
-        field(14018003; "To License Bin"; Boolean)
+        field(70010; "To License Bin"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018004; "From License Bin"; Boolean)
+        field(70011; "From License Bin"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018005; "License Bin"; Boolean)
+        field(70012; "License Bin"; Boolean)
         {
             DataClassification = ToBeClassified;
         }

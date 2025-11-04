@@ -39,7 +39,7 @@ tableextension 55767 "Warehouse Activity Line Ext" extends "Warehouse Activity L
             Caption = 'Assignment Time';
             Editable = false;
         }
-        field(14017610; "To Put-away Group Code"; Code[10])
+        field(70000; "To Put-away Group Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
@@ -50,7 +50,7 @@ tableextension 55767 "Warehouse Activity Line Ext" extends "Warehouse Activity L
                 // << NV - 09-09-03 MV
             end;
         }
-        field(14017611; "To Put-away Template Code"; Code[10])
+        field(70001; "To Put-away Template Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Put-away Template Header";
@@ -62,67 +62,67 @@ tableextension 55767 "Warehouse Activity Line Ext" extends "Warehouse Activity L
                 // << NV - 09-09-03 MV
             end;
         }
-        field(14017614; "Special Order Sales No."; Code[20])
+        field(70002; "Special Order Sales No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017615; "Special Order Sales Line No."; Integer)
+        field(70003; "Special Order Sales Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017620; "Posting Date"; Date)
+        field(70004; "Posting Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017621; "External Document No."; Code[20])
+        field(70005; "External Document No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017630; "Pick Task No."; Code[20])
+        field(70006; "Pick Task No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017631; "Task Priority"; Code[10])
+        field(70007; "Task Priority"; Code[10])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14017640; "Skip Pick"; Boolean)
+        field(70008; "Skip Pick"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017761; "Prod. Kit Order No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-            Editable = false;
-        }
-        field(14017762; "Prod. Kit Order Line No."; Integer)
+        field(70009; "Prod. Kit Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Editable = false;
         }
-        field(14017990; "Qty. to Handle Weight"; Decimal)
+        field(70010; "Prod. Kit Order Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+            Editable = false;
+        }
+        field(70011; "Qty. to Handle Weight"; Decimal)
         {
             DataClassification = ToBeClassified;
             DecimalPlaces = 0 : 5;
         }
-        field(14017991; "Bin Available Capacity"; Decimal)
+        field(70012; "Bin Available Capacity"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017994; "Zone Pick Type"; Code[10])
+        field(70013; "Zone Pick Type"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017996; "Pick Bin Ranking"; Integer)
+        field(70014; "Pick Bin Ranking"; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017998; "License Qty. to Handle"; Decimal)
+        field(70015; "License Qty. to Handle"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017999; "License Plate No."; Code[20])
+        field(70016; "License Plate No."; Code[20])
         {
             DataClassification = ToBeClassified;
             // TableRelation = IF ("Action Type" = FILTER(Take)) "License Plate"."License Plate No." WHERE("Current Zone" = FIELD("Zone Code"),
@@ -166,7 +166,7 @@ tableextension 55767 "Warehouse Activity Line Ext" extends "Warehouse Activity L
 
             end;
         }
-        field(37015680; "Delivery Load No."; Code[20])
+        field(70017; "Delivery Load No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }

@@ -2,7 +2,7 @@ tableextension 57301 "warehouse employee Ext" extends "Warehouse Employee"
 {
     fields
     {
-        field(14017680; "MC PIN"; Code[10])
+        field(70000; "MC PIN"; Code[10])
         {
             Caption = '';
             DataClassification = ToBeClassified;
@@ -19,19 +19,19 @@ tableextension 57301 "warehouse employee Ext" extends "Warehouse Employee"
                 END;
             end;
         }
-        field(14017682; "Current Pick Zone"; code[10])
+        field(70001; "Current Pick Zone"; code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = Zone.Code WHERE("Location Code" = FIELD("Location Code"));
         }
-        field(37015590; Receipts; Integer)
+        field(70002; Receipts; Integer)
         {
             // DataClassification = ToBeClassified;
             FieldClass = FlowField;
             CalcFormula = Count("Warehouse Receipt Header" WHERE("Location Code" = FIELD("Location Code"),
                                                                                                        "Assigned User ID" = FIELD("User ID")));
         }
-        field(37015594; "Put-Aways"; Integer)
+        field(70003; "Put-Aways"; Integer)
         {
             //DataClassification = ToBeClassified;
             FieldClass = FlowField;
@@ -40,7 +40,7 @@ tableextension 57301 "warehouse employee Ext" extends "Warehouse Employee"
                                                                                                         "Assigned User ID" = FIELD("User ID")));
             Editable = false;
         }
-        field(37015598; Shipments; Integer)
+        field(70004; Shipments; Integer)
         {
             //DataClassification = ToBeClassified;
             FieldClass = FlowField;
@@ -48,7 +48,7 @@ tableextension 57301 "warehouse employee Ext" extends "Warehouse Employee"
                                                                                                         "Assigned User ID" = FIELD("User ID")));
             Editable = false;
         }
-        field(37015602; Picks; Integer)
+        field(70005; Picks; Integer)
         {
             // DataClassification = ToBeClassified;
             FieldClass = FlowField;
@@ -57,7 +57,7 @@ tableextension 57301 "warehouse employee Ext" extends "Warehouse Employee"
                                                                                                         "Assigned User ID" = FIELD("User ID")));
             Editable = false;
         }
-        field(37015606; Movements; Integer)
+        field(70006; Movements; Integer)
         {
             //DataClassification = ToBeClassified;
             FieldClass = FlowField;

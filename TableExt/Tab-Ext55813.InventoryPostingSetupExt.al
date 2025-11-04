@@ -2,7 +2,7 @@ tableextension 55813 "Inventory Posting Setup_Ext" extends "Inventory Posting Se
 {
     fields
     {
-        field(14017610; "Supply Expense Account"; Code[20])
+        field(70000; "Supply Expense Account"; Code[20])
         {
             Caption = '';
             DataClassification = ToBeClassified;

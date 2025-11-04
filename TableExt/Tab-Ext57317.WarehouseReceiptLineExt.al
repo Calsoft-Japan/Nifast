@@ -32,7 +32,7 @@ tableextension 57317 "Warehouse Receipt Line Ext" extends "Warehouse Receipt Lin
             Caption = 'Assignment Time';
             Editable = false;
         }
-        field(14017610; "To Put-away Group Code"; code[10])
+        field(70000; "To Put-away Group Code"; code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
             trigger OnValidate()
@@ -43,7 +43,7 @@ tableextension 57317 "Warehouse Receipt Line Ext" extends "Warehouse Receipt Lin
                 // << NV - 09-09-03 MV
             end;
         }
-        field(14017611; "To Put-away Template Code"; code[10])
+        field(70001; "To Put-away Template Code"; code[10])
         {
             TableRelation = "Put-away Template Header";
             trigger OnValidate()
@@ -54,51 +54,51 @@ tableextension 57317 "Warehouse Receipt Line Ext" extends "Warehouse Receipt Lin
                 // << NV - 09-09-03 MV
             end;
         }
-        field(14017614; "Special Order Sales No."; code[20])
+        field(70002; "Special Order Sales No."; code[20])
         {
         }
-        field(14017615; "Special Order Sales Line No."; Integer)
+        field(70003; "Special Order Sales Line No."; Integer)
         {
         }
-        field(14017620; "Posting Date"; Date)
+        field(70004; "Posting Date"; Date)
         {
         }
-        field(14017621; "External Document No."; code[20])
+        field(70005; "External Document No."; code[20])
         {
         }
-        field(14017685; "Skip Line"; Boolean)
+        field(70006; "Skip Line"; Boolean)
         {
         }
-        field(14017761; "Prod. Kit Order No."; code[20])
-        {
-            Editable = false;
-        }
-        field(14017762; "Prod. Kit Order Line No"; Integer)
+        field(70007; "Prod. Kit Order No."; code[20])
         {
             Editable = false;
         }
-        field(14017990; "Qty. to Receive Weight"; Decimal)
+        field(70008; "Prod. Kit Order Line No"; Integer)
+        {
+            Editable = false;
+        }
+        field(70009; "Qty. to Receive Weight"; Decimal)
         {
         }
-        field(14017999; "License Plate No."; Code[20])
+        field(700010; "License Plate No."; Code[20])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14018000; "Transfer License Plate No."; code[20])
+        field(70011; "Transfer License Plate No."; code[20])
         {
             Editable = false;
         }
-        field(14018070; "QC Hold"; Boolean)
+        field(70012; "QC Hold"; Boolean)
         {
         }
-        field(37015592; "Destination Name"; text[50])
+        field(70013; "Destination Name"; text[50])
         {
         }
-        field(37015593; "Destination Type"; Option)
+        field(70014; "Destination Type"; Option)
         {
             OptionMembers = ,Customer,Vendor,Location;
         }
-        field(37015594; "Destination No."; code[20])
+        field(70015; "Destination No."; code[20])
         {
             TableRelation = IF ("Destination Type" = CONST(Customer)) Customer."No."
             ELSE IF ("Destination Type" = CONST(Vendor)) Vendor."No."

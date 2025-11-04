@@ -82,38 +82,38 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
           { }
           field(50006; "Customer Bin"; Code[20])//NV 14017662->50006 BC Upgrade
           { } */
-        field(14017614; "Alt. Price"; Decimal)
+        field(70000; "Alt. Price"; Decimal)
         {
             Description = 'NV';
             Editable = false;
         }
-        field(14017615; "Alt. Price UOM"; Code[10])
+        field(70001; "Alt. Price UOM"; Code[10])
         {
             Description = 'NV';
             Editable = false;
         }
-        field(14017618; "External Document No."; Code[20])
+        field(70002; "External Document No."; Code[20])
         {
             Description = 'NV';
         }
-        field(14017645; "Contract No."; Code[20])
+        field(70003; "Contract No."; Code[20])
         {
             Description = 'NV';
             TableRelation = "Price Contract";
         }
-        field(14017646; "Item Description"; Text[50])
+        field(70004; "Item Description"; Text[50])
         {
             CalcFormula = Lookup(Item.Description WHERE("No." = FIELD("Item No.")));
             Description = 'NV';
             Editable = false;
             FieldClass = FlowField;
         }
-        field(14017647; "Est. Usage"; Decimal)
+        field(70005; "Est. Usage"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             Description = 'NV';
         }
-        field(14017648; Comments; Boolean)
+        field(70006; Comments; Boolean)
         {
             // CalcFormula = Exist("Sales Price Comment Line" WHERE("Item No." = FIELD("Item No."),
             //                                                         "Sales Type" = FIELD("Sales Type"),
@@ -129,21 +129,21 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
             Enabled = false;
             FieldClass = FlowField;
         }
-        field(14017649; "Contract Customer No."; Code[20])
+        field(70007; "Contract Customer No."; Code[20])
         {
             Description = 'NV';
         }
-        field(14017650; "Contract Ship-to Code"; Code[10])
+        field(70008; "Contract Ship-to Code"; Code[10])
         {
             Description = 'NV';
         }
-        field(14017651; "Contract Location Code"; Code[10])
+        field(70009; "Contract Location Code"; Code[10])
         {
             Description = 'NV';
             TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
                                               "Rework Location" = CONST(false));
         }
-        field(14017652; "Actual Usage"; Decimal)
+        field(70010; "Actual Usage"; Decimal)
         {
             CalcFormula = - Sum("Item Ledger Entry".Quantity WHERE("Contract No." = FIELD("Contract No."),
                                                                      "Item No." = FIELD("Item No."),
@@ -153,23 +153,23 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
             Editable = false;
             FieldClass = FlowField;
         }
-        field(14017653; "Method of Fullfillment"; Option)
+        field(70011; "Method of Fullfillment"; Option)
         {
             Description = 'NV';
             OptionCaption = 'Standard,FillBill';
             OptionMembers = Standard,FillBill;
         }
-        field(14017654; "Min. Qty. on Hand"; Decimal)
+        field(70012; "Min. Qty. on Hand"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             Description = 'NV';
         }
-        field(14017655; "Initial Stocking Qty."; Decimal)
+        field(70013; "Initial Stocking Qty."; Decimal)
         {
             DecimalPlaces = 0 : 5;
             Description = 'NV';
         }
-        field(14017656; "Blanket Orders"; Boolean)
+        field(70014; "Blanket Orders"; Boolean)
         {
             CalcFormula = Exist("Sales Line" WHERE("Document Type" = CONST("Blanket Order"),
                                                       "Contract No." = FIELD("Contract No."),
@@ -179,45 +179,45 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
             Editable = false;
             FieldClass = FlowField;
         }
-        field(14017657; "Contract Ship Location Code"; Code[10])
+        field(70015; "Contract Ship Location Code"; Code[10])
         {
             Description = 'NV';
             TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
                                               "Rework Location" = CONST(false));
         }
-        field(14017658; "Replenishment Method"; Option)
+        field(70016; "Replenishment Method"; Option)
         {
             Caption = 'Replenishment Method';
             Description = 'NV';
             OptionCaption = '" ,Automatic,Manual"';
             OptionMembers = " ",Automatic,Manual;
         }
-        field(14017659; "Reorder Quantity"; Decimal)
+        field(70017; "Reorder Quantity"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             Description = 'NV';
         }
-        field(14017660; "Max. Quantity"; Decimal)
+        field(70018; "Max. Quantity"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             Description = 'NV';
         }
-        field(14017661; "Min. Quantity"; Decimal)
+        field(70019; "Min. Quantity"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             Description = 'NV';
         }
-        field(14017662; "Customer Bin"; Code[20])
+        field(70020; "Customer Bin"; Code[20])
         {
             Description = 'NV';
         }
-        field(14017663; "ContractSelling Location Code"; Code[10])
+        field(70021; "ContractSelling Location Code"; Code[10])
         {
             Description = 'NV';
             TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
                                               "Rework Location" = CONST(false));
         }
-        field(37015330; "FB Tags"; Boolean)
+        field(70022; "FB Tags"; Boolean)
         {
             CalcFormula = Exist("FB Tag" WHERE("Customer No." = FIELD("Contract Customer No."),
                                                   "Ship-to Code" = FIELD("Contract Ship-to Code"),
@@ -229,7 +229,7 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
             Editable = false;
             FieldClass = FlowField;
         }
-        field(37015331; "FB Order Type"; Option)
+        field(70023; "FB Order Type"; Option)
         {
             Description = 'NV';
             OptionCaption = '" ,Consigned,Non-Consigned"';

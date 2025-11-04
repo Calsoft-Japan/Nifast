@@ -2,10 +2,10 @@ tableextension 56504 "Serial No. Information Ext" extends "Serial No. Informatio
 {
     fields
     {
-        field(14018070; "QC Hold"; Boolean)
+        field(70000; "QC Hold"; Boolean)
         {
         }
-        field(14018071; "QC Hold Reason Code"; code[10])
+        field(70001; "QC Hold Reason Code"; code[10])
         {
         }
     }

@@ -7,23 +7,23 @@ tableextension 57354 "Bin Ext" extends "Bin"
             FieldClass = FlowField;
             CalcFormula = Lookup(Location.Name WHERE(Code = FIELD("Location Code")));
         }
-        field(14017991; "Bin Size Code"; Code[20])
+        field(70000; "Bin Size Code"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017994; "Pick Bin Ranking"; Integer)
+        field(70001; "Pick Bin Ranking"; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017997; "Staging Bin"; Boolean)
+        field(70002; "Staging Bin"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018000; "License Plate Enabled"; Boolean)
+        field(70003; "License Plate Enabled"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018070; "QC Bin"; Boolean)
+        field(70004; "QC Bin"; Boolean)
         {
             DataClassification = ToBeClassified;
         }

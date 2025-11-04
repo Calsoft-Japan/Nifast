@@ -94,7 +94,7 @@ tableextension 55717 "Item Cross Reference Ext" extends "Item Reference"//"Item 
             CalcFormula = lookup(Item."Unit Price" where("No." = field("Item No.")));
             FieldClass = FlowField;
         }
-        field(14018070; "Active Drawing No."; code[30])
+        field(70000; "Active Drawing No."; code[30])
         {
             CalcFormula = Lookup("Cust./Item Drawing2"."Drawing No." WHERE("Item No." = FIELD("Item No."),
                                                                                                             "Customer No." = FIELD("Reference Type No."),
@@ -102,7 +102,7 @@ tableextension 55717 "Item Cross Reference Ext" extends "Item Reference"//"Item 
             FieldClass = FlowField;
             Editable = false;
         }
-        field(14018071; "Active Revision No."; code[20])
+        field(70001; "Active Revision No."; code[20])
         {
             CalcFormula = Lookup("Cust./Item Drawing2"."Revision No." WHERE("Item No." = FIELD("Item No."),
                                                                                                             "Customer No." = FIELD("Reference Type No."),
@@ -110,7 +110,7 @@ tableextension 55717 "Item Cross Reference Ext" extends "Item Reference"//"Item 
             FieldClass = FlowField;
             Editable = false;
         }
-        field(14018072; "Active Revision Date"; Date)
+        field(70002; "Active Revision Date"; Date)
         {
             FieldClass = FlowField;
             CalcFormula = Lookup("Cust./Item Drawing2"."Revision Date" WHERE("Item No." = FIELD("Item No."),
@@ -118,7 +118,7 @@ tableextension 55717 "Item Cross Reference Ext" extends "Item Reference"//"Item 
                                                                                                             Active = CONST(true)));
             Editable = false;
         }
-        field(14018073; "Certificate No."; code[30])
+        field(70003; "Certificate No."; code[30])
         {
         }
     }

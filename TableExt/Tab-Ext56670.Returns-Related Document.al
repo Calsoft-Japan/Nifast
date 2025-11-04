@@ -2,7 +2,7 @@ tableextension 56670 "Return-Related Document ext" extends "Returns-Related Docu
 {
     fields
     {
-        field(14017610; "Tool Repair"; Boolean)
+        field(70000; "Tool Repair"; Boolean)
         {
             DataClassification = ToBeClassified;
         }

@@ -2,7 +2,7 @@ tableextension 57334 "whse Internal pick line_Ext" extends "Whse. Internal Pick 
 {
     fields
     {
-        field(14017999; "License Plate No."; Code[20])
+        field(70000; "License Plate No."; Code[20])
         {
             Caption = '';
             DataClassification = ToBeClassified;

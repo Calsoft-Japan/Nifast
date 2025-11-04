@@ -13,15 +13,15 @@ tableextension 55773 "Registered Whse. Activ Line Ex" extends "Registered Whse. 
             DecimalPlaces = 0 : 2;
             Description = '#10069';
         }
-        field(14017999; "License Plate No."; Code[20])
+        field(70000; "License Plate No."; Code[20])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(37015680; "Delivery Load No."; Code[20])
+        field(70001; "Delivery Load No."; Code[20])
         {
         }
 
-        field(37015681; "Delivery Load Seq."; Code[20])
+        field(70002; "Delivery Load Seq."; Code[20])
         {
         }
 

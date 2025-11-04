@@ -2,12 +2,12 @@ tableextension 57303 "Bin Type_Ext" extends "Bin Type"
 {
     fields
     {
-        field(14018000; "License Plate Enabled"; Boolean)
+        field(70000; "License Plate Enabled"; Boolean)
         {
             Caption = '';
             DataClassification = ToBeClassified;
         }
-        field(14018070; QC; Boolean)
+        field(70001; QC; Boolean)
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()

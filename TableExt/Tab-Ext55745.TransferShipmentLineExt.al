@@ -15,41 +15,41 @@ tableextension 55745 "Transfer Shipment Line Ext" extends "Transfer Shipment Lin
         {
 
         }
-        field(37015330; "FB Order No."; Code[20])
+        field(70000; "FB Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(37015331; "FB Line No."; Integer)
+        field(70001; "FB Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(37015332; "FB Tag No."; Code[20])
+        field(70002; "FB Tag No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(37015333; "FB Customer Bin"; Code[20])
+        field(70003; "FB Customer Bin"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017999; "License Plate No."; Code[20])
+        field(70004; "License Plate No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Editable = false;
         }
-        field(14017931; "Rework Line No"; Integer)
+        field(70005; "Rework Line No"; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017930; "Rework No."; Code[20])
+        field(70006; "Rework No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017791; "Final Destination"; Code[10])
+        field(70007; "Final Destination"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = Location.Code;
         }
-        field(14017790; "Container No."; Code[20])
+        field(70008; "Container No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Editable = false;

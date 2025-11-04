@@ -103,171 +103,60 @@ tableextension 55741 "Transfer Line Ext" extends "Transfer Line"
         /*  field(50001; "FB Order No."; Code[20])//NV-FB 37015330->50001 BC Upgrade
          { } */
 
-        //TODO
-        /*  field(14000351; "EDI Segment Group"; Integer)
-         {
-             Caption = 'EDI Segment Group';
-             Editable = false;
-         }
-
-         field(14000701; "E-Ship Whse. Outst. Qty (Base)"; Decimal)
-         {
-             Caption = 'E-Ship Whse. Outst. Qty (Base)';
-             FieldClass = FlowField;
-             DecimalPlaces = 0 : 5;
-             Editable = false;
-             CalcFormula = Sum("Warehouse Activity Line"."Qty. Outstanding (Base)" where
-     (
-         "Activity Type" = Filter(Pick),
-         "Source Type" = Const(5741),
-         "Source Subtype" = Const(0),
-         "Source No." = Field("Document No."),
-         "Source Line No." = Field("Line No."),
-         "Action Type" = Filter(' ' | Take),
-         "Breakbulk No." = Filter(0)
-     ));
-         }
-
-         field(14000702; "E-Ship Whse. Outstanding Qty."; Decimal)
-         {
-             Caption = 'E-Ship Whse. Outstanding Qty.';
-             FieldClass = FlowField;
-             DecimalPlaces = 0 : 5;
-             Editable = false;
-             CalcFormula = Sum("Warehouse Activity Line"."Qty. Outstanding" where
-     (
-         "Activity Type" = Filter(Pick),
-         "Source Type" = Const(5741),
-         "Source Subtype" = Const(0),
-         "Source No." = Field("Document No."),
-         "Source Line No." = Field("Line No."),
-         "Action Type" = Filter(' ' | Take),
-         "Breakbulk No." = Filter(0)
-     ));
-         }
-
-         field(14000703; "E-Ship Whse. Ship. Qty (Base)"; Decimal)
-         {
-             Caption = 'E-Ship Whse. Ship. Qty (Base)';
-             FieldClass = FlowField;
-             DecimalPlaces = 0 : 5;
-             Editable = false;
-             CalcFormula = Sum("Warehouse Shipment Line"."Qty. to Ship (Base)" where
-     (
-         "Source Type" = Const(5741),
-         "Source Subtype" = Const(0),
-         "Source No." = Field("Document No."),
-         "Source Line No." = Field("Line No.")
-     ));
-         }
-
-         field(14000704; "E-Ship Whse. Shipment Qty"; Decimal)
-         {
-             Caption = 'E-Ship Whse. Shipment Qty';
-             FieldClass = FlowField;
-             DecimalPlaces = 0 : 5;
-             Editable = false;
-             CalcFormula = Sum("Warehouse Shipment Line"."Qty. to Ship" where
-     (
-         "Source Type" = Const(5741),
-         "Source Subtype" = Const(0),
-         "Source No." = Field("Document No."),
-         "Source Line No." = Field("Line No.")
-     ));
-         }
-
-         field(14000705; "E-Ship Invt. Outst. Qty (Base)"; Decimal)
-         {
-             Caption = 'E-Ship Invt. Outst. Qty (Base)';
-             FieldClass = FlowField;
-             DecimalPlaces = 0 : 5;
-             Editable = false;
-             CalcFormula = Sum("Warehouse Activity Line"."Qty. Outstanding (Base)" where
-     (
-         "Activity Type" = Filter("Invt. Pick"),
-         "Source Type" = Const(5741),
-         "Source Subtype" = Const(0),
-         "Source No." = Field("Document No."),
-         "Source Line No." = Field("Line No."),
-         "Action Type" = Filter(' ' | Take),
-         "Breakbulk No." = Filter(0)
-     ));
-         }
-
-         field(14000706; "E-Ship Invt. Outstanding Qty."; Decimal)
-         {
-             Caption = 'E-Ship Invt. Outstanding Qty.';
-             FieldClass = FlowField;
-             DecimalPlaces = 0 : 5;
-             Editable = false;
-             CalcFormula = Sum("Warehouse Activity Line"."Qty. Outstanding" where
-     (
-         "Activity Type" = Filter("Invt. Pick"),
-         "Source Type" = Const(5741),
-         "Source Subtype" = Const(0),
-         "Source No." = Field("Document No."),
-         "Source Line No." = Field("Line No."),
-         "Action Type" = Filter(' ' | Take),
-         "Breakbulk No." = Filter(0)
-     ));
-         }
-
-  */
-        //TODO
-        field(14017610; "Line Gross Weight"; Decimal)
+        field(70020; "Line Gross Weight"; Decimal)
         {
         }
 
-        field(14017748; "Outstanding Gross Weight"; Decimal)
+        field(70021; "Outstanding Gross Weight"; Decimal)
         {
         }
 
-        field(14017749; "Outstanding Net Weight"; Decimal)
+        field(70022; "Outstanding Net Weight"; Decimal)
         {
         }
 
-        field(14017751; "Line Net Weight"; Decimal)
+        field(70023; "Line Net Weight"; Decimal)
         {
             Editable = false;
         }
 
-        field(14017790; "Container No."; Code[20])
+        field(70024; "Container No."; Code[20])
         {
             Editable = false;
         }
 
-        field(14017791; "Final Destination"; Code[10])
+        field(70025; "Final Destination"; Code[10])
         {
             TableRelation = Location.Code where("Use As In-Transit" = Const(false));
         }
 
-        field(14017999; "License Plate No."; Code[20])
+        field(70026; "License Plate No."; Code[20])
         {
             Description = 'NF1.00:CIS.NG  10-10-15';
             Editable = false;
         }
 
-        field(37015330; "FB Order No."; Code[20])
+        field(70027; "FB Order No."; Code[20])
         {
             Description = 'NV-FB';
         }
 
-        field(37015331; "FB Line No."; Integer)
+        field(70028; "FB Line No."; Integer)
         {
             Description = 'NV-FB';
         }
 
-        field(37015332; "FB Tag No."; Code[20])
+        field(70029; "FB Tag No."; Code[20])
         {
             Description = 'NV-FB';
         }
 
-        field(37015333; "FB Customer Bin"; Code[20])
+        field(70030; "FB Customer Bin"; Code[20])
         {
             Description = 'NV-FB';
         }
 
-        field(37015590; "In-Transit Gross Weight"; Decimal)
+        field(70031; "In-Transit Gross Weight"; Decimal)
         {
         }
     }

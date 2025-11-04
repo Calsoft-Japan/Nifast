@@ -17,56 +17,56 @@ tableextension 57321 "Warehouse Shipment Line Ext" extends "Warehouse Shipment L
             Caption = 'Assignment Time';
             Editable = false;
         }
-        field(14017614; "Special Order Sales No."; Code[20])
+        field(70000; "Special Order Sales No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017615; "Special Order Sales Line No."; Integer)
+        field(70001; "Special Order Sales Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017620; "Posting Date"; Date)
+        field(70002; "Posting Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017621; "External Document No."; Code[20])
+        field(70003; "External Document No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017640; "Destination Code"; Code[10])
+        field(70004; "Destination Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = IF ("Destination Type" = FILTER(Customer)) "Ship-to Address".Code WHERE("Customer No." = FIELD("Destination No."))
             ELSE IF ("Destination Type" = CONST(Vendor)) "Order Address".Code WHERE("Vendor No." = FIELD("Destination No."));
         }
-        field(14017761; "Prod. Kit Order No."; Integer)
+        field(70005; "Prod. Kit Order No."; Integer)
         {
             DataClassification = ToBeClassified;
             Editable = false;
         }
-        field(14017990; "Qty. to Ship Weight"; Decimal)
+        field(70006; "Qty. to Ship Weight"; Decimal)
         {
             DataClassification = ToBeClassified;
             DecimalPlaces = 0 : 5;
         }
-        field(14017999; "License Plate No."; Code[20])
+        field(70007; "License Plate No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(37015592; "Destination Name"; Text[50])
+        field(70008; "Destination Name"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(37015680; "Delivery Load No."; Code[20])
+        field(70009; "Delivery Load No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Editable = false;
         }
-        field(37015681; "Delivery Route"; Code[10])
+        field(70010; "Delivery Route"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(37015682; "Delivery Stop"; Code[10])
+        field(70011; "Delivery Stop"; Code[10])
         {
             DataClassification = ToBeClassified;
         }

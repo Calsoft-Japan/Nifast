@@ -9,23 +9,23 @@ tableextension 57316 "Warehouse Recepit Header Ext" extends "Warehouse Receipt H
                 UpdateWhseRecLines(FieldCaption("Assigned User ID"));
             end;
         }
-        field(14017610; "Priority Code"; Code[10])
+        field(70000; "Priority Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017630; "Inbound Bill of Lading No."; Code[20])
+        field(70001; "Inbound Bill of Lading No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017631; "Carrier Vendor No."; Code[20])
+        field(70002; "Carrier Vendor No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017632; "Carrier Trailer ID"; Code[20])
+        field(70003; "Carrier Trailer ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017991; "Placed In Whse. Queue"; Boolean)
+        field(70004; "Placed In Whse. Queue"; Boolean)
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()

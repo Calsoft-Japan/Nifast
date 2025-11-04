@@ -3,21 +3,18 @@ tableextension 57343 "Zone Ext" extends Zone
     // version NAVW18.00,NV4.35,NIF.N15.C9IN.001
     fields
     {
-        field(14017990; "Zone Pick Type"; Code[10])
+        field(70000; "Zone Pick Type"; Code[10])
         {
         }
-        field(14017991; "Bin Size Code"; Code[20])
+        field(70001; "Bin Size Code"; Code[20])
         {
             Description = 'NV - NF1.00:CIS.CM 09-29-15';
         }
-        field(14018070; "QC Bin Zone"; Boolean)
+        field(70002; "QC Bin Zone"; Boolean)
         {
         }
 
     }
-    procedure "> NV"();
-    begin
-    end;
 
     procedure SetBinTypeFilter(SetBinType: Option "All Zones",Receive,"Put-away",Pick,Ship,Other; var Zone: Record 7300);
     var

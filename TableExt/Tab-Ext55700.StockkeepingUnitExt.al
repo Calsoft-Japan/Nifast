@@ -54,38 +54,38 @@ tableextension 55700 "Stockkeeping Unit Ext" extends "Stockkeeping Unit"
                                                                                                                    "Variant Code" = FIELD("Variant Code"),
                                                                                                                    "Posting Date" = FIELD("Date Filter")));
         }
-        field(14017615; Inactive; Boolean)
+        field(70000; Inactive; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017621; "Item Category Code"; Code[10])
+        field(70001; "Item Category Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Item Category";
             Editable = false;
             CaptionML = ENU = 'Item Category Code';
         }
-        field(14017622; "Product Group Code"; Code[10])
+        field(70002; "Product Group Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             Editable = false;
             //TableRelation = "Product Group".Code WHERE (Item Category Code=FIELD(Item Category Code));
         }
-        field(14017672; "Usage Velocity Code"; Code[10])
+        field(70003; "Usage Velocity Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017676; "Turn Ranking Code"; Code[10])
+        field(70004; "Turn Ranking Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             Description = 'Item card';
             Editable = false;
         }
-        field(14017677; "Sales Velocity Code"; Code[10])
+        field(70005; "Sales Velocity Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017994; "Put-away Group Code"; Code[10])
+        field(70006; "Put-away Group Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
@@ -96,11 +96,11 @@ tableextension 55700 "Stockkeeping Unit Ext" extends "Stockkeeping Unit"
                 // << NV 08/26/03 MV
             end;
         }
-        field(14018070; "QC Hold"; Boolean)
+        field(70007; "QC Hold"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14018071; "QC Hold Reason Code"; Blob)
+        field(70008; "QC Hold Reason Code"; Blob)
         {
             DataClassification = ToBeClassified;
         }

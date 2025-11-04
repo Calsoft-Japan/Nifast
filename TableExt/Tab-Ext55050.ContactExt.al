@@ -2,7 +2,7 @@ tableextension 55050 Contact_Ext extends Contact
 {
     fields
     {
-        field(14017610; "Customer No."; Code[20])
+        field(70000; "Customer No."; Code[20])
         {
             //Caption = '';
             //DataClassification = ToBeClassified;

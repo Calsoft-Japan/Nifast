@@ -12,11 +12,11 @@ tableextension 57320 "Warehouse Shipment Header Ext" extends "Warehouse Shipment
                 //<<PFC
             end;
         }
-        field(14017632; "Carrier Trailer ID"; Code[20])
+        field(70000; "Carrier Trailer ID"; Code[20])
         {
         }
 
-        field(14017640; "Destination Code"; Code[10])
+        field(70001; "Destination Code"; Code[10])
         {
             CaptionML = ENU = 'Destination Code';
             Editable = false;
@@ -32,7 +32,7 @@ tableextension 57320 "Warehouse Shipment Header Ext" extends "Warehouse Shipment
 
         }
 
-        field(14017990; "Total Ship Weight"; Decimal)
+        field(70002; "Total Ship Weight"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = Sum("Warehouse Shipment Line"."Qty. to Ship" WHERE("No." = FIELD("No.")));
@@ -40,16 +40,16 @@ tableextension 57320 "Warehouse Shipment Header Ext" extends "Warehouse Shipment
             Editable = false;
         }
 
-        field(14017991; "Placed In Whse. Queue"; Boolean)
+        field(70003; "Placed In Whse. Queue"; Boolean)
         {
         }
 
-        field(37015592; "Destination Name"; Text[50])
+        field(70004; "Destination Name"; Text[50])
         {
             Editable = false;
         }
 
-        field(37015593; "Destination Type"; Option)
+        field(70005; "Destination Type"; Option)
         {
             FieldClass = FlowField;
             CalcFormula = Lookup("Warehouse Shipment Line"."Destination Type" WHERE("No." = FIELD("No.")));
@@ -59,7 +59,7 @@ tableextension 57320 "Warehouse Shipment Header Ext" extends "Warehouse Shipment
             Editable = false;
         }
 
-        field(37015594; "Destination No."; Code[20])
+        field(70006; "Destination No."; Code[20])
         {
             FieldClass = FlowField;
             CalcFormula = Lookup("Warehouse Shipment Line"."Destination No." WHERE("No." = FIELD("No.")));
@@ -67,7 +67,7 @@ tableextension 57320 "Warehouse Shipment Header Ext" extends "Warehouse Shipment
             Editable = false;
         }
 
-        field(37015680; "Delivery Load No."; Code[20])
+        field(70007; "Delivery Load No."; Code[20])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
             trigger OnValidate()
@@ -104,7 +104,7 @@ tableextension 57320 "Warehouse Shipment Header Ext" extends "Warehouse Shipment
 
         }
 
-        field(37015681; "Delivery Load Seq."; Code[20])
+        field(70008; "Delivery Load Seq."; Code[20])
         {
         }
 
