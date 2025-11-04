@@ -17,10 +17,12 @@ pageextension 50039 GeneralJournalExt extends "General Journal"
             {
                 Caption = 'Import Gen Journal Lines';
                 RunObject = XMLport 50078;
+                ApplicationArea = All;
             }
             action("Import Demensions")
             {
                 Caption = 'Import Demensions';
+                ApplicationArea = All;
                 //RunObject = XMLport 50079; //TODO
             }
         }

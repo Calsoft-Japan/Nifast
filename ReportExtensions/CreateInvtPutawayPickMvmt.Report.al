@@ -37,6 +37,7 @@ report 50012 "Create InvtPutaway/Pick/Mv New"
 
     Caption = 'Create Invt. Put-away/Pick/Movement New';
     ProcessingOnly = true;
+    ApplicationArea = All;
 
     dataset
     {
@@ -224,12 +225,14 @@ report 50012 "Create InvtPutaway/Pick/Mv New"
                     field(CreateInventorytPutAway; CreatePutAway)
                     {
                         Caption = 'Create Invt. Put-Away';
+                        ApplicationArea = All;
                     }
                     field(CInvtPick; CreatePick)
                     {
                         Caption = 'Create Invt. Pick';
                         Editable = CreatePickEditable;
                         Enabled = CreatePickEditable;
+                        ApplicationArea = All;
 
                         trigger OnValidate()
                         begin
@@ -243,6 +246,7 @@ report 50012 "Create InvtPutaway/Pick/Mv New"
                         Caption = 'Create Invt. Movement';
                         Editable = CreateMovementEditable;
                         Enabled = CreateMovementEditable;
+                        ApplicationArea = All;
 
                         trigger OnValidate()
                         begin
@@ -254,19 +258,23 @@ report 50012 "Create InvtPutaway/Pick/Mv New"
                     field(PrintDocument; PrintDocument)
                     {
                         Caption = 'Print Document';
+                        ApplicationArea = All;
                     }
                     field(ShowError; ShowError)
                     {
                         Caption = 'Show Error';
+                        ApplicationArea = All;
                     }
                     field(PrintLabels; PrintLabels)
                     {
                         Caption = 'Print Labels';
                         Enabled = PrintLabelsEnable;
+                        ApplicationArea = All;
                     }
                     field(SortPick; SortPick)
                     {
                         Caption = 'Sorting Method';
+                        ApplicationArea = All;
                     }
                 }
             }

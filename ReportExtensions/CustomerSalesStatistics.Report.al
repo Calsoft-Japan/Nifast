@@ -9,8 +9,8 @@ report 50013 "Customer Sales Statistics New"
     RDLCLayout = '.\RDLC\CustomerSalesStatistics.rdlc';
 
     Caption = 'Customer Sales Statistics New';
-    ApplicationArea=all;
-    UsageCategory=ReportsAndAnalysis;
+    ApplicationArea = all;
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {
@@ -429,10 +429,12 @@ report 50013 "Customer Sales Statistics New"
                     field(PeriodStartingDate; PeriodStartingDate[2])
                     {
                         Caption = 'Start Date';
+                        ApplicationArea = All;
                     }
                     field(LengthOfPeriods; PeriodLength)
                     {
                         Caption = 'Length of Periods';
+                        ApplicationArea = All;
                         //DateFormula = true;
                     }
                 }

@@ -20,6 +20,7 @@ report 50031 "Suggest Vendor Payments New"
 
     Caption = 'Suggest Vendor Payments New';
     ProcessingOnly = true;
+    ApplicationArea = All;
 
     dataset
     {
@@ -188,11 +189,13 @@ report 50031 "Suggest Vendor Payments New"
                         field(LastPaymentDate; LastDueDateToPayReq)
                         {
                             Caption = 'Last Payment Date';
+                            ApplicationArea = All;
                         }
                         field(FindPaymentDiscounts; UsePaymentDisc)
                         {
                             Caption = 'Find Payment Discounts';
                             MultiLine = true;
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin
@@ -203,6 +206,7 @@ report 50031 "Suggest Vendor Payments New"
                         field(UseVendorPriority; UsePriority)
                         {
                             Caption = 'Use Vendor Priority';
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin
@@ -213,6 +217,7 @@ report 50031 "Suggest Vendor Payments New"
                         field("Available Amount (LCY)"; AmountAvailable)
                         {
                             Caption = 'Available Amount ($)';
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin
@@ -223,6 +228,7 @@ report 50031 "Suggest Vendor Payments New"
                         field(SkipExportedPayments; SkipExportedPayments)
                         {
                             Caption = 'Skip Exported Payments';
+                            ApplicationArea = All;
                         }
                     }
                     group("Summarize Results")
@@ -231,6 +237,7 @@ report 50031 "Suggest Vendor Payments New"
                         field(SummarizePerVendor; SummarizePerVend)
                         {
                             Caption = 'Summarize per Vendor';
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin
@@ -243,6 +250,7 @@ report 50031 "Suggest Vendor Payments New"
                             Caption = 'By Dimension';
                             Editable = false;
                             Enabled = SummarizePerDimTextEnable;
+                            ApplicationArea = All;
 
                             trigger OnAssistEdit()
                             var
@@ -259,6 +267,7 @@ report 50031 "Suggest Vendor Payments New"
                         {
                             Caption = 'Posting Date';
                             Editable = UseDueDateAsPostingDate = FALSE;
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin
@@ -268,6 +277,7 @@ report 50031 "Suggest Vendor Payments New"
                         field(UseDueDateAsPostingDate; UseDueDateAsPostingDate)
                         {
                             Caption = 'Calculate Posting Date from Applies-to-Doc. Due Date';
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin
@@ -282,10 +292,12 @@ report 50031 "Suggest Vendor Payments New"
                             Caption = 'Applies-to-Doc. Due Date Offset';
                             Editable = UseDueDateAsPostingDate;
                             Enabled = UseDueDateAsPostingDate;
+                            ApplicationArea = All;
                         }
                         field(StartingDocumentNo; NextDocNo)
                         {
                             Caption = 'Starting Document No.';
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin
@@ -297,6 +309,7 @@ report 50031 "Suggest Vendor Payments New"
                         field(NewDocNoPerLine; DocNoPerLine)
                         {
                             Caption = 'New Doc. No. per Line';
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin
@@ -308,6 +321,7 @@ report 50031 "Suggest Vendor Payments New"
                         {
                             Caption = 'Bal. Account Type';
                             OptionCaption = 'G/L Account,,,Bank Account';
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin
@@ -317,6 +331,7 @@ report 50031 "Suggest Vendor Payments New"
                         field(BalAccountNo; GenJnlLine2."Bal. Account No.")
                         {
                             Caption = 'Bal. Account No.';
+                            ApplicationArea = All;
 
                             trigger OnLookup(var Text: Text): Boolean
                             begin
@@ -349,6 +364,7 @@ report 50031 "Suggest Vendor Payments New"
                         {
                             Caption = 'Bank Payment Type';
                             OptionCaption = ' ,Computer Check,Manual Check,Electronic Payment';
+                            ApplicationArea = All;
 
                             trigger OnValidate()
                             begin

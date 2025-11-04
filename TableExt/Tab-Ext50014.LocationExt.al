@@ -383,16 +383,7 @@ tableextension 50014 "Location Ext" extends "Location"
         {
             Description = 'NV';
         }
-        field(7327; "Outbound BOM Bin Code"; code[20])
-        {
-            TableRelation = Bin.Code WHERE("Location Code" = FIELD(Code));
-            CaptionML = ENU = 'Outbound BOM Bin Code';
-        }
-        field(7328; "Inbound BOM Bin Code"; code[20])
-        {
-            TableRelation = Bin.Code WHERE("Location Code" = FIELD(Code));
-            CaptionML = ENU = 'Inbound BOM Bin Code';
-        }
+
     }
 }
 
