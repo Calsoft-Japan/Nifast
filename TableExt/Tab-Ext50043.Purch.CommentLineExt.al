@@ -7,31 +7,31 @@ tableextension 50043 "Purch. Comment Line Ext" extends "Purch. Comment Line"
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.NG  10-28-15';
         }
-        field(14017636; "Print On Quote"; Boolean)
+        field(70000; "Print On Quote"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017637; "Print On Put Away"; Boolean)
+        field(70001; "Print On Put Away"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017638; "Print On Order"; Boolean)
+        field(70002; "Print On Order"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017639; "Print On Receipt"; Boolean)
+        field(70003; "Print On Receipt"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017640; "Print On Invoice"; Boolean)
+        field(70004; "Print On Invoice"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017641; "Print On Credit Memo"; Boolean)
+        field(70005; "Print On Credit Memo"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017650; "User ID"; code[50])
+        field(70006; "User ID"; code[50])
         {
             DataClassification = ToBeClassified;
             Description = '20-->50 NF1.00:CIS.NG  10-10-15';
@@ -54,7 +54,7 @@ tableextension 50043 "Purch. Comment Line Ext" extends "Purch. Comment Line"
                 LoginMgt.DisplayUserInformation("User ID");
             end;
         }
-        field(14017651; "Time Stamp"; Time)
+        field(70007; "Time Stamp"; Time)
         {
             DataClassification = ToBeClassified;
         }

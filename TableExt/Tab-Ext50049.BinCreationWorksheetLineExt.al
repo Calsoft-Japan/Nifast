@@ -3,7 +3,7 @@ tableextension 50049 "Bin Creation Worksheet LineExt" extends "Bin Creation Work
     //Version NAVW17.00,NV4.35,NIF.N15.C9IN.001;
     fields
     {
-        field(14017991; "Bin Size Code"; Code[20])
+        field(70000; "Bin Size Code"; Code[20])
         {
             Description = 'NV - NF1.00:CIS.CM 09-29-15';
             trigger OnValidate()
@@ -23,11 +23,11 @@ tableextension 50049 "Bin Creation Worksheet LineExt" extends "Bin Creation Work
             END;
         }
 
-        field(14017994; "Pick Bin Ranking"; Integer)
+        field(70001; "Pick Bin Ranking"; Integer)
         {
         }
 
-        field(14017997; "Staging Bin"; Boolean)
+        field(70002; "Staging Bin"; Boolean)
         {
         }
 

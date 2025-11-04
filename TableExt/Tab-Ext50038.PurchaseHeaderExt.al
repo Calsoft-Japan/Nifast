@@ -240,7 +240,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
 
             end;
         }
-        field(14017610; "Entered User ID"; cODE[50])
+        field(70000; "Entered User ID"; cODE[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = User."User Name";
@@ -263,41 +263,41 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                 LoginMgt.DisplayUserInformation("Entered User ID");
             end;
         }
-        field(14017611; "Entered Date"; Date)
+        field(70001; "Entered Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017612; "Entered Time"; Time)
+        field(70002; "Entered Time"; Time)
         {
             DataClassification = ToBeClassified;
         }
-        field(14017620; "Bill of Lading No."; Code[20])
+        field(70003; "Bill of Lading No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017621; "Carrier Vendor No."; Code[20])
+        field(70004; "Carrier Vendor No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Vendor."No.";
         }
-        field(14017622; "Carrier Trailer ID"; Code[20])
+        field(70005; "Carrier Trailer ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017630; "Priority Code"; Code[10])
+        field(70006; "Priority Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14017640; "Ship-to PO No."; Code[20])
+        field(70007; "Ship-to PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017650; "Broker/Agent Code"; Code[10])
+        field(70008; "Broker/Agent Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017660; "Outstanding Gross Weight"; Decimal)
+        field(70009; "Outstanding Gross Weight"; Decimal)
         {
             //DataClassification = ToBeClassified;
             FieldClass = FlowField;
@@ -305,7 +305,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                                                                                                                      "Document No." = FIELD("No.")));
             Editable = false;
         }
-        field(14017661; "Outstanding Net Weight"; Decimal)
+        field(70010; "Outstanding Net Weight"; Decimal)
         {
             //DataClassification = ToBeClassified;
             FieldClass = FlowField;
@@ -313,11 +313,11 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                                                                                                                      "Document No." = FIELD("No.")));
             Editable = FALSE;
         }
-        field(14017930; "Rework No."; Code[20])
+        field(70011; "Rework No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(14017931; "Rework Line No."; Integer)
+        field(70012; "Rework Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }

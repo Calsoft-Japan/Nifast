@@ -94,13 +94,13 @@ tableextension 50021 "Cust. Ledger Entry Ext" extends "Cust. Ledger Entry"
                         ESP = 'Tipo de Cambio';
             Description = 'CE 1.2';
         }
-        field(14017610; "Last Detail Date"; Date)
+        field(70000; "Last Detail Date"; Date)
         {
             CalcFormula = Max("Detailed Cust. Ledg. Entry"."Posting Date" WHERE("Cust. Ledger Entry No." = FIELD("Entry No.")));
             Description = 'NV';
             FieldClass = FlowField;
         }
-        field(14018050; "Cr. Mgmt. Comment"; Boolean)
+        field(70001; "Cr. Mgmt. Comment"; Boolean)
         {
             Description = 'NV    NF1.00:CIS.CM 09-29-15';
             Editable = false;
