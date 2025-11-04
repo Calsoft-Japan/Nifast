@@ -416,7 +416,7 @@ tableextension 50027 "Item Ext" extends "Item"
             Editable = false;
         }
 
-        field(14017612; "Qty. on Blanket SO"; Decimal)
+        field(70000; "Qty. on Blanket SO"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = Sum("Sales Line"."Outstanding Qty. (Base)" where
@@ -436,27 +436,27 @@ tableextension 50027 "Item Ext" extends "Item"
             Editable = false;
         }
 
-        field(14017613; "Default Purchasing Code"; Code[10])
+        field(70001; "Default Purchasing Code"; Code[10])
         {
             TableRelation = Purchasing.Code;
         }
 
-        field(14017615; "Inactive"; Boolean) { }
-        field(14017616; "Supply Item"; Boolean) { }
-        field(14017620; "Min. Sales Qty."; Decimal) { }
-        field(14017621; "Date Created"; Date) { }
-        field(14017622; "Harmonizing Tariff Code"; Code[20])
+        field(70002; "Inactive"; Boolean) { }
+        field(70003; "Supply Item"; Boolean) { }
+        field(70004; "Min. Sales Qty."; Decimal) { }
+        field(70005; "Date Created"; Date) { }
+        field(70006; "Harmonizing Tariff Code"; Code[20])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
 
-        field(14017672; "Usage Velocity Code"; Code[10])
+        field(70007; "Usage Velocity Code"; Code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
 
-        field(14017676; "Turn Ranking Code"; Code[10])
+        field(70008; "Turn Ranking Code"; Code[10])
         {
             TableRelation = "Shipping Vessels"."Vessel Name";
             trigger OnValidate()
@@ -467,28 +467,20 @@ tableextension 50027 "Item Ext" extends "Item"
             end;
         }
 
-        field(14017712; "Customer Filter"; Code[20])
+        field(70009; "Customer Filter"; Code[20])
         {
             FieldClass = FlowFilter;
             TableRelation = Customer."No.";
         }
 
-        field(14017756; "Item Group Code"; Code[10])
+        field(70010; "Item Group Code"; Code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
 
-        field(14017813; "Tool Tracking"; Boolean) { }
+        field(70011; "Tool Tracking"; Boolean) { }
 
-        field(14017901; "Qty. on Prod. Kit"; Decimal)
-        {
-            FieldClass = FlowField;
-            DecimalPlaces = 0 : 2;
-            Description = 'NF1.00:CIS.CM 09-29-15';
-            Editable = false;
-        }
-
-        field(14017902; "Qty. on Prod. Kit Lines"; Decimal)
+        field(70012; "Qty. on Prod. Kit"; Decimal)
         {
             FieldClass = FlowField;
             DecimalPlaces = 0 : 2;
@@ -496,9 +488,17 @@ tableextension 50027 "Item Ext" extends "Item"
             Editable = false;
         }
 
-        field(14017930; "Rework Process Item"; Boolean) { }
+        field(70013; "Qty. on Prod. Kit Lines"; Decimal)
+        {
+            FieldClass = FlowField;
+            DecimalPlaces = 0 : 2;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
 
-        field(14018070; "QC Hold"; Boolean)
+        field(70014; "Rework Process Item"; Boolean) { }
+
+        field(70015; "QC Hold"; Boolean)
         {
             trigger OnValidate()
             begin
@@ -513,12 +513,12 @@ tableextension 50027 "Item Ext" extends "Item"
             end;
         }
 
-        field(14018071; "QC Hold Reason Code"; Code[10])
+        field(70016; "QC Hold Reason Code"; Code[10])
         {
             TableRelation = "Reason Code" where(Type = Filter(QC));
         }
 
-        field(14018072; "Qty. on QC Hold"; Decimal)
+        field(70017; "Qty. on QC Hold"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = Sum("Item Ledger Entry".Quantity where
@@ -537,7 +537,7 @@ tableextension 50027 "Item Ext" extends "Item"
             Editable = false;
         }
 
-        field(14018073; "Gross Inventory"; Decimal)
+        field(70018; "Gross Inventory"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = Sum("Item Ledger Entry".Quantity where
@@ -556,23 +556,23 @@ tableextension 50027 "Item Ext" extends "Item"
             Editable = false;
         }
 
-        field(14018077; "QS/TS Item"; Boolean) { }
-        field(14018079; "First Article Approval"; Boolean) { }
-        field(14018080; "PPAP Approval"; Boolean) { }
+        field(70019; "QS/TS Item"; Boolean) { }
+        field(70020; "First Article Approval"; Boolean) { }
+        field(70021; "PPAP Approval"; Boolean) { }
 
-        field(14018081; "Special Gauge/Fixture"; Code[20])
+        field(70022; "Special Gauge/Fixture"; Code[20])
         {
             Description = 'NF1.00:CIS.NG  10-10-15';
         }
 
-        field(14018082; "First Article Waiver"; Boolean) { }
+        field(70023; "First Article Waiver"; Boolean) { }
 
-        field(14018084; "Inspection Type"; Code[10])
+        field(70024; "Inspection Type"; Code[10])
         {
             Description = 'NF1.00:CIS.NG  10-10-15';
         }
 
-        field(14018085; "QC Comment"; Boolean)
+        field(70025; "QC Comment"; Boolean)
         {
             FieldClass = FlowField;
             Caption = 'QC Comment';
@@ -580,7 +580,7 @@ tableextension 50027 "Item Ext" extends "Item"
             Editable = false;
         }
 
-        field(14018086; "Customer No."; Code[20])
+        field(70026; "Customer No."; Code[20])
         {
             TableRelation = "Item Reference"."Reference Type No." where
                     ("Item No." = Field("No."),
@@ -595,7 +595,7 @@ tableextension 50027 "Item Ext" extends "Item"
             end;
         }
 
-        field(14018088; "Drawing No."; Code[30])
+        field(70027; "Drawing No."; Code[30])
         {
             FieldClass = FlowField;
             CalcFormula = Lookup("Cust./Item Drawing2"."Drawing No." where
@@ -605,7 +605,7 @@ tableextension 50027 "Item Ext" extends "Item"
             Editable = false;
         }
 
-        field(14018089; "Revision No."; Code[20])
+        field(70028; "Revision No."; Code[20])
         {
             FieldClass = FlowField;
             CalcFormula = Lookup("Cust./Item Drawing2"."Revision No." where
@@ -616,7 +616,7 @@ tableextension 50027 "Item Ext" extends "Item"
             Editable = false;
         }
 
-        field(14018090; "Revision Date"; Date)
+        field(70029; "Revision Date"; Date)
         {
             FieldClass = FlowField;
             CalcFormula = Lookup("Cust./Item Drawing2"."Revision Date" where
@@ -709,7 +709,7 @@ tableextension 50027 "Item Ext" extends "Item"
         ItemUnitOfMeasure: Record 5404;
         BinContent: Record 7302;
     BEGIN
-        //TODO
+        
         TempLotBinContent.DELETEALL();
 
         LotNoInfo.SETRANGE("Item No.", "No.");
@@ -773,7 +773,7 @@ tableextension 50027 "Item Ext" extends "Item"
                 END;
             UNTIL WhseEntry.NEXT() = 0;
         UNTIL LotNoInfo.NEXT() = 0;
-        //TODO
+        
     END;
 
     PROCEDURE UpdateQCHoldFromItem(ItemNo: Code[20]; QCHold: Boolean);

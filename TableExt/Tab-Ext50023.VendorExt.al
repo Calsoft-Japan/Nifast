@@ -12,33 +12,33 @@ tableextension 50023 "Vendor Ext" extends "Vendor"
             DataClassification = ToBeClassified;
             Description = 'Forex';
         }
-        field(14017610; "Minimum Order Quantity"; Decimal)
+        field(70000; "Minimum Order Quantity"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
-        field(14017611; "Minimum Order Amount"; Decimal)
+        field(70001; "Minimum Order Amount"; Decimal)
         {
             DecimalPlaces = 2 : 2;
             MinValue = 0;
         }
-        field(14017612; "Minimum Order Net Weight"; Decimal)
+        field(70002; "Minimum Order Net Weight"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
-        field(14017620; "Purchase Limit"; Decimal)
+        field(70003; "Purchase Limit"; Decimal)
         {
         }
-        field(14017645; "Order Address Code"; code[10])
+        field(70004; "Order Address Code"; code[10])
         {
             TableRelation = "Order Address".Code WHERE("Vendor No." = FIELD("No."));
         }
-        field(14017650; "Broker/Agent Code"; code[10])
+        field(70005; "Broker/Agent Code"; code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(14018070; "QC Contact"; text[30])
+        field(70006; "QC Contact"; text[30])
         {
             trigger OnValidate()
             begin
@@ -52,13 +52,13 @@ tableextension 50023 "Vendor Ext" extends "Vendor"
                         END
             end;
         }
-        field(14018071; "QC Phone No."; text[30])
+        field(70007; "QC Phone No."; text[30])
         {
         }
-        field(14018072; "QC Fax No."; text[20])
+        field(70008; "QC Fax No."; text[20])
         {
         }
-        field(14018073; "QC E-Mail"; text[80])
+        field(70009; "QC E-Mail"; text[80])
         {
         }
     }
