@@ -184,26 +184,37 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         {
             Caption = 'Inside Salesperson Code';
         }
-        field(70100; "Entered Date"; Date)
+        field(70100; "Entered User ID"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
+            //TestTableRelation =No;
+            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
+
+
+        }
+        field(70101; "Entered Date"; Date)
         {
         }
-        field(70101; "Entered Time"; Time)
+        field(70002; "Entered Time"; Time)
         {
         }
-        field(70002; "Tool Repair Tech"; code[10])
+        field(70003; "Tool Repair Tech"; code[10])
         {
             TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(true));
         }
-        field(70003; "Phone No."; text[30])
+        field(70004; "Phone No."; text[30])
         {
         }
-        field(70004; "Fax No."; text[30])
+        field(70005; "Fax No."; text[30])
         {
         }
-        field(70005; "E-Mail"; text[80])
+        field(70006; "E-Mail"; text[80])
         {
         }
-        field(70006; "Priority Code"; code[10])
+        field(70102; "Priority Code"; code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
@@ -290,55 +301,55 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
                     VALIDATE("Tax Liable");
             end;
         }
-        field(70009; "Quote Expiration Date"; Date)
+        field(70103; "Quote Expiration Date"; Date)
         {
         }
-        field(70010; "NV Quote No."; code[20])
+        field(70104; "NV Quote No."; code[20])
         {
         }
-        field(70011; "Return No."; code[20])
+        field(70105; "Return No."; code[20])
         {
         }
-        field(70012; "Broker/Agent Code"; code[10])
+        field(70009; "Broker/Agent Code"; code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(70013; "Outstanding Gross Weight"; Decimal)
+        field(70106; "Outstanding Gross Weight"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = Sum("Sales Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
                                                                                                                   "Document No." = FIELD("No.")));
             Editable = false;
         }
-        field(70014; "Outstanding Net Weight"; Decimal)
+        field(70107; "Outstanding Net Weight"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = Sum("Sales Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
                                                                                                                   "Document No." = FIELD("No.")));
             Editable = false;
         }
-        field(70015; "Sales Desk Worksheet"; Boolean)
+        field(70108; "Sales Desk Worksheet"; Boolean)
         {
             trigger OnValidate()
             begin
                 IF "Document Type" <> "Document Type"::Quote THEN ERROR('Document Type must be Quote');
             end;
         }
-        field(70016; "Sales Counter Invoice"; Boolean)
+        field(70109; "Sales Counter Invoice"; Boolean)
         {
             trigger OnValidate()
             begin
                 IF "Document Type" <> "Document Type"::Invoice THEN ERROR('Document Type must be Invoice');
             end;
         }
-        field(70017; "Tool Repair Priority"; Boolean)
+        field(70010; "Tool Repair Priority"; Boolean)
         {
         }
-        field(70018; "Manufacturer Code"; code[5])
+        field(70011; "Manufacturer Code"; code[5])
         {
             TableRelation = Manufacturer.Code;
         }
-        field(70019; "Serial No."; code[20])
+        field(70012; "Serial No."; code[20])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
             trigger OnValidate()
@@ -353,48 +364,48 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
                 //<< NF1.00:CIS.CM 09-29-15
             end;
         }
-        field(70020; "Tool Model No."; code[20])
+        field(70013; "Tool Model No."; code[20])
         {
         }
-        field(70021; "Tool Item No."; code[20])
+        field(70014; "Tool Item No."; code[20])
         {
             TableRelation = Item."No.";
         }
-        field(70022; "Tool Description"; Text[50])
+        field(70015; "Tool Description"; Text[50])
         {
         }
-        field(70023; "Tool Repair Ticket"; Boolean)
+        field(70016; "Tool Repair Ticket"; Boolean)
         {
         }
-        field(70024; "No;Tool Repair Status"; code[10])
-        {
-            FieldClass = FlowField;
-            Description = 'NF1.00:CIS.NG 10-10-15';
-            Editable = false;
-        }
-        field(70025; "Tool Repair Parts Warranty"; DateFormula)
-        {
-        }
-        field(70026; "Tool Repair Labor Warranty"; DateFormula)
-        {
-        }
-        field(70027; "No;Cr. Mgmt. Comment"; Boolean)
+        field(70017; "No;Tool Repair Status"; code[10])
         {
             FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }
-        field(70028; "FB Order No."; code[20])
+        field(70027; "Tool Repair Parts Warranty"; DateFormula)
         {
         }
-        field(70029; "Delivery Route"; code[10])
+        field(70028; "Tool Repair Labor Warranty"; DateFormula)
+        {
+        }
+        field(70029; "No;Cr. Mgmt. Comment"; Boolean)
+        {
+            FieldClass = FlowField;
+            Description = 'NF1.00:CIS.NG 10-10-15';
+            Editable = false;
+        }
+        field(70018; "FB Order No."; code[20])
+        {
+        }
+        field(70031; "Delivery Route"; code[10])
         {
             trigger OnValidate()
             begin
                 UpdateSalesLines(FIELDCAPTION("Delivery Route"), FALSE);
             end;
         }
-        field(70030; "Delivery Stop"; code[10])
+        field(70032; "Delivery Stop"; code[10])
         {
             trigger OnValidate()
             begin
