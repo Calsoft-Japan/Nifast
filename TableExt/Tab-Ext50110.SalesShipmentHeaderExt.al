@@ -139,7 +139,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
-        field(70018; "Tool Repair Parts Warranty"; DateFormula)
+        field(70027; "Tool Repair Parts Warranty"; DateFormula)
         {
         }
         field(70020; "Tool Repair Labor Warranty"; DateFormula)
@@ -151,7 +151,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
-        field(70022; "FB Order No."; code[20])
+        field(70018; "FB Order No."; code[20])
         {
             Description = 'NV-FB';
         }

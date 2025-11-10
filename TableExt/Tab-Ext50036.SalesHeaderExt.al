@@ -386,7 +386,7 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         field(70027; "Tool Repair Parts Warranty"; DateFormula)
         {
         }
-        field(70028; "Tool Repair Labor Warranty"; DateFormula)
+        field(70020; "Tool Repair Labor Warranty"; DateFormula)
         {
         }
         field(70029; "No;Cr. Mgmt. Comment"; Boolean)

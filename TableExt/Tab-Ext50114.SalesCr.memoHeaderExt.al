@@ -137,9 +137,9 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
         /*  field(50001; "Inside Salesperson Code"; Code[10])//NV-FB 14017617->50001 BC Upgrade
          { } */
         //TODO
-       
-        
-        field(70000; "Entered User ID"; Code[50])
+
+
+        field(70100; "Entered User ID"; Code[50])
         {
             TableRelation = User."User Name";
             Description = '20-->50 NF1.00:CIS.NG  10-10-15';
@@ -159,7 +159,7 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
 
         }
 
-        field(70001; "Entered Date"; Date)
+        field(70101; "Entered Date"; Date)
         {
         }
 
@@ -167,49 +167,49 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
         {
         }
 
-        field(70003; "Inside Salesperson Code"; Code[10])
+        field(50008; "Inside Salesperson Code"; Code[10])
         {
             TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true), Sales = CONST(true));
             Description = 'NV-FB';
         }
 
-        field(70005; "Phone No."; Text[30])
+        field(70004; "Phone No."; Text[30])
         {
             Description = 'NV-FB';
         }
 
-        field(70006; "Fax No."; Text[30])
+        field(70005; "Fax No."; Text[30])
         {
         }
 
-        field(70007; "E-Mail"; Text[80])
+        field(70006; "E-Mail"; Text[80])
         {
         }
 
-        field(70008; "Ship-to PO No."; Code[20])
+        field(70007; "Ship-to PO No."; Code[20])
         {
         }
 
-        field(70009; "Contract No."; Code[20])
+        field(70008; "Contract No."; Code[20])
         {
             TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
             Description = 'NV-FB';
         }
 
-        field(70010; "Broker/Agent Code"; Code[10])
+        field(70009; "Broker/Agent Code"; Code[10])
         {
             Description = 'NV-FB';
         }
 
-        field(70011; "Tool Repair Parts Warranty"; DateFormula)
+        field(70010; "Tool Repair Parts Warranty"; DateFormula)
         {
         }
 
-        field(70012; "Tool Repair Labor Warranty"; DateFormula)
+        field(70020; "Tool Repair Labor Warranty"; DateFormula)
         {
         }
 
-        field(70013; "No;Cr. Mgmt. Comment"; Boolean)
+        field(70017; "No;Cr. Mgmt. Comment"; Boolean)
         {
             // FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
