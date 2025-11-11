@@ -85,12 +85,6 @@ tableextension 50121 "Purch. Rcpt. Line Ext" extends "Purch. Rcpt. Line"
         field(70004; "Vendor Cr. Memo No."; Code[20])
         {
         }
-        field(70005; "No;Line Comment"; Boolean)
-        {
-            FieldClass = FlowField;
-            Description = 'NF1.00:CIS.CM 09-29-15';
-            Editable = false;
-        }
         field(70006; "Ship-to PO No."; Code[20])
         {
         }
@@ -98,23 +92,29 @@ tableextension 50121 "Purch. Rcpt. Line Ext" extends "Purch. Rcpt. Line"
         {
             TableRelation = "Resource Group";
         }
-        field(70008; "Line Gross Weight"; Decimal)
+        field(70012; "Line Gross Weight"; Decimal)
         {
         }
-        field(70009; "Line Net Weight"; Decimal)
+        field(70013; "Line Net Weight"; Decimal)
         {
         }
-        field(70010; "Item Group Code"; Code[10])
+        field(70014; "Item Group Code"; Code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(70011; "Container No."; Code[20])
+        field(70015; "Rework No."; Code[20])
         {
         }
-        field(70012; "Rework No."; Code[20])
+        field(70016; "Rework Line No."; Integer)
         {
         }
-        field(70013; "Rework Line No."; Integer)
+        field(70024; "No;Line Comment"; Boolean)
+        {
+            FieldClass = FlowField;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+        field(70025; "Container No."; Code[20])
         {
         }
     }

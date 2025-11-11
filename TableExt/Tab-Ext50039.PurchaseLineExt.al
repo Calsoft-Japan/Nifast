@@ -2,6 +2,18 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
 {
     fields
     {
+        modify("Qty. to Invoice")
+        {
+            trigger OnAfterValidate()
+            begin
+
+                //>>NV4.33.01 08-20-04 RTT
+                // set Qty. to Invoice on Item Tracking
+                if CurrFieldNo <> 0 then  //NG-N System Make the Qty Zero on CM Post
+                    UpdateItemTrackingLines(Rec);
+                //<<NV4.33.01 08-20-04 RTT
+            end;
+        }
         field(50000; "Contract Note No."; Code[20])
         {
             DataClassification = ToBeClassified;
@@ -15,6 +27,25 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         {
             DataClassification = ToBeClassified;
             Description = 'Forex';
+            Editable = false;
+        }
+
+        field(50003; "Alt. Price"; Decimal)//14017672->50003 BC Upgrade 
+        {
+            DecimalPlaces = 2 : 5;
+            trigger OnValidate()
+            var
+                ItemUOMRec2: Record "Item Unit of Measure";
+            BEGIN
+                IF ItemUOMRec2.GET("No.", "Alt. Price UOM") THEN BEGIN
+                    VALIDATE("Line Discount Amount", 0);
+                    VALIDATE("Direct Unit Cost", "Alt. Price" * ItemUOMRec2."Alt. Base Qty.");
+                END;
+                UpdateAmounts;
+            end;
+        }
+        field(50004; "Alt. Price UOM"; Decimal)//14017673->50004 BC Upgrade 
+        {
             Editable = false;
         }
         field(50005; "Sail-on Date"; Date)
@@ -94,25 +125,6 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
             DataClassification = ToBeClassified;
             TableRelation = Manufacturer.Name;
         }
-
-        field(50003; "Alt. Price"; Decimal)//14017672->50003 BC Upgrade 
-        {
-            DecimalPlaces = 2 : 5;
-            trigger OnValidate()
-            var
-                ItemUOMRec2: Record "Item Unit of Measure";
-            BEGIN
-                IF ItemUOMRec2.GET("No.", "Alt. Price UOM") THEN BEGIN
-                    VALIDATE("Line Discount Amount", 0);
-                    VALIDATE("Direct Unit Cost", "Alt. Price" * ItemUOMRec2."Alt. Base Qty.");
-                END;
-                UpdateAmounts;
-            end;
-        }
-        field(50004; "Alt. Price UOM"; Decimal)//14017673->50004 BC Upgrade 
-        {
-            Editable = false;
-        }
         field(70000; "Posting Date"; Date)
         {
         }
@@ -135,22 +147,21 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         {
             Editable = false;
         }
-        field(70006; "Line Amount to Invoice"; Decimal)
-        {
-            Editable = false;
-        }
-        field(70007; "No;Line Comment"; Boolean)
-        {
-            FieldClass = FlowField;
-            Description = 'NF1.00:CIS.CM 09-29-15';
-            Editable = false;
-        }
-        field(70008; "Ship-to PO No."; code[20])
+        field(70006; "Ship-to PO No."; code[20])
         {
         }
-        field(70009; "Resource Group No."; code[20])
+        field(70007; "Resource Group No."; code[20])
         {
             TableRelation = "Resource Group";
+        }
+        field(70008; "Alt. Quantity"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+        field(70009; "Alt. Qty. UOM"; code[10])
+        {
+            Editable = false;
         }
         field(70010; "Status"; Option)
         {
@@ -158,62 +169,51 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
             OptionMembers = Open,Released;
             Editable = false;
         }
-        field(70011; "Alt. Quantity"; Decimal)
-        {
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-        field(70012; "Alt. Qty. UOM"; code[10])
+        field(70011; "Line Amount to Invoice"; Decimal)
         {
             Editable = false;
         }
-        field(70013; "Outstanding Gross Weight"; Decimal)
+        field(70012; "Line Gross Weight"; Decimal)
         {
         }
-        field(70014; "Outstanding Net Weight"; Decimal)
+        field(70013; "Line Net Weight"; Decimal)
         {
         }
-        field(70015; "Line Gross Weight"; Decimal)
-        {
-        }
-        field(70016; "Line Net Weight"; Decimal)
-        {
-        }
-        field(70017; "Item Group Code"; code[10])
+        field(70014; "Item Group Code"; code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(70015; "Rework No."; code[20])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(70016; "Rework Line No."; Integer)
+        {
         }
         field(70018; "Prod. Kit Order No."; code[20])
         {
-            Description = 'NF1.00:CIS.CM 09-29-15';
+            Description = 'NF1.00:CIS.CM 09-29-15'; 
             Editable = false;
         }
         field(70019; "Prod. Kit Order Line No."; Integer)
         {
             Editable = false;
         }
-        field(70020; "Rework No."; code[20])
-        {
-            Description = 'NF1.00:CIS.CM 09-29-15';
-        }
-        field(70021; "Rework Line No."; Integer)
-        {
-        }
         field(70022; "QC Hold"; Boolean)
         {
             Editable = false;
         }
-        modify("Qty. to Invoice")
+        field(70023; "Outstanding Gross Weight"; Decimal)
         {
-            trigger OnAfterValidate()
-            begin
-
-                //>>NV4.33.01 08-20-04 RTT
-                // set Qty. to Invoice on Item Tracking
-                if CurrFieldNo <> 0 then  //NG-N System Make the Qty Zero on CM Post
-                    UpdateItemTrackingLines(Rec);
-                //<<NV4.33.01 08-20-04 RTT
-            end;
+        }
+        field(70024; "No;Line Comment"; Boolean)
+        {
+            FieldClass = FlowField; 
+            Description = 'NF1.00:CIS.CM 09-29-15';
+            Editable = false;
+        }
+        field(70027; "Outstanding Net Weight"; Decimal)
+        {
         }
     }
     keys

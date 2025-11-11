@@ -2,6 +2,67 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
 {
     fields
     {
+        modify("Currency Code")
+        {
+            trigger OnAfterValidate()
+            begin
+                //>>NIF 050506 RTT
+                //>>NIF 032807
+                //IF (STRPOS(COMPANYNAME,'Mexi')<>0) AND ("Document Type"="Document Type"::Order) THEN BEGIN
+                IF (STRPOS(COMPANYNAME, 'Mexi') <> 0) AND
+                  (("Document Type" = "Document Type"::Order) OR ("Document Type" = "Document Type"::Invoice)) THEN BEGIN
+                    //<<NIF 032807
+                    GLSetup.GET;
+                    IF "Currency Code" = GLSetup."LCY Code" THEN BEGIN
+                        VALIDATE("Tipo Cambio (USD)", 0);
+                        VALIDATE("Tipo Cambio (JPY)", 0);
+                    END ELSE IF "Currency Code" = GLSetup."Additional Reporting Currency" THEN
+                            VALIDATE("Tipo Cambio (JPY)", 1);
+                END;
+                //<<NIF 050506 RTT
+
+            end;
+        }
+
+        modify("Order Address Code")
+        {
+            trigger OnBeforeValidate()
+            VAR
+                NVM: Codeunit 50021;
+            begin
+                //>>NV
+                IF NVM.CheckSoftBlock(1, "Buy-from Vendor No.", "Order Address Code", '', "Document Type", SoftBlockError) THEN
+                    ERROR(SoftBlockError);
+                //<<NV
+            end;
+        }
+        modify("Purchaser Code")
+        {
+            TableRelation = "Salesperson/Purchaser".Code;
+            Description = 'NV';
+        }
+        modify("Sell-to Customer No.")
+        {
+            trigger OnAfterValidate()
+            begin
+                PurchLine.SETRANGE("Sales Order Line No.");
+                PurchLine.SETFILTER("Special Order Sales Line No.", '<>0');
+                IF NOT PurchLine.ISEMPTY THEN
+                    ERROR(
+                      Text006,
+                      FIELDCAPTION("Sell-to Customer No."));
+            end;
+        }
+        modify(Status)
+        {
+            trigger OnAfterValidate()
+            begin
+                //>> NV
+                UpdatePurchLines(FIELDCAPTION(Status), true);
+                //<< NV
+
+            end;
+        }
         field(50000; "Contract Note No."; Code[20])
         {
             DataClassification = ToBeClassified;
@@ -179,67 +240,6 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                 //<<NIF 050506 RTT
             end;
         }
-        modify("Currency Code")
-        {
-            trigger OnAfterValidate()
-            begin
-                //>>NIF 050506 RTT
-                //>>NIF 032807
-                //IF (STRPOS(COMPANYNAME,'Mexi')<>0) AND ("Document Type"="Document Type"::Order) THEN BEGIN
-                IF (STRPOS(COMPANYNAME, 'Mexi') <> 0) AND
-                  (("Document Type" = "Document Type"::Order) OR ("Document Type" = "Document Type"::Invoice)) THEN BEGIN
-                    //<<NIF 032807
-                    GLSetup.GET;
-                    IF "Currency Code" = GLSetup."LCY Code" THEN BEGIN
-                        VALIDATE("Tipo Cambio (USD)", 0);
-                        VALIDATE("Tipo Cambio (JPY)", 0);
-                    END ELSE IF "Currency Code" = GLSetup."Additional Reporting Currency" THEN
-                            VALIDATE("Tipo Cambio (JPY)", 1);
-                END;
-                //<<NIF 050506 RTT
-
-            end;
-        }
-        modify("Purchaser Code")
-        {
-            TableRelation = "Salesperson/Purchaser".Code;
-            Description = 'NV';
-        }
-        modify("Sell-to Customer No.")
-        {
-            trigger OnAfterValidate()
-            begin
-                PurchLine.SETRANGE("Sales Order Line No.");
-                PurchLine.SETFILTER("Special Order Sales Line No.", '<>0');
-                IF NOT PurchLine.ISEMPTY THEN
-                    ERROR(
-                      Text006,
-                      FIELDCAPTION("Sell-to Customer No."));
-            end;
-        }
-
-        modify("Order Address Code")
-        {
-            trigger OnBeforeValidate()
-            VAR
-                NVM: Codeunit 50021;
-            begin
-                //>>NV
-                IF NVM.CheckSoftBlock(1, "Buy-from Vendor No.", "Order Address Code", '', "Document Type", SoftBlockError) THEN
-                    ERROR(SoftBlockError);
-                //<<NV
-            end;
-        }
-        modify(Status)
-        {
-            trigger OnAfterValidate()
-            begin
-                //>> NV
-                UpdatePurchLines(FIELDCAPTION(Status), true);
-                //<< NV
-
-            end;
-        }
         field(70000; "Entered User ID"; cODE[50])
         {
             DataClassification = ToBeClassified;
@@ -257,7 +257,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
 
             trigger OnLookup()
             var
-                LoginMgt: Codeunit "User Management"; 
+                LoginMgt: Codeunit "User Management";
             begin
                 //LoginMgt.LookupUserID("Entered User ID");
                 LoginMgt.DisplayUserInformation("Entered User ID");
@@ -271,29 +271,19 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
         {
             DataClassification = ToBeClassified;
         }
-        field(70103; "Bill of Lading No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70104; "Carrier Vendor No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = Vendor."No.";
-        }
-        field(70105; "Carrier Trailer ID"; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70106; "Priority Code"; Code[10])
-        {
-            DataClassification = ToBeClassified;
-            Description = 'NF1.00:CIS.CM 09-29-15';
-        }
         field(70003; "Ship-to PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
         field(70004; "Broker/Agent Code"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70005; "Rework No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70006; "Rework Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
@@ -313,13 +303,23 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                                                                                                                      "Document No." = FIELD("No.")));
             Editable = FALSE;
         }
-        field(70005; "Rework No."; Code[20])
+        field(70103; "Bill of Lading No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70006; "Rework Line No."; Integer)
+        field(70104; "Carrier Vendor No."; Code[20])
         {
             DataClassification = ToBeClassified;
+            TableRelation = Vendor."No.";
+        }
+        field(70105; "Carrier Trailer ID"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70106; "Priority Code"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NF1.00:CIS.CM 09-29-15';
         }
 
     }

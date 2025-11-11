@@ -147,7 +147,7 @@ tableextension 50122 "Purch. Inv. Header Ext" extends "Purch. Inv. Header"
             DecimalPlaces = 0 : 15;
             MinValue = 0;
         }
-        field(70000; "Entered User ID"; Code[50]) 
+        field(70000; "Entered User ID"; Code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = User."User Name";
@@ -169,7 +169,7 @@ tableextension 50122 "Purch. Inv. Header Ext" extends "Purch. Inv. Header"
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
-        field(70005; "Rework No."; Code[20]) 
+        field(70005; "Rework No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';

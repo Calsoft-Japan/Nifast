@@ -6,7 +6,7 @@ tableextension 50120 "Purch. Rcpt. Header Ext" extends "Purch. Rcpt. Header"
         {
             DataClassification = ToBeClassified;
         }
-        field(50001; "Exchange Contract No."; Code[20]) 
+        field(50001; "Exchange Contract No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
@@ -107,19 +107,6 @@ tableextension 50120 "Purch. Rcpt. Header Ext" extends "Purch. Rcpt. Header"
         {
             DataClassification = ToBeClassified;
         }
-        field(70009; "Bill of Lading No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70007; "Carrier Vendor No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = Vendor."No.";
-        }
-        field(70008; "Carrier Trailer ID"; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
         field(70003; "Ship-to PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
@@ -135,6 +122,19 @@ tableextension 50120 "Purch. Rcpt. Header Ext" extends "Purch. Rcpt. Header"
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
         field(70006; "Rework Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70007; "Carrier Vendor No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = Vendor."No.";
+        }
+        field(70008; "Carrier Trailer ID"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70103; "Bill of Lading No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
