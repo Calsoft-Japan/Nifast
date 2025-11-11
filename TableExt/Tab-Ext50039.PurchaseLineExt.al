@@ -44,7 +44,7 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
                 UpdateAmounts;
             end;
         }
-        field(50004; "Alt. Price UOM"; Decimal)//14017673->50004 BC Upgrade 
+        field(50004; "Alt. Price UOM"; Code[20])//14017673->50004 BC Upgrade 
         {
             Editable = false;
         }

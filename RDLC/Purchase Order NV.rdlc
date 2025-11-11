@@ -4902,9 +4902,6 @@ End Function
         <Field Name="TempPurchLine_AltPriceUOM">
           <DataField>TempPurchLine_AltPriceUOM</DataField>
         </Field>
-        <Field Name="TempPurchLine_AltPriceUOMFormat">
-          <DataField>TempPurchLine_AltPriceUOMFormat</DataField>
-        </Field>
         <Field Name="AmountSubjectToSalesTax">
           <DataField>AmountSubjectToSalesTax</DataField>
         </Field>
