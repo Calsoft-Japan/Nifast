@@ -8,6 +8,12 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
             // cleaned
             TableRelation = "Freight Code";
         }
+
+        field(50008; "Inside Salesperson Code"; Code[10])
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true), Sales = CONST(true));
+            Description = 'NV-FB';
+        }
         field(50800; "Entry/Exit Date"; Date)
         {
             Caption = 'Entry/Exit Date';
@@ -134,43 +140,8 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
             Description = 'CE 1.2';
         }
 
-        /*  field(50001; "Inside Salesperson Code"; Code[10])//NV-FB 14017617->50001 BC Upgrade
-         { } */
-        //TODO
-
-
-        field(70100; "Entered User ID"; Code[50])
-        {
-            TableRelation = User."User Name";
-            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
-            ValidateTableRelation = false;
-            TestTableRelation = false;
-            trigger OnValidate()
-            VAR
-                LoginMgt: Codeunit 418;
-            BEGIN
-            END;
-
-            trigger OnLookup()
-            VAR
-                LoginMgt: Codeunit 418;
-            BEGIN
-            END;
-
-        }
-
-        field(70101; "Entered Date"; Date)
-        {
-        }
-
         field(70002; "Entered Time"; Time)
         {
-        }
-
-        field(50008; "Inside Salesperson Code"; Code[10])
-        {
-            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true), Sales = CONST(true));
-            Description = 'NV-FB';
         }
 
         field(70004; "Phone No."; Text[30])
@@ -201,15 +172,44 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
             Description = 'NV-FB';
         }
 
-        field(70010; "Tool Repair Parts Warranty"; DateFormula)
-        {
-        }
-
         field(70020; "Tool Repair Labor Warranty"; DateFormula)
         {
         }
 
-        field(70017; "No;Cr. Mgmt. Comment"; Boolean)
+        field(70027; "Tool Repair Parts Warranty"; DateFormula)
+        {
+        }
+
+        /*  field(50001; "Inside Salesperson Code"; Code[10])//NV-FB 14017617->50001 BC Upgrade
+         { } */
+        //TODO
+
+
+        field(70100; "Entered User ID"; Code[50])
+        {
+            TableRelation = User."User Name";
+            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
+            ValidateTableRelation = false;
+            TestTableRelation = false;
+            trigger OnValidate()
+            VAR
+                LoginMgt: Codeunit 418;
+            BEGIN
+            END;
+
+            trigger OnLookup()
+            VAR
+                LoginMgt: Codeunit 418;
+            BEGIN
+            END;
+
+        }
+
+        field(70101; "Entered Date"; Date)
+        {
+        }
+
+        field(70102; "No;Cr. Mgmt. Comment"; Boolean)
         {
             // FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';

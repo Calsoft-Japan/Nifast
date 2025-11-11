@@ -25,6 +25,11 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
             DataClassification = ToBeClassified;
             Caption = 'ASN Ship-to Code';
         }
+
+        field(50004; "Third Party Ship. Account No."; Code[20])//BC Upgrade 14000717->50004
+        {
+            Caption = 'Third Party Ship. Account No.';
+        }
         field(50005; "Model Year"; Code[10])
         {
             DataClassification = ToBeClassified;
@@ -47,6 +52,11 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         {
             DataClassification = ToBeClassified;
             Caption = 'Mode of Transport';
+        }
+
+        field(50008; "Inside Salesperson Code"; Code[10])//BC Upgrade 14017617->50008
+        {
+            Caption = 'Inside Salesperson Code';
         }
         field(50051; "Ship Authorization No."; Code[10])
         {
@@ -174,30 +184,6 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
                 //<<NIF 07-06-05
             end;
         }
-
-        field(50004; "Third Party Ship. Account No."; Code[20])//BC Upgrade 14000717->50004
-        {
-            Caption = 'Third Party Ship. Account No.';
-        }
-
-        field(50008; "Inside Salesperson Code"; Code[10])//BC Upgrade 14017617->50008
-        {
-            Caption = 'Inside Salesperson Code';
-        }
-        field(70100; "Entered User ID"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-
-            TableRelation = User."User Name";
-            ValidateTableRelation = false;
-            //TestTableRelation =No;
-            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
-
-
-        }
-        field(70101; "Entered Date"; Date)
-        {
-        }
         field(70002; "Entered Time"; Time)
         {
         }
@@ -213,10 +199,6 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         }
         field(70006; "E-Mail"; text[80])
         {
-        }
-        field(70102; "Priority Code"; code[10])
-        {
-            Description = 'NF1.00:CIS.CM 09-29-15';
         }
         field(70007; "Ship-to PO No."; code[20])
         {
@@ -301,46 +283,9 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
                     VALIDATE("Tax Liable");
             end;
         }
-        field(70103; "Quote Expiration Date"; Date)
-        {
-        }
-        field(70104; "NV Quote No."; code[20])
-        {
-        }
-        field(70105; "Return No."; code[20])
-        {
-        }
         field(70009; "Broker/Agent Code"; code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
-        }
-        field(70106; "Outstanding Gross Weight"; Decimal)
-        {
-            FieldClass = FlowField;
-            CalcFormula = Sum("Sales Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
-                                                                                                                  "Document No." = FIELD("No.")));
-            Editable = false;
-        }
-        field(70107; "Outstanding Net Weight"; Decimal)
-        {
-            FieldClass = FlowField;
-            CalcFormula = Sum("Sales Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
-                                                                                                                  "Document No." = FIELD("No.")));
-            Editable = false;
-        }
-        field(70108; "Sales Desk Worksheet"; Boolean)
-        {
-            trigger OnValidate()
-            begin
-                IF "Document Type" <> "Document Type"::Quote THEN ERROR('Document Type must be Quote');
-            end;
-        }
-        field(70109; "Sales Counter Invoice"; Boolean)
-        {
-            trigger OnValidate()
-            begin
-                IF "Document Type" <> "Document Type"::Invoice THEN ERROR('Document Type must be Invoice');
-            end;
         }
         field(70010; "Tool Repair Priority"; Boolean)
         {
@@ -383,10 +328,13 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }
-        field(70027; "Tool Repair Parts Warranty"; DateFormula)
+        field(70018; "FB Order No."; code[20])
         {
         }
         field(70020; "Tool Repair Labor Warranty"; DateFormula)
+        {
+        }
+        field(70027; "Tool Repair Parts Warranty"; DateFormula)
         {
         }
         field(70029; "No;Cr. Mgmt. Comment"; Boolean)
@@ -394,9 +342,6 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
             FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
-        }
-        field(70018; "FB Order No."; code[20])
-        {
         }
         field(70031; "Delivery Route"; code[10])
         {
@@ -410,6 +355,61 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
             trigger OnValidate()
             begin
                 UpdateSalesLines(FIELDCAPTION("Delivery Stop"), FALSE);
+            end;
+        }
+        field(70100; "Entered User ID"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
+            //TestTableRelation =No;
+            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
+
+
+        }
+        field(70101; "Entered Date"; Date)
+        {
+        }
+        field(70102; "Priority Code"; code[10])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(70103; "Quote Expiration Date"; Date)
+        {
+        }
+        field(70104; "NV Quote No."; code[20])
+        {
+        }
+        field(70105; "Return No."; code[20])
+        {
+        }
+        field(70106; "Outstanding Gross Weight"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Sales Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
+                                                                                                                  "Document No." = FIELD("No.")));
+            Editable = false;
+        }
+        field(70107; "Outstanding Net Weight"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Sales Line"."Outstanding Gross Weight" WHERE("Document Type" = FIELD("Document Type"),
+                                                                                                                  "Document No." = FIELD("No.")));
+            Editable = false;
+        }
+        field(70108; "Sales Desk Worksheet"; Boolean)
+        {
+            trigger OnValidate()
+            begin
+                IF "Document Type" <> "Document Type"::Quote THEN ERROR('Document Type must be Quote');
+            end;
+        }
+        field(70109; "Sales Counter Invoice"; Boolean)
+        {
+            trigger OnValidate()
+            begin
+                IF "Document Type" <> "Document Type"::Invoice THEN ERROR('Document Type must be Invoice');
             end;
         }
     }

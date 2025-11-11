@@ -26,7 +26,7 @@ tableextension 50246 "Requisition Line _Ext" extends "Requisition Line"
                 END ELSE BEGIN
                     IF SalesLine.GET(SalesLine."Document Type"::Order, "Sales Order No.", "Sales Order Line No.") THEN BEGIN
                         "Sell-to Customer No." := SalesLine."Sell-to Customer No.";
-                        "Ship-to Code" := SalesLine."Ship-to Code";
+                        "Ship-to Code" := SalesLine."Ship-to Code NV";
                     END;
                 END;
                 // ReserveReqLine.VerifyChange(Rec, xRec);

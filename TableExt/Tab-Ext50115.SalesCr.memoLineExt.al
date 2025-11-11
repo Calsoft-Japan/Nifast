@@ -134,45 +134,45 @@ tableextension 50115 "Sales Cr.Memo Line Ext" extends "Sales Cr.Memo Line"
             DecimalPlaces = 0 : 5;
         }
 
-        field(70021; "Line Gross Weight"; Decimal)
+        field(70023; "Line Gross Weight"; Decimal)
         {
         }
 
-        field(70022; "Line Net Weight"; Decimal)
+        field(70024; "Line Net Weight"; Decimal)
         {
         }
 
-        field(70023; "Ship-to Code"; Code[10])
+        field(70025; "Ship-to Code NV"; Code[10])
         {
             Description = 'NV';
         }
 
-        field(70024; "Line Cost"; Decimal)
+        field(70026; "Line Cost"; Decimal)
         {
             Editable = false;
         }
 
-        field(70025; "Item Group Code"; Code[10])
+        field(70027; "Item Group Code"; Code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
 
-        field(70026; "Vendor No."; Code[20])
+        field(70028; "Vendor No."; Code[20])
         {
         }
 
-        field(70027; "Vendor Item No."; Text[20])
+        field(70029; "Vendor Item No."; Text[20])
         {
         }
 
-        field(70028; "BOM Item"; Boolean)
+        field(70030; "BOM Item"; Boolean)
         {
             FieldClass = FlowField;
             CalcFormula = Exist("BOM Component" WHERE("Parent Item No." = FIELD("No.")));
             Editable = false;
         }
 
-        field(70029; "Prod. Order No."; Code[20])
+        field(70031; "Prod. Order No."; Code[20])
         {
         }
 

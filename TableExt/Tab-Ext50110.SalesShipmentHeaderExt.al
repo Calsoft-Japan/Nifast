@@ -7,6 +7,12 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
             // cleaned
             TableRelation = "Freight Code";
         }
+
+        field(50001; "Inside Salesperson Code"; Code[10])//NV-FB BC Upgarde 14017617->50001
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true), Sales = CONST(true));
+            Description = 'NV-FB';
+        }
         field(50003; "ASN Ship-to Code"; Code[30])
         {
             // cleaned
@@ -52,33 +58,6 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
         field(60102; "Dock Code"; Code[10])
         {
             // cleaned
-        }
-
-        field(50001; "Inside Salesperson Code"; Code[10])//NV-FB BC Upgarde 14017617->50001
-        {
-            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true), Sales = CONST(true));
-            Description = 'NV-FB';
-        }
-        field(70100; "Entered User ID"; code[50])
-        {
-            TableRelation = User."User Name";
-            ValidateTableRelation = false;
-            TestTableRelation = false;
-            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
-            trigger OnValidate()
-            var
-                LoginMgt: Codeunit "User Management";
-            begin
-            end;
-
-            trigger OnLookup()
-            var
-                LoginMgt: Codeunit "User Management";
-            begin
-            end;
-        }
-        field(70101; "Entered Date"; Date)
-        {
         }
         field(70002; "Entered Time"; Time)
         {
@@ -139,8 +118,9 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
-        field(70027; "Tool Repair Parts Warranty"; DateFormula)
+        field(70018; "FB Order No."; code[20])
         {
+            Description = 'NV-FB';
         }
         field(70020; "Tool Repair Labor Warranty"; DateFormula)
         {
@@ -151,14 +131,34 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
-        field(70018; "FB Order No."; code[20])
-        {
-            Description = 'NV-FB';
-        }
         field(70023; "Delivery Route"; code[10])
         {
         }
         field(70024; "Delivery Stop"; code[10])
+        {
+        }
+        field(70027; "Tool Repair Parts Warranty"; DateFormula)
+        {
+        }
+        field(70100; "Entered User ID"; code[50])
+        {
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
+            TestTableRelation = false;
+            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
+            trigger OnValidate()
+            var
+                LoginMgt: Codeunit "User Management";
+            begin
+            end;
+
+            trigger OnLookup()
+            var
+                LoginMgt: Codeunit "User Management";
+            begin
+            end;
+        }
+        field(70101; "Entered Date"; Date)
         {
         }
     }

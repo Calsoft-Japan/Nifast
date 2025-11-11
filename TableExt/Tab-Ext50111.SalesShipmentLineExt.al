@@ -139,7 +139,7 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
             Caption = 'National';
             Description = 'AKK1606.01';
         }
-       
+
         field(70000; "Order Date"; Date)
         {
             Description = 'NV';
@@ -180,116 +180,116 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
         {
         }
 
-        field(70008; "Net Unit Price"; Decimal)
+        field(70013; "Net Unit Price"; Decimal)
         {
             DecimalPlaces = 2 : 5;
             Editable = false;
         }
 
-        field(70009; "Line Comment"; Boolean)
+        field(70014; "Line Comment"; Boolean)
         {
             FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
 
-        field(70010; "Ship-to PO No."; Code[20])
+        field(70015; "Ship-to PO No."; Code[20])
         {
         }
 
-        field(70011; "Shipping Advice"; Option)
+        field(70016; "Shipping Advice"; Option)
         {
             OptionCaptionML = ENU = 'Partial,Complete';
             OptionMembers = Partial,Complete;
         }
 
-        field(70012; "Contract No."; Code[20])
+        field(70017; "Contract No."; Code[20])
         {
             TableRelation = "Price Contract" WHERE("Customer No." = FIELD("Sell-to Customer No."));
             Description = 'NV';
         }
 
-        field(70013; "Resource Group No."; Code[20])
+        field(70018; "Resource Group No."; Code[20])
         {
             TableRelation = "Resource Group";
         }
 
-        field(70014; "Order Outstanding Qty. (Base)"; Decimal)
+        field(70019; "Order Outstanding Qty. (Base)"; Decimal)
         {
             DecimalPlaces = 0 : 5;
         }
 
-        field(70015; "Order Quantity (Base)"; Decimal)
+        field(70020; "Order Quantity (Base)"; Decimal)
         {
             DecimalPlaces = 0 : 5;
         }
-        field(70016; "Tag No."; Code[20])
+        field(70021; "Tag No."; Code[20])
         {
         }
 
-        field(70017; "Customer Bin"; Text[12])
+        field(70022; "Customer Bin"; Text[12])
         {
         }
 
-        field(70018; "Line Gross Weight"; Decimal)
+        field(70023; "Line Gross Weight"; Decimal)
         {
         }
 
-        field(70019; "Line Net Weight"; Decimal)
+        field(70024; "Line Net Weight"; Decimal)
         {
             DecimalPlaces = 0 : 5;
         }
 
-        field(70020; "Ship-to Code"; Code[10])
+        field(70025; "Ship-to Code NV"; Code[10])
         {
             Description = 'NV';
         }
 
-        field(70021; "Line Cost"; Decimal)
+        field(70026; "Line Cost"; Decimal)
         {
             Editable = false;
         }
 
-        field(70022; "Item Group Code"; Code[10])
+        field(70027; "Item Group Code"; Code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
         }
 
-        field(70023; "Vendor No."; Code[20])
+        field(70028; "Vendor No."; Code[20])
         {
         }
 
-        field(70024; "Vendor Item No."; Text[20])
+        field(70029; "Vendor Item No."; Text[20])
         {
         }
 
-        field(70025; "BOM Item"; Boolean)
+        field(70030; "BOM Item"; Boolean)
         {
             FieldClass = FlowField;
             CalcFormula = Exist("BOM Component" WHERE("Parent Item No." = FIELD("No.")));
             Editable = false;
         }
 
-        field(70026; "Prod. Order No."; Code[20])
+        field(70031; "Prod. Order No."; Code[20])
         {
         }
 
-        field(70027; "FB Order No."; Code[20])
-        {
-            Description = 'NV';
-        }
-
-        field(70028; "FB Line No."; Integer)
+        field(70032; "FB Order No."; Code[20])
         {
             Description = 'NV';
         }
 
-        field(70029; "FB Tag No."; Code[20])
+        field(70033; "FB Line No."; Integer)
         {
             Description = 'NV';
         }
 
-        field(70030; "FB Customer Bin"; Code[20])
+        field(70034; "FB Tag No."; Code[20])
+        {
+            Description = 'NV';
+        }
+
+        field(70035; "FB Customer Bin"; Code[20])
         {
             Description = 'NV';
         }

@@ -65,8 +65,8 @@ codeunit 50050 CU22Subscriber
         //>> NIF 07-10-05
         IF Item.GET(ItemJnlLine."Item No.") THEN
             IF NOT CalledFromAdjustment THEN
-                IF (Item."Require Revision No.") AND (ItemJnlLine."Revision No." = '') AND (ItemJnlLine."Item Charge No." = '') THEN
-                    ERROR('%1 is required for %2.', ItemJnlLine.FIELDNAME("Revision No."), Item."No.");
+                IF (Item."Require Revision No.") AND (ItemJnlLine."Revision No." = '') AND (ItemJnlLine."Item Charge No." = '') THEN;
+        //  ERROR('%1 is required for %2.', ItemJnlLine.FIELDNAME("Revision No."), Item."No.");//ESG_NOV12
         //<< NIF 07-10-05
     end;
 

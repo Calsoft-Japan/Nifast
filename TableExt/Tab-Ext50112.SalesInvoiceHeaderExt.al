@@ -37,6 +37,9 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
             CalcFormula = Lookup("Sales Shipment Header"."No." WHERE("Order No." = FIELD("Order No."),
                                                                                                          "No." = FILTER(<> 'PSH100619')));
         }
+
+        field(50006; "Inside Salesperson Code"; Code[10])//NV-FB BC Upgrade From 14017617->50006
+        { }
         field(50007; "FX Rate on Order Creation Date"; Decimal)
         {
             DecimalPlaces = 1 : 6;
@@ -140,24 +143,6 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
         {
             DataClassification = ToBeClassified;
         }
-
-        field(50006; "Inside Salesperson Code"; Code[10])//NV-FB BC Upgrade From 14017617->50006
-        { }
-        field(70100; "Entered User ID"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-
-            TableRelation = User."User Name";
-            ValidateTableRelation = false;
-            //TestTableRelation =No;
-            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
-
-
-        }
-        field(70101; "Entered Date"; Date)
-        {
-            DataClassification = ToBeClassified;
-        }
         field(70002; "Entered Time"; Time)
         {
             DataClassification = ToBeClassified;
@@ -243,6 +228,21 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
         {
             DataClassification = ToBeClassified;
             Description = 'NV-FB';
+        }
+        field(70100; "Entered User ID"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
+            //TestTableRelation =No;
+            Description = '20-->50 NF1.00:CIS.NG  10-10-15';
+
+
+        }
+        field(70101; "Entered Date"; Date)
+        {
+            DataClassification = ToBeClassified;
         }
 
     }

@@ -920,7 +920,7 @@ page 50086 "Sales Shipment List"
                     ToolTip = 'Specifies the value of the Line Net Weight field.';
                     Caption = 'Line Net Weight';
                 }
-                field("Ship-to Code"; Rec."Ship-to Code")
+                field("Ship-to Code"; Rec."Ship-to Code NV")
                 {
                     ToolTip = 'Specifies the value of the Ship-to Code field.';
                     Caption = 'Ship-to Code';

@@ -4,9 +4,18 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
 
     fields
     {
-        modify("No.")
+        modify("Blanket Order Line No.")
         {
-            Description = 'AKK1606';
+            trigger OnAfterValidate()
+            var
+                SalesLine2: Record "Sales Line";
+            begin
+                SalesLine2.GET("Document Type"::"Blanket Order", "Blanket Order No.", "Blanket Order Line No.");
+                VALIDATE("Location Code", SalesLine2."Location Code");
+                VALIDATE("Unit of Measure Code", SalesLine2."Unit of Measure Code");
+                VALIDATE("Unit Price", SalesLine2."Unit Price");
+                VALIDATE("Line Discount %", SalesLine2."Line Discount %");
+            end;
         }
         modify("Drop Shipment")
         {
@@ -25,18 +34,9 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
                 // Shipping
             end;
         }
-        modify("Blanket Order Line No.")
+        modify("No.")
         {
-            trigger OnAfterValidate()
-            var
-                SalesLine2: Record "Sales Line";
-            begin
-                SalesLine2.GET("Document Type"::"Blanket Order", "Blanket Order No.", "Blanket Order Line No.");
-                VALIDATE("Location Code", SalesLine2."Location Code");
-                VALIDATE("Unit of Measure Code", SalesLine2."Unit of Measure Code");
-                VALIDATE("Unit Price", SalesLine2."Unit Price");
-                VALIDATE("Line Discount %", SalesLine2."Line Discount %");
-            end;
+            Description = 'AKK1606';
         }
         modify("Unit of Measure Code")
         {
@@ -220,33 +220,23 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             Description = 'NV - FB';
         }
 
-        field(70007; "Line Amount to Ship"; Decimal)
-        {
-            Editable = false;
-        }
-
-        field(70008; "Line Amount to Invoice"; Decimal)
-        {
-            Editable = false;
-        }
-
-        field(70009; "List Price"; Decimal)
+        field(70007; "List Price"; Decimal)
         {
             DecimalPlaces = 2 : 5;
         }
 
-        field(70010; "Alt. Quantity"; Decimal)
+        field(70008; "Alt. Quantity"; Decimal)
         {
             DecimalPlaces = 0 : 5;
             Editable = false;
         }
 
-        field(70011; "Alt. Qty. UOM"; Code[10])
+        field(70009; "Alt. Qty. UOM"; Code[10])
         {
             Editable = false;
         }
 
-        field(70012; "Alt. Price"; Decimal)
+        field(70010; "Alt. Price"; Decimal)
         {
             DecimalPlaces = 2 : 5;
 
@@ -265,7 +255,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             end;
         }
 
-        field(70013; "Alt. Price UOM"; Code[10])
+        field(70011; "Alt. Price UOM"; Code[10])
         {
             TableRelation = if (Type = const(Item)) "Item Unit of Measure".Code where("Item No." = field("No."));
 
@@ -275,19 +265,19 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
                 Validate("Alt. Sales Cost");
             end;
         }
-        field(70014; "Alt. Sales Cost"; Decimal)
+        field(70012; "Alt. Sales Cost"; Decimal)
         {
             DecimalPlaces = 2 : 5;
             Editable = false;
         }
 
-        field(70015; "Net Unit Price"; Decimal)
+        field(70013; "Net Unit Price"; Decimal)
         {
             DecimalPlaces = 2 : 5;
             Editable = false;
         }
 
-        field(70016; "Line Comment"; Boolean)
+        field(70014; "Line Comment"; Boolean)
         {
             FieldClass = FlowField;
             InitValue = false;
@@ -295,11 +285,11 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             Editable = false;
         }
 
-        field(70017; "Ship-to PO No."; Code[20])
+        field(70015; "Ship-to PO No."; Code[20])
         {
         }
 
-        field(70018; "Shipping Advice"; Option)
+        field(70016; "Shipping Advice"; Option)
         {
             OptionCaption = 'Partial,Complete';
             OptionMembers = Partial,Complete;
@@ -310,19 +300,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             // end;
         }
 
-        field(70019; "Purchase Order Exists"; Boolean)
-        {
-            FieldClass = FlowField;
-            CalcFormula = Exist("Purchase Line"
-        where(
-            Type = const(Item),
-            "No." = field("No."),
-            "Outstanding Quantity" = filter('<>0')
-        ));
-            Editable = true;
-        }
-
-        field(70020; "Contract No."; Code[20])
+        field(70017; "Contract No."; Code[20])
         {
             TableRelation = "Price Contract" where("Customer No." = field("Sell-to Customer No."));
             Caption = 'NV - FB';
@@ -340,7 +318,106 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             end;
         }
 
-        field(70021; "Requisition Exists"; Boolean)
+        field(70018; "Resource Group No."; Code[20])
+        {
+            TableRelation = "Resource Group";
+        }
+
+        field(70021; "Tag No."; Code[20])
+        {
+        }
+
+        field(70022; "Customer Bin"; Text[12])
+        {
+        }
+
+        field(70023; "Line Gross Weight"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+
+        field(70024; "Line Net Weight"; Decimal)
+        {
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+
+        field(70025; "Ship-to Code NV"; Code[10])
+        {
+            Description = 'NV - FB';
+        }
+
+        field(70026; "Line Cost"; Decimal)
+        {
+            Editable = false;
+        }
+
+        field(70027; "Item Group Code"; Code[10])
+        {
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+
+        field(70028; "Vendor No."; Code[20])
+        {
+            TableRelation = Vendor."No.";
+        }
+
+        field(70029; "Vendor Item No."; Text[20])
+        {
+        }
+
+        field(70030; "BOM Item"; Boolean)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Exist("BOM Component"
+        where("Parent Item No." = field("No.")));
+            Editable = false;
+        }
+
+        field(70032; "FB Order No."; Code[20])
+        {
+            Description = 'NV - FB';
+        }
+
+        field(70033; "FB Line No."; Integer)
+        {
+            Description = 'NV - FB';
+        }
+
+        field(70034; "FB Tag No."; Code[20])
+        {
+            Description = 'NV - FB';
+        }
+
+        field(70035; "FB Customer Bin"; Code[20])
+        {
+            Description = 'NV - FB';
+        }
+
+        field(70101; "Line Amount to Ship"; Decimal)
+        {
+            Editable = false;
+        }
+
+        field(70102; "Line Amount to Invoice"; Decimal)
+        {
+            Editable = false;
+        }
+
+        field(70103; "Purchase Order Exists"; Boolean)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Exist("Purchase Line"
+        where(
+            Type = const(Item),
+            "No." = field("No."),
+            "Outstanding Quantity" = filter('<>0')
+        ));
+            Editable = true;
+        }
+
+        field(70104; "Requisition Exists"; Boolean)
         {
             FieldClass = FlowField;
             CalcFormula = Exist("Requisition Line"
@@ -351,106 +428,29 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
             Editable = false;
         }
 
-        field(70022; "Resource Group No."; Code[20])
-        {
-            TableRelation = "Resource Group";
-        }
-
-        field(70023; "Status"; Option)
+        field(70105; "Status"; Option)
         {
             OptionCaption = 'Open,Released';
             OptionMembers = Open,Released;
             Editable = false;
         }
 
-        field(70024; "Tag No."; Code[20])
-        {
-        }
-
-        field(70025; "Customer Bin"; Text[12])
-        {
-        }
-
-        field(70026; "Outstanding Gross Weight"; Decimal)
+        field(70106; "Outstanding Gross Weight"; Decimal)
         {
             DecimalPlaces = 0 : 5;
         }
 
-        field(70027; "Outstanding Net Weight"; Decimal)
+        field(70107; "Outstanding Net Weight"; Decimal)
         {
             DecimalPlaces = 0 : 5;
         }
 
-        field(70028; "Line Gross Weight"; Decimal)
-        {
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-
-        field(70029; "Line Net Weight"; Decimal)
-        {
-            DecimalPlaces = 0 : 5;
-            Editable = false;
-        }
-
-        field(70030; "Ship-to Code"; Code[10])
-        {
-            Description = 'NV - FB';
-        }
-
-        field(70031; "Line Cost"; Decimal)
-        {
-            Editable = false;
-        }
-
-        field(70032; "Item Group Code"; Code[10])
-        {
-            Description = 'NF1.00:CIS.CM 09-29-15';
-        }
-
-        field(70033; "Vendor No."; Code[20])
-        {
-            TableRelation = Vendor."No.";
-        }
-
-        field(70034; "Vendor Item No."; Text[20])
+        field(70108; "Tool Repair Order No."; Code[20])
         {
         }
 
-        field(70035; "Tool Repair Order No."; Code[20])
+        field(70109; "Prod. Kit Order No."; Code[20])
         {
-        }
-
-        field(70036; "BOM Item"; Boolean)
-        {
-            FieldClass = FlowField;
-            CalcFormula = Exist("BOM Component"
-        where("Parent Item No." = field("No.")));
-            Editable = false;
-        }
-
-        field(70037; "Prod. Kit Order No."; Code[20])
-        {
-        }
-
-        field(70038; "FB Order No."; Code[20])
-        {
-            Description = 'NV - FB';
-        }
-
-        field(70039; "FB Line No."; Integer)
-        {
-            Description = 'NV - FB';
-        }
-
-        field(70040; "FB Tag No."; Code[20])
-        {
-            Description = 'NV - FB';
-        }
-
-        field(70141; "FB Customer Bin"; Code[20])
-        {
-            Description = 'NV - FB';
         }
 
         field(70142; "Delivery Route"; Code[10])
