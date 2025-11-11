@@ -6,7 +6,7 @@ tableextension 50124 "Purch. Cr. Memo Hdr. Ext" extends "Purch. Cr. Memo Hdr."
         {
             Caption = 'UUID';
             Description = 'CE 1.2';
-        }
+        } 
         field(55010; "XML - Invoice Folio"; Code[50])
         {
             Caption = 'Invoice Folio';
