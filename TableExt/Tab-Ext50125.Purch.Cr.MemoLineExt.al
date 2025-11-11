@@ -42,13 +42,6 @@ tableextension 50125 "Purch. Cr. Memo Line Ext" extends "Purch. Cr. Memo Line"
         {
         }
 
-        field(70005; "Line Comment"; Boolean)
-        {
-            FieldClass = FlowField;
-            Description = 'NF1.00:CIS.NG 10-10-15';
-            Editable = false;
-        }
-
         field(70006; "Ship-to PO No."; Code[20])
         {
         }
@@ -58,17 +51,24 @@ tableextension 50125 "Purch. Cr. Memo Line Ext" extends "Purch. Cr. Memo Line"
             TableRelation = "Resource Group";
         }
 
-        field(70008; "Line Gross Weight"; Decimal)
+        field(70012; "Line Gross Weight"; Decimal)
         {
         }
 
-        field(70009; "Line Net Weight"; Decimal)
+        field(70013; "Line Net Weight"; Decimal)
         {
         }
 
-        field(70010; "Item Group Code"; Code[10])
+        field(70014; "Item Group Code"; Code[10])
         {
             Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+
+        field(70017; "Line Comment"; Boolean)
+        {
+            FieldClass = FlowField;
+            Description = 'NF1.00:CIS.NG 10-10-15';
+            Editable = false;
         }
 
     }

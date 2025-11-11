@@ -24,6 +24,22 @@ tableextension 50123 "Purch. Inv. Line Ext" extends "Purch. Inv. Line"
         {
             Description = 'Forex';
         }
+
+        field(50003; "Alt. Price"; Decimal)
+        {
+            DecimalPlaces = 2 : 5;
+            trigger OnValidate()
+            var
+                ItemUOMRec2: Record 5404;
+            BEGIN
+
+            END;
+        }
+
+        field(50004; "Alt. Price UOM"; Code[10])
+        {
+            Editable = false;
+        }
         field(50800; "Entry/Exit Date"; Date)
         {
             Caption = 'Entry/Exit Date';
@@ -57,7 +73,7 @@ tableextension 50123 "Purch. Inv. Line Ext" extends "Purch. Inv. Line"
             // cleaned
             TableRelation = Manufacturer;
         }
-       
+
         field(70000; "NV Posting Date"; Date)
         {
         }
@@ -79,13 +95,6 @@ tableextension 50123 "Purch. Inv. Line Ext" extends "Purch. Inv. Line"
         {
         }
 
-        field(70005; "Line Comment"; Boolean)
-        {
-            FieldClass = FlowField;
-            Description = 'NF1.00:CIS.NG 10-10-15';
-            Editable = false;
-        }
-
         field(70006; "Ship-to PO No."; Code[20])
         {
         }
@@ -102,22 +111,6 @@ tableextension 50123 "Purch. Inv. Line Ext" extends "Purch. Inv. Line"
         }
 
         field(70009; "Alt. Qty. UOM"; Code[10])
-        {
-            Editable = false;
-        }
-
-        field(70010; "Alt. Price"; Decimal)
-        {
-            DecimalPlaces = 2 : 5;
-            trigger OnValidate()
-            var
-                ItemUOMRec2: Record 5404;
-            BEGIN
-
-            END;
-        }
-
-        field(70011; "Alt. Price UOM"; Code[10])
         {
             Editable = false;
         }
@@ -141,6 +134,13 @@ tableextension 50123 "Purch. Inv. Line Ext" extends "Purch. Inv. Line"
 
         field(70016; "Rework Line No."; Integer)
         {
+        }
+
+        field(70017; "Line Comment"; Boolean)
+        {
+            FieldClass = FlowField;
+            Description = 'NF1.00:CIS.NG 10-10-15';
+            Editable = false;
         }
 
     }
