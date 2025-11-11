@@ -85,7 +85,7 @@ tableextension 50124 "Purch. Cr. Memo Hdr. Ext" extends "Purch. Cr. Memo Hdr."
             begin
             end;
         }
-        field(70001; "Entered Date"; date)
+        field(70102; "Entered Date"; date)
         {
         }
         field(70002; "Entered Time"; Time)

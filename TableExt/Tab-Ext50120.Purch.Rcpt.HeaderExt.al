@@ -94,12 +94,12 @@ tableextension 50120 "Purch. Rcpt. Header Ext" extends "Purch. Rcpt. Header"
             MinValue = 0;
         }
 
-        field(70000; "Entered User ID"; Code[50])
+        field(70101; "Entered User ID"; Code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = user."User Name";
         }
-        field(70001; "Entered Date"; Date)
+        field(70102; "Entered Date"; Date)
         {
             DataClassification = ToBeClassified;
         }

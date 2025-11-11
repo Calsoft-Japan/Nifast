@@ -152,7 +152,7 @@ tableextension 50122 "Purch. Inv. Header Ext" extends "Purch. Inv. Header"
             DataClassification = ToBeClassified;
             TableRelation = User."User Name";
         }
-        field(70001; "Entered Date"; dATE)
+        field(70102; "Entered Date"; dATE)
         {
             DataClassification = ToBeClassified;
         }
