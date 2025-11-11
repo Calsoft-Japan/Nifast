@@ -240,7 +240,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
 
             end;
         }
-        field(70000; "Entered User ID"; cODE[50])
+        field(70101; "Entered User ID"; cODE[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = User."User Name";
@@ -263,7 +263,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                 LoginMgt.DisplayUserInformation("Entered User ID");
             end;
         }
-        field(70001; "Entered Date"; Date)
+        field(70102; "Entered Date"; Date)
         {
             DataClassification = ToBeClassified;
         }

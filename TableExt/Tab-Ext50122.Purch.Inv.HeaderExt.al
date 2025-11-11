@@ -147,12 +147,12 @@ tableextension 50122 "Purch. Inv. Header Ext" extends "Purch. Inv. Header"
             DecimalPlaces = 0 : 15;
             MinValue = 0;
         }
-        field(70000; "Entered User ID"; Code[50]) 
+        field(70101; "Entered User ID"; Code[50]) 
         {
             DataClassification = ToBeClassified;
             TableRelation = User."User Name";
         }
-        field(70001; "Entered Date"; dATE)
+        field(70102; "Entered Date"; dATE)
         {
             DataClassification = ToBeClassified;
         }
