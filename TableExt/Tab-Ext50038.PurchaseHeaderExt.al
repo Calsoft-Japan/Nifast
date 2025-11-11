@@ -240,53 +240,6 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                 //<<NIF 050506 RTT
             end;
         }
-        field(70000; "Entered User ID"; cODE[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = User."User Name";
-            ValidateTableRelation = false;
-            //TestTableRelation =false;
-            Description = '20-->50';
-            trigger OnValidate()
-            var
-                LoginMgt: Codeunit 418;
-            begin
-                //LoginMgt.ValidateUserID("Entered User ID");
-                LoginMgt.DisplayUserInformation("Entered User ID");
-            end;
-
-            trigger OnLookup()
-            var
-                LoginMgt: Codeunit "User Management";
-            begin
-                //LoginMgt.LookupUserID("Entered User ID");
-                LoginMgt.DisplayUserInformation("Entered User ID");
-            end;
-        }
-        field(70001; "Entered Date"; Date)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70002; "Entered Time"; Time)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70003; "Ship-to PO No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70004; "Broker/Agent Code"; Code[10])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70005; "Rework No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70006; "Rework Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
         field(70009; "Outstanding Gross Weight"; Decimal)
         {
             //DataClassification = ToBeClassified;
@@ -320,6 +273,53 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
         {
             DataClassification = ToBeClassified;
             Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(70111; "Entered User ID"; cODE[50])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
+            //TestTableRelation =false;
+            Description = '20-->50';
+            trigger OnValidate()
+            var
+                LoginMgt: Codeunit 418;
+            begin
+                //LoginMgt.ValidateUserID("Entered User ID");
+                LoginMgt.DisplayUserInformation("Entered User ID");
+            end;
+
+            trigger OnLookup()
+            var
+                LoginMgt: Codeunit "User Management";
+            begin
+                //LoginMgt.LookupUserID("Entered User ID");
+                LoginMgt.DisplayUserInformation("Entered User ID");
+            end;
+        }
+        field(70112; "Entered Date"; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70113; "Entered Time"; Time)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70114; "Ship-to PO No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70115; "Broker/Agent Code"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70116; "Rework No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70117; "Rework Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
         }
 
     }

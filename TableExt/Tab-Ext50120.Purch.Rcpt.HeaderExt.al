@@ -93,48 +93,48 @@ tableextension 50120 "Purch. Rcpt. Header Ext" extends "Purch. Rcpt. Header"
             DecimalPlaces = 0 : 15;
             MinValue = 0;
         }
-
-        field(70101; "Entered User ID"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = user."User Name";
-        }
-        field(70102; "Entered Date"; Date)
+        field(70103; "Bill of Lading No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70002; "Entered Time"; Time)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70003; "Ship-to PO No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70004; "Broker/Agent Code"; Code[10])
-        {
-            DataClassification = ToBeClassified;
-            Description = 'NF1.00:CIS.CM 09-29-15';
-        }
-        field(70005; "Rework No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-            Description = 'NF1.00:CIS.CM 09-29-15';
-        }
-        field(70006; "Rework Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70007; "Carrier Vendor No."; Code[20])
+        field(70104; "Carrier Vendor No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Vendor."No.";
         }
-        field(70008; "Carrier Trailer ID"; Code[20])
+        field(70105; "Carrier Trailer ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70103; "Bill of Lading No."; Code[20])
+
+        field(70111; "Entered User ID"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = user."User Name";
+        }
+        field(70112; "Entered Date"; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70113; "Entered Time"; Time)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70114; "Ship-to PO No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70115; "Broker/Agent Code"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(70116; "Rework No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            Description = 'NF1.00:CIS.CM 09-29-15';
+        }
+        field(70117; "Rework Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
