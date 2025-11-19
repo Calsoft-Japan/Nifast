@@ -7,12 +7,6 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
             // cleaned
             TableRelation = "Freight Code";
         }
-
-        field(50001; "Inside Salesperson Code"; Code[10])//NV-FB BC Upgarde 14017617->50001
-        {
-            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true), Sales = CONST(true));
-            Description = 'NV-FB';
-        }
         field(50003; "ASN Ship-to Code"; Code[30])
         {
             // cleaned
@@ -29,6 +23,12 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
         field(50007; "Mode of Transport"; Code[10])
         {
             // cleaned
+        }
+
+        field(50008; "Inside Salesperson Code"; Code[10])//NV-FB BC Upgarde 14017617->50001
+        {
+            TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(true), Sales = CONST(true));
+            Description = 'NV-FB';
         }
         field(50200; "PPS Order"; Boolean)
         {

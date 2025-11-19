@@ -18,43 +18,9 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
             FieldClass = FlowField;
             CalcFormula = Lookup(Manufacturer."IVA Code" WHERE(IVA = FIELD("Tax Liable")));
         }
-        field(50003; "Exchange Rate"; Decimal)
-        {
-            // cleaned
-            FieldClass = FlowField;
-            CalcFormula = Lookup("Currency Exchange Rate"."Relational Exch. Rate Amount" WHERE("Starting Date" = FIELD("Posting Date")));
-        }
-        field(50004; "Country Name"; Text[30])
-        {
-            // cleaned
-            FieldClass = FlowField;
-            CalcFormula = Lookup("Country/Region".Name WHERE(Code = FIELD("Sell-to Country/Region Code")));
-        }
-        field(50005; "PSH#"; Code[20])
-        {
-            // cleaned
-            FieldClass = FlowField;
-            CalcFormula = Lookup("Sales Shipment Header"."No." WHERE("Order No." = FIELD("Order No."),
-                                                                                                         "No." = FILTER(<> 'PSH100619')));
-        }
 
-        field(50006; "Inside Salesperson Code"; Code[10])//NV-FB BC Upgrade From 14017617->50006
+        field(50008; "Inside Salesperson Code"; Code[10])//NV-FB BC Upgrade From 14017617->50006
         { }
-        field(50007; "FX Rate on Order Creation Date"; Decimal)
-        {
-            DecimalPlaces = 1 : 6;
-            FieldClass = FlowField;
-            CalcFormula = Lookup("Currency Exchange Rate"."Relational Exch. Rate Amount" WHERE("Currency Code" = FIELD("Currency Code"),
-                                                                                                                                     "Starting Date" = FIELD("Order Date")));
-
-        }
-        field(50008; "Amount in C$ from G/L 600"; Decimal)
-        {
-            // cleaned
-            FieldClass = FlowField;
-            CalcFormula = Lookup("G/L Entry".Amount WHERE("Document No." = FIELD("No."),
-                                                                                                "G/L Account No." = CONST('600')));
-        }
         field(50009; "FX Rate on Inv Posting Date"; Decimal)
         {
             DecimalPlaces = 1 : 6;
@@ -81,6 +47,21 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
         field(50051; "Ship Authorization No."; Code[10])
         {
             DataClassification = ToBeClassified;
+        }
+        field(50100; "PSH#"; Code[20])
+        {
+            // cleaned
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Sales Shipment Header"."No." WHERE("Order No." = FIELD("Order No."),
+                                                                                                         "No." = FILTER(<> 'PSH100619')));
+        }
+        field(50101; "FX Rate on Order Creation Date"; Decimal)
+        {
+            DecimalPlaces = 1 : 6;
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Currency Exchange Rate"."Relational Exch. Rate Amount" WHERE("Currency Code" = FIELD("Currency Code"),
+                                                                                                                                     "Starting Date" = FIELD("Order Date")));
+
         }
         field(51000; "Blanket Order No."; Code[20])
         {
@@ -126,6 +107,25 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
             DataClassification = ToBeClassified;
             Editable = true;
 
+        }
+        field(52002; "Amount in C$ from G/L 600"; Decimal)
+        {
+            // cleaned
+            FieldClass = FlowField;
+            CalcFormula = Lookup("G/L Entry".Amount WHERE("Document No." = FIELD("No."),
+                                                                                                "G/L Account No." = CONST('600')));
+        }
+        field(52003; "Exchange Rate"; Decimal)
+        {
+            // cleaned
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Currency Exchange Rate"."Relational Exch. Rate Amount" WHERE("Starting Date" = FIELD("Posting Date")));
+        }
+        field(52004; "Country Name"; Text[50])
+        {
+            // cleaned
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Country/Region".Name WHERE(Code = FIELD("Sell-to Country/Region Code")));
         }
         field(60000; "EDI Control No."; Code[20])
         {
