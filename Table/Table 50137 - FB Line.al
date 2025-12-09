@@ -9,7 +9,7 @@ table 50137 "FB Line"
         field(10; "Document No."; Code[20])
         {
             // cleaned
-            TableRelation = "FB Header"."No.";
+           // TableRelation = "FB Header"."No.";
         }
         field(20; "Line No."; Integer)
         {
@@ -33,20 +33,20 @@ table 50137 "FB Line"
         }
         field(50; "Item No."; Code[20])
         {
-            TableRelation = Item;
+           // TableRelation = Item;
 
             trigger OnValidate()
             begin
                 //>>NIF 011206 $10571 #10571
-                IF ("Tag No." = '') AND ("Item No." <> '') AND ("Contract No." <> '') THEN
-                    DefaultContractLineValues();
+                // IF ("Tag No." = '') AND ("Item No." <> '') AND ("Contract No." <> '') THEN
+                //     DefaultContractLineValues();
                 //<<NIF 011206 $10571 #10571
             end;
         }
         field(52; "Variant Code"; Code[10])
         {
             Caption = 'Variant Code';
-            TableRelation = "Item Variant".Code WHERE("Item No." = FIELD("Item No."));
+            //TableRelation = "Item Variant".Code WHERE("Item No." = FIELD("Item No."));
         }
         field(60; Quantity; Decimal)
         {
@@ -54,55 +54,55 @@ table 50137 "FB Line"
         }
         field(70; "Unit of Measure Code"; Code[10])
         {
-            TableRelation = "Item Unit of Measure".Code WHERE("Item No." = FIELD("Item No."));
+            //TableRelation = "Item Unit of Measure".Code WHERE("Item No." = FIELD("Item No."));
 
             trigger OnValidate()
             begin
                 //>>NIF 011206 $10571 #10571
-                IF ("Tag No." = '') AND ("Item No." <> '') AND ("Contract No." <> '') THEN
-                    DefaultContractLineValues();
+                // IF ("Tag No." = '') AND ("Item No." <> '') AND ("Contract No." <> '') THEN
+                //     DefaultContractLineValues();
                 //<<NIF 011206 $10571 #10571
             end;
         }
         field(80; "Tag No."; Code[20])
         {
-            TableRelation = IF ("Item No." = FILTER(<> '')) "FB Tag" WHERE("Customer No." = FIELD("Sell-to Customer No."),
-                                                                       "Ship-to Code" = FIELD("Ship-To Code"),
-                                                                       "Location Code" = FIELD("Location Code"),
-                                                                       "Item No." = FIELD("Item No."))
-            ELSE
-            "FB Tag" WHERE("Customer No." = FIELD("Sell-to Customer No."),
-                                                                                            "Ship-to Code" = FIELD("Ship-To Code"),
-                                                                                            "Location Code" = FIELD("Location Code"));
+            // TableRelation = IF ("Item No." = FILTER(<> '')) "FB Tag" WHERE("Customer No." = FIELD("Sell-to Customer No."),
+            //                                                            "Ship-to Code" = FIELD("Ship-To Code"),
+            //                                                            "Location Code" = FIELD("Location Code"),
+            //                                                            "Item No." = FIELD("Item No."))
+            // ELSE
+            // "FB Tag" WHERE("Customer No." = FIELD("Sell-to Customer No."),
+            //                                                                                 "Ship-to Code" = FIELD("Ship-To Code"),
+            //                                                                                 "Location Code" = FIELD("Location Code"));
 
             trigger OnValidate()
             begin
-                IF "Tag No." <> '' THEN BEGIN
-                    FBHeader.GET("Document No.");
-                    IF FBTag.GET("Tag No.") THEN BEGIN
-                        VALIDATE("Item No.", FBTag."Item No.");
-                        VALIDATE("Variant Code", FBTag."Variant Code");
-                        VALIDATE("Unit of Measure Code", FBTag."Unit of Measure Code");
-                        "Customer Bin" := FBTag."Customer Bin";
-                        "External Document No." := FBTag."External Document No.";
-                        VALIDATE("Selling Location", FBTag."Selling Location");
-                        VALIDATE("Shipping Location", FBTag."Shipping Location");
-                        IF FBTag."Contract No." <> '' THEN
-                            IF ("Contract No." = '') OR
-                               (("Contract No." <> '') AND (FBTag."Contract No." <> "Contract No.")) THEN
-                                ERROR('Tag Contract No. does not match Order Contract No.');
-                        "Replenishment Method" := FBTag."Replenishment Method";
-                        VALIDATE("Cross-Reference No.", FBTag."Cross-Reference No.");
-                    END;
-                END;
+                // IF "Tag No." <> '' THEN BEGIN
+                //     FBHeader.GET("Document No.");
+                //     IF FBTag.GET("Tag No.") THEN BEGIN
+                //         VALIDATE("Item No.", FBTag."Item No.");
+                //         VALIDATE("Variant Code", FBTag."Variant Code");
+                //         VALIDATE("Unit of Measure Code", FBTag."Unit of Measure Code");
+                //         "Customer Bin" := FBTag."Customer Bin";
+                //         "External Document No." := FBTag."External Document No.";
+                //         VALIDATE("Selling Location", FBTag."Selling Location");
+                //         VALIDATE("Shipping Location", FBTag."Shipping Location");
+                //         IF FBTag."Contract No." <> '' THEN
+                //             IF ("Contract No." = '') OR
+                //                (("Contract No." <> '') AND (FBTag."Contract No." <> "Contract No.")) THEN
+                //                 ERROR('Tag Contract No. does not match Order Contract No.');
+                //         "Replenishment Method" := FBTag."Replenishment Method";
+                //         VALIDATE("Cross-Reference No.", FBTag."Cross-Reference No.");
+                //     END;
+                // END;
             end;
 
         }
         field(85; "Lot No."; Code[20])
         {
             // cleaned
-            TableRelation = "Lot No. Information" WHERE("Item No." = FIELD("Item No."),
-                                                         "Variant Code" = FIELD("Variant Code"));
+            //TableRelation = "Lot No. Information" WHERE("Item No." = FIELD("Item No."),
+                                                         //"Variant Code" = FIELD("Variant Code"));
         }
         field(90; "Customer Bin"; Code[20])
         {
@@ -141,7 +141,7 @@ table 50137 "FB Line"
         field(170; "Salesperson Code"; Code[10])
         {
             Caption = 'Salesperson Code';
-            TableRelation = "Salesperson/Purchaser" WHERE(Sales = CONST(true));
+            //TableRelation = "Salesperson/Purchaser" WHERE(Sales = CONST(true));
 
             trigger OnValidate()
             var
@@ -156,36 +156,36 @@ table 50137 "FB Line"
         {
             // cleaned
 
-            TableRelation = "Salesperson/Purchaser" WHERE("Inside Sales" = CONST(true));
+            //TableRelation = "Salesperson/Purchaser" WHERE("Inside Sales" = CONST(true));
 
         }
         field(180; "Selling Location"; Code[10])
         {
             // cleaned
 
-            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                             "Rework Location" = CONST(false));
+            //TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                            // "Rework Location" = CONST(false));
 
         }
         field(190; "Shipping Location"; Code[10])
         {
             // cleaned
 
-            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                              "Rework Location" = CONST(false));
+            //TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                              //"Rework Location" = CONST(false));
 
         }
         field(200; "Contract No."; Code[20])
         {
-            TableRelation = "Price Contract"."No." WHERE("Customer No." = FIELD("Sell-to Customer No."),
-                                                        "Ship-to Code" = FIELD("Ship-To Code"),
-                                                        "Location Code" = FIELD("Location Code"));
+            // TableRelation = "Price Contract"."No." WHERE("Customer No." = FIELD("Sell-to Customer No."),
+            //                                             "Ship-to Code" = FIELD("Ship-To Code"),
+            //                                             "Location Code" = FIELD("Location Code"));
 
             trigger OnValidate()
             begin
                 //>>NIF 011206 $10571 #10571
-                IF ("Tag No." = '') AND ("Item No." <> '') AND ("Contract No." <> '') THEN
-                    DefaultContractLineValues();
+                // IF ("Tag No." = '') AND ("Item No." <> '') AND ("Contract No." <> '') THEN
+                //     DefaultContractLineValues();
                 //<<NIF 011206 $10571 #10571
             end;
         }
@@ -208,30 +208,30 @@ table 50137 "FB Line"
             Caption = 'Cross-Reference No.';
             trigger OnLookup()
             begin
-                CrossReferenceNoLookUp();
+               // CrossReferenceNoLookUp();
             end;
 
             trigger OnValidate()
             var
                 ReturnedCrossRef: Record 5777;
             begin
-                ReturnedCrossRef.INIT();
-                IF "Cross-Reference No." <> '' THEN BEGIN
-                    //TODO
-                    //DistIntegration.ICRLookupFBItem(Rec, ReturnedCrossRef);
+                // ReturnedCrossRef.INIT();
+                // IF "Cross-Reference No." <> '' THEN BEGIN
+                //     //TODO
+                //     //DistIntegration.ICRLookupFBItem(Rec, ReturnedCrossRef);
 
-                    VALIDATE("Item No.", ReturnedCrossRef."Item No.");
-                    IF ReturnedCrossRef."Variant Code" <> '' THEN
-                        VALIDATE("Variant Code", ReturnedCrossRef."Variant Code");
+                //     VALIDATE("Item No.", ReturnedCrossRef."Item No.");
+                //     IF ReturnedCrossRef."Variant Code" <> '' THEN
+                //         VALIDATE("Variant Code", ReturnedCrossRef."Variant Code");
 
-                    IF ReturnedCrossRef."Unit of Measure" <> '' THEN
-                        VALIDATE("Unit of Measure Code", ReturnedCrossRef."Unit of Measure");
-                END;
+                //     IF ReturnedCrossRef."Unit of Measure" <> '' THEN
+                //         VALIDATE("Unit of Measure Code", ReturnedCrossRef."Unit of Measure");
+                // END;
 
-                "Unit of Measure (Cross Ref.)" := ReturnedCrossRef."Unit of Measure";
-                "Cross-Reference Type" := ReturnedCrossRef."Reference Type".AsInteger();
-                "Cross-Reference Type No." := ReturnedCrossRef."Reference Type No.";
-                "Cross-Reference No." := ReturnedCrossRef."Reference No.";
+                // "Unit of Measure (Cross Ref.)" := ReturnedCrossRef."Unit of Measure";
+                // "Cross-Reference Type" := ReturnedCrossRef."Reference Type".AsInteger();
+                // "Cross-Reference Type No." := ReturnedCrossRef."Reference Type No.";
+                // "Cross-Reference No." := ReturnedCrossRef."Reference No.";
             end;
 
 
@@ -239,7 +239,7 @@ table 50137 "FB Line"
         field(5706; "Unit of Measure (Cross Ref.)"; Code[10])
         {
             Caption = 'Unit of Measure (Cross Ref.)';
-            TableRelation = "Item Unit of Measure".Code WHERE("Item No." = FIELD("Item No."));
+            //TableRelation = "Item Unit of Measure".Code WHERE("Item No." = FIELD("Item No."));
         }
         field(5707; "Cross-Reference Type"; Option)
         {

@@ -2,7 +2,7 @@
     "id": "8f35ae30-a045-44d8-812b-807ab74b8975",
     "name": "Nifast Customization",
     "publisher": "Calsoft Systems",
-    "version": "1.0.0.1",
+    "version": "1.0.0.9",
     "brief": "",
     "description": "",
     "privacyStatement": "",
@@ -10,7 +10,32 @@
     "help": "",
     "url": "",
     "logo": "",
-    "dependencies": [],
+     "dependencies": [
+       {
+            "appId": "fd33424b-edc5-4305-b680-6a0bd13c1578",
+            "name": "Lanham EDI",
+            "publisher": "Lanham Associates",
+            "version": "25.3.1.1088"  
+        },
+        {
+            "appId": "f8750ab4-1d72-455d-b773-5b487a0ac106",
+            "name": "Lanham E-Ship and E-Receive",
+            "publisher": "Lanham Associates",
+            "version": "26.1.20.0"  
+        },
+        {
+            "appId": "8c70d081-5c33-431c-a585-66ed91a6f257",
+            "name": "Lanham App Library",
+            "publisher": "Lanham Associates",
+            "version": "18.1.5.0"  
+        },
+          {
+            "appId": "f991663a-c8df-4d9d-9630-098184d480c5",
+            "name": "SPS-EDI-API",
+            "publisher": "SPS Commerce",
+            "version": "2.6.0.0"  
+        }
+    ],
     "screenshots": [],
     "platform": "1.0.0.0",
     "application": "25.0.0.0",

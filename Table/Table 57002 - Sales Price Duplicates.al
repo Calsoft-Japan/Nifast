@@ -10,19 +10,19 @@ table 57002 "Sales Price Duplicates"
         {
             Caption = 'Item No.';
             NotBlank = true;
-            TableRelation = Item;
+           // TableRelation = Item;
         }
         field(2; "Sales Code"; Code[20])
         {
             Caption = 'Sales Code';
-            TableRelation = IF ("Sales Type" = CONST("Customer Price Group")) "Customer Price Group"
-            ELSE IF ("Sales Type" = CONST(Customer)) Customer
-            ELSE IF ("Sales Type" = CONST(Campaign)) Campaign;
+            // TableRelation = IF ("Sales Type" = CONST("Customer Price Group")) "Customer Price Group"
+            // ELSE IF ("Sales Type" = CONST(Customer)) Customer
+            // ELSE IF ("Sales Type" = CONST(Campaign)) Campaign;
         }
         field(3; "Currency Code"; Code[10])
         {
             Caption = 'Currency Code';
-            TableRelation = Currency;
+           // TableRelation = Currency;
         }
         field(4; "Starting Date"; Date)
         {
@@ -51,7 +51,7 @@ table 57002 "Sales Price Duplicates"
         field(11; "VAT Bus. Posting Gr. (Price)"; Code[10])
         {
             Caption = 'Tax Bus. Posting Gr. (Price)';
-            TableRelation = "VAT Business Posting Group";
+            //TableRelation = "VAT Business Posting Group";
         }
         field(13; "Sales Type"; Option)
         {
@@ -72,12 +72,12 @@ table 57002 "Sales Price Duplicates"
         field(5400; "Unit of Measure Code"; Code[10])
         {
             Caption = 'Unit of Measure Code';
-            TableRelation = "Item Unit of Measure".Code WHERE("Item No." = FIELD("Item No."));
+            //TableRelation = "Item Unit of Measure".Code WHERE("Item No." = FIELD("Item No."));
         }
         field(5700; "Variant Code"; Code[10])
         {
             Caption = 'Variant Code';
-            TableRelation = "Item Variant".Code WHERE("Item No." = FIELD("Item No."));
+           // TableRelation = "Item Variant".Code WHERE("Item No." = FIELD("Item No."));
         }
         field(7001; "Allow Line Disc."; Boolean)
         {
@@ -87,12 +87,12 @@ table 57002 "Sales Price Duplicates"
         field(14017614; "Alt. Price"; Decimal)
         {
             Description = 'NV';
-            Editable = false;
+            //Editable = false;
         }
         field(14017615; "Alt. Price UOM"; Code[10])
         {
             Description = 'NV';
-            Editable = false;
+            //Editable = false;
         }
         field(14017618; "External Document No."; Code[20])
         {
@@ -106,7 +106,7 @@ table 57002 "Sales Price Duplicates"
         {
             CalcFormula = Lookup(Item.Description WHERE("No." = FIELD("Item No.")));
             Description = 'NV';
-            Editable = false;
+            //Editable = false;
             FieldClass = FlowField;
         }
         field(14017647; "Est. Usage"; Decimal)
@@ -117,7 +117,7 @@ table 57002 "Sales Price Duplicates"
         field(14017648; Comments; Boolean)
         {
             Description = 'NV - NF1.00:CIS.NG 10-10-15';
-            Editable = false;
+           // Editable = false;
             Enabled = false;
             FieldClass = FlowField;
         }
@@ -132,8 +132,8 @@ table 57002 "Sales Price Duplicates"
         field(14017651; "Contract Location Code"; Code[10])
         {
             Description = 'NV';
-            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                            "Rework Location" = CONST(false));
+            // TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+            //                                 "Rework Location" = CONST(false));
         }
         field(14017652; "Actual Usage"; Decimal)
         {
@@ -142,7 +142,7 @@ table 57002 "Sales Price Duplicates"
                                                                    "Entry Type" = CONST(Sale)));
             DecimalPlaces = 0 : 5;
             Description = 'NV';
-            Editable = false;
+            //Editable = false;
             FieldClass = FlowField;
         }
         field(14017653; "Method of Fullfillment"; Option)
@@ -168,14 +168,14 @@ table 57002 "Sales Price Duplicates"
                                                     Type = CONST(Item),
                                                     "No." = FIELD("Item No.")));
             Description = 'NV';
-            Editable = false;
+           // Editable = false;
             FieldClass = FlowField;
         }
         field(14017657; "Contract Ship Location Code"; Code[10])
         {
             Description = 'NV';
-            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                            "Rework Location" = CONST(false));
+           // TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+                                            //"Rework Location" = CONST(false));
         }
         field(14017658; "Replenishment Method"; Option)
         {
@@ -206,8 +206,8 @@ table 57002 "Sales Price Duplicates"
         field(14017663; "Contract Selling Location Code"; Code[10])
         {
             Description = 'NV';
-            TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                            "Rework Location" = CONST(false));
+            // TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+            //                                 "Rework Location" = CONST(false));
         }
         field(37015330; "FB Tags"; Boolean)
         {
@@ -218,7 +218,7 @@ table 57002 "Sales Price Duplicates"
                                                 "Unit of Measure Code" = FIELD("Unit of Measure Code"),
                                                 "Contract No." = FIELD("Contract No.")));
             Description = 'NV';
-            Editable = false;
+            //Editable = false;
             FieldClass = FlowField;
         }
         field(37015331; "FB Order Type"; Option)
