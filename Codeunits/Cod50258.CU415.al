@@ -6,11 +6,11 @@ codeunit 50258 "CU 415"
     var
         NVM: Codeunit 50021;
         SoftBlockError: Text[80];
-        WCText001: Label 'ENU=You must Shipment Method Code for Order %1.',Comment = '%1 = Order No';
+        WCText001: Label 'You must Shipment Method Code for Order %1.', Comment = '%1 = Order No';
 
     begin
         //>>NV
-        IF NVM.CheckSoftBlock(1, PurchaseHeader."Buy-from Vendor No.", PurchaseHeader."Order Address Code", '',PurchaseHeader. "Document Type", SoftBlockError) THEN
+        IF NVM.CheckSoftBlock(1, PurchaseHeader."Buy-from Vendor No.", PurchaseHeader."Order Address Code", '', PurchaseHeader."Document Type", SoftBlockError) THEN
             ERROR(SoftBlockError);
         IF NVM.CheckSoftBlock(1, PurchaseHeader."Pay-to Vendor No.", '', '', PurchaseHeader."Document Type", SoftBlockError) THEN
             ERROR(SoftBlockError);

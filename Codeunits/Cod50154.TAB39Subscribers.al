@@ -69,8 +69,8 @@ codeunit 50154 TAB39Subscribers
     local procedure "Purchase Line_OnAfterUpdateAmountsDone"(var PurchLine: Record "Purchase Line"; var xPurchLine: Record "Purchase Line"; CurrFieldNo: Integer)
     begin
         //>>NF1.00:CIS.RAM FOREX
-        //IF "Document Type" = "Document Type"::Invoice THEN
-        PurchLine.UpdateUSDValue();
+        IF PurchLine."Document Type" = PurchLine."Document Type"::Invoice THEN
+            PurchLine.UpdateUSDValue();
         //<<NF1.00:CIS.RAM FOREX
     end;
 
@@ -80,9 +80,9 @@ codeunit 50154 TAB39Subscribers
         Location: Record Location;
     begin
         //>> NIF #9850
-        Location.Get(PurchaseLine."Location Code");
-        if Location."Receipt Bin Code" <> '' then
-            PurchaseLine."Bin Code" := Location."Receipt Bin Code";
+        if Location.Get(PurchaseLine."Location Code") then
+            if Location."Receipt Bin Code" <> '' then
+                PurchaseLine."Bin Code" := Location."Receipt Bin Code";
         //<< NIF #9850
     end;
 

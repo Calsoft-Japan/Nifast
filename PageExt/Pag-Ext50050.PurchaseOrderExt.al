@@ -6,14 +6,6 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
         {
             Editable = false;
         }
-        addafter("Buy-from Vendor Name")
-        {
-            field("Buy-from Vendor Name 2"; Rec."Buy-from Vendor Name 2")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Buy-from Vendor Name 2 field.';
-            }
-        }
         moveafter("Buy-from Post Code"; "Buy-from Country/Region Code", "Buy-from Contact No.")
         modify("Currency Code")
         {
@@ -40,14 +32,6 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
             }
         }
         moveafter("Job Queue Status"; "No. of Archived Versions")
-        addafter("Pay-to Name")
-        {
-            field("Pay-to Name 2"; Rec."Pay-to Name 2")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Pay-to Name 2 field.';
-            }
-        }
         moveafter("Pay-to Post Code"; "Pay-to Country/Region Code", "Pay-to Contact No.")
         moveafter("Pay-to Contact"; "Vendor Order No.")
         moveafter("Tax Exemption No."; "Responsibility Center")
