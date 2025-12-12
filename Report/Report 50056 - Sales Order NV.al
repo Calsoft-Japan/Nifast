@@ -14,7 +14,7 @@ report 50056 "Sales Order NV"
     //               -code at Sales Header - OnAfterGetRecord()
     ApplicationArea = All;
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\Sales Order NV.rdlc';
+    RDLCLayout = '.\RDLC\Sales Order NV.rdl';
 
     Caption = 'Sales Order NV';
     UsageCategory = ReportsAndAnalysis;
@@ -208,7 +208,7 @@ report 50056 "Sales Order NV"
                     column(BillToAddress7; BillToAddress[7])
                     {
                     }
-                    column(No__SalesHeader; '*' + "Sales Header"."No." + '*')
+                    column(No__SalesHeader; NoBarCode)
                     {
                         //DecimalPlaces = 2 : 2;
                     }
@@ -798,6 +798,13 @@ report 50056 "Sales Order NV"
                     UseDate := "Posting Date"
                 ELSE
                     UseDate := WORKDATE;
+                // Generate the barcode for the sales order number
+                BarcodeSymbology := Enum::"Barcode Symbology"::Code39;
+                BarcodeFontProvider := Enum::"Barcode Font Provider"::IDAutomation1D;
+                BarcodeString := "Sales Header"."No.";
+                BarcodeFontProvider.ValidateInput(BarcodeString, BarcodeSymbology);
+                // Encode the data string to the barcode font
+                NoBarCode := BarcodeFontProvider.EncodeFont(BarcodeString, BarcodeSymbology);
             end;
         }
     }
@@ -1029,6 +1036,11 @@ report 50056 "Sales Order NV"
         InvoiceDiscount: Decimal;
         TotalTax: Decimal;
         Total: Decimal;
+        BarcodeString: Text;
+        BarcodeFontProvider: Interface "Barcode Font Provider";
+        BarcodeFontProvider2D: Interface "Barcode Font Provider 2D";
+        BarcodeSymbology: Enum "Barcode Symbology";
+        NoBarCode: Text;
 
     procedure GetUnitOfMeasureDescr(UOMCode: Code[10]): Text[10]
     var

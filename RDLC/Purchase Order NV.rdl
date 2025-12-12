@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
+  <am:AuthoringMetadata>
+    <am:CreatedBy>
+      <am:Name>MSRB</am:Name>
+      <am:Version>15.0.20283.0</am:Version>
+    </am:CreatedBy>
+    <am:UpdatedBy>
+      <am:Name>MSRB</am:Name>
+      <am:Version>15.0.20283.0</am:Version>
+    </am:UpdatedBy>
+    <am:LastModifiedTimestamp>2025-12-12T05:01:00.8273878Z</am:LastModifiedTimestamp>
+  </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -7,6 +18,7 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>62063e57-2b3f-45df-b6de-b5c498b40e22</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -3060,13 +3072,11 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                       </Visibility>
                     </TablixMember>
                     <TablixMember>
-                      <Visibility>
-                        <Hidden>=IIF(fields!TennOnly.Value,FALSE,TRUE)</Hidden>
-                      </Visibility>
+                      <Visibility></Visibility>
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=IIF(Fields!POAuthority_User.Value,FALSE,TRUE)</Hidden>
+                        <Hidden>=IIF(fields!TennOnly.Value,FALSE,TRUE)</Hidden>
                       </Visibility>
                     </TablixMember>
                   </TablixMembers>
@@ -3122,9 +3132,9 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetData(32,1)</Value>
+                      <Value>=Code.GetData(35,1)</Value>
                       <Style>
-                        <FontFamily>BC C39 3 to 1 Narrow</FontFamily>
+                        <FontFamily>IDAutomationHC39M</FontFamily>
                         <FontSize>45pt</FontSize>
                       </Style>
                     </TextRun>
@@ -3139,7 +3149,11 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
               <Height>1.269cm</Height>
               <Width>12.64283cm</Width>
               <ZIndex>1</ZIndex>
-              <Style />
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
             </Textbox>
             <Textbox Name="NotReleased1">
               <KeepTogether>true</KeepTogether>
@@ -4415,7 +4429,6 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
         <PageHeight>27.94cm</PageHeight>
         <PageWidth>21.59cm</PageWidth>
         <LeftMargin>0.8cm</LeftMargin>
-        <RightMargin>0cm</RightMargin>
         <TopMargin>0.75cm</TopMargin>
         <BottomMargin>1.3cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
@@ -4596,6 +4609,12 @@ End Function
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
+        <Field Name="POAuthority_User">
+          <DataField>POAuthority_User</DataField>
+        </Field>
+        <Field Name="E_Signature_User">
+          <DataField>E_Signature_User</DataField>
+        </Field>
         <Field Name="TennOnly">
           <DataField>TennOnly</DataField>
         </Field>

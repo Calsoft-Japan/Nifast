@@ -6,7 +6,7 @@ report 50093 "Purchase Order NV"
     // SM.001 Fixed Margin and made the report narrower.
     ApplicationArea = All;
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\Purchase Order NV.rdlc';
+    RDLCLayout = '.\RDLC\Purchase Order NV.rdl';
 
     Caption = 'Purchase Order NV';
     UsageCategory = ReportsAndAnalysis;
@@ -19,12 +19,12 @@ report 50093 "Purchase Order NV"
                                 WHERE("Document Type" = CONST(Order));
             PrintOnlyIfDetail = true;
             RequestFilterFields = "No.", "Buy-from Vendor No.", "Pay-to Vendor No.", "No. Printed";
-            // column(POAuthority_User; User."PO Authority")
-            // {
-            // }
-            // column(E_Signature_User; User."E-Signature")
-            // {
-            // }
+            column(POAuthority_User; '')
+            {
+            }
+            column(E_Signature_User; '')
+            {
+            }
             column(TennOnly; TennOnly)
             {
             }
@@ -133,7 +133,7 @@ report 50093 "Purchase Order NV"
             column(NotReleased; NotReleased)
             {
             }
-            column(Purchase_Header___No________; '*' + "No." + '*')
+            column(Purchase_Header___No________; NoBarCode)
             {
             }
             column(CompanyInformation__Document_Logo_; CompanyInformation.Picture)// "Document Logo")
@@ -655,6 +655,13 @@ report 50093 "Purchase Order NV"
                         COMPRESSARRAY(BuyFromAddress);
                     END;
                 //<< RTT 09-21-05
+                // Generate the barcode for the sales order number
+                BarcodeSymbology := Enum::"Barcode Symbology"::Code39;
+                BarcodeFontProvider := Enum::"Barcode Font Provider"::IDAutomation1D;
+                BarcodeString := "Purchase Header"."No.";
+                BarcodeFontProvider.ValidateInput(BarcodeString, BarcodeSymbology);
+                // Encode the data string to the barcode font
+                NoBarCode := BarcodeFontProvider.EncodeFont(BarcodeString, BarcodeSymbology);
             end;
 
             trigger OnPreDataItem()
@@ -890,6 +897,11 @@ report 50093 "Purchase Order NV"
         InvoiceDiscount: Decimal;
         TotalTax: Decimal;
         Total: Decimal;
+        BarcodeString: Text;
+        BarcodeFontProvider: Interface "Barcode Font Provider";
+        BarcodeFontProvider2D: Interface "Barcode Font Provider 2D";
+        BarcodeSymbology: Enum "Barcode Symbology";
+        NoBarCode: Text;
 
     procedure ">>NIF_fcn"()
     begin

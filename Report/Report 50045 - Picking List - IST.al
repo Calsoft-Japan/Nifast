@@ -31,7 +31,7 @@ report 50045 "Picking List - IST"
     // SM.001- 8/24/16 swapped Ship to and Sold to on Purchase Return Orders
     ApplicationArea = All;
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\Picking List - IST.rdlc';
+    RDLCLayout = '.\RDLC\Picking List - IST.rdl';
 
     Caption = 'Picking List';
     UsageCategory = ReportsAndAnalysis;
@@ -83,7 +83,7 @@ report 50045 "Picking List - IST"
                 column(HeaderText; HeaderText)
                 {
                 }
-                column(Sales_Header___No________; '*' + "Sales Header"."No." + '*')
+                column(Sales_Header___No________; SalesNoBarCode)
                 {
                 }
                 column(Sales_Header___No__; "Sales Header"."No.")
@@ -164,7 +164,7 @@ report 50045 "Picking List - IST"
                 column(ASNCaption; ASNCaption)
                 {
                 }
-                column(Purchase_Header___No________; '*' + "Purchase Header"."No." + '*')
+                column(Purchase_Header___No________; PurchaseNoBarCode)
                 {
                 }
                 column(Purchase_Header___Shipment_Method_Code_; "Purchase Header"."Shipment Method Code")
@@ -185,7 +185,7 @@ report 50045 "Picking List - IST"
                 column(Transfer_Header___Shipment_Method_Code_; "Transfer Header"."Shipment Method Code")
                 {
                 }
-                column(Transfer_Header___No________; '*' + "Transfer Header"."No." + '*')
+                column(Transfer_Header___No________; TransferNoBarCode)
                 {
                 }
                 column(Transfer_Header___No__; "Transfer Header"."No.")
@@ -591,13 +591,15 @@ report 50045 "Picking List - IST"
                                                 END;  //end IF ContractLine.FIND
                                             END;  //end IF FBHeader."Contract"<>''
                         END;  //end CASE
-                        //<< 12-14-05 RTT
+                              //<< 12-14-05 RTT
 
 
-                        IF "Lot No." <> '' THEN
-                            LotBarCode := '*' + "Lot No." + '*'
-                        ELSE
-                            LotBarCode := '';
+                        BarcodeSymbology := Enum::"Barcode Symbology"::Code39;
+                        BarcodeFontProvider := Enum::"Barcode Font Provider"::IDAutomation1D;
+                        BarcodeString := "Lot No.";
+                        BarcodeFontProvider.ValidateInput(BarcodeString, BarcodeSymbology);
+                        // Encode the data string to the barcode font
+                        LotBarCode := BarcodeFontProvider.EncodeFont(BarcodeString, BarcodeSymbology);
 
                         IF "Mfg. Lot No." <> '' THEN
                             MfgLotNo := "Mfg. Lot No."
@@ -700,6 +702,10 @@ report 50045 "Picking List - IST"
                 "Warehouse Activity Header".MODIFY;
                 COMMIT;
 
+                BarcodeSymbology := Enum::"Barcode Symbology"::Code39;
+                BarcodeFontProvider := Enum::"Barcode Font Provider"::IDAutomation1D;
+                // Encode the data string to the barcode font          
+
                 WhseActLine2.SETRANGE("Activity Type", "Warehouse Activity Header".Type);
                 WhseActLine2.SETRANGE("No.", "Warehouse Activity Header"."No.");
                 IF NOT WhseActLine2.FIND('-') THEN BEGIN
@@ -736,6 +742,9 @@ report 50045 "Picking List - IST"
                                     //<<NIF 052606 RTT
                                 END;
                                 HeaderText := 'Picking List';
+                                BarcodeString := "Sales Header"."No.";
+                                BarcodeFontProvider.ValidateInput(BarcodeString, BarcodeSymbology);
+                                SalesNoBarCode := BarcodeFontProvider.EncodeFont(BarcodeString, BarcodeSymbology);
                             END;
                         DATABASE::"Purchase Line":
                             BEGIN
@@ -744,6 +753,9 @@ report 50045 "Picking List - IST"
                                     FormatAddress.PurchHeaderBuyFrom(BillToAddress, "Purchase Header");
                                 END;
                                 HeaderText := 'Return to Vendor - Pick';
+                                BarcodeString := "Purchase Header"."No.";
+                                BarcodeFontProvider.ValidateInput(BarcodeString, BarcodeSymbology);
+                                PurchaseNoBarCode := BarcodeFontProvider.EncodeFont(BarcodeString, BarcodeSymbology);
                             END;
                         //>> 08-29-05 rtt
                         DATABASE::"Transfer Line":
@@ -759,6 +771,9 @@ report 50045 "Picking List - IST"
                                         ShowSNP := FALSE;
                                 //<<12-08-05
                                 HeaderText := 'Transfer - Pick';
+                                BarcodeString := "Transfer Header"."No.";
+                                BarcodeFontProvider.ValidateInput(BarcodeString, BarcodeSymbology);
+                                TransferNoBarCode := BarcodeFontProvider.EncodeFont(BarcodeString, BarcodeSymbology);
                             END;
                     //<< 08-29-05 rtt
                     END;
@@ -857,7 +872,7 @@ report 50045 "Picking List - IST"
         HeaderText: Text[100];
         gtPkgInstructions: Text[100];
         recItemXref: Record "Item Reference";
-        LotBarCode: Text[30];
+        LotBarCode: Text;
         MfgLotNo: Text[30];
         LotNoInfo: Record "Lot No. Information";
         SalesLine: Record "Sales Line";
@@ -911,6 +926,13 @@ report 50045 "Picking List - IST"
         Transfer_CommentsCaptionLbl: Label 'Transfer Comments';
         WhsLineTotalParcels: Decimal;
         WhsLineTotalQtyToHandle: Decimal;
+        BarcodeString: Text;
+        BarcodeFontProvider: Interface "Barcode Font Provider";
+        BarcodeFontProvider2D: Interface "Barcode Font Provider 2D";
+        BarcodeSymbology: Enum "Barcode Symbology";
+        SalesNoBarCode: Text;
+        PurchaseNoBarCode: Text;
+        TransferNoBarCode: Text;
 
     local procedure GetLocation(LocationCode: Code[10])
     begin

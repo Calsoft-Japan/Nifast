@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
+  <am:AuthoringMetadata>
+    <am:CreatedBy>
+      <am:Name>MSRB</am:Name>
+      <am:Version>15.0.20283.0</am:Version>
+    </am:CreatedBy>
+    <am:UpdatedBy>
+      <am:Name>MSRB</am:Name>
+      <am:Version>15.0.20283.0</am:Version>
+    </am:UpdatedBy>
+    <am:LastModifiedTimestamp>2025-12-12T05:02:21.5503784Z</am:LastModifiedTimestamp>
+  </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -7,6 +18,7 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>518db852-2818-471d-ba07-fe3e38e68150</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -85,7 +97,7 @@ Cstr(Fields!CurrReport_PAGENOCaption.Value)
                                     <TextRun>
                                       <Value>=First(Fields!Sales_Header___No________.Value)</Value>
                                       <Style>
-                                        <FontFamily>BC C39 3 to 1 Narrow</FontFamily>
+                                        <FontFamily>IDAutomationHC39M</FontFamily>
                                         <FontSize>24pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -100,6 +112,9 @@ Cstr(Fields!CurrReport_PAGENOCaption.Value)
                               <Height>1.269cm</Height>
                               <Width>7.05cm</Width>
                               <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
                                 <VerticalAlign>Middle</VerticalAlign>
                               </Style>
                             </Textbox>
@@ -1626,7 +1641,7 @@ Cstr(Fields!CurrReport_PAGENOCaption.Value)
                                     <TextRun>
                                       <Value>=First(Fields!Purchase_Header___No________.Value)</Value>
                                       <Style>
-                                        <FontFamily>BC C39 3 to 1 Narrow</FontFamily>
+                                        <FontFamily>IDAutomationHC39M</FontFamily>
                                         <FontSize>30pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -1642,6 +1657,9 @@ Cstr(Fields!CurrReport_PAGENOCaption.Value)
                               <Width>6.15cm</Width>
                               <ZIndex>20</ZIndex>
                               <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
                                 <VerticalAlign>Middle</VerticalAlign>
                               </Style>
                             </Textbox>
@@ -2247,7 +2265,7 @@ Cstr(Fields!CurrReport_PAGENOCaption.Value)
                                     <TextRun>
                                       <Value>=First(Fields!Transfer_Header___No________.Value)</Value>
                                       <Style>
-                                        <FontFamily>BC C39 3 to 1 Narrow</FontFamily>
+                                        <FontFamily>IDAutomationHC39M</FontFamily>
                                         <FontSize>30pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -2263,6 +2281,9 @@ Cstr(Fields!CurrReport_PAGENOCaption.Value)
                               <Width>6.15cm</Width>
                               <ZIndex>14</ZIndex>
                               <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
                                 <VerticalAlign>Middle</VerticalAlign>
                               </Style>
                             </Textbox>
@@ -4843,7 +4864,7 @@ Cstr(Fields!CurrReport_PAGENOCaption.Value)
                                     <TextRun>
                                       <Value>=First(Fields!LotBarCode.Value)</Value>
                                       <Style>
-                                        <FontFamily>BC C39 3 to 1 Narrow</FontFamily>
+                                        <FontFamily>IDAutomationHC39M</FontFamily>
                                         <FontSize>24pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -4859,6 +4880,9 @@ Cstr(Fields!CurrReport_PAGENOCaption.Value)
                               <Width>4.5cm</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
                                 <VerticalAlign>Bottom</VerticalAlign>
                               </Style>
                             </Textbox>
@@ -6287,7 +6311,6 @@ Cstr(Fields!CurrReport_PAGENOCaption.Value)
         <PageHeight>27.94cm</PageHeight>
         <PageWidth>21.59cm</PageWidth>
         <LeftMargin>0.7cm</LeftMargin>
-        <RightMargin>0cm</RightMargin>
         <TopMargin>2cm</TopMargin>
         <BottomMargin>2cm</BottomMargin>
         <Style />
