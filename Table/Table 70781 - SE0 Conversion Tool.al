@@ -55,10 +55,10 @@ table 70781 "SE0 Conversion Tool"
 
     trigger OnInsert()
     begin
-        "Modified By" := USERID;
-        "Date Modified" := TODAY;
-        "Time Modified" := TIME;
-        "Company Name" := COMPANYNAME;
+        // "Modified By" := USERID;
+        // "Date Modified" := TODAY;
+        // "Time Modified" := TIME;
+        // "Company Name" := COMPANYNAME;
     end;
 
     procedure InsertSEDataTool(ToolName: Code[20]; ActionTaken: Integer; Nav2013Flag: Boolean)

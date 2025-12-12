@@ -5,12 +5,12 @@ table 50044 "Production Schedule"
         field(1; "Customer No."; Code[10])
         {
             NotBlank = true;
-            TableRelation = Customer."No.";
+            //TableRelation = Customer."No.";
         }
         field(2; "Item No."; Code[20])
         {
             NotBlank = true;
-            TableRelation = Item."No.";
+            //TableRelation = Item."No.";
         }
         field(3; "Shipping Date"; Date)
         {

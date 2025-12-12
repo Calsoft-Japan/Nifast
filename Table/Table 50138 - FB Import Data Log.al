@@ -29,22 +29,22 @@ table 50138 "FB Import Data Log"
         field(30; "Customer No."; Code[20])
         {
             // cleaned
-            TableRelation = Customer;
+            //TableRelation = Customer;
         }
         field(40; "Contract No."; Code[20])
         {
             // cleaned
-            TableRelation = "Price Contract";
+            //TableRelation = "Price Contract";
         }
         field(50; "Location Code"; Code[10])
         {
             // cleaned
-            TableRelation = Location;
+            //TableRelation = Location;
         }
         field(60; "Ship-to Code"; Code[10])
         {
             // cleaned
-            TableRelation = "Ship-to Address".Code WHERE("Customer No." = FIELD("Customer No."));
+            //TableRelation = "Ship-to Address".Code WHERE("Customer No." = FIELD("Customer No."));
         }
         field(70; "Item No."; Code[20])
         {
@@ -130,7 +130,7 @@ table 50138 "FB Import Data Log"
                                                     "Line No." = FIELD("Line No."),
                                                     Status = CONST(Errors),
                                                     Source = FILTER('IMPORT' | 'TAGJNL')));
-            Editable = false;
+            //Editable = false;
             FieldClass = FlowField;
         }
         field(510; "FB Order Exists"; Boolean)
@@ -138,7 +138,7 @@ table 50138 "FB Import Data Log"
             FieldClass = FlowField;
             CalcFormula = Exist("FB Line" WHERE("Import Data Log No." = FIELD("No."),
                                                  "Import Data Log Line No."=FIELD("Line No.")));
-            Editable = false;
+            //Editable = false;
         }
     }
     keys
@@ -157,10 +157,10 @@ table 50138 "FB Import Data Log"
 
     trigger OnDelete()
     begin
-        FBMessage.SETCURRENTKEY("Import Data Log No.","Line No.",Source,Status);
-        FBMessage.SETRANGE("Import Data Log No.","No.");
-        FBMessage.SETRANGE("Line No.","Line No.");
-        FBMessage.DELETEALL();
+        // FBMessage.SETCURRENTKEY("Import Data Log No.","Line No.",Source,Status);
+        // FBMessage.SETRANGE("Import Data Log No.","No.");
+        // FBMessage.SETRANGE("Line No.","Line No.");
+        // FBMessage.DELETEALL();
     end;
 
     var

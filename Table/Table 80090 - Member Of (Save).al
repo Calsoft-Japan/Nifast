@@ -20,7 +20,7 @@ table 80090 "Member Of (Save)"
         field(3; "Role ID"; Code[20])
         {
             Caption = 'Role ID';
-            TableRelation = "Permission Set"."Role ID";
+            //TableRelation = "Permission Set"."Role ID";
         }
         field(4; "Role Name"; Text[30])
         {
@@ -31,7 +31,7 @@ table 80090 "Member Of (Save)"
         field(5; Company; Text[30])
         {
             Caption = 'Company';
-            TableRelation = Company.Name;
+           // TableRelation = Company.Name;
         }
     }
     keys

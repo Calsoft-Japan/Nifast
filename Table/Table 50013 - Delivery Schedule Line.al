@@ -23,7 +23,7 @@ table 50013 "Delivery Schedule Line"
         field(2; "Customer No."; Code[20])
         {
             // cleaned
-            TableRelation = Customer;
+            //TableRelation = Customer;
         }
         field(3; "Document No."; Code[20])
         {
@@ -61,24 +61,24 @@ table 50013 "Delivery Schedule Line"
         {
             trigger OnValidate()
             begin
-                CASE "Type Code" OF
-                    1:
-                        Type := Type::Firm;
-                    4:
-                        Type := Type::Planning;
-                END;
+                // CASE "Type Code" OF
+                //     1:
+                //         Type := Type::Firm;
+                //     4:
+                //         Type := Type::Planning;
+                // END;
             end;
         }
         field(1011; "Frequency Code"; Text[10])
         {
             trigger OnValidate()
             begin
-                CASE "Frequency Code" OF
-                    'W':
-                        Frequency := Frequency::Weekly;
-                    'F':
-                        Frequency := Frequency::Flexible;
-                END;
+                // CASE "Frequency Code" OF
+                //     'W':
+                //         Frequency := Frequency::Weekly;
+                //     'F':
+                //         Frequency := Frequency::Flexible;
+                // END;
             end;
         }
         field(1012; "Forecast Unit of Measure"; Text[10])
