@@ -148,6 +148,14 @@ page 50043 "Purch. Order Receipt Subform"
                         QtytoReceiveOnAfterValidate();
                     end;
                 }
+                field("Sail-on Date"; Rec."Sail-on Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Vessel Name"; Rec."Vessel Name")
+                {
+                    ApplicationArea = All;
+                }
                 field(CartonsToReceive; CartonsToReceive)
                 {
                     BlankZero = true;
