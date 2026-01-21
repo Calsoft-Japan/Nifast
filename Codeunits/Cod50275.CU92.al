@@ -13,7 +13,9 @@ codeunit 50275 CU_92
             END;
             PurchaseHeader.Receive := TRUE;
             PurchaseHeader.Invoice := FALSE;
-            PurchPost.RUN(PurchaseHeader);
+            CODEUNIT.Run(CODEUNIT::"Purch.-Post", PurchaseHeader);
+
+            //  PurchPost.RUN(PurchaseHeader);
             PurchRcptHeader."No." := PurchaseHeader."Last Receiving No.";
             PurchRcptHeader.SETRECFILTER;
             // PurchaseHeader.PrintRecords();
@@ -37,7 +39,7 @@ codeunit 50275 CU_92
         PurchRcptHeader: Record "Purch. Rcpt. Header";
         //  ">>NF_TC"@1102622003 : TextConst;
         Text50000: Label 'Do you want to receive and print the %1?';
-        PurchPost: Codeunit 90;
+    //  PurchPost: Codeunit 90;
 
 
 }

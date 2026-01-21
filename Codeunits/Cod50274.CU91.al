@@ -13,7 +13,9 @@ codeunit 50274 CU_91
             END;
             PurchaseHeader.Receive := TRUE;
             PurchaseHeader.Invoice := FALSE;
-            PurchPost.RUN(PurchaseHeader);
+            // PurchPost.RUN(PurchaseHeader);
+            CODEUNIT.Run(CODEUNIT::"Purch.-Post", PurchaseHeader);
+
             IsHandled := true;
         END;
         //<< NIF 06-11-05
@@ -30,7 +32,7 @@ codeunit 50274 CU_91
         ReceiveOnly: Boolean;
         //  ">>NF_TC"@1102622003 : TextConst;
         Text50000: Label 'Do you want to receive the %1?';
-        PurchPost: Codeunit 90;
+      //  PurchPost: Codeunit 90;
 
 
 }
