@@ -2,6 +2,13 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
 {
     layout
     {
+        addafter(Status)
+        {
+            field("Shipping Agent Code"; Rec."Shipping Agent Code")
+            {
+                ApplicationArea = All;
+            }
+        }
         modify("Buy-from Vendor Name")
         {
             Editable = false;
