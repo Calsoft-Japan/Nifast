@@ -68,6 +68,16 @@ pageextension 50054 PurchaseOrderSubformExt extends "Purchase Order Subform"
                 ToolTip = 'Specifies the value of the Purchasing Code field.';
                 Caption = 'Purchasing Code';
             }
+            field("Vessel Name"; Rec."Vessel Name")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Vessel Name field.', Comment = '%';
+            }
+            field("Sail-on Date"; Rec."Sail-on Date")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Sail-on Date field.', Comment = '%';
+            }
         }
         modify("Indirect Cost %")
         {
