@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-12T05:01:00.8273878Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-12T16:34:36.9214305Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -785,7 +785,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Fields!TempPurchLine_AltPriceUOM.Value)</Value>
+                                  <Value>=Fields!TempPurchLine_AltPriceUOM.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3071,9 +3071,7 @@ Last(Fields!TempPurchLine__Amount_Including_VAT_Format.Value)
                         <Hidden>=IIF(fields!TennOnly.Value,FALSE,TRUE)</Hidden>
                       </Visibility>
                     </TablixMember>
-                    <TablixMember>
-                      <Visibility></Visibility>
-                    </TablixMember>
+                    <TablixMember />
                     <TablixMember>
                       <Visibility>
                         <Hidden>=IIF(fields!TennOnly.Value,FALSE,TRUE)</Hidden>

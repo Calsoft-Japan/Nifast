@@ -709,7 +709,7 @@ tableextension 50027 "Item Ext" extends "Item"
         ItemUnitOfMeasure: Record 5404;
         BinContent: Record 7302;
     BEGIN
-        
+
         TempLotBinContent.DELETEALL();
 
         LotNoInfo.SETRANGE("Item No.", "No.");
@@ -732,48 +732,46 @@ tableextension 50027 "Item Ext" extends "Item"
         REPEAT
             WhseEntry.SETFILTER("Lot No.", LotNoInfo."Lot No.");
             WhseEntry.SETFILTER("Variant Code", GETFILTER("Variant Filter"));
-            WhseEntry.FIND('-');
-            REPEAT
-                WITH TempLotBinContent DO BEGIN
-                    "Location Code" := WhseEntry."Location Code";
-                    "Bin Code" := WhseEntry."Bin Code";
-                    "Item No." := WhseEntry."Item No.";
-                    "Variant Code" := WhseEntry."Variant Code";
-                    "Unit of Measure Code" := WhseEntry."Unit of Measure Code";
-                    "Lot No." := WhseEntry."Lot No.";
-                    "Zone Code" := WhseEntry."Zone Code";
-                    "Bin Type Code" := WhseEntry."Bin Type Code";
+            if WhseEntry.FIND('-') then
+                REPEAT
+                    TempLotBinContent."Location Code" := WhseEntry."Location Code";
+                    TempLotBinContent."Bin Code" := WhseEntry."Bin Code";
+                    TempLotBinContent."Item No." := WhseEntry."Item No.";
+                    TempLotBinContent."Variant Code" := WhseEntry."Variant Code";
+                    TempLotBinContent."Unit of Measure Code" := WhseEntry."Unit of Measure Code";
+                    TempLotBinContent."Lot No." := WhseEntry."Lot No.";
+                    TempLotBinContent."Zone Code" := WhseEntry."Zone Code";
+                    TempLotBinContent."Bin Type Code" := WhseEntry."Bin Type Code";
                     //"Expiration Date" := LotNoInfo."Expiration Date";
-                    "Creation Date" := LotNoInfo."Lot Creation Date";
-                    "External Lot No." := LotNoInfo."Mfg. Lot No.";
+                    TempLotBinContent."Creation Date" := LotNoInfo."Lot Creation Date";
+                    TempLotBinContent."External Lot No." := LotNoInfo."Mfg. Lot No.";
 
                     //get qty per unit of measure
-                    ItemUnitOfMeasure.GET("Item No.", "Unit of Measure Code");
-                    "Qty. per Unit of Measure" := ItemUnitOfMeasure."Qty. per Unit of Measure";
+                    ItemUnitOfMeasure.GET(TempLotBinContent."Item No.", TempLotBinContent."Unit of Measure Code");
+                    TempLotBinContent."Qty. per Unit of Measure" := ItemUnitOfMeasure."Qty. per Unit of Measure";
 
                     //get bin fields
                     IF NOT Bin.GET(WhseEntry."Location Code", WhseEntry."Bin Code") THEN
                         CLEAR(Bin);
-                    "Warehouse Class Code" := Bin."Warehouse Class Code";
-                    "Bin Ranking" := Bin."Bin Ranking";
-                    "Cross-Dock Bin" := Bin."Cross-Dock Bin";
-                    Default := Bin.Default;
-                    IF BinContent.GET("Location Code", "Bin Code", "Item No.", "Variant Code", "Unit of Measure Code") THEN
-                        "Block Movement" := BinContent."Block Movement"
+                    TempLotBinContent."Warehouse Class Code" := Bin."Warehouse Class Code";
+                    TempLotBinContent."Bin Ranking" := Bin."Bin Ranking";
+                    TempLotBinContent."Cross-Dock Bin" := Bin."Cross-Dock Bin";
+                    TempLotBinContent.Default := Bin.Default;
+                    IF BinContent.GET(TempLotBinContent."Location Code", TempLotBinContent."Bin Code", TempLotBinContent."Item No.", TempLotBinContent."Variant Code", TempLotBinContent."Unit of Measure Code") THEN
+                        TempLotBinContent."Block Movement" := BinContent."Block Movement"
                     ELSE
-                        "Block Movement" := Bin."Block Movement";
+                        TempLotBinContent."Block Movement" := Bin."Block Movement";
                     //>> 06-14-05
-                    "Units per Parcel" := Item."Units per Parcel";
+                    TempLotBinContent."Units per Parcel" := Item."Units per Parcel";
                     //<< 06-14-05
                     //Bin."Adjustment Bin";
                     //Bin."Pick Bin Ranking";
                     //Bin."Bin Size Code";
 
-                    IF NOT INSERT() THEN;
-                END;
-            UNTIL WhseEntry.NEXT() = 0;
+                    IF NOT TempLotBinContent.INSERT() THEN;
+                UNTIL WhseEntry.NEXT() = 0;
         UNTIL LotNoInfo.NEXT() = 0;
-        
+
     END;
 
     PROCEDURE UpdateQCHoldFromItem(ItemNo: Code[20]; QCHold: Boolean);

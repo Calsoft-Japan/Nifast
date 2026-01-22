@@ -4,7 +4,7 @@ page 50020 "Lot Entry"
 
     Caption = 'Lot Entry';
     InsertAllowed = false;
-    PageType = Card;
+    PageType = Worksheet;
     ApplicationArea = All;
     UsageCategory = None;
     Permissions = TableData "Whse. Item Tracking Line" = rimd;
@@ -16,19 +16,19 @@ page 50020 "Lot Entry"
         {
             group(General)
             {
-                field(" "; '')
+                field(Control1000000029; '')
                 {
                     CaptionClass = FORMAT(HeaderString[1]);
                     Editable = false;
                     ToolTip = 'Specifies the value of the '''' field.';
                 }
-                field("  "; '')
+                field(Control1000000021; '')
                 {
                     CaptionClass = FORMAT(HeaderString[2]);
                     Editable = false;
                     ToolTip = 'Specifies the value of the '''' field.';
                 }
-                field("   "; '')
+                field(Control1000000022; '')
                 {
                     CaptionClass = FORMAT(HeaderString[3]);
                     Editable = false;
@@ -56,7 +56,7 @@ page 50020 "Lot Entry"
                     ToolTip = 'Specifies the value of the Qty. Remaining field.';
                 }
             }
-            group(Generals)
+            repeater(Generals)
             {
                 field("Order Line No."; Rec."Order Line No.")
                 {
@@ -150,7 +150,7 @@ page 50020 "Lot Entry"
 
     actions
     {
-        area(processing)
+        area(Navigation)
         {
             action(ClearLines)
             {
@@ -202,7 +202,7 @@ page 50020 "Lot Entry"
 
     trigger OnAfterGetRecord()
     begin
-        OnAfterGetCurrRecord();
+        OnAfterGetCurrRecordFn();
     end;
 
     trigger OnInit()
@@ -212,7 +212,7 @@ page 50020 "Lot Entry"
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        OnAfterGetCurrRecord();
+        OnAfterGetCurrRecordFn();
     end;
 
     trigger OnOpenPage()
@@ -232,7 +232,6 @@ page 50020 "Lot Entry"
     var
         SalesHeader: Record "Sales Header";
         TransferHeader: Record "Transfer Header";
-        ItemTrackingSummaryForm: Page 6500;
         "CVE Pediment No.Visible": Boolean;
         SplitLinesVisible: Boolean;
         QtyAssigned: Decimal;
@@ -338,7 +337,7 @@ page 50020 "Lot Entry"
         EXIT(TRUE);
     end;
 
-    local procedure OnAfterGetCurrRecord()
+    local procedure OnAfterGetCurrRecordFn()
     begin
         xRec := Rec;
         GetHeaderText();
@@ -436,6 +435,7 @@ page 50020 "Lot Entry"
 
     PROCEDURE AssistEditLotSerialNo2(VAR LotEntry: Record 50002 temporary; SearchForSupply: Boolean; CurrentSignFactor: Integer; LookupMode: Option "Serial No.","Lot No."; MaxQuantity: Decimal): Boolean;
     VAR
+        ItemTrackingSummaryForm: Page 6500;
         ItemLedgEntry: Record 32;
 
         ReservEntry: Record 337;
