@@ -9,6 +9,22 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
                 ApplicationArea = All;
             }
         }
+        modify("Buy-from County")
+        {
+            Caption = 'Buy-from State / ZIP Code';
+        }
+        modify("Buy-from Post Code")
+        {
+            Caption = 'Buy-from ZIP Code';
+        }
+        modify("Pay-to County")
+        {
+            Caption = 'State / ZIP Code';
+        }
+        modify("Pay-to Post Code")
+        {
+            Caption = 'ZIP Code';
+        }
         modify("Buy-from Vendor Name")
         {
             Editable = false;
