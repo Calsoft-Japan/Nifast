@@ -436,8 +436,9 @@ report 50093 "Purchase Order NV"
                         }
                         dataitem(PurchLineCommentLine; "Purch. Comment Line")
                         {
-                            DataItemTableView = SORTING("Document Type", "No.", "Document Line No.", "Line No.");
-                            //WHERE("Print On Order"=CONST(Yes)); BC Upgrade
+                            DataItemTableView = SORTING("Document Type", "No.", "Document Line No.", "Line No.") WHERE("Print On Order" = CONST(True));// BC Upgrade
+                            DataItemLinkReference = "Purchase Header";
+                            DataItemLink = "No." = FIELD("No.");
                             column(PurchLineCommentLine_Date; Date)
                             {
                             }
@@ -457,15 +458,15 @@ report 50093 "Purchase Order NV"
                             {
                             }
 
-                            trigger OnPreDataItem()
-                            begin
-                                PurchLineCommentLine.SETRANGE("Document Type", TempPurchLine."Document Type");
-                                PurchLineCommentLine.SETRANGE("No.", TempPurchLine."Document No.");
-                                //PurchLineCommentLine.SETRANGE("Doc. Line No.",TempPurchLine."Line No.");  //NF1.00:CIS.CM 09-29-15-O
-                                PurchLineCommentLine.SETRANGE("Document Line No.", TempPurchLine."Line No.");  //NF1.00:CIS.CM 09-29-15-N
+                            // trigger OnPreDataItem()
+                            // begin
+                            //     PurchLineCommentLine.SETRANGE("Document Type", TempPurchLine."Document Type");
+                            //     PurchLineCommentLine.SETRANGE("No.", TempPurchLine."Document No.");
+                            //     //PurchLineCommentLine.SETRANGE("Doc. Line No.",TempPurchLine."Line No.");  //NF1.00:CIS.CM 09-29-15-O
+                            //     PurchLineCommentLine.SETRANGE("Document Line No.", TempPurchLine."Line No.");  //NF1.00:CIS.CM 09-29-15-N
 
-                                PurchLineCommentLine.SETRANGE("Document Line No.", -11);//BC Upgrade Skip all comment lines
-                            end;
+                            //     //PurchLineCommentLine.SETRANGE("Document Line No.", -11);//BC Upgrade Skip all comment lines
+                            // end;
                         }
 
                         trigger OnAfterGetRecord()
