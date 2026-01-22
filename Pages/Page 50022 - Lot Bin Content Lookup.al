@@ -125,7 +125,7 @@ page 50022 "Lot Bin Content Lookup"
 
     trigger OnFindRecord(Which: Text): Boolean
     begin
-        TempLotBinContent.SETVIEW('GETVIEW');
+        TempLotBinContent.SETVIEW(Rec.GETVIEW);
         TempLotBinContent := Rec;
         IF NOT TempLotBinContent.FIND(Which) THEN
             EXIT(FALSE);
