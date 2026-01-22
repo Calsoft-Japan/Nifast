@@ -124,7 +124,7 @@ tableextension 56505 "Lot No. Information Ext" extends "Lot No. Information"
         {
             CalcFormula = exist("Warehouse Entry" where("Item No." = field("Item No."),
                                                          "Lot No." = field("Lot No."),
-                                                         //Open = const(true), //TODO
+                                                         Open = const(true),
                                                          "Location Code" = field("Location Filter"),
                                                          "Bin Code" = field("Bin Filter"),
                                                          "Variant Code" = field("Variant Code")));
