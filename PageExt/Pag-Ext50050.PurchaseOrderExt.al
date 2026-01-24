@@ -61,7 +61,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
         moveafter("Creditor No."; "IRS 1099 Code")
         movefirst("Shipping and Payment"; "Sell-to Customer No.", "Ship-to Code")
         moveafter("Ship-to Post Code"; "Ship-to Country/Region Code")
-        moveafter("Location Code"; "Shipment Method Code")
+        //moveafter("Location Code"; "Shipment Method Code")
         addafter("Promised Receipt Date")
         {
             field("Sail-on Date"; Rec."Sail-on Date")

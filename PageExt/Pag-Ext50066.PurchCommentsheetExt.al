@@ -6,7 +6,7 @@ pageextension 50066 "Purch. Comment sheet Ext" extends "Purch. comment Sheet"
 {
     layout
     {
-        addafter("LAX Include in E-Mail")
+        addbefore("LAX Include in E-Mail")
         {
             field("Print On Quote"; Rec."Print On Quote")
             {
@@ -38,6 +38,16 @@ pageextension 50066 "Purch. Comment sheet Ext" extends "Purch. comment Sheet"
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Print On Credit Memo field.';
+            }
+            field("User ID"; Rec."User ID")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the User ID field.';
+            }
+            field("Time Stamp"; Rec."Time Stamp")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Time Stamp field.';
             }
 
         }
