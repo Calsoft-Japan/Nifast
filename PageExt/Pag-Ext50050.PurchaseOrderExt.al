@@ -34,7 +34,7 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
         {
             StyleExpr = StyeExpr;
         }
-        moveafter("Document Date"; "Order Address Code", "Requested Receipt Date", "Promised Receipt Date", "Responsibility Center", "Shortcut Dimension 1 Code", "Location Code", "Currency Code")
+        moveafter("Document Date"; "Order Address Code", "Requested Receipt Date", "Responsibility Center", "Shortcut Dimension 1 Code", "Location Code", "Currency Code")
         moveafter("Purchaser Code"; "Your Reference", "On Hold", Status)
         addafter(Status)
         {
