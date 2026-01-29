@@ -35,28 +35,35 @@ tableextension 50043 "Purch. Comment Line Ext" extends "Purch. Comment Line"
         {
             DataClassification = ToBeClassified;
             Description = '20-->50 NF1.00:CIS.NG  10-10-15';
-            TableRelation = User."User Name";
+            TableRelation = User."User Name" where(State = const(Enabled));
             ValidateTableRelation = false;
-            TestTableRelation = false;
-            trigger OnValidate()
-            var
-                LoginMgt: Codeunit "User Management";
-            begin
-                //LoginMgt.ValidateUserID("User ID");
-                LoginMgt.DisplayUserInformation("User ID");
-            end;
-
-            trigger OnLookup()
-            var
-                LoginMgt: Codeunit "User Management";
-            begin
-                //LoginMgt.LookupUserID("User ID");
-                LoginMgt.DisplayUserInformation("User ID");
-            end;
         }
         field(70007; "Time Stamp"; Time)
         {
             DataClassification = ToBeClassified;
         }
     }
+    trigger OnInsert()
+    begin
+        //>>NV
+        VALIDATE("User ID", USERID);
+        "Time Stamp" := TIME;
+        //<<NV
+    end;
+
+    trigger OnModify()
+    begin
+        //>>NV
+        VALIDATE("User ID", USERID);
+        "Time Stamp" := TIME;
+        //<<NV
+    end;
+
+    trigger OnRename()
+    begin
+        //>>NV
+        VALIDATE("User ID", USERID);
+        "Time Stamp" := TIME;
+        //<<NV
+    end;
 }

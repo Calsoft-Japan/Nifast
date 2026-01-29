@@ -78,6 +78,26 @@ pageextension 50054 PurchaseOrderSubformExt extends "Purchase Order Subform"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Sail-on Date field.', Comment = '%';
             }
+            field("Alt. Price"; Rec."Alt. Price")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Alt. Price field.', Comment = '%';
+            }
+            field("Alt. Qty. UOM"; Rec."Alt. Qty. UOM")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Alt. Qty. UOM field.', Comment = '%';
+            }
+            field("Alt. Quantity"; Rec."Alt. Quantity")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Alt. Quantity field.', Comment = '%';
+            }
+            field("Alt. Price UOM"; Rec."Alt. Price UOM")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Alt. Price UOM field.', Comment = '%';
+            }
         }
         modify("Indirect Cost %")
         {
