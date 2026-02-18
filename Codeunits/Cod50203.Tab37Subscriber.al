@@ -13,7 +13,8 @@ codeunit 50203 Tab37Subscriber
     var
         Item: Record Item;
     begin
-        Item := SalesLine.GetItem();
+        if SalesLine.Type = SalesLine.Type::Item then
+            Item := SalesLine.GetItem();
         //SM 001 3/13/17 Canada request. Kanban No. and Country of Origin auto fill start
         SalesLine."Store Address" := SalesHeader."EDI Control No.";
         SalesLine."Storage Location" := Item."Country/Region of Origin Code";
@@ -25,26 +26,26 @@ codeunit 50203 Tab37Subscriber
         SalesLine."Entry/Exit Date" := SalesHeader."Entry/Exit Date";
         //+AKK1606++ PEDIMENTOS
 
-           //>>NIF GOLIVE 082905 MAK
-          SalesLine."External Document No." := SalesHeader."External Document No.";
-          //<<NIF GOLIVE 082905 MAK
+        //>>NIF GOLIVE 082905 MAK
+        SalesLine."External Document No." := SalesHeader."External Document No.";
+        //<<NIF GOLIVE 082905 MAK
 
         //>>NIF #10076 07-06-05 RTT
         SalesLine."Model Year" := SalesHeader."Model Year";
         //<<NIF #10076 07-06-05 RTT
 
-        
-          //>>NV
-          SalesLine."Order Date" := SalesHeader."Order Date";
-          SalesLine."Salesperson Code" := SalesHeader."Salesperson Code";
-          //<<NV
-          //>> NV #9752 get Contract No. if Item
-          IF (SalesLine.Type = SalesLine.Type::Item) AND (SalesLine."No." <> '') THEN
-              SalesLine."Contract No." := SalesHeader."Contract No."
-          ELSE
-              SalesLine."Contract No." := '';
-          //<< NV #9752 */
-        
+
+        //>>NV
+        SalesLine."Order Date" := SalesHeader."Order Date";
+        SalesLine."Salesperson Code" := SalesHeader."Salesperson Code";
+        //<<NV
+        //>> NV #9752 get Contract No. if Item
+        IF (SalesLine.Type = SalesLine.Type::Item) AND (SalesLine."No." <> '') THEN
+            SalesLine."Contract No." := SalesHeader."Contract No."
+        ELSE
+            SalesLine."Contract No." := '';
+        //<< NV #9752 */
+
     end;
 
     [EventSubscriber(ObjectType::Table, database::"Sales Line", OnAfterAssignItemValues, '', false, false)]
@@ -54,11 +55,11 @@ codeunit 50203 Tab37Subscriber
         SalesLine.National := Item.National;
         //+AKK1606++ PEDIMENTOS
 
-        
-          //>> NIF 06-29-05 RTT
-         NVM.GetActiveDrawingRevision(Item."No.", SalesLine."Revision No.", SalesLine."Drawing No.", SalesLine."Revision Date");
-         //<< NIF 06-29-05 RTT  
-        
+
+        //>> NIF 06-29-05 RTT
+        NVM.GetActiveDrawingRevision(Item."No.", SalesLine."Revision No.", SalesLine."Drawing No.", SalesLine."Revision Date");
+        //<< NIF 06-29-05 RTT  
+
 
         //>> NIF 12-13-05 MAK
         IF Item."Net Weight" = 0 THEN
@@ -254,7 +255,7 @@ codeunit 50203 Tab37Subscriber
     [EventSubscriber(ObjectType::Table, database::"Sales Line", OnAfterUpdateAmountsDone, '', false, false)]
     local procedure OnAfterUpdateAmountsDone(var SalesLine: Record "Sales Line"; var xSalesLine: Record "Sales Line"; CurrentFieldNo: Integer)
     begin
-        
+
         /*  // >> NV
          SalesLine."Net Unit Price" := 0;
          IF SalesLine.Quantity <> 0 THEN

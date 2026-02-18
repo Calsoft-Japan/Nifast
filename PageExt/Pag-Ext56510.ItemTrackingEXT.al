@@ -2,7 +2,14 @@ pageextension 56510 "Item Tracking EXT" extends "item tracking lines"
 {
     layout
     {
-
+        addafter("Lot No.")
+        {
+            field("Mfg. Lot No."; Rec."Mfg. Lot No.")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Mfg. Lot No. field.', Comment = '%';
+            }
+        }
     }
     actions
     {
