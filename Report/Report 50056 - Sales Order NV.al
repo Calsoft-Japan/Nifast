@@ -946,7 +946,7 @@ report 50056 "Sales Order NV"
         Cust: Record Customer;
         AsmHeader: Record "Assembly Header";
         AsmLine: Record "Assembly Line";
-        PackingRule: Record "Packing Rule"; //"14000715"; BC Upgrade
+        PackingRule: Record "LAX Packing Rule"; //"14000715"; BC Upgrade
         FreightTerms: Record "Freight Code";
         ShippingAgent: Record "Shipping Agent";
         ItemCrossRef: Record "Item Reference"; //"Item Cross Reference";

@@ -20,6 +20,7 @@ report 50065 "Check (Stub/Stub/Check)2"
 
     Caption = 'Check (Stub/Stub/Check)';
     Permissions = TableData 270 = m;
+    ApplicationArea = All;
 
     dataset
     {
@@ -1435,6 +1436,7 @@ report 50065 "Check (Stub/Stub/Check)2"
                     {
                         Caption = 'Bank Account';
                         TableRelation = "Bank Account";
+                        ApplicationArea = All;
 
                         trigger OnValidate()
                         begin
@@ -1448,27 +1450,33 @@ report 50065 "Check (Stub/Stub/Check)2"
                     field(UseCheckNo; UseCheckNo)
                     {
                         Caption = 'Last Check No.';
+                        ApplicationArea = All;
                     }
                     field(OneCheckPerVendorPerDocumentNo; OneCheckPrVendor)
                     {
                         Caption = 'One Check per Vendor per Document No.';
                         MultiLine = true;
+                        ApplicationArea = All;
                     }
                     field(ReprintChecks; ReprintChecks)
                     {
                         Caption = 'Reprint Checks';
+                        ApplicationArea = All;
                     }
                     field(TestPrint; TestPrint)
                     {
                         Caption = 'Test Print';
+                        ApplicationArea = All;
                     }
                     field(PreprintedStub; PreprintedStub)
                     {
                         Caption = 'Preprinted Stub';
+                        ApplicationArea = All;
                     }
                     field(CommitEachCheck; CommitEachCheck)
                     {
                         Caption = 'Commit Each Check';
+                        ApplicationArea = All;
                     }
                 }
             }

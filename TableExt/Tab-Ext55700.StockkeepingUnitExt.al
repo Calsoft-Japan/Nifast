@@ -100,7 +100,7 @@ tableextension 55700 "Stockkeeping Unit Ext" extends "Stockkeeping Unit"
         {
             DataClassification = ToBeClassified;
         }
-        field(70008; "QC Hold Reason Code"; Blob)
+        field(70008; "QC Hold Reason Code"; Code[10])
         {
             DataClassification = ToBeClassified;
         }

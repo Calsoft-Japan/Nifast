@@ -79,7 +79,8 @@ tableextension 50032 "Item Ledger Entry Ext" extends "Item Ledger Entry"
         {
             Description = 'NIF-Summary Entry Code';
             Editable = false;
-
+            FieldClass = FlowField;
+            CalcFormula = Lookup("Lot No. Information"."CVE Pedimento" WHERE("Item No." = FIELD("Item No."), "Lot No." = FIELD("Lot No.")));
         }
         field(60015; "Fecha de entrada"; Date)
         {

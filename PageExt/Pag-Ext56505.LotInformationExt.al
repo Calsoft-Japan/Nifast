@@ -157,10 +157,12 @@ pageextension 56505 "Lot Information Ext" extends "Lot No. Information Card"
                 RunObject = Page 50010;
                 RunPageLink = "Lot No." = FIELD("Lot No."),
                                   "Item No." = FIELD("Item No.");
+                ApplicationArea = All;
             }
             action("Print Receiving Label")
             {
                 CaptionML = ENU = '&Print Receiving Label';
+                ApplicationArea = All;
                 trigger OnAction()
                 BEGIN
                     PrintReceivingLabel;

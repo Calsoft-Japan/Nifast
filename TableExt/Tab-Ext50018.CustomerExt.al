@@ -191,7 +191,7 @@ tableextension 50018 "Customer Ext" extends "Customer"
             TableRelation = "Salesperson/Purchaser".Code WHERE("Inside Sales" = CONST(True),
                                                                                                    Sales = CONST(True));
         }
-        field(70007; "Purchase Order Required"; Code[10])
+        field(70007; "Purchase Order Required"; Boolean)
         {
             DataClassification = ToBeClassified;
         }

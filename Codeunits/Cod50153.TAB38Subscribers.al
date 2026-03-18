@@ -7,7 +7,7 @@ codeunit 50153 TAB38Subscribers
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnAfterOnInsert, '', false, false)]
     local procedure "Sales Header_OnAfterOnInsert"(var SalesHeader: Record "Sales Header")
     var
-        SalesSetup: Record "Sales & Receivables Setup";
+        SalesSetup: Record "LAX EDI Setup";
         NoSeries: Codeunit "No. Series";
     begin
         //>>NIF

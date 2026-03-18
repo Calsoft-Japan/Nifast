@@ -113,6 +113,7 @@ tableextension 50270 "Bank Account Ext" extends "Bank Account"
         }
         field(70014; "Currency Symbole"; Text[10])
         {
+            Caption = 'Currency Symbol';
         }
         field(70015; "Signature Line 1"; Boolean)
         {

@@ -90,7 +90,7 @@ report 50007 "Sales Shpt. Packing List - NIF"
             column(Shipment_No__Caption; Shipment_No__CaptionLbl)
             {
             }
-            dataitem("Posted Package"; "Posted Package")//Table14000704) BC Upgrade 2025-06-23
+            dataitem("Posted Package"; "LAX Posted Package")//Table14000704) BC Upgrade 2025-06-23
             {
                 DataItemLink = "Source ID" = FIELD("Order No.");
                 DataItemTableView = SORTING("Bill of Lading No.");
@@ -222,7 +222,7 @@ report 50007 "Sales Shpt. Packing List - NIF"
                 column(Posted_Package_Source_ID; "Source ID")
                 {
                 }
-                dataitem(DataItem4761; "Posted Package Line")//Table14000705) BC Upgrade 2025-06-23
+                dataitem(DataItem4761; "LAX Posted Package Line")//Table14000705) BC Upgrade 2025-06-23
                 {
                     DataItemLink = "Package No." = FIELD("No.");
                     DataItemTableView = SORTING("Package No.", "Line No.");
@@ -405,7 +405,7 @@ report 50007 "Sales Shpt. Packing List - NIF"
                 PostedPkgCount := 0;
                 IF PostedPackage2.FIND('-') THEN
                     REPEAT
-                        PostedPkgCount := PostedPkgCount + ROUND(PostedPackage2.GetTotalParcels, 1, '>');
+                        PostedPkgCount := PostedPkgCount;//+ ROUND(PostedPackage2.GetTotalParcels, 1, '>'); //TODO
                     UNTIL PostedPackage2.NEXT = 0;
                 //<< NIF 06/07/05
 
@@ -453,7 +453,7 @@ report 50007 "Sales Shpt. Packing List - NIF"
     }
 
     var
-        PostedPackage2: Record "Posted Package";//"14000704";//BC Upgrade 2025-06-23
+        PostedPackage2: Record "LAX Posted Package";//"14000704";//BC Upgrade 2025-06-23
         FormatAddress: Codeunit "Format Address";
         ShipToAddress: array[8] of Text[50];
         PostedPkgCount: Decimal;
@@ -465,7 +465,7 @@ report 50007 "Sales Shpt. Packing List - NIF"
         Packs: Decimal;
         Item: Record Item;
         UseNo: Text[30];
-        TestPackageLine: Record "Posted Package Line";//"14000705";//BC Upgrade 2025-06-23
+        TestPackageLine: Record "LAX Posted Package Line";//"14000705";//BC Upgrade 2025-06-23
         UnitsPerParcel: Decimal;
         CurrReport_PAGENOCaptionLbl: Label 'Page';
         O_R_D_E_R____P_A_C_K____L_I_S_TCaptionLbl: Label 'O R D E R    P A C K    L I S T';

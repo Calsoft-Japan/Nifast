@@ -10,7 +10,7 @@ table 50006 "Label Field Content"
         field(1; "Label Code"; Code[10])
         {
             // cleaned
-            TableRelation = "Label Header";
+            TableRelation = "LAX Label Header";
         }
         field(2; "Field Code"; Code[20])
         {

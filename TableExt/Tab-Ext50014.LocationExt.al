@@ -42,7 +42,7 @@ tableextension 50014 "Location Ext" extends "Location"
             DataClassification = ToBeClassified;
             Description = 'NIF';
         }
-        field(70000; "Default by Zone Pickingr"; Boolean)
+        field(70000; "Default by Zone Picking"; Boolean)
         {
             Description = 'NV';
         }

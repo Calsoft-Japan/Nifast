@@ -895,7 +895,7 @@ report 50045 "Picking List - IST"
         ContractLine: Record "Sales Price";
         ASNValue: Code[20];
         ASNCaption: Text[30];
-        PackingRule: Record "Packing Rule";
+        PackingRule: Record "LAX Packing Rule";
         CurrReport_PAGENOCaptionLbl: Label 'Page';
         Sales_Order_Number_CaptionLbl: Label 'Sales Order Number:';
         ShipCaptionLbl: Label 'Ship';

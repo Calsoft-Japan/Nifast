@@ -39,7 +39,7 @@ tableextension 57321 "Warehouse Shipment Line Ext" extends "Warehouse Shipment L
             TableRelation = IF ("Destination Type" = FILTER(Customer)) "Ship-to Address".Code WHERE("Customer No." = FIELD("Destination No."))
             ELSE IF ("Destination Type" = CONST(Vendor)) "Order Address".Code WHERE("Vendor No." = FIELD("Destination No."));
         }
-        field(70005; "Prod. Kit Order No."; Integer)
+        field(70005; "Prod. Kit Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Editable = false;
