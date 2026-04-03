@@ -18,6 +18,9 @@ codeunit 50150 TAB90Subscribers
         BOMComponent."Unit of Measure Code" := Item."Base Unit of Measure";
         ParentItem.Get(BOMComponent."Parent Item No.");
         CalcLowLevelCode.SetRecursiveLevelsOnItem(Item, ParentItem."Low-Level Code" + 1, true);
+        Item.Find();
+        ParentItem.Find();
+        IsHandled := true;
     end;
 
 }
