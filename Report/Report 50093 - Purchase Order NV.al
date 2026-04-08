@@ -792,9 +792,9 @@ report 50093 "Purchase Order NV"
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Vend: Record Vendor;
-        CompanyAddress: array[8] of Text[50];
-        BuyFromAddress: array[8] of Text[50];
-        ShipToAddress: array[8] of Text[50];
+        CompanyAddress: array[8] of Text[100];
+        BuyFromAddress: array[8] of Text[100];
+        ShipToAddress: array[8] of Text[100];
         CopyTxt: Text[10];
         ItemNumberToPrint: Text[20];
         PrintCompany: Boolean;

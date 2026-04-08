@@ -167,7 +167,7 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
         {
             DataClassification = ToBeClassified;
         }
-        field(70006; "E-Mail"; Text[30])
+        field(70006; "E-Mail"; Text[80])
         {
             DataClassification = ToBeClassified;
         }

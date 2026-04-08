@@ -13,7 +13,8 @@ codeunit 50203 Tab37Subscriber
     var
         Item: Record Item;
     begin
-        Item := SalesLine.GetItem();
+        if SalesLine.Type = SalesLine.Type::Item then
+            Item := SalesLine.GetItem();
         //SM 001 3/13/17 Canada request. Kanban No. and Country of Origin auto fill start
         SalesLine."Store Address" := SalesHeader."EDI Control No.";
         SalesLine."Storage Location" := Item."Country/Region of Origin Code";

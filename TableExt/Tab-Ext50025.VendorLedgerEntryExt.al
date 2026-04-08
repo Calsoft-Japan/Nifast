@@ -18,6 +18,9 @@ tableextension 50025 "Vendor Ledger Entry Ext" extends "Vendor Ledger Entry"
         field(50003; "Additional-Currency Amount"; Decimal)
         {
             // cleaned
+            FieldClass = FlowField;
+            CalcFormula = Lookup("G/L Entry"."Additional-Currency Amount" WHERE("Entry No." = FIELD("Entry No.")));
+            Editable = false;
         }
         field(55000; "XML - UUID"; Code[36])
         {

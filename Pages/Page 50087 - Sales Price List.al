@@ -1,5 +1,6 @@
-page 50087 "Sales Price Listss"
+page 50087 "Sales Price Lists-Nifast"
 {
+    Caption = 'Sales Price Lists-Nifast';
     Editable = false;
     PageType = List;
     ApplicationArea = All;

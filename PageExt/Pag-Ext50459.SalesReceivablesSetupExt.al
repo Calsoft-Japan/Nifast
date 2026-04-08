@@ -1,7 +1,15 @@
-pageextension 50000 "Sales & Receivables Setup Ext" extends "Sales & Receivables Setup"
+pageextension 50459 "Sales & Receivables Setup Ext" extends "Sales & Receivables Setup"
 {
     layout
     {
+        addlast("Number Series")
+        {
+            field("Price Contract Nos."; Rec."Price Contract Nos.")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Price Contract Nos. field.', Comment = '%';
+            }
+        }
         addafter("Update Document Date When Posting Date Is Modified")
         {
             field("Remit-To Description"; Rec."Remit-To Description")

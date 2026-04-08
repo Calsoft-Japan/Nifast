@@ -17,7 +17,7 @@ report 50041 "Package Line Label"
 
     dataset
     {
-        dataitem("Package Line"; "Package Line")
+        dataitem("Package Line"; "LAX Package Line")
         {
             RequestFilterFields = "Package No.", "Line No.";
 
@@ -55,7 +55,7 @@ report 50041 "Package Line Label"
                   'Description #2######################');
             end;
         }
-        dataitem("Posted Package Line"; "Posted Package Line")
+        dataitem("Posted Package Line"; "LAX Posted Package Line")
         {
             RequestFilterFields = "Package No.", "Line No.";
 
@@ -117,7 +117,7 @@ report 50041 "Package Line Label"
                     {
                         ApplicationArea = All;
                         Caption = 'Label Code';
-                        TableRelation = "Label Header" WHERE("Label Usage" = CONST("Receive Line"));
+                        TableRelation = "LAX Label Header" WHERE("Label Usage" = CONST("Receive Line"));
                     }
                     field("Quantity to Print"; QtyToPrint)
                     {
@@ -138,12 +138,12 @@ report 50041 "Package Line Label"
     }
 
     var
-        PackingStation: Record "Packing Station";
-        ReceiveStation: Record "Receive Station";
-        LabelHeader: Record "Label Header";
-        LabelLine: Record "Label Line";
-        Package: Record Package;
-        PostedPackage: Record "Posted Package";
+        PackingStation: Record "LAX Packing Station";
+        ReceiveStation: Record "LAX Receive Station";
+        LabelHeader: Record "LAX Label Header";
+        LabelLine: Record "LAX Label Line";
+        Package: Record "LAX Package";
+        PostedPackage: Record "LAX Posted Package";
         /* BC Upgrade can not do local file access
         LabelMgt: Codeunit "14000841";
         FieldValue: Codeunit "14000843"; */

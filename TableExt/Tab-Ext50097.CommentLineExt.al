@@ -50,7 +50,7 @@ tableextension 50097 "Comment Line Ext" extends "Comment Line"
         {
             OptionMembers = "Foreign&Domestic",Foreign,Domestic;
         }
-        field(70000; "User ID"; Code[20])
+        field(70000; "User ID"; Code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = user."User Name";

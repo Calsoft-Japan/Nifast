@@ -16,7 +16,6 @@ page 50022 "Lot Bin Content Lookup"
     DeleteAllowed = false;
     InsertAllowed = false;
     ApplicationArea = All;
-    UsageCategory = Lists;
     PageType = List;
     SourceTable = "Lot Bin Content";
 

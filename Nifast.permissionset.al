@@ -573,7 +573,7 @@ permissionset 50000 Nifast
         page "Receive Line Label Request" = X,
         page "Resp. Center Comment Sheet" = X,
         page "Sales Line Special Fields" = X,
-        page "Sales Price Listss" = X,
+        page "Sales Price Lists-Nifast" = X,
         page "Sales Shipment List" = X,
         page "Sales Shpt. Line Spec. Fields" = X,
         page "SAT Account Code" = X,

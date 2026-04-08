@@ -2,7 +2,7 @@ codeunit 70100 AddOnCustomizations
 {
     procedure PrintPackageLineLabel(PackageLine: Record "LAX Package Line"; QuantityAdded: Decimal; QuantityBaseAdded: Decimal; ManualPrinting: Boolean)
     var
-        PackingRule: Record "Packing Rule";
+        PackingRule: Record "LAX Packing Rule";
         PackageLineLabel: Report "Package Line Label";
         Package: Record "LAX Package";
         Item: Record Item;
@@ -47,7 +47,7 @@ codeunit 70100 AddOnCustomizations
     procedure PrintPostedPackageLineLabel(PostedPackageLine: Record "LAX Posted Package Line"; QuantityAdded: Decimal; QuantityBaseAdded: Decimal; ManualPrinting: Boolean)
     var
         PostedPackage: Record "LAX Posted Package";
-        PackingRule: Record "Packing Rule";
+        PackingRule: Record "LAX Packing Rule";
         PackageLineLabel: Report "Package Line Label";
         PostedPackageLineRequest: Page "Posted Package Line Label Req.";
     begin
@@ -127,7 +127,7 @@ codeunit 70100 AddOnCustomizations
 
     procedure CreatePackageLineNIF(var Package: Record "LAX Package"; var PackingControl: Record "LAX Packing Control"; QuantityToAdd: Decimal; Summary: Boolean): Boolean
     var
-        PackageLine: Record "Package Line";
+        PackageLine: Record "LAX Package Line";
         PackageLine2: Record "LAX Package Line";
         QuantityEntered: Decimal;
         QuantityInPackage: Decimal;
@@ -137,7 +137,7 @@ codeunit 70100 AddOnCustomizations
     begin
         PackageLine.RESET;
         PackageLine.SETRANGE("Package No.", Package."No.");
-        PackageLine.SETRANGE(Type, PackingControl."Input Type");
+        //PackageLine.SETRANGE(Type, PackingControl."Input Type"); //TODO
         PackageLine.SETRANGE("No.", PackingControl."Input No.");
         PackageLine.SETRANGE("Variant Code", PackingControl."Input Variant Code");
         PackageLine.SETRANGE("Unit of Measure Code", PackingControl."Input Unit of Measure Code");
@@ -188,8 +188,8 @@ codeunit 70100 AddOnCustomizations
               EXIT(FALSE);
             END;
             */
-            PackageLine.SetCreatedFromPick;  //NIF
-                                             //>>10-21-05
+            //PackageLine.SetCreatedFromPick;  //NIF //TODO
+            //>>10-21-05
             IF (NOT Summary) THEN BEGIN
                 //<<10-21-05
                 IF PackingControl."Pack Lot Number" AND (PackingControl."Input Lot Number" <> '') THEN
@@ -447,7 +447,7 @@ codeunit 70100 AddOnCustomizations
         TrackingSpecification."Qty. per Unit of Measure" := ProdOrderComp."Qty. per Unit of Measure";
     END;
 
-    local procedure UpdatePkgLineFromOrderLine(var PkgLine: Record "Package Line"; PkgControl: Record 14000717)
+    local procedure UpdatePkgLineFromOrderLine(var PkgLine: Record "LAX Package Line"; PkgControl: Record 14000717)
     var
         SalesLine: Record 37;
         SalesHdr: Record 36;

@@ -397,7 +397,10 @@ table 50110 "Price Contract"
         IF "No." = '' THEN BEGIN
             SalesSetup.GET();
             SalesSetup.TESTFIELD("Price Contract Nos.");
-            NoSeriesMgt.AreRelated(SalesSetup."Price Contract Nos.", xRec."No. Series");
+            "No. Series" := SalesSetup."Price Contract Nos.";
+            if NoSeriesMgt.AreRelated("No. Series", xRec."No. Series") then
+                "No. Series" := xRec."No. Series";
+            "No." := NoSeries.GetNextNo("No. Series", WorkDate());
         END;
 
         IF GETFILTER("Customer No.") <> '' THEN
@@ -421,6 +424,7 @@ table 50110 "Price Contract"
         Contract: Record 50110;
         PriceContractCommentLine: Record 50111;
         NoSeriesMgt: Codeunit "No. Series";
+        NoSeries: Codeunit "No. Series";
 
     procedure AssistEdit(OldContract: Record 50110): Boolean
     begin
@@ -428,7 +432,7 @@ table 50110 "Price Contract"
         SalesSetup.GET();
         SalesSetup.TESTFIELD("Price Contract Nos.");
         IF NoSeriesMgt.LookupRelatedNoSeries(SalesSetup."Price Contract Nos.", OldContract."No. Series", Contract."No. Series") THEN BEGIN
-            NoSeriesMgt.GetNextNo(Contract."No.");
+            Contract."No." := NoSeries.GetNextNo(Contract."No. Series");
             Rec := Contract;
             EXIT(TRUE);
         END;

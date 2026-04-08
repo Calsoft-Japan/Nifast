@@ -12,7 +12,7 @@ Tableextension 70104 "Packing Rule Ext" extends "Lax Packing Rule"
         }
         field(50010; "Package Line Label Code"; Code[10])
         {
-            TableRelation = "Label Header" WHERE("Label Usage" = CONST("Package Line"));
+            TableRelation = "LAX Label Header" WHERE("Label Usage" = CONST("Package Line"));
         }
         field(50020; "No. of Labels"; Option)
         {
@@ -20,7 +20,7 @@ Tableextension 70104 "Packing Rule Ext" extends "Lax Packing Rule"
         }
         field(50030; "Std. Package Label Code 2"; Code[10])
         {
-            TableRelation = "Label Header" WHERE("Label Usage" = CONST(Package));
+            TableRelation = "LAX Label Header" WHERE("Label Usage" = CONST(Package));
         }
     }
 }

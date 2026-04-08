@@ -127,6 +127,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
         {
             DataClassification = ToBeClassified;
             Description = '#10044';
+            TableRelation = "Shipping Vessels"."Vessel Name";
         }
         field(50008; "Assembly Order No."; Code[20])
         {
@@ -139,6 +140,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
         {
             Caption = 'Shipping Agent Code';
             DataClassification = ToBeClassified;
+            TableRelation = "Shipping Agent".Code;
         }
         field(50030; "Ship by Date"; Text[30])
         {

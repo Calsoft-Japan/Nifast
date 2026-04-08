@@ -597,9 +597,11 @@ report 50045 "Picking List - IST"
                         BarcodeSymbology := Enum::"Barcode Symbology"::Code39;
                         BarcodeFontProvider := Enum::"Barcode Font Provider"::IDAutomation1D;
                         BarcodeString := "Lot No.";
-                        BarcodeFontProvider.ValidateInput(BarcodeString, BarcodeSymbology);
+                        if BarcodeString <> '' then
+                            BarcodeFontProvider.ValidateInput(BarcodeString, BarcodeSymbology);
                         // Encode the data string to the barcode font
-                        LotBarCode := BarcodeFontProvider.EncodeFont(BarcodeString, BarcodeSymbology);
+                        if BarcodeString <> '' then
+                            LotBarCode := BarcodeFontProvider.EncodeFont(BarcodeString, BarcodeSymbology);
 
                         IF "Mfg. Lot No." <> '' THEN
                             MfgLotNo := "Mfg. Lot No."
@@ -895,7 +897,7 @@ report 50045 "Picking List - IST"
         ContractLine: Record "Sales Price";
         ASNValue: Code[20];
         ASNCaption: Text[30];
-        PackingRule: Record "Packing Rule";
+        PackingRule: Record "LAX Packing Rule";
         CurrReport_PAGENOCaptionLbl: Label 'Page';
         Sales_Order_Number_CaptionLbl: Label 'Sales Order Number:';
         ShipCaptionLbl: Label 'Ship';
