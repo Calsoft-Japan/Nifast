@@ -190,7 +190,7 @@ tableextension 50114 "Sales Cr.Memo Header Ext" extends "Sales Cr.Memo Header"
             TableRelation = User."User Name";
             Description = '20-->50 NF1.00:CIS.NG  10-10-15';
             ValidateTableRelation = false;
-            TestTableRelation = false;
+          //  TestTableRelation = false;
             trigger OnValidate()
             VAR
                 LoginMgt: Codeunit 418;

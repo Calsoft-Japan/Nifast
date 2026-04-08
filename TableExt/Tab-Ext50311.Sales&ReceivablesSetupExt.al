@@ -81,7 +81,7 @@ tableextension 50311 "Sales & Receivables Setup Ext" extends "Sales & Receivable
             TableRelation = "No. Series";
             ToolTip = 'Specifies the code for the number series that will be used to assign numbers to EDI Control Nos.';
         }
-      
+
         field(70000; "Review Days"; Decimal)
         {
             Caption = 'Review Days';

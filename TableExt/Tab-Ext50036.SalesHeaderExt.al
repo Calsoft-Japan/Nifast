@@ -324,7 +324,7 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         }
         field(70017; "No;Tool Repair Status"; code[10])
         {
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }
@@ -339,7 +339,7 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         }
         field(70029; "No;Cr. Mgmt. Comment"; Boolean)
         {
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }

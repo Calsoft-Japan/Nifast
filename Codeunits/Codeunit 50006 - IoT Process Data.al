@@ -418,6 +418,7 @@ codeunit 50006 "IoT Process Data"
         IoTDataStaging: Record 50042;
         CreatePick: Boolean;
         SortPick: Option " ",Item,Document,"Shelf/Bin","Due Date",Destination,"Bin Ranking","Action Type";
+        
 
     local procedure InitWhseActivHeader()
     begin

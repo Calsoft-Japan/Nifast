@@ -558,36 +558,34 @@ page 50077 "MEX Pedimento Reclass Screen"
         WhseEntry.SETRANGE("Location Code", LocationCode);
         WhseEntry.SETRANGE("Lot No.", LotNoInfo."Lot No.");
         REPEAT
-            WITH TempLotBinContent DO BEGIN
-                //get Lot Info record if exists
-                IF NOT LotNoInfo.GET(WhseEntry."Item No.", WhseEntry."Variant Code", WhseEntry."Lot No.") THEN
-                    CLEAR(LotNoInfo);
+            //get Lot Info record if exists
+            IF NOT LotNoInfo.GET(WhseEntry."Item No.", WhseEntry."Variant Code", WhseEntry."Lot No.") THEN
+                CLEAR(LotNoInfo);
 
-                IF NOT TempLotBinContent.GET(WhseEntry."Location Code", WhseEntry."Bin Code", WhseEntry."Item No.",
-                     WhseEntry."Variant Code", WhseEntry."Unit of Measure Code", WhseEntry."Lot No.") THEN BEGIN
-                    "Location Code" := WhseEntry."Location Code";
-                    "Bin Code" := WhseEntry."Bin Code";
-                    "Item No." := WhseEntry."Item No.";
-                    "Variant Code" := WhseEntry."Variant Code";
-                    "Unit of Measure Code" := WhseEntry."Unit of Measure Code";
-                    "Lot No." := WhseEntry."Lot No.";
-                    "Zone Code" := WhseEntry."Zone Code";
-                    "Bin Type Code" := WhseEntry."Bin Type Code";
-                    //"Expiration Date" := LotNoInfo."Expiration Date";
-                    "Creation Date" := LotNoInfo."Lot Creation Date";
-                    "External Lot No." := LotNoInfo."Mfg. Lot No.";
-                    "Qty. per Unit of Measure" := WhseEntry."Qty. per Unit of Measure";
-                    //get bin fields
-                    //"Warehouse Class Code" := Rec."Warehouse Class Code";
-                    //"Bin Ranking" := Rec."Bin Ranking";
-                    //"Cross-Dock Bin" := Rec."Cross-Dock Bin";
-                    //Default := Rec.Default;
-                    //IF BinContent.GET("Location Code","Bin Code","Item No.","Variant Code","Unit of Measure Code") THEN
-                    //   "Block Movement" := BinContent."Block Movement"
-                    // ELSE
-                    //  "Block Movement"  := Rec."Block Movement";
-                    INSERT();
-                END;
+            IF NOT TempLotBinContent.GET(WhseEntry."Location Code", WhseEntry."Bin Code", WhseEntry."Item No.",
+                 WhseEntry."Variant Code", WhseEntry."Unit of Measure Code", WhseEntry."Lot No.") THEN BEGIN
+                TempLotBinContent."Location Code" := WhseEntry."Location Code";
+                TempLotBinContent."Bin Code" := WhseEntry."Bin Code";
+                TempLotBinContent."Item No." := WhseEntry."Item No.";
+                TempLotBinContent."Variant Code" := WhseEntry."Variant Code";
+                TempLotBinContent."Unit of Measure Code" := WhseEntry."Unit of Measure Code";
+                TempLotBinContent."Lot No." := WhseEntry."Lot No.";
+                TempLotBinContent."Zone Code" := WhseEntry."Zone Code";
+                TempLotBinContent."Bin Type Code" := WhseEntry."Bin Type Code";
+                //"Expiration Date" := LotNoInfo."Expiration Date";
+                TempLotBinContent."Creation Date" := LotNoInfo."Lot Creation Date";
+                TempLotBinContent."External Lot No." := LotNoInfo."Mfg. Lot No.";
+                TempLotBinContent."Qty. per Unit of Measure" := WhseEntry."Qty. per Unit of Measure";
+                //get bin fields
+                //"Warehouse Class Code" := Rec."Warehouse Class Code";
+                //"Bin Ranking" := Rec."Bin Ranking";
+                //"Cross-Dock Bin" := Rec."Cross-Dock Bin";
+                //Default := Rec.Default;
+                //IF BinContent.GET("Location Code","Bin Code","Item No.","Variant Code","Unit of Measure Code") THEN
+                //   "Block Movement" := BinContent."Block Movement"
+                // ELSE
+                //  "Block Movement"  := Rec."Block Movement";
+                TempLotBinContent.INSERT();
             END;
         UNTIL WhseEntry.NEXT() = 0;
     end;

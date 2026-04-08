@@ -31,7 +31,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                 NVM: Codeunit 50021;
             begin
                 //>>NV
-                IF NVM.CheckSoftBlock(1, "Buy-from Vendor No.", "Order Address Code", '', "Document Type", SoftBlockError) THEN
+                IF NVM.CheckSoftBlock(1, "Buy-from Vendor No.", "Order Address Code", '', "Document Type".AsInteger(), SoftBlockError) THEN
                     ERROR(SoftBlockError);
                 //<<NV
             end;

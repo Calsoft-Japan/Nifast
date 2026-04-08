@@ -31,7 +31,7 @@ table 80090 "Member Of (Save)"
         field(5; Company; Text[30])
         {
             Caption = 'Company';
-           // TableRelation = Company.Name;
+            // TableRelation = Company.Name;
         }
     }
     keys

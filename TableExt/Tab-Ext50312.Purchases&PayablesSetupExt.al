@@ -58,7 +58,7 @@ tableextension 50312 "Purchases & Payables Setup Ext" extends "Purchases & Payab
         {
             Description = 'Consolidation';
         }
-        
+
     }
 }
 

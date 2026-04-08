@@ -133,9 +133,9 @@ table 80091 "TEMP - Fix Cust. Ledger Entry"
         field(27; "User ID"; Code[20])
         {
             Caption = 'User ID';
-             
+
             TableRelation = User;
-             
+
             //This property is currently not supported
             //TestTableRelation = false;
 

@@ -67,8 +67,8 @@ table 70500 "Fix Transfer Lots"
             // cleaned
             FieldClass = FlowField;
             CalcFormula = Sum("Fix Transfer Lots"."Adjmt. Qty" WHERE("Item No." = FIELD("Item No."),
-                                                                      "Lot No."=FIELD("Lot No."),
-                                                                      "Location Code"=FIELD("Location Code")));
+                                                                      "Lot No." = FIELD("Lot No."),
+                                                                      "Location Code" = FIELD("Location Code")));
         }
     }
     keys

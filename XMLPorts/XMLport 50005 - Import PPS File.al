@@ -232,40 +232,39 @@ xmlport 50005 "Import PPS File"
                         SalesPrice.RESET();
                         CLEAR(UseCustNo);
 
-                        WITH SalesPrice DO BEGIN
-                            SETRANGE("Item No.", ItemCrossRef."Item No.");
-                            SETFILTER("Ending Date", '%1|>=%2', 0D, TODAY);
-                            SETRANGE("Sales Type", "Sales Type"::Customer);
-                            SETFILTER("Contract No.", '<>%1', '');
+                        SalesPrice.SETRANGE("Item No.", ItemCrossRef."Item No.");
+                        SalesPrice.SETFILTER("Ending Date", '%1|>=%2', 0D, TODAY);
+                        SalesPrice.SETRANGE("Sales Type", SalesPrice."Sales Type"::Customer);
+                       // SalesPrice.SETFILTER("Contract No.", '<>%1', '');
 
-                            //1- first try USD customer
-                            SETRANGE("Sales Code", 'C0346');
-                            IF FIND('-') THEN
-                                UseCustNo := SalesPrice."Sales Code";
+                        //1- first try USD customer
+                        SalesPrice.SETRANGE("Sales Code", 'C0346');
+                        IF SalesPrice.FIND('-') THEN
+                            UseCustNo := SalesPrice."Sales Code";
 
-                            //2 - if no match try JPY customer
-                            IF UseCustNo = '' THEN BEGIN
-                                SETRANGE("Sales Code", 'C0347');
-                                IF FIND('-') THEN
-                                    UseCustNo := 'C0347'
-                            END;
+                        //2 - if no match try JPY customer
+                        IF UseCustNo = '' THEN BEGIN
+                            SalesPrice.SETRANGE("Sales Code", 'C0347');
+                            IF SalesPrice.FIND('-') THEN
+                                UseCustNo := 'C0347'
+                        END;
 
 
-                            //3_ SM ADDED NEW  2 - if no match try JPY customer
-                            IF UseCustNo = '' THEN BEGIN
-                                SETRANGE("Sales Code", 'C0349');
-                                IF FIND('-') THEN
-                                    UseCustNo := 'C0349'
-                            END;
+                        //3_ SM ADDED NEW  2 - if no match try JPY customer
+                        IF UseCustNo = '' THEN BEGIN
+                            SalesPrice.SETRANGE("Sales Code", 'C0349');
+                            IF SalesPrice.FIND('-') THEN
+                                UseCustNo := 'C0349'
+                        END;
 
-                            //3 - if still no match, revert back to USD with warning
-                            IF UseCustNo = '' THEN BEGIN
-                                ErrorFlag := TRUE;
-                                ErrorMessage := STRSUBSTNO(Text01Lbl, ItemCrossRef."Item No.", PartNo);
-                                MESSAGE('Error in File %1:\' +
-                                         '%2', UseFileName2, ErrorMessage);
-                            END; //end IF UseCustNo=''
-                        END; //end WITH SalesPrice DO
+                        //3 - if still no match, revert back to USD with warning
+                        IF UseCustNo = '' THEN BEGIN
+                            ErrorFlag := TRUE;
+                            ErrorMessage := STRSUBSTNO(Text01Lbl, ItemCrossRef."Item No.", PartNo);
+                            MESSAGE('Error in File %1:\' +
+                                     '%2', UseFileName2, ErrorMessage);
+                        END; //end IF UseCustNo=''
+                             //end WITH SalesPrice DO
                     END; //end IF CrossRefFound
 
 

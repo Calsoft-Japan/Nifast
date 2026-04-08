@@ -76,6 +76,6 @@ table 50135 "FB Message"
     end;
 
     var
-      /*   LineNo: Integer;
-        FBMessages: Record "50135"; */
+    /*   LineNo: Integer;
+      FBMessages: Record "50135"; */
 }

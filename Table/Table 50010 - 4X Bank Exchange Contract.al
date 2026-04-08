@@ -164,7 +164,7 @@ table 50010 "4X Bank Exchange Contract"
     {
         key(Key1; "No.")
         {
-            
+
         }
     }
 

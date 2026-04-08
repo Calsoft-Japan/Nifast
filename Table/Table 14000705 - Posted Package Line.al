@@ -588,10 +588,10 @@ table 99999 "Posted Package Line"
     }
 
     var
-/* 
-        Item: Record Item;
-        ItemUnitOfMeasure: Record 5404;
-        ShippingSetupRetrieved: Boolean; */
+    /* 
+            Item: Record Item;
+            ItemUnitOfMeasure: Record 5404;
+            ShippingSetupRetrieved: Boolean; */
 
     local procedure GetShippingSetup()
     begin

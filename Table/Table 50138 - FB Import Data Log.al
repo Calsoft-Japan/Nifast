@@ -137,16 +137,16 @@ table 50138 "FB Import Data Log"
         {
             FieldClass = FlowField;
             CalcFormula = Exist("FB Line" WHERE("Import Data Log No." = FIELD("No."),
-                                                 "Import Data Log Line No."=FIELD("Line No.")));
+                                                 "Import Data Log Line No." = FIELD("Line No.")));
             //Editable = false;
         }
     }
     keys
     {
-        key(Key1;"No.","Line No.")
+        key(Key1; "No.", "Line No.")
         {
         }
-        key(Key2;"Contract No.")
+        key(Key2; "Contract No.")
         {
         }
     }

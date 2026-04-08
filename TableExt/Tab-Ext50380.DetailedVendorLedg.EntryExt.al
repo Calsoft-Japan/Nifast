@@ -75,7 +75,7 @@ tableextension 50380 "Detailed Vendor Ledg. Entry Ex" extends "Detailed Vendor L
                         ESP = 'Tipo de Cambio';
             Description = 'CE 1.2';
         }
-        field(55091; "vendor posting group"; Code[10])
+        field(55091; "vendor posting group"; Code[20])
         {
             // cleaned
             FieldClass = FlowField;

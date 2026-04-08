@@ -282,7 +282,7 @@ page 50058 "Posted Sales Invoice Line NIF"
 
                     trigger OnAction()
                     begin
-                        ShowDimensions();
+                        Rec.ShowDimensions();
                     end;
                 }
             }
@@ -298,7 +298,7 @@ page 50058 "Posted Sales Invoice Line NIF"
 
                     trigger OnAction()
                     begin
-                        ShowDimensions();
+                        Rec.ShowDimensions();
                     end;
                 }
                 action("Item &Tracking Entries")
@@ -309,7 +309,7 @@ page 50058 "Posted Sales Invoice Line NIF"
 
                     trigger OnAction()
                     begin
-                        ShowItemTrackingLines();
+                        Rec.ShowItemTrackingLines();
                     end;
                 }
             }

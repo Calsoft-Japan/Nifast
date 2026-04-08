@@ -66,7 +66,7 @@ tableextension 50125 "Purch. Cr. Memo Line Ext" extends "Purch. Cr. Memo Line"
 
         field(70017; "Line Comment"; Boolean)
         {
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }

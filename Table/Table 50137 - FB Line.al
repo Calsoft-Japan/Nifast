@@ -9,7 +9,7 @@ table 50137 "FB Line"
         field(10; "Document No."; Code[20])
         {
             // cleaned
-           // TableRelation = "FB Header"."No.";
+            // TableRelation = "FB Header"."No.";
         }
         field(20; "Line No."; Integer)
         {
@@ -33,7 +33,7 @@ table 50137 "FB Line"
         }
         field(50; "Item No."; Code[20])
         {
-           // TableRelation = Item;
+            // TableRelation = Item;
 
             trigger OnValidate()
             begin
@@ -102,7 +102,7 @@ table 50137 "FB Line"
         {
             // cleaned
             //TableRelation = "Lot No. Information" WHERE("Item No." = FIELD("Item No."),
-                                                         //"Variant Code" = FIELD("Variant Code"));
+            //"Variant Code" = FIELD("Variant Code"));
         }
         field(90; "Customer Bin"; Code[20])
         {
@@ -164,7 +164,7 @@ table 50137 "FB Line"
             // cleaned
 
             //TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                            // "Rework Location" = CONST(false));
+            // "Rework Location" = CONST(false));
 
         }
         field(190; "Shipping Location"; Code[10])
@@ -172,7 +172,7 @@ table 50137 "FB Line"
             // cleaned
 
             //TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                              //"Rework Location" = CONST(false));
+            //"Rework Location" = CONST(false));
 
         }
         field(200; "Contract No."; Code[20])
@@ -208,7 +208,7 @@ table 50137 "FB Line"
             Caption = 'Cross-Reference No.';
             trigger OnLookup()
             begin
-               // CrossReferenceNoLookUp();
+                // CrossReferenceNoLookUp();
             end;
 
             trigger OnValidate()

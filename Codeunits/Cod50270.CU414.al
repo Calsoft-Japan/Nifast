@@ -23,7 +23,7 @@ codeunit 50270 CU_414
         // >> Shipping
         SalesSetup.Get();
         IF (SalesSetup."LAX Enable E-Mail") and (NOT RunFromEship) THEN
-            EMailMgt.SendSalesConfirmation(SalesHeader, FALSE, FALSE);
+            EMailMgt.SendSalesConfirmation2(SalesHeader, FALSE, FALSE);
         // << Shipping
 
         // >> EDI
@@ -44,7 +44,7 @@ codeunit 50270 CU_414
         LotCount: Integer;
         PromptText: Text[100];
     BEGIN
-        SalesLotEntry.GetSalesLines(SalesHeader."Document Type", SalesHeader."No.");
+        SalesLotEntry.GetSalesLines(SalesHeader."Document Type".AsInteger(), SalesHeader."No.");
         COMMIT;
         SalesLotEntry.SETRANGE("Document Type", SalesHeader."Document Type");
         SalesLotEntry.SETRANGE("Document No.", SalesHeader."No.");
@@ -139,17 +139,15 @@ codeunit 50270 CU_414
     VAR
         SalesLineRecLcl: Record 37;
     BEGIN
-        WITH SalesHeader DO BEGIN
-            SalesLineRecLcl.RESET;
-            SalesLineRecLcl.SETRANGE("Document Type", "Document Type");
-            SalesLineRecLcl.SETRANGE("Document No.", "No.");
-            SalesLineRecLcl.SETRANGE(Type, SalesLineRecLcl.Type::Item);
-            SalesLineRecLcl.SETFILTER("No.", '<>%1', '');
-            IF SalesLineRecLcl.FINDSET THEN
-                REPEAT
-                    SalesLineRecLcl.TESTFIELD("Unit of Measure Code");
-                UNTIL SalesLineRecLcl.NEXT = 0;
-        END;
+        SalesLineRecLcl.RESET;
+        SalesLineRecLcl.SETRANGE("Document Type", SalesHeader."Document Type");
+        SalesLineRecLcl.SETRANGE("Document No.", SalesHeader."No.");
+        SalesLineRecLcl.SETRANGE(Type, SalesLineRecLcl.Type::Item);
+        SalesLineRecLcl.SETFILTER("No.", '<>%1', '');
+        IF SalesLineRecLcl.FINDSET THEN
+            REPEAT
+                SalesLineRecLcl.TESTFIELD("Unit of Measure Code");
+            UNTIL SalesLineRecLcl.NEXT = 0;
     END;
 
 

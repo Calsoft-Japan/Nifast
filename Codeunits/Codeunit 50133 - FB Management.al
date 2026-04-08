@@ -220,7 +220,7 @@ codeunit 50133 "FB Management"
                     ItemCrossRef.SETRANGE("Reference No.", FBImportLog."Cross-Reference No.");
                     IF not ItemCrossRef.IsEmpty() THEN BEGIN
                         FBLine."Cross-Reference No." := FBImportLog."Cross-Reference No.";
-                        FBLine."Cross-Reference Type" := ItemCrossRef."Reference Type"::Customer;
+                        FBLine."Cross-Reference Type" := ItemCrossRef."Reference Type"::Customer.AsInteger();
                         FBLine."Cross-Reference Type No." := FBLine."Sell-to Customer No.";
                         IF FBLine."Item No." = '' THEN BEGIN
                             FBLine.VALIDATE("Item No.", ItemCrossRef."Item No.");

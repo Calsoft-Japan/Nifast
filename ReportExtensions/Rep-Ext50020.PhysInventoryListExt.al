@@ -68,7 +68,7 @@ reportextension 50020 "Phys. Inventory List Ext" extends "Phys. Inventory List"
         SNPLbl = 'SNP';
         LotNoLbl = 'Lot No.';
     }
-    
+
     var
         Item: Record Item;
         ">>NIF_GV": Integer;

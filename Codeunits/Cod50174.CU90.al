@@ -145,8 +145,8 @@ codeunit 50174 CU_90
         //>>NV
         IF PurchSetup."Copy Comments Order to Receipt" THEN
             CopyLineCommentLines(
-              PurchaseLine."Document Type",
-              PurchLineCommentLine."Document Type"::Receipt,
+              PurchaseLine."Document Type".AsInteger(),
+              PurchLineCommentLine."Document Type"::Receipt.AsInteger(),
               PurchaseLine."Document No.",
               PurchRcptLine."Document No.",
               PurchaseLine."Line No.",

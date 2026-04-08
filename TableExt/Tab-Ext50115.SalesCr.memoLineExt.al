@@ -98,7 +98,7 @@ tableextension 50115 "Sales Cr.Memo Line Ext" extends "Sales Cr.Memo Line"
 
         field(70014; "Line Comment"; Boolean)
         {
-            FieldClass = FlowField;
+            //FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }

@@ -2,7 +2,7 @@ tableextension 50336 "Tracking Specification Ext" extends "Tracking Specificatio
 {
     fields
     {
-        field(50000;"Mfg. Lot No.";Code[30])
+        field(50000; "Mfg. Lot No."; Code[30])
         {
             // cleaned
         }

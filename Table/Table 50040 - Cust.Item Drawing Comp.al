@@ -54,6 +54,6 @@ table 50040 "Cust./Item Drawing Comp"
     }
 
     var
-     /*    CustItemDrawing: Record 37015302;
-        ItemCrossReference: Record 5717; */
+    /*    CustItemDrawing: Record 37015302;
+       ItemCrossReference: Record 5717; */
 }

@@ -10,7 +10,7 @@ tableextension 50090 "BOM Component Ext" extends "BOM Component"
         }
         field(70000; "No;Line Comment"; Boolean)
         {
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }

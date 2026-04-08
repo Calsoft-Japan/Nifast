@@ -31,8 +31,8 @@ tableextension 50003 "Payment Terms Ext" extends "Payment Terms"
         {
             DataClassification = ToBeClassified;
         }
-        
-          
+
+
         field(70000; Deferred; Boolean)
         {
             Description = 'NV';

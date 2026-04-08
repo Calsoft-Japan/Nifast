@@ -37,7 +37,7 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
                 //<<NV 011206 RTT  $10571 #10571
             end;
         }
-        field(50000; "Customer Cross Ref No."; Code[30])
+        field(50000; "Customer Cross Ref No."; Code[50])
         {
             CalcFormula = Lookup("Item Reference"."Reference No." WHERE("Item No." = FIELD("Item No."),
                                                                                      "Reference Type" = CONST(Customer),
@@ -45,7 +45,7 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
             Editable = false;
             FieldClass = FlowField;
         }
-        field(50001; "Customer Cross Ref. Desc."; Text[50])
+        field(50001; "Customer Cross Ref. Desc."; Text[100])
         {
             CalcFormula = Lookup("Item Reference".Description WHERE("Item No." = FIELD("Item No."),
                                                                                      "Reference Type" = CONST(Customer),
@@ -59,7 +59,7 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
             CalcFormula = Lookup(Item."Unit Cost" WHERE("No." = FIELD("Item No.")));
             FieldClass = FlowField;
         }
-        field(50003; "Flow Vendor No."; Code[10])
+        field(50003; "Flow Vendor No."; Code[20])
         {
             // cleaned
             CalcFormula = Lookup(Item."Vendor No." WHERE("No." = FIELD("Item No.")));
@@ -101,7 +101,7 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
             Description = 'NV';
             TableRelation = "Price Contract";
         }
-        field(70004; "Item Description"; Text[50])
+        field(70004; "Item Description"; Text[100])
         {
             CalcFormula = Lookup(Item.Description WHERE("No." = FIELD("Item No.")));
             Description = 'NV';
@@ -127,7 +127,7 @@ tableextension 57002 "Sales Price Ext" extends "Sales Price"
             Description = 'NV';
             Editable = false;
             Enabled = false;
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
         }
         field(70007; "Contract Customer No."; Code[20])
         {

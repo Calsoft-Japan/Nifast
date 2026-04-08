@@ -5,7 +5,7 @@ table 90005 "Table Import Field Convert"
     //TODO
     // DrillDownPageID = 90007;
     // LookupPageID = 90007;
- 
+
     fields
     {
         field(1; "Table Import Code"; Code[10])

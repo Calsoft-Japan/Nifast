@@ -71,8 +71,8 @@ codeunit 50023 "Management XML Data Sales Inv."
     procedure IsPDFUploaded(SalesInvHeader: Record 112) Result: Boolean
     begin
         IF SalesInvXMLData.GET(SalesInvHeader."No.") THEN BEGIN
-           SalesInvXMLData.CALCFIELDS(PDF);
-           IF SalesInvXMLData.PDF.HASVALUE THEN EXIT(TRUE);
+            SalesInvXMLData.CALCFIELDS(PDF);
+            IF SalesInvXMLData.PDF.HASVALUE THEN EXIT(TRUE);
         END;
         EXIT(FALSE);
     end;

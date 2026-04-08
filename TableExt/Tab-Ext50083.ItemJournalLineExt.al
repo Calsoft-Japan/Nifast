@@ -72,7 +72,7 @@ tableextension 50083 "Item Journal Line Ext" extends "Item Journal Line"
         {
             trigger OnBeforeValidate()
             begin
-                IF (rec."Entry Type" <= rec."Entry Type"::Transfer) AND (Quantity <> 0) THEN
+                IF (rec."Entry Type".AsInteger() <= rec."Entry Type"::Transfer.AsInteger()) AND (Quantity <> 0) THEN
                     TESTFIELD("Item No.");
 
             end;

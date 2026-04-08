@@ -128,7 +128,7 @@ page 50041 "Posted Package Line Label Req."
                     Package.GET(Rec."Package No.");
 
                     PackingRule.GetPackingRule(
-                      Package."Ship-to Type", Package."Ship-to No.", Package."Ship-to Code");
+                      Package."Ship-to Type".AsInteger(), Package."Ship-to No.", Package."Ship-to Code");
 
                     IF PackingRule."Package Line Label Code" <> '' THEN BEGIN
                         CLEAR(PackageLineLabel);
@@ -160,7 +160,7 @@ page 50041 "Posted Package Line Label Req."
                 begin
                     PostedPackage.GET(Rec."Package No.");
                     Package2.TRANSFERFIELDS(PostedPackage);
-                    IF (PackingRule.GetPackingRule(Package2."Ship-to Type", Package2."Ship-to No.", Package2."Ship-to Code")) AND
+                    IF (PackingRule.GetPackingRule(Package2."Ship-to Type".AsInteger(), Package2."Ship-to No.", Package2."Ship-to Code")) AND
                           (PackingRule."Std. Package Label Code" <> '') THEN BEGIN
                         COMMIT();
                         LabelMgtNIF.PrintPackageLabel(Package2, PackingRule."Std. Package Label Code", NoOfCopies, TRUE, Rec."Line No.", QtyToPrint)

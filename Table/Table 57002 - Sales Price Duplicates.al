@@ -10,7 +10,7 @@ table 57002 "Sales Price Duplicates"
         {
             Caption = 'Item No.';
             NotBlank = true;
-           // TableRelation = Item;
+            // TableRelation = Item;
         }
         field(2; "Sales Code"; Code[20])
         {
@@ -22,7 +22,7 @@ table 57002 "Sales Price Duplicates"
         field(3; "Currency Code"; Code[10])
         {
             Caption = 'Currency Code';
-           // TableRelation = Currency;
+            // TableRelation = Currency;
         }
         field(4; "Starting Date"; Date)
         {
@@ -77,7 +77,7 @@ table 57002 "Sales Price Duplicates"
         field(5700; "Variant Code"; Code[10])
         {
             Caption = 'Variant Code';
-           // TableRelation = "Item Variant".Code WHERE("Item No." = FIELD("Item No."));
+            // TableRelation = "Item Variant".Code WHERE("Item No." = FIELD("Item No."));
         }
         field(7001; "Allow Line Disc."; Boolean)
         {
@@ -117,7 +117,7 @@ table 57002 "Sales Price Duplicates"
         field(14017648; Comments; Boolean)
         {
             Description = 'NV - NF1.00:CIS.NG 10-10-15';
-           // Editable = false;
+            // Editable = false;
             Enabled = false;
             FieldClass = FlowField;
         }
@@ -168,14 +168,14 @@ table 57002 "Sales Price Duplicates"
                                                     Type = CONST(Item),
                                                     "No." = FIELD("Item No.")));
             Description = 'NV';
-           // Editable = false;
+            // Editable = false;
             FieldClass = FlowField;
         }
         field(14017657; "Contract Ship Location Code"; Code[10])
         {
             Description = 'NV';
-           // TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
-                                            //"Rework Location" = CONST(false));
+            // TableRelation = Location WHERE("Use As In-Transit" = CONST(false),
+            //"Rework Location" = CONST(false));
         }
         field(14017658; "Replenishment Method"; Option)
         {

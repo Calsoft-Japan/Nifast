@@ -255,7 +255,7 @@ codeunit 50017 "Label Mgmt NIF"
         IF PackageLine.Type <> PackageLine.Type::Item THEN
             EXIT;
 
-        PackingRule.GetPackingRule(Package."Ship-to Type", Package."Ship-to No.", Package."Ship-to Code");
+        PackingRule.GetPackingRule(Package."Ship-to Type".AsInteger(), Package."Ship-to No.", Package."Ship-to Code");
 
 
 
@@ -1627,7 +1627,7 @@ codeunit 50017 "Label Mgmt NIF"
 
         //get label to use
         Package.GET(WhseActvHdr."No.");
-        PackingRule.GetPackingRule(Package."Ship-to Type", Package."Ship-to No.", Package."Ship-to Code");
+        PackingRule.GetPackingRule(Package."Ship-to Type".AsInteger(), Package."Ship-to No.", Package."Ship-to Code");
         LabelHeaderCode := PackingRule."Package Line Label Code";
 
 
@@ -1682,7 +1682,7 @@ codeunit 50017 "Label Mgmt NIF"
                 IF NOT Package.GET(UsePkgNo) THEN
                     ERROR('No Packages found for this Pick.');
 
-                PackingRule.GetPackingRule(Package."Ship-to Type", Package."Ship-to No.", Package."Ship-to Code");
+                PackingRule.GetPackingRule(Package."Ship-to Type".AsInteger(), Package."Ship-to No.", Package."Ship-to Code");
                 LabelHeaderCode := PackingRule."Package Line Label Code";
 
                 PackageLine.SETRANGE("Package No.", Package."No.");
@@ -1724,7 +1724,7 @@ codeunit 50017 "Label Mgmt NIF"
 
         //get label to use
         Package.GET(WhseActvLine."No.");
-        PackingRule.GetPackingRule(Package."Ship-to Type", Package."Ship-to No.", Package."Ship-to Code");
+        PackingRule.GetPackingRule(Package."Ship-to Type".AsInteger(), Package."Ship-to No.", Package."Ship-to Code");
         LabelHeaderCode := PackingRule."Package Line Label Code";
 
 
@@ -1775,7 +1775,7 @@ codeunit 50017 "Label Mgmt NIF"
 
         //get label to use
         Package.GET(UsePkgNo);
-        PackingRule.GetPackingRule(Package."Ship-to Type", Package."Ship-to No.", Package."Ship-to Code");
+        PackingRule.GetPackingRule(Package."Ship-to Type".AsInteger(), Package."Ship-to No.", Package."Ship-to Code");
         LabelHeaderCode := PackingRule."Package Line Label Code";
 
 

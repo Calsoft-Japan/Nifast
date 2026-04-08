@@ -95,7 +95,7 @@ codeunit 50253 Tabe38
     local procedure OnBeforeCheckBlockedVendOnDocs(var PurchaseHeader: Record "Purchase Header"; xPurchaseHeader: Record "Purchase Header"; var Vend: Record Vendor; CurrFieldNo: Integer; var IsHandled: Boolean)
     begin
         //>>NV
-        IF NVM.CheckSoftBlock(1, PurchaseHeader."Pay-to Vendor No.", '', '', PurchaseHeader."Document Type", SoftBlockError) THEN
+        IF NVM.CheckSoftBlock(1, PurchaseHeader."Pay-to Vendor No.", '', '', PurchaseHeader."Document Type".AsInteger(), SoftBlockError) THEN
             ERROR(SoftBlockError);
         //<<NV
     end;

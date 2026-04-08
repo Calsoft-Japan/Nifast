@@ -482,7 +482,7 @@ tableextension 50027 "Item Ext" extends "Item"
 
         field(70012; "Qty. on Prod. Kit"; Decimal)
         {
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
             DecimalPlaces = 0 : 2;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
@@ -490,7 +490,7 @@ tableextension 50027 "Item Ext" extends "Item"
 
         field(70013; "Qty. on Prod. Kit Lines"; Decimal)
         {
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
             DecimalPlaces = 0 : 2;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
@@ -574,7 +574,7 @@ tableextension 50027 "Item Ext" extends "Item"
 
         field(70025; "QC Comment"; Boolean)
         {
-            FieldClass = FlowField;
+            //FieldClass = FlowField;
             Caption = 'QC Comment';
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;

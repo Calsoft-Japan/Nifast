@@ -212,10 +212,10 @@ codeunit 50179 CU_80
                 Shipping.CreateBOLPostSalesShipment(SalesShipmentHeader);
 
         IF SalesHeader.Ship AND SalesSetup."LAX Enable E-Mail" THEN
-            EMailMgt.SendSalesShipmentNotice(SalesShipmentHeader, FALSE, FALSE);
+            EMailMgt.SendSalesShipmentNotice2(SalesShipmentHeader, FALSE, FALSE);
 
         IF SalesHeader.Invoice AND SalesSetup."LAX Enable E-Mail" THEN
-            EMailMgt.SendSalesInvoiceNotice(SalesInvoiceHeader, FALSE, FALSE);
+            EMailMgt.SendSalesInvoiceNotice2(SalesInvoiceHeader, FALSE, FALSE);
         // << Shipping
         IF COMPANYNAME = 'NIFAST Mexicana' THEN BEGIN      //jrr
                                                            //TODO                                              //AKK1612.01-NS

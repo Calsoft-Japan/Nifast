@@ -105,7 +105,7 @@ tableextension 50021 "Cust. Ledger Entry Ext" extends "Cust. Ledger Entry"
             Description = 'NV    NF1.00:CIS.CM 09-29-15';
             Editable = false;
             Enabled = false;
-            FieldClass = FlowField;
+          //  FieldClass = FlowField;
         }
     }
     keys

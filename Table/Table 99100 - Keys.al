@@ -29,23 +29,23 @@ table 99100 "Keys"
         field(30; "Maintain SIFT Levels"; Boolean)
         {
             // cleaned
-            CalcFormula = Exist("SIFT Levels" WHERE("Table No."=FIELD("Table No."),
-                                                     "Key No."=FIELD("Key No.")));
+            CalcFormula = Exist("SIFT Levels" WHERE("Table No." = FIELD("Table No."),
+                                                     "Key No." = FIELD("Key No.")));
             FieldClass = FlowField;
         }
-        field(40;"Maintain SQL Index";Boolean)
+        field(40; "Maintain SQL Index"; Boolean)
         {
             // cleaned
         }
-        field(41;"SIFT Levels Enabled";Integer)
+        field(41; "SIFT Levels Enabled"; Integer)
         {
             // cleaned
             FieldClass = Normal;
         }
     }
-     keys
+    keys
     {
-        key(Key1;"Table No.","Key No.",Enabled)
+        key(Key1; "Table No.", "Key No.", Enabled)
         {
         }
     }

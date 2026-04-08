@@ -401,23 +401,21 @@ report 50012 "Create InvtPutaway/Pick/Mv New"
 
     local procedure InitWhseActivHeader()
     begin
-        WITH WhseActivHeader DO BEGIN
-            INIT();
-            CASE "Warehouse Request".Type OF
-                "Warehouse Request".Type::Inbound:
-                    Type := Type::"Invt. Put-away";
-                "Warehouse Request".Type::Outbound:
-                    IF CreatePick THEN
-                        Type := Type::"Invt. Pick"
-                    ELSE
-                        Type := Type::"Invt. Movement";
-            END;
-            "No." := '';
-            "Location Code" := "Warehouse Request"."Location Code";
-            //>> NIF 07-06-05 RTT
-            "Sorting Method" := SortPick;
-            //<< NIF 07-06-05 RTT
+        WhseActivHeader.INIT();
+        CASE "Warehouse Request".Type OF
+            "Warehouse Request".Type::Inbound:
+                WhseActivHeader.Type := WhseActivHeader.Type::"Invt. Put-away";
+            "Warehouse Request".Type::Outbound:
+                IF CreatePick THEN
+                    WhseActivHeader.Type := WhseActivHeader.Type::"Invt. Pick"
+                ELSE
+                    WhseActivHeader.Type := WhseActivHeader.Type::"Invt. Movement";
         END;
+        WhseActivHeader."No." := '';
+        WhseActivHeader."Location Code" := "Warehouse Request"."Location Code";
+        //>> NIF 07-06-05 RTT
+        WhseActivHeader."Sorting Method" := SortPick;
+        //<< NIF 07-06-05 RTT
     end;
 
     local procedure InsertTempWhseActivHdr()
@@ -429,18 +427,17 @@ report 50012 "Create InvtPutaway/Pick/Mv New"
 
     local procedure PrintNewDocuments()
     begin
-        WITH TempWhseActivHdr DO
-            REPEAT
-                CASE Type OF
-                    Type::"Invt. Put-away":
-                        WhseDocPrint.PrintInvtPutAwayHeader(TempWhseActivHdr, TRUE);
-                    Type::"Invt. Pick":
-                        IF CreatePick THEN
-                            WhseDocPrint.PrintInvtPickHeader(TempWhseActivHdr, TRUE)
-                        ELSE
-                            WhseDocPrint.PrintInvtMovementHeader(TempWhseActivHdr, TRUE);
-                END;
-            UNTIL NEXT() = 0;
+        REPEAT
+            CASE TempWhseActivHdr.Type OF
+                TempWhseActivHdr.Type::"Invt. Put-away":
+                    WhseDocPrint.PrintInvtPutAwayHeader(TempWhseActivHdr, TRUE);
+                TempWhseActivHdr.Type::"Invt. Pick":
+                    IF CreatePick THEN
+                        WhseDocPrint.PrintInvtPickHeader(TempWhseActivHdr, TRUE)
+                    ELSE
+                        WhseDocPrint.PrintInvtMovementHeader(TempWhseActivHdr, TRUE);
+            END;
+        UNTIL TempWhseActivHdr.NEXT() = 0;
     end;
 
     local procedure CheckWhseRequest(WhseRequest: Record "Warehouse Request"): Boolean
@@ -510,15 +507,14 @@ report 50012 "Create InvtPutaway/Pick/Mv New"
     var
         NIFLabelMgt: Codeunit "Label Mgmt NIF";
     begin
-        WITH TempWhseActivHdr DO
-            REPEAT
-                CASE Type OF
-                    Type::"Invt. Put-away":
-                        EXIT;
-                    Type::"Invt. Pick":
-                        NIFLabelMgt.PrintLabelsFromPick(TempWhseActivHdr);
-                END;
-            UNTIL NEXT() = 0;
+        REPEAT
+            CASE TempWhseActivHdr.Type OF
+                TempWhseActivHdr.Type::"Invt. Put-away":
+                    EXIT;
+                TempWhseActivHdr.Type::"Invt. Pick":
+                    NIFLabelMgt.PrintLabelsFromPick(TempWhseActivHdr);
+            END;
+        UNTIL TempWhseActivHdr.NEXT() = 0;
     end;
 
     procedure CreateFastPackAction()
@@ -562,13 +558,13 @@ report 50012 "Create InvtPutaway/Pick/Mv New"
         CaptionText := PackingControl.FormatSource2() + ' ' + PackingControl."Ship-to Name";
 
         PackingRule.GetPackingRule(
-          PackingControl."Ship-to Type", PackingControl."Ship-to No.", PackingControl."Ship-to Code");
+          PackingControl."Ship-to Type".AsInteger(), PackingControl."Ship-to No.", PackingControl."Ship-to Code");
 
         PackingControl."Multi Document No." := PackingControl."Source ID";
         PackingControl."Multi Document Package" := FALSE;
         UpdatePackingLines(PackingControl);
 
-        ShippingSetup.TestPackingAllowed(PackingControl."Source Type", PackingControl."Source Subtype");
+        ShippingSetup.TestPackingAllowed(PackingControl."Source Type", PackingControl."Source Subtype".AsInteger());
 
         PackingControl.TestReleased2(TRUE);
 

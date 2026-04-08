@@ -14,7 +14,7 @@ codeunit 70100 AddOnCustomizations
 
         Package.GET(PackageLine."Package No.");
         PackingRule.GetPackingRule(
-          Package."Ship-to Type", Package."Ship-to No.", Package."Ship-to Code");
+          Package."Ship-to Type".AsInteger(), Package."Ship-to No.", Package."Ship-to Code");
 
 
         IF NOT PackingRule."Automatic Print Label" AND NOT ManualPrinting THEN
@@ -56,7 +56,7 @@ codeunit 70100 AddOnCustomizations
 
         PostedPackage.GET(PostedPackageLine."Package No.");
         PackingRule.GetPackingRule(
-          PostedPackage."Ship-to Type", PostedPackage."Ship-to No.", PostedPackage."Ship-to Code");
+          PostedPackage."Ship-to Type".AsInteger(), PostedPackage."Ship-to No.", PostedPackage."Ship-to Code");
 
         IF NOT PackingRule."Automatic Print Label" AND NOT ManualPrinting THEN
             EXIT;
@@ -167,7 +167,7 @@ codeunit 70100 AddOnCustomizations
             PackageLine.INIT;
             //>>IST 012609 CCL $12797 #12797
             PackageLine."Source Type" := Package."Source Type";
-            PackageLine."Source Subtype" := Package."Source Subtype";
+            PackageLine."Source Subtype" := Package."Source Subtype".AsInteger();
             //<<IST 012609 CCL $12797 #12797
             //>>IST 081208 CCL $12797 #12797
             //  PackageLine."Sales Order No." := Package."Sales Order No.";
@@ -459,44 +459,42 @@ codeunit 70100 AddOnCustomizations
             //<<IST 081208 CCL $12797 #12797
             EXIT;
 
-        WITH SalesLine DO BEGIN
-            PkgLine."Certificate No." := SalesLine."Certificate No.";
-            PkgLine."Drawing No." := SalesLine."Drawing No.";
-            PkgLine."Revision No." := SalesLine."Revision No.";
-            PkgLine."Revision Date" := SalesLine."Revision Date";
-            PkgLine."Location Code" := "Location Code";
-            //PkgLine."Cross Reference No." := "Cross-Reference No.";
-            PkgLine."Storage Location" := "Storage Location";
-            PkgLine."Line Supply Location" := "Line Supply Location";
-            PkgLine."Deliver To" := "Deliver To";
-            PkgLine."Receiving Area" := "Receiving Area";
-            PkgLine."Ran No." := "Ran No.";
-            PkgLine."Container No." := "Container No.";
-            PkgLine."Kanban No." := "Kanban No.";
-            PkgLine."Res. Mfg." := "Res. Mfg.";
-            PkgLine."Release No." := "Release No.";
-            PkgLine."Mfg. Date" := "Mfg. Date";
-            PkgLine."Man No." := "Man No.";
-            PkgLine."Delivery Order No." := "Delivery Order No.";
-            PkgLine."Dock Code" := "Dock Code";
-            PkgLine."Box Weight" := "Box Weight";
-            PkgLine."Store Address" := "Store Address";
-            PkgLine."FRS No." := "FRS No.";
-            PkgLine."Main Route" := "Main Route";
-            PkgLine."Line Side Address" := "Line Side Address";
-            PkgLine."Sub Route Number" := "Sub Route Number";
-            PkgLine."Special Markings" := "Special Markings";
-            PkgLine."Eng. Change No." := "Eng. Change No.";
-            //>> NIF 06-22-05
-            IF "External Document No." <> '' THEN
-                PkgLine."External Document No." := "External Document No."
-            //>>IST 081208 CCL $12797 #12797
-            //  ELSE IF SalesHdr.GET(SalesHdr."Document Type"::Order,PkgLine."Sales Order No.") THEN
-            ELSE IF SalesHdr.GET(SalesHdr."Document Type"::Order, PkgLine."Source ID") THEN
-                //<<IST 081208 CCL $12797 #12797
-                PkgLine."External Document No." := SalesHdr."External Document No."
+        PkgLine."Certificate No." := SalesLine."Certificate No.";
+        PkgLine."Drawing No." := SalesLine."Drawing No.";
+        PkgLine."Revision No." := SalesLine."Revision No.";
+        PkgLine."Revision Date" := SalesLine."Revision Date";
+        PkgLine."Location Code" := SalesLine."Location Code";
+        //PkgLine."Cross Reference No." := "Cross-Reference No.";
+        PkgLine."Storage Location" := SalesLine."Storage Location";
+        PkgLine."Line Supply Location" := SalesLine."Line Supply Location";
+        PkgLine."Deliver To" := SalesLine."Deliver To";
+        PkgLine."Receiving Area" := SalesLine."Receiving Area";
+        PkgLine."Ran No." := SalesLine."Ran No.";
+        PkgLine."Container No." := SalesLine."Container No.";
+        PkgLine."Kanban No." := SalesLine."Kanban No.";
+        PkgLine."Res. Mfg." := SalesLine."Res. Mfg.";
+        PkgLine."Release No." := SalesLine."Release No.";
+        PkgLine."Mfg. Date" := SalesLine."Mfg. Date";
+        PkgLine."Man No." := SalesLine."Man No.";
+        PkgLine."Delivery Order No." := SalesLine."Delivery Order No.";
+        PkgLine."Dock Code" := SalesLine."Dock Code";
+        PkgLine."Box Weight" := SalesLine."Box Weight";
+        PkgLine."Store Address" := SalesLine."Store Address";
+        PkgLine."FRS No." := SalesLine."FRS No.";
+        PkgLine."Main Route" := SalesLine."Main Route";
+        PkgLine."Line Side Address" := SalesLine."Line Side Address";
+        PkgLine."Sub Route Number" := SalesLine."Sub Route Number";
+        PkgLine."Special Markings" := SalesLine."Special Markings";
+        PkgLine."Eng. Change No." := SalesLine."Eng. Change No.";
+        //>> NIF 06-22-05
+        IF SalesLine."External Document No." <> '' THEN
+            PkgLine."External Document No." := SalesLine."External Document No."
+        //>>IST 081208 CCL $12797 #12797
+        //  ELSE IF SalesHdr.GET(SalesHdr."Document Type"::Order,PkgLine."Sales Order No.") THEN
+        ELSE IF SalesHdr.GET(SalesHdr."Document Type"::Order, PkgLine."Source ID") THEN
+            //<<IST 081208 CCL $12797 #12797
+            PkgLine."External Document No." := SalesHdr."External Document No."
             //<<
-        END;
     end;
 
 

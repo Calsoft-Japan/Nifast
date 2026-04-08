@@ -10,9 +10,9 @@ codeunit 50258 "CU 415"
 
     begin
         //>>NV
-        IF NVM.CheckSoftBlock(1, PurchaseHeader."Buy-from Vendor No.", PurchaseHeader."Order Address Code", '', PurchaseHeader."Document Type", SoftBlockError) THEN
+        IF NVM.CheckSoftBlock(1, PurchaseHeader."Buy-from Vendor No.", PurchaseHeader."Order Address Code", '', PurchaseHeader."Document Type".AsInteger(), SoftBlockError) THEN
             ERROR(SoftBlockError);
-        IF NVM.CheckSoftBlock(1, PurchaseHeader."Pay-to Vendor No.", '', '', PurchaseHeader."Document Type", SoftBlockError) THEN
+        IF NVM.CheckSoftBlock(1, PurchaseHeader."Pay-to Vendor No.", '', '', PurchaseHeader."Document Type".AsInteger(), SoftBlockError) THEN
             ERROR(SoftBlockError);
         //<<NV
 

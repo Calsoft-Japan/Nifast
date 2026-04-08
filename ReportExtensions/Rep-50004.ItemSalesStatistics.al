@@ -6,7 +6,7 @@ report 50004 "Item Sales Statistics New"
 
     Caption = 'Item Sales Statistics New';
     ApplicationArea = All;
-    UsageCategory=ReportsAndAnalysis;
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

@@ -279,7 +279,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
 
         field(70014; "Line Comment"; Boolean)
         {
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
             InitValue = false;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
@@ -471,7 +471,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         NIFItemCrossRef: Record 5777;
         NVM: Codeunit 50021;
         WhseValidateSourceLine: Codeunit 5777;
-        SalesPrice: Record 7002;
+     //   SalesPrice: Record 7002;
         RunFromEDI: Boolean;
         EDITemp: Boolean;
         Text14000701: Label 'Packages already exist for this line.';

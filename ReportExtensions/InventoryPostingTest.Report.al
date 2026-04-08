@@ -416,11 +416,11 @@ report 50015 "Inventory Posting - Test New"
                     LotString := GetLotString();
                     //<< NIF
 
-                    NoOfEntries["Entry Type" + 1] := 1;
-                    TotalAmounts["Entry Type" + 1] := Amount;
+                    NoOfEntries["Entry Type".AsInteger() + 1] := 1;
+                    TotalAmounts["Entry Type" .AsInteger()+ 1] := Amount;
 
                     CostAmount := "Unit Cost" * Quantity;
-                    TotalCostAmounts["Entry Type" + 1] := CostAmount;
+                    TotalCostAmounts["Entry Type".AsInteger() + 1] := CostAmount;
 
                     IF "Entry Type" IN
                        ["Entry Type"::Purchase,
@@ -727,8 +727,8 @@ report 50015 "Inventory Posting - Test New"
                                 FIELDCAPTION("New Bin Code")));
                     END;
 
-                    JnlTemplateType := ItemJnlTemplate.Type;
-                    ItemLineEntryType := "Entry Type";
+                    JnlTemplateType := ItemJnlTemplate.Type.AsInteger();
+                    ItemLineEntryType := "Entry Type".AsInteger();
 
                     CASE "Entry Type" + 1 OF
                         1:
@@ -916,47 +916,45 @@ report 50015 "Inventory Posting - Test New"
 
     local procedure CheckRecurringLine(ItemJnlLine2: Record "Item Journal Line")
     begin
-        WITH ItemJnlLine2 DO
-            IF ItemJnlTemplate.Recurring THEN BEGIN
-                IF "Recurring Method" = 0 THEN
-                    AddError(STRSUBSTNO(Text001, FIELDCAPTION("Recurring Method")));
-                IF FORMAT("Recurring Frequency") = '' THEN
-                    AddError(STRSUBSTNO(Text001, FIELDCAPTION("Recurring Frequency")));
-                IF "Recurring Method" = "Recurring Method"::Variable THEN
-                    IF Quantity = 0 THEN
-                        AddError(STRSUBSTNO(Text001, FIELDCAPTION(Quantity)));
-            END ELSE BEGIN
-                IF "Recurring Method" <> 0 THEN
-                    AddError(STRSUBSTNO(Text016, FIELDCAPTION("Recurring Method")));
-                IF FORMAT("Recurring Frequency") <> '' THEN
-                    AddError(STRSUBSTNO(Text016, FIELDCAPTION("Recurring Frequency")));
-            END;
+        IF ItemJnlTemplate.Recurring THEN BEGIN
+            IF ItemJnlLine2."Recurring Method" = 0 THEN
+                AddError(STRSUBSTNO(Text001, ItemJnlLine2.FIELDCAPTION("Recurring Method")));
+            IF FORMAT(ItemJnlLine2."Recurring Frequency") = '' THEN
+                AddError(STRSUBSTNO(Text001, ItemJnlLine2.FIELDCAPTION("Recurring Frequency")));
+            IF ItemJnlLine2."Recurring Method" = ItemJnlLine2."Recurring Method"::Variable THEN
+                IF ItemJnlLine2.Quantity = 0 THEN
+                    AddError(STRSUBSTNO(Text001, ItemJnlLine2.FIELDCAPTION(Quantity)));
+        END ELSE BEGIN
+            IF ItemJnlLine2."Recurring Method" <> 0 THEN
+                AddError(STRSUBSTNO(Text016, ItemJnlLine2.FIELDCAPTION("Recurring Method")));
+            IF FORMAT(ItemJnlLine2."Recurring Frequency") <> '' THEN
+                AddError(STRSUBSTNO(Text016, ItemJnlLine2.FIELDCAPTION("Recurring Frequency")));
+        END;
     end;
 
     local procedure MakeRecurringTexts(var ItemJnlLine2: Record "Item Journal Line")
     begin
-        WITH ItemJnlLine2 DO
-            IF ("Posting Date" <> 0D) AND ("Item No." <> '') AND ("Recurring Method" <> 0) THEN BEGIN
-                Day := DATE2DMY("Posting Date", 1);
-                Week := DATE2DWY("Posting Date", 2);
-                Month := DATE2DMY("Posting Date", 2);
-                MonthText := FORMAT("Posting Date", 0, Text018);
-                AccountingPeriod.SETRANGE("Starting Date", 0D, "Posting Date");
-                IF NOT AccountingPeriod.FINDLAST() THEN
-                    AccountingPeriod.Name := '';
-                "Document No." :=
-                  DELCHR(
-                    PADSTR(
-                      STRSUBSTNO("Document No.", Day, Week, Month, MonthText, AccountingPeriod.Name),
-                      MAXSTRLEN("Document No.")),
-                    '>');
-                Description :=
-                  DELCHR(
-                    PADSTR(
-                      STRSUBSTNO(Description, Day, Week, Month, MonthText, AccountingPeriod.Name),
-                      MAXSTRLEN(Description)),
-                    '>');
-            END;
+        IF (ItemJnlLine2."Posting Date" <> 0D) AND (ItemJnlLine2."Item No." <> '') AND (ItemJnlLine2."Recurring Method" <> 0) THEN BEGIN
+            Day := DATE2DMY(ItemJnlLine2."Posting Date", 1);
+            Week := DATE2DWY(ItemJnlLine2."Posting Date", 2);
+            Month := DATE2DMY(ItemJnlLine2."Posting Date", 2);
+            MonthText := FORMAT(ItemJnlLine2."Posting Date", 0, Text018);
+            AccountingPeriod.SETRANGE("Starting Date", 0D, ItemJnlLine2."Posting Date");
+            IF NOT AccountingPeriod.FINDLAST() THEN
+                AccountingPeriod.Name := '';
+            ItemJnlLine2."Document No." :=
+              DELCHR(
+                PADSTR(
+                  STRSUBSTNO(ItemJnlLine2."Document No.", Day, Week, Month, MonthText, AccountingPeriod.Name),
+                  MAXSTRLEN(ItemJnlLine2."Document No.")),
+                '>');
+            ItemJnlLine2.Description :=
+              DELCHR(
+                PADSTR(
+                  STRSUBSTNO(ItemJnlLine2.Description, Day, Week, Month, MonthText, AccountingPeriod.Name),
+                  MAXSTRLEN(ItemJnlLine2.Description)),
+                '>');
+        END;
     end;
 
     local procedure AddError(Text: Text[250])

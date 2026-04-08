@@ -127,7 +127,7 @@ table 50018 "Sales Invoice History Line"
         field(30; "Amount Including VAT"; Decimal)
         {
             AutoFormatExpression = "Currency Code";
-             AutoFormatType = 1;
+            AutoFormatType = 1;
             Caption = 'Amount Including Tax';
             //Editable = false;
         }
@@ -268,7 +268,7 @@ table 50018 "Sales Invoice History Line"
             Caption = 'Purch. Order Line No.';
             // Editable = false;
             // TableRelation = IF ("Drop Shipment" = CONST(True)) "Purchase Line"."Line No." WHERE("Document Type" = CONST(Order),
-                                                                                            //"Document No." = FIELD("Purchase Order No."));
+            //"Document No." = FIELD("Purchase Order No."));
         }
         field(73; "Drop Shipment"; Boolean)
         {
@@ -307,7 +307,7 @@ table 50018 "Sales Invoice History Line"
             Caption = 'Attached to Line No.';
             // Editable = false;
             // TableRelation = "Sales Line"."Line No." WHERE("Document Type" = FIELD("Document Type"),
-                                                          // "Document No." = FIELD("Document No."));
+            // "Document No." = FIELD("Document No."));
         }
         field(81; "Exit Point"; Code[10])
         {
@@ -366,7 +366,7 @@ table 50018 "Sales Invoice History Line"
         {
             Caption = 'Blanket Order Line No.';
             //TableRelation = "Sales Line"."Line No." WHERE("Document Type" = CONST("Blanket Order"),
-                                                           //"Document No." = FIELD("Blanket Order No."));
+            //"Document No." = FIELD("Blanket Order No."));
             //This property is currently not supported
             //TestTableRelation = false;
         }
@@ -413,7 +413,7 @@ table 50018 "Sales Invoice History Line"
         field(106; "VAT Identifier"; Code[10])
         {
             Caption = 'Tax Identifier';
-           // Editable = false;
+            // Editable = false;
         }
         field(5402; "Variant Code"; Code[10])
         {
@@ -502,7 +502,7 @@ table 50018 "Sales Invoice History Line"
         field(5703; "Originally Ordered No."; Code[20])
         {
             Caption = 'Originally Ordered No.';
-           // TableRelation = IF (Type = CONST(Item)) Item;
+            // TableRelation = IF (Type = CONST(Item)) Item;
         }
         field(5704; "Originally Ordered Var. Code"; Code[10])
         {
@@ -574,7 +574,7 @@ table 50018 "Sales Invoice History Line"
         {
             Caption = 'Special Order Purch. Line No.';
             //TableRelation = IF ("Special Order" = CONST(True)) "Purchase Line"."Line No." WHERE("Document Type" = CONST(Order),
-                                                                                            //"Document No." = FIELD("Special Order Purchase No."));
+            //"Document No." = FIELD("Special Order Purchase No."));
         }
         field(5750; "Whse. Outstanding Qty."; Decimal)
         {
@@ -590,7 +590,7 @@ table 50018 "Sales Invoice History Line"
         field(5752; "Completely Shipped"; Boolean)
         {
             Caption = 'Completely Shipped';
-           // Editable = false;
+            // Editable = false;
         }
         field(5790; "Requested Delivery Date"; Date)
         {
@@ -677,7 +677,7 @@ table 50018 "Sales Invoice History Line"
         field(6600; "Return Receipt No."; Code[20])
         {
             Caption = 'Return Receipt No.';
-           // Editable = false;
+            // Editable = false;
         }
         field(7001; "Allow Line Disc."; Boolean)
         {
@@ -725,7 +725,7 @@ table 50018 "Sales Invoice History Line"
         field(14017631; "Net Unit Price"; Decimal)
         {
             DecimalPlaces = 2 : 5;
-           // Editable = false;
+            // Editable = false;
         }
         field(14017633; "Line Comment"; Boolean)
         {

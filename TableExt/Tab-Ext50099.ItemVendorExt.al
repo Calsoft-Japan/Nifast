@@ -17,7 +17,7 @@ tableextension 50099 ItemVendorExt extends "Item Vendor"
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
-        field(70003; "Vendor Name"; text[50])
+        field(70003; "Vendor Name"; text[100])
         {
             FieldClass = FlowField;
             CalcFormula = Lookup(Vendor.Name WHERE("No." = FIELD("Vendor No.")));

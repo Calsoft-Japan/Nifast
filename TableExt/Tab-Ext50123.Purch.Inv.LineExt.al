@@ -138,7 +138,7 @@ tableextension 50123 "Purch. Inv. Line Ext" extends "Purch. Inv. Line"
 
         field(70017; "Line Comment"; Boolean)
         {
-            FieldClass = FlowField;
+          //  FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }

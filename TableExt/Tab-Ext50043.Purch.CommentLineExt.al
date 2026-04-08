@@ -37,7 +37,7 @@ tableextension 50043 "Purch. Comment Line Ext" extends "Purch. Comment Line"
             Description = '20-->50 NF1.00:CIS.NG  10-10-15';
             TableRelation = User."User Name";
             ValidateTableRelation = false;
-            TestTableRelation = false;
+          //  TestTableRelation = false;
             trigger OnValidate()
             var
                 LoginMgt: Codeunit "User Management";

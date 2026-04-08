@@ -11,7 +11,7 @@ table 90007 "Table Import Filter"
         field(2; "File Field No."; Integer)
         {
             // cleaned
-            TableRelation = "Table Import Definition"."File Field No." WHERE("Table Import Code"=FIELD("Table Import Code"));
+            TableRelation = "Table Import Definition"."File Field No." WHERE("Table Import Code" = FIELD("Table Import Code"));
         }
         field(3; "Filter"; Text[250])
         {

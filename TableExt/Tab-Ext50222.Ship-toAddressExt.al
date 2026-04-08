@@ -56,7 +56,7 @@ tableextension 50222 "Ship-to Address Ext" extends "Ship-to Address"
             // cleaned
             TableRelation = "Freight Code";
         }
-      
+
         field(70000; "Inside Salesperson"; Code[10])
         {
             Caption = 'Inside Salesperson';

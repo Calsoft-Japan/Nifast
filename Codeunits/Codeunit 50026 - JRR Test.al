@@ -1,20 +1,20 @@
 codeunit 50026 "JRR Test"
 {
-    Permissions = TableData 14=rimd,
-                  TableData 38=rimd,
-                  TableData 121=rimd,
-                  TableData 7312=rimd;
+    Permissions = TableData 14 = rimd,
+                  TableData 38 = rimd,
+                  TableData 121 = rimd,
+                  TableData 7312 = rimd;
 
     trigger OnRun()
     var
-       // WHE: Record 7312;
+        // WHE: Record 7312;
         //PH: Record 38;
         //prl: Record 121;
         Loc: Record 14;
     begin
         IF Loc.GET('ROMECON') THEN BEGIN
-        Loc."Use As In-Transit" := TRUE;
-        Loc.MODIFY();
+            Loc."Use As In-Transit" := TRUE;
+            Loc.MODIFY();
         END;
         EXIT;
         /*
@@ -43,34 +43,34 @@ codeunit 50026 "JRR Test"
           PH.MODIFY();
         END;
         */
-        
+
         //EXIT;
-        
-        
-        
-         /*
-          IF WHE.GET(147349) THEN  BEGIN     //-1000
-            WHE.Quantity :=-1000;
-           WHE."Qty. (Base)"  :=-1000;
-           WHE.MODIFY;
-         END;
-         IF WHE.GET(147350) THEN  BEGIN     //-6k
-            WHE.Quantity :=-6000;
-           WHE."Qty. (Base)"  :=-6000;
-           WHE.MODIFY;
-         END;
-         IF WHE.GET(147351) THEN  BEGIN   //-2k
-            WHE.Quantity :=-2000;
-           WHE."Qty. (Base)"  :=-2000;
-           WHE.MODIFY;
-         END;
-         IF WHE.GET(147352) THEN  BEGIN    //-2k
-            WHE.Quantity :=-2000;
-           WHE."Qty. (Base)"  :=-2000;
-           WHE.MODIFY;
-         END;
-        */
-      //  EXIT;
+
+
+
+        /*
+         IF WHE.GET(147349) THEN  BEGIN     //-1000
+           WHE.Quantity :=-1000;
+          WHE."Qty. (Base)"  :=-1000;
+          WHE.MODIFY;
+        END;
+        IF WHE.GET(147350) THEN  BEGIN     //-6k
+           WHE.Quantity :=-6000;
+          WHE."Qty. (Base)"  :=-6000;
+          WHE.MODIFY;
+        END;
+        IF WHE.GET(147351) THEN  BEGIN   //-2k
+           WHE.Quantity :=-2000;
+          WHE."Qty. (Base)"  :=-2000;
+          WHE.MODIFY;
+        END;
+        IF WHE.GET(147352) THEN  BEGIN    //-2k
+           WHE.Quantity :=-2000;
+          WHE."Qty. (Base)"  :=-2000;
+          WHE.MODIFY;
+        END;
+       */
+        //  EXIT;
 
     end;
 }

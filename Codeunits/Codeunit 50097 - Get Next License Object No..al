@@ -31,10 +31,10 @@ codeunit 50097 "Get Next License Object No."
         LicPermission_lRec.SETRANGE("Read Permission", LicPermission_lRec."Read Permission"::Yes);
         IF LicPermission_lRec.FINDSET() THEN
             REPEAT
-               // IF NOT ObjectExists_lFnc(LicPermission_lRec."Object Number") THEN BEGIN
-                 //   MESSAGE('New Object No. = %1', LicPermission_lRec."Object Number");
-                   // EXIT;
-                //END;//TODO
+            // IF NOT ObjectExists_lFnc(LicPermission_lRec."Object Number") THEN BEGIN
+            //   MESSAGE('New Object No. = %1', LicPermission_lRec."Object Number");
+            // EXIT;
+            //END;//TODO
             UNTIL LicPermission_lRec.NEXT() = 0
         ELSE BEGIN
             MESSAGE('New Object No. = %1', 50000);

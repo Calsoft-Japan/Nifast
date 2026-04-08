@@ -121,16 +121,16 @@ table 50141 "FB Tag Journal Line"
         field(170; "Salesperson Code"; Code[10])
         {
             Caption = 'Salespers./Purch. Code';
-             
+
             TableRelation = "Salesperson/Purchaser" WHERE(Sales = CONST(true));
-             
+
         }
         field(175; "Inside Salesperson Code"; Code[10])
         {
             // cleaned
-             
+
             TableRelation = "Salesperson/Purchaser" WHERE("Inside Sales" = CONST(true));
-             
+
         }
         field(180; "Required Date"; Date)
         {

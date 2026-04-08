@@ -135,7 +135,7 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         field(70002; "Vendor Shipment No"; Code[20])
         {
         }
-        field(70003; "Vendor Invoice No."; Code[20])
+        field(70003; "Vendor Invoice No."; Code[50])
         {
             FieldClass = FlowField;
             CalcFormula = Lookup("Purchase Header"."Vendor Invoice No." WHERE("No." = FIELD("Document No.")));
@@ -192,7 +192,7 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         }
         field(70018; "Prod. Kit Order No."; code[20])
         {
-            Description = 'NF1.00:CIS.CM 09-29-15'; 
+            Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
         field(70019; "Prod. Kit Order Line No."; Integer)
@@ -208,7 +208,7 @@ tableextension 50039 "Purchase Line Ext" extends "Purchase Line"
         }
         field(70024; "No;Line Comment"; Boolean)
         {
-            FieldClass = FlowField; 
+           // FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }

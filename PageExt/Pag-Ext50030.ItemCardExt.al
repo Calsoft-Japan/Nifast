@@ -184,31 +184,31 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Require Revision No. field.';
                 }
-                
-                  field("Revision No."; Rec."Revision No.")
-                 {
-                     Caption = 'Revision No.';
-                     DrillDown = false;
-                     ApplicationArea = All;
-                     ToolTip = 'Specifies the value of the Revision No. field.';
 
-                     trigger OnLookup(var Text: Text): Boolean;
-                     var
-                         CustItemDrawing: Record 50142;
-                         ">>NIF_LV": Integer;
-                     begin
-                         //>> NIF 06-29-05 RTT
-                         CustItemDrawing.RESET();
-                         CustItemDrawing.SETRANGE("Item No.", Rec."No.");
-                         CustItemDrawing.SETRANGE("Customer No.", '');
-                         PAGE.RUN(0, CustItemDrawing);
-                         Rec.CALCFIELDS("Drawing No.", "Revision No.", "Revision Date");
-                         CurrPage.UPDATE(FALSE);
-                         //<< NIF 06-29-05 RTT
-                     end;
-                 }
-                 //TODO
-                
+                field("Revision No."; Rec."Revision No.")
+                {
+                    Caption = 'Revision No.';
+                    DrillDown = false;
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Revision No. field.';
+
+                    trigger OnLookup(var Text: Text): Boolean;
+                    var
+                        CustItemDrawing: Record 50142;
+                        ">>NIF_LV": Integer;
+                    begin
+                        //>> NIF 06-29-05 RTT
+                        CustItemDrawing.RESET();
+                        CustItemDrawing.SETRANGE("Item No.", Rec."No.");
+                        CustItemDrawing.SETRANGE("Customer No.", '');
+                        PAGE.RUN(0, CustItemDrawing);
+                        Rec.CALCFIELDS("Drawing No.", "Revision No.", "Revision Date");
+                        CurrPage.UPDATE(FALSE);
+                        //<< NIF 06-29-05 RTT
+                    end;
+                }
+                //TODO
+
                 /*  field("Revision Date"; Rec."Revision Date")
                  {
                      ApplicationArea = All;

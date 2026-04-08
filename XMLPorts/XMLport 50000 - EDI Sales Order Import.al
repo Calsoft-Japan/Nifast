@@ -201,12 +201,12 @@ xmlport 50000 "EDI Sales Order Import"
                     MaxOccurs = Once;
                     MinOccurs = Zero;
                 }
-                fieldelement(PackageTrackingNo; "Sales Header"."Package Tracking No.")
-                {
-                    AutoCalcField = false;
-                    MaxOccurs = Once;
-                    MinOccurs = Zero;
-                }
+                // fieldelement(PackageTrackingNo; "Sales Header"."Package Tracking No.")
+                // {
+                //     AutoCalcField = false;
+                //     MaxOccurs = Once;
+                //     MinOccurs = Zero;
+                // }
                 textelement(ShipmentDate)
                 {
                     MaxOccurs = Once;
@@ -1061,8 +1061,8 @@ xmlport 50000 "EDI Sales Order Import"
             NewSalesHeader.VALIDATE("Shipping Agent Code", "Sales Header"."Shipping Agent Code");
         IF NOT ("Sales Header"."Shipping Agent Service Code" = '') THEN
             NewSalesHeader.VALIDATE("Shipping Agent Service Code", "Sales Header"."Shipping Agent Service Code");
-        IF NOT ("Sales Header"."Package Tracking No." = '') THEN
-            NewSalesHeader.VALIDATE("Package Tracking No.", "Sales Header"."Package Tracking No.");
+       // IF NOT ("Sales Header"."Package Tracking No." = '') THEN
+         //   NewSalesHeader.VALIDATE("Package Tracking No.", "Sales Header"."Package Tracking No.");
         IF NOT ("Sales Header"."On Hold" = '') THEN
             NewSalesHeader.VALIDATE("On Hold", "Sales Header"."On Hold");
         IF NOT ("Sales Header"."VAT Registration No." = '') THEN

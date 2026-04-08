@@ -112,19 +112,19 @@ table 99953 "TEMP - Fix Reservation Entry"
             var
                 LoginMgt: Codeunit "User Management";
             begin
-                 
+
                 //LoginMgt.LookupUserID("Created By");
                 LoginMgt.DisplayUserInformation("Created By");
-                 
+
             end;
 
         }
         field(27; "Changed By"; Code[20])
         {
             Caption = 'Changed By';
-             
+
             TableRelation = User;
-             
+
             //This property is currently not supported
             //TestTableRelation = false;
 
@@ -132,10 +132,10 @@ table 99953 "TEMP - Fix Reservation Entry"
             var
                 LoginMgt: Codeunit "User Management";
             begin
-                 
+
                 //LoginMgt.LookupUserID("Changed By");
                 LoginMgt.DisplayUserInformation("Changed By");
-                 
+
             end;
 
         }

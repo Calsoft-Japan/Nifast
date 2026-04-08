@@ -110,7 +110,7 @@ tableextension 50121 "Purch. Rcpt. Line Ext" extends "Purch. Rcpt. Line"
         }
         field(70024; "No;Line Comment"; Boolean)
         {
-            FieldClass = FlowField;
+            //FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }

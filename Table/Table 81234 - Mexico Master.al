@@ -409,38 +409,38 @@ table 81234 "Mexico Master"
         field(1200; "2006 Sales"; Decimal)
         {
             // cleaned
-            CalcFormula = Sum(MexicoSalesHist.Qty WHERE("Master Entry No"=FIELD(EntryNo)));
+            CalcFormula = Sum(MexicoSalesHist.Qty WHERE("Master Entry No" = FIELD(EntryNo)));
             FieldClass = FlowField;
         }
-        field(2000;PurchEntryNo;Integer)
+        field(2000; PurchEntryNo; Integer)
         {
             // cleaned
         }
-        field(2010;"Purch Qty";Decimal)
+        field(2010; "Purch Qty"; Decimal)
         {
             // cleaned
-             CalcFormula = Sum("Mexico Purch Hist"."Qty (Purch)" WHERE (EntryNo=FIELD(PurchEntryNo)));
+            CalcFormula = Sum("Mexico Purch Hist"."Qty (Purch)" WHERE(EntryNo = FIELD(PurchEntryNo)));
             FieldClass = FlowField;
         }
-        field(3000;"NV Lot No.";Code[20])
+        field(3000; "NV Lot No."; Code[20])
         {
             // cleaned
         }
-        field(3010;"Default CVE Pedimento";Code[10])
+        field(3010; "Default CVE Pedimento"; Code[10])
         {
             // cleaned
-            CalcFormula = Lookup("Lot No. Information"."CVE Pedimento" WHERE ("Item No."=FIELD(ItemNo),
-                                                                              "Lot No."=FIELD("NV Lot No.")));
+            CalcFormula = Lookup("Lot No. Information"."CVE Pedimento" WHERE("Item No." = FIELD(ItemNo),
+                                                                              "Lot No." = FIELD("NV Lot No.")));
             FieldClass = FlowField;
         }
-        field(3020;PedimentoMismatch;Boolean)
+        field(3020; PedimentoMismatch; Boolean)
         {
             // cleaned
         }
     }
     keys
     {
-        key(Key1;EntryNo)
+        key(Key1; EntryNo)
         {
         }
     }

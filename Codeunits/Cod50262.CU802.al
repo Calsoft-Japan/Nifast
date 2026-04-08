@@ -9,7 +9,7 @@ codeunit 50262 CU_802
         //   DATABASE::"Posted Package",
         //   DATABASE::"Packing Station"]);
         //  // DATABASE::"Rate Shop Header",
-          //DATABASE::"Bill of Lading"]);
+        //DATABASE::"Bill of Lading"]);
         // << Shipping]
 
 

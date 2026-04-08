@@ -288,7 +288,7 @@ page 50059 "Posted Purch. Invoice Line NIF"
 
                     trigger OnAction()
                     begin
-                        ShowDimensions();
+                        Rec.ShowDimensions();
                     end;
                 }
                 action("E-&Mail List")
@@ -320,7 +320,7 @@ page 50059 "Posted Purch. Invoice Line NIF"
 
                     trigger OnAction()
                     begin
-                        ShowDimensions();
+                        Rec.ShowDimensions();
                     end;
                 }
                 action("Item &Tracking Entries")
@@ -331,7 +331,7 @@ page 50059 "Posted Purch. Invoice Line NIF"
 
                     trigger OnAction()
                     begin
-                        ShowItemTrackingLines();
+                        Rec.ShowItemTrackingLines();
                     end;
                 }
             }

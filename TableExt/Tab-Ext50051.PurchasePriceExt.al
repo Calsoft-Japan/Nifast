@@ -12,7 +12,7 @@ tableextension 50051 "Purchase Price Ext" extends "Purchase Price"
             var
                 ItemUOMRec2: Record "Item Unit of Measure";
             begin
-        
+
             end;
         }
 

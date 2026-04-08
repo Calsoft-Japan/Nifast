@@ -204,7 +204,7 @@ tableextension 50113 "Sales Invoice Line Ext" extends "Sales Invoice Line"
         }
         field(70014; "No;Line Comment"; Boolean)
         {
-            FieldClass = FlowField;
+          //  FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }

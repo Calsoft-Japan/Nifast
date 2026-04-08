@@ -163,7 +163,7 @@ xmlport 50019 "Standard Sales Order Import"
 
                     IF SalesHeader.FINDSET() THEN
                         REPEAT
-                            "Sales Line".VALIDATE("Salesperson Code", SalesHeader."Salesperson Code"); 
+                            "Sales Line".VALIDATE("Salesperson Code", SalesHeader."Salesperson Code");
                             "Sales Line".VALIDATE("Shipping Agent Code", SalesHeader."Shipping Agent Code");
                             "Sales Line".MODIFY(TRUE);
                         UNTIL SalesHeader.NEXT() = 0;

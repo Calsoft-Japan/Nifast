@@ -114,7 +114,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
         }
         field(70017; "No;Tool Repair Status"; code[10])
         {
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
@@ -127,7 +127,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
         }
         field(70021; "No;Cr. Mgmt. Comment"; Boolean)
         {
-            FieldClass = FlowField;
+           // FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
@@ -144,7 +144,7 @@ tableextension 50110 "Sales Shipment Header Ext" extends "Sales Shipment Header"
         {
             TableRelation = User."User Name";
             ValidateTableRelation = false;
-            TestTableRelation = false;
+           // TestTableRelation = false;
             Description = '20-->50 NF1.00:CIS.NG  10-10-15';
             trigger OnValidate()
             var

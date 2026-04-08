@@ -5,7 +5,7 @@ report 50003 "Aged Accounts Payable New"
     RDLCLayout = '.\RDLC\AgedAccountsPayable.rdlc';
     Caption = 'Aged Accounts Payable New';
     ApplicationArea = All;
-    UsageCategory=ReportsAndAnalysis;
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

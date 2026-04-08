@@ -9,7 +9,7 @@ codeunit 50010 "Exchange Contract Management"
 
     trigger OnRun()
     begin
-      //  ERROR('Not Working');  //NG-N
+        //  ERROR('Not Working');  //NG-N
         //PurchInvoiceSumLine.SETRANGE("Receiving Dock Code",FALSE);
         IF PurchInvoiceSumLine.FIND('-') THEN BEGIN // do we have any lines to post
             REPEAT
@@ -156,7 +156,7 @@ codeunit 50010 "Exchange Contract Management"
 
     procedure PostLine(PurchLineToPost: Record 39)
     begin
-      //  ERROR('Not Working');//TODO  //NG-N
+        //  ERROR('Not Working');//TODO  //NG-N
         PurchLine2.INIT();
         PurchLine2.SETRANGE("Document No.", PurchLineToPost."Document No.");
 

@@ -15,7 +15,7 @@ table 90003 "Table Import Init Value"
         field(3; Value; Text[250])
         {
             // cleaned
-           TableRelation = IF (Type=CONST("No. Serie")) "No. Series";
+            TableRelation = IF (Type = CONST("No. Serie")) "No. Series";
         }
         field(4; "Validate Field"; Boolean)
         {
@@ -53,8 +53,8 @@ table 90003 "Table Import Init Value"
     }
 
     var
-      /*   TableImport: Record 90000;
-        "Field": Record 2000000041; */
+    /*   TableImport: Record 90000;
+      "Field": Record 2000000041; */
 
     procedure TableNo(): Integer
     begin

@@ -3,7 +3,7 @@ tableextension 50044 SalesCommentLineExt extends "Sales Comment Line"
     // version NAVW17.00,NAVNA7.00,SE0.50.32,NV4.32,NIF.N15.C9IN.001
     fields
     {
-        
+
         field(70000; "User ID"; Code[50])
         {
             Description = '20 --> 50 NF1.00:CIS.NG  10-10-15';
@@ -22,8 +22,8 @@ tableextension 50044 SalesCommentLineExt extends "Sales Comment Line"
             var
                 LoginMgt: Codeunit 418;
             begin
-               // LoginMgt.ValidateUserID("User ID");
-               LoginMgt.DisplayUserInformation("User ID");
+                // LoginMgt.ValidateUserID("User ID");
+                LoginMgt.DisplayUserInformation("User ID");
             end;
         }
         field(70001; "Time Stamp"; Time)

@@ -17,7 +17,7 @@ codeunit 50031 ConsolidationImp
         NoSeries: Record 308;
         LastNoSeriesLine: Record 309;
         CurrExchRate: Record 330;
-       // Company: Record 2000000006;
+        // Company: Record 2000000006;
         CurrencyCode: Code[10];
         CurrencyCode2: Code[10];
         CurrencyCode3: Code[10];
@@ -692,26 +692,26 @@ codeunit 50031 ConsolidationImp
                     CurrentExchRate := CurrencyFactor * RefExchRate
                 ELSE
                     CurrentExchRate := (RefExchRate * RefExchRate2 * CurrencyFactor) / CurrentExchRate2;
-            CurrExchRate."Fix Exchange Rate Amount"::Both:
+            CurrExchRate."Fix Exchange Rate Amount"::Both.AsInteger():
                 ;
 
         END;
 
         IF RefCurrencyCode <> '' THEN BEGIN
-            IF (Fix <> CurrExchRate."Fix Exchange Rate Amount"::Both) AND (Fix2 <> CurrExchRate."Fix Exchange Rate Amount"::Both) THEN
+            IF (Fix <> CurrExchRate."Fix Exchange Rate Amount"::Both.) AND (Fix2 <> CurrExchRate."Fix Exchange Rate Amount"::Both.AsInteger()) THEN
                 ERROR(
                   'The %1 field is not set up properly in the Currrency Exchange Rates window. ' +
                   'For %2 or the currency set up in the %3 field, the %1 field should be set to both.',
                   CurrExchRate.FIELDCAPTION("Fix Exchange Rate Amount"), CurrencyCode,
                   CurrExchRate.FIELDCAPTION("Relational Currency Code"));
             CASE Fix2 OF
-                CurrExchRate."Fix Exchange Rate Amount"::Currency:
+                CurrExchRate."Fix Exchange Rate Amount"::Currency.AsInteger():
 
                     RefExchRate2 := (CurrentExchRate * CurrentExchRate2) / (CurrencyFactor * RefExchRate);
-                CurrExchRate."Fix Exchange Rate Amount"::"Relational Currency":
+                CurrExchRate."Fix Exchange Rate Amount"::"Relational Currency".AsInteger():
 
                     CurrentExchRate2 := (CurrencyFactor * RefExchRate * RefExchRate2) / CurrentExchRate;
-                CurrExchRate."Fix Exchange Rate Amount"::Both:
+                CurrExchRate."Fix Exchange Rate Amount"::Both.AsInteger():
                     ;
 
             END;

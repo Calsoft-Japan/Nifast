@@ -151,80 +151,76 @@ page 50025 "Lot No. Information List 2"
         ExpectedValueACY: Decimal;
         ValuedQty: Decimal;
     begin
-        WITH ItemLedgEntry DO BEGIN
-            // adjust remaining quantity
-            "Remaining Quantity" := Quantity;
-            IF Positive THEN BEGIN
-                ItemApplnEntry.RESET();
-                ItemApplnEntry.SETCURRENTKEY(
-                  "Inbound Item Entry No.", "Cost Application", "Outbound Item Entry No.");
-                ItemApplnEntry.SETRANGE("Inbound Item Entry No.", "Entry No.");
-                ItemApplnEntry.SETRANGE("Posting Date", 0D, AsOfDate);
-                ItemApplnEntry.SETFILTER("Outbound Item Entry No.", '<>%1', 0);
-                ItemApplnEntry.SETFILTER("Item Ledger Entry No.", '<>%1', "Entry No.");
-                IF ItemApplnEntry.FIND('-') THEN
-                    REPEAT
-                        IF ItemLedgEntry2.GET(ItemApplnEntry."Item Ledger Entry No.") AND
-                           (ItemLedgEntry2."Posting Date" <= AsOfDate)
-                        THEN
-                            "Remaining Quantity" := "Remaining Quantity" + ItemApplnEntry.Quantity;
-                    UNTIL ItemApplnEntry.NEXT() = 0;
-            END ELSE BEGIN
-                ItemApplnEntry.RESET();
-                ItemApplnEntry.SETCURRENTKEY("Item Ledger Entry No.", "Outbound Item Entry No.", "Cost Application");
-                ItemApplnEntry.SETRANGE("Item Ledger Entry No.", "Entry No.");
-                ItemApplnEntry.SETRANGE("Outbound Item Entry No.", "Entry No.");
-                ItemApplnEntry.SETRANGE("Posting Date", 0D, AsOfDate);
-                IF ItemApplnEntry.FIND('-') THEN
-                    REPEAT
-                        IF ItemLedgEntry2.GET(ItemApplnEntry."Inbound Item Entry No.") AND
-                           (ItemLedgEntry2."Posting Date" <= AsOfDate)
-                        THEN
-                            "Remaining Quantity" := "Remaining Quantity" - ItemApplnEntry.Quantity;
-                    UNTIL ItemApplnEntry.NEXT() = 0;
-            END;
-
-            // calculate adjusted cost of entry
-            ValueEntry.RESET();
-            ValueEntry.SETCURRENTKEY(
-              "Item Ledger Entry No.", "Expected Cost", "Document No.", "Partial Revaluation", "Entry Type", "Variance Type");
-            ValueEntry.SETRANGE("Item Ledger Entry No.", "Entry No.");
-            ValueEntry.SETRANGE("Posting Date", 0D, AsOfDate);
-            IF ValueEntry.FIND('-') THEN
+        // adjust remaining quantity
+        ItemLedgEntry."Remaining Quantity" := ItemLedgEntry.Quantity;
+        IF ItemLedgEntry.Positive THEN BEGIN
+            ItemApplnEntry.RESET();
+            ItemApplnEntry.SETCURRENTKEY(
+              "Inbound Item Entry No.", "Cost Application", "Outbound Item Entry No.");
+            ItemApplnEntry.SETRANGE("Inbound Item Entry No.", ItemLedgEntry."Entry No.");
+            ItemApplnEntry.SETRANGE("Posting Date", 0D, AsOfDate);
+            ItemApplnEntry.SETFILTER("Outbound Item Entry No.", '<>%1', 0);
+            ItemApplnEntry.SETFILTER("Item Ledger Entry No.", '<>%1', ItemLedgEntry."Entry No.");
+            IF ItemApplnEntry.FIND('-') THEN
                 REPEAT
-                    IF ValueEntry."Expected Cost" THEN BEGIN
-                        ExpectedValue := ExpectedValue + ValueEntry."Cost Amount (Expected)";
-                        ExpectedValueACY := ExpectedValueACY + ValueEntry."Cost Amount (Expected) (ACY)";
-                        IF ValuedQty = 0 THEN
-                            ValuedQty := ValueEntry."Valued Quantity";
-                    END ELSE BEGIN
-                        InvoicedQty := InvoicedQty + ValueEntry."Invoiced Quantity";
-                        InvoicedValue := InvoicedValue + ValueEntry."Cost Amount (Actual)";
-                        InvoicedValueACY := InvoicedValueACY + ValueEntry."Cost Amount (Actual) (ACY)";
-                    END;
-                UNTIL ValueEntry.NEXT() = 0;
-            IF ValuedQty = 0 THEN BEGIN
-                ValuedQty := InvoicedQty;
-                ExpectedValue := 0;
-                ExpectedValueACY := 0;
-            END ELSE BEGIN
-                ExpectedValue := ExpectedValue * (ValuedQty - InvoicedQty) / ValuedQty;
-                ExpectedValueACY := ExpectedValueACY * (ValuedQty - InvoicedQty) / ValuedQty;
-            END;
-            "Cost Amount (Actual)" := ROUND(InvoicedValue + ExpectedValue);
-            //x"Cost Amount (Actual) (ACY)" := ROUND(InvoicedValueACY + ExpectedValueACY,Currency."Amount Rounding Precision");
+                    IF ItemLedgEntry2.GET(ItemApplnEntry."Item Ledger Entry No.") AND
+                       (ItemLedgEntry2."Posting Date" <= AsOfDate)
+                    THEN
+                        ItemLedgEntry."Remaining Quantity" := ItemLedgEntry."Remaining Quantity" + ItemApplnEntry.Quantity;
+                UNTIL ItemApplnEntry.NEXT() = 0;
+        END ELSE BEGIN
+            ItemApplnEntry.RESET();
+            ItemApplnEntry.SETCURRENTKEY("Item Ledger Entry No.", "Outbound Item Entry No.", "Cost Application");
+            ItemApplnEntry.SETRANGE("Item Ledger Entry No.", ItemLedgEntry."Entry No.");
+            ItemApplnEntry.SETRANGE("Outbound Item Entry No.", ItemLedgEntry."Entry No.");
+            ItemApplnEntry.SETRANGE("Posting Date", 0D, AsOfDate);
+            IF ItemApplnEntry.FIND('-') THEN
+                REPEAT
+                    IF ItemLedgEntry2.GET(ItemApplnEntry."Inbound Item Entry No.") AND
+                       (ItemLedgEntry2."Posting Date" <= AsOfDate)
+                    THEN
+                        ItemLedgEntry."Remaining Quantity" := ItemLedgEntry."Remaining Quantity" - ItemApplnEntry.Quantity;
+                UNTIL ItemApplnEntry.NEXT() = 0;
         END;
+
+        // calculate adjusted cost of entry
+        ValueEntry.RESET();
+        ValueEntry.SETCURRENTKEY(
+          "Item Ledger Entry No.", "Expected Cost", "Document No.", "Partial Revaluation", "Entry Type", "Variance Type");
+        ValueEntry.SETRANGE("Item Ledger Entry No.", ItemLedgEntry."Entry No.");
+        ValueEntry.SETRANGE("Posting Date", 0D, AsOfDate);
+        IF ValueEntry.FIND('-') THEN
+            REPEAT
+                IF ValueEntry."Expected Cost" THEN BEGIN
+                    ExpectedValue := ExpectedValue + ValueEntry."Cost Amount (Expected)";
+                    ExpectedValueACY := ExpectedValueACY + ValueEntry."Cost Amount (Expected) (ACY)";
+                    IF ValuedQty = 0 THEN
+                        ValuedQty := ValueEntry."Valued Quantity";
+                END ELSE BEGIN
+                    InvoicedQty := InvoicedQty + ValueEntry."Invoiced Quantity";
+                    InvoicedValue := InvoicedValue + ValueEntry."Cost Amount (Actual)";
+                    InvoicedValueACY := InvoicedValueACY + ValueEntry."Cost Amount (Actual) (ACY)";
+                END;
+            UNTIL ValueEntry.NEXT() = 0;
+        IF ValuedQty = 0 THEN BEGIN
+            ValuedQty := InvoicedQty;
+            ExpectedValue := 0;
+            ExpectedValueACY := 0;
+        END ELSE BEGIN
+            ExpectedValue := ExpectedValue * (ValuedQty - InvoicedQty) / ValuedQty;
+            ExpectedValueACY := ExpectedValueACY * (ValuedQty - InvoicedQty) / ValuedQty;
+        END;
+        ItemLedgEntry."Cost Amount (Actual)" := ROUND(InvoicedValue + ExpectedValue);
+        //x"Cost Amount (Actual) (ACY)" := ROUND(InvoicedValueACY + ExpectedValueACY,Currency."Amount Rounding Precision");
     end;
 
     procedure CalcUnitCost(var UnitCost: Decimal; "Item Ledger Entry": Record "Item Ledger Entry")
     begin
-        WITH "Item Ledger Entry" DO BEGIN
-            CALCFIELDS("Cost Amount (Expected)", "Cost Amount (Actual)");
-            IF "Invoiced Quantity" <> Quantity THEN
-                UnitCost := "Cost Amount (Expected)" / Quantity
-            ELSE
-                UnitCost := "Cost Amount (Actual)" / "Invoiced Quantity";
-        END;
+        "Item Ledger Entry".CALCFIELDS("Cost Amount (Expected)", "Cost Amount (Actual)");
+        IF "Item Ledger Entry"."Invoiced Quantity" <> "Item Ledger Entry".Quantity THEN
+            UnitCost := "Item Ledger Entry"."Cost Amount (Expected)" / "Item Ledger Entry".Quantity
+        ELSE
+            UnitCost := "Item Ledger Entry"."Cost Amount (Actual)" / "Item Ledger Entry"."Invoiced Quantity";
     end;
 }
 

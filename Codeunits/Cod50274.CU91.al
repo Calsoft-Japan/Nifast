@@ -32,7 +32,7 @@ codeunit 50274 CU_91
         ReceiveOnly: Boolean;
         //  ">>NF_TC"@1102622003 : TextConst;
         Text50000: Label 'Do you want to receive the %1?';
-      //  PurchPost: Codeunit 90;
+    //  PurchPost: Codeunit 90;
 
 
 }

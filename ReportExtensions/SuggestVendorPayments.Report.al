@@ -574,33 +574,31 @@ report 50031 "Suggest Vendor Payments New"
     var
         PaymentToleranceMgt: Codeunit "Payment Tolerance Management";
     begin
-        WITH GenJnlLine DO BEGIN
-            INIT();
-            SetPostingDate(GenJnlLine, VendLedgEntry."Due Date", PostingDate);
-            "Document Type" := "Document Type"::Payment;
-            "Account Type" := "Account Type"::Vendor;
-            Vend2.GET(VendLedgEntry."Vendor No.");
-            Vend2.CheckBlockedVendOnJnls(Vend2, "Document Type", FALSE);
-            Description := Vend2.Name;
-            "Posting Group" := Vend2."Vendor Posting Group";
-            "Salespers./Purch. Code" := Vend2."Purchaser Code";
-            "Payment Terms Code" := Vend2."Payment Terms Code";
-            VALIDATE("Bill-to/Pay-to No.", "Account No.");
-            VALIDATE("Sell-to/Buy-from No.", "Account No.");
-            "Gen. Posting Type" := 0;
-            "Gen. Bus. Posting Group" := '';
-            "Gen. Prod. Posting Group" := '';
-            "VAT Bus. Posting Group" := '';
-            "VAT Prod. Posting Group" := '';
-            VALIDATE("Currency Code", VendLedgEntry."Currency Code");
-            VALIDATE("Payment Terms Code");
-            VendLedgEntry.CALCFIELDS("Remaining Amount");
-            IF PaymentToleranceMgt.CheckCalcPmtDiscGenJnlVend(GenJnlLine, VendLedgEntry, 0, FALSE) THEN
-                Amount := -(VendLedgEntry."Remaining Amount" - VendLedgEntry."Remaining Pmt. Disc. Possible")
-            ELSE
-                Amount := -VendLedgEntry."Remaining Amount";
-            VALIDATE(Amount);
-        END;
+        GenJnlLine.INIT();
+        SetPostingDate(GenJnlLine, VendLedgEntry."Due Date", PostingDate);
+        GenJnlLine."Document Type" := GenJnlLine."Document Type"::Payment;
+        GenJnlLine."Account Type" := GenJnlLine."Account Type"::Vendor;
+        Vend2.GET(VendLedgEntry."Vendor No.");
+        Vend2.CheckBlockedVendOnJnls(Vend2, GenJnlLine."Document Type", FALSE);
+        GenJnlLine.Description := Vend2.Name;
+        GenJnlLine."Posting Group" := Vend2."Vendor Posting Group";
+        GenJnlLine."Salespers./Purch. Code" := Vend2."Purchaser Code";
+        GenJnlLine."Payment Terms Code" := Vend2."Payment Terms Code";
+        GenJnlLine.VALIDATE("Bill-to/Pay-to No.", GenJnlLine."Account No.");
+        GenJnlLine.VALIDATE("Sell-to/Buy-from No.", GenJnlLine."Account No.");
+        GenJnlLine."Gen. Posting Type" := 0;
+        GenJnlLine."Gen. Bus. Posting Group" := '';
+        GenJnlLine."Gen. Prod. Posting Group" := '';
+        GenJnlLine."VAT Bus. Posting Group" := '';
+        GenJnlLine."VAT Prod. Posting Group" := '';
+        GenJnlLine.VALIDATE("Currency Code", VendLedgEntry."Currency Code");
+        GenJnlLine.VALIDATE("Payment Terms Code");
+        VendLedgEntry.CALCFIELDS("Remaining Amount");
+        IF PaymentToleranceMgt.CheckCalcPmtDiscGenJnlVend(GenJnlLine, VendLedgEntry, 0, FALSE) THEN
+            GenJnlLine.Amount := -(VendLedgEntry."Remaining Amount" - VendLedgEntry."Remaining Pmt. Disc. Possible")
+        ELSE
+            GenJnlLine.Amount := -VendLedgEntry."Remaining Amount";
+        GenJnlLine.VALIDATE(Amount);
 
         IF UsePriority THEN
             PayableVendLedgEntry.Priority := Vendor.Priority
@@ -772,185 +770,183 @@ report 50031 "Suggest Vendor Payments New"
           TempPaymentBuffer."Vendor Ledg. Entry Doc. Type"::Payment);
         IF TempPaymentBuffer.FIND('-') THEN
             REPEAT
-                WITH GenJnlLine DO BEGIN
-                    INIT();
-                    Window2.UPDATE(1, TempPaymentBuffer."Vendor No.");
-                    LastLineNo := LastLineNo + 10000;
-                    "Line No." := LastLineNo;
-                    "Document Type" := "Document Type"::Payment;
-                    "Posting No. Series" := GenJnlBatch."Posting No. Series";
-                    IF SummarizePerVend THEN
-                        "Document No." := TempPaymentBuffer."Document No."
-                    ELSE
-                        IF DocNoPerLine THEN BEGIN
-                            IF TempPaymentBuffer.Amount < 0 THEN
-                                "Document Type" := "Document Type"::Refund;
+                GenJnlLine.INIT();
+                Window2.UPDATE(1, TempPaymentBuffer."Vendor No.");
+                LastLineNo := LastLineNo + 10000;
+                GenJnlLine."Line No." := LastLineNo;
+                GenJnlLine."Document Type" := GenJnlLine."Document Type"::Payment;
+                GenJnlLine."Posting No. Series" := GenJnlBatch."Posting No. Series";
+                IF SummarizePerVend THEN
+                    GenJnlLine."Document No." := TempPaymentBuffer."Document No."
+                ELSE
+                    IF DocNoPerLine THEN BEGIN
+                        IF TempPaymentBuffer.Amount < 0 THEN
+                            GenJnlLine."Document Type" := GenJnlLine."Document Type"::Refund;
 
-                            "Document No." := NextDocNo;
-                            NextDocNo := INCSTR(NextDocNo);
-                        END ELSE
-                            IF (TempPaymentBuffer."Vendor No." = OldTempPaymentBuffer."Vendor No.") AND
-                               (TempPaymentBuffer."Currency Code" = OldTempPaymentBuffer."Currency Code")
-                            THEN
-                                "Document No." := OldTempPaymentBuffer."Document No."
-                            ELSE BEGIN
-                                "Document No." := NextDocNo;
-                                NextDocNo := INCSTR(NextDocNo);
-                                OldTempPaymentBuffer := TempPaymentBuffer;
-                                OldTempPaymentBuffer."Document No." := "Document No.";
-                            END;
-                    "Account Type" := "Account Type"::Vendor;
-                    SetHideValidation(TRUE);
-                    ShowPostingDateWarning := ShowPostingDateWarning OR
-                      SetPostingDate(GenJnlLine, GetApplDueDate(TempPaymentBuffer."Vendor Ledg. Entry No."), PostingDate);
-                    VALIDATE("Account No.", TempPaymentBuffer."Vendor No.");
-                    Vendor.GET(TempPaymentBuffer."Vendor No.");
-                    IF (Vendor."Pay-to Vendor No." <> '') AND (Vendor."Pay-to Vendor No." <> "Account No.") THEN
-                        MESSAGE(Text025, Vendor.TABLECAPTION, Vendor."No.", Vendor.FIELDCAPTION("Pay-to Vendor No."),
-                          Vendor."Pay-to Vendor No.");
-                    "Bal. Account Type" := BalAccType;
-                    VALIDATE("Bal. Account No.", BalAccNo);
-                    VALIDATE("Currency Code", TempPaymentBuffer."Currency Code");
-                    "Message to Recipient" := GetMessageToRecipient(SummarizePerVend);
-                    "Bank Payment Type" := BankPmtType;
-                    IF SummarizePerVend THEN BEGIN
-                        "Applies-to ID" := "Document No.";
-                        Description := STRSUBSTNO(Text014, TempPaymentBuffer."Vendor No.");
+                        GenJnlLine."Document No." := NextDocNo;
+                        NextDocNo := INCSTR(NextDocNo);
                     END ELSE
-                        //>>NIF 061405 MAK
-                        //        Description :=                                         //Following 4 lines are original code
-                        //          STRSUBSTNO(
-                        //            Text015,
-                        //            TempPaymentBuffer."Vendor Ledg. Entry Doc. Type",
-                        //            TempPaymentBuffer."Vendor Ledg. Entry Doc. No.");
-                        NIFVendor.GET(TempPaymentBuffer."Vendor No.");
-                    //>> NF1.00:CIS.NG  07/08/16
-                    //NIFVendLedgEntry.GET(TempPaymentBuffer."Vendor Ledg. Entry No.")
-                    IF NIFVendLedgEntry.GET(TempPaymentBuffer."Vendor Ledg. Entry No.") THEN
-                        //<< NF1.00:CIS.NG  07/08/16
-                        "External Document No." := NIFVendLedgEntry."External Document No.";
+                        IF (TempPaymentBuffer."Vendor No." = OldTempPaymentBuffer."Vendor No.") AND
+                           (TempPaymentBuffer."Currency Code" = OldTempPaymentBuffer."Currency Code")
+                        THEN
+                            GenJnlLine."Document No." := OldTempPaymentBuffer."Document No."
+                        ELSE BEGIN
+                            GenJnlLine."Document No." := NextDocNo;
+                            NextDocNo := INCSTR(NextDocNo);
+                            OldTempPaymentBuffer := TempPaymentBuffer;
+                            OldTempPaymentBuffer."Document No." := GenJnlLine."Document No.";
+                        END;
+                GenJnlLine."Account Type" := GenJnlLine."Account Type"::Vendor;
+                GenJnlLine.SetHideValidation(TRUE);
+                ShowPostingDateWarning := ShowPostingDateWarning OR
+                  SetPostingDate(GenJnlLine, GetApplDueDate(TempPaymentBuffer."Vendor Ledg. Entry No."), PostingDate);
+                GenJnlLine.VALIDATE("Account No.", TempPaymentBuffer."Vendor No.");
+                Vendor.GET(TempPaymentBuffer."Vendor No.");
+                IF (Vendor."Pay-to Vendor No." <> '') AND (Vendor."Pay-to Vendor No." <> GenJnlLine."Account No.") THEN
+                    MESSAGE(Text025, Vendor.TABLECAPTION, Vendor."No.", Vendor.FIELDCAPTION("Pay-to Vendor No."),
+                      Vendor."Pay-to Vendor No.");
+                GenJnlLine."Bal. Account Type" := BalAccType;
+                GenJnlLine.VALIDATE("Bal. Account No.", BalAccNo);
+                GenJnlLine.VALIDATE("Currency Code", TempPaymentBuffer."Currency Code");
+                GenJnlLine."Message to Recipient" := GetMessageToRecipient(SummarizePerVend);
+                GenJnlLine."Bank Payment Type" := BankPmtType;
+                IF SummarizePerVend THEN BEGIN
+                    GenJnlLine."Applies-to ID" := GenJnlLine."Document No.";
+                    GenJnlLine.Description := STRSUBSTNO(Text014, TempPaymentBuffer."Vendor No.");
+                END ELSE
+                    //>>NIF 061405 MAK
+                    //        Description :=                                         //Following 4 lines are original code
+                    //          STRSUBSTNO(
+                    //            Text015,
+                    //            TempPaymentBuffer."Vendor Ledg. Entry Doc. Type",
+                    //            TempPaymentBuffer."Vendor Ledg. Entry Doc. No.");
+                    NIFVendor.GET(TempPaymentBuffer."Vendor No.");
+                //>> NF1.00:CIS.NG  07/08/16
+                //NIFVendLedgEntry.GET(TempPaymentBuffer."Vendor Ledg. Entry No.")
+                IF NIFVendLedgEntry.GET(TempPaymentBuffer."Vendor Ledg. Entry No.") THEN
+                    //<< NF1.00:CIS.NG  07/08/16
+                    GenJnlLine."External Document No." := NIFVendLedgEntry."External Document No.";
 
 
-                    Description := COPYSTR(STRSUBSTNO(ISTText001, NIFVendor.Name), 1, 50);
-                    //<<NIF
+                GenJnlLine.Description := COPYSTR(STRSUBSTNO(ISTText001, NIFVendor.Name), 1, 50);
+                //<<NIF
 
-                    "Source Line No." := TempPaymentBuffer."Vendor Ledg. Entry No.";
-                    "Shortcut Dimension 1 Code" := TempPaymentBuffer."Global Dimension 1 Code";
-                    "Shortcut Dimension 2 Code" := TempPaymentBuffer."Global Dimension 2 Code";
-                    "Dimension Set ID" := TempPaymentBuffer."Dimension Set ID";
-                    "Source Code" := GenJnlTemplate."Source Code";
-                    "Reason Code" := GenJnlBatch."Reason Code";
+                GenJnlLine."Source Line No." := TempPaymentBuffer."Vendor Ledg. Entry No.";
+                GenJnlLine."Shortcut Dimension 1 Code" := TempPaymentBuffer."Global Dimension 1 Code";
+                GenJnlLine."Shortcut Dimension 2 Code" := TempPaymentBuffer."Global Dimension 2 Code";
+                GenJnlLine."Dimension Set ID" := TempPaymentBuffer."Dimension Set ID";
+                GenJnlLine."Source Code" := GenJnlTemplate."Source Code";
+                GenJnlLine."Reason Code" := GenJnlBatch."Reason Code";
 
-                    //>> IST 052305 DPC #9806
-                    /*
-                    VALIDATE(Amount,TempPaymentBuffer.Amount);
-                    "Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
-                    "Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
-                    */
-                    //>>NF1.00:CIS.RAM
-                    /*
-                    IF NOT Use4x THEN BEGIN
-                    */
-                    //>>FOREX
-                    IF Vendor."3 Way Currency Adjmt." THEN BEGIN
-                        //TODO
-                        //VALIDATE(Amount, TempPaymentBuffer."USD Value");
-                        "Document No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
-                        PurchSetup.GET();
-                        //IF NOT PurchSetup."3-way Balance Sheet solution" THEN BEGIN
-                        "Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
-                        "Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
-                        //END;
-                    END ELSE BEGIN
-                        //<<FOREX
-                        VALIDATE(Amount, TempPaymentBuffer.Amount);
-                        "Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
-                        "Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
-                    END; //FOREX
-                    "Payment Method Code" := TempPaymentBuffer."Payment Method Code";
-                    "Creditor No." := TempPaymentBuffer."Creditor No.";
-                    "Payment Reference" := TempPaymentBuffer."Payment Reference";
-                    "Exported to Payment File" := TempPaymentBuffer."Exported to Payment File";
-                    "Applies-to Ext. Doc. No." := TempPaymentBuffer."Applies-to Ext. Doc. No.";
+                //>> IST 052305 DPC #9806
+                /*
+                VALIDATE(Amount,TempPaymentBuffer.Amount);
+                "Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
+                "Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
+                */
+                //>>NF1.00:CIS.RAM
+                /*
+                IF NOT Use4x THEN BEGIN
+                */
+                //>>FOREX
+                IF Vendor."3 Way Currency Adjmt." THEN BEGIN
+                    //TODO
+                    //VALIDATE(Amount, TempPaymentBuffer."USD Value");
+                    GenJnlLine."Document No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
+                    PurchSetup.GET();
+                    //IF NOT PurchSetup."3-way Balance Sheet solution" THEN BEGIN
+                    GenJnlLine."Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
+                    GenJnlLine."Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
+                    //END;
+                END ELSE BEGIN
+                    //<<FOREX
+                    GenJnlLine.VALIDATE(Amount, TempPaymentBuffer.Amount);
+                    GenJnlLine."Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
+                    GenJnlLine."Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
+                END; //FOREX
+                GenJnlLine."Payment Method Code" := TempPaymentBuffer."Payment Method Code";
+                GenJnlLine."Creditor No." := TempPaymentBuffer."Creditor No.";
+                GenJnlLine."Payment Reference" := TempPaymentBuffer."Payment Reference";
+                GenJnlLine."Exported to Payment File" := TempPaymentBuffer."Exported to Payment File";
+                GenJnlLine."Applies-to Ext. Doc. No." := TempPaymentBuffer."Applies-to Ext. Doc. No.";
 
-                    UpdateDimensions(GenJnlLine);
-                    INSERT();
-                    /*
-                    END ELSE BEGIN
-                      PurchInvLine.SETRANGE("Document No.", TempPaymentBuffer."Vendor Ledg. Entry Doc. No.");
-                      PurchInvLine.SETRANGE(Type, PurchInvLine.Type::Item);
-                      Bank4XContract.INIT;
-                      IF PurchInvLine.FIND('-') THEN
+                UpdateDimensions(GenJnlLine);
+                GenJnlLine.INSERT();
+                /*
+                END ELSE BEGIN
+                  PurchInvLine.SETRANGE("Document No.", TempPaymentBuffer."Vendor Ledg. Entry Doc. No.");
+                  PurchInvLine.SETRANGE(Type, PurchInvLine.Type::Item);
+                  Bank4XContract.INIT;
+                  IF PurchInvLine.FIND('-') THEN
+                    REPEAT
+                      IF Bank4XContract.GET(PurchInvLine."Exchange Contract No.") THEN BEGIN
+                        Bank4XContract.VALIDATE(RemainingAmount);
+                        _Avaliable := Bank4XContract.RemainingAmount;
+                        IF _Avaliable < 0 THEN
+                          ERROR('Not enough JPY left...\%1', _Avaliable);
+
+                        _Remaining := PurchInvLine.Amount;
+                        "Contract Note No." := PurchInvLine."Contract Note No.";
                         REPEAT
-                          IF Bank4XContract.GET(PurchInvLine."Exchange Contract No.") THEN BEGIN
-                            Bank4XContract.VALIDATE(RemainingAmount);
-                            _Avaliable := Bank4XContract.RemainingAmount;
-                            IF _Avaliable < 0 THEN
-                              ERROR('Not enough JPY left...\%1', _Avaliable);
+                          LastLineNo := LastLineNo + 10000;
+                          "Line No." := LastLineNo;
 
-                            _Remaining := PurchInvLine.Amount;
-                            "Contract Note No." := PurchInvLine."Contract Note No.";
-                            REPEAT
-                              LastLineNo := LastLineNo + 10000;
-                              "Line No." := LastLineNo;
+                          IF _Avaliable > _Remaining THEN BEGIN
+                            VALIDATE(Amount,_Remaining);
+                            "Currency Code" := 'JPY';
+                            VALIDATE("Currency Factor", Bank4XContract.ExchangeRate);
+                            VALIDATE("Exchange Contract No.", Bank4XContract."No.");
+                            "Currency Code" := 'JPY';
+                            _Remaining := 0;
+                          END ELSE BEGIN
+                            IF _Avaliable <> 0 THEN BEGIN
+                              VALIDATE(Amount,_Avaliable);
+                              VALIDATE("Currency Factor", Bank4XContract.ExchangeRate);
+                              VALIDATE("Exchange Contract No.", Bank4XContract."No.");
+                              "Currency Code" := 'JPY';
+                              _Remaining := _Remaining - _Avaliable;
+                              _Avaliable := 0;
+                            END ELSE BEGIN
+                              //MESSAGE('%1', _Remaining);
+                              Amount := _Remaining;
+                              "Exchange Contract No." := 'SPOT';
+                              "Currency Code" :=  'JPY';
+                              "Currency Factor" := 1;
+                              "Amount (LCY)" := 0;
+                              _Remaining := 0;
+                            END;
+                          END;
 
-                              IF _Avaliable > _Remaining THEN BEGIN
-                                VALIDATE(Amount,_Remaining);
-                                "Currency Code" := 'JPY';
-                                VALIDATE("Currency Factor", Bank4XContract.ExchangeRate);
-                                VALIDATE("Exchange Contract No.", Bank4XContract."No.");
-                                "Currency Code" := 'JPY';
-                                _Remaining := 0;
-                              END ELSE BEGIN
-                                IF _Avaliable <> 0 THEN BEGIN
-                                  VALIDATE(Amount,_Avaliable);
-                                  VALIDATE("Currency Factor", Bank4XContract.ExchangeRate);
-                                  VALIDATE("Exchange Contract No.", Bank4XContract."No.");
-                                  "Currency Code" := 'JPY';
-                                  _Remaining := _Remaining - _Avaliable;
-                                  _Avaliable := 0;
-                                END ELSE BEGIN
-                                  //MESSAGE('%1', _Remaining);
-                                  Amount := _Remaining;
-                                  "Exchange Contract No." := 'SPOT';
-                                  "Currency Code" :=  'JPY';
-                                  "Currency Factor" := 1;
-                                  "Amount (LCY)" := 0;
-                                  _Remaining := 0;
-                                END;
-                              END;
+                          "Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
+                          "Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
+                          "Payment Method Code" := TempPaymentBuffer."Payment Method Code";
+                          "Creditor No." := TempPaymentBuffer."Creditor No.";
+                          "Payment Reference" := TempPaymentBuffer."Payment Reference";
+                          "Exported to Payment File" := TempPaymentBuffer."Exported to Payment File";
+                          "Applies-to Ext. Doc. No." := TempPaymentBuffer."Applies-to Ext. Doc. No.";
 
-                              "Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
-                              "Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
-                              "Payment Method Code" := TempPaymentBuffer."Payment Method Code";
-                              "Creditor No." := TempPaymentBuffer."Creditor No.";
-                              "Payment Reference" := TempPaymentBuffer."Payment Reference";
-                              "Exported to Payment File" := TempPaymentBuffer."Exported to Payment File";
-                              "Applies-to Ext. Doc. No." := TempPaymentBuffer."Applies-to Ext. Doc. No.";
-
-                              UpdateDimensions(GenJnlLine);
-                              INSERT;
-                            UNTIL _Remaining = 0;
-                          END; // ELSE                          //090606 MAK - Removed ";", added "ELSE"
-                          //>>MAK 090606
-                          ///BEGIN
-                          ///  LastLineNo := LastLineNo + 10000;
-                          ///  "Line No." := LastLineNo;
-                          ///  VALIDATE(Amount, 1.55);
-                          ///  VALIDATE("Currency Factor", 1.00);
-                          ///  VALIDATE("Currency Code", 'JPY');
-                          ///  "Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
-                          ///  "Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
-                          ///  INSERT(TRUE);
-                          ///END;
-                          //<<MAK 090606
-                        UNTIL PurchInvLine.NEXT = 0;
-                    END;
-                    //<< IST 052305 DPC #9806
-                    */
-                    //<<NF1.00:CIS.RAM
-                    GenJnlLineInserted := TRUE;
+                          UpdateDimensions(GenJnlLine);
+                          INSERT;
+                        UNTIL _Remaining = 0;
+                      END; // ELSE                          //090606 MAK - Removed ";", added "ELSE"
+                      //>>MAK 090606
+                      ///BEGIN
+                      ///  LastLineNo := LastLineNo + 10000;
+                      ///  "Line No." := LastLineNo;
+                      ///  VALIDATE(Amount, 1.55);
+                      ///  VALIDATE("Currency Factor", 1.00);
+                      ///  VALIDATE("Currency Code", 'JPY');
+                      ///  "Applies-to Doc. Type" := TempPaymentBuffer."Vendor Ledg. Entry Doc. Type";
+                      ///  "Applies-to Doc. No." := TempPaymentBuffer."Vendor Ledg. Entry Doc. No.";
+                      ///  INSERT(TRUE);
+                      ///END;
+                      //<<MAK 090606
+                    UNTIL PurchInvLine.NEXT = 0;
                 END;
+                //<< IST 052305 DPC #9806
+                */
+                //<<NF1.00:CIS.RAM
+                GenJnlLineInserted := TRUE;
             UNTIL TempPaymentBuffer.NEXT() = 0;
 
     end;
@@ -964,44 +960,42 @@ report 50031 "Suggest Vendor Payments New"
         DimSetIDArr: array[10] of Integer;
         NewDimensionID: Integer;
     begin
-        WITH GenJnlLine DO BEGIN
-            NewDimensionID := "Dimension Set ID";
-            IF SummarizePerVend THEN BEGIN
-                DimBuf.RESET();
-                DimBuf.DELETEALL();
-                DimBufMgt.GetDimensions(TempPaymentBuffer."Dimension Entry No.", DimBuf);
-                IF DimBuf.FINDSET() THEN
-                    REPEAT
-                        DimVal.GET(DimBuf."Dimension Code", DimBuf."Dimension Value Code");
-                        TempDimSetEntry."Dimension Code" := DimBuf."Dimension Code";
-                        TempDimSetEntry."Dimension Value Code" := DimBuf."Dimension Value Code";
-                        TempDimSetEntry."Dimension Value ID" := DimVal."Dimension Value ID";
-                        TempDimSetEntry.INSERT();
-                    UNTIL DimBuf.NEXT() = 0;
-                NewDimensionID := DimMgt.GetDimensionSetID(TempDimSetEntry);
-                "Dimension Set ID" := NewDimensionID;
-            END;
-            //TODO
-            /* CreateDim(
-              DimMgt.TypeToTableID1("Account Type"), "Account No.",
-              DimMgt.TypeToTableID1("Bal. Account Type"), "Bal. Account No.",
-              DATABASE::Job, "Job No.",
-              DATABASE::"Salesperson/Purchaser", "Salespers./Purch. Code",
-              DATABASE::Campaign, "Campaign No."); */
-            IF NewDimensionID <> "Dimension Set ID" THEN BEGIN
-                DimSetIDArr[1] := "Dimension Set ID";
-                DimSetIDArr[2] := NewDimensionID;
-                "Dimension Set ID" :=
-                  DimMgt.GetCombinedDimensionSetID(DimSetIDArr, "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
-            END;
+        NewDimensionID := GenJnlLine."Dimension Set ID";
+        IF SummarizePerVend THEN BEGIN
+            DimBuf.RESET();
+            DimBuf.DELETEALL();
+            DimBufMgt.GetDimensions(TempPaymentBuffer."Dimension Entry No.", DimBuf);
+            IF DimBuf.FINDSET() THEN
+                REPEAT
+                    DimVal.GET(DimBuf."Dimension Code", DimBuf."Dimension Value Code");
+                    TempDimSetEntry."Dimension Code" := DimBuf."Dimension Code";
+                    TempDimSetEntry."Dimension Value Code" := DimBuf."Dimension Value Code";
+                    TempDimSetEntry."Dimension Value ID" := DimVal."Dimension Value ID";
+                    TempDimSetEntry.INSERT();
+                UNTIL DimBuf.NEXT() = 0;
+            NewDimensionID := DimMgt.GetDimensionSetID(TempDimSetEntry);
+            GenJnlLine."Dimension Set ID" := NewDimensionID;
+        END;
+        //TODO
+        /* CreateDim(
+          DimMgt.TypeToTableID1("Account Type"), "Account No.",
+          DimMgt.TypeToTableID1("Bal. Account Type"), "Bal. Account No.",
+          DATABASE::Job, "Job No.",
+          DATABASE::"Salesperson/Purchaser", "Salespers./Purch. Code",
+          DATABASE::Campaign, "Campaign No."); */
+        IF NewDimensionID <> GenJnlLine."Dimension Set ID" THEN BEGIN
+            DimSetIDArr[1] := GenJnlLine."Dimension Set ID";
+            DimSetIDArr[2] := NewDimensionID;
+            GenJnlLine."Dimension Set ID" :=
+              DimMgt.GetCombinedDimensionSetID(DimSetIDArr, GenJnlLine."Shortcut Dimension 1 Code", GenJnlLine."Shortcut Dimension 2 Code");
+        END;
 
-            IF SummarizePerVend THEN BEGIN
-                DimMgt.GetDimensionSet(TempDimSetEntry, "Dimension Set ID");
-                AdjustAgainstSelectedDim(TempDimSetEntry, TempDimSetEntry2);
-                "Dimension Set ID" := DimMgt.GetDimensionSetID(TempDimSetEntry2);
-                DimMgt.UpdateGlobalDimFromDimSetID("Dimension Set ID", "Shortcut Dimension 1 Code",
-                  "Shortcut Dimension 2 Code");
-            END;
+        IF SummarizePerVend THEN BEGIN
+            DimMgt.GetDimensionSet(TempDimSetEntry, GenJnlLine."Dimension Set ID");
+            AdjustAgainstSelectedDim(TempDimSetEntry, TempDimSetEntry2);
+            GenJnlLine."Dimension Set ID" := DimMgt.GetDimensionSetID(TempDimSetEntry2);
+            DimMgt.UpdateGlobalDimFromDimSetID(GenJnlLine."Dimension Set ID", GenJnlLine."Shortcut Dimension 1 Code",
+              GenJnlLine."Shortcut Dimension 2 Code");
         END;
     end;
 

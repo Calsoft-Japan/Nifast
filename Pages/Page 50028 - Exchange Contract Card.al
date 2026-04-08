@@ -283,7 +283,7 @@ page 50028 "Exchange Contract Card"
                     trigger OnAction()
                     var
                         BankExchangeRec: Record "4X Bank Exchange Contract";
-                        //"4XBankReport": Report 50012;//TODO
+                    //"4XBankReport": Report 50012;//TODO
                     begin
                         BankExchangeRec.COPY(Rec);
                         Rec.SETRANGE("No.", Rec."No.");
@@ -301,7 +301,7 @@ page 50028 "Exchange Contract Card"
                     trigger OnAction()
                     var
                         t4XContract: Record "4X Bank Exchange Contract";
-                        //tDetailReport: Report 50013;//TODO
+                    //tDetailReport: Report 50013;//TODO
                     begin
                         t4XContract.SETRANGE("No.", Rec."No.");
                         // tDetailReport.SETTABLEVIEW(t4XContract);

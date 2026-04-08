@@ -11,10 +11,10 @@ codeunit 50041 CU5815Subscriber
         //>> NF1.00:CIS.NG    09/12/16
         WhseUndoQty.InsertTempWhseJnlLine_gFNc(ItemJnlLine,
           DATABASE::"Sales Line",
-          SalesLine."Document Type"::Order,
+          SalesLine."Document Type"::Order.AsInteger(),
           SalesShptLine."Order No.",
           SalesShptLine."Order Line No.",
-          TempWhseJnlLine."Reference Document"::"Posted Shipment",
+          TempWhseJnlLine."Reference Document"::"Posted Shipment".AsInteger(),
           TempWhseJnlLine,
           NextLineNo,
           SalesShptLine);

@@ -60,7 +60,7 @@ codeunit 50020 "Electronic Accounting"
         // xmlDoc := xmlDoc;//TODO
         // xmlDoc.LoadXml(XMLWellFormed(ServerFileName));
         //xmlDoc.Load(ServerFileName);
-       // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
+        // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
 
         //VALIDATE
         SalesInvHeader.CALCFIELDS("Amount Including VAT");
@@ -75,7 +75,7 @@ codeunit 50020 "Electronic Accounting"
         IF NOT SalesInvXMLData.GET(SalesInvHeader."No.") THEN BEGIN
             SalesInvXMLData.INIT();
             SalesInvXMLData."No." := SalesInvHeader."No.";
-           // SalesInvXMLData.XML.IMPORT(ServerFileName);//TODO
+            // SalesInvXMLData.XML.IMPORT(ServerFileName);//TODO
             SalesInvXMLData."XML - UUID" := UUID;
             SalesInvXMLData."XML - Invoice Folio" := InvoiceFolio;
             SalesInvXMLData."XML - Certified No" := CertifiedNo;
@@ -138,7 +138,7 @@ codeunit 50020 "Electronic Accounting"
         // xmlDoc := xmlDoc;
         // //xmlDoc.Load(ServerFileName);
         // xmlDoc.LoadXml(XMLWellFormed(ServerFileName));//TODO
-       // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
+        // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
 
         //Validate
         SalesCrMHeader.CALCFIELDS("Amount Including VAT");
@@ -149,7 +149,7 @@ codeunit 50020 "Electronic Accounting"
         IF ElectronicAccSetup."EA Chk Amount" THEN ValidateAmount(SalesCrMHeader."Amount Including VAT", Total);
 
         //Assign
-       // SalesCrMHeader.XML.IMPORT(ServerFileName);//TODO
+        // SalesCrMHeader.XML.IMPORT(ServerFileName);//TODO
         SalesCrMHeader."XML - UUID" := UUID;
         SalesCrMHeader."XML - Invoice Folio" := InvoiceFolio;
         SalesCrMHeader."XML - Certified No" := CertifiedNo;
@@ -184,20 +184,20 @@ codeunit 50020 "Electronic Accounting"
             MESSAGE(FieldEmpty);
     end;
 
-  /*  procedure ExportXMLFromSalesCrMHeader(SalesCrMHeader: Record 114)
-    var
-        FieldEmpty: Label 'Field is empty, file doesn''t exist';
-        FileNameXMl: Label 'XML File.xml';
-    begin
-        TempBlob.INIT;
-        TempBlob."Primary Key" := 1;
-        SalesCrMHeader.CALCFIELDS(XML);
-        IF SalesCrMHeader.XML.HASVALUE THEN BEGIN
-            TempBlob.Blob := SalesCrMHeader.XML;
-            FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
-        END ELSE
-            MESSAGE(FieldEmpty);
-    end;*/
+    /*  procedure ExportXMLFromSalesCrMHeader(SalesCrMHeader: Record 114)
+      var
+          FieldEmpty: Label 'Field is empty, file doesn''t exist';
+          FileNameXMl: Label 'XML File.xml';
+      begin
+          TempBlob.INIT;
+          TempBlob."Primary Key" := 1;
+          SalesCrMHeader.CALCFIELDS(XML);
+          IF SalesCrMHeader.XML.HASVALUE THEN BEGIN
+              TempBlob.Blob := SalesCrMHeader.XML;
+              FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
+          END ELSE
+              MESSAGE(FieldEmpty);
+      end;*/
 
     procedure DeleteFileFromSalesInvHeader(var SalesInvHeader: Record 112)
     var
@@ -257,7 +257,7 @@ codeunit 50020 "Electronic Accounting"
         // xmlDoc := xmlDoc;
         // //xmlDoc.Load(ServerFileName);
         // xmlDoc.LoadXml(XMLWellFormed(ServerFileName));//TODO
-       // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
+        // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
 
         //Validate
         PurchInvHeader.CALCFIELDS("Amount Including VAT");
@@ -268,7 +268,7 @@ codeunit 50020 "Electronic Accounting"
         IF ElectronicAccSetup."EA Chk Amount" THEN ValidateAmount(PurchInvHeader."Amount Including VAT", Total);
 
         //Assign
-      //  PurchInvHeader.XML.IMPORT(ServerFileName);//TODO
+        //  PurchInvHeader.XML.IMPORT(ServerFileName);//TODO
         PurchInvHeader."XML - UUID" := UUID;
         PurchInvHeader."XML - Invoice Folio" := InvoiceFolio;
         PurchInvHeader."XML - Certified No" := CertifiedNo;
@@ -315,7 +315,7 @@ codeunit 50020 "Electronic Accounting"
         // xmlDoc := xmlDoc;
         // //xmlDoc.Load(ServerFileName);
         // xmlDoc.LoadXml(XMLWellFormed(ServerFileName));//TODO
-       // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
+        // ExtractFiscalInformation(xmlDoc, UUID, InvoiceFolio, CertifiedNo, CertifiedSAT, DateTime, VATEm, VATRc, Total, Payment, Currency, CurrencyFactor);
 
         //Validate
         PurchCrMHeader.CALCFIELDS("Amount Including VAT");
@@ -357,20 +357,20 @@ codeunit 50020 "Electronic Accounting"
         //     MESSAGE(FieldEmpty);//TODO
     end;
 
-   /* procedure ExportXMLFromPurchCrMHeader(PurchCrMHeader: Record 124)
-    var
-        FieldEmpty: Label 'Field is empty, file doesn''t exist';
-        FileNameXMl: Label 'XML File.xml';
-    begin
-        TempBlob.INIT;
-        TempBlob."Primary Key" := 1;
-        PurchCrMHeader.CALCFIELDS(XML);
-        IF PurchCrMHeader.XML.HASVALUE THEN BEGIN
-            TempBlob.Blob := PurchCrMHeader.XML;
-            FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
-        END ELSE
-            MESSAGE(FieldEmpty);
-    end;*/
+    /* procedure ExportXMLFromPurchCrMHeader(PurchCrMHeader: Record 124)
+     var
+         FieldEmpty: Label 'Field is empty, file doesn''t exist';
+         FileNameXMl: Label 'XML File.xml';
+     begin
+         TempBlob.INIT;
+         TempBlob."Primary Key" := 1;
+         PurchCrMHeader.CALCFIELDS(XML);
+         IF PurchCrMHeader.XML.HASVALUE THEN BEGIN
+             TempBlob.Blob := PurchCrMHeader.XML;
+             FileManagement.BLOBExport(TempBlob, FileNameXMl, TRUE);
+         END ELSE
+             MESSAGE(FieldEmpty);
+     end;*/
 
     procedure DeleteFileFromPurchInvHeader(var PurchInvHeader: Record 122)
     begin
@@ -559,7 +559,7 @@ codeunit 50020 "Electronic Accounting"
     local procedure "---Extract---"()
     begin
     end;
-//TODO
+    //TODO
     /*local procedure ExtractFiscalInformation(xmlDoc: XmlDocument; var UUID: Code[36]; var FolioInvoice: Code[50]; var CertifiedNo: Text[20]; var SATCertifiedNo: Text[20]; var DateTimeStamped: Text[50]; var VAT: Code[13]; var "VAT Receptor": Code[13]; var TotalInvoice: Decimal; var PaymentMethod: Code[50]; var Currency: Code[50]; var CurrencyFactor: Decimal)
     var
         ImportFailedErr: Label 'The import failed. The XML document is not a valid electronic invoice.';
@@ -621,19 +621,19 @@ codeunit 50020 "Electronic Accounting"
         END ELSE
             ERROR(ImportFailedErr);
     end;*/
-//TODO
-   /* local procedure HasAttribute(xmlElement: XmlElement; AttributeName: Text): Boolean
-    var
-        Indice: Integer;
-        xmlNode: XmlNode;
-    begin
-        IF NOT xmlElement.HasAttributes THEN EXIT(FALSE);
+    //TODO
+    /* local procedure HasAttribute(xmlElement: XmlElement; AttributeName: Text): Boolean
+     var
+         Indice: Integer;
+         xmlNode: XmlNode;
+     begin
+         IF NOT xmlElement.HasAttributes THEN EXIT(FALSE);
 
-        xmlNode := xmlElement;
-        FOR Indice := 0 TO xmlNode.Attributes.Count - 1 DO
-            IF xmlNode.Attributes.ItemOf(Indice).Name = AttributeName THEN EXIT(TRUE);
-        EXIT(FALSE)
-    end;*/
+         xmlNode := xmlElement;
+         FOR Indice := 0 TO xmlNode.Attributes.Count - 1 DO
+             IF xmlNode.Attributes.ItemOf(Indice).Name = AttributeName THEN EXIT(TRUE);
+         EXIT(FALSE)
+     end;*/
 
     local procedure "---Validates---"()
     begin
@@ -722,7 +722,7 @@ codeunit 50020 "Electronic Accounting"
         GeneralLedgerSetup: Record 50035;
         minAmount: Decimal;
         plusAmount: Decimal;
-        eText001: Label 'The amount in the document %1 does not match with the amount in XMl file %2.',Comment = '%1 %2';
+        eText001: Label 'The amount in the document %1 does not match with the amount in XMl file %2.', Comment = '%1 %2';
     begin
         GeneralLedgerSetup.GET();
         plusAmount := DocAmount + GeneralLedgerSetup."EA Variant Amount";
@@ -1419,7 +1419,7 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttributeWithPrefix(RootNode, 'schemaLocation', 'xsi',
           NamespaceW3Txt, FullNameSpace + ' ' + 'http://' + FullNameSpace + '/' + NodeNameSpace + '_1_1.xsd');
 
-       // XMLDOMManagement.AddDeclaration(XMLDoc, '1.0', 'UTF-8', '');//TODO
+        // XMLDOMManagement.AddDeclaration(XMLDoc, '1.0', 'UTF-8', '');//TODO
     end;
 
     procedure ExportChartOfAccounts(Year: Integer; Month: Integer; ScheduleName: Code[10])
@@ -1428,8 +1428,8 @@ codeunit 50020 "Electronic Accounting"
         AccScheduleLine: Record 85;
         GeneralLedgerSetup: Record 50035;
         TempBigText: BigText;
-        Err_SATCode: Label 'Account %1 doesn''t have code SAT',Comment = '%1';
-        Err_SATNature: Label 'Account %1 doesn''t have nature',Comment = '%1';
+        Err_SATCode: Label 'Account %1 doesn''t have code SAT', Comment = '%1';
+        Err_SATNature: Label 'Account %1 doesn''t have nature', Comment = '%1';
         Namespace: Text;
         Document: XmlDocument;
         Node: XmlNode;
@@ -1557,7 +1557,7 @@ codeunit 50020 "Electronic Accounting"
             FileType := 'BC';
 
         //BigTextTmp.ADDTEXT(Document.InnerXml);
-       // SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + FileType);
+        // SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + FileType);
         ExportFile(BigTextTmp, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + FileType + '.xml');
     end;
 
@@ -1652,7 +1652,7 @@ codeunit 50020 "Electronic Accounting"
             UNTIL GLAccount.NEXT() = 0;
 
         //BigTextTmp.ADDTEXT(Document.InnerXml);
-       // SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'XC');
+        // SaveXMLToClient(Document, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'XC');
         ExportFile(BigTextTmp, CompanyInformation."VAT Registration No." + FORMAT(Year) + FORMAT(Month, 2, '<Integer,2><Filler Character,0>') + 'XC.xml');
     end;
 
@@ -1714,7 +1714,7 @@ codeunit 50020 "Electronic Accounting"
     local procedure ValidateDataToProcess(StartingDate: Date; RequestType: Option AF,FC,DE,CO; ProcessNumber: Code[13])
     var
         Text001: Label 'You must enter a Starting Date Period';
-        Text002: Label 'The length to Order No. must be %1.',Comment = '%1';
+        Text002: Label 'The length to Order No. must be %1.', Comment = '%1';
     begin
         IF StartingDate = 0D THEN
             ERROR(Text001);
@@ -1854,22 +1854,22 @@ codeunit 50020 "Electronic Accounting"
         XMLDOMManagement.AddAttribute(Node, 'RFC', RFC);
         XMLDOMManagement.AddAttribute(Node, 'Monto', DecimalFormat(GLEntry.Amount));
     end;
-//TODO
-   /* local procedure SaveXMLToClient(var Document: XmlDocument; FileName: Text): Boolean
-    var
-        GeneralLedgerSetup: Record 50035;
-        Text001: Label 'Created File %1.', Comment = '%1';
-        TempXMLFile: Text;
-        TestFileName: Text;
-    begin
-        GeneralLedgerSetup.GET();
-        TestFileName := GeneralLedgerSetup."SAT XML Path" + '\' + FileName + '.xml';
-        TempXMLFile := FileManagement.ServerTempFileName('xml');
-        Document.Save(TempXMLFile);
-        FileManagement.CopyServerFile(TempXMLFile, TestFileName, TRUE);
+    //TODO
+    /* local procedure SaveXMLToClient(var Document: XmlDocument; FileName: Text): Boolean
+     var
+         GeneralLedgerSetup: Record 50035;
+         Text001: Label 'Created File %1.', Comment = '%1';
+         TempXMLFile: Text;
+         TestFileName: Text;
+     begin
+         GeneralLedgerSetup.GET();
+         TestFileName := GeneralLedgerSetup."SAT XML Path" + '\' + FileName + '.xml';
+         TempXMLFile := FileManagement.ServerTempFileName('xml');
+         Document.Save(TempXMLFile);
+         FileManagement.CopyServerFile(TempXMLFile, TestFileName, TRUE);
 
-        MESSAGE(Text001, TestFileName);
-    end;*///TODO
+         MESSAGE(Text001, TestFileName);
+     end;*///TODO
 
     procedure ExportFile(Content: BigText; DefaultName: Text)
     var

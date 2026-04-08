@@ -119,7 +119,7 @@ table 50042 "IoT Data Staging"
         field(31; "Output Pick No."; Code[20])
         {
             // cleaned
-            TableRelation = IF ("Output Invt. Pick Type" = CONST("Invt. Pick")) "Warehouse Activity Header" WHERE (Type=CONST("Invt. Pick"));
+            TableRelation = IF ("Output Invt. Pick Type" = CONST("Invt. Pick")) "Warehouse Activity Header" WHERE(Type = CONST("Invt. Pick"));
         }
         field(32; "File Name"; Text[250])
         {

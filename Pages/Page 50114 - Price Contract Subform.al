@@ -419,22 +419,22 @@ page 50114 "Price Contract Subform"
 
     procedure _ShowLineComments()
     begin
-        ShowLineComments();
+        Rec.ShowLineComments();
     end;
 
     procedure ShowLineComments()
     begin
-        ShowLineComments();
+        Rec.ShowLineComments();
     end;
 
     procedure _ShowBlanketOrders()
     begin
-        ShowBlanketOrders();
+        Rec.ShowBlanketOrders();
     end;
 
     procedure ShowBlanketOrders()
     begin
-        ShowBlanketOrders();
+        Rec.ShowBlanketOrders();
     end;
 
     procedure ">>NIF_fcn"()

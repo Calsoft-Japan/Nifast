@@ -31,8 +31,8 @@ table 81238 "MEX - G/L Acct Cross Ref"
 
             trigger OnValidate()
             var
-               /*  GLEntry: Record 17;
-                GLBudgetEntry: Record 96; */
+            /*  GLEntry: Record 17;
+             GLBudgetEntry: Record 96; */
             begin
             end;
 

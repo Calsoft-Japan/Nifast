@@ -37,9 +37,9 @@ table 99801 "TEMP - Fix Prod Kit Lots"
         field(22; "Entry Qty"; Decimal)
         {
             // cleaned
-            CalcFormula = Sum("TEMP- Fix Kit Entry".Quantity WHERE ("Item No."=FIELD("Item No."),
-                                                                    "Lot No."=FIELD("Lot No."),
-                                                                    "Location Code"=FIELD("Location Code")));
+            CalcFormula = Sum("TEMP- Fix Kit Entry".Quantity WHERE("Item No." = FIELD("Item No."),
+                                                                    "Lot No." = FIELD("Lot No."),
+                                                                    "Location Code" = FIELD("Location Code")));
             FieldClass = FlowField;
         }
         field(50; Fix; Boolean)

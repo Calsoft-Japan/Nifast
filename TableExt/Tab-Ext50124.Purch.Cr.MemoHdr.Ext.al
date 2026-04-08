@@ -71,7 +71,7 @@ tableextension 50124 "Purch. Cr. Memo Hdr. Ext" extends "Purch. Cr. Memo Hdr."
         {
             TableRelation = User."User Name";
             ValidateTableRelation = false;
-            TestTableRelation = false;
+           // TestTableRelation = false;
             Description = '20--> 50 NF1.00:CIS.NG  10-10-15';
             trigger OnValidate()
             var
