@@ -16,6 +16,7 @@ codeunit 70104 CU_14000710
             Item, PackingControl."Input Variant Code",
                                   PackingControl."Input Unit of Measure Code", PackingControl);
         END;
+        Handled := true;
     end;
 
     local procedure GetLotNoInfo(var LotNoInfo: Record "Lot No. Information"; var PackingControl: Record "LAX Packing Control"): Boolean
