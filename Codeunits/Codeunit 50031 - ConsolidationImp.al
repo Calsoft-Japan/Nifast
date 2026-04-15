@@ -698,7 +698,7 @@ codeunit 50031 ConsolidationImp
         END;
 
         IF RefCurrencyCode <> '' THEN BEGIN
-            IF (Fix <> CurrExchRate."Fix Exchange Rate Amount"::Both.) AND (Fix2 <> CurrExchRate."Fix Exchange Rate Amount"::Both.AsInteger()) THEN
+            IF (Fix <> CurrExchRate."Fix Exchange Rate Amount"::Both) AND (Fix2 <> CurrExchRate."Fix Exchange Rate Amount"::Both.AsInteger()) THEN
                 ERROR(
                   'The %1 field is not set up properly in the Currrency Exchange Rates window. ' +
                   'For %2 or the currency set up in the %3 field, the %1 field should be set to both.',
