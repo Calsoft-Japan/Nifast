@@ -1,5 +1,3 @@
-namespace Nifast.Nifast;
-using Microsoft.Foundation.NoSeries;
 
 codeunit 70106 CU_14000605
 {
@@ -13,18 +11,18 @@ codeunit 70106 CU_14000605
 
     end;
 
-    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Receive Line Scanning Mgt.", pubOnAfterGetItemInputFields, '', false, false)]
-    // local procedure pubOnAfterGetItemInputFields(var Receive: Record "LAX Receive"; var ReceiveControl: Record "LAX Receive Control"; var Item: Record Item; var VariantCode: Code[10]; var UnitOfMeasureCode: Code[10])
-    // begin
-    //     //>> NIF #9850
-    //     // ReceiveControl."Country of Origin Code" := Item."Country/Region of Origin Code";
-    //     //>> NF1.00:CIS.CM 09-29-15
-    //     //ReceiveControl."Next Ship Date" := QCMgmt.GetNextShipDate(Item."No.");
-    //     // ReceiveControl."Next Ship Date" := GetNextShipDate(Item."No.");
-    //     //<< NF1.00:CIS.CM 09-29-15
-    //     //<< NIF #9850
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Receive Line Scanning Mgt.", pubOnAfterEReceiveEnterLotNo, '', false, false)]
+    local procedure "LAX Receive Line Scanning Mgt._pubOnAfterEReceiveEnterLotNo"(var EReceiveEnterLotNo: Page "LAX ERec Enter Lot No."; var ReceiveInput: Record "LAX Receive Input"; var ReceiveControl: Record "LAX Receive Control"; var ReceiveStation: Record "LAX Receive Station"; var Handled: Boolean; var ReturnValue: Boolean)
+    begin
+        ReceiveControl."Input Lot Number" := GetLotNo;
+    end;
 
-    // end;
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Receive Line Scanning Mgt.", pubOnAfterGetItemInputFields, '', false, false)]
+    local procedure pubOnAfterGetItemInputFields(var Receive: Record "LAX Receive"; var ReceiveControl: Record "LAX Receive Control"; var Item: Record Item; var VariantCode: Code[10]; var UnitOfMeasureCode: Code[10])
+    begin
+        ReceiveControl."Country of Origin Code" := Item."Country/Region of Origin Code";
+        ReceiveControl."Next Ship Date" := GetNextShipDate(Item."No.");
+    end;
 
 
     PROCEDURE GetLotNo(): Code[20];
@@ -54,16 +52,16 @@ codeunit 70106 CU_14000605
         //           QCMgmt.CheckQCHoldReceive(PurchHeader."Buy-from Vendor No.",
         //                                       ReceiveControl."Input No.",ReceiveControl."Input Lot Number");
 
-        //ESG++
-        // ReceiveControl."QC Hold" :=
-        //                     CheckQCHoldReceive(PurchHeader."Buy-from Vendor No.",
-        //                                        ReceiveControl."Input No.", ReceiveControl."Input Lot Number");
-        // //<< NF1.00:CIS.CM 09-29-15
-        // IF ReceiveControl."QC Hold" THEN
-        //     ReceiveControl."QC Print Code" := 'QC'
-        // ELSE
-        //     ReceiveControl."QC Print Code" := '';
-        //ESG--
+
+        ReceiveControl."QC Hold" :=
+                            CheckQCHoldReceive(PurchHeader."Buy-from Vendor No.",
+                                               ReceiveControl."Input No.", ReceiveControl."Input Lot Number");
+        //<< NF1.00:CIS.CM 09-29-15
+        IF ReceiveControl."QC Hold" THEN
+            ReceiveControl."QC Print Code" := 'QC'
+        ELSE
+            ReceiveControl."QC Print Code" := '';
+
     END;
 
     PROCEDURE GetNextShipDate(ItemNo: Code[20]): Date;

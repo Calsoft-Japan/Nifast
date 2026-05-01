@@ -184,9 +184,6 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
                 //<<NIF 07-06-05
             end;
         }
-        field(70002; "Entered Time"; Time)
-        {
-        }
         field(70003; "Tool Repair Tech"; code[10])
         {
             TableRelation = "Salesperson/Purchaser".Code WHERE("Repair Tech" = CONST(true));
@@ -324,7 +321,7 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         }
         field(70017; "No;Tool Repair Status"; code[10])
         {
-           // FieldClass = FlowField;
+            // FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }
@@ -339,7 +336,7 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         }
         field(70029; "No;Cr. Mgmt. Comment"; Boolean)
         {
-           // FieldClass = FlowField;
+            // FieldClass = FlowField;
             Description = 'NF1.00:CIS.NG 10-10-15';
             Editable = false;
         }
@@ -412,6 +409,10 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
                 IF "Document Type" <> "Document Type"::Invoice THEN ERROR('Document Type must be Invoice');
             end;
         }
+        field(70110; "Entered Time"; Time)
+        {
+        }
+
     }
     procedure InsertCustomerComments(Cust2: Record Customer);
     var

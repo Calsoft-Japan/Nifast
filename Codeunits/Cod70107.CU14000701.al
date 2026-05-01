@@ -1,7 +1,26 @@
-namespace Nifast.Nifast;
-
 codeunit 70107 CU_14000701
 {
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Shipping", pubOnBeforeCloseSalesHeader, '', false, false)]
+    local procedure "LAX Shipping_pubOnBeforeCloseSalesHeader"(var SalesHeader: Record "Sales Header"; var PrintLabel: Boolean; var ExportDocsPrinted: Boolean; var Handled: Boolean)
+    begin
+        PrintLabel := false;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Shipping", pubOnBeforeChkSalesHeaderPacked, '', false, false)]
+    local procedure "LAX Shipping_pubOnBeforeChkSalesHeaderPacked"(var SalesHeader: Record "Sales Header"; var DuringPosting: Boolean; var Handled: Boolean)
+    begin
+        //>> NIF 12-06-05
+        IF SalesHeader."FB Order No." <> '' THEN
+            EXIT;
+        //<< NIF 12-06-05
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Shipping", pubOnBeforePrintSalesHeaderPackingList, '', false, false)]
+    local procedure "LAX Shipping_pubOnBeforePrintSalesHeaderPackingList"(var SalesHeader: Record "Sales Header"; var GivenError: Boolean; var Handled: Boolean)
+    begin
+        Handled := true;
+    end;
+
     LOCAL PROCEDURE UpdateEshipBuffer(PkgLine: Record 14000702; DocNo: Code[20]; LineNO: Integer; LotNo: Code[20]; ItemNo: Code[20]; Qty: Decimal);
     BEGIN
         EshipLotBuffer."Document No." := DocNo;
@@ -63,44 +82,42 @@ codeunit 70107 CU_14000701
                 ERROR('Sales Order Line %1 does not exist.', EshipLotBuffer."Line No.");
 
             TempLineNo := TempLineNo + 10000;
-            WITH SalesLine DO BEGIN
-                TempWhseActivLine.RESET;
-                TempWhseActivLine.INIT;
-                TempWhseActivLine."Activity Type" := TempWhseActivLine."Activity Type"::"Invt. Pick";
-                TempWhseActivLine."No." := TempNo;
-                TempWhseActivLine."Source Document" := TempWhseActivLine."Source Document"::"Sales Order";
-                //  TempWhseActivLine."Source Type" := DATABASE::"Sales Line";//ESG
-                TempWhseActivLine."Source Subtype" := SalesLine."Document Type";
-                TempWhseActivLine."Source No." := SalesLine."Document No.";
-                TempWhseActivLine."Source Line No." := SalesLine."Line No."; //EshipLotBuffer."Line No.";
-                TempWhseActivLine."Item No." := EshipLotBuffer."Item No.";
-                TempWhseActivLine."Variant Code" := "Variant Code";
-                TempWhseActivLine."Unit of Measure Code" := "Unit of Measure Code";
-                TempWhseActivLine."Qty. per Unit of Measure" := "Qty. per Unit of Measure";
-                TempWhseActivLine.Description := Description;
-                TempWhseActivLine."Description 2" := "Description 2";
-                TempWhseActivLine."Due Date" := "Shipment Date";
-                TempWhseActivLine."Starting Date" := "Shipment Date";
-                TempWhseActivLine."Shipping Agent Code" := CurrentSalesHeader."Shipping Agent Code";
-                TempWhseActivLine."Shipping Agent Service Code" := CurrentSalesHeader."Shipping Agent Service Code";
-                TempWhseActivLine."Shipment Method Code" := CurrentSalesHeader."Shipment Method Code";
-                TempWhseActivLine."Shipping Advice" := CurrentSalesHeader."Shipping Advice";
-                TempWhseActivLine."Lot No." := EshipLotBuffer."Lot No.";
-                TempWhseActivLine.VALIDATE(Quantity, EshipLotBuffer.Quantity);
-                TempWhseActivLine.VALIDATE("Qty. to Handle", EshipLotBuffer.Quantity);
-                TempWhseActivLine."Line No." := TempLineNo;
-                TempWhseActivLine."Location Code" := EshipLotBuffer."Location Code";
-                TempWhseActivLine."Bin Code" := EshipLotBuffer."Bin Code";
-                IF TempWhseActivLine."Bin Code" <> '' THEN  //re-engineered
-                    GetPickTakeInfo(TempWhseActivLine);
-                TempWhseActivLine.INSERT;
-                //xxxDEBUG
-                //  COMMIT;
-                //  MESSAGE('pick line %1, Line %2,Qty to Handle%3.',TempWhseActivLine."No.",TempLineNo,TempWhseActivLine."Qty. to Handle (Base)");
-                //  ;
-                //xxx
-                TempLineNo := TempLineNo + 10000;
-            END;
+            TempWhseActivLine.RESET;
+            TempWhseActivLine.INIT;
+            TempWhseActivLine."Activity Type" := TempWhseActivLine."Activity Type"::"Invt. Pick";
+            TempWhseActivLine."No." := TempNo;
+            TempWhseActivLine."Source Document" := TempWhseActivLine."Source Document"::"Sales Order";
+            //  TempWhseActivLine."Source Type" := DATABASE::"Sales Line";//ESG
+            TempWhseActivLine."Source Subtype" := SalesLine."Document Type";
+            TempWhseActivLine."Source No." := SalesLine."Document No.";
+            TempWhseActivLine."Source Line No." := SalesLine."Line No."; //EshipLotBuffer."Line No.";
+            TempWhseActivLine."Item No." := EshipLotBuffer."Item No.";
+            TempWhseActivLine."Variant Code" := SalesLine."Variant Code";
+            TempWhseActivLine."Unit of Measure Code" := SalesLine."Unit of Measure Code";
+            TempWhseActivLine."Qty. per Unit of Measure" := SalesLine."Qty. per Unit of Measure";
+            TempWhseActivLine.Description := SalesLine.Description;
+            TempWhseActivLine."Description 2" := SalesLine."Description 2";
+            TempWhseActivLine."Due Date" := SalesLine."Shipment Date";
+            TempWhseActivLine."Starting Date" := SalesLine."Shipment Date";
+            TempWhseActivLine."Shipping Agent Code" := CurrentSalesHeader."Shipping Agent Code";
+            TempWhseActivLine."Shipping Agent Service Code" := CurrentSalesHeader."Shipping Agent Service Code";
+            TempWhseActivLine."Shipment Method Code" := CurrentSalesHeader."Shipment Method Code";
+            TempWhseActivLine."Shipping Advice" := CurrentSalesHeader."Shipping Advice";
+            TempWhseActivLine."Lot No." := EshipLotBuffer."Lot No.";
+            TempWhseActivLine.VALIDATE(Quantity, EshipLotBuffer.Quantity);
+            TempWhseActivLine.VALIDATE("Qty. to Handle", EshipLotBuffer.Quantity);
+            TempWhseActivLine."Line No." := TempLineNo;
+            TempWhseActivLine."Location Code" := EshipLotBuffer."Location Code";
+            TempWhseActivLine."Bin Code" := EshipLotBuffer."Bin Code";
+            IF TempWhseActivLine."Bin Code" <> '' THEN  //re-engineered
+                GetPickTakeInfo(TempWhseActivLine);
+            TempWhseActivLine.INSERT;
+            //xxxDEBUG
+            //  COMMIT;
+            //  MESSAGE('pick line %1, Line %2,Qty to Handle%3.',TempWhseActivLine."No.",TempLineNo,TempWhseActivLine."Qty. to Handle (Base)");
+            //  ;
+            //xxx
+            TempLineNo := TempLineNo + 10000;
         UNTIL EshipLotBuffer.NEXT = 0;
 
         //XX possibly permanent
@@ -116,13 +133,11 @@ codeunit 70107 CU_14000701
         LocBinString: Code[20];
         Bin: Record 7354;
     BEGIN
-        WITH WhseActivityLine DO BEGIN
-            Bin.GET("Location Code", "Bin Code");
-            "Zone Code" := Bin."Zone Code";
-            "Bin Ranking" := Bin."Bin Ranking";
-            "Bin Type Code" := Bin."Bin Type Code";
-            "Action Type" := WhseActivityLine."Action Type"::Take;
-        END;
+        Bin.GET(WhseActivityLine."Location Code", WhseActivityLine."Bin Code");
+        WhseActivityLine."Zone Code" := Bin."Zone Code";
+        WhseActivityLine."Bin Ranking" := Bin."Bin Ranking";
+        WhseActivityLine."Bin Type Code" := Bin."Bin Type Code";
+        WhseActivityLine."Action Type" := WhseActivityLine."Action Type"::Take;
     END;
 
     var

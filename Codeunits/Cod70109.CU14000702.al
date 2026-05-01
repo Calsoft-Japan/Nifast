@@ -1,10 +1,51 @@
-namespace Nifast.Nifast;
-
 codeunit 70109 CU_14000702
 {
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnAfterCreatePackageLine, '', false, false)]
+    // local procedure "LAX Package Management_pubOnAfterCreatePackageLine"(var Package: Record "LAX Package"; var PackingControl: Record "LAX Packing Control"; var LineUOM: Code[10]; var LineQuantity: Decimal; var FixedQuantity: Decimal; var ReturnValue: Boolean)
+    // var
+    //     LabelMgt: Codeunit CU_14000841;
+    // begin
+
+    //     //>> #9865 RTT 03-28-05        //jrr
+    //     LabelMgt.PrintPackageLineLabel(
+    //       PackageLine, QuantityToAdd, QuantityToAdd * PackageLine."Qty. per Unit of Measure", FALSE);
+    //     //<< #9865
+
+    // end;
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnBeforeSalesPostShip, '', false, false)]
+    local procedure "LAX Package Management_pubOnBeforeSalesPostShip"(var SalesHeader: Record "Sales Header"; var Handled: Boolean)
+    begin
+        //NG-NS
+        IF SalesHeader."Posting Date" <> TODAY THEN
+            SalesHeader.VALIDATE("Posting Date", TODAY);
+        //NG-NE
+    end;
+
     LOCAL PROCEDURE "<<NIF fcn>>"();
     BEGIN
     END;
+
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnAfterCreatePackageLine, '', false, false)]
+    // local procedure "LAX Package Management_pubOnAfterCreatePackageLine"(var Package: Record "LAX Package"; var PackingControl: Record "LAX Packing Control"; var LineUOM: Code[10]; var LineQuantity: Decimal; var FixedQuantity: Decimal; var ReturnValue: Boolean)
+    // var
+    //     LabelMgt: Codeunit CU_14000841;
+    // begin
+    //     //>> #9865 RTT 03-28-05        //jrr
+    //     LabelMgt.PrintPackageLineLabel(
+    //       PackageLine, QuantityToAdd, QuantityToAdd * PackageLine."Qty. per Unit of Measure", FALSE);
+    //     //<< #9865
+    // end;
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnBeforeCheckIsOverPacked, '', false, false)]
+    local procedure "LAX Package Management_pubOnBeforeCheckIsOverPacked"(var Package: Record "LAX Package"; var PackageLine: Record "LAX Package Line"; var PackingControl: Record "LAX Packing Control"; var Handled: Boolean)
+    begin
+
+        //>> NIF #9859 RTT 03-28-05     //jrr
+        //get label fields
+        PackageLine."Mfg. Lot No." := PackingControl."Mfg. Lot No.";
+        PackageLine."Location Code" := PackingControl."Location Code";
+        PackageLine."Bin Code" := PackingControl."Bin Code";
+        //<< NIF #9859 RTT 03-28-05
+    end;
 
     LOCAL PROCEDURE PrintSalesShipmentPackingList(SalesHeader: Record 36);
     VAR

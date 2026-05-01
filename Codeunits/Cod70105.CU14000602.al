@@ -1,7 +1,20 @@
-namespace Nifast.Nifast;
-
 codeunit 70105 CU_14000602
 {
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Receive Management", pubOnBeforeReceiveLineInsert, '', false, false)]
+    local procedure "LAX Receive Management_pubOnBeforeReceiveLineInsert"(var ReceiveLine: Record "LAX Receive Line"; var ReceiveControl: Record "LAX Receive Control"; var ReceiveInput: Record "LAX Receive Input")
+    begin
+
+        //>> NIF #9851
+        ReceiveLine."Mfg. Lot No." := ReceiveControl."Mfg. Lot No.";
+        //<< NIF #9851
+        //>> NIF #9865
+        ReceiveLine."Country of Origin Code" := ReceiveControl."Country of Origin Code";
+        ReceiveLine."QC Hold" := ReceiveControl."QC Hold";
+        ReceiveLine."QC Print Code" := ReceiveControl."QC Print Code";
+        ReceiveLine."Next Ship Date" := ReceiveControl."Next Ship Date";
+        //<< NIF #9865
+    end;
+
     LOCAL PROCEDURE GetInputValues(InputDesc: Text[250]; InputPrompt: Text[250]; VAR ReceiveControl: Record 14000611) QuantityEntered: Decimal;
     VAR
         Window: Dialog;

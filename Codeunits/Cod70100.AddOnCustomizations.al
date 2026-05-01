@@ -494,7 +494,13 @@ codeunit 70100 AddOnCustomizations
         ELSE IF SalesHdr.GET(SalesHdr."Document Type"::Order, PkgLine."Source ID") THEN
             //<<IST 081208 CCL $12797 #12797
             PkgLine."External Document No." := SalesHdr."External Document No."
-            //<<
+        //<<
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"LAX Packing Control", OnAfterTransferFromSalesHeader, '', false, false)]
+    local procedure "LAX Packing Control_OnAfterTransferFromSalesHeader"(var PackingControl: Record "LAX Packing Control"; SalesHeader: Record "Sales Header")
+    begin
+        PackingControl."Location Code" := SalesHeader."Location Code";      // NF2.00:CIS.RAM<<<<
     end;
 
 

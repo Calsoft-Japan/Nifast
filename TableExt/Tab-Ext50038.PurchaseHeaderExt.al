@@ -242,7 +242,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                 //<<NIF 050506 RTT
             end;
         }
-        field(70009; "Outstanding Gross Weight"; Decimal)
+        field(70101; "Outstanding Gross Weight"; Decimal)
         {
             //DataClassification = ToBeClassified;
             FieldClass = FlowField;
@@ -250,7 +250,7 @@ tableextension 50038 "Purchase Header Ext" extends "Purchase Header"
                                                                                                                      "Document No." = FIELD("No.")));
             Editable = false;
         }
-        field(70010; "Outstanding Net Weight"; Decimal)
+        field(70102; "Outstanding Net Weight"; Decimal)
         {
             //DataClassification = ToBeClassified;
             FieldClass = FlowField;

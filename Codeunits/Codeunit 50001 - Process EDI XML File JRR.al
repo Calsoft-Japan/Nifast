@@ -29,7 +29,7 @@ codeunit 50001 "Process EDI XML File JRR"
         FileMgt: Codeunit "File Management";
         TempBlobg: codeunit "Temp Blob";
         ImportEDISalesOrder: XMLport 50000;
-        //ImportEDIForecast: XMLport 50001;
+        ImportEDIForecast: XMLport 50017;
         pString: Code[30];
         Window: Dialog;
         SourceFile: File;
@@ -73,7 +73,7 @@ codeunit 50001 "Process EDI XML File JRR"
         CLEAR(Errorpath);
         CLEAR(Successpath);
 
-        CheckSetup();
+        //CheckSetup();
 
         // MyFile.RESET();
         // //MyFile.SETRANGE(Path,EDISetup."XML Source Document Folder");
@@ -616,51 +616,80 @@ codeunit 50001 "Process EDI XML File JRR"
     procedure ProcessEDIForecastIn()
     var
         EDISalesOrderImportLog: Record 50031;
+        OAuthRec: Record "OAuth 2.0 Application";
+        AccessToken: Text;
         LastDocNo_lCod: Code[250];
+        OnlineDriveAPI: Codeunit "Share Point API";
+        OAuth2Authorization: Codeunit "OAuth 2.0 Authorization";
+        TempSharePointDriveItem: Record "SharePoint Drive Item" temporary;
     begin
         // refresh the instream and import the XML into the EDI Sales Order tables
         CLEARLASTERROR();
         CLEAR(Ins);
         CLEAR(SourceFile);
 
-        // IF GUIALLOWED THEN
-        //   Window.UPDATE(1, MyFile.Name);
+        OAuthRec.Get(1); // assuming only one record for OAuth
+        OAuthRec.TestField("Client ID");
+        OAuthRec.TestField("Client Secret");
+        OAuthRec.TestField("SharePoint Driver ID");
+        OAuthRec.TestField("SharePoint Main Folder ID");
+        OAuthRec.TestField("SharePoint Success Folder");
+        OAuthRec.TestField("SharePoint Error Folder");
 
-        //if not UploadIntoStream('Select EDI XML File', '', '', MyFile.Name, InS) then
-        //  exit;//TODO
+        OAuth2Authorization.AcquireToken(OAuthRec."Client ID", OAuthRec."Client Secret", OAuthRec.Scope, OAuthRec."Access Token URL", AccessToken);
+        OnlineDriveAPI.FetchDrivesChildItems(AccessToken, OAuthRec."SharePoint Driver ID", OAuthRec."SharePoint Main Folder ID", TempSharePointDriveItem);
+        if TempSharePointDriveItem.FindSet() then
+            repeat
+                Clear(Ins);
+                // Assuming we want to process the first file found. Adjust logic if multiple files need to be processed.
+                OnlineDriveAPI.DownloadFile(AccessToken, TempSharePointDriveItem.driveId, TempSharePointDriveItem.id, Ins);
 
-        Clear(ImportEDISalesOrder);
-        ImportEDISalesOrder.SetSource(InS);
+                CLEAR(ImportEDIForecast);   //ImportEDISalesOrder);
 
-        if ImportEDISalesOrder.Import() then begin
-            SuccessCount += 1;
-            LastDocNo_lCod := ImportEDISalesOrder.GetOrderNo();
-            AddToDocNos(LastDocNo_lCod);
-            TempBlobg.CreateOutStream(Outstreamg);
-            CopyStream(Outstreamg, InS);
-            DownloadFromStream(ins, '', '', '', EDISetup."XML Success Folder");
-            //FileMgt.BLOBExport(TempBlobg, EDISetup."XML Success Folder" + MyFile.Name, true);
+                ImportEDIForecast.SETSOURCE(Ins);
+                IF ImportEDIForecast.IMPORT THEN BEGIN
 
+                    if OnlineDriveAPI.DeleteDriveItem(AccessToken, TempSharePointDriveItem.driveId, TempSharePointDriveItem.id) then
+                        OnlineDriveAPI.UploadFile(AccessToken, OAuthRec."SharePoint Driver ID", OAuthRec."SharePoint Success Folder", TempSharePointDriveItem.name, Ins);
 
-            EDISalesOrderImportLog.RESET();
-            CLEAR(EDISalesOrderImportLog);
-            EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-            //EDISalesOrderImportLog."File Name" := MyFile.Name;
-            EDISalesOrderImportLog."Import Date" := TODAY;
-            EDISalesOrderImportLog."Import Time" := TIME;
-            EDISalesOrderImportLog."Import By" := USERID;
-            EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Success;
-            EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
-            EDISalesOrderImportLog.INSERT();
+                    SuccessCount += 1;
+                    //jrr  LastDocNo_lCod := ImportEDIForecast.GetOrderNo;
+                    AddToDocNos(LastDocNo_lCod);
 
-            COMMIT(); // to retain all good values, in case other files fail
-        END ELSE BEGIN
-            ErrorCount += 1;
+                    EDISalesOrderImportLog.RESET();
+                    CLEAR(EDISalesOrderImportLog);
+                    EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
+                    //EDISalesOrderImportLog."File Name" := MyFile.Name;
+                    EDISalesOrderImportLog."Import Date" := TODAY;
+                    EDISalesOrderImportLog."Import Time" := TIME;
+                    EDISalesOrderImportLog."Import By" := USERID;
+                    EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Success;
+                    EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
+                    EDISalesOrderImportLog.INSERT();
 
-            // SourceFile.CLOSE;
-            // FILE.COPY(MyFile.Path + MyFile.Name, Errorpath + MyFile.Name);  //EDISetup."XML Error Folder"
-            // ERASE(MyFile.Path + MyFile.Name);
+                    COMMIT(); // to retain all good values, in case other files fail
+                END ELSE BEGIN
+                    ErrorCount += 1;
 
+                    if OnlineDriveAPI.DeleteDriveItem(AccessToken, TempSharePointDriveItem.driveId, TempSharePointDriveItem.id) then
+                        OnlineDriveAPI.UploadFile(AccessToken, OAuthRec."SharePoint Driver ID", OAuthRec."SharePoint Error Folder", TempSharePointDriveItem.name, Ins);
+
+                    EDISalesOrderImportLog.RESET();
+                    CLEAR(EDISalesOrderImportLog);
+                    EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
+                    //EDISalesOrderImportLog."File Name" := MyFile.Name;
+                    EDISalesOrderImportLog."Import Date" := TODAY;
+                    EDISalesOrderImportLog."Import Time" := TIME;
+                    EDISalesOrderImportLog."Import By" := USERID;
+                    EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Error;
+                    EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
+                    EDISalesOrderImportLog."Error Detail" := COPYSTR(GETLASTERRORTEXT, 1, 250);
+                    EDISalesOrderImportLog.INSERT();
+                    SendErrorEmail(EDISalesOrderImportLog);
+                    COMMIT(); // to retain all good values, in case other files fail
+                END;
+            until TempSharePointDriveItem.Next() = 0
+        else begin
             EDISalesOrderImportLog.RESET();
             CLEAR(EDISalesOrderImportLog);
             EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
@@ -670,10 +699,10 @@ codeunit 50001 "Process EDI XML File JRR"
             EDISalesOrderImportLog."Import By" := USERID;
             EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Error;
             EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
-            EDISalesOrderImportLog."Error Detail" := COPYSTR(GETLASTERRORTEXT, 1, 250);
+            EDISalesOrderImportLog."Error Detail" := 'No files found in the specified SharePoint folder.';
             EDISalesOrderImportLog.INSERT();
-            SendErrorEmail(EDISalesOrderImportLog);
-        END;
+        end;
+
     end;
 }
 

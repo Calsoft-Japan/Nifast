@@ -13,6 +13,14 @@ tableextension 70113 PostedReceivelineExt extends "LAX Posted Receive Line"
         field(50025; "Next Ship Date"; Date)
         {
         }
+        field(50020; "QC Hold"; Boolean)
+        {
+            Caption = 'QC Hold';
+        }
+        field(50030; "QC Print Code"; Code[10])
+        {
+            Caption = 'QC Print Code';
+        }
     }
 
     keys

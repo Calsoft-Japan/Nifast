@@ -143,10 +143,6 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
         {
             DataClassification = ToBeClassified;
         }
-        field(70002; "Entered Time"; Time)
-        {
-            DataClassification = ToBeClassified;
-        }
         field(70003; "Tool Repair Tech"; Code[10])
         {
             DataClassification = ToBeClassified;
@@ -243,6 +239,9 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
         field(70101; "Entered Date"; Date)
         {
             DataClassification = ToBeClassified;
+        }
+        field(70110; "Entered Time"; Time)
+        {
         }
 
     }

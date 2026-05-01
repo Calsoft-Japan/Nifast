@@ -1,4 +1,4 @@
-tableextension 70111 LaxReceivelineExt extends "LAX Receive Line"
+tableextension 70016 LAXReceiveControl_NF extends "LAX Receive Control"
 {
     fields
     {
@@ -22,17 +22,4 @@ tableextension 70111 LaxReceivelineExt extends "LAX Receive Line"
             Caption = 'QC Print Code';
         }
     }
-
-    keys
-    {
-        // Add changes to keys here
-    }
-
-    fieldgroups
-    {
-        // Add changes to field groups here
-    }
-
-    var
-        myInt: Integer;
 }
