@@ -33,7 +33,7 @@ page 50081 "Purchase Invoice Line FactBox"
 
                 trigger OnDrillDown()
                 begin
-                    ItemAvailFormsMgt.ShowItemAvailFromPurchLine(Rec, ItemAvailFormsMgt.ByEvent());
+                    // ItemAvailFormsMgt.ShowItemAvailFromPurchLine(Rec, ItemAvailFormsMgt.ByEvent()); //TODO BC28
                     CurrPage.UPDATE(TRUE);
                 end;
             }

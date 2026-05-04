@@ -70,6 +70,7 @@ page 50080 "EDI Sales Order Import Log"
                 PromotedOnly = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                Visible = false;
                 ToolTip = 'Executes the Process Files action.';
 
                 trigger OnAction()
@@ -88,6 +89,7 @@ page 50080 "EDI Sales Order Import Log"
                 PromotedOnly = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                Visible = false;
                 ToolTip = 'Executes the Process Files Forcast action.';
 
                 trigger OnAction()

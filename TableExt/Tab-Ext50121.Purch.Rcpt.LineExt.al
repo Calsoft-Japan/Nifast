@@ -76,9 +76,9 @@ tableextension 50121 "Purch. Rcpt. Line Ext" extends "Purch. Rcpt. Line"
         {
             TableRelation = "Salesperson/Purchaser" where(Purchase = const(true));
         }
-        field(70002; "Vendor Shipment No."; Code[20])
-        {
-        }
+        // field(70002; "Vendor Shipment No."; Code[20])
+        // {
+        // }
         field(70003; "Vendor Invoice No."; Code[20])
         {
         }
@@ -115,6 +115,9 @@ tableextension 50121 "Purch. Rcpt. Line Ext" extends "Purch. Rcpt. Line"
             Editable = false;
         }
         field(70025; "Container No."; Code[20])
+        {
+        }
+        field(70026; "Vendor Shipment No_Legacy"; Code[20])
         {
         }
     }

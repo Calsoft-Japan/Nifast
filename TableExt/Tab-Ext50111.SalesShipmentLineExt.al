@@ -171,10 +171,10 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
         {
         }
 
-        field(70006; "External Document No."; Code[20])
-        {
-            Description = 'NV';
-        }
+        // field(70006; "External Document No."; Code[20])
+        // {
+        //     Description = 'NV';
+        // }
 
         field(70007; "List Price"; Decimal)
         {
@@ -188,7 +188,7 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
 
         field(70014; "Line Comment"; Boolean)
         {
-           // FieldClass = FlowField;
+            // FieldClass = FlowField;
             Description = 'NF1.00:CIS.CM 09-29-15';
             Editable = false;
         }
@@ -290,6 +290,10 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
         }
 
         field(70035; "FB Customer Bin"; Code[20])
+        {
+            Description = 'NV';
+        }
+        field(70036; "External Document No_Legacy"; Code[20])
         {
             Description = 'NV';
         }

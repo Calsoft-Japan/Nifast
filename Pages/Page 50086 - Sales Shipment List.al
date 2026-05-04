@@ -855,11 +855,11 @@ page 50086 "Sales Shipment List"
                     ToolTip = 'Specifies the value of the NV Posting Date field.';
                     Caption = 'NV Posting Date';
                 }
-                field("External Document No."; Rec."External Document No.")
-                {
-                    ToolTip = 'Specifies the value of the External Document No. field.';
-                    Caption = 'External Document No.';
-                }
+                // field("External Document No."; Rec."External Document No.") //TODO BC28
+                // {
+                //     ToolTip = 'Specifies the value of the External Document No. field.';
+                //     Caption = 'External Document No.';
+                // }
                 field("List Price"; Rec."List Price")
                 {
                     ToolTip = 'Specifies the value of the List Price field.';

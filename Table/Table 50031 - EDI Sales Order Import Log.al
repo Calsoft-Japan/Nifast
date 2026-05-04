@@ -2,7 +2,7 @@ table 50031 "EDI Sales Order Import Log"
 {
     // NF1.00:CIS.NG    10/14/15 XMLport Development - EDI Sales Order Import
 
-    Caption = 'EDI Sales Order Import Log';
+    Caption = 'Forecast Import Log';
     fields
     {
         field(1; "Entry No."; Integer)

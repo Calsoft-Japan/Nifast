@@ -385,7 +385,7 @@ table 80001 "Purchase Header NV"
         field(10020; "1099 Code"; Code[10])
         {
             Caption = '1099 Code';
-            TableRelation = "IRS 1099 Form-Box";
+            //TableRelation = "IRS 1099 Form-Box"; //TODO BC28
         }
         field(14017640; "Ship-to PO No."; Code[20])
         {

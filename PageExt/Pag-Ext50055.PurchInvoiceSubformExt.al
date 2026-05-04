@@ -28,7 +28,7 @@ pageextension 50055 "Purch. Invoice Subform Ext" extends "Purch. Invoice Subform
             }
         }
         moveafter(ShortcutDimCode8; "Description 2")
-        addafter("IRS 1099 Liable")
+        addafter(ShortcutDimCode8)
         {
             field("Entry/Exit Date"; Rec."Entry/Exit Date")
             {

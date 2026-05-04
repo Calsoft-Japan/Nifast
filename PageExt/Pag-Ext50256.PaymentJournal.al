@@ -141,10 +141,10 @@ pageextension 50256 "Payment Journal Ext" extends "Payment Journal"
         GenJnlLine."Payment Method Code" := VendUSDJnl."Payment Method Code";
         GenJnlLine."Bal. Account Type" := GenJnlLine."Bal. Account Type"::"G/L Account";
         GenJnlLine."Bal. Account No." := PurchSetup."Bal G/L Acc to Create USD Inv";
-        IF VendUSDJnl."IRS 1099 Code" <> '' THEN BEGIN
-            GenJnlLine."IRS 1099 Code" := VendUSDJnl."IRS 1099 Code";
-            GenJnlLine."IRS 1099 Amount" := VendUSDJnl."IRS 1099 Amount";
-        END;
+        // IF VendUSDJnl."IRS 1099 Code" <> '' THEN BEGIN //TODO BC28
+        //     GenJnlLine."IRS 1099 Code" := VendUSDJnl."IRS 1099 Code";
+        //     GenJnlLine."IRS 1099 Amount" := VendUSDJnl."IRS 1099 Amount";
+        // END;
         GenJnlLine."Applies-to Doc. Type" := GenJnlLine."Applies-to Doc. Type"::" ";
         GenJnlLine."Applies-to Doc. No." := '';
         GenJnlLine.INSERT();
@@ -234,10 +234,10 @@ pageextension 50256 "Payment Journal Ext" extends "Payment Journal"
         GenJnlLine."Creditor No." := VendUSDJnl."Creditor No.";
         GenJnlLine."Payment Reference" := VendUSDJnl."Payment Reference";
         GenJnlLine."Payment Method Code" := VendUSDJnl."Payment Method Code";
-        IF VendUSDJnl."IRS 1099 Code" <> '' THEN BEGIN
-            GenJnlLine."IRS 1099 Code" := VendUSDJnl."IRS 1099 Code";
-            GenJnlLine."IRS 1099 Amount" := VendUSDJnl."IRS 1099 Amount";
-        END;
+        // IF VendUSDJnl."IRS 1099 Code" <> '' THEN BEGIN //TODO BC28
+        //     GenJnlLine."IRS 1099 Code" := VendUSDJnl."IRS 1099 Code";
+        //     GenJnlLine."IRS 1099 Amount" := VendUSDJnl."IRS 1099 Amount";
+        // END;
         GenJnlLine."Applies-to Doc. Type" := GenJnlLine."Applies-to Doc. Type"::" ";
         GenJnlLine."Applies-to Doc. No." := '';
         GenJnlLine.INSERT();
