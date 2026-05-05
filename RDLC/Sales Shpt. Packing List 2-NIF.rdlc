@@ -4673,9 +4673,6 @@ End Function</Code>
         <Field Name="CrossReferenceNo_SalesShipmentLine">
           <DataField>CrossReferenceNo_SalesShipmentLine</DataField>
         </Field>
-        <Field Name="ExternalDocumentNo_SalesShipmentLine">
-          <DataField>ExternalDocumentNo_SalesShipmentLine</DataField>
-        </Field>
         <Field Name="CertificateNo_SalesShipmentLine">
           <DataField>CertificateNo_SalesShipmentLine</DataField>
         </Field>

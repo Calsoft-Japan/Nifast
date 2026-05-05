@@ -1,5 +1,7 @@
 namespace Nifast;
 
+using Nifast.Nifast;
+
 permissionset 50000 Nifast
 {
     Assignable = true;
@@ -70,6 +72,7 @@ permissionset 50000 Nifast
         tabledata MexicoSalesHist=RIMD,
         tabledata "NG - Temp Item BUM Update"=RIMD,
         tabledata "NIF Cross Reference"=RIMD,
+        tabledata "OAuth 2.0 Application"=RIMD,
         tabledata "Object Tracking Old"=RIMD,
         tabledata "Package Info Old SE0.50"=RIMD,
         tabledata "PPS File Buffer"=RIMD,
@@ -192,6 +195,7 @@ permissionset 50000 Nifast
         table MexicoSalesHist=X,
         table "NG - Temp Item BUM Update"=X,
         table "NIF Cross Reference"=X,
+        table "OAuth 2.0 Application"=X,
         table "Object Tracking Old"=X,
         table "Package Info Old SE0.50"=X,
         table "PPS File Buffer"=X,
@@ -341,7 +345,12 @@ permissionset 50000 Nifast
         codeunit CU76Subscriber=X,
         codeunit CU87Subscriber=X,
         codeunit CU_12=X,
+        codeunit CU_14000602=X,
+        codeunit CU_14000605=X,
+        codeunit CU_14000701=X,
+        codeunit CU_14000702=X,
         codeunit CU_14000710=X,
+        codeunit CU_14000841=X,
         codeunit CU_311=X,
         codeunit CU_353=X,
         codeunit CU_414=X,
@@ -377,12 +386,15 @@ permissionset 50000 Nifast
         codeunit "IoT Process Data"=X,
         codeunit "JRR Test"=X,
         codeunit "Label Mgmt NIF"=X,
+        codeunit LAXReceiving_NF=X,
         codeunit "Management XML Data Sales Inv."=X,
         codeunit "Misc JRR"=X,
         codeunit "NewVision Management_New"=X,
         codeunit "NewVision Validation"=X,
         codeunit "Nifast Mgmt"=X,
         codeunit "Not used"=X,
+        codeunit "OAuth 2.0 App. Helper"=X,
+        codeunit "OAuth 2.0 Authorization"=X,
         codeunit Page6510Subcriber=X,
         codeunit "Printer Check"=X,
         codeunit "Process EDI XML File JRR"=X,
@@ -390,6 +402,7 @@ permissionset 50000 Nifast
         codeunit "RdWrite File"=X,
         codeunit "Sales-ShipAuth to Order"=X,
         codeunit setdate=X,
+        codeunit "Share Point API"=X,
         codeunit SingleInstance=X,
         codeunit Tab111Subscriber=X,
         codeunit TAB121Subscribers=X,
@@ -532,6 +545,8 @@ permissionset 50000 Nifast
         page "Mex Pediment Nos"=X,
         page "MEX Pedimento Reclass Screen"=X,
         page "NIFAST - Utilities & Fixes"=X,
+        page "OAuth 2.0 Application"=X,
+        page "OAuth 2.0 Applications"=X,
         page "Order Receiving"=X,
         page "Package Line Bin Control"=X,
         page "Package Line Label Request"=X,

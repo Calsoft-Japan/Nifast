@@ -58,7 +58,6 @@ pageextension 50050 "Purchase Order Ext" extends "Purchase Order"
         moveafter("Pay-to Post Code"; "Pay-to Country/Region Code", "Pay-to Contact No.")
         moveafter("Pay-to Contact"; "Vendor Order No.")
         moveafter("Tax Exemption No."; "Responsibility Center")
-        //moveafter("Creditor No."; "IRS 1099 Code") //TODO BC28
         movefirst("Shipping and Payment"; "Sell-to Customer No.", "Ship-to Code")
         moveafter("Ship-to Post Code"; "Ship-to Country/Region Code")
         //moveafter("Location Code"; "Shipment Method Code")

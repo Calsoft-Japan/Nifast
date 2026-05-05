@@ -443,8 +443,8 @@ page 50043 "Purch. Order Receipt Subform"
     var
         TrackingForm: Page "Order Tracking";
     begin
-        //TrackingForm.SetPurchLine(Rec); //TODO BC28
-        TrackingForm.RUNMODAL();
+        // TrackingForm.SetPurchLine(Rec); //TODO BC28
+        // TrackingForm.RUNMODAL();
     end;
 
     procedure ItemChargeAssgnt()

@@ -24,7 +24,8 @@
             "environmentName": "Sandbox2",        
             "breakOnError": "All",
             "launchBrowser": true,
-            "schemaUpdateMode": "Synchronize",
+            "schemaUpdateMode": "ForceSync",
+            "startupCompany": "NIFAST CORPORATION"
         }
     ]
 }

@@ -172,7 +172,7 @@ codeunit 50179 CU_80
     begin
         //>>NV
         PurchRcptLine."Posting Date" := PurchRcptHeader."Posting Date";
-        //PurchRcptLine."Vendor Shipment No." := PurchRcptHeader."Vendor Shipment No."; //TODO BC28
+        PurchRcptLine."Vendor Shipment No." := PurchRcptHeader."Vendor Shipment No.";
         //<<NV
 
     end;

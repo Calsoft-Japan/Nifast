@@ -8,6 +8,8 @@ page 50080 "EDI Sales Order Import Log"
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "EDI Sales Order Import Log";
+    Caption = 'Forecast Import Log';
+    SourceTableView = order(descending);
 
     layout
     {
