@@ -1,6 +1,7 @@
-codeunit 50115 "Share Point API"
+codeunit 50115 "Share Point Integration Mgt."
 {
     var
+        DotNetUriBuilder: Codeunit Uri;
         DrivesUrl: Label 'https://graph.microsoft.com/v1.0/sites/root/drives/', Locked = true;
         DrivesItemsUrl: Label 'https://graph.microsoft.com/v1.0/sites/root/drives/%1/root/children', Comment = '%1 = Drive ID', Locked = true;
         DrivesChildItemsUrl: Label 'https://graph.microsoft.com/v1.0/sites/root/drives/%1/items/%2/children', Comment = '%1 = Drive ID, %2 = Item ID', Locked = true;
@@ -8,17 +9,50 @@ codeunit 50115 "Share Point API"
         DeleteUrl: Label 'https://graph.microsoft.com/v1.0/drives/%1/items/%2', Comment = '%1 = Drive ID, %2 = Item ID', Locked = true;
         UploadUrl: Label 'https://graph.microsoft.com/v1.0/drives/%1/items/root:/%2:/content', Comment = '%1 = Drive ID, %2 = File Name', Locked = true;
 
-    procedure GetAccessToken(AppCode: Code[20]): Text
+    procedure AcquireToken(
+        ClientId: Text;
+        ClientSecret: Text;
+        Scope: Text;
+        TokenEndpointURL: Text;
+        var AccessToken: Text): Boolean;
     var
-        OAuth20Application: Record "OAuth 2.0 Application";
-        OAuth20AppHelper: Codeunit "OAuth 2.0 App. Helper";
-        MessageText: Text;
+        Client: HttpClient;
+        Request: HttpRequestMessage;
+        Response: HttpResponseMessage;
+        Content: HttpContent;
+        ContentHeaders: HttpHeaders;
+        ContentText: Text;
+        IsSuccess: Boolean;
+        JAccessToken: JsonObject;
+        AccessTokenValue: JsonToken;
+        ResponseText: Text;
     begin
-        OAuth20Application.Get(AppCode);
-        if not OAuth20AppHelper.RequestAccessToken(OAuth20Application, MessageText) then
-            Error(MessageText);
 
-        exit(OAuth20AppHelper.GetAccessToken(OAuth20Application));
+        ContentText := 'grant_type=client_credentials' +
+            '&client_id=' + DotNetUriBuilder.EscapeDataString(ClientId) +
+            '&client_secret=' + DotNetUriBuilder.EscapeDataString(ClientSecret) +
+            '&scope=' + DotNetUriBuilder.EscapeDataString(Scope);
+        Content.WriteFrom(ContentText);
+
+        Content.GetHeaders(ContentHeaders);
+        ContentHeaders.Remove('Content-Type');
+        ContentHeaders.Add('Content-Type', 'application/x-www-form-urlencoded');
+
+        Request.Method := 'POST';
+        Request.SetRequestUri(TokenEndpointURL);
+        Request.Content(Content);
+
+        if Client.Send(Request, Response) then
+            if Response.IsSuccessStatusCode() then begin
+                if Response.Content.ReadAs(ResponseText) then
+                    IsSuccess := JAccessToken.ReadFrom(ResponseText);
+                if JAccessToken.Get('access_token', AccessTokenValue) then
+                    AccessToken := AccessTokenValue.AsValue().AsText();
+            end else
+                if Response.Content.ReadAs(ResponseText) then
+                    JAccessToken.ReadFrom(ResponseText);
+
+        exit(IsSuccess);
     end;
 
     procedure UploadFile(
@@ -75,38 +109,25 @@ codeunit 50115 "Share Point API"
             exit(true);
     end;
 
-    // procedure FetchDrives(AccessToken: Text; var Drive: Record "Online Drive"): Boolean
-    // var
-    //     JsonResponse: JsonObject;
-    //     JToken: JsonToken;
-    // begin
-    //     if HttpGet(AccessToken, DrivesUrl, JsonResponse) then begin
-    //         if JsonResponse.Get('value', JToken) then
-    //             ReadDrives(JToken.AsArray(), Drive);
+    procedure FetchDrivesItems(AccessToken: Text; DriveID: Text; var DriveItem: Record "SharePoint Drive Item"): Boolean
+    var
+        JsonResponse: JsonObject;
+        JToken: JsonToken;
+        IsSucces: Boolean;
+    begin
+        if HttpGet(AccessToken, StrSubstNo(DrivesItemsUrl, DriveID), JsonResponse) then begin
+            if JsonResponse.Get('value', JToken) then
+                ReadDriveItems(JToken.AsArray(), DriveID, '', DriveItem);
 
-    //         exit(true);
-    //     end;
-    // end;
-
-    // procedure FetchDrivesItems(AccessToken: Text; DriveID: Text; var DriveItem: Record "SharePoint Drive Item"): Boolean
-    // var
-    //     JsonResponse: JsonObject;
-    //     JToken: JsonToken;
-    //     IsSucces: Boolean;
-    // begin
-    //     if HttpGet(AccessToken, StrSubstNo(DrivesItemsUrl, DriveID), JsonResponse) then begin
-    //         if JsonResponse.Get('value', JToken) then
-    //             ReadDriveItems(JToken.AsArray(), DriveID, '', DriveItem);
-
-    //         exit(true);
-    //     end;
-    // end;
+            exit(true);
+        end;
+    end;
 
     procedure FetchDrivesChildItems(
-        AccessToken: Text;
-        DriveID: Text;
-        ItemID: Text;
-        var DriveItem: Record "SharePoint Drive Item" temporary): Boolean
+    AccessToken: Text;
+    DriveID: Text;
+    ItemID: Text;
+    var DriveItem: Record "SharePoint Drive Item" temporary): Boolean
     var
         JsonResponse: JsonObject;
         JToken: JsonToken;
@@ -120,58 +141,6 @@ codeunit 50115 "Share Point API"
         end;
     end;
 
-    // local procedure GetDriveID(var Drive: Record "Online Drive"; Name: Text): Text
-    // begin
-    //     Drive.SetRange(Name, Name);
-    //     if Drive.FindFirst() then
-    //         exit(Drive.Id);
-    // end;
-
-    // local procedure GetItemID(var DriveItem: Record "SharePoint Drive Item"; DriveID: Text; Name: Text): Text
-    // begin
-    //     exit(GetItemID(DriveItem, DriveID, '', Name));
-    // end;
-
-    // local procedure GetItemID(
-    //     var DriveItem: Record "SharePoint Drive Item";
-    //     DriveID: Text;
-    //     ItemID: Text;
-    //     Name: Text): Text
-    // begin
-    //     DriveItem.SetRange(driveID, DriveID);
-    //     DriveItem.SetRange(parentId, ItemID);
-    //     DriveItem.SetRange(Name, Name);
-    //     if DriveItem.FindFirst() then
-    //         exit(DriveItem.Id);
-    // end;
-
-    // local procedure ReadDrives(JDrives: JsonArray; var Drive: Record "Online Drive")
-    // var
-    //     JDriveItem: JsonToken;
-    //     JDrive: JsonObject;
-    //     JToken: JsonToken;
-    // begin
-    //     foreach JDriveItem in JDrives do begin
-    //         JDrive := JDriveItem.AsObject();
-
-    //         Drive.Init();
-    //         if JDrive.Get('id', JToken) then
-    //             Drive.Id := JToken.AsValue().AsText();
-    //         if JDrive.Get('name', JToken) then
-    //             Drive.Name := JToken.AsValue().AsText();
-    //         if JDrive.Get('description', JToken) then
-    //             Drive.description := JToken.AsValue().AsText();
-    //         if JDrive.Get('driveType', JToken) then
-    //             Drive.driveType := JToken.AsValue().AsText();
-    //         if JDrive.Get('createdDateTime', JToken) then
-    //             Drive.createdDateTime := JToken.AsValue().AsDateTime();
-    //         if JDrive.Get('lastModifiedDateTime', JToken) then
-    //             Drive.lastModifiedDateTime := JToken.AsValue().AsDateTime();
-    //         if JDrive.Get('webUrl', JToken) then
-    //             Drive.webUrl := JToken.AsValue().AsText();
-    //         Drive.Insert();
-    //     end;
-    // end;
     procedure DeleteDriveItem(AccessToken: Text; DriveID: Text; ItemID: Text): Boolean
     var
         HttpClient: HttpClient;

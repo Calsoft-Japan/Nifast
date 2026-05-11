@@ -1,15 +1,14 @@
-table 50100 "OAuth 2.0 Application"
+table 50100 "SharePoint Setup"
 {
-    Caption = 'OAuth 2.0 Application';
-    DrillDownPageId = "OAuth 2.0 Applications";
-    LookupPageId = "OAuth 2.0 Applications";
+    Caption = 'SharePoint Setup';
+    DataClassification = CustomerContent;
 
     fields
     {
-        field(1; "Code"; Code[20])
+        field(1; "Primary Key"; Code[10])
         {
-            Caption = 'Code';
-            NotBlank = true;
+            AllowInCustomizations = Never;
+            Caption = 'Primary Key';
         }
         field(2; Description; Text[250])
         {
@@ -95,23 +94,66 @@ table 50100 "OAuth 2.0 Application"
         {
             Caption = 'SharePoint Error Folder';
         }
+        field(20; "SharePoint Main Folder"; Text[250])
+        {
+            Caption = 'SharePoint Main Folder';
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                if "SharePoint Main Folder" = '' then begin
+                    "SharePoint Main Folder ID" := '';
+                    exit;
+                end;
+                GetMainFolderID();
+            end;
+        }
+        field(21; "Send Email on Error"; Boolean)
+        {
+            Caption = 'Send Email on Error';
+            Description = 'EDI.01 - NF1.00:CIS.NG 10/19/15';
+        }
+        field(22; "Email Title"; Text[30])
+        {
+            Caption = 'Email Title';
+            Description = 'EDI.01 - NF1.00:CIS.NG 10/19/15';
+        }
+        field(23; "Email Subject"; Text[50])
+        {
+            Caption = 'Email Subject';
+            Description = 'EDI.01 - NF1.00:CIS.NG 10/19/15';
+        }
     }
 
     keys
     {
-        key(PK; Code)
+        key(PK; "Primary Key")
         {
             Clustered = true;
         }
     }
-
-    trigger OnModify()
+    local procedure GetMainFolderID()
+    var
+        SharePointSetup: Record "SharePoint Setup";
+        AccessToken: Text;
+        SharePointIntMgt: Codeunit "Share Point Integration Mgt.";
+        TempSharePointDriveItem: Record "SharePoint Drive Item" temporary;
     begin
-        Status := Status::" ";
-        Clear("Access Token");
-        Clear("Refresh Token");
-        "Expires In" := 0;
-        "Ext. Expires In" := 0;
-        "Authorization Time" := 0DT;
+        SharePointSetup.Get(); // assuming only one record for SharePoint Setup
+        SharePointSetup.TestField("Client ID");
+        SharePointSetup.TestField("Client Secret");
+        SharePointSetup.TestField("SharePoint Driver ID");
+
+        SharePointIntMgt.AcquireToken(SharePointSetup."Client ID", SharePointSetup."Client Secret", SharePointSetup.Scope, SharePointSetup."Access Token URL", AccessToken);
+        SharePointIntMgt.FetchDrivesItems(AccessToken, SharePointSetup."SharePoint Driver ID", TempSharePointDriveItem);
+        if not TempSharePointDriveItem.FindSet() then
+            Error('No drive found with the provided SharePoint Driver ID.')
+        else
+            repeat
+                if TempSharePointDriveItem.Name = Rec."SharePoint Main Folder" then begin
+                    Rec."SharePoint Main Folder ID" := TempSharePointDriveItem.id;
+                    exit;
+                end;
+            until TempSharePointDriveItem.Next() = 0;
     end;
 }

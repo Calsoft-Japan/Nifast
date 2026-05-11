@@ -15,6 +15,13 @@ codeunit 70105 CU_14000602
         //<< NIF #9865
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Receive Management", pubOnAfterWhsePostReceipt, '', false, false)]
+    local procedure "LAX Receive Management_pubOnAfterWhsePostReceipt"(var WhsePostReceipt: Codeunit "Whse.-Post Receipt"; var WhseRcptLine: Record "Warehouse Receipt Line"; var PrintOrder: Boolean; var PurchHeader: Record "Purchase Header"; var PurchHeader2: Record "Purchase Header")
+    begin
+        if (PrintOrder) then
+            PrintPurchRcptPackingList(PurchHeader);
+    end;
+
     LOCAL PROCEDURE GetInputValues(InputDesc: Text[250]; InputPrompt: Text[250]; VAR ReceiveControl: Record 14000611) QuantityEntered: Decimal;
     VAR
         Window: Dialog;

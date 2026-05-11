@@ -437,6 +437,7 @@ codeunit 50001 "Process EDI XML File JRR"
 
     local procedure SendErrorEmail(EDISalesOrderImportLog: Record 50031)
     var
+        SharepointSetup: Record "SharePoint Setup";
         Email: Codeunit Email;
         EmailMessage: Codeunit "Email Message";
         CompanyNameTxt: Text;
@@ -445,13 +446,14 @@ codeunit 50001 "Process EDI XML File JRR"
         EmailTo: Text[1024];
         BodyBuilder: TextBuilder;
     begin
-        if not EDISetup."Send Email on Error" then
+        SharepointSetup.Get();
+        if not SharepointSetup."Send Email on Error" then
             exit;
 
-        EDISetup.TestField("Email Title");
-        EDISetup.TestField("Email Subject");
+        SharepointSetup.TestField("Email Title");
+        SharepointSetup.TestField("Email Subject");
 
-        GetEmailAddress('SalesOrder_EDI', EmailTo, EmailCC, EmailBCC);
+        //GetEmailAddress('SalesOrder_EDI', EmailTo, EmailCC, EmailBCC);
 
         // Build HTML body
         BodyBuilder.Append('<html><body>');
@@ -482,7 +484,7 @@ codeunit 50001 "Process EDI XML File JRR"
         //  Create message with To, CC, and BCC
         EmailMessage.Create(
             EmailTo,
-            EDISetup."Email Subject",
+            SharepointSetup."Email Subject",
             BodyBuilder.ToText(), true
         );
 
@@ -615,12 +617,11 @@ codeunit 50001 "Process EDI XML File JRR"
 
     procedure ProcessEDIForecastIn()
     var
-        EDISalesOrderImportLog: Record 50031;
-        OAuthRec: Record "OAuth 2.0 Application";
+        ForecastImportLog: Record 50031;
+        SharePointSetup: Record "SharePoint Setup";
         AccessToken: Text;
         LastDocNo_lCod: Code[250];
-        OnlineDriveAPI: Codeunit "Share Point API";
-        OAuth2Authorization: Codeunit "OAuth 2.0 Authorization";
+        SharePointIntMgt: Codeunit "Share Point Integration Mgt.";
         TempSharePointDriveItem: Record "SharePoint Drive Item" temporary;
     begin
         // refresh the instream and import the XML into the EDI Sales Order tables
@@ -628,79 +629,79 @@ codeunit 50001 "Process EDI XML File JRR"
         CLEAR(Ins);
         CLEAR(SourceFile);
 
-        OAuthRec.Get(1); // assuming only one record for OAuth
-        OAuthRec.TestField("Client ID");
-        OAuthRec.TestField("Client Secret");
-        OAuthRec.TestField("SharePoint Driver ID");
-        OAuthRec.TestField("SharePoint Main Folder ID");
-        OAuthRec.TestField("SharePoint Success Folder");
-        OAuthRec.TestField("SharePoint Error Folder");
+        SharePointSetup.Get(); // assuming only one record for SharePoint Setup
+        SharePointSetup.TestField("Client ID");
+        SharePointSetup.TestField("Client Secret");
+        SharePointSetup.TestField("SharePoint Driver ID");
+        SharePointSetup.TestField("SharePoint Main Folder ID");
+        SharePointSetup.TestField("SharePoint Success Folder");
+        SharePointSetup.TestField("SharePoint Error Folder");
 
-        OAuth2Authorization.AcquireToken(OAuthRec."Client ID", OAuthRec."Client Secret", OAuthRec.Scope, OAuthRec."Access Token URL", AccessToken);
-        OnlineDriveAPI.FetchDrivesChildItems(AccessToken, OAuthRec."SharePoint Driver ID", OAuthRec."SharePoint Main Folder ID", TempSharePointDriveItem);
+        SharePointIntMgt.AcquireToken(SharePointSetup."Client ID", SharePointSetup."Client Secret", SharePointSetup.Scope, SharePointSetup."Access Token URL", AccessToken);
+        SharePointIntMgt.FetchDrivesChildItems(AccessToken, SharePointSetup."SharePoint Driver ID", SharePointSetup."SharePoint Main Folder ID", TempSharePointDriveItem);
         if TempSharePointDriveItem.FindSet() then
             repeat
                 Clear(Ins);
                 // Assuming we want to process the first file found. Adjust logic if multiple files need to be processed.
-                OnlineDriveAPI.DownloadFile(AccessToken, TempSharePointDriveItem.driveId, TempSharePointDriveItem.id, Ins);
+                SharePointIntMgt.DownloadFile(AccessToken, TempSharePointDriveItem.driveId, TempSharePointDriveItem.id, Ins);
 
                 CLEAR(ImportEDIForecast);   //ImportEDISalesOrder);
 
                 ImportEDIForecast.SETSOURCE(Ins);
                 IF ImportEDIForecast.IMPORT THEN BEGIN
 
-                    if OnlineDriveAPI.DeleteDriveItem(AccessToken, TempSharePointDriveItem.driveId, TempSharePointDriveItem.id) then
-                        OnlineDriveAPI.UploadFile(AccessToken, OAuthRec."SharePoint Driver ID", OAuthRec."SharePoint Success Folder", TempSharePointDriveItem.name, Ins);
+                    if SharePointIntMgt.DeleteDriveItem(AccessToken, TempSharePointDriveItem.driveId, TempSharePointDriveItem.id) then
+                        SharePointIntMgt.UploadFile(AccessToken, SharePointSetup."SharePoint Driver ID", SharePointSetup."SharePoint Success Folder", TempSharePointDriveItem.name, Ins);
 
                     SuccessCount += 1;
                     //jrr  LastDocNo_lCod := ImportEDIForecast.GetOrderNo;
                     AddToDocNos(LastDocNo_lCod);
 
-                    EDISalesOrderImportLog.RESET();
-                    CLEAR(EDISalesOrderImportLog);
-                    EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-                    //EDISalesOrderImportLog."File Name" := MyFile.Name;
-                    EDISalesOrderImportLog."Import Date" := TODAY;
-                    EDISalesOrderImportLog."Import Time" := TIME;
-                    EDISalesOrderImportLog."Import By" := USERID;
-                    EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Success;
-                    EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
-                    EDISalesOrderImportLog.INSERT();
+                    CLEAR(ForecastImportLog);
+                    ForecastImportLog.RESET();
+                    ForecastImportLog."Entry No." := GetLastEntryNo();
+                    ForecastImportLog."File Name" := TempSharePointDriveItem.Name;
+                    ForecastImportLog."Import Date" := TODAY;
+                    ForecastImportLog."Import Time" := TIME;
+                    ForecastImportLog."Import By" := USERID;
+                    ForecastImportLog.Status := ForecastImportLog.Status::Success;
+                    ForecastImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
+                    ForecastImportLog.INSERT();
 
                     COMMIT(); // to retain all good values, in case other files fail
                 END ELSE BEGIN
                     ErrorCount += 1;
 
-                    if OnlineDriveAPI.DeleteDriveItem(AccessToken, TempSharePointDriveItem.driveId, TempSharePointDriveItem.id) then
-                        OnlineDriveAPI.UploadFile(AccessToken, OAuthRec."SharePoint Driver ID", OAuthRec."SharePoint Error Folder", TempSharePointDriveItem.name, Ins);
+                    if SharePointIntMgt.DeleteDriveItem(AccessToken, TempSharePointDriveItem.driveId, TempSharePointDriveItem.id) then
+                        SharePointIntMgt.UploadFile(AccessToken, SharePointSetup."SharePoint Driver ID", SharePointSetup."SharePoint Error Folder", TempSharePointDriveItem.name, Ins);
 
-                    EDISalesOrderImportLog.RESET();
-                    CLEAR(EDISalesOrderImportLog);
-                    EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-                    //EDISalesOrderImportLog."File Name" := MyFile.Name;
-                    EDISalesOrderImportLog."Import Date" := TODAY;
-                    EDISalesOrderImportLog."Import Time" := TIME;
-                    EDISalesOrderImportLog."Import By" := USERID;
-                    EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Error;
-                    EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
-                    EDISalesOrderImportLog."Error Detail" := COPYSTR(GETLASTERRORTEXT, 1, 250);
-                    EDISalesOrderImportLog.INSERT();
-                    SendErrorEmail(EDISalesOrderImportLog);
+                    CLEAR(ForecastImportLog);
+                    ForecastImportLog.RESET();
+                    ForecastImportLog."Entry No." := GetLastEntryNo();
+                    ForecastImportLog."File Name" := TempSharePointDriveItem.name;
+                    ForecastImportLog."Import Date" := TODAY;
+                    ForecastImportLog."Import Time" := TIME;
+                    ForecastImportLog."Import By" := USERID;
+                    ForecastImportLog.Status := ForecastImportLog.Status::Error;
+                    ForecastImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
+                    ForecastImportLog."Error Detail" := COPYSTR(GETLASTERRORTEXT, 1, 250);
+                    ForecastImportLog.INSERT();
+                    SendErrorEmail(ForecastImportLog);
                     COMMIT(); // to retain all good values, in case other files fail
                 END;
             until TempSharePointDriveItem.Next() = 0
         else begin
-            EDISalesOrderImportLog.RESET();
-            CLEAR(EDISalesOrderImportLog);
-            EDISalesOrderImportLog."Entry No." := GetLastEntryNo();
-            //EDISalesOrderImportLog."File Name" := MyFile.Name;
-            EDISalesOrderImportLog."Import Date" := TODAY;
-            EDISalesOrderImportLog."Import Time" := TIME;
-            EDISalesOrderImportLog."Import By" := USERID;
-            EDISalesOrderImportLog.Status := EDISalesOrderImportLog.Status::Error;
-            EDISalesOrderImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
-            EDISalesOrderImportLog."Error Detail" := 'No files found in the specified SharePoint folder.';
-            EDISalesOrderImportLog.INSERT();
+            ForecastImportLog.RESET();
+            CLEAR(ForecastImportLog);
+            ForecastImportLog."Entry No." := GetLastEntryNo();
+            //ForecastImportLog."File Name" := MyFile.Name;
+            ForecastImportLog."Import Date" := TODAY;
+            ForecastImportLog."Import Time" := TIME;
+            ForecastImportLog."Import By" := USERID;
+            ForecastImportLog.Status := ForecastImportLog.Status::Error;
+            ForecastImportLog."Sales Orders" := COPYSTR(LastDocNo_lCod, 1, 250);
+            ForecastImportLog."Error Detail" := 'No files found in the specified SharePoint folder.';
+            ForecastImportLog.INSERT();
         end;
 
     end;
