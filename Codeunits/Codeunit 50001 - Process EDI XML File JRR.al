@@ -452,7 +452,8 @@ codeunit 50001 "Process EDI XML File JRR"
 
         SharepointSetup.TestField("Email Title");
         SharepointSetup.TestField("Email Subject");
-
+        SharepointSetup.TestField("Error Email Address");
+        EmailTo := SharepointSetup."Error Email Address";
         //GetEmailAddress('SalesOrder_EDI', EmailTo, EmailCC, EmailBCC);
 
         // Build HTML body

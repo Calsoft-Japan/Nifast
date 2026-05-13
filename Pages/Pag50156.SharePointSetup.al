@@ -68,6 +68,10 @@ page 50156 "SharePoint Setup"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the SharePoint Error Folder field.', Comment = '%';
                 }
+                field("Error Email Address"; Rec."Error Email Address")
+                {
+                    ToolTip = 'Specifies the value of the Error Email Address field.', Comment = '%';
+                }
                 field("Email Subject"; Rec."Email Subject")
                 {
                     ToolTip = 'Specifies the value of the Email Subject field.', Comment = '%';

@@ -1,15 +1,74 @@
 codeunit 70109 CU_14000702
 {
-    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnAfterCreatePackageLine, '', false, false)]
-    // local procedure "LAX Package Management_pubOnAfterCreatePackageLine"(var Package: Record "LAX Package"; var PackingControl: Record "LAX Packing Control"; var LineUOM: Code[10]; var LineQuantity: Decimal; var FixedQuantity: Decimal; var ReturnValue: Boolean)
-    // var
-    //     LabelMgt: Codeunit CU_14000841;
-    // begin
+    SingleInstance = true;
 
-    //     //>> #9865 RTT 03-28-05        //jrr
-    //     LabelMgt.PrintPackageLineLabel(
-    //       PackageLine, QuantityToAdd, QuantityToAdd * PackageLine."Qty. per Unit of Measure", FALSE);
-    //     //<< #9865
+    var
+        PackageGvar: Record "LAX Package";
+        PackingControlGvar: Record "LAX Packing Control";
+        WareHouseActLineNo_lInt: Integer;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnBeforeCreatePackageLine2, '', false, false)]
+    local procedure "LAX Package Management_pubOnBeforeCreatePackageLine2"(var Package: Record "LAX Package"; var PackingControl: Record "LAX Packing Control"; var PackingStation: Record "LAX Packing Station"; var LineUOM: Code[10]; var LineQuantity: Decimal; var FixedQuantity: Decimal; var Initialized: Boolean; var Handled: Boolean; var ReturnValue: Boolean)
+    begin
+        PackageGvar := Package;
+        PackingControlGvar := PackingControl;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnBeforeUpdatePackage, '', false, false)]
+    local procedure pubOnBeforeUpdatePackage(var PackingControl: Record "LAX Packing Control"; QuantityToAdd: Decimal)
+    begin
+        //>>#9865 RTT 03-28-05
+        IF NOT ValidateLotInfo(PackingControl, QuantityToAdd) THEN;
+        //EXIT(FALSE);
+        //<<#9865 RTT 03-28-05 
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnAfterSetPackageLineFilterMultiDoc, '', false, false)]
+    local procedure pubOnAfterSetPackageLineFilterMultiDoc(var PackageLine: Record "LAX Package Line"; PackingControl: Record "LAX Packing Control")
+    begin
+        //NileshGajjar-NS
+        IF WareHouseActLineNo_lInt <> 0 THEN
+            PackageLine.SETRANGE("Warehouse Act Line No.", WareHouseActLineNo_lInt);
+        //NileshGajjar-NE
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnBeforeOpenEShipInput, '', false, false)]
+    local procedure pubOnBeforeOpenEShipInput(var EShipInput: Record "LAX EShip Input")
+    var
+        TotQtyToPrint: Decimal;
+        Item: Record Item;
+        QtyToPrint: Decimal;
+        Warn: Decimal;
+        NoOfCopies: Integer;
+    begin
+
+        //>> NIF 06-08-05
+        //QuantityEntered := SetDefaultQuantity(PackingControl);
+        //EShipInput.Quantity := SetDefaultQuantity(PackingControl);
+        EShipInput.Quantity := SetDefaultQuantity(PackingControlGvar, WareHouseActLineNo_lInt, PackageGvar."No.");  //NileshGajjar-N
+                                                                                                                    //<< NIF 06-08-05
+
+
+        TotQtyToPrint := EShipInput.Quantity;
+
+        IF EShipInput.Type = EShipInput.Type::Item THEN BEGIN
+            Item.GET(EShipInput."No.");
+            QtyToPrint := Item."Units per Parcel";
+            EShipInput.SNP := Item."Units per Parcel";
+        END ELSE BEGIN
+            QtyToPrint := EShipInput.Quantity;
+        END;
+
+        Warn := 0;
+        IF QtyToPrint = 0 THEN BEGIN
+            NoOfCopies := 0;
+        END ELSE BEGIN
+            Warn := TotQtyToPrint MOD QtyToPrint;
+            NoOfCopies := (TotQtyToPrint - Warn) / QtyToPrint;
+        END;
+
+        EShipInput."No. of Copies" := NoOfCopies;
+    end;
 
     // end;
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnBeforeSalesPostShip, '', false, false)]
@@ -21,20 +80,18 @@ codeunit 70109 CU_14000702
         //NG-NE
     end;
 
-    LOCAL PROCEDURE "<<NIF fcn>>"();
-    BEGIN
-    END;
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnAfterCreatePackageLine2, '', false, false)]
+    local procedure pubOnAfterCreatePackageLine2(var Package: Record "LAX Package"; var PackingControl: Record "LAX Packing Control"; var PackaageLine: Record "LAX Package Line"; var QuantityToAdd: Decimal; var LineUOM: Code[10]; var LineQuantity: Decimal; var FixedQuantity: Decimal; var ReturnValue: Boolean)
+    var
+        LabelMgt: Codeunit CU_14000841;
+    begin
 
-    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnAfterCreatePackageLine, '', false, false)]
-    // local procedure "LAX Package Management_pubOnAfterCreatePackageLine"(var Package: Record "LAX Package"; var PackingControl: Record "LAX Packing Control"; var LineUOM: Code[10]; var LineQuantity: Decimal; var FixedQuantity: Decimal; var ReturnValue: Boolean)
-    // var
-    //     LabelMgt: Codeunit CU_14000841;
-    // begin
-    //     //>> #9865 RTT 03-28-05        //jrr
-    //     LabelMgt.PrintPackageLineLabel(
-    //       PackageLine, QuantityToAdd, QuantityToAdd * PackageLine."Qty. per Unit of Measure", FALSE);
-    //     //<< #9865
-    // end;
+        //>> #9865 RTT 03-28-05        //jrr
+        LabelMgt.PrintPackageLineLabel(
+          PackaageLine, QuantityToAdd, QuantityToAdd * PackaageLine."Qty. per Unit of Measure", FALSE);
+        //<< #9865
+    end;
+
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Package Management", pubOnBeforeCheckIsOverPacked, '', false, false)]
     local procedure "LAX Package Management_pubOnBeforeCheckIsOverPacked"(var Package: Record "LAX Package"; var PackageLine: Record "LAX Package Line"; var PackingControl: Record "LAX Packing Control"; var Handled: Boolean)
     begin
@@ -45,6 +102,7 @@ codeunit 70109 CU_14000702
         PackageLine."Location Code" := PackingControl."Location Code";
         PackageLine."Bin Code" := PackingControl."Bin Code";
         //<< NIF #9859 RTT 03-28-05
+        PackageLine."Warehouse Act Line No." := WareHouseActLineNo_lInt;  //NileshGajjar-N
     end;
 
     LOCAL PROCEDURE PrintSalesShipmentPackingList(SalesHeader: Record 36);

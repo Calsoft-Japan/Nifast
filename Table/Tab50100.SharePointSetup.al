@@ -123,6 +123,10 @@ table 50100 "SharePoint Setup"
             Caption = 'Email Subject';
             Description = 'EDI.01 - NF1.00:CIS.NG 10/19/15';
         }
+        field(24; "Error Email Address"; Text[1024])
+        {
+            Caption = 'Error Email Address';
+        }
     }
 
     keys
