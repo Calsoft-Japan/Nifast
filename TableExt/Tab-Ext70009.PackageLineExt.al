@@ -117,6 +117,11 @@ tableextension 70109 "Package Line _Ext" extends "LAX Package Line"
         CreatedFromPick := TRUE;
     END;
 
+    PROCEDURE GetCreatedFromPick(var ReturnValue: Boolean);
+    BEGIN
+        ReturnValue := CreatedFromPick;
+    END;
+
     var
         CreatedFromPick: Boolean;
 }

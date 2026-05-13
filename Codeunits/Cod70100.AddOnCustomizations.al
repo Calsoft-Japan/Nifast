@@ -188,7 +188,7 @@ codeunit 70100 AddOnCustomizations
               EXIT(FALSE);
             END;
             */
-            //PackageLine.SetCreatedFromPick;  //NIF //TODO
+            PackageLine.SetCreatedFromPick;  //NIF 
             //>>10-21-05
             IF (NOT Summary) THEN BEGIN
                 //<<10-21-05
@@ -501,6 +501,20 @@ codeunit 70100 AddOnCustomizations
     local procedure "LAX Packing Control_OnAfterTransferFromSalesHeader"(var PackingControl: Record "LAX Packing Control"; SalesHeader: Record "Sales Header")
     begin
         PackingControl."Location Code" := SalesHeader."Location Code";      // NF2.00:CIS.RAM<<<<
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"LAX Package Line", pubOnBeforeValidateLotNo, '', false, false)]
+    local procedure "LAX Package Line_pubOnBeforeValidateLotNo"(var Rec: Record "LAX Package Line"; var Handled: Boolean)
+    var
+        CreatedFromPick: Boolean;
+        Item: Record Item;
+        ItemTrackingCode: Record "Item Tracking Code";
+        ItemLedgEntry: Record "Item Ledger Entry";
+    begin
+        Rec.GetCreatedFromPick(CreatedFromPick);
+        if not CreatedFromPick then
+            EXIT;
+        Handled := true;
     end;
 
 

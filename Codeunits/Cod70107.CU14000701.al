@@ -35,6 +35,7 @@ codeunit 70107 CU_14000701
             else
                 SalesSetup.TestField("LAX Enable Shipping");
         end;
+        Handled := true;
     end;
 
     LOCAL PROCEDURE UpdateEshipBuffer(PkgLine: Record 14000702; DocNo: Code[20]; LineNO: Integer; LotNo: Code[20]; ItemNo: Code[20]; Qty: Decimal);
