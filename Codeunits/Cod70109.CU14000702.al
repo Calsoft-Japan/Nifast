@@ -105,6 +105,25 @@ codeunit 70109 CU_14000702
         PackageLine."Warehouse Act Line No." := WareHouseActLineNo_lInt;  //NileshGajjar-N
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX WS Pack/Rec Print", pubOnBeforePrintReportThruEShipComm, '', false, false)]
+    local procedure "LAX WS Pack/Rec Print_pubOnBeforePrintReportThruEShipComm"(var ReportID: Integer; var RecRef: RecordRef; var RequestPage: Boolean; var Handled: Boolean)
+    var
+        PackRecPrint: Codeunit "LAX WS Pack/Rec Print";
+        NavOutStream: OutStream;
+        ESTempBlob: Record "LAX EShip Temp Blob" temporary;
+        Parameters: Text;
+    begin
+        if RecRef.Number <> 110 then
+            exit;
+        Handled := true;
+
+        ESTempBlob.Blob.CreateOutStream(NavOutStream);
+        if not RecRef.IsEmpty then
+            REPORT.Print(ReportID, Parameters, '', RecRef);
+
+        PackRecPrint.CreateReportPrintJobInQueue(ESTempBlob);
+    end;
+
     LOCAL PROCEDURE PrintSalesShipmentPackingList(SalesHeader: Record 36);
     VAR
         PackingRule: Record 14000715;

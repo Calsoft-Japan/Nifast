@@ -263,9 +263,9 @@ report 50034 "Sales Shpt. Packing List 2-NIF"
                 column(CrossReferenceNo_SalesShipmentLine; "Sales Shipment Line"."Item Reference No.")
                 {
                 }
-                // column(ExternalDocumentNo_SalesShipmentLine; "Sales Shipment Line"."External Document No.")
-                // { //TODO BC28
-                // }
+                column(ExternalDocumentNo_SalesShipmentLine; "Sales Shipment Line"."External Document No.")
+                {
+                }
                 column(CertificateNo_SalesShipmentLine; "Sales Shipment Line"."Certificate No.")
                 {
                 }

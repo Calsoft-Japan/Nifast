@@ -139,7 +139,7 @@ page 50038 "Package Line Label Request"
                     Package.GET(Rec."Package No.");
 
                     PackingRule.GetPackingRule(
-                      Package."Ship-to Type", Package."Ship-to No.", Package."Ship-to Code");
+                      Package."Ship-to Type".AsInteger(), Package."Ship-to No.", Package."Ship-to Code");
 
                     IF PackingRule."Package Line Label Code" <> '' THEN BEGIN
                         CLEAR(PackageLineLabel);
