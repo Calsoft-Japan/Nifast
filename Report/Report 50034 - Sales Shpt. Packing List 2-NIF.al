@@ -26,7 +26,7 @@ report 50034 "Sales Shpt. Packing List 2-NIF"
     //        120316 -Print correct value of Sales Ship line Desc.
     // <<IST
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\Sales Shpt. Packing List 2-NIF.rdlc';
+    RDLCLayout = '.\RDLC\Sales Shpt. Packing List 2-NIF.rdl';
     ApplicationArea = All;
     Caption = 'Sales Shpt. Packing List 2-NIF';
     UsageCategory = ReportsAndAnalysis;

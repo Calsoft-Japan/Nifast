@@ -127,9 +127,6 @@ End Function
         <Field Name="ASNValue">
           <DataField>ASNValue</DataField>
         </Field>
-        <Field Name="CompanyInfo_Name2">
-          <DataField>CompanyInfo_Name2</DataField>
-        </Field>
         <Field Name="BillToAddress_1_">
           <DataField>BillToAddress_1_</DataField>
         </Field>
@@ -195,6 +192,9 @@ End Function
         </Field>
         <Field Name="Posted_Package__No__">
           <DataField>Posted_Package__No__</DataField>
+        </Field>
+        <Field Name="PkgStringNo">
+          <DataField>PkgStringNo</DataField>
         </Field>
         <Field Name="SoldCaption">
           <DataField>SoldCaption</DataField>

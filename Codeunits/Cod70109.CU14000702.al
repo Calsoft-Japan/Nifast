@@ -121,6 +121,11 @@ codeunit 70109 CU_14000702
         if not RecRef.IsEmpty then
             REPORT.Print(ReportID, Parameters, '', RecRef);
 
+        if not RecRef.IsEmpty then
+            REPORT.SaveAs(ReportID, Parameters, REPORTFORMAT::Pdf, NavOutStream, RecRef)
+        else
+            REPORT.SaveAs(ReportID, Parameters, REPORTFORMAT::Pdf, NavOutStream);
+
         PackRecPrint.CreateReportPrintJobInQueue(ESTempBlob);
     end;
 

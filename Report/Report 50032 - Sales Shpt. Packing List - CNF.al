@@ -26,7 +26,7 @@ report 50032 "Sales Shpt. Packing List - CNF"
     // <<IST
     ApplicationArea = All;
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\Sales Shpt. Packing List - CNF.rdlc';
+    RDLCLayout = '.\RDLC\Sales Shpt. Packing List - CNF.rdl';
     Caption = 'Sales Shipment Packing List - CNF';
     UsageCategory = ReportsAndAnalysis;
 

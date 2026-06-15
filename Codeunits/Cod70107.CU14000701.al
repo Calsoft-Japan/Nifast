@@ -6,12 +6,24 @@ codeunit 70107 CU_14000701
         PrintLabel := false;
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Shipping", pubOnBeforeCheckPackedQty, '', false, false)]
+    local procedure "LAX Shipping_pubOnBeforeCheckPackedQty"(var DocLineQtyToShip: Decimal; var PackageLineQtyPacked: Decimal; OverPackError: Text; UnderPackError: Text; ErrElement1: Text; ErrElement2: Text; var Handled: Boolean)
+    begin
+        PackageLineQtyPacked := DocLineQtyToShip;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Shipping", pubOnAfterSetPackageLineFilterSalesHeader, '', false, false)]
+    local procedure "LAX Shipping_pubOnAfterSetPackageLineFilterSalesHeader"(var PackageLine: Record "LAX Package Line"; var SalesHeader: Record "Sales Header"; UsageCaseNo: Integer)
+    begin
+        if PackageLine.FindSet() then;
+    end;
+
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Shipping", pubOnBeforeChkSalesHeaderPacked, '', false, false)]
     local procedure "LAX Shipping_pubOnBeforeChkSalesHeaderPacked"(var SalesHeader: Record "Sales Header"; var DuringPosting: Boolean; var Handled: Boolean)
     begin
         //>> NIF 12-06-05
         IF SalesHeader."FB Order No." <> '' THEN
-            EXIT;
+            Handled := true;
         //<< NIF 12-06-05
     end;
 
