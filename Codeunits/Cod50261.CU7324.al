@@ -42,6 +42,74 @@ codeunit 50261 CU_7324
 
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Activity-Post", OnAfterPostWhseActivityLine, '', false, false)]
+    local procedure "Whse.-Activity-Post_OnAfterPostWhseActivityLine"(WhseActivHeader: Record "Warehouse Activity Header"; var WhseActivLine: Record "Warehouse Activity Line"; PostedSourceNo: Code[20]; PostedSourceType: Integer; PostedSourceSubType: Integer)
+    var
+
+        LabelMgtNIF: Codeunit "Label Mgmt NIF";
+        SalesSetup: Record "Sales & Receivables Setup";
+        gSlShipHdrRec: Record "Sales Shipment Header";
+        gPackagelineRec: Record "LAX Package Line";
+        gPostedPackageLine: Record "LAX Posted Package Line";
+        gPackageRec: Record "LAX Package";
+        gShippingCu: Codeunit "LAX Shipping";
+        PostedInvtPickHdr: Record "Posted Invt. Pick Header";
+    begin
+        PostedInvtPickHdr.Reset();
+        PostedInvtPickHdr.SetRange("Source No.", PostedSourceNo);
+        if not PostedInvtPickHdr.FindFirst() then
+            exit;
+        //>> NIF 06-29-05 RTT
+        IF (WhseActivHeader.Type = WhseActivHeader.Type::"Invt. Pick") THEN
+            //>>NIF 10-25-07
+            //only applies to sales orders
+            IF WhseActivHeader."Source Type" = DATABASE::"Sales Line" THEN BEGIN
+                SalesSetup.GET;
+                IF (SalesSetup."Enable Shipping - Picks") THEN
+                    LabelMgtNIF.CreatePackageFromRegPick(PostedInvtPickHdr);
+            END;
+        //<< NIF 06-29-05 RTT
+        //NF2.00:CIS.RAM 09-29-2017
+        SalesSetup.GET;
+        IF SalesSetup."Create Pack & Enable Ship" THEN BEGIN
+            gSlShipHdrRec.RESET;
+            gSlShipHdrRec.SETRANGE(gSlShipHdrRec."No.", PostedInvtPickHdr."Source No.");
+            IF gSlShipHdrRec.FINDFIRST THEN BEGIN
+                gPackagelineRec.RESET;
+                gPackagelineRec.SETRANGE(gPackagelineRec."Package No.", WhseActivLine."No.");
+                gPackagelineRec.SETRANGE(gPackagelineRec."Source ID", gSlShipHdrRec."Order No.");
+                IF gPackagelineRec.FINDFIRST THEN BEGIN
+                    REPEAT
+                        gPostedPackageLine.RESET;
+                        gPostedPackageLine.SETRANGE(gPostedPackageLine."No.", gPackagelineRec."No.");
+                        gPostedPackageLine.SETRANGE(gPostedPackageLine."Source ID", gPackagelineRec."Source ID");
+                        gPostedPackageLine.SETRANGE(gPostedPackageLine."No.", gPackagelineRec."No.");
+                        gPostedPackageLine.SETRANGE(gPostedPackageLine.Quantity, gPackagelineRec.Quantity);
+                        IF gPostedPackageLine.FINDFIRST THEN BEGIN
+                            gPostedPackageLine."Carton First SrNo." := gPackagelineRec."Carton First SrNo.";
+                            gPostedPackageLine."Carton Last SrNo." := gPackagelineRec."Carton Last SrNo.";
+                            gPostedPackageLine.MODIFY(TRUE);
+
+                        END;
+                    UNTIL gPackagelineRec.NEXT = 0;
+                END;
+            END;
+        END;
+        //NF2.00:CIS.RAM 10-10-2017
+        gPackageRec.RESET;
+        gPackageRec.SETRANGE(gPackageRec."No.", PostedInvtPickHdr."Invt Pick No.");
+        IF gPackageRec.FINDFIRST THEN BEGIN
+            REPEAT
+                IF gPackageRec.Closed THEN
+                    gShippingCu.OpenPackage(gPackageRec);
+                gPackageRec.DELETE(TRUE);
+            UNTIL gPackageRec.NEXT = 0;
+        END;
+        //NF2.00:CIS.RAM 10-10-2017
+
+        //NF2.00:CIS.RAM 09-29-2017
+    end;
+
 
 
 
