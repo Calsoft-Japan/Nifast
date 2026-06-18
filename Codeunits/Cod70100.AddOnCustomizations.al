@@ -134,6 +134,7 @@ codeunit 70100 AddOnCustomizations
         ">>NIF_LV": Integer;
         QtyRemToAdd: Decimal;
         UseLineNo: Integer;
+        SingleInstanceCU: Codeunit SingleInstance;
     begin
         PackageLine.RESET;
         PackageLine.SETRANGE("Package No.", Package."No.");
@@ -174,6 +175,7 @@ codeunit 70100 AddOnCustomizations
             PackageLine."Source ID" := Package."Source ID";
             //<<IST 081208 CCL $12797 #12797
             PackageLine.VALIDATE(Type, PackageLine.Type::Item);
+            SingleInstanceCU.MakeRemoveFilter(true);
             PackageLine.VALIDATE("No.", PackingControl."Input No.");
             IF PackingControl."Input Variant Code" <> '' THEN
                 PackageLine.VALIDATE("Variant Code", PackingControl."Input Variant Code");

@@ -7,6 +7,7 @@ codeunit 50072 SingleInstance
         WarehouseActivityHeaderG: Record "Warehouse Activity Header";
         PostedWhseReceiptLineG: Record "Posted Whse. Receipt Line";
         SalesLineCurrentFieldNo, InboundItemEntryG, OutboundItemEntryG : Integer;
+        RemoveFilter: Boolean;
 
     procedure SetSalesLineCurrentFieldNo(CurrFieldNo: Integer)
     begin
@@ -60,5 +61,17 @@ codeunit 50072 SingleInstance
         PostedWhseReceiptLine := PostedWhseReceiptLineG;
     end;
 
+    procedure MakeRemoveFilter(RemoveFilterLVar: Boolean)
+    begin
+        RemoveFilter := RemoveFilterLVar;
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"LAX Packing Control", pubOnAfterSetSalesLineFilterCalcTotalVal, '', false, false)]
+    local procedure "LAX Packing Control_pubOnAfterSetSalesLineFilterCalcTotalVal"(var SalesLine: Record "Sales Line")
+    begin
+        if RemoveFilter then
+            SalesLine.SetRange("Outstanding Quantity");
+        RemoveFilter := false;
+    end;
 
 }
