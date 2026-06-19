@@ -7,7 +7,7 @@ codeunit 50072 SingleInstance
         WarehouseActivityHeaderG: Record "Warehouse Activity Header";
         PostedWhseReceiptLineG: Record "Posted Whse. Receipt Line";
         SalesLineCurrentFieldNo, InboundItemEntryG, OutboundItemEntryG : Integer;
-        RemoveFilter: Boolean;
+        SkipValidation: Boolean;
 
     procedure SetSalesLineCurrentFieldNo(CurrFieldNo: Integer)
     begin
@@ -61,17 +61,26 @@ codeunit 50072 SingleInstance
         PostedWhseReceiptLine := PostedWhseReceiptLineG;
     end;
 
-    procedure MakeRemoveFilter(RemoveFilterLVar: Boolean)
+    procedure SkipValidationFn(Skip: Boolean)
     begin
-        RemoveFilter := RemoveFilterLVar;
+        SkipValidation := Skip;
     end;
 
-    [EventSubscriber(ObjectType::Table, Database::"LAX Packing Control", pubOnAfterSetSalesLineFilterCalcTotalVal, '', false, false)]
-    local procedure "LAX Packing Control_pubOnAfterSetSalesLineFilterCalcTotalVal"(var SalesLine: Record "Sales Line")
+    [EventSubscriber(ObjectType::Table, Database::"LAX Packing Control", pubOnBeforeCalculateTotalValue, '', false, false)]
+    local procedure "LAX Packing Control_pubOnBeforeCalculateTotalValue"(var Rec: Record "LAX Packing Control"; var TotalQuantityBase: Decimal; var TotalValueCostBase: Decimal; var TotalValuePriceBase: Decimal; var NewUnitOfMeasureCode: Code[10]; var MultiDocumentPackage: Boolean; var MultiDocumentNo: Code[250]; var LineType: Integer; var LineNo: Code[20]; var LineVariantCode: Code[10]; var FilterVariant: Boolean; var LineUnitOfMeasureCode: Code[10]; var FromUnitOfMeasureCode: Boolean; var SourceType: Integer; var SourceSubtype: Integer; var SourceID: Code[250]; var Handled: Boolean)
     begin
-        if RemoveFilter then
-            SalesLine.SetRange("Outstanding Quantity");
-        RemoveFilter := false;
+        if SkipValidation then
+            Handled := true;
+        SkipValidation := false;
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"LAX Package Line", pubOnBeforeCalcValue, '', false, false)]
+    local procedure "LAX Package Line_pubOnBeforeCalcValue"(var Rec: Record "LAX Package Line"; var Package: Record "LAX Package"; var FromUnitOfMeasureCode: Boolean; var FilterVariant: Boolean; var Handled: Boolean)
+    begin
+        if SkipValidation then
+            Handled := true;
+        SkipValidation := false;
+    end;
+
 
 }

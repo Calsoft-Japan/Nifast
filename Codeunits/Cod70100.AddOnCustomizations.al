@@ -175,14 +175,16 @@ codeunit 70100 AddOnCustomizations
             PackageLine."Source ID" := Package."Source ID";
             //<<IST 081208 CCL $12797 #12797
             PackageLine.VALIDATE(Type, PackageLine.Type::Item);
-            SingleInstanceCU.MakeRemoveFilter(true);
+            SingleInstanceCU.SkipValidationFn(true);
             PackageLine.VALIDATE("No.", PackingControl."Input No.");
             IF PackingControl."Input Variant Code" <> '' THEN
                 PackageLine.VALIDATE("Variant Code", PackingControl."Input Variant Code");
+            SingleInstanceCU.SkipValidationFn(true);
             IF PackingControl."Input No." <> '' THEN
                 PackageLine.VALIDATE(Quantity, QuantityToAdd)
             ELSE
                 PackageLine.VALIDATE(Quantity, 0);
+            SingleInstanceCU.SkipValidationFn(true);
             PackageLine.VALIDATE("Unit of Measure Code", PackingControl."Input Unit of Measure Code");
             /*
             IF PackageLine.OverPackError THEN BEGIN
@@ -246,6 +248,7 @@ codeunit 70100 AddOnCustomizations
 
                     PackageLine.VALIDATE("Serial No.", PackingControl."Input Serial Number");
                 END;
+                SingleInstanceCU.SkipValidationFn(true);
                 PackageLine.INSERT(TRUE);
             END;
         END;
