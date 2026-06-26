@@ -3,7 +3,7 @@ pageextension 57378 InvtPickSubformExt extends "Invt. Pick Subform"
 {
     actions
     {
-        addafter(Lot)
+        addlast("&Line")
         {
             action("Print Line Label")
             {
