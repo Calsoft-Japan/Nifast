@@ -319,12 +319,7 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         field(70016; "Tool Repair Ticket"; Boolean)
         {
         }
-        field(70017; "No;Tool Repair Status"; code[10])
-        {
-            // FieldClass = FlowField;
-            Description = 'NF1.00:CIS.NG 10-10-15';
-            Editable = false;
-        }
+
         field(70018; "FB Order No."; code[20])
         {
         }

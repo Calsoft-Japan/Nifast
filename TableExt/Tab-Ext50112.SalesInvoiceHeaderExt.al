@@ -214,12 +214,7 @@ tableextension 50112 "Sales Invoice Header Ext" extends "Sales Invoice Header"
         {
             DataClassification = ToBeClassified;
         }
-        field(70017; "No;Tool Repair Status"; Boolean)
-        {
-            DataClassification = ToBeClassified;
-            Description = 'NF1.00:CIS.CM 09-29-15';
-            Editable = false;
-        }
+
         field(70018; "FB Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
