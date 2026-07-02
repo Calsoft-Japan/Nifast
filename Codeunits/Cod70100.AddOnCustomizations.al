@@ -116,7 +116,7 @@ codeunit 70100 AddOnCustomizations
 
         //>>IST 081208 CCL $12797 #12797
         //SalesHeader.GET(SalesHeader."Document Type"::Order,Package."Sales Order No.");
-        SalesHeader.GET(SalesHeader."Document Type"::Order, Package."Source ID");
+        if SalesHeader.GET(SalesHeader."Document Type"::Order, Package."Source ID") then;
         //Package.TransferFromSalesHeader(SalesHeader);
         PackingControl.TransferFromSalesHeader(SalesHeader);
         //<<IST 081208 CCL $12797 #12797
