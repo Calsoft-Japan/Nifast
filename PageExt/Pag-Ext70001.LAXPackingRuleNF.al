@@ -2,7 +2,7 @@ pageextension 71001 LAXPackingRule_NF extends "LAX Packing Rule"
 {
     layout
     {
-        addlast("RF-ID")
+        addlast("Label and Posting")
         {
             field("Automatic Print Label"; Rec."Automatic Print Label")
             {
