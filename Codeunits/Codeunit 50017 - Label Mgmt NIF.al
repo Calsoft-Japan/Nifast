@@ -740,8 +740,8 @@ codeunit 50017 "Label Mgmt NIF"
             until TempLabelValue.Next() = 0;
 
         // 2. Build the main layout payload
-        JsonPayload.Add('DocumentFile', DocumentFile);
-        JsonPayload.Add('Printer', PrinterName);
+        JsonPayload.Add('DocumentFile', 'librarian://main/' + DocumentFile);
+        JsonPayload.Add('Printer', 'printer:' + PrinterName);
         JsonPayload.Add('NamedDataSources', VariablesObj);
 
         PrintBTWAction.Add('PrintBTWAction', JsonPayload);
