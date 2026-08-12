@@ -723,7 +723,7 @@ codeunit 50017 "Label Mgmt NIF"
 
         //print label
         //LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
-        BuildJsonBody(TempLabelValue, PackingStation."Printer Name", LabelHeader."Bar Tender Template Mapping", PayloadText);
+        BuildJsonBody(TempLabelValue, PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", PayloadText);
         LabelPrintBarTenderCloud(PayloadText);
     end;
 
