@@ -41,6 +41,10 @@ page 50052 "Labels NIF"
                     ToolTip = 'Specifies the value of the Format Path field.';
                     Caption = 'Format Path';
                 }
+                field("Bar Tender Template Mapping"; Rec."Bar Tender Template Mapping")
+                {
+                    ToolTip = 'Specifies the value of the Bar Tender Template Mapping field.', Comment = '%';
+                }
                 field("Label Type"; Rec."Label Type")
                 {
                     ToolTip = 'Specifies the value of the Label Type field.';

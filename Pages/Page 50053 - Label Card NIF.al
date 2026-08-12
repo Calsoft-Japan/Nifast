@@ -38,6 +38,10 @@ page 50053 "Label Card NIF"
                     ToolTip = 'Specifies the value of the Format Path field.';
                     Caption = 'Format Path';
                 }
+                field("Bar Tender Template Mapping"; Rec."Bar Tender Template Mapping")
+                {
+                    ToolTip = 'Specifies the value of the Bar Tender Template Mapping field.', Comment = '%';
+                }
                 field(NewLable; NewLable)
                 {
                     Caption = 'New Lable';

@@ -26,5 +26,13 @@ pageextension 71002 LAXPackingStation_NF extends "LAX Packing Station"
                 }
             }
         }
+        addfirst("Label and Posting")
+        {
+            field("Bar Tender Printer"; Rec."Bar Tender Printer")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Bar Tender Printer field.', Comment = '%';
+            }
+        }
     }
 }
