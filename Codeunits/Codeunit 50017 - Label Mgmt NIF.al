@@ -723,11 +723,11 @@ codeunit 50017 "Label Mgmt NIF"
 
         //print label
         //LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
-        BuildJsonBody(TempLabelValue, PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", PayloadText);
+        BuildJsonBody(TempLabelValue, PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", NoCopies, PayloadText);
         LabelPrintBarTenderCloud(PayloadText);
     end;
 
-    local procedure BuildJsonBody(var TempLabelValue: Record 50006 temporary; PrinterName: Text[250]; DocumentFile: Text[100]; var PayloadText: Text)
+    procedure BuildJsonBody(var TempLabelValue: Record 50006 temporary; PrinterName: Text[250]; DocumentFile: Text[100]; NoCopies: Integer; var PayloadText: Text)
     var
         PrintBTWAction: JsonObject;
         JsonPayload: JsonObject;
@@ -742,6 +742,7 @@ codeunit 50017 "Label Mgmt NIF"
         // 2. Build the main layout payload
         JsonPayload.Add('DocumentFile', 'librarian://main/' + DocumentFile);
         JsonPayload.Add('Printer', 'printer:' + PrinterName);
+        JsonPayload.Add('Copies', NoCopies);
         JsonPayload.Add('NamedDataSources', VariablesObj);
 
         PrintBTWAction.Add('PrintBTWAction', JsonPayload);
