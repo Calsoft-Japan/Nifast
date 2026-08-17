@@ -306,7 +306,7 @@ codeunit 50017 "Label Mgmt NIF"
 
         //get Package station, make sure have printer name
         GetPackingStation();
-        PackingStation.TESTFIELD("Printer Name");
+        PackingStation.TESTFIELD("Bar Tender Printer");
 
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
