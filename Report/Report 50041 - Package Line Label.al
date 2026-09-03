@@ -144,16 +144,15 @@ report 50041 "Package Line Label"
         LabelLine: Record "LAX Label Line";
         Package: Record "LAX Package";
         PostedPackage: Record "LAX Posted Package";
-        /* BC Upgrade can not do local file access
-        LabelMgt: Codeunit "14000841";
-        FieldValue: Codeunit "14000843"; */
+        LabelMgt: Codeunit 14000841;
+        FieldValue: Codeunit 14000843;
         Window: Dialog;
         NoOfCopies: Integer;
         "<<IST 7741>>": Integer;
         QtyToPrint: Decimal;
-    /* BC Upgrade can not do local file access
-    LabelMgtNIF: Codeunit "50017";
-    DotNETAutomationMgt: Codeunit "37031001"; */
+        //BC Upgrade can not do local file access
+        LabelMgtNIF: Codeunit 50017;
+    // DotNETAutomationMgt: Codeunit "37031001";
 
     procedure PrintPackageLine(Posted: Boolean)
     var
@@ -165,13 +164,13 @@ report 50041 "Package Line Label"
         "<<NIF_LV>>": Integer;
         OutputFileFTP: File;
     begin
-        /* BC Upgrade can not do local file access
+        //BC Upgrade can not do local file access
         CLEAR(FieldValue);
         //>> NIF
         //FieldValue.Receive_14000601(Receive,0);
         //FieldValue.ReceiveLine_14000602("Receive Line",0);
-        FieldValue.Package_14000701(Package, 0);
-        FieldValue.PackageLine_14000702("Package Line", 0);
+        // FieldValue.Package_14000701(Package, 0);
+        // FieldValue.PackageLine_14000702("Package Line", 0);
         //<< NIF
 
 
@@ -202,13 +201,13 @@ report 50041 "Package Line Label"
         //OutputFile.CREATE(PackingStation."Label Buffer File");
         //<< NIF
 
-        FieldValue.LabelHeader_14000841(LabelHeader, 0);
+        //FieldValue.LabelHeader_14000841(LabelHeader, 0);
 
         LabelMgtNIF.PrintPackageLineLabel(Package, "Package Line", LabelHeader.Code, QtyToPrint, NoOfCopies);
         EXIT;
         //<< 05-09-05
 
-        LabelMgt.LabelFileTop(LabelHeader, OutputFile);
+        /*LabelMgt.LabelFileTop(LabelHeader, OutputFile);
 
         LabelLine.RESET;
         LabelLine.SETRANGE("Label Code", LabelHeader.Code);

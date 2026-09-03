@@ -21,5 +21,9 @@ tableextension 70105 "Label Header Ext" extends "LAX Label Header"
         {
             Description = 'CIS.RAM050322';
         }
+        field(50008; "Bar Tender Template Mapping"; Text[100])
+        {
+            TableRelation = "SEA Template Library".Name;
+        }
     }
 }

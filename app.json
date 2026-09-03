@@ -2,7 +2,7 @@
     "id": "8f35ae30-a045-44d8-812b-807ab74b8975",
     "name": "Nifast Customization",
     "publisher": "Calsoft Systems",
-    "version": "1.0.0.18",
+    "version": "1.0.0.19",
     "brief": "",
     "description": "",
     "privacyStatement": "",
@@ -28,12 +28,12 @@
             "name": "Lanham App Library",
             "publisher": "Lanham Associates",
             "version": "28.2.0.0"  
-        },
-          {
-            "appId": "f991663a-c8df-4d9d-9630-098184d480c5",
-            "name": "SPS-EDI-API",
-            "publisher": "SPS Commerce",
-            "version": "2.8.0.0"  
+        },          
+        {
+            "appId": "121bebd6-cb79-4387-89cd-2dd40b6e030a",
+            "name": "BarTender® Print Connector for Dynamics 365 Business Central",
+            "publisher": "Seagull Scientific, LLC",
+            "version": "2.0.1.0"
         }
     ],
     "screenshots": [],

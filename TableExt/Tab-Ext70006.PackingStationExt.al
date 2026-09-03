@@ -23,6 +23,11 @@ tableextension 70106 "Packing Station Ext" extends "LAX Packing Station"
             //TestTableRelation = false;
             ValidateTableRelation = false;
         }
+        field(50021; "Bar Tender Printer"; Text[1024])
+        {
+            Caption = 'Bar Tender Printer';
+            TableRelation = "SEA Printer"."Printer ID";
+        }
         field(50030; "Def. Commodity Desc."; Text[100])
         {
         }

@@ -6,26 +6,32 @@
             "type": "al",
             "request": "snapshotInitialize",
             "environmentType": "Sandbox",
-             "environmentName": "Sandbox2",
+            "environmentName": "Sandbox2",
             "tenant": "fac1b8b2-441f-4dbf-a3c7-b29b0cbd6c05",
-           // "server": "http://bcserver",
             "serverInstance": "BC",
             "authentication": "UserPassword",
             "breakOnNext": "WebClient",
             "executionContext": "DebugAndProfile"
         },
-        
         {
             "name": "Microsoft cloud sandbox",
             "request": "launch",
             "type": "al",
             "tenant": "fac1b8b2-441f-4dbf-a3c7-b29b0cbd6c05",
             "environmentType": "Sandbox",
-            "environmentName": "Sandbox2",        
+            "environmentName": "Sandbox2",
             "breakOnError": "All",
             "launchBrowser": true,
             "schemaUpdateMode": "ForceSync",
             "startupCompany": "NIFAST CORPORATION"
+        },
+        {
+            "name": "AL: Generated Download Symbols request",
+            "request": "launch",
+            "type": "al",
+            "environmentType": "Sandbox",
+            "environmentName": "Sandbox2",
+            "tenant": "fac1b8b2-441f-4dbf-a3c7-b29b0cbd6c05"
         }
     ]
 }

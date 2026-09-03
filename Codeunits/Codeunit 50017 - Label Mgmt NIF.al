@@ -294,6 +294,7 @@ codeunit 50017 "Label Mgmt NIF"
         PackingRule: Record 14000715;
         LabelHeader: Record 14000841;
         NoSeriesMgt: Codeunit "No. Series";
+        PayloadText: Text;
     begin
         CLEAR(Item);
         //jrr
@@ -721,7 +722,94 @@ codeunit 50017 "Label Mgmt NIF"
         UNTIL LabelContent.NEXT() = 0;
 
         //print label
-        LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
+        //LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
+        BuildJsonBody(TempLabelValue, PackingStation."Printer Name", PayloadText);
+        LabelPrintBarTenderCloud(PayloadText);
+    end;
+
+    local procedure BuildJsonBody(var TempLabelValue: Record 50006 temporary; PrinterName: Text[250]; var PayloadText: Text)
+    var
+        PrintBTWAction: JsonObject;
+        JsonPayload: JsonObject;
+        VariablesObj: JsonObject;
+    begin
+        // 1. Build the Variable mappings from Business Central fields
+        if TempLabelValue.FindSet() then
+            repeat
+                VariablesObj.Add(TempLabelValue."Field Code", TempLabelValue."Print Value");
+            until TempLabelValue.Next() = 0;
+
+        // 2. Build the main layout payload
+        JsonPayload.Add('DocumentFile', 'librarian://Labels/item_label.btw');
+        JsonPayload.Add('Printer', PrinterName);
+        JsonPayload.Add('NamedDataSources', VariablesObj);
+
+        PrintBTWAction.Add('PrintBTWAction', JsonPayload);
+
+        PrintBTWAction.WriteTo(PayloadText);
+    end;
+
+    local procedure LabelPrintBarTenderCloud(PayloadText: Text)
+    var
+        BarTenderSetup: Record "Bar Tender Setup";
+        Client: HttpClient;
+        Content: HttpContent;
+        Response: HttpResponseMessage;
+        Headers: HttpHeaders;
+        AuthToken: Text;
+        BarTenderURL: Text;
+    begin
+        Content.WriteFrom(PayloadText);
+        Content.GetHeaders(Headers);
+        Headers.Clear();
+        Headers.Add('Content-Type', 'application/json');
+
+        // Add authorization (Replace with your actual OAuth Bearer Token logic)
+        BarTenderSetup.GET();
+        AuthToken := StrSubstNo('Bearer %1', BarTenderSetup."Token");
+        Client.DefaultRequestHeaders.Add('Authorization', AuthToken);
+
+        // 4. Send the API request to BarTender
+        BarTenderURL := BarTenderSetup."Bar Tender Print URL";
+        if Client.Post(BarTenderURL, Content, Response) then begin
+            if not Response.IsSuccessStatusCode() then
+                Error('BarTender printing failed: %1', Response.ReasonPhrase);
+        end else
+            Error('Could not connect to BarTender API service.');
+    end;
+
+    Procedure GenerateAccessToken()
+    var
+        RequestHeaders: HttpHeaders;
+        ResponseText: Text;
+        TokenRequest: HttpRequestMessage;
+        Client: HttpClient;
+        Content: HttpContent;
+    begin
+        SetBody(Content);             //Sets the body And Content Headers>>
+        SetHeaders(Content, TokenRequest);    //Sets the request message Headers>>
+        SendRequest(Content, TokenRequest, ResponseText);   //Send request for authentication>>
+    end;
+
+    procedure CreatePayload(Var PayloadData: Text)
+    var
+        PayloadJson: JsonObject;
+        BarTenderSetup: Record "Bar Tender Setup";
+    begin
+        //Creating a Payload JSON and Encrypting using RSA Public Key For Encrypted Payload value>>
+        BarTenderSetup.get();
+        BarTenderSetup.TestField(username);
+        BarTenderSetup.TestField(Password);
+        BarTenderSetup.TestField(client_id);
+        BarTenderSetup.TestField(client_secret);
+        PayloadJSON.Add('client_id', BarTenderSetup.username);
+        PayloadJSON.Add('client_secret', BarTenderSetup.Password);
+        PayloadJSON.Add('grant_type', BarTenderSetup.grant_type);
+        PayloadJSON.Add('audience', BarTenderSetup.audience);
+        PayloadJSON.Add('username', BarTenderSetup.username);
+        PayloadJSON.Add('password', BarTenderSetup.password);
+        PayloadJSON.Add('scope', BarTenderSetup.scope);
+        PayloadJSON.WriteTo(PayloadData);
     end;
 
     procedure PrintPackageLabel(Package: Record 14000701; LabelHeaderCode: Code[10]; NoCopies: Integer; Posted: Boolean; UseLineNo: Integer; UseQty: Decimal)
