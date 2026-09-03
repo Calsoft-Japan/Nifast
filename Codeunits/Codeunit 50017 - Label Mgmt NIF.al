@@ -792,92 +792,57 @@ codeunit 50017 "Label Mgmt NIF"
         Content: HttpContent;
         ContentHeaders: HttpHeaders;
         Request: HttpRequestMessage;
+        Response: HttpResponseMessage;
+        Url: Text;
+        Query1: Text[250];
+        Seperater: Text[20];
+        ContentText: Text;
+        MRAsetup: Record "Bar Tender Setup";
     begin
+        MRAsetup.Get();
         //Creating a Payload JSON and Encrypting using RSA Public Key For Encrypted Payload value>>
         BarTenderSetup.get();
         BarTenderSetup.TestField(username);
         BarTenderSetup.TestField(Password);
         BarTenderSetup.TestField(client_id);
         BarTenderSetup.TestField(client_secret);
-        PayloadJSON.Add('client_id', BarTenderSetup.username);
-        PayloadJSON.Add('client_secret', BarTenderSetup.Password);
-        PayloadJSON.Add('grant_type', BarTenderSetup.grant_type);
-        PayloadJSON.Add('audience', BarTenderSetup.audience);
-        PayloadJSON.Add('username', BarTenderSetup.username);
-        PayloadJSON.Add('password', BarTenderSetup.password);
-        PayloadJSON.Add('scope', BarTenderSetup.scope);
-        PayloadJSON.WriteTo(PayloadData);
-        Content.WriteFrom(PayloadData);
-        ContentHeaders.Clear();
+        ContentText := 'grant_type=password' +
+                   '&username=' + BarTenderSetup.UserName +
+                   '&password=' + BarTenderSetup.Password +
+                   '&client_id=' + BarTenderSetup.client_id +
+                   '&client_secret=' + BarTenderSetup.client_secret +
+                   '&audience=' + BarTenderSetup.audience +
+                   '&scope=' + BarTenderSetup.Scope;
+        Content.WriteFrom(ContentText);
+
         Content.GetHeaders(ContentHeaders);
         ContentHeaders.Remove('Content-Type');
         ContentHeaders.Add('Content-Type', 'application/x-www-form-urlencoded');
-        Request.GetHeaders(RequestHeaders);
-        SendRequest(Content, Request);
-    end;
 
-    procedure SendRequest(var Content: HttpContent; var Request: HttpRequestMessage)
-    var
-        Client: HttpClient;
-        ErrorText: label 'Please check the MRA log.';
-        Response: HttpResponseMessage;
-        MRAsetup: Record "Bar Tender Setup";
-        Outstream2: OutStream;
-        RequestText: text;
-        Url: Text;
-        Query1: Text[250];
-        Seperater: Text[20];
-    begin
-        //Sending Request>>
-        MRAsetup.Get();
+        Request.Method := 'POST';
         Query1 := 'OrganizationDnsName=';
         Seperater := '?';
         Url := MRAsetup."Access Token URL" + Seperater + Query1 + MRAsetup.OrganizationDnsName;
-        Request.Method := 'POST';
         Request.SetRequestUri(Url);
-        Request.Content := Content;
-        if not Client.Send(Request, Response) then
-            SaveResponceandLogEntry(Response, Request);
+        Request.Content(Content);
 
+        if Client.Send(Request, Response) then
+            if Response.IsSuccessStatusCode() then begin
+                if Response.Content.ReadAs(ResponseText) then
+                    SaveResponceandLogEntry(Response, Request);
+            end;
     end;
 
     procedure SaveResponceandLogEntry(Var Response: HttpResponseMessage; var Request: HttpRequestMessage)
     var
         MRASetup: Record "Bar Tender Setup";
         ResponceJson: JsonObject;
-        StatusToken: JsonToken;
-        RequestToken: JsonToken;
-        ResponceToken: JsonToken;
-        KeyToken: JsonToken;
-        AccessTokenValue: JsonToken;
-        ExpiryDateToken: JsonToken;
-        RequestId: Text[250];
-        ResponseId: text[250];
-        AccessToken: text[500];
-        AccessKey: text;
-        Expiry: Text[100];
-        OutStrm: OutStream;
-        Outstream2: Outstream;
         ResponseText: text;
-        RequestText: text;
-        Expiry2: DateTime;
-        Status: text[250];
-        ErrorToken: JsonToken;
-        Errortext: text;
-        ErrorArray: JsonArray;
-        Errormessage: text[500];
-        Errormessage2: text[500];
-        ErrorMesaagesToken: JsonToken;
-        DescriptionToken: JsonToken;
-        DescriptionToken2: JsonToken;
-        DescriptionJson: JsonObject;
-        Descrption: Text;
-        InvoiceKey: text;
-        Text001: Label 'Access Token generated successfully.';
+        AccessTokenValue: JsonToken;
+        AccessToken: Text;
     begin
         //Getting required values and saving them in Setup and Log entries from Http response >>
         Response.Content.ReadAs(ResponseText);
-        Request.Content.ReadAs(RequestText);
         ResponceJson.ReadFrom(ResponseText);
         if ResponceJson.Get('access_token', AccessTokenValue) then
             AccessToken := AccessTokenValue.AsValue().AsText();
