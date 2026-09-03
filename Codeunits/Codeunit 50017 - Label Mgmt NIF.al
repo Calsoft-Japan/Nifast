@@ -722,12 +722,13 @@ codeunit 50017 "Label Mgmt NIF"
         UNTIL LabelContent.NEXT() = 0;
 
         //print label
-        //LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
-        BuildJsonBody(TempLabelValue, PackingStation."Printer Name", PayloadText);
+        LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
+        GenerateAccessToken();
+        BuildJsonBody(TempLabelValue, PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", NoCopies, PayloadText);
         LabelPrintBarTenderCloud(PayloadText);
     end;
 
-    local procedure BuildJsonBody(var TempLabelValue: Record 50006 temporary; PrinterName: Text[250]; var PayloadText: Text)
+    procedure BuildJsonBody(var TempLabelValue: Record 50006 temporary; PrinterName: Text[250]; DocumentFile: Text[100]; NoCopies: Integer; var PayloadText: Text)
     var
         PrintBTWAction: JsonObject;
         JsonPayload: JsonObject;
@@ -742,6 +743,7 @@ codeunit 50017 "Label Mgmt NIF"
         // 2. Build the main layout payload
         JsonPayload.Add('DocumentFile', 'librarian://Labels/item_label.btw');
         JsonPayload.Add('Printer', PrinterName);
+        JsonPayload.Add('Copies', NoCopies);
         JsonPayload.Add('NamedDataSources', VariablesObj);
 
         PrintBTWAction.Add('PrintBTWAction', JsonPayload);
@@ -778,23 +780,18 @@ codeunit 50017 "Label Mgmt NIF"
             Error('Could not connect to BarTender API service.');
     end;
 
-    Procedure GenerateAccessToken()
+    procedure GenerateAccessToken()
     var
+        PayloadData: Text;
+        PayloadJson: JsonObject;
+        BarTenderSetup: Record "Bar Tender Setup";
         RequestHeaders: HttpHeaders;
         ResponseText: Text;
         TokenRequest: HttpRequestMessage;
         Client: HttpClient;
         Content: HttpContent;
-    begin
-        SetBody(Content);             //Sets the body And Content Headers>>
-        SetHeaders(Content, TokenRequest);    //Sets the request message Headers>>
-        SendRequest(Content, TokenRequest, ResponseText);   //Send request for authentication>>
-    end;
-
-    procedure CreatePayload(Var PayloadData: Text)
-    var
-        PayloadJson: JsonObject;
-        BarTenderSetup: Record "Bar Tender Setup";
+        ContentHeaders: HttpHeaders;
+        Request: HttpRequestMessage;
     begin
         //Creating a Payload JSON and Encrypting using RSA Public Key For Encrypted Payload value>>
         BarTenderSetup.get();
@@ -810,6 +807,85 @@ codeunit 50017 "Label Mgmt NIF"
         PayloadJSON.Add('password', BarTenderSetup.password);
         PayloadJSON.Add('scope', BarTenderSetup.scope);
         PayloadJSON.WriteTo(PayloadData);
+        Content.WriteFrom(PayloadData);
+        ContentHeaders.Clear();
+        Content.GetHeaders(ContentHeaders);
+        ContentHeaders.Remove('Content-Type');
+        ContentHeaders.Add('Content-Type', 'application/x-www-form-urlencoded');
+        Request.GetHeaders(RequestHeaders);
+        SendRequest(Content, Request);
+    end;
+
+    procedure SendRequest(var Content: HttpContent; var Request: HttpRequestMessage)
+    var
+        Client: HttpClient;
+        ErrorText: label 'Please check the MRA log.';
+        Response: HttpResponseMessage;
+        MRAsetup: Record "Bar Tender Setup";
+        Outstream2: OutStream;
+        RequestText: text;
+        Url: Text;
+        Query1: Text[250];
+        Seperater: Text[20];
+    begin
+        //Sending Request>>
+        MRAsetup.Get();
+        Query1 := 'OrganizationDnsName=';
+        Seperater := '?';
+        Url := MRAsetup."Access Token URL" + Seperater + Query1 + MRAsetup.OrganizationDnsName;
+        Request.Method := 'POST';
+        Request.SetRequestUri(Url);
+        Request.Content := Content;
+        if not Client.Send(Request, Response) then
+            SaveResponceandLogEntry(Response, Request);
+
+    end;
+
+    procedure SaveResponceandLogEntry(Var Response: HttpResponseMessage; var Request: HttpRequestMessage)
+    var
+        MRASetup: Record "Bar Tender Setup";
+        ResponceJson: JsonObject;
+        StatusToken: JsonToken;
+        RequestToken: JsonToken;
+        ResponceToken: JsonToken;
+        KeyToken: JsonToken;
+        AccessTokenValue: JsonToken;
+        ExpiryDateToken: JsonToken;
+        RequestId: Text[250];
+        ResponseId: text[250];
+        AccessToken: text[500];
+        AccessKey: text;
+        Expiry: Text[100];
+        OutStrm: OutStream;
+        Outstream2: Outstream;
+        ResponseText: text;
+        RequestText: text;
+        Expiry2: DateTime;
+        Status: text[250];
+        ErrorToken: JsonToken;
+        Errortext: text;
+        ErrorArray: JsonArray;
+        Errormessage: text[500];
+        Errormessage2: text[500];
+        ErrorMesaagesToken: JsonToken;
+        DescriptionToken: JsonToken;
+        DescriptionToken2: JsonToken;
+        DescriptionJson: JsonObject;
+        Descrption: Text;
+        InvoiceKey: text;
+        Text001: Label 'Access Token generated successfully.';
+    begin
+        //Getting required values and saving them in Setup and Log entries from Http response >>
+        Response.Content.ReadAs(ResponseText);
+        Request.Content.ReadAs(RequestText);
+        ResponceJson.ReadFrom(ResponseText);
+        if ResponceJson.Get('access_token', AccessTokenValue) then
+            AccessToken := AccessTokenValue.AsValue().AsText();
+
+        //Save Response in Setup table>>
+        MRASetup.Get();
+        MRASetup.Token := AccessToken;
+        MRASetup.Modify();
     end;
 
     procedure PrintPackageLabel(Package: Record 14000701; LabelHeaderCode: Code[10]; NoCopies: Integer; Posted: Boolean; UseLineNo: Integer; UseQty: Decimal)
@@ -1262,6 +1338,7 @@ codeunit 50017 "Label Mgmt NIF"
         MastLbl := TRUE;   //jrr
 
         //print label
+        GenerateAccessToken();
         LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
         BuildJsonBody(TempLabelValue, PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", NoCopies, PayloadText);
         LabelPrintBarTenderCloud(PayloadText);

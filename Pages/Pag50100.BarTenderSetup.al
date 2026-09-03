@@ -44,6 +44,19 @@ page 50100 "Bar Tender Setup"
                 {
                     ToolTip = 'Specifies the value of the audience field.', Comment = '%';
                 }
+                field("Bar Tender Print URL"; Rec."Bar Tender Print URL")
+                {
+                    ToolTip = 'Specifies the value of the Bar Tender Print URL field.', Comment = '%';
+                }
+                field(OrganizationDnsName; Rec.OrganizationDnsName)
+                {
+                    ToolTip = 'Specifies the value of the OrganizationDnsName field.', Comment = '%';
+                }
+                field(Token; Rec.Token)
+                {
+                    Editable = false;
+                    ToolTip = 'Specifies the value of the Token field.', Comment = '%';
+                }
             }
         }
     }

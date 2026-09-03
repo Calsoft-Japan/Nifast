@@ -51,6 +51,10 @@ table 50047 "Bar Tender Setup"
         {
             Caption = 'Bar Tender Print URL';
         }
+        field(13; OrganizationDnsName; Text[100])
+        {
+            Caption = 'OrganizationDnsName';
+        }
     }
     keys
     {
