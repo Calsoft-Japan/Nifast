@@ -306,11 +306,11 @@ codeunit 50017 "Label Mgmt NIF"
 
         //get Package station, make sure have printer name
         GetPackingStation();
-        PackingStation.TESTFIELD("Printer Name");
+        PackingStation.TESTFIELD("Bar Tender Printer");
 
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
-        LabelHeader.TESTFIELD("Format Path");
+        LabelHeader.TESTFIELD("Bar Tender Template Mapping");
         //IF NOT EXISTS(LabelHeader."Format Path") THEN
         //  ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
@@ -822,6 +822,7 @@ codeunit 50017 "Label Mgmt NIF"
         LabelHeader: Record 14000841;
         NoSeriesMgt: Codeunit "No. Series";
         MasterLabelReqForm: Page 50060;
+        PayloadText: Text;
     begin
         CLEAR(Item);
         TempLabelValue.RESET();
@@ -829,11 +830,11 @@ codeunit 50017 "Label Mgmt NIF"
 
         //get Package station, make sure have printer name
         GetPackingStation();
-        PackingStation.TESTFIELD("Printer Name");
+        PackingStation.TESTFIELD("Bar Tender Printer");
 
         //get label, make sure fields exist and have format path
         LabelHeader.GET(LabelHeaderCode);
-        LabelHeader.TESTFIELD("Format Path");
+        LabelHeader.TESTFIELD("Bar Tender Template Mapping");
         // IF NOT EXISTS(LabelHeader."Format Path") THEN
         //   ERROR('Format Path %1 not found.', LabelHeader."Format Path");//TODO
         LabelHeader.CALCFIELDS("No. of Fields");
@@ -1262,6 +1263,8 @@ codeunit 50017 "Label Mgmt NIF"
 
         //print label
         LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
+        BuildJsonBody(TempLabelValue, PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", NoCopies, PayloadText);
+        LabelPrintBarTenderCloud(PayloadText);
         MastLbl := FALSE;     //jrr
         CartonPkgNo := '';          //jrr
         CartonPkgLnNo := 0;     //jrr
