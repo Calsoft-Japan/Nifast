@@ -741,8 +741,8 @@ codeunit 50017 "Label Mgmt NIF"
             until TempLabelValue.Next() = 0;
 
         // 2. Build the main layout payload
-        JsonPayload.Add('DocumentFile', 'librarian://Labels/item_label.btw');
-        JsonPayload.Add('Printer', PrinterName);
+        JsonPayload.Add('DocumentFile', 'librarian://main/' + DocumentFile);
+        JsonPayload.Add('Printer', 'printer:' + PrinterName);
         JsonPayload.Add('Copies', NoCopies);
         JsonPayload.Add('NamedDataSources', VariablesObj);
 
@@ -775,31 +775,41 @@ codeunit 50017 "Label Mgmt NIF"
         BarTenderURL := BarTenderSetup."Bar Tender Print URL";
         if Client.Post(BarTenderURL, Content, Response) then begin
             if not Response.IsSuccessStatusCode() then
-                Error('BarTender printing failed: %1', Response.ReasonPhrase);
+                Error('BarTender printing failed: %1', Response.ReasonPhrase)
+            else
+                Message('BarTender printing successful.');
         end else
             Error('Could not connect to BarTender API service.');
     end;
 
     procedure GenerateAccessToken()
     var
-        PayloadData: Text;
-        PayloadJson: JsonObject;
-        BarTenderSetup: Record "Bar Tender Setup";
-        RequestHeaders: HttpHeaders;
-        ResponseText: Text;
-        TokenRequest: HttpRequestMessage;
         Client: HttpClient;
-        Content: HttpContent;
-        ContentHeaders: HttpHeaders;
         Request: HttpRequestMessage;
         Response: HttpResponseMessage;
+        Content: HttpContent;
+        ContentHeaders: HttpHeaders;
+        ContentText: Text;
+        ResponseText: Text;
+        IsSuccess: Boolean;
         Url: Text;
         Query1: Text[250];
         Seperater: Text[20];
-        ContentText: Text;
-        MRAsetup: Record "Bar Tender Setup";
+        AuthorizationCode: Text;
+        UserName: Text;
+        Password: Text;
+        ClientId: Text;
+        ClientSecret: Text;
+        Scope: Text;
+        RedirectURL: Text;
+        TokenEndpointURL: Text;
+        JAccessToken: JsonObject;
+        BarTenderSetup: Record "Bar Tender Setup";
+        DotNetUriBuilder: Codeunit Uri;
+        AccessToken: Text;
+        AccessTokenValue: JsonToken;
+
     begin
-        MRAsetup.Get();
         //Creating a Payload JSON and Encrypting using RSA Public Key For Encrypted Payload value>>
         BarTenderSetup.get();
         BarTenderSetup.TestField(username);
@@ -807,12 +817,12 @@ codeunit 50017 "Label Mgmt NIF"
         BarTenderSetup.TestField(client_id);
         BarTenderSetup.TestField(client_secret);
         ContentText := 'grant_type=password' +
-                   '&username=' + BarTenderSetup.UserName +
-                   '&password=' + BarTenderSetup.Password +
-                   '&client_id=' + BarTenderSetup.client_id +
-                   '&client_secret=' + BarTenderSetup.client_secret +
-                   '&audience=' + BarTenderSetup.audience +
-                   '&scope=' + BarTenderSetup.Scope;
+                   '&username=' + DotNetUriBuilder.EscapeDataString(BarTenderSetup.UserName) +
+                   '&password=' + DotNetUriBuilder.EscapeDataString(BarTenderSetup.Password) +
+                   '&client_id=' + DotNetUriBuilder.EscapeDataString(BarTenderSetup.client_id) +
+                   '&client_secret=' + DotNetUriBuilder.EscapeDataString(BarTenderSetup.client_secret) +
+                   '&audience=' + DotNetUriBuilder.EscapeDataString(BarTenderSetup.audience) +
+                   '&scope=' + DotNetUriBuilder.EscapeDataString(BarTenderSetup.Scope);
         Content.WriteFrom(ContentText);
 
         Content.GetHeaders(ContentHeaders);
@@ -822,35 +832,19 @@ codeunit 50017 "Label Mgmt NIF"
         Request.Method := 'POST';
         Query1 := 'OrganizationDnsName=';
         Seperater := '?';
-        Url := MRAsetup."Access Token URL" + Seperater + Query1 + MRAsetup.OrganizationDnsName;
+        Url := BarTenderSetup."Access Token URL" + Seperater + Query1 + BarTenderSetup.OrganizationDnsName;
         Request.SetRequestUri(Url);
         Request.Content(Content);
 
         if Client.Send(Request, Response) then
             if Response.IsSuccessStatusCode() then begin
                 if Response.Content.ReadAs(ResponseText) then
-                    SaveResponceandLogEntry(Response, Request);
+                    IsSuccess := JAccessToken.ReadFrom(ResponseText);
+                if JAccessToken.Get('access_token', AccessTokenValue) then
+                    AccessToken := AccessTokenValue.AsValue().AsText();
+                BarTenderSetup.Token := AccessToken;
+                BarTenderSetup.Modify();
             end;
-    end;
-
-    procedure SaveResponceandLogEntry(Var Response: HttpResponseMessage; var Request: HttpRequestMessage)
-    var
-        MRASetup: Record "Bar Tender Setup";
-        ResponceJson: JsonObject;
-        ResponseText: text;
-        AccessTokenValue: JsonToken;
-        AccessToken: Text;
-    begin
-        //Getting required values and saving them in Setup and Log entries from Http response >>
-        Response.Content.ReadAs(ResponseText);
-        ResponceJson.ReadFrom(ResponseText);
-        if ResponceJson.Get('access_token', AccessTokenValue) then
-            AccessToken := AccessTokenValue.AsValue().AsText();
-
-        //Save Response in Setup table>>
-        MRASetup.Get();
-        MRASetup.Token := AccessToken;
-        MRASetup.Modify();
     end;
 
     procedure PrintPackageLabel(Package: Record 14000701; LabelHeaderCode: Code[10]; NoCopies: Integer; Posted: Boolean; UseLineNo: Integer; UseQty: Decimal)

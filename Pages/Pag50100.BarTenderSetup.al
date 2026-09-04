@@ -1,7 +1,7 @@
 page 50100 "Bar Tender Access Token Setup"
 {
     ApplicationArea = All;
-    Caption = 'Bar Tender Access Token Setup';
+    Caption = 'Bartender Access Token Setup';
     PageType = Card;
     SourceTable = "Bar Tender Setup";
     UsageCategory = Lists;
