@@ -733,15 +733,19 @@ codeunit 50017 "Label Mgmt NIF"
         PrintBTWAction: JsonObject;
         JsonPayload: JsonObject;
         VariablesObj: JsonObject;
+        SEATemplateLibrary: Record "SEA Template Library";
     begin
         // 1. Build the Variable mappings from Business Central fields
         if TempLabelValue.FindSet() then
             repeat
                 VariablesObj.Add(TempLabelValue."Field Code", TempLabelValue."Print Value");
             until TempLabelValue.Next() = 0;
-
+        SEATemplateLibrary.Reset();
+        SEATemplateLibrary.SetRange(Name, DocumentFile);
+        if not SEATemplateLibrary.FindFirst() then
+            Error('BarTender template %1 not found in SEA Template Library.', DocumentFile);
         // 2. Build the main layout payload
-        JsonPayload.Add('DocumentFile', 'librarian://main/' + DocumentFile);
+        JsonPayload.Add('DocumentFile', SEATemplateLibrary."Unc Path" + DocumentFile);
         JsonPayload.Add('Printer', 'printer:' + PrinterName);
         JsonPayload.Add('Copies', NoCopies);
         JsonPayload.Add('NamedDataSources', VariablesObj);
