@@ -28,6 +28,7 @@ table 50047 "Bar Tender Setup"
         field(6; username; Text[150])
         {
             Caption = 'username';
+            MaskType = Concealed;
         }
         field(7; password; Text[150])
         {
