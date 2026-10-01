@@ -2379,6 +2379,7 @@ codeunit 50017 "Label Mgmt NIF"
             // Write to TempBlob
             TempBlob.CreateOutStream(OutStr, TextEncoding::UTF8);
             OutStr.WriteText(FileContent);
+            TempBlob.CreateInStream(InsStr, TextEncoding::UTF8);
 
             // Let the user download the file
             DownloadFromStream(InsStr,
