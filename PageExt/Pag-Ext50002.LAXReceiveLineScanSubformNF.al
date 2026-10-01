@@ -6,6 +6,7 @@ pageextension 50002 LAXReceiveLineScanSubform_NF extends "LAX Receive Line Scan.
         {
             field("Mfg. Lot No."; Rec."Mfg. Lot No.")
             {
+                ApplicationArea = All;
             }
         }
     }

@@ -11,18 +11,23 @@ pageextension 71002 LAXPackingStation_NF extends "LAX Packing Station"
                 Caption = 'Non-FedEx Shipping';
                 field("Std. Pack. Label Printer Port"; Rec."Std. Pack. Label Printer Port")
                 {
+                    ApplicationArea = All;
                 }
                 field("UCC/UPC Label Printer Port"; Rec."UCC/UPC Label Printer Port")
                 {
+                    ApplicationArea = All;
                 }
                 field("Label Buffer File"; Rec."Label Buffer File")
                 {
+                    ApplicationArea = All;
                 }
                 field("RF-ID Label Printer Port"; Rec."RF-ID Label Printer Port")
                 {
+                    ApplicationArea = All;
                 }
                 field("Label Printing"; Rec."Label Printing")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

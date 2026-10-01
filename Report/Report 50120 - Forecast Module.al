@@ -2606,7 +2606,7 @@ report 50120 "Forecast Module"
             ExcelBuf_gRecTmp.WriteSheet(MainTitle, COMPANYNAME, USERID);
             ExcelBuf_gRecTmp.CloseBook();
             ExcelBuf_gRecTmp.OpenExcel();
-            ERROR('');
+            //ERROR('');
         END;
     end;
 

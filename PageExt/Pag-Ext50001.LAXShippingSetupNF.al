@@ -6,6 +6,7 @@ pageextension 50001 LAXShippingSetup_NF extends "LAX Shipping Setup"
         {
             field("Serial No. Nos."; Rec."Serial No. Nos.")
             {
+                ApplicationArea = All;
             }
         }
     }
