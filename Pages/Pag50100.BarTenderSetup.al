@@ -35,10 +35,13 @@ page 50100 "Bar Tender Access Token Setup"
                 field(username; Rec.username)
                 {
                     ToolTip = 'Specifies the value of the username field.', Comment = '%';
+
                 }
                 field(password; Rec.password)
                 {
                     ToolTip = 'Specifies the value of the password field.', Comment = '%';
+                    masktype = Concealed;
+
                 }
                 field(audience; Rec.audience)
                 {

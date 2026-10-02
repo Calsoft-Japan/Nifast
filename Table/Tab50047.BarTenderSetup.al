@@ -33,6 +33,7 @@ table 50047 "Bar Tender Setup"
         field(7; password; Text[150])
         {
             Caption = 'password';
+            masktype = Concealed;
         }
         field(8; scope; Text[150])
         {
