@@ -1179,17 +1179,33 @@ report 50096 "Forecast Module Export"
     end;
 
     trigger OnPostReport()
+    var
+        outsream: OutStream;
+        Instream: InStream;
+        SharePointSetup: Record "SharePoint Setup";
+        AccessToken: Text;
+        LastDocNo_lCod: Code[250];
+        SharePointIntMgt: Codeunit "Share Point Integration Mgt.";
+        Tempblob: codeunit "Temp Blob";
+        Filename: Text;
     begin
         IF ExportToExcel THEN BEGIN
             IF NOT EndLineExecute_gBln THEN
                 MakeExcelENDLine_lFnc;  //NF1.00:CIS.NG  07-18-16
 
-            //ExcelBuf_gRecTmp.CreateBookAndOpenExcel(MainTitle,MainTitle,COMPANYNAME,USERID);BC Upgrade
+            // ExcelBuf_gRecTmp.CreateBookAndOpenExcel(MainTitle,MainTitle,COMPANYNAME,USERID);BC Upgrade
             ExcelBuf_gRecTmp.CreateNewBook(MainTitle);
             ExcelBuf_gRecTmp.WriteSheet(MainTitle, COMPANYNAME, USERID);
             ExcelBuf_gRecTmp.CloseBook();
-            ExcelBuf_gRecTmp.OpenExcel();
-            ERROR('');
+            //ExcelBuf_gRecTmp.OpenExcel();
+            SharePointSetup.Get();
+            Tempblob.CreateOutStream(outsream);
+            ExcelBuf_gRecTmp.SaveToStream(outsream, false);
+            tempblob.CreateInStream(Instream);
+            Filename := StrSubstNo('Nifast Availability Projection_%1.xlsx', DelChr(Format(CurrentDateTime()), '=', '/\.,<>;:"{}[]|=-+_?*'));
+            SharePointIntMgt.AcquireToken(SharePointSetup."Client ID", SharePointSetup."Client Secret", SharePointSetup.Scope, SharePointSetup."Access Token URL", AccessToken);
+            SharePointIntMgt.UploadFile(AccessToken, SharePointSetup."SharePoint Driver ID", SharePointSetup."SharePoint Success Folder", Filename, Instream);
+            //ERROR('');
         END;
     end;
 
