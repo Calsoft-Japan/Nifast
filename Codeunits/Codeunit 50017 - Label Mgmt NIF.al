@@ -1510,8 +1510,8 @@ codeunit 50017 "Label Mgmt NIF"
             PkgLn_L.INIT;
             IF PkgLn_L.GET(CartonPkgNo, CartonPkgLnNo) THEN BEGIN
                 IF MastLbl THEN BEGIN
-                    PkgLn_L."Serial No." := CartonFirstSrNo;
-                    WritePackageSerialNumber(0, CartonFirstSrNo, CartonLastSrNo, PkgLn_L."Serial No.", LabelHeader.Code);
+                    PkgLn_L."Master Label SrNo." := CartonFirstSrNo;
+                    //WritePackageSerialNumber(0, CartonFirstSrNo, CartonLastSrNo, PkgLn_L."Master Label SrNo.", LabelHeader.Code);
 
                     MasterPkgLn_L.RESET;
                     MasterPkgLn_L.SETRANGE("Package No.", CartonPkgNo);
@@ -1521,9 +1521,9 @@ codeunit 50017 "Label Mgmt NIF"
                     IF MasterPkgLn_L.FINDFIRST THEN
                         REPEAT
                             //    IF PkgLn_L."Line No." <> MasterPkgLn_L."Line No." THEN BEGIN
-                            MasterPkgLn_L."Serial No." := CartonFirstSrNo;
+                            MasterPkgLn_L."Master Label SrNo." := CartonFirstSrNo;
                             MasterPkgLn_L.MODIFY;
-                            WritePackageSerialNumber(1, CartonFirstSrNo, CartonLastSrNo, MasterPkgLn_L."Serial No.", LabelHeader.Code);
+                        //  WritePackageSerialNumber(1, CartonFirstSrNo, CartonLastSrNo, MasterPkgLn_L."Master Label SrNo.", LabelHeader.Code);
                         //    END;
                         UNTIL MasterPkgLn_L.NEXT = 0;
 
