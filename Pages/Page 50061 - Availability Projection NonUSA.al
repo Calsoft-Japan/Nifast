@@ -119,8 +119,8 @@ page 50061 "Availability Projection NonUSA"
                 }
                 action("Shortage Report")
                 {
-                    //TODO
-                    //RunObject = Report 50089;
+                    RunObject = Report "[P] Availability Canada";
+                    Caption = 'Shortage Report';
                     Image = Report;
                     ToolTip = 'Executes the Shortage Report action.';
                 }
