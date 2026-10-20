@@ -3169,20 +3169,20 @@ report 50089 "[P] Availability Canada"
     local procedure MakeExcelInfo_lFnc()
     begin
         ExcelBuf_gRecTmp.SetUseInfoSheet;
-        ExcelBuf_gRecTmp.AddColumn(FORMAT(Text50000_gCtx), FALSE, '', TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
-        ExcelBuf_gRecTmp.AddColumn(COMPANYNAME, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
+        ExcelBuf_gRecTmp.AddInfoColumn(FORMAT(Text50000_gCtx), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
+        ExcelBuf_gRecTmp.AddInfoColumn(COMPANYNAME, FALSE, FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
         ExcelBuf_gRecTmp.NewRow;
-        ExcelBuf_gRecTmp.AddColumn(FORMAT(Text50001_gCtx), FALSE, '', TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
-        ExcelBuf_gRecTmp.AddColumn(FORMAT(Text50002_gCtx), FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
+        ExcelBuf_gRecTmp.AddInfoColumn(FORMAT(Text50001_gCtx), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
+        ExcelBuf_gRecTmp.AddInfoColumn(FORMAT(Text50002_gCtx), FALSE, FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
         ExcelBuf_gRecTmp.NewRow;
-        ExcelBuf_gRecTmp.AddColumn(FORMAT(Text50003_gCtx), FALSE, '', TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
-        ExcelBuf_gRecTmp.AddColumn(REPORT::"[P] Availability Canada", FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Number);
+        ExcelBuf_gRecTmp.AddInfoColumn(FORMAT(Text50003_gCtx), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
+        ExcelBuf_gRecTmp.AddInfoColumn(REPORT::"[P] Availability Canada", FALSE, FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Number);
         ExcelBuf_gRecTmp.NewRow;
-        ExcelBuf_gRecTmp.AddColumn(FORMAT(Text50004_gCtx), FALSE, '', TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
-        ExcelBuf_gRecTmp.AddColumn(USERID, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
+        ExcelBuf_gRecTmp.AddInfoColumn(FORMAT(Text50004_gCtx), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
+        ExcelBuf_gRecTmp.AddInfoColumn(USERID, FALSE, FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
         ExcelBuf_gRecTmp.NewRow;
-        ExcelBuf_gRecTmp.AddColumn(FORMAT(Text50005_gCtx), FALSE, '', TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
-        ExcelBuf_gRecTmp.AddColumn(TODAY, FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Date);
+        ExcelBuf_gRecTmp.AddInfoColumn(FORMAT(Text50005_gCtx), FALSE, TRUE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Text);
+        ExcelBuf_gRecTmp.AddInfoColumn(TODAY, FALSE, FALSE, FALSE, FALSE, '', ExcelBuf_gRecTmp."Cell Type"::Date);
         ExcelBuf_gRecTmp.NewRow;
         ExcelBuf_gRecTmp.ClearNewRow;
     end;
