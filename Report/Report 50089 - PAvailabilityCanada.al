@@ -17,7 +17,7 @@ report 50089 "[P] Availability Canada"
     // 
     // 1/25/07 Activated Nifast Forecast
     DefaultLayout = RDLC;
-    RDLCLayout = '.\RDLC\PAvailabilityCanada.rdlc';
+    RDLCLayout = '.\RDLC\PAvailabilityCanada.rdl';
     ApplicationArea = All;
     Caption = '[P] Availability Canada';
     UsageCategory = ReportsAndAnalysis;
