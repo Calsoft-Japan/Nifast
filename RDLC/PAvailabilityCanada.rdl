@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -10,2319 +10,6 @@
       <rd:DataSourceID>f3832738-84e3-420d-9a85-e4baf9f1bda2</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Title">
-          <DataField>Title</DataField>
-        </Field>
-        <Field Name="Item_TABLECAPTION__________ItemFilter">
-          <DataField>Item_TABLECAPTION__________ItemFilter</DataField>
-        </Field>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="TIME">
-          <DataField>TIME</DataField>
-        </Field>
-        <Field Name="MinOrdQ">
-          <DataField>MinOrdQ</DataField>
-        </Field>
-        <Field Name="MinOrdQFormat">
-          <DataField>MinOrdQFormat</DataField>
-        </Field>
-        <Field Name="Daily42">
-          <DataField>Daily42</DataField>
-        </Field>
-        <Field Name="Daily42Format">
-          <DataField>Daily42Format</DataField>
-        </Field>
-        <Field Name="DayOnHand">
-          <DataField>DayOnHand</DataField>
-        </Field>
-        <Field Name="DayOnHandFormat">
-          <DataField>DayOnHandFormat</DataField>
-        </Field>
-        <Field Name="Weekly90">
-          <DataField>Weekly90</DataField>
-        </Field>
-        <Field Name="Weekly90Format">
-          <DataField>Weekly90Format</DataField>
-        </Field>
-        <Field Name="Maintain">
-          <DataField>Maintain</DataField>
-        </Field>
-        <Field Name="MaintainFormat">
-          <DataField>MaintainFormat</DataField>
-        </Field>
-        <Field Name="MaxInvQ">
-          <DataField>MaxInvQ</DataField>
-        </Field>
-        <Field Name="MaxInvQFormat">
-          <DataField>MaxInvQFormat</DataField>
-        </Field>
-        <Field Name="MaximumInv">
-          <DataField>MaximumInv</DataField>
-        </Field>
-        <Field Name="MaximumInvFormat">
-          <DataField>MaximumInvFormat</DataField>
-        </Field>
-        <Field Name="MinimumInv">
-          <DataField>MinimumInv</DataField>
-        </Field>
-        <Field Name="MinimumInvFormat">
-          <DataField>MinimumInvFormat</DataField>
-        </Field>
-        <Field Name="Item__Lead_Time_">
-          <DataField>Item__Lead_Time_</DataField>
-        </Field>
-        <Field Name="Item__Lead_Time_Format">
-          <DataField>Item__Lead_Time_Format</DataField>
-        </Field>
-        <Field Name="Item_Description">
-          <DataField>Item_Description</DataField>
-        </Field>
-        <Field Name="Item__Vendor_No__">
-          <DataField>Item__Vendor_No__</DataField>
-        </Field>
-        <Field Name="SNP">
-          <DataField>SNP</DataField>
-        </Field>
-        <Field Name="SNPFormat">
-          <DataField>SNPFormat</DataField>
-        </Field>
-        <Field Name="AveForecast">
-          <DataField>AveForecast</DataField>
-        </Field>
-        <Field Name="AveForecastFormat">
-          <DataField>AveForecastFormat</DataField>
-        </Field>
-        <Field Name="ItemLedgerEntry__Remaining_Quantity_">
-          <DataField>ItemLedgerEntry__Remaining_Quantity_</DataField>
-        </Field>
-        <Field Name="ItemLedgerEntry__Remaining_Quantity_Format">
-          <DataField>ItemLedgerEntry__Remaining_Quantity_Format</DataField>
-        </Field>
-        <Field Name="BQ">
-          <DataField>BQ</DataField>
-        </Field>
-        <Field Name="BQFormat">
-          <DataField>BQFormat</DataField>
-        </Field>
-        <Field Name="Item__No__">
-          <DataField>Item__No__</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_10_">
-          <DataField>PeriodStartingDate_10_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_10_">
-          <DataField>PeriodStartingText_10_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_11_">
-          <DataField>PeriodStartingText_11_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_11_">
-          <DataField>PeriodStartingDate_11_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_12_">
-          <DataField>PeriodStartingDate_12_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_12_">
-          <DataField>PeriodStartingText_12_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_13_">
-          <DataField>PeriodStartingDate_13_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_13_">
-          <DataField>PeriodStartingText_13_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_14_">
-          <DataField>PeriodStartingDate_14_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_14_">
-          <DataField>PeriodStartingText_14_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_15_">
-          <DataField>PeriodStartingDate_15_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_15_">
-          <DataField>PeriodStartingText_15_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_16_">
-          <DataField>PeriodStartingDate_16_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_16_">
-          <DataField>PeriodStartingText_16_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_17_">
-          <DataField>PeriodStartingText_17_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_18_">
-          <DataField>PeriodStartingText_18_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_19_">
-          <DataField>PeriodStartingText_19_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_20_">
-          <DataField>PeriodStartingText_20_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_21_">
-          <DataField>PeriodStartingText_21_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_22_">
-          <DataField>PeriodStartingText_22_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_23_">
-          <DataField>PeriodStartingText_23_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_24_">
-          <DataField>PeriodStartingText_24_</DataField>
-        </Field>
-        <Field Name="PeriodStartingText_25_">
-          <DataField>PeriodStartingText_25_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_17_">
-          <DataField>PeriodStartingDate_17_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_18_">
-          <DataField>PeriodStartingDate_18_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_19_">
-          <DataField>PeriodStartingDate_19_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_20_">
-          <DataField>PeriodStartingDate_20_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_21_">
-          <DataField>PeriodStartingDate_21_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_22_">
-          <DataField>PeriodStartingDate_22_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_23_">
-          <DataField>PeriodStartingDate_23_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_24_">
-          <DataField>PeriodStartingDate_24_</DataField>
-        </Field>
-        <Field Name="PeriodStartingDate_25_">
-          <DataField>PeriodStartingDate_25_</DataField>
-        </Field>
-        <Field Name="ForecastQty_10_">
-          <DataField>ForecastQty_10_</DataField>
-        </Field>
-        <Field Name="ForecastQty_10_Format">
-          <DataField>ForecastQty_10_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_11_">
-          <DataField>ForecastQty_11_</DataField>
-        </Field>
-        <Field Name="ForecastQty_11_Format">
-          <DataField>ForecastQty_11_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_12_">
-          <DataField>ForecastQty_12_</DataField>
-        </Field>
-        <Field Name="ForecastQty_12_Format">
-          <DataField>ForecastQty_12_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_13_">
-          <DataField>ForecastQty_13_</DataField>
-        </Field>
-        <Field Name="ForecastQty_13_Format">
-          <DataField>ForecastQty_13_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_14_">
-          <DataField>ForecastQty_14_</DataField>
-        </Field>
-        <Field Name="ForecastQty_14_Format">
-          <DataField>ForecastQty_14_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_15_">
-          <DataField>ForecastQty_15_</DataField>
-        </Field>
-        <Field Name="ForecastQty_15_Format">
-          <DataField>ForecastQty_15_Format</DataField>
-        </Field>
-        <Field Name="OnHand_10_">
-          <DataField>OnHand_10_</DataField>
-        </Field>
-        <Field Name="OnHand_10_Format">
-          <DataField>OnHand_10_Format</DataField>
-        </Field>
-        <Field Name="OnHand_11_">
-          <DataField>OnHand_11_</DataField>
-        </Field>
-        <Field Name="OnHand_11_Format">
-          <DataField>OnHand_11_Format</DataField>
-        </Field>
-        <Field Name="OnHand_12_">
-          <DataField>OnHand_12_</DataField>
-        </Field>
-        <Field Name="OnHand_12_Format">
-          <DataField>OnHand_12_Format</DataField>
-        </Field>
-        <Field Name="OnHand_13_">
-          <DataField>OnHand_13_</DataField>
-        </Field>
-        <Field Name="OnHand_13_Format">
-          <DataField>OnHand_13_Format</DataField>
-        </Field>
-        <Field Name="OnHand_14_">
-          <DataField>OnHand_14_</DataField>
-        </Field>
-        <Field Name="OnHand_14_Format">
-          <DataField>OnHand_14_Format</DataField>
-        </Field>
-        <Field Name="OnHand_15_">
-          <DataField>OnHand_15_</DataField>
-        </Field>
-        <Field Name="OnHand_15_Format">
-          <DataField>OnHand_15_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_10_">
-          <DataField>PurchaseNeeds_10_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_10_Format">
-          <DataField>PurchaseNeeds_10_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_11_">
-          <DataField>PurchaseNeeds_11_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_11_Format">
-          <DataField>PurchaseNeeds_11_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_12_">
-          <DataField>PurchaseNeeds_12_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_12_Format">
-          <DataField>PurchaseNeeds_12_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_13_">
-          <DataField>PurchaseNeeds_13_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_13_Format">
-          <DataField>PurchaseNeeds_13_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_14_">
-          <DataField>PurchaseNeeds_14_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_14_Format">
-          <DataField>PurchaseNeeds_14_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_15_">
-          <DataField>PurchaseNeeds_15_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_15_Format">
-          <DataField>PurchaseNeeds_15_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_10_">
-          <DataField>TotalForecast_10_</DataField>
-        </Field>
-        <Field Name="TotalForecast_10_Format">
-          <DataField>TotalForecast_10_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_11_">
-          <DataField>TotalForecast_11_</DataField>
-        </Field>
-        <Field Name="TotalForecast_11_Format">
-          <DataField>TotalForecast_11_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_12_">
-          <DataField>TotalForecast_12_</DataField>
-        </Field>
-        <Field Name="TotalForecast_12_Format">
-          <DataField>TotalForecast_12_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_13_">
-          <DataField>TotalForecast_13_</DataField>
-        </Field>
-        <Field Name="TotalForecast_13_Format">
-          <DataField>TotalForecast_13_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_14_">
-          <DataField>TotalForecast_14_</DataField>
-        </Field>
-        <Field Name="TotalForecast_14_Format">
-          <DataField>TotalForecast_14_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_15_">
-          <DataField>TotalForecast_15_</DataField>
-        </Field>
-        <Field Name="TotalForecast_15_Format">
-          <DataField>TotalForecast_15_Format</DataField>
-        </Field>
-        <Field Name="Order_10_">
-          <DataField>Order_10_</DataField>
-        </Field>
-        <Field Name="Order_10_Format">
-          <DataField>Order_10_Format</DataField>
-        </Field>
-        <Field Name="Order_11_">
-          <DataField>Order_11_</DataField>
-        </Field>
-        <Field Name="Order_11_Format">
-          <DataField>Order_11_Format</DataField>
-        </Field>
-        <Field Name="Order_12_">
-          <DataField>Order_12_</DataField>
-        </Field>
-        <Field Name="Order_12_Format">
-          <DataField>Order_12_Format</DataField>
-        </Field>
-        <Field Name="Order_13_">
-          <DataField>Order_13_</DataField>
-        </Field>
-        <Field Name="Order_13_Format">
-          <DataField>Order_13_Format</DataField>
-        </Field>
-        <Field Name="Order_14_">
-          <DataField>Order_14_</DataField>
-        </Field>
-        <Field Name="Order_14_Format">
-          <DataField>Order_14_Format</DataField>
-        </Field>
-        <Field Name="Order_15_">
-          <DataField>Order_15_</DataField>
-        </Field>
-        <Field Name="Order_15_Format">
-          <DataField>Order_15_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_15_">
-          <DataField>QtyOnPurchOrders_15_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_15_Format">
-          <DataField>QtyOnPurchOrders_15_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_14_">
-          <DataField>QtyOnPurchOrders_14_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_14_Format">
-          <DataField>QtyOnPurchOrders_14_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_13_">
-          <DataField>QtyOnPurchOrders_13_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_13_Format">
-          <DataField>QtyOnPurchOrders_13_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_12_">
-          <DataField>QtyOnPurchOrders_12_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_12_Format">
-          <DataField>QtyOnPurchOrders_12_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_11_">
-          <DataField>QtyOnPurchOrders_11_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_11_Format">
-          <DataField>QtyOnPurchOrders_11_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_10_">
-          <DataField>QtyOnPurchOrders_10_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_10_Format">
-          <DataField>QtyOnPurchOrders_10_Format</DataField>
-        </Field>
-        <Field Name="OnHand_16_">
-          <DataField>OnHand_16_</DataField>
-        </Field>
-        <Field Name="OnHand_16_Format">
-          <DataField>OnHand_16_Format</DataField>
-        </Field>
-        <Field Name="Order_16_">
-          <DataField>Order_16_</DataField>
-        </Field>
-        <Field Name="Order_16_Format">
-          <DataField>Order_16_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_16_">
-          <DataField>PurchaseNeeds_16_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_16_Format">
-          <DataField>PurchaseNeeds_16_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_16_">
-          <DataField>TotalForecast_16_</DataField>
-        </Field>
-        <Field Name="TotalForecast_16_Format">
-          <DataField>TotalForecast_16_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_16_">
-          <DataField>QtyOnPurchOrders_16_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_16_Format">
-          <DataField>QtyOnPurchOrders_16_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_16_">
-          <DataField>ForecastQty_16_</DataField>
-        </Field>
-        <Field Name="ForecastQty_16_Format">
-          <DataField>ForecastQty_16_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_10_">
-          <DataField>PurchSign_10_</DataField>
-        </Field>
-        <Field Name="PurchSign_11_">
-          <DataField>PurchSign_11_</DataField>
-        </Field>
-        <Field Name="PurchSign_12_">
-          <DataField>PurchSign_12_</DataField>
-        </Field>
-        <Field Name="PurchSign_13_">
-          <DataField>PurchSign_13_</DataField>
-        </Field>
-        <Field Name="PurchSign_14_">
-          <DataField>PurchSign_14_</DataField>
-        </Field>
-        <Field Name="PurchSign_15_">
-          <DataField>PurchSign_15_</DataField>
-        </Field>
-        <Field Name="PurchSign_16_">
-          <DataField>PurchSign_16_</DataField>
-        </Field>
-        <Field Name="NewWeek_10_">
-          <DataField>NewWeek_10_</DataField>
-        </Field>
-        <Field Name="NewWeek_11_">
-          <DataField>NewWeek_11_</DataField>
-        </Field>
-        <Field Name="NewWeek_12_">
-          <DataField>NewWeek_12_</DataField>
-        </Field>
-        <Field Name="NewWeek_13_">
-          <DataField>NewWeek_13_</DataField>
-        </Field>
-        <Field Name="NewWeek_14_">
-          <DataField>NewWeek_14_</DataField>
-        </Field>
-        <Field Name="NewWeek_15_">
-          <DataField>NewWeek_15_</DataField>
-        </Field>
-        <Field Name="NewWeek_16_">
-          <DataField>NewWeek_16_</DataField>
-        </Field>
-        <Field Name="Order_9_">
-          <DataField>Order_9_</DataField>
-        </Field>
-        <Field Name="Order_9_Format">
-          <DataField>Order_9_Format</DataField>
-        </Field>
-        <Field Name="OnHand_17_">
-          <DataField>OnHand_17_</DataField>
-        </Field>
-        <Field Name="OnHand_17_Format">
-          <DataField>OnHand_17_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_17_">
-          <DataField>QtyOnPurchOrders_17_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_17_Format">
-          <DataField>QtyOnPurchOrders_17_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_17_">
-          <DataField>ForecastQty_17_</DataField>
-        </Field>
-        <Field Name="ForecastQty_17_Format">
-          <DataField>ForecastQty_17_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_17_">
-          <DataField>TotalForecast_17_</DataField>
-        </Field>
-        <Field Name="TotalForecast_17_Format">
-          <DataField>TotalForecast_17_Format</DataField>
-        </Field>
-        <Field Name="OnHand_18_">
-          <DataField>OnHand_18_</DataField>
-        </Field>
-        <Field Name="OnHand_18_Format">
-          <DataField>OnHand_18_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_18_">
-          <DataField>QtyOnPurchOrders_18_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_18_Format">
-          <DataField>QtyOnPurchOrders_18_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_18_">
-          <DataField>ForecastQty_18_</DataField>
-        </Field>
-        <Field Name="ForecastQty_18_Format">
-          <DataField>ForecastQty_18_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_18_">
-          <DataField>TotalForecast_18_</DataField>
-        </Field>
-        <Field Name="TotalForecast_18_Format">
-          <DataField>TotalForecast_18_Format</DataField>
-        </Field>
-        <Field Name="OnHand_19_">
-          <DataField>OnHand_19_</DataField>
-        </Field>
-        <Field Name="OnHand_19_Format">
-          <DataField>OnHand_19_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_19_">
-          <DataField>QtyOnPurchOrders_19_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_19_Format">
-          <DataField>QtyOnPurchOrders_19_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_19_">
-          <DataField>ForecastQty_19_</DataField>
-        </Field>
-        <Field Name="ForecastQty_19_Format">
-          <DataField>ForecastQty_19_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_19_">
-          <DataField>TotalForecast_19_</DataField>
-        </Field>
-        <Field Name="TotalForecast_19_Format">
-          <DataField>TotalForecast_19_Format</DataField>
-        </Field>
-        <Field Name="OnHand_20_">
-          <DataField>OnHand_20_</DataField>
-        </Field>
-        <Field Name="OnHand_20_Format">
-          <DataField>OnHand_20_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_20_">
-          <DataField>QtyOnPurchOrders_20_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_20_Format">
-          <DataField>QtyOnPurchOrders_20_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_20_">
-          <DataField>ForecastQty_20_</DataField>
-        </Field>
-        <Field Name="ForecastQty_20_Format">
-          <DataField>ForecastQty_20_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_20_">
-          <DataField>TotalForecast_20_</DataField>
-        </Field>
-        <Field Name="TotalForecast_20_Format">
-          <DataField>TotalForecast_20_Format</DataField>
-        </Field>
-        <Field Name="OnHand_21_">
-          <DataField>OnHand_21_</DataField>
-        </Field>
-        <Field Name="OnHand_21_Format">
-          <DataField>OnHand_21_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_21_">
-          <DataField>QtyOnPurchOrders_21_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_21_Format">
-          <DataField>QtyOnPurchOrders_21_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_21_">
-          <DataField>ForecastQty_21_</DataField>
-        </Field>
-        <Field Name="ForecastQty_21_Format">
-          <DataField>ForecastQty_21_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_21_">
-          <DataField>TotalForecast_21_</DataField>
-        </Field>
-        <Field Name="TotalForecast_21_Format">
-          <DataField>TotalForecast_21_Format</DataField>
-        </Field>
-        <Field Name="OnHand_22_">
-          <DataField>OnHand_22_</DataField>
-        </Field>
-        <Field Name="OnHand_22_Format">
-          <DataField>OnHand_22_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_22_">
-          <DataField>QtyOnPurchOrders_22_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_22_Format">
-          <DataField>QtyOnPurchOrders_22_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_22_">
-          <DataField>ForecastQty_22_</DataField>
-        </Field>
-        <Field Name="ForecastQty_22_Format">
-          <DataField>ForecastQty_22_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_22_">
-          <DataField>TotalForecast_22_</DataField>
-        </Field>
-        <Field Name="TotalForecast_22_Format">
-          <DataField>TotalForecast_22_Format</DataField>
-        </Field>
-        <Field Name="OnHand_23_">
-          <DataField>OnHand_23_</DataField>
-        </Field>
-        <Field Name="OnHand_23_Format">
-          <DataField>OnHand_23_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_23_">
-          <DataField>QtyOnPurchOrders_23_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_23_Format">
-          <DataField>QtyOnPurchOrders_23_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_23_">
-          <DataField>ForecastQty_23_</DataField>
-        </Field>
-        <Field Name="ForecastQty_23_Format">
-          <DataField>ForecastQty_23_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_23_">
-          <DataField>TotalForecast_23_</DataField>
-        </Field>
-        <Field Name="TotalForecast_23_Format">
-          <DataField>TotalForecast_23_Format</DataField>
-        </Field>
-        <Field Name="OnHand_24_">
-          <DataField>OnHand_24_</DataField>
-        </Field>
-        <Field Name="OnHand_24_Format">
-          <DataField>OnHand_24_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_24_">
-          <DataField>QtyOnPurchOrders_24_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_24_Format">
-          <DataField>QtyOnPurchOrders_24_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_24_">
-          <DataField>ForecastQty_24_</DataField>
-        </Field>
-        <Field Name="ForecastQty_24_Format">
-          <DataField>ForecastQty_24_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_24_">
-          <DataField>TotalForecast_24_</DataField>
-        </Field>
-        <Field Name="TotalForecast_24_Format">
-          <DataField>TotalForecast_24_Format</DataField>
-        </Field>
-        <Field Name="OnHand_25_">
-          <DataField>OnHand_25_</DataField>
-        </Field>
-        <Field Name="OnHand_25_Format">
-          <DataField>OnHand_25_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_25_">
-          <DataField>QtyOnPurchOrders_25_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_25_Format">
-          <DataField>QtyOnPurchOrders_25_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty_25_">
-          <DataField>ForecastQty_25_</DataField>
-        </Field>
-        <Field Name="ForecastQty_25_Format">
-          <DataField>ForecastQty_25_Format</DataField>
-        </Field>
-        <Field Name="TotalForecast_25_">
-          <DataField>TotalForecast_25_</DataField>
-        </Field>
-        <Field Name="TotalForecast_25_Format">
-          <DataField>TotalForecast_25_Format</DataField>
-        </Field>
-        <Field Name="Order_17_">
-          <DataField>Order_17_</DataField>
-        </Field>
-        <Field Name="Order_17_Format">
-          <DataField>Order_17_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_25_">
-          <DataField>PurchaseNeeds_25_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_25_Format">
-          <DataField>PurchaseNeeds_25_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_17_">
-          <DataField>PurchSign_17_</DataField>
-        </Field>
-        <Field Name="NewWeek_17_">
-          <DataField>NewWeek_17_</DataField>
-        </Field>
-        <Field Name="Order_18_">
-          <DataField>Order_18_</DataField>
-        </Field>
-        <Field Name="Order_18_Format">
-          <DataField>Order_18_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_17_">
-          <DataField>PurchaseNeeds_17_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_17_Format">
-          <DataField>PurchaseNeeds_17_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_18_">
-          <DataField>PurchSign_18_</DataField>
-        </Field>
-        <Field Name="NewWeek_18_">
-          <DataField>NewWeek_18_</DataField>
-        </Field>
-        <Field Name="Order_19_">
-          <DataField>Order_19_</DataField>
-        </Field>
-        <Field Name="Order_19_Format">
-          <DataField>Order_19_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_18_">
-          <DataField>PurchaseNeeds_18_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_18_Format">
-          <DataField>PurchaseNeeds_18_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_19_">
-          <DataField>PurchSign_19_</DataField>
-        </Field>
-        <Field Name="NewWeek_19_">
-          <DataField>NewWeek_19_</DataField>
-        </Field>
-        <Field Name="Order_20_">
-          <DataField>Order_20_</DataField>
-        </Field>
-        <Field Name="Order_20_Format">
-          <DataField>Order_20_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_19_">
-          <DataField>PurchaseNeeds_19_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_19_Format">
-          <DataField>PurchaseNeeds_19_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_20_">
-          <DataField>PurchSign_20_</DataField>
-        </Field>
-        <Field Name="NewWeek_20_">
-          <DataField>NewWeek_20_</DataField>
-        </Field>
-        <Field Name="Order_21_">
-          <DataField>Order_21_</DataField>
-        </Field>
-        <Field Name="Order_21_Format">
-          <DataField>Order_21_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_20_">
-          <DataField>PurchaseNeeds_20_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_20_Format">
-          <DataField>PurchaseNeeds_20_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_21_">
-          <DataField>PurchSign_21_</DataField>
-        </Field>
-        <Field Name="NewWeek_21_">
-          <DataField>NewWeek_21_</DataField>
-        </Field>
-        <Field Name="Order_22_">
-          <DataField>Order_22_</DataField>
-        </Field>
-        <Field Name="Order_22_Format">
-          <DataField>Order_22_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_21_">
-          <DataField>PurchaseNeeds_21_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_21_Format">
-          <DataField>PurchaseNeeds_21_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_22_">
-          <DataField>PurchSign_22_</DataField>
-        </Field>
-        <Field Name="NewWeek_22_">
-          <DataField>NewWeek_22_</DataField>
-        </Field>
-        <Field Name="Order_23_">
-          <DataField>Order_23_</DataField>
-        </Field>
-        <Field Name="Order_23_Format">
-          <DataField>Order_23_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_22_">
-          <DataField>PurchaseNeeds_22_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_22_Format">
-          <DataField>PurchaseNeeds_22_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_23_">
-          <DataField>PurchSign_23_</DataField>
-        </Field>
-        <Field Name="NewWeek_23_">
-          <DataField>NewWeek_23_</DataField>
-        </Field>
-        <Field Name="Order_24_">
-          <DataField>Order_24_</DataField>
-        </Field>
-        <Field Name="Order_24_Format">
-          <DataField>Order_24_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_23_">
-          <DataField>PurchaseNeeds_23_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_23_Format">
-          <DataField>PurchaseNeeds_23_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_24_">
-          <DataField>PurchSign_24_</DataField>
-        </Field>
-        <Field Name="NewWeek_24_">
-          <DataField>NewWeek_24_</DataField>
-        </Field>
-        <Field Name="Order_25_">
-          <DataField>Order_25_</DataField>
-        </Field>
-        <Field Name="Order_25_Format">
-          <DataField>Order_25_Format</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_24_">
-          <DataField>PurchaseNeeds_24_</DataField>
-        </Field>
-        <Field Name="PurchaseNeeds_24_Format">
-          <DataField>PurchaseNeeds_24_Format</DataField>
-        </Field>
-        <Field Name="PurchSign_25_">
-          <DataField>PurchSign_25_</DataField>
-        </Field>
-        <Field Name="NewWeek_25_">
-          <DataField>NewWeek_25_</DataField>
-        </Field>
-        <Field Name="OpenPOTotal">
-          <DataField>OpenPOTotal</DataField>
-        </Field>
-        <Field Name="OpenPOTotalFormat">
-          <DataField>OpenPOTotalFormat</DataField>
-        </Field>
-        <Field Name="QtyPurchased_1_">
-          <DataField>QtyPurchased_1_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_1_Format">
-          <DataField>QtyPurchased_1_Format</DataField>
-        </Field>
-        <Field Name="QtySold_1_">
-          <DataField>QtySold_1_</DataField>
-        </Field>
-        <Field Name="QtySold_1_Format">
-          <DataField>QtySold_1_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_1_">
-          <DataField>QtyAdjusted_1_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_1_Format">
-          <DataField>QtyAdjusted_1_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_10_">
-          <DataField>QtyPurchased_10_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_10_Format">
-          <DataField>QtyPurchased_10_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_10_">
-          <DataField>QtyAdjusted_10_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_10_Format">
-          <DataField>QtyAdjusted_10_Format</DataField>
-        </Field>
-        <Field Name="QtySold_10_">
-          <DataField>QtySold_10_</DataField>
-        </Field>
-        <Field Name="QtySold_10_Format">
-          <DataField>QtySold_10_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_11_">
-          <DataField>QtyPurchased_11_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_11_Format">
-          <DataField>QtyPurchased_11_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_11_">
-          <DataField>QtyAdjusted_11_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_11_Format">
-          <DataField>QtyAdjusted_11_Format</DataField>
-        </Field>
-        <Field Name="QtySold_11_">
-          <DataField>QtySold_11_</DataField>
-        </Field>
-        <Field Name="QtySold_11_Format">
-          <DataField>QtySold_11_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_12_">
-          <DataField>QtyPurchased_12_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_12_Format">
-          <DataField>QtyPurchased_12_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_12_">
-          <DataField>QtyAdjusted_12_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_12_Format">
-          <DataField>QtyAdjusted_12_Format</DataField>
-        </Field>
-        <Field Name="QtySold_12_">
-          <DataField>QtySold_12_</DataField>
-        </Field>
-        <Field Name="QtySold_12_Format">
-          <DataField>QtySold_12_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_13_">
-          <DataField>QtyPurchased_13_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_13_Format">
-          <DataField>QtyPurchased_13_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_13_">
-          <DataField>QtyAdjusted_13_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_13_Format">
-          <DataField>QtyAdjusted_13_Format</DataField>
-        </Field>
-        <Field Name="QtySold_13_">
-          <DataField>QtySold_13_</DataField>
-        </Field>
-        <Field Name="QtySold_13_Format">
-          <DataField>QtySold_13_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_14_">
-          <DataField>QtyPurchased_14_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_14_Format">
-          <DataField>QtyPurchased_14_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_14_">
-          <DataField>QtyAdjusted_14_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_14_Format">
-          <DataField>QtyAdjusted_14_Format</DataField>
-        </Field>
-        <Field Name="QtySold_14_">
-          <DataField>QtySold_14_</DataField>
-        </Field>
-        <Field Name="QtySold_14_Format">
-          <DataField>QtySold_14_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_15_">
-          <DataField>QtyPurchased_15_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_15_Format">
-          <DataField>QtyPurchased_15_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_15_">
-          <DataField>QtyAdjusted_15_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_15_Format">
-          <DataField>QtyAdjusted_15_Format</DataField>
-        </Field>
-        <Field Name="QtySold_15_">
-          <DataField>QtySold_15_</DataField>
-        </Field>
-        <Field Name="QtySold_15_Format">
-          <DataField>QtySold_15_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_16_">
-          <DataField>QtyPurchased_16_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_16_Format">
-          <DataField>QtyPurchased_16_Format</DataField>
-        </Field>
-        <Field Name="QtySold_16_">
-          <DataField>QtySold_16_</DataField>
-        </Field>
-        <Field Name="QtySold_16_Format">
-          <DataField>QtySold_16_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_16_">
-          <DataField>QtyAdjusted_16_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_16_Format">
-          <DataField>QtyAdjusted_16_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_1_">
-          <DataField>QtyTransferred_1_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_1_Format">
-          <DataField>QtyTransferred_1_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_10_">
-          <DataField>QtyTransferred_10_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_10_Format">
-          <DataField>QtyTransferred_10_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_11_">
-          <DataField>QtyTransferred_11_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_11_Format">
-          <DataField>QtyTransferred_11_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_12_">
-          <DataField>QtyTransferred_12_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_12_Format">
-          <DataField>QtyTransferred_12_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_13_">
-          <DataField>QtyTransferred_13_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_13_Format">
-          <DataField>QtyTransferred_13_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_14_">
-          <DataField>QtyTransferred_14_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_14_Format">
-          <DataField>QtyTransferred_14_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_15_">
-          <DataField>QtyTransferred_15_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_15_Format">
-          <DataField>QtyTransferred_15_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_16_">
-          <DataField>QtyTransferred_16_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_16_Format">
-          <DataField>QtyTransferred_16_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_17_">
-          <DataField>QtyPurchased_17_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_17_Format">
-          <DataField>QtyPurchased_17_Format</DataField>
-        </Field>
-        <Field Name="QtySold_17_">
-          <DataField>QtySold_17_</DataField>
-        </Field>
-        <Field Name="QtySold_17_Format">
-          <DataField>QtySold_17_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_17_">
-          <DataField>QtyAdjusted_17_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_17_Format">
-          <DataField>QtyAdjusted_17_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_17_">
-          <DataField>QtyTransferred_17_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_17_Format">
-          <DataField>QtyTransferred_17_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_18_">
-          <DataField>QtyPurchased_18_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_18_Format">
-          <DataField>QtyPurchased_18_Format</DataField>
-        </Field>
-        <Field Name="QtySold_18_">
-          <DataField>QtySold_18_</DataField>
-        </Field>
-        <Field Name="QtySold_18_Format">
-          <DataField>QtySold_18_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_18_">
-          <DataField>QtyAdjusted_18_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_18_Format">
-          <DataField>QtyAdjusted_18_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_18_">
-          <DataField>QtyTransferred_18_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_18_Format">
-          <DataField>QtyTransferred_18_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_19_">
-          <DataField>QtyPurchased_19_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_19_Format">
-          <DataField>QtyPurchased_19_Format</DataField>
-        </Field>
-        <Field Name="QtySold_19_">
-          <DataField>QtySold_19_</DataField>
-        </Field>
-        <Field Name="QtySold_19_Format">
-          <DataField>QtySold_19_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_19_">
-          <DataField>QtyAdjusted_19_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_19_Format">
-          <DataField>QtyAdjusted_19_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_19_">
-          <DataField>QtyTransferred_19_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_19_Format">
-          <DataField>QtyTransferred_19_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_20_">
-          <DataField>QtyPurchased_20_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_20_Format">
-          <DataField>QtyPurchased_20_Format</DataField>
-        </Field>
-        <Field Name="QtySold_20_">
-          <DataField>QtySold_20_</DataField>
-        </Field>
-        <Field Name="QtySold_20_Format">
-          <DataField>QtySold_20_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_20_">
-          <DataField>QtyAdjusted_20_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_20_Format">
-          <DataField>QtyAdjusted_20_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_20_">
-          <DataField>QtyTransferred_20_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_20_Format">
-          <DataField>QtyTransferred_20_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_21_">
-          <DataField>QtyPurchased_21_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_21_Format">
-          <DataField>QtyPurchased_21_Format</DataField>
-        </Field>
-        <Field Name="QtySold_21_">
-          <DataField>QtySold_21_</DataField>
-        </Field>
-        <Field Name="QtySold_21_Format">
-          <DataField>QtySold_21_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_21_">
-          <DataField>QtyAdjusted_21_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_21_Format">
-          <DataField>QtyAdjusted_21_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_21_">
-          <DataField>QtyTransferred_21_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_21_Format">
-          <DataField>QtyTransferred_21_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_22_">
-          <DataField>QtyPurchased_22_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_22_Format">
-          <DataField>QtyPurchased_22_Format</DataField>
-        </Field>
-        <Field Name="QtySold_22_">
-          <DataField>QtySold_22_</DataField>
-        </Field>
-        <Field Name="QtySold_22_Format">
-          <DataField>QtySold_22_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_22_">
-          <DataField>QtyAdjusted_22_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_22_Format">
-          <DataField>QtyAdjusted_22_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_22_">
-          <DataField>QtyTransferred_22_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_22_Format">
-          <DataField>QtyTransferred_22_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_23_">
-          <DataField>QtyPurchased_23_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_23_Format">
-          <DataField>QtyPurchased_23_Format</DataField>
-        </Field>
-        <Field Name="QtySold_23_">
-          <DataField>QtySold_23_</DataField>
-        </Field>
-        <Field Name="QtySold_23_Format">
-          <DataField>QtySold_23_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_23_">
-          <DataField>QtyAdjusted_23_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_23_Format">
-          <DataField>QtyAdjusted_23_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_23_">
-          <DataField>QtyTransferred_23_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_23_Format">
-          <DataField>QtyTransferred_23_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_24_">
-          <DataField>QtyPurchased_24_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_24_Format">
-          <DataField>QtyPurchased_24_Format</DataField>
-        </Field>
-        <Field Name="QtySold_24_">
-          <DataField>QtySold_24_</DataField>
-        </Field>
-        <Field Name="QtySold_24_Format">
-          <DataField>QtySold_24_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_24_">
-          <DataField>QtyAdjusted_24_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_24_Format">
-          <DataField>QtyAdjusted_24_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_24_">
-          <DataField>QtyTransferred_24_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_24_Format">
-          <DataField>QtyTransferred_24_Format</DataField>
-        </Field>
-        <Field Name="QtyPurchased_25_">
-          <DataField>QtyPurchased_25_</DataField>
-        </Field>
-        <Field Name="QtyPurchased_25_Format">
-          <DataField>QtyPurchased_25_Format</DataField>
-        </Field>
-        <Field Name="QtySold_25_">
-          <DataField>QtySold_25_</DataField>
-        </Field>
-        <Field Name="QtySold_25_Format">
-          <DataField>QtySold_25_Format</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_25_">
-          <DataField>QtyAdjusted_25_</DataField>
-        </Field>
-        <Field Name="QtyAdjusted_25_Format">
-          <DataField>QtyAdjusted_25_Format</DataField>
-        </Field>
-        <Field Name="QtyTransferred_25_">
-          <DataField>QtyTransferred_25_</DataField>
-        </Field>
-        <Field Name="QtyTransferred_25_Format">
-          <DataField>QtyTransferred_25_Format</DataField>
-        </Field>
-        <Field Name="Item__Unit_Price_">
-          <DataField>Item__Unit_Price_</DataField>
-        </Field>
-        <Field Name="Item__Unit_Price_Format">
-          <DataField>Item__Unit_Price_Format</DataField>
-        </Field>
-        <Field Name="Item__Unit_Cost_">
-          <DataField>Item__Unit_Cost_</DataField>
-        </Field>
-        <Field Name="Item__Unit_Cost_Format">
-          <DataField>Item__Unit_Cost_Format</DataField>
-        </Field>
-        <Field Name="Item__Manufacturer_Code_">
-          <DataField>Item__Manufacturer_Code_</DataField>
-        </Field>
-        <Field Name="Item__Gross_Weight_">
-          <DataField>Item__Gross_Weight_</DataField>
-        </Field>
-        <Field Name="Item__Gross_Weight_Format">
-          <DataField>Item__Gross_Weight_Format</DataField>
-        </Field>
-        <Field Name="Fore__Ave__Daily_Usage_Caption">
-          <DataField>Fore__Ave__Daily_Usage_Caption</DataField>
-        </Field>
-        <Field Name="Day_On_HandCaption">
-          <DataField>Day_On_HandCaption</DataField>
-        </Field>
-        <Field Name="Minimum_Order_Qty_Caption">
-          <DataField>Minimum_Order_Qty_Caption</DataField>
-        </Field>
-        <Field Name="Actual_Ave__Wkly__Usage__last_12weeks_Caption">
-          <DataField>Actual_Ave__Wkly__Usage__last_12weeks_Caption</DataField>
-        </Field>
-        <Field Name="Min_Inventory_Level_QtyCaption">
-          <DataField>Min_Inventory_Level_QtyCaption</DataField>
-        </Field>
-        <Field Name="Max__Inventory_Level_Qty_Caption">
-          <DataField>Max__Inventory_Level_Qty_Caption</DataField>
-        </Field>
-        <Field Name="WeeksCaption">
-          <DataField>WeeksCaption</DataField>
-        </Field>
-        <Field Name="WeeksCaption_Control1000000228">
-          <DataField>WeeksCaption_Control1000000228</DataField>
-        </Field>
-        <Field Name="WeeksCaption_Control1000000417">
-          <DataField>WeeksCaption_Control1000000417</DataField>
-        </Field>
-        <Field Name="Mimimum_Inventory_LevelCaption">
-          <DataField>Mimimum_Inventory_LevelCaption</DataField>
-        </Field>
-        <Field Name="Maximum_Inventory_LevelCaption">
-          <DataField>Maximum_Inventory_LevelCaption</DataField>
-        </Field>
-        <Field Name="Lead_TimeCaption">
-          <DataField>Lead_TimeCaption</DataField>
-        </Field>
-        <Field Name="Item__Vendor_No__Caption">
-          <DataField>Item__Vendor_No__Caption</DataField>
-        </Field>
-        <Field Name="SNP__Units_Per_Parcel_Caption">
-          <DataField>SNP__Units_Per_Parcel_Caption</DataField>
-        </Field>
-        <Field Name="Ave__Forecast__Next_8_weeks_Caption">
-          <DataField>Ave__Forecast__Next_8_weeks_Caption</DataField>
-        </Field>
-        <Field Name="Blocked_Inv_Caption">
-          <DataField>Blocked_Inv_Caption</DataField>
-        </Field>
-        <Field Name="Over_120_DaysCaption">
-          <DataField>Over_120_DaysCaption</DataField>
-        </Field>
-        <Field Name="Qty__on_HandCaption">
-          <DataField>Qty__on_HandCaption</DataField>
-        </Field>
-        <Field Name="Suggested_ReceiptCaption">
-          <DataField>Suggested_ReceiptCaption</DataField>
-        </Field>
-        <Field Name="ForecastCaption">
-          <DataField>ForecastCaption</DataField>
-        </Field>
-        <Field Name="Suggested_Order_Qty_Caption">
-          <DataField>Suggested_Order_Qty_Caption</DataField>
-        </Field>
-        <Field Name="Qty__AvailableCaption">
-          <DataField>Qty__AvailableCaption</DataField>
-        </Field>
-        <Field Name="OPEN_P_O_Caption">
-          <DataField>OPEN_P_O_Caption</DataField>
-        </Field>
-        <Field Name="EXPEDITECaption">
-          <DataField>EXPEDITECaption</DataField>
-        </Field>
-        <Field Name="Weeks_on_HandCaption">
-          <DataField>Weeks_on_HandCaption</DataField>
-        </Field>
-        <Field Name="Qty__ReceivedCaption">
-          <DataField>Qty__ReceivedCaption</DataField>
-        </Field>
-        <Field Name="Sales_Invoice_LinesCaption">
-          <DataField>Sales_Invoice_LinesCaption</DataField>
-        </Field>
-        <Field Name="Qty__AdjustedCaption">
-          <DataField>Qty__AdjustedCaption</DataField>
-        </Field>
-        <Field Name="Qty__TransferredCaption">
-          <DataField>Qty__TransferredCaption</DataField>
-        </Field>
-        <Field Name="Item__Unit_Price_Caption">
-          <DataField>Item__Unit_Price_Caption</DataField>
-        </Field>
-        <Field Name="Item__Unit_Cost_Caption">
-          <DataField>Item__Unit_Cost_Caption</DataField>
-        </Field>
-        <Field Name="ManufacturerCaption">
-          <DataField>ManufacturerCaption</DataField>
-        </Field>
-        <Field Name="Item__Gross_Weight_Caption">
-          <DataField>Item__Gross_Weight_Caption</DataField>
-        </Field>
-        <Field Name="This_is_the_ENDCaption">
-          <DataField>This_is_the_ENDCaption</DataField>
-        </Field>
-        <Field Name="Item_Forecast_OnOff">
-          <DataField>Item_Forecast_OnOff</DataField>
-        </Field>
-        <Field Name="ShowDetails3">
-          <DataField>ShowDetails3</DataField>
-        </Field>
-        <Field Name="ShowDetails2">
-          <DataField>ShowDetails2</DataField>
-        </Field>
-        <Field Name="ShowDetails">
-          <DataField>ShowDetails</DataField>
-        </Field>
-        <Field Name="ForecastEntryFound">
-          <DataField>ForecastEntryFound</DataField>
-        </Field>
-        <Field Name="VendorNo_Cap">
-          <DataField>VendorNo_Cap</DataField>
-        </Field>
-        <Field Name="Forecast_BreakdownCaption">
-          <DataField>Forecast_BreakdownCaption</DataField>
-        </Field>
-        <Field Name="LotNo_Cap">
-          <DataField>LotNo_Cap</DataField>
-        </Field>
-        <Field Name="Inventory_Cap">
-          <DataField>Inventory_Cap</DataField>
-        </Field>
-        <Field Name="LotCreationDate_Cap">
-          <DataField>LotCreationDate_Cap</DataField>
-        </Field>
-        <Field Name="InvAge_Cap">
-          <DataField>InvAge_Cap</DataField>
-        </Field>
-        <Field Name="ShowAge">
-          <DataField>ShowAge</DataField>
-        </Field>
-        <Field Name="Code_Item_Category">
-          <DataField>Code_Item_Category</DataField>
-        </Field>
-        <Field Name="ForecastQty2_10_">
-          <DataField>ForecastQty2_10_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_10_Format">
-          <DataField>ForecastQty2_10_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_11_">
-          <DataField>ForecastQty2_11_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_11_Format">
-          <DataField>ForecastQty2_11_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_12_">
-          <DataField>ForecastQty2_12_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_12_Format">
-          <DataField>ForecastQty2_12_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_13_">
-          <DataField>ForecastQty2_13_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_13_Format">
-          <DataField>ForecastQty2_13_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_14_">
-          <DataField>ForecastQty2_14_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_14_Format">
-          <DataField>ForecastQty2_14_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_15_">
-          <DataField>ForecastQty2_15_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_15_Format">
-          <DataField>ForecastQty2_15_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_16_">
-          <DataField>ForecastQty2_16_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_16_Format">
-          <DataField>ForecastQty2_16_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_17_">
-          <DataField>ForecastQty2_17_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_17_Format">
-          <DataField>ForecastQty2_17_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_18_">
-          <DataField>ForecastQty2_18_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_18_Format">
-          <DataField>ForecastQty2_18_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_19_">
-          <DataField>ForecastQty2_19_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_19_Format">
-          <DataField>ForecastQty2_19_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_20_">
-          <DataField>ForecastQty2_20_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_20_Format">
-          <DataField>ForecastQty2_20_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_21_">
-          <DataField>ForecastQty2_21_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_21_Format">
-          <DataField>ForecastQty2_21_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_22_">
-          <DataField>ForecastQty2_22_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_22_Format">
-          <DataField>ForecastQty2_22_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_23_">
-          <DataField>ForecastQty2_23_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_23_Format">
-          <DataField>ForecastQty2_23_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_24_">
-          <DataField>ForecastQty2_24_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_24_Format">
-          <DataField>ForecastQty2_24_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_25_">
-          <DataField>ForecastQty2_25_</DataField>
-        </Field>
-        <Field Name="ForecastQty2_25_Format">
-          <DataField>ForecastQty2_25_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_10_">
-          <DataField>ForecastQty3_10_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_10_Format">
-          <DataField>ForecastQty3_10_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_11_">
-          <DataField>ForecastQty3_11_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_11_Format">
-          <DataField>ForecastQty3_11_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_12_">
-          <DataField>ForecastQty3_12_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_12_Format">
-          <DataField>ForecastQty3_12_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_13_">
-          <DataField>ForecastQty3_13_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_13_Format">
-          <DataField>ForecastQty3_13_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_14_">
-          <DataField>ForecastQty3_14_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_14_Format">
-          <DataField>ForecastQty3_14_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_15_">
-          <DataField>ForecastQty3_15_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_15_Format">
-          <DataField>ForecastQty3_15_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_16_">
-          <DataField>ForecastQty3_16_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_16_Format">
-          <DataField>ForecastQty3_16_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_17_">
-          <DataField>ForecastQty3_17_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_17_Format">
-          <DataField>ForecastQty3_17_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_18_">
-          <DataField>ForecastQty3_18_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_18_Format">
-          <DataField>ForecastQty3_18_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_19_">
-          <DataField>ForecastQty3_19_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_19_Format">
-          <DataField>ForecastQty3_19_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_20_">
-          <DataField>ForecastQty3_20_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_20_Format">
-          <DataField>ForecastQty3_20_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_21_">
-          <DataField>ForecastQty3_21_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_21_Format">
-          <DataField>ForecastQty3_21_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_22_">
-          <DataField>ForecastQty3_22_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_22_Format">
-          <DataField>ForecastQty3_22_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_23_">
-          <DataField>ForecastQty3_23_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_23_Format">
-          <DataField>ForecastQty3_23_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_24_">
-          <DataField>ForecastQty3_24_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_24_Format">
-          <DataField>ForecastQty3_24_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_25_">
-          <DataField>ForecastQty3_25_</DataField>
-        </Field>
-        <Field Name="ForecastQty3_25_Format">
-          <DataField>ForecastQty3_25_Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_10__Control1000000271">
-          <DataField>ForecastQty2_10__Control1000000271</DataField>
-        </Field>
-        <Field Name="ForecastQty2_10__Control1000000271Format">
-          <DataField>ForecastQty2_10__Control1000000271Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_11__Control1000000272">
-          <DataField>ForecastQty2_11__Control1000000272</DataField>
-        </Field>
-        <Field Name="ForecastQty2_11__Control1000000272Format">
-          <DataField>ForecastQty2_11__Control1000000272Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_12__Control1000000273">
-          <DataField>ForecastQty2_12__Control1000000273</DataField>
-        </Field>
-        <Field Name="ForecastQty2_12__Control1000000273Format">
-          <DataField>ForecastQty2_12__Control1000000273Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_13__Control1000000274">
-          <DataField>ForecastQty2_13__Control1000000274</DataField>
-        </Field>
-        <Field Name="ForecastQty2_13__Control1000000274Format">
-          <DataField>ForecastQty2_13__Control1000000274Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_14__Control1000000291">
-          <DataField>ForecastQty2_14__Control1000000291</DataField>
-        </Field>
-        <Field Name="ForecastQty2_14__Control1000000291Format">
-          <DataField>ForecastQty2_14__Control1000000291Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_15__Control1000000292">
-          <DataField>ForecastQty2_15__Control1000000292</DataField>
-        </Field>
-        <Field Name="ForecastQty2_15__Control1000000292Format">
-          <DataField>ForecastQty2_15__Control1000000292Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_16__Control1000000326">
-          <DataField>ForecastQty2_16__Control1000000326</DataField>
-        </Field>
-        <Field Name="ForecastQty2_16__Control1000000326Format">
-          <DataField>ForecastQty2_16__Control1000000326Format</DataField>
-        </Field>
-        <Field Name="Forecast_Ledger_Entry__Customer_No__">
-          <DataField>Forecast_Ledger_Entry__Customer_No__</DataField>
-        </Field>
-        <Field Name="ForecastQty2_17__Control1000000306">
-          <DataField>ForecastQty2_17__Control1000000306</DataField>
-        </Field>
-        <Field Name="ForecastQty2_17__Control1000000306Format">
-          <DataField>ForecastQty2_17__Control1000000306Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_18__Control1000000307">
-          <DataField>ForecastQty2_18__Control1000000307</DataField>
-        </Field>
-        <Field Name="ForecastQty2_18__Control1000000307Format">
-          <DataField>ForecastQty2_18__Control1000000307Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_19__Control1000000308">
-          <DataField>ForecastQty2_19__Control1000000308</DataField>
-        </Field>
-        <Field Name="ForecastQty2_19__Control1000000308Format">
-          <DataField>ForecastQty2_19__Control1000000308Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_20__Control1000000336">
-          <DataField>ForecastQty2_20__Control1000000336</DataField>
-        </Field>
-        <Field Name="ForecastQty2_20__Control1000000336Format">
-          <DataField>ForecastQty2_20__Control1000000336Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_21__Control1000000337">
-          <DataField>ForecastQty2_21__Control1000000337</DataField>
-        </Field>
-        <Field Name="ForecastQty2_21__Control1000000337Format">
-          <DataField>ForecastQty2_21__Control1000000337Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_22__Control1000000338">
-          <DataField>ForecastQty2_22__Control1000000338</DataField>
-        </Field>
-        <Field Name="ForecastQty2_22__Control1000000338Format">
-          <DataField>ForecastQty2_22__Control1000000338Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_23__Control1000000339">
-          <DataField>ForecastQty2_23__Control1000000339</DataField>
-        </Field>
-        <Field Name="ForecastQty2_23__Control1000000339Format">
-          <DataField>ForecastQty2_23__Control1000000339Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_24__Control1000000340">
-          <DataField>ForecastQty2_24__Control1000000340</DataField>
-        </Field>
-        <Field Name="ForecastQty2_24__Control1000000340Format">
-          <DataField>ForecastQty2_24__Control1000000340Format</DataField>
-        </Field>
-        <Field Name="ForecastQty2_25__Control1000000341">
-          <DataField>ForecastQty2_25__Control1000000341</DataField>
-        </Field>
-        <Field Name="ForecastQty2_25__Control1000000341Format">
-          <DataField>ForecastQty2_25__Control1000000341Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_10__Control1000000404">
-          <DataField>ForecastQty3_10__Control1000000404</DataField>
-        </Field>
-        <Field Name="ForecastQty3_10__Control1000000404Format">
-          <DataField>ForecastQty3_10__Control1000000404Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_11__Control1000000405">
-          <DataField>ForecastQty3_11__Control1000000405</DataField>
-        </Field>
-        <Field Name="ForecastQty3_11__Control1000000405Format">
-          <DataField>ForecastQty3_11__Control1000000405Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_12__Control1000000406">
-          <DataField>ForecastQty3_12__Control1000000406</DataField>
-        </Field>
-        <Field Name="ForecastQty3_12__Control1000000406Format">
-          <DataField>ForecastQty3_12__Control1000000406Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_13__Control1000000407">
-          <DataField>ForecastQty3_13__Control1000000407</DataField>
-        </Field>
-        <Field Name="ForecastQty3_13__Control1000000407Format">
-          <DataField>ForecastQty3_13__Control1000000407Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_14__Control1000000408">
-          <DataField>ForecastQty3_14__Control1000000408</DataField>
-        </Field>
-        <Field Name="ForecastQty3_14__Control1000000408Format">
-          <DataField>ForecastQty3_14__Control1000000408Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_15__Control1000000409">
-          <DataField>ForecastQty3_15__Control1000000409</DataField>
-        </Field>
-        <Field Name="ForecastQty3_15__Control1000000409Format">
-          <DataField>ForecastQty3_15__Control1000000409Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_16__Control1000000410">
-          <DataField>ForecastQty3_16__Control1000000410</DataField>
-        </Field>
-        <Field Name="ForecastQty3_16__Control1000000410Format">
-          <DataField>ForecastQty3_16__Control1000000410Format</DataField>
-        </Field>
-        <Field Name="Forecast_Ledger_Entry__Customer_No___Control1000000057">
-          <DataField>Forecast_Ledger_Entry__Customer_No___Control1000000057</DataField>
-        </Field>
-        <Field Name="ForecastQty3_17__Control1000000362">
-          <DataField>ForecastQty3_17__Control1000000362</DataField>
-        </Field>
-        <Field Name="ForecastQty3_17__Control1000000362Format">
-          <DataField>ForecastQty3_17__Control1000000362Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_18__Control1000000363">
-          <DataField>ForecastQty3_18__Control1000000363</DataField>
-        </Field>
-        <Field Name="ForecastQty3_18__Control1000000363Format">
-          <DataField>ForecastQty3_18__Control1000000363Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_19__Control1000000364">
-          <DataField>ForecastQty3_19__Control1000000364</DataField>
-        </Field>
-        <Field Name="ForecastQty3_19__Control1000000364Format">
-          <DataField>ForecastQty3_19__Control1000000364Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_20__Control1000000365">
-          <DataField>ForecastQty3_20__Control1000000365</DataField>
-        </Field>
-        <Field Name="ForecastQty3_20__Control1000000365Format">
-          <DataField>ForecastQty3_20__Control1000000365Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_21__Control1000000366">
-          <DataField>ForecastQty3_21__Control1000000366</DataField>
-        </Field>
-        <Field Name="ForecastQty3_21__Control1000000366Format">
-          <DataField>ForecastQty3_21__Control1000000366Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_22__Control1000000367">
-          <DataField>ForecastQty3_22__Control1000000367</DataField>
-        </Field>
-        <Field Name="ForecastQty3_22__Control1000000367Format">
-          <DataField>ForecastQty3_22__Control1000000367Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_23__Control1000000368">
-          <DataField>ForecastQty3_23__Control1000000368</DataField>
-        </Field>
-        <Field Name="ForecastQty3_23__Control1000000368Format">
-          <DataField>ForecastQty3_23__Control1000000368Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_24__Control1000000369">
-          <DataField>ForecastQty3_24__Control1000000369</DataField>
-        </Field>
-        <Field Name="ForecastQty3_24__Control1000000369Format">
-          <DataField>ForecastQty3_24__Control1000000369Format</DataField>
-        </Field>
-        <Field Name="ForecastQty3_25__Control1000000370">
-          <DataField>ForecastQty3_25__Control1000000370</DataField>
-        </Field>
-        <Field Name="ForecastQty3_25__Control1000000370Format">
-          <DataField>ForecastQty3_25__Control1000000370Format</DataField>
-        </Field>
-        <Field Name="Nifast_ForecastCaption">
-          <DataField>Nifast_ForecastCaption</DataField>
-        </Field>
-        <Field Name="Forecast_Ledger_Entry_Entry_No_">
-          <DataField>Forecast_Ledger_Entry_Entry_No_</DataField>
-        </Field>
-        <Field Name="Forecast_Ledger_Entry_Item_No_">
-          <DataField>Forecast_Ledger_Entry_Item_No_</DataField>
-        </Field>
-        <Field Name="Forecast_Ledger_Entry_Shipping_Date">
-          <DataField>Forecast_Ledger_Entry_Shipping_Date</DataField>
-        </Field>
-        <Field Name="Forecast_Ledger_Entry_Forecast_Quantity">
-          <DataField>Forecast_Ledger_Entry_Forecast_Quantity</DataField>
-        </Field>
-        <Field Name="Forecast_Ledger_Entry_Forecast_QuantityFormat">
-          <DataField>Forecast_Ledger_Entry_Forecast_QuantityFormat</DataField>
-        </Field>
-        <Field Name="Forecast_Ledger_Entry_Division_Code">
-          <DataField>Forecast_Ledger_Entry_Division_Code</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_10_">
-          <DataField>QtyOnPurchOrdersDetail_10_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_10_Format">
-          <DataField>QtyOnPurchOrdersDetail_10_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_11_">
-          <DataField>QtyOnPurchOrdersDetail_11_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_11_Format">
-          <DataField>QtyOnPurchOrdersDetail_11_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_12_">
-          <DataField>QtyOnPurchOrdersDetail_12_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_12_Format">
-          <DataField>QtyOnPurchOrdersDetail_12_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_13_">
-          <DataField>QtyOnPurchOrdersDetail_13_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_13_Format">
-          <DataField>QtyOnPurchOrdersDetail_13_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_14_">
-          <DataField>QtyOnPurchOrdersDetail_14_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_14_Format">
-          <DataField>QtyOnPurchOrdersDetail_14_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_15_">
-          <DataField>QtyOnPurchOrdersDetail_15_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_15_Format">
-          <DataField>QtyOnPurchOrdersDetail_15_Format</DataField>
-        </Field>
-        <Field Name="PurchLine__Document_No__________PurchHeader__Buy_from_Vendor_Name_">
-          <DataField>PurchLine__Document_No__________PurchHeader__Buy_from_Vendor_Name_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_16_">
-          <DataField>QtyOnPurchOrdersDetail_16_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_16_Format">
-          <DataField>QtyOnPurchOrdersDetail_16_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_17_">
-          <DataField>QtyOnPurchOrdersDetail_17_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_17_Format">
-          <DataField>QtyOnPurchOrdersDetail_17_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_18_">
-          <DataField>QtyOnPurchOrdersDetail_18_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_18_Format">
-          <DataField>QtyOnPurchOrdersDetail_18_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_19_">
-          <DataField>QtyOnPurchOrdersDetail_19_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_19_Format">
-          <DataField>QtyOnPurchOrdersDetail_19_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_20_">
-          <DataField>QtyOnPurchOrdersDetail_20_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_20_Format">
-          <DataField>QtyOnPurchOrdersDetail_20_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_21_">
-          <DataField>QtyOnPurchOrdersDetail_21_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_21_Format">
-          <DataField>QtyOnPurchOrdersDetail_21_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_22_">
-          <DataField>QtyOnPurchOrdersDetail_22_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_22_Format">
-          <DataField>QtyOnPurchOrdersDetail_22_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_23_">
-          <DataField>QtyOnPurchOrdersDetail_23_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_23_Format">
-          <DataField>QtyOnPurchOrdersDetail_23_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_24_">
-          <DataField>QtyOnPurchOrdersDetail_24_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_24_Format">
-          <DataField>QtyOnPurchOrdersDetail_24_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_25_">
-          <DataField>QtyOnPurchOrdersDetail_25_</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrdersDetail_25_Format">
-          <DataField>QtyOnPurchOrdersDetail_25_Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_10__Control1000000183">
-          <DataField>QtyOnPurchOrders_10__Control1000000183</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_10__Control1000000183Format">
-          <DataField>QtyOnPurchOrders_10__Control1000000183Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_11__Control1000000184">
-          <DataField>QtyOnPurchOrders_11__Control1000000184</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_11__Control1000000184Format">
-          <DataField>QtyOnPurchOrders_11__Control1000000184Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_12__Control1000000185">
-          <DataField>QtyOnPurchOrders_12__Control1000000185</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_12__Control1000000185Format">
-          <DataField>QtyOnPurchOrders_12__Control1000000185Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_13__Control1000000186">
-          <DataField>QtyOnPurchOrders_13__Control1000000186</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_13__Control1000000186Format">
-          <DataField>QtyOnPurchOrders_13__Control1000000186Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_14__Control1000000187">
-          <DataField>QtyOnPurchOrders_14__Control1000000187</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_14__Control1000000187Format">
-          <DataField>QtyOnPurchOrders_14__Control1000000187Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_15__Control1000000188">
-          <DataField>QtyOnPurchOrders_15__Control1000000188</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_15__Control1000000188Format">
-          <DataField>QtyOnPurchOrders_15__Control1000000188Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_16__Control1000000322">
-          <DataField>QtyOnPurchOrders_16__Control1000000322</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_16__Control1000000322Format">
-          <DataField>QtyOnPurchOrders_16__Control1000000322Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_17__Control1000000384">
-          <DataField>QtyOnPurchOrders_17__Control1000000384</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_17__Control1000000384Format">
-          <DataField>QtyOnPurchOrders_17__Control1000000384Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_18__Control1000000385">
-          <DataField>QtyOnPurchOrders_18__Control1000000385</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_18__Control1000000385Format">
-          <DataField>QtyOnPurchOrders_18__Control1000000385Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_19__Control1000000386">
-          <DataField>QtyOnPurchOrders_19__Control1000000386</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_19__Control1000000386Format">
-          <DataField>QtyOnPurchOrders_19__Control1000000386Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_20__Control1000000387">
-          <DataField>QtyOnPurchOrders_20__Control1000000387</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_20__Control1000000387Format">
-          <DataField>QtyOnPurchOrders_20__Control1000000387Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_21__Control1000000388">
-          <DataField>QtyOnPurchOrders_21__Control1000000388</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_21__Control1000000388Format">
-          <DataField>QtyOnPurchOrders_21__Control1000000388Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_22__Control1000000396">
-          <DataField>QtyOnPurchOrders_22__Control1000000396</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_22__Control1000000396Format">
-          <DataField>QtyOnPurchOrders_22__Control1000000396Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_23__Control1000000397">
-          <DataField>QtyOnPurchOrders_23__Control1000000397</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_23__Control1000000397Format">
-          <DataField>QtyOnPurchOrders_23__Control1000000397Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_24__Control1000000398">
-          <DataField>QtyOnPurchOrders_24__Control1000000398</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_24__Control1000000398Format">
-          <DataField>QtyOnPurchOrders_24__Control1000000398Format</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_25__Control1000000399">
-          <DataField>QtyOnPurchOrders_25__Control1000000399</DataField>
-        </Field>
-        <Field Name="QtyOnPurchOrders_25__Control1000000399Format">
-          <DataField>QtyOnPurchOrders_25__Control1000000399Format</DataField>
-        </Field>
-        <Field Name="Purchase_OrdersCaption">
-          <DataField>Purchase_OrdersCaption</DataField>
-        </Field>
-        <Field Name="Qty__on_Purchase_OrdersCaption">
-          <DataField>Qty__on_Purchase_OrdersCaption</DataField>
-        </Field>
-        <Field Name="PurchOrderLoop_Number">
-          <DataField>PurchOrderLoop_Number</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_10_">
-          <DataField>QtyOnSalesOrdersDetail_10_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_10_Format">
-          <DataField>QtyOnSalesOrdersDetail_10_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_11_">
-          <DataField>QtyOnSalesOrdersDetail_11_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_11_Format">
-          <DataField>QtyOnSalesOrdersDetail_11_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_12_">
-          <DataField>QtyOnSalesOrdersDetail_12_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_12_Format">
-          <DataField>QtyOnSalesOrdersDetail_12_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_13_">
-          <DataField>QtyOnSalesOrdersDetail_13_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_13_Format">
-          <DataField>QtyOnSalesOrdersDetail_13_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_14_">
-          <DataField>QtyOnSalesOrdersDetail_14_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_14_Format">
-          <DataField>QtyOnSalesOrdersDetail_14_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_15_">
-          <DataField>QtyOnSalesOrdersDetail_15_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_15_Format">
-          <DataField>QtyOnSalesOrdersDetail_15_Format</DataField>
-        </Field>
-        <Field Name="SalesLine__Document_No___________SalesHeader__Sell_to_Customer_Name_">
-          <DataField>SalesLine__Document_No___________SalesHeader__Sell_to_Customer_Name_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_16_">
-          <DataField>QtyOnSalesOrdersDetail_16_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_16_Format">
-          <DataField>QtyOnSalesOrdersDetail_16_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_17_">
-          <DataField>QtyOnSalesOrdersDetail_17_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_17_Format">
-          <DataField>QtyOnSalesOrdersDetail_17_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_18_">
-          <DataField>QtyOnSalesOrdersDetail_18_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_18_Format">
-          <DataField>QtyOnSalesOrdersDetail_18_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_19_">
-          <DataField>QtyOnSalesOrdersDetail_19_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_19_Format">
-          <DataField>QtyOnSalesOrdersDetail_19_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_20_">
-          <DataField>QtyOnSalesOrdersDetail_20_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_20_Format">
-          <DataField>QtyOnSalesOrdersDetail_20_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_21_">
-          <DataField>QtyOnSalesOrdersDetail_21_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_21_Format">
-          <DataField>QtyOnSalesOrdersDetail_21_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_22_">
-          <DataField>QtyOnSalesOrdersDetail_22_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_22_Format">
-          <DataField>QtyOnSalesOrdersDetail_22_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_23_">
-          <DataField>QtyOnSalesOrdersDetail_23_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_23_Format">
-          <DataField>QtyOnSalesOrdersDetail_23_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_24_">
-          <DataField>QtyOnSalesOrdersDetail_24_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_24_Format">
-          <DataField>QtyOnSalesOrdersDetail_24_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_25_">
-          <DataField>QtyOnSalesOrdersDetail_25_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrdersDetail_25_Format">
-          <DataField>QtyOnSalesOrdersDetail_25_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_10_">
-          <DataField>QtyOnSalesOrders_10_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_10_Format">
-          <DataField>QtyOnSalesOrders_10_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_11_">
-          <DataField>QtyOnSalesOrders_11_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_11_Format">
-          <DataField>QtyOnSalesOrders_11_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_12_">
-          <DataField>QtyOnSalesOrders_12_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_12_Format">
-          <DataField>QtyOnSalesOrders_12_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_13_">
-          <DataField>QtyOnSalesOrders_13_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_13_Format">
-          <DataField>QtyOnSalesOrders_13_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_14_">
-          <DataField>QtyOnSalesOrders_14_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_14_Format">
-          <DataField>QtyOnSalesOrders_14_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_15_">
-          <DataField>QtyOnSalesOrders_15_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_15_Format">
-          <DataField>QtyOnSalesOrders_15_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_16_">
-          <DataField>QtyOnSalesOrders_16_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_16_Format">
-          <DataField>QtyOnSalesOrders_16_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_17_">
-          <DataField>QtyOnSalesOrders_17_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_17_Format">
-          <DataField>QtyOnSalesOrders_17_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_18_">
-          <DataField>QtyOnSalesOrders_18_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_18_Format">
-          <DataField>QtyOnSalesOrders_18_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_19_">
-          <DataField>QtyOnSalesOrders_19_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_19_Format">
-          <DataField>QtyOnSalesOrders_19_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_20_">
-          <DataField>QtyOnSalesOrders_20_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_20_Format">
-          <DataField>QtyOnSalesOrders_20_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_21_">
-          <DataField>QtyOnSalesOrders_21_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_21_Format">
-          <DataField>QtyOnSalesOrders_21_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_22_">
-          <DataField>QtyOnSalesOrders_22_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_22_Format">
-          <DataField>QtyOnSalesOrders_22_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_23_">
-          <DataField>QtyOnSalesOrders_23_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_23_Format">
-          <DataField>QtyOnSalesOrders_23_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_24_">
-          <DataField>QtyOnSalesOrders_24_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_24_Format">
-          <DataField>QtyOnSalesOrders_24_Format</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_25_">
-          <DataField>QtyOnSalesOrders_25_</DataField>
-        </Field>
-        <Field Name="QtyOnSalesOrders_25_Format">
-          <DataField>QtyOnSalesOrders_25_Format</DataField>
-        </Field>
-        <Field Name="Sales_OrdersCaption">
-          <DataField>Sales_OrdersCaption</DataField>
-        </Field>
-        <Field Name="Qty__on_Sales_OrdersCaption">
-          <DataField>Qty__on_Sales_OrdersCaption</DataField>
-        </Field>
-        <Field Name="SalesOrderLoop_Number">
-          <DataField>SalesOrderLoop_Number</DataField>
-        </Field>
-        <Field Name="Vendor_Name">
-          <DataField>Vendor_Name</DataField>
-        </Field>
-        <Field Name="Vendor_NameCaption">
-          <DataField>Vendor_NameCaption</DataField>
-        </Field>
-        <Field Name="Vendor_No_">
-          <DataField>Vendor_No_</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_No__">
-          <DataField>Lot_No__Information__Lot_No__</DataField>
-        </Field>
-        <Field Name="Lot_No__Information_Inventory">
-          <DataField>Lot_No__Information_Inventory</DataField>
-        </Field>
-        <Field Name="Lot_No__Information_InventoryFormat">
-          <DataField>Lot_No__Information_InventoryFormat</DataField>
-        </Field>
-        <Field Name="Lot_No__Information__Lot_Creation_Date_">
-          <DataField>Lot_No__Information__Lot_Creation_Date_</DataField>
-        </Field>
-        <Field Name="Over">
-          <DataField>Over</DataField>
-        </Field>
-        <Field Name="Lot_No__Information_Item_No_">
-          <DataField>Lot_No__Information_Item_No_</DataField>
-        </Field>
-        <Field Name="Lot_No__Information_Variant_Code">
-          <DataField>Lot_No__Information_Variant_Code</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -22487,4 +20174,2312 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>21ecc026-725d-4657-a5df-04799197a507</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Title">
+          <DataField>Title</DataField>
+        </Field>
+        <Field Name="Item_TABLECAPTION__________ItemFilter">
+          <DataField>Item_TABLECAPTION__________ItemFilter</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="TIME">
+          <DataField>TIME</DataField>
+        </Field>
+        <Field Name="MinOrdQ">
+          <DataField>MinOrdQ</DataField>
+        </Field>
+        <Field Name="MinOrdQFormat">
+          <DataField>MinOrdQFormat</DataField>
+        </Field>
+        <Field Name="Daily42">
+          <DataField>Daily42</DataField>
+        </Field>
+        <Field Name="Daily42Format">
+          <DataField>Daily42Format</DataField>
+        </Field>
+        <Field Name="DayOnHand">
+          <DataField>DayOnHand</DataField>
+        </Field>
+        <Field Name="DayOnHandFormat">
+          <DataField>DayOnHandFormat</DataField>
+        </Field>
+        <Field Name="Weekly90">
+          <DataField>Weekly90</DataField>
+        </Field>
+        <Field Name="Weekly90Format">
+          <DataField>Weekly90Format</DataField>
+        </Field>
+        <Field Name="Maintain">
+          <DataField>Maintain</DataField>
+        </Field>
+        <Field Name="MaintainFormat">
+          <DataField>MaintainFormat</DataField>
+        </Field>
+        <Field Name="MaxInvQ">
+          <DataField>MaxInvQ</DataField>
+        </Field>
+        <Field Name="MaxInvQFormat">
+          <DataField>MaxInvQFormat</DataField>
+        </Field>
+        <Field Name="MaximumInv">
+          <DataField>MaximumInv</DataField>
+        </Field>
+        <Field Name="MaximumInvFormat">
+          <DataField>MaximumInvFormat</DataField>
+        </Field>
+        <Field Name="MinimumInv">
+          <DataField>MinimumInv</DataField>
+        </Field>
+        <Field Name="MinimumInvFormat">
+          <DataField>MinimumInvFormat</DataField>
+        </Field>
+        <Field Name="Item__Lead_Time_">
+          <DataField>Item__Lead_Time_</DataField>
+        </Field>
+        <Field Name="Item__Lead_Time_Format">
+          <DataField>Item__Lead_Time_Format</DataField>
+        </Field>
+        <Field Name="Item_Description">
+          <DataField>Item_Description</DataField>
+        </Field>
+        <Field Name="Item__Vendor_No__">
+          <DataField>Item__Vendor_No__</DataField>
+        </Field>
+        <Field Name="SNP">
+          <DataField>SNP</DataField>
+        </Field>
+        <Field Name="SNPFormat">
+          <DataField>SNPFormat</DataField>
+        </Field>
+        <Field Name="AveForecast">
+          <DataField>AveForecast</DataField>
+        </Field>
+        <Field Name="AveForecastFormat">
+          <DataField>AveForecastFormat</DataField>
+        </Field>
+        <Field Name="ItemLedgerEntry__Remaining_Quantity_">
+          <DataField>ItemLedgerEntry__Remaining_Quantity_</DataField>
+        </Field>
+        <Field Name="ItemLedgerEntry__Remaining_Quantity_Format">
+          <DataField>ItemLedgerEntry__Remaining_Quantity_Format</DataField>
+        </Field>
+        <Field Name="BQ">
+          <DataField>BQ</DataField>
+        </Field>
+        <Field Name="BQFormat">
+          <DataField>BQFormat</DataField>
+        </Field>
+        <Field Name="Item__No__">
+          <DataField>Item__No__</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_10_">
+          <DataField>PeriodStartingDate_10_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_10_">
+          <DataField>PeriodStartingText_10_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_11_">
+          <DataField>PeriodStartingText_11_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_11_">
+          <DataField>PeriodStartingDate_11_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_12_">
+          <DataField>PeriodStartingDate_12_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_12_">
+          <DataField>PeriodStartingText_12_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_13_">
+          <DataField>PeriodStartingDate_13_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_13_">
+          <DataField>PeriodStartingText_13_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_14_">
+          <DataField>PeriodStartingDate_14_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_14_">
+          <DataField>PeriodStartingText_14_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_15_">
+          <DataField>PeriodStartingDate_15_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_15_">
+          <DataField>PeriodStartingText_15_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_16_">
+          <DataField>PeriodStartingDate_16_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_16_">
+          <DataField>PeriodStartingText_16_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_17_">
+          <DataField>PeriodStartingText_17_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_18_">
+          <DataField>PeriodStartingText_18_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_19_">
+          <DataField>PeriodStartingText_19_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_20_">
+          <DataField>PeriodStartingText_20_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_21_">
+          <DataField>PeriodStartingText_21_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_22_">
+          <DataField>PeriodStartingText_22_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_23_">
+          <DataField>PeriodStartingText_23_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_24_">
+          <DataField>PeriodStartingText_24_</DataField>
+        </Field>
+        <Field Name="PeriodStartingText_25_">
+          <DataField>PeriodStartingText_25_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_17_">
+          <DataField>PeriodStartingDate_17_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_18_">
+          <DataField>PeriodStartingDate_18_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_19_">
+          <DataField>PeriodStartingDate_19_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_20_">
+          <DataField>PeriodStartingDate_20_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_21_">
+          <DataField>PeriodStartingDate_21_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_22_">
+          <DataField>PeriodStartingDate_22_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_23_">
+          <DataField>PeriodStartingDate_23_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_24_">
+          <DataField>PeriodStartingDate_24_</DataField>
+        </Field>
+        <Field Name="PeriodStartingDate_25_">
+          <DataField>PeriodStartingDate_25_</DataField>
+        </Field>
+        <Field Name="ForecastQty_10_">
+          <DataField>ForecastQty_10_</DataField>
+        </Field>
+        <Field Name="ForecastQty_10_Format">
+          <DataField>ForecastQty_10_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_11_">
+          <DataField>ForecastQty_11_</DataField>
+        </Field>
+        <Field Name="ForecastQty_11_Format">
+          <DataField>ForecastQty_11_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_12_">
+          <DataField>ForecastQty_12_</DataField>
+        </Field>
+        <Field Name="ForecastQty_12_Format">
+          <DataField>ForecastQty_12_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_13_">
+          <DataField>ForecastQty_13_</DataField>
+        </Field>
+        <Field Name="ForecastQty_13_Format">
+          <DataField>ForecastQty_13_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_14_">
+          <DataField>ForecastQty_14_</DataField>
+        </Field>
+        <Field Name="ForecastQty_14_Format">
+          <DataField>ForecastQty_14_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_15_">
+          <DataField>ForecastQty_15_</DataField>
+        </Field>
+        <Field Name="ForecastQty_15_Format">
+          <DataField>ForecastQty_15_Format</DataField>
+        </Field>
+        <Field Name="OnHand_10_">
+          <DataField>OnHand_10_</DataField>
+        </Field>
+        <Field Name="OnHand_10_Format">
+          <DataField>OnHand_10_Format</DataField>
+        </Field>
+        <Field Name="OnHand_11_">
+          <DataField>OnHand_11_</DataField>
+        </Field>
+        <Field Name="OnHand_11_Format">
+          <DataField>OnHand_11_Format</DataField>
+        </Field>
+        <Field Name="OnHand_12_">
+          <DataField>OnHand_12_</DataField>
+        </Field>
+        <Field Name="OnHand_12_Format">
+          <DataField>OnHand_12_Format</DataField>
+        </Field>
+        <Field Name="OnHand_13_">
+          <DataField>OnHand_13_</DataField>
+        </Field>
+        <Field Name="OnHand_13_Format">
+          <DataField>OnHand_13_Format</DataField>
+        </Field>
+        <Field Name="OnHand_14_">
+          <DataField>OnHand_14_</DataField>
+        </Field>
+        <Field Name="OnHand_14_Format">
+          <DataField>OnHand_14_Format</DataField>
+        </Field>
+        <Field Name="OnHand_15_">
+          <DataField>OnHand_15_</DataField>
+        </Field>
+        <Field Name="OnHand_15_Format">
+          <DataField>OnHand_15_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_10_">
+          <DataField>PurchaseNeeds_10_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_10_Format">
+          <DataField>PurchaseNeeds_10_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_11_">
+          <DataField>PurchaseNeeds_11_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_11_Format">
+          <DataField>PurchaseNeeds_11_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_12_">
+          <DataField>PurchaseNeeds_12_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_12_Format">
+          <DataField>PurchaseNeeds_12_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_13_">
+          <DataField>PurchaseNeeds_13_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_13_Format">
+          <DataField>PurchaseNeeds_13_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_14_">
+          <DataField>PurchaseNeeds_14_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_14_Format">
+          <DataField>PurchaseNeeds_14_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_15_">
+          <DataField>PurchaseNeeds_15_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_15_Format">
+          <DataField>PurchaseNeeds_15_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_10_">
+          <DataField>TotalForecast_10_</DataField>
+        </Field>
+        <Field Name="TotalForecast_10_Format">
+          <DataField>TotalForecast_10_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_11_">
+          <DataField>TotalForecast_11_</DataField>
+        </Field>
+        <Field Name="TotalForecast_11_Format">
+          <DataField>TotalForecast_11_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_12_">
+          <DataField>TotalForecast_12_</DataField>
+        </Field>
+        <Field Name="TotalForecast_12_Format">
+          <DataField>TotalForecast_12_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_13_">
+          <DataField>TotalForecast_13_</DataField>
+        </Field>
+        <Field Name="TotalForecast_13_Format">
+          <DataField>TotalForecast_13_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_14_">
+          <DataField>TotalForecast_14_</DataField>
+        </Field>
+        <Field Name="TotalForecast_14_Format">
+          <DataField>TotalForecast_14_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_15_">
+          <DataField>TotalForecast_15_</DataField>
+        </Field>
+        <Field Name="TotalForecast_15_Format">
+          <DataField>TotalForecast_15_Format</DataField>
+        </Field>
+        <Field Name="Order_10_">
+          <DataField>Order_10_</DataField>
+        </Field>
+        <Field Name="Order_10_Format">
+          <DataField>Order_10_Format</DataField>
+        </Field>
+        <Field Name="Order_11_">
+          <DataField>Order_11_</DataField>
+        </Field>
+        <Field Name="Order_11_Format">
+          <DataField>Order_11_Format</DataField>
+        </Field>
+        <Field Name="Order_12_">
+          <DataField>Order_12_</DataField>
+        </Field>
+        <Field Name="Order_12_Format">
+          <DataField>Order_12_Format</DataField>
+        </Field>
+        <Field Name="Order_13_">
+          <DataField>Order_13_</DataField>
+        </Field>
+        <Field Name="Order_13_Format">
+          <DataField>Order_13_Format</DataField>
+        </Field>
+        <Field Name="Order_14_">
+          <DataField>Order_14_</DataField>
+        </Field>
+        <Field Name="Order_14_Format">
+          <DataField>Order_14_Format</DataField>
+        </Field>
+        <Field Name="Order_15_">
+          <DataField>Order_15_</DataField>
+        </Field>
+        <Field Name="Order_15_Format">
+          <DataField>Order_15_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_15_">
+          <DataField>QtyOnPurchOrders_15_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_15_Format">
+          <DataField>QtyOnPurchOrders_15_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_14_">
+          <DataField>QtyOnPurchOrders_14_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_14_Format">
+          <DataField>QtyOnPurchOrders_14_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_13_">
+          <DataField>QtyOnPurchOrders_13_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_13_Format">
+          <DataField>QtyOnPurchOrders_13_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_12_">
+          <DataField>QtyOnPurchOrders_12_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_12_Format">
+          <DataField>QtyOnPurchOrders_12_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_11_">
+          <DataField>QtyOnPurchOrders_11_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_11_Format">
+          <DataField>QtyOnPurchOrders_11_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_10_">
+          <DataField>QtyOnPurchOrders_10_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_10_Format">
+          <DataField>QtyOnPurchOrders_10_Format</DataField>
+        </Field>
+        <Field Name="OnHand_16_">
+          <DataField>OnHand_16_</DataField>
+        </Field>
+        <Field Name="OnHand_16_Format">
+          <DataField>OnHand_16_Format</DataField>
+        </Field>
+        <Field Name="Order_16_">
+          <DataField>Order_16_</DataField>
+        </Field>
+        <Field Name="Order_16_Format">
+          <DataField>Order_16_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_16_">
+          <DataField>PurchaseNeeds_16_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_16_Format">
+          <DataField>PurchaseNeeds_16_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_16_">
+          <DataField>TotalForecast_16_</DataField>
+        </Field>
+        <Field Name="TotalForecast_16_Format">
+          <DataField>TotalForecast_16_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_16_">
+          <DataField>QtyOnPurchOrders_16_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_16_Format">
+          <DataField>QtyOnPurchOrders_16_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_16_">
+          <DataField>ForecastQty_16_</DataField>
+        </Field>
+        <Field Name="ForecastQty_16_Format">
+          <DataField>ForecastQty_16_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_10_">
+          <DataField>PurchSign_10_</DataField>
+        </Field>
+        <Field Name="PurchSign_11_">
+          <DataField>PurchSign_11_</DataField>
+        </Field>
+        <Field Name="PurchSign_12_">
+          <DataField>PurchSign_12_</DataField>
+        </Field>
+        <Field Name="PurchSign_13_">
+          <DataField>PurchSign_13_</DataField>
+        </Field>
+        <Field Name="PurchSign_14_">
+          <DataField>PurchSign_14_</DataField>
+        </Field>
+        <Field Name="PurchSign_15_">
+          <DataField>PurchSign_15_</DataField>
+        </Field>
+        <Field Name="PurchSign_16_">
+          <DataField>PurchSign_16_</DataField>
+        </Field>
+        <Field Name="NewWeek_10_">
+          <DataField>NewWeek_10_</DataField>
+        </Field>
+        <Field Name="NewWeek_11_">
+          <DataField>NewWeek_11_</DataField>
+        </Field>
+        <Field Name="NewWeek_12_">
+          <DataField>NewWeek_12_</DataField>
+        </Field>
+        <Field Name="NewWeek_13_">
+          <DataField>NewWeek_13_</DataField>
+        </Field>
+        <Field Name="NewWeek_14_">
+          <DataField>NewWeek_14_</DataField>
+        </Field>
+        <Field Name="NewWeek_15_">
+          <DataField>NewWeek_15_</DataField>
+        </Field>
+        <Field Name="NewWeek_16_">
+          <DataField>NewWeek_16_</DataField>
+        </Field>
+        <Field Name="Order_9_">
+          <DataField>Order_9_</DataField>
+        </Field>
+        <Field Name="Order_9_Format">
+          <DataField>Order_9_Format</DataField>
+        </Field>
+        <Field Name="OnHand_17_">
+          <DataField>OnHand_17_</DataField>
+        </Field>
+        <Field Name="OnHand_17_Format">
+          <DataField>OnHand_17_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_17_">
+          <DataField>QtyOnPurchOrders_17_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_17_Format">
+          <DataField>QtyOnPurchOrders_17_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_17_">
+          <DataField>ForecastQty_17_</DataField>
+        </Field>
+        <Field Name="ForecastQty_17_Format">
+          <DataField>ForecastQty_17_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_17_">
+          <DataField>TotalForecast_17_</DataField>
+        </Field>
+        <Field Name="TotalForecast_17_Format">
+          <DataField>TotalForecast_17_Format</DataField>
+        </Field>
+        <Field Name="OnHand_18_">
+          <DataField>OnHand_18_</DataField>
+        </Field>
+        <Field Name="OnHand_18_Format">
+          <DataField>OnHand_18_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_18_">
+          <DataField>QtyOnPurchOrders_18_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_18_Format">
+          <DataField>QtyOnPurchOrders_18_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_18_">
+          <DataField>ForecastQty_18_</DataField>
+        </Field>
+        <Field Name="ForecastQty_18_Format">
+          <DataField>ForecastQty_18_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_18_">
+          <DataField>TotalForecast_18_</DataField>
+        </Field>
+        <Field Name="TotalForecast_18_Format">
+          <DataField>TotalForecast_18_Format</DataField>
+        </Field>
+        <Field Name="OnHand_19_">
+          <DataField>OnHand_19_</DataField>
+        </Field>
+        <Field Name="OnHand_19_Format">
+          <DataField>OnHand_19_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_19_">
+          <DataField>QtyOnPurchOrders_19_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_19_Format">
+          <DataField>QtyOnPurchOrders_19_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_19_">
+          <DataField>ForecastQty_19_</DataField>
+        </Field>
+        <Field Name="ForecastQty_19_Format">
+          <DataField>ForecastQty_19_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_19_">
+          <DataField>TotalForecast_19_</DataField>
+        </Field>
+        <Field Name="TotalForecast_19_Format">
+          <DataField>TotalForecast_19_Format</DataField>
+        </Field>
+        <Field Name="OnHand_20_">
+          <DataField>OnHand_20_</DataField>
+        </Field>
+        <Field Name="OnHand_20_Format">
+          <DataField>OnHand_20_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_20_">
+          <DataField>QtyOnPurchOrders_20_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_20_Format">
+          <DataField>QtyOnPurchOrders_20_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_20_">
+          <DataField>ForecastQty_20_</DataField>
+        </Field>
+        <Field Name="ForecastQty_20_Format">
+          <DataField>ForecastQty_20_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_20_">
+          <DataField>TotalForecast_20_</DataField>
+        </Field>
+        <Field Name="TotalForecast_20_Format">
+          <DataField>TotalForecast_20_Format</DataField>
+        </Field>
+        <Field Name="OnHand_21_">
+          <DataField>OnHand_21_</DataField>
+        </Field>
+        <Field Name="OnHand_21_Format">
+          <DataField>OnHand_21_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_21_">
+          <DataField>QtyOnPurchOrders_21_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_21_Format">
+          <DataField>QtyOnPurchOrders_21_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_21_">
+          <DataField>ForecastQty_21_</DataField>
+        </Field>
+        <Field Name="ForecastQty_21_Format">
+          <DataField>ForecastQty_21_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_21_">
+          <DataField>TotalForecast_21_</DataField>
+        </Field>
+        <Field Name="TotalForecast_21_Format">
+          <DataField>TotalForecast_21_Format</DataField>
+        </Field>
+        <Field Name="OnHand_22_">
+          <DataField>OnHand_22_</DataField>
+        </Field>
+        <Field Name="OnHand_22_Format">
+          <DataField>OnHand_22_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_22_">
+          <DataField>QtyOnPurchOrders_22_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_22_Format">
+          <DataField>QtyOnPurchOrders_22_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_22_">
+          <DataField>ForecastQty_22_</DataField>
+        </Field>
+        <Field Name="ForecastQty_22_Format">
+          <DataField>ForecastQty_22_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_22_">
+          <DataField>TotalForecast_22_</DataField>
+        </Field>
+        <Field Name="TotalForecast_22_Format">
+          <DataField>TotalForecast_22_Format</DataField>
+        </Field>
+        <Field Name="OnHand_23_">
+          <DataField>OnHand_23_</DataField>
+        </Field>
+        <Field Name="OnHand_23_Format">
+          <DataField>OnHand_23_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_23_">
+          <DataField>QtyOnPurchOrders_23_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_23_Format">
+          <DataField>QtyOnPurchOrders_23_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_23_">
+          <DataField>ForecastQty_23_</DataField>
+        </Field>
+        <Field Name="ForecastQty_23_Format">
+          <DataField>ForecastQty_23_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_23_">
+          <DataField>TotalForecast_23_</DataField>
+        </Field>
+        <Field Name="TotalForecast_23_Format">
+          <DataField>TotalForecast_23_Format</DataField>
+        </Field>
+        <Field Name="OnHand_24_">
+          <DataField>OnHand_24_</DataField>
+        </Field>
+        <Field Name="OnHand_24_Format">
+          <DataField>OnHand_24_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_24_">
+          <DataField>QtyOnPurchOrders_24_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_24_Format">
+          <DataField>QtyOnPurchOrders_24_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_24_">
+          <DataField>ForecastQty_24_</DataField>
+        </Field>
+        <Field Name="ForecastQty_24_Format">
+          <DataField>ForecastQty_24_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_24_">
+          <DataField>TotalForecast_24_</DataField>
+        </Field>
+        <Field Name="TotalForecast_24_Format">
+          <DataField>TotalForecast_24_Format</DataField>
+        </Field>
+        <Field Name="OnHand_25_">
+          <DataField>OnHand_25_</DataField>
+        </Field>
+        <Field Name="OnHand_25_Format">
+          <DataField>OnHand_25_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_25_">
+          <DataField>QtyOnPurchOrders_25_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_25_Format">
+          <DataField>QtyOnPurchOrders_25_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty_25_">
+          <DataField>ForecastQty_25_</DataField>
+        </Field>
+        <Field Name="ForecastQty_25_Format">
+          <DataField>ForecastQty_25_Format</DataField>
+        </Field>
+        <Field Name="TotalForecast_25_">
+          <DataField>TotalForecast_25_</DataField>
+        </Field>
+        <Field Name="TotalForecast_25_Format">
+          <DataField>TotalForecast_25_Format</DataField>
+        </Field>
+        <Field Name="Order_17_">
+          <DataField>Order_17_</DataField>
+        </Field>
+        <Field Name="Order_17_Format">
+          <DataField>Order_17_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_25_">
+          <DataField>PurchaseNeeds_25_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_25_Format">
+          <DataField>PurchaseNeeds_25_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_17_">
+          <DataField>PurchSign_17_</DataField>
+        </Field>
+        <Field Name="NewWeek_17_">
+          <DataField>NewWeek_17_</DataField>
+        </Field>
+        <Field Name="Order_18_">
+          <DataField>Order_18_</DataField>
+        </Field>
+        <Field Name="Order_18_Format">
+          <DataField>Order_18_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_17_">
+          <DataField>PurchaseNeeds_17_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_17_Format">
+          <DataField>PurchaseNeeds_17_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_18_">
+          <DataField>PurchSign_18_</DataField>
+        </Field>
+        <Field Name="NewWeek_18_">
+          <DataField>NewWeek_18_</DataField>
+        </Field>
+        <Field Name="Order_19_">
+          <DataField>Order_19_</DataField>
+        </Field>
+        <Field Name="Order_19_Format">
+          <DataField>Order_19_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_18_">
+          <DataField>PurchaseNeeds_18_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_18_Format">
+          <DataField>PurchaseNeeds_18_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_19_">
+          <DataField>PurchSign_19_</DataField>
+        </Field>
+        <Field Name="NewWeek_19_">
+          <DataField>NewWeek_19_</DataField>
+        </Field>
+        <Field Name="Order_20_">
+          <DataField>Order_20_</DataField>
+        </Field>
+        <Field Name="Order_20_Format">
+          <DataField>Order_20_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_19_">
+          <DataField>PurchaseNeeds_19_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_19_Format">
+          <DataField>PurchaseNeeds_19_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_20_">
+          <DataField>PurchSign_20_</DataField>
+        </Field>
+        <Field Name="NewWeek_20_">
+          <DataField>NewWeek_20_</DataField>
+        </Field>
+        <Field Name="Order_21_">
+          <DataField>Order_21_</DataField>
+        </Field>
+        <Field Name="Order_21_Format">
+          <DataField>Order_21_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_20_">
+          <DataField>PurchaseNeeds_20_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_20_Format">
+          <DataField>PurchaseNeeds_20_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_21_">
+          <DataField>PurchSign_21_</DataField>
+        </Field>
+        <Field Name="NewWeek_21_">
+          <DataField>NewWeek_21_</DataField>
+        </Field>
+        <Field Name="Order_22_">
+          <DataField>Order_22_</DataField>
+        </Field>
+        <Field Name="Order_22_Format">
+          <DataField>Order_22_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_21_">
+          <DataField>PurchaseNeeds_21_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_21_Format">
+          <DataField>PurchaseNeeds_21_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_22_">
+          <DataField>PurchSign_22_</DataField>
+        </Field>
+        <Field Name="NewWeek_22_">
+          <DataField>NewWeek_22_</DataField>
+        </Field>
+        <Field Name="Order_23_">
+          <DataField>Order_23_</DataField>
+        </Field>
+        <Field Name="Order_23_Format">
+          <DataField>Order_23_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_22_">
+          <DataField>PurchaseNeeds_22_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_22_Format">
+          <DataField>PurchaseNeeds_22_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_23_">
+          <DataField>PurchSign_23_</DataField>
+        </Field>
+        <Field Name="NewWeek_23_">
+          <DataField>NewWeek_23_</DataField>
+        </Field>
+        <Field Name="Order_24_">
+          <DataField>Order_24_</DataField>
+        </Field>
+        <Field Name="Order_24_Format">
+          <DataField>Order_24_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_23_">
+          <DataField>PurchaseNeeds_23_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_23_Format">
+          <DataField>PurchaseNeeds_23_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_24_">
+          <DataField>PurchSign_24_</DataField>
+        </Field>
+        <Field Name="NewWeek_24_">
+          <DataField>NewWeek_24_</DataField>
+        </Field>
+        <Field Name="Order_25_">
+          <DataField>Order_25_</DataField>
+        </Field>
+        <Field Name="Order_25_Format">
+          <DataField>Order_25_Format</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_24_">
+          <DataField>PurchaseNeeds_24_</DataField>
+        </Field>
+        <Field Name="PurchaseNeeds_24_Format">
+          <DataField>PurchaseNeeds_24_Format</DataField>
+        </Field>
+        <Field Name="PurchSign_25_">
+          <DataField>PurchSign_25_</DataField>
+        </Field>
+        <Field Name="NewWeek_25_">
+          <DataField>NewWeek_25_</DataField>
+        </Field>
+        <Field Name="OpenPOTotal">
+          <DataField>OpenPOTotal</DataField>
+        </Field>
+        <Field Name="OpenPOTotalFormat">
+          <DataField>OpenPOTotalFormat</DataField>
+        </Field>
+        <Field Name="QtyPurchased_1_">
+          <DataField>QtyPurchased_1_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_1_Format">
+          <DataField>QtyPurchased_1_Format</DataField>
+        </Field>
+        <Field Name="QtySold_1_">
+          <DataField>QtySold_1_</DataField>
+        </Field>
+        <Field Name="QtySold_1_Format">
+          <DataField>QtySold_1_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_1_">
+          <DataField>QtyAdjusted_1_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_1_Format">
+          <DataField>QtyAdjusted_1_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_10_">
+          <DataField>QtyPurchased_10_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_10_Format">
+          <DataField>QtyPurchased_10_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_10_">
+          <DataField>QtyAdjusted_10_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_10_Format">
+          <DataField>QtyAdjusted_10_Format</DataField>
+        </Field>
+        <Field Name="QtySold_10_">
+          <DataField>QtySold_10_</DataField>
+        </Field>
+        <Field Name="QtySold_10_Format">
+          <DataField>QtySold_10_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_11_">
+          <DataField>QtyPurchased_11_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_11_Format">
+          <DataField>QtyPurchased_11_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_11_">
+          <DataField>QtyAdjusted_11_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_11_Format">
+          <DataField>QtyAdjusted_11_Format</DataField>
+        </Field>
+        <Field Name="QtySold_11_">
+          <DataField>QtySold_11_</DataField>
+        </Field>
+        <Field Name="QtySold_11_Format">
+          <DataField>QtySold_11_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_12_">
+          <DataField>QtyPurchased_12_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_12_Format">
+          <DataField>QtyPurchased_12_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_12_">
+          <DataField>QtyAdjusted_12_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_12_Format">
+          <DataField>QtyAdjusted_12_Format</DataField>
+        </Field>
+        <Field Name="QtySold_12_">
+          <DataField>QtySold_12_</DataField>
+        </Field>
+        <Field Name="QtySold_12_Format">
+          <DataField>QtySold_12_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_13_">
+          <DataField>QtyPurchased_13_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_13_Format">
+          <DataField>QtyPurchased_13_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_13_">
+          <DataField>QtyAdjusted_13_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_13_Format">
+          <DataField>QtyAdjusted_13_Format</DataField>
+        </Field>
+        <Field Name="QtySold_13_">
+          <DataField>QtySold_13_</DataField>
+        </Field>
+        <Field Name="QtySold_13_Format">
+          <DataField>QtySold_13_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_14_">
+          <DataField>QtyPurchased_14_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_14_Format">
+          <DataField>QtyPurchased_14_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_14_">
+          <DataField>QtyAdjusted_14_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_14_Format">
+          <DataField>QtyAdjusted_14_Format</DataField>
+        </Field>
+        <Field Name="QtySold_14_">
+          <DataField>QtySold_14_</DataField>
+        </Field>
+        <Field Name="QtySold_14_Format">
+          <DataField>QtySold_14_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_15_">
+          <DataField>QtyPurchased_15_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_15_Format">
+          <DataField>QtyPurchased_15_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_15_">
+          <DataField>QtyAdjusted_15_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_15_Format">
+          <DataField>QtyAdjusted_15_Format</DataField>
+        </Field>
+        <Field Name="QtySold_15_">
+          <DataField>QtySold_15_</DataField>
+        </Field>
+        <Field Name="QtySold_15_Format">
+          <DataField>QtySold_15_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_16_">
+          <DataField>QtyPurchased_16_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_16_Format">
+          <DataField>QtyPurchased_16_Format</DataField>
+        </Field>
+        <Field Name="QtySold_16_">
+          <DataField>QtySold_16_</DataField>
+        </Field>
+        <Field Name="QtySold_16_Format">
+          <DataField>QtySold_16_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_16_">
+          <DataField>QtyAdjusted_16_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_16_Format">
+          <DataField>QtyAdjusted_16_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_1_">
+          <DataField>QtyTransferred_1_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_1_Format">
+          <DataField>QtyTransferred_1_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_10_">
+          <DataField>QtyTransferred_10_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_10_Format">
+          <DataField>QtyTransferred_10_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_11_">
+          <DataField>QtyTransferred_11_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_11_Format">
+          <DataField>QtyTransferred_11_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_12_">
+          <DataField>QtyTransferred_12_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_12_Format">
+          <DataField>QtyTransferred_12_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_13_">
+          <DataField>QtyTransferred_13_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_13_Format">
+          <DataField>QtyTransferred_13_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_14_">
+          <DataField>QtyTransferred_14_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_14_Format">
+          <DataField>QtyTransferred_14_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_15_">
+          <DataField>QtyTransferred_15_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_15_Format">
+          <DataField>QtyTransferred_15_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_16_">
+          <DataField>QtyTransferred_16_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_16_Format">
+          <DataField>QtyTransferred_16_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_17_">
+          <DataField>QtyPurchased_17_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_17_Format">
+          <DataField>QtyPurchased_17_Format</DataField>
+        </Field>
+        <Field Name="QtySold_17_">
+          <DataField>QtySold_17_</DataField>
+        </Field>
+        <Field Name="QtySold_17_Format">
+          <DataField>QtySold_17_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_17_">
+          <DataField>QtyAdjusted_17_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_17_Format">
+          <DataField>QtyAdjusted_17_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_17_">
+          <DataField>QtyTransferred_17_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_17_Format">
+          <DataField>QtyTransferred_17_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_18_">
+          <DataField>QtyPurchased_18_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_18_Format">
+          <DataField>QtyPurchased_18_Format</DataField>
+        </Field>
+        <Field Name="QtySold_18_">
+          <DataField>QtySold_18_</DataField>
+        </Field>
+        <Field Name="QtySold_18_Format">
+          <DataField>QtySold_18_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_18_">
+          <DataField>QtyAdjusted_18_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_18_Format">
+          <DataField>QtyAdjusted_18_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_18_">
+          <DataField>QtyTransferred_18_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_18_Format">
+          <DataField>QtyTransferred_18_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_19_">
+          <DataField>QtyPurchased_19_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_19_Format">
+          <DataField>QtyPurchased_19_Format</DataField>
+        </Field>
+        <Field Name="QtySold_19_">
+          <DataField>QtySold_19_</DataField>
+        </Field>
+        <Field Name="QtySold_19_Format">
+          <DataField>QtySold_19_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_19_">
+          <DataField>QtyAdjusted_19_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_19_Format">
+          <DataField>QtyAdjusted_19_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_19_">
+          <DataField>QtyTransferred_19_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_19_Format">
+          <DataField>QtyTransferred_19_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_20_">
+          <DataField>QtyPurchased_20_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_20_Format">
+          <DataField>QtyPurchased_20_Format</DataField>
+        </Field>
+        <Field Name="QtySold_20_">
+          <DataField>QtySold_20_</DataField>
+        </Field>
+        <Field Name="QtySold_20_Format">
+          <DataField>QtySold_20_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_20_">
+          <DataField>QtyAdjusted_20_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_20_Format">
+          <DataField>QtyAdjusted_20_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_20_">
+          <DataField>QtyTransferred_20_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_20_Format">
+          <DataField>QtyTransferred_20_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_21_">
+          <DataField>QtyPurchased_21_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_21_Format">
+          <DataField>QtyPurchased_21_Format</DataField>
+        </Field>
+        <Field Name="QtySold_21_">
+          <DataField>QtySold_21_</DataField>
+        </Field>
+        <Field Name="QtySold_21_Format">
+          <DataField>QtySold_21_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_21_">
+          <DataField>QtyAdjusted_21_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_21_Format">
+          <DataField>QtyAdjusted_21_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_21_">
+          <DataField>QtyTransferred_21_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_21_Format">
+          <DataField>QtyTransferred_21_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_22_">
+          <DataField>QtyPurchased_22_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_22_Format">
+          <DataField>QtyPurchased_22_Format</DataField>
+        </Field>
+        <Field Name="QtySold_22_">
+          <DataField>QtySold_22_</DataField>
+        </Field>
+        <Field Name="QtySold_22_Format">
+          <DataField>QtySold_22_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_22_">
+          <DataField>QtyAdjusted_22_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_22_Format">
+          <DataField>QtyAdjusted_22_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_22_">
+          <DataField>QtyTransferred_22_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_22_Format">
+          <DataField>QtyTransferred_22_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_23_">
+          <DataField>QtyPurchased_23_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_23_Format">
+          <DataField>QtyPurchased_23_Format</DataField>
+        </Field>
+        <Field Name="QtySold_23_">
+          <DataField>QtySold_23_</DataField>
+        </Field>
+        <Field Name="QtySold_23_Format">
+          <DataField>QtySold_23_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_23_">
+          <DataField>QtyAdjusted_23_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_23_Format">
+          <DataField>QtyAdjusted_23_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_23_">
+          <DataField>QtyTransferred_23_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_23_Format">
+          <DataField>QtyTransferred_23_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_24_">
+          <DataField>QtyPurchased_24_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_24_Format">
+          <DataField>QtyPurchased_24_Format</DataField>
+        </Field>
+        <Field Name="QtySold_24_">
+          <DataField>QtySold_24_</DataField>
+        </Field>
+        <Field Name="QtySold_24_Format">
+          <DataField>QtySold_24_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_24_">
+          <DataField>QtyAdjusted_24_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_24_Format">
+          <DataField>QtyAdjusted_24_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_24_">
+          <DataField>QtyTransferred_24_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_24_Format">
+          <DataField>QtyTransferred_24_Format</DataField>
+        </Field>
+        <Field Name="QtyPurchased_25_">
+          <DataField>QtyPurchased_25_</DataField>
+        </Field>
+        <Field Name="QtyPurchased_25_Format">
+          <DataField>QtyPurchased_25_Format</DataField>
+        </Field>
+        <Field Name="QtySold_25_">
+          <DataField>QtySold_25_</DataField>
+        </Field>
+        <Field Name="QtySold_25_Format">
+          <DataField>QtySold_25_Format</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_25_">
+          <DataField>QtyAdjusted_25_</DataField>
+        </Field>
+        <Field Name="QtyAdjusted_25_Format">
+          <DataField>QtyAdjusted_25_Format</DataField>
+        </Field>
+        <Field Name="QtyTransferred_25_">
+          <DataField>QtyTransferred_25_</DataField>
+        </Field>
+        <Field Name="QtyTransferred_25_Format">
+          <DataField>QtyTransferred_25_Format</DataField>
+        </Field>
+        <Field Name="Item__Unit_Price_">
+          <DataField>Item__Unit_Price_</DataField>
+        </Field>
+        <Field Name="Item__Unit_Price_Format">
+          <DataField>Item__Unit_Price_Format</DataField>
+        </Field>
+        <Field Name="Item__Unit_Cost_">
+          <DataField>Item__Unit_Cost_</DataField>
+        </Field>
+        <Field Name="Item__Unit_Cost_Format">
+          <DataField>Item__Unit_Cost_Format</DataField>
+        </Field>
+        <Field Name="Item__Manufacturer_Code_">
+          <DataField>Item__Manufacturer_Code_</DataField>
+        </Field>
+        <Field Name="Item__Gross_Weight_">
+          <DataField>Item__Gross_Weight_</DataField>
+        </Field>
+        <Field Name="Item__Gross_Weight_Format">
+          <DataField>Item__Gross_Weight_Format</DataField>
+        </Field>
+        <Field Name="Fore__Ave__Daily_Usage_Caption">
+          <DataField>Fore__Ave__Daily_Usage_Caption</DataField>
+        </Field>
+        <Field Name="Day_On_HandCaption">
+          <DataField>Day_On_HandCaption</DataField>
+        </Field>
+        <Field Name="Minimum_Order_Qty_Caption">
+          <DataField>Minimum_Order_Qty_Caption</DataField>
+        </Field>
+        <Field Name="Actual_Ave__Wkly__Usage__last_12weeks_Caption">
+          <DataField>Actual_Ave__Wkly__Usage__last_12weeks_Caption</DataField>
+        </Field>
+        <Field Name="Min_Inventory_Level_QtyCaption">
+          <DataField>Min_Inventory_Level_QtyCaption</DataField>
+        </Field>
+        <Field Name="Max__Inventory_Level_Qty_Caption">
+          <DataField>Max__Inventory_Level_Qty_Caption</DataField>
+        </Field>
+        <Field Name="WeeksCaption">
+          <DataField>WeeksCaption</DataField>
+        </Field>
+        <Field Name="WeeksCaption_Control1000000228">
+          <DataField>WeeksCaption_Control1000000228</DataField>
+        </Field>
+        <Field Name="WeeksCaption_Control1000000417">
+          <DataField>WeeksCaption_Control1000000417</DataField>
+        </Field>
+        <Field Name="Mimimum_Inventory_LevelCaption">
+          <DataField>Mimimum_Inventory_LevelCaption</DataField>
+        </Field>
+        <Field Name="Maximum_Inventory_LevelCaption">
+          <DataField>Maximum_Inventory_LevelCaption</DataField>
+        </Field>
+        <Field Name="Lead_TimeCaption">
+          <DataField>Lead_TimeCaption</DataField>
+        </Field>
+        <Field Name="Item__Vendor_No__Caption">
+          <DataField>Item__Vendor_No__Caption</DataField>
+        </Field>
+        <Field Name="SNP__Units_Per_Parcel_Caption">
+          <DataField>SNP__Units_Per_Parcel_Caption</DataField>
+        </Field>
+        <Field Name="Ave__Forecast__Next_8_weeks_Caption">
+          <DataField>Ave__Forecast__Next_8_weeks_Caption</DataField>
+        </Field>
+        <Field Name="Blocked_Inv_Caption">
+          <DataField>Blocked_Inv_Caption</DataField>
+        </Field>
+        <Field Name="Over_120_DaysCaption">
+          <DataField>Over_120_DaysCaption</DataField>
+        </Field>
+        <Field Name="Qty__on_HandCaption">
+          <DataField>Qty__on_HandCaption</DataField>
+        </Field>
+        <Field Name="Suggested_ReceiptCaption">
+          <DataField>Suggested_ReceiptCaption</DataField>
+        </Field>
+        <Field Name="ForecastCaption">
+          <DataField>ForecastCaption</DataField>
+        </Field>
+        <Field Name="Suggested_Order_Qty_Caption">
+          <DataField>Suggested_Order_Qty_Caption</DataField>
+        </Field>
+        <Field Name="Qty__AvailableCaption">
+          <DataField>Qty__AvailableCaption</DataField>
+        </Field>
+        <Field Name="OPEN_P_O_Caption">
+          <DataField>OPEN_P_O_Caption</DataField>
+        </Field>
+        <Field Name="EXPEDITECaption">
+          <DataField>EXPEDITECaption</DataField>
+        </Field>
+        <Field Name="Weeks_on_HandCaption">
+          <DataField>Weeks_on_HandCaption</DataField>
+        </Field>
+        <Field Name="Qty__ReceivedCaption">
+          <DataField>Qty__ReceivedCaption</DataField>
+        </Field>
+        <Field Name="Sales_Invoice_LinesCaption">
+          <DataField>Sales_Invoice_LinesCaption</DataField>
+        </Field>
+        <Field Name="Qty__AdjustedCaption">
+          <DataField>Qty__AdjustedCaption</DataField>
+        </Field>
+        <Field Name="Qty__TransferredCaption">
+          <DataField>Qty__TransferredCaption</DataField>
+        </Field>
+        <Field Name="Item__Unit_Price_Caption">
+          <DataField>Item__Unit_Price_Caption</DataField>
+        </Field>
+        <Field Name="Item__Unit_Cost_Caption">
+          <DataField>Item__Unit_Cost_Caption</DataField>
+        </Field>
+        <Field Name="ManufacturerCaption">
+          <DataField>ManufacturerCaption</DataField>
+        </Field>
+        <Field Name="Item__Gross_Weight_Caption">
+          <DataField>Item__Gross_Weight_Caption</DataField>
+        </Field>
+        <Field Name="This_is_the_ENDCaption">
+          <DataField>This_is_the_ENDCaption</DataField>
+        </Field>
+        <Field Name="Item_Forecast_OnOff">
+          <DataField>Item_Forecast_OnOff</DataField>
+        </Field>
+        <Field Name="ShowDetails3">
+          <DataField>ShowDetails3</DataField>
+        </Field>
+        <Field Name="ShowDetails2">
+          <DataField>ShowDetails2</DataField>
+        </Field>
+        <Field Name="ShowDetails">
+          <DataField>ShowDetails</DataField>
+        </Field>
+        <Field Name="ForecastEntryFound">
+          <DataField>ForecastEntryFound</DataField>
+        </Field>
+        <Field Name="VendorNo_Cap">
+          <DataField>VendorNo_Cap</DataField>
+        </Field>
+        <Field Name="Forecast_BreakdownCaption">
+          <DataField>Forecast_BreakdownCaption</DataField>
+        </Field>
+        <Field Name="LotNo_Cap">
+          <DataField>LotNo_Cap</DataField>
+        </Field>
+        <Field Name="Inventory_Cap">
+          <DataField>Inventory_Cap</DataField>
+        </Field>
+        <Field Name="LotCreationDate_Cap">
+          <DataField>LotCreationDate_Cap</DataField>
+        </Field>
+        <Field Name="InvAge_Cap">
+          <DataField>InvAge_Cap</DataField>
+        </Field>
+        <Field Name="ShowAge">
+          <DataField>ShowAge</DataField>
+        </Field>
+        <Field Name="Code_Item_Category">
+          <DataField>Code_Item_Category</DataField>
+        </Field>
+        <Field Name="ForecastQty2_10_">
+          <DataField>ForecastQty2_10_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_10_Format">
+          <DataField>ForecastQty2_10_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_11_">
+          <DataField>ForecastQty2_11_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_11_Format">
+          <DataField>ForecastQty2_11_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_12_">
+          <DataField>ForecastQty2_12_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_12_Format">
+          <DataField>ForecastQty2_12_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_13_">
+          <DataField>ForecastQty2_13_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_13_Format">
+          <DataField>ForecastQty2_13_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_14_">
+          <DataField>ForecastQty2_14_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_14_Format">
+          <DataField>ForecastQty2_14_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_15_">
+          <DataField>ForecastQty2_15_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_15_Format">
+          <DataField>ForecastQty2_15_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_16_">
+          <DataField>ForecastQty2_16_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_16_Format">
+          <DataField>ForecastQty2_16_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_17_">
+          <DataField>ForecastQty2_17_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_17_Format">
+          <DataField>ForecastQty2_17_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_18_">
+          <DataField>ForecastQty2_18_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_18_Format">
+          <DataField>ForecastQty2_18_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_19_">
+          <DataField>ForecastQty2_19_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_19_Format">
+          <DataField>ForecastQty2_19_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_20_">
+          <DataField>ForecastQty2_20_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_20_Format">
+          <DataField>ForecastQty2_20_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_21_">
+          <DataField>ForecastQty2_21_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_21_Format">
+          <DataField>ForecastQty2_21_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_22_">
+          <DataField>ForecastQty2_22_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_22_Format">
+          <DataField>ForecastQty2_22_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_23_">
+          <DataField>ForecastQty2_23_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_23_Format">
+          <DataField>ForecastQty2_23_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_24_">
+          <DataField>ForecastQty2_24_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_24_Format">
+          <DataField>ForecastQty2_24_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_25_">
+          <DataField>ForecastQty2_25_</DataField>
+        </Field>
+        <Field Name="ForecastQty2_25_Format">
+          <DataField>ForecastQty2_25_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_10_">
+          <DataField>ForecastQty3_10_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_10_Format">
+          <DataField>ForecastQty3_10_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_11_">
+          <DataField>ForecastQty3_11_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_11_Format">
+          <DataField>ForecastQty3_11_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_12_">
+          <DataField>ForecastQty3_12_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_12_Format">
+          <DataField>ForecastQty3_12_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_13_">
+          <DataField>ForecastQty3_13_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_13_Format">
+          <DataField>ForecastQty3_13_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_14_">
+          <DataField>ForecastQty3_14_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_14_Format">
+          <DataField>ForecastQty3_14_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_15_">
+          <DataField>ForecastQty3_15_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_15_Format">
+          <DataField>ForecastQty3_15_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_16_">
+          <DataField>ForecastQty3_16_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_16_Format">
+          <DataField>ForecastQty3_16_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_17_">
+          <DataField>ForecastQty3_17_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_17_Format">
+          <DataField>ForecastQty3_17_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_18_">
+          <DataField>ForecastQty3_18_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_18_Format">
+          <DataField>ForecastQty3_18_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_19_">
+          <DataField>ForecastQty3_19_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_19_Format">
+          <DataField>ForecastQty3_19_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_20_">
+          <DataField>ForecastQty3_20_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_20_Format">
+          <DataField>ForecastQty3_20_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_21_">
+          <DataField>ForecastQty3_21_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_21_Format">
+          <DataField>ForecastQty3_21_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_22_">
+          <DataField>ForecastQty3_22_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_22_Format">
+          <DataField>ForecastQty3_22_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_23_">
+          <DataField>ForecastQty3_23_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_23_Format">
+          <DataField>ForecastQty3_23_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_24_">
+          <DataField>ForecastQty3_24_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_24_Format">
+          <DataField>ForecastQty3_24_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_25_">
+          <DataField>ForecastQty3_25_</DataField>
+        </Field>
+        <Field Name="ForecastQty3_25_Format">
+          <DataField>ForecastQty3_25_Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_10__Control1000000271">
+          <DataField>ForecastQty2_10__Control1000000271</DataField>
+        </Field>
+        <Field Name="ForecastQty2_10__Control1000000271Format">
+          <DataField>ForecastQty2_10__Control1000000271Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_11__Control1000000272">
+          <DataField>ForecastQty2_11__Control1000000272</DataField>
+        </Field>
+        <Field Name="ForecastQty2_11__Control1000000272Format">
+          <DataField>ForecastQty2_11__Control1000000272Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_12__Control1000000273">
+          <DataField>ForecastQty2_12__Control1000000273</DataField>
+        </Field>
+        <Field Name="ForecastQty2_12__Control1000000273Format">
+          <DataField>ForecastQty2_12__Control1000000273Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_13__Control1000000274">
+          <DataField>ForecastQty2_13__Control1000000274</DataField>
+        </Field>
+        <Field Name="ForecastQty2_13__Control1000000274Format">
+          <DataField>ForecastQty2_13__Control1000000274Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_14__Control1000000291">
+          <DataField>ForecastQty2_14__Control1000000291</DataField>
+        </Field>
+        <Field Name="ForecastQty2_14__Control1000000291Format">
+          <DataField>ForecastQty2_14__Control1000000291Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_15__Control1000000292">
+          <DataField>ForecastQty2_15__Control1000000292</DataField>
+        </Field>
+        <Field Name="ForecastQty2_15__Control1000000292Format">
+          <DataField>ForecastQty2_15__Control1000000292Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_16__Control1000000326">
+          <DataField>ForecastQty2_16__Control1000000326</DataField>
+        </Field>
+        <Field Name="ForecastQty2_16__Control1000000326Format">
+          <DataField>ForecastQty2_16__Control1000000326Format</DataField>
+        </Field>
+        <Field Name="Forecast_Ledger_Entry__Customer_No__">
+          <DataField>Forecast_Ledger_Entry__Customer_No__</DataField>
+        </Field>
+        <Field Name="ForecastQty2_17__Control1000000306">
+          <DataField>ForecastQty2_17__Control1000000306</DataField>
+        </Field>
+        <Field Name="ForecastQty2_17__Control1000000306Format">
+          <DataField>ForecastQty2_17__Control1000000306Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_18__Control1000000307">
+          <DataField>ForecastQty2_18__Control1000000307</DataField>
+        </Field>
+        <Field Name="ForecastQty2_18__Control1000000307Format">
+          <DataField>ForecastQty2_18__Control1000000307Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_19__Control1000000308">
+          <DataField>ForecastQty2_19__Control1000000308</DataField>
+        </Field>
+        <Field Name="ForecastQty2_19__Control1000000308Format">
+          <DataField>ForecastQty2_19__Control1000000308Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_20__Control1000000336">
+          <DataField>ForecastQty2_20__Control1000000336</DataField>
+        </Field>
+        <Field Name="ForecastQty2_20__Control1000000336Format">
+          <DataField>ForecastQty2_20__Control1000000336Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_21__Control1000000337">
+          <DataField>ForecastQty2_21__Control1000000337</DataField>
+        </Field>
+        <Field Name="ForecastQty2_21__Control1000000337Format">
+          <DataField>ForecastQty2_21__Control1000000337Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_22__Control1000000338">
+          <DataField>ForecastQty2_22__Control1000000338</DataField>
+        </Field>
+        <Field Name="ForecastQty2_22__Control1000000338Format">
+          <DataField>ForecastQty2_22__Control1000000338Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_23__Control1000000339">
+          <DataField>ForecastQty2_23__Control1000000339</DataField>
+        </Field>
+        <Field Name="ForecastQty2_23__Control1000000339Format">
+          <DataField>ForecastQty2_23__Control1000000339Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_24__Control1000000340">
+          <DataField>ForecastQty2_24__Control1000000340</DataField>
+        </Field>
+        <Field Name="ForecastQty2_24__Control1000000340Format">
+          <DataField>ForecastQty2_24__Control1000000340Format</DataField>
+        </Field>
+        <Field Name="ForecastQty2_25__Control1000000341">
+          <DataField>ForecastQty2_25__Control1000000341</DataField>
+        </Field>
+        <Field Name="ForecastQty2_25__Control1000000341Format">
+          <DataField>ForecastQty2_25__Control1000000341Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_10__Control1000000404">
+          <DataField>ForecastQty3_10__Control1000000404</DataField>
+        </Field>
+        <Field Name="ForecastQty3_10__Control1000000404Format">
+          <DataField>ForecastQty3_10__Control1000000404Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_11__Control1000000405">
+          <DataField>ForecastQty3_11__Control1000000405</DataField>
+        </Field>
+        <Field Name="ForecastQty3_11__Control1000000405Format">
+          <DataField>ForecastQty3_11__Control1000000405Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_12__Control1000000406">
+          <DataField>ForecastQty3_12__Control1000000406</DataField>
+        </Field>
+        <Field Name="ForecastQty3_12__Control1000000406Format">
+          <DataField>ForecastQty3_12__Control1000000406Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_13__Control1000000407">
+          <DataField>ForecastQty3_13__Control1000000407</DataField>
+        </Field>
+        <Field Name="ForecastQty3_13__Control1000000407Format">
+          <DataField>ForecastQty3_13__Control1000000407Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_14__Control1000000408">
+          <DataField>ForecastQty3_14__Control1000000408</DataField>
+        </Field>
+        <Field Name="ForecastQty3_14__Control1000000408Format">
+          <DataField>ForecastQty3_14__Control1000000408Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_15__Control1000000409">
+          <DataField>ForecastQty3_15__Control1000000409</DataField>
+        </Field>
+        <Field Name="ForecastQty3_15__Control1000000409Format">
+          <DataField>ForecastQty3_15__Control1000000409Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_16__Control1000000410">
+          <DataField>ForecastQty3_16__Control1000000410</DataField>
+        </Field>
+        <Field Name="ForecastQty3_16__Control1000000410Format">
+          <DataField>ForecastQty3_16__Control1000000410Format</DataField>
+        </Field>
+        <Field Name="Forecast_Ledger_Entry__Customer_No___Control1000000057">
+          <DataField>Forecast_Ledger_Entry__Customer_No___Control1000000057</DataField>
+        </Field>
+        <Field Name="ForecastQty3_17__Control1000000362">
+          <DataField>ForecastQty3_17__Control1000000362</DataField>
+        </Field>
+        <Field Name="ForecastQty3_17__Control1000000362Format">
+          <DataField>ForecastQty3_17__Control1000000362Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_18__Control1000000363">
+          <DataField>ForecastQty3_18__Control1000000363</DataField>
+        </Field>
+        <Field Name="ForecastQty3_18__Control1000000363Format">
+          <DataField>ForecastQty3_18__Control1000000363Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_19__Control1000000364">
+          <DataField>ForecastQty3_19__Control1000000364</DataField>
+        </Field>
+        <Field Name="ForecastQty3_19__Control1000000364Format">
+          <DataField>ForecastQty3_19__Control1000000364Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_20__Control1000000365">
+          <DataField>ForecastQty3_20__Control1000000365</DataField>
+        </Field>
+        <Field Name="ForecastQty3_20__Control1000000365Format">
+          <DataField>ForecastQty3_20__Control1000000365Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_21__Control1000000366">
+          <DataField>ForecastQty3_21__Control1000000366</DataField>
+        </Field>
+        <Field Name="ForecastQty3_21__Control1000000366Format">
+          <DataField>ForecastQty3_21__Control1000000366Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_22__Control1000000367">
+          <DataField>ForecastQty3_22__Control1000000367</DataField>
+        </Field>
+        <Field Name="ForecastQty3_22__Control1000000367Format">
+          <DataField>ForecastQty3_22__Control1000000367Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_23__Control1000000368">
+          <DataField>ForecastQty3_23__Control1000000368</DataField>
+        </Field>
+        <Field Name="ForecastQty3_23__Control1000000368Format">
+          <DataField>ForecastQty3_23__Control1000000368Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_24__Control1000000369">
+          <DataField>ForecastQty3_24__Control1000000369</DataField>
+        </Field>
+        <Field Name="ForecastQty3_24__Control1000000369Format">
+          <DataField>ForecastQty3_24__Control1000000369Format</DataField>
+        </Field>
+        <Field Name="ForecastQty3_25__Control1000000370">
+          <DataField>ForecastQty3_25__Control1000000370</DataField>
+        </Field>
+        <Field Name="ForecastQty3_25__Control1000000370Format">
+          <DataField>ForecastQty3_25__Control1000000370Format</DataField>
+        </Field>
+        <Field Name="Nifast_ForecastCaption">
+          <DataField>Nifast_ForecastCaption</DataField>
+        </Field>
+        <Field Name="Forecast_Ledger_Entry_Entry_No_">
+          <DataField>Forecast_Ledger_Entry_Entry_No_</DataField>
+        </Field>
+        <Field Name="Forecast_Ledger_Entry_Item_No_">
+          <DataField>Forecast_Ledger_Entry_Item_No_</DataField>
+        </Field>
+        <Field Name="Forecast_Ledger_Entry_Shipping_Date">
+          <DataField>Forecast_Ledger_Entry_Shipping_Date</DataField>
+        </Field>
+        <Field Name="Forecast_Ledger_Entry_Forecast_Quantity">
+          <DataField>Forecast_Ledger_Entry_Forecast_Quantity</DataField>
+        </Field>
+        <Field Name="Forecast_Ledger_Entry_Forecast_QuantityFormat">
+          <DataField>Forecast_Ledger_Entry_Forecast_QuantityFormat</DataField>
+        </Field>
+        <Field Name="Forecast_Ledger_Entry_Division_Code">
+          <DataField>Forecast_Ledger_Entry_Division_Code</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_10_">
+          <DataField>QtyOnPurchOrdersDetail_10_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_10_Format">
+          <DataField>QtyOnPurchOrdersDetail_10_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_11_">
+          <DataField>QtyOnPurchOrdersDetail_11_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_11_Format">
+          <DataField>QtyOnPurchOrdersDetail_11_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_12_">
+          <DataField>QtyOnPurchOrdersDetail_12_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_12_Format">
+          <DataField>QtyOnPurchOrdersDetail_12_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_13_">
+          <DataField>QtyOnPurchOrdersDetail_13_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_13_Format">
+          <DataField>QtyOnPurchOrdersDetail_13_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_14_">
+          <DataField>QtyOnPurchOrdersDetail_14_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_14_Format">
+          <DataField>QtyOnPurchOrdersDetail_14_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_15_">
+          <DataField>QtyOnPurchOrdersDetail_15_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_15_Format">
+          <DataField>QtyOnPurchOrdersDetail_15_Format</DataField>
+        </Field>
+        <Field Name="PurchLine__Document_No__________PurchHeader__Buy_from_Vendor_Name_">
+          <DataField>PurchLine__Document_No__________PurchHeader__Buy_from_Vendor_Name_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_16_">
+          <DataField>QtyOnPurchOrdersDetail_16_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_16_Format">
+          <DataField>QtyOnPurchOrdersDetail_16_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_17_">
+          <DataField>QtyOnPurchOrdersDetail_17_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_17_Format">
+          <DataField>QtyOnPurchOrdersDetail_17_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_18_">
+          <DataField>QtyOnPurchOrdersDetail_18_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_18_Format">
+          <DataField>QtyOnPurchOrdersDetail_18_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_19_">
+          <DataField>QtyOnPurchOrdersDetail_19_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_19_Format">
+          <DataField>QtyOnPurchOrdersDetail_19_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_20_">
+          <DataField>QtyOnPurchOrdersDetail_20_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_20_Format">
+          <DataField>QtyOnPurchOrdersDetail_20_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_21_">
+          <DataField>QtyOnPurchOrdersDetail_21_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_21_Format">
+          <DataField>QtyOnPurchOrdersDetail_21_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_22_">
+          <DataField>QtyOnPurchOrdersDetail_22_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_22_Format">
+          <DataField>QtyOnPurchOrdersDetail_22_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_23_">
+          <DataField>QtyOnPurchOrdersDetail_23_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_23_Format">
+          <DataField>QtyOnPurchOrdersDetail_23_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_24_">
+          <DataField>QtyOnPurchOrdersDetail_24_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_24_Format">
+          <DataField>QtyOnPurchOrdersDetail_24_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_25_">
+          <DataField>QtyOnPurchOrdersDetail_25_</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrdersDetail_25_Format">
+          <DataField>QtyOnPurchOrdersDetail_25_Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_10__Control1000000183">
+          <DataField>QtyOnPurchOrders_10__Control1000000183</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_10__Control1000000183Format">
+          <DataField>QtyOnPurchOrders_10__Control1000000183Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_11__Control1000000184">
+          <DataField>QtyOnPurchOrders_11__Control1000000184</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_11__Control1000000184Format">
+          <DataField>QtyOnPurchOrders_11__Control1000000184Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_12__Control1000000185">
+          <DataField>QtyOnPurchOrders_12__Control1000000185</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_12__Control1000000185Format">
+          <DataField>QtyOnPurchOrders_12__Control1000000185Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_13__Control1000000186">
+          <DataField>QtyOnPurchOrders_13__Control1000000186</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_13__Control1000000186Format">
+          <DataField>QtyOnPurchOrders_13__Control1000000186Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_14__Control1000000187">
+          <DataField>QtyOnPurchOrders_14__Control1000000187</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_14__Control1000000187Format">
+          <DataField>QtyOnPurchOrders_14__Control1000000187Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_15__Control1000000188">
+          <DataField>QtyOnPurchOrders_15__Control1000000188</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_15__Control1000000188Format">
+          <DataField>QtyOnPurchOrders_15__Control1000000188Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_16__Control1000000322">
+          <DataField>QtyOnPurchOrders_16__Control1000000322</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_16__Control1000000322Format">
+          <DataField>QtyOnPurchOrders_16__Control1000000322Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_17__Control1000000384">
+          <DataField>QtyOnPurchOrders_17__Control1000000384</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_17__Control1000000384Format">
+          <DataField>QtyOnPurchOrders_17__Control1000000384Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_18__Control1000000385">
+          <DataField>QtyOnPurchOrders_18__Control1000000385</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_18__Control1000000385Format">
+          <DataField>QtyOnPurchOrders_18__Control1000000385Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_19__Control1000000386">
+          <DataField>QtyOnPurchOrders_19__Control1000000386</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_19__Control1000000386Format">
+          <DataField>QtyOnPurchOrders_19__Control1000000386Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_20__Control1000000387">
+          <DataField>QtyOnPurchOrders_20__Control1000000387</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_20__Control1000000387Format">
+          <DataField>QtyOnPurchOrders_20__Control1000000387Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_21__Control1000000388">
+          <DataField>QtyOnPurchOrders_21__Control1000000388</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_21__Control1000000388Format">
+          <DataField>QtyOnPurchOrders_21__Control1000000388Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_22__Control1000000396">
+          <DataField>QtyOnPurchOrders_22__Control1000000396</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_22__Control1000000396Format">
+          <DataField>QtyOnPurchOrders_22__Control1000000396Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_23__Control1000000397">
+          <DataField>QtyOnPurchOrders_23__Control1000000397</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_23__Control1000000397Format">
+          <DataField>QtyOnPurchOrders_23__Control1000000397Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_24__Control1000000398">
+          <DataField>QtyOnPurchOrders_24__Control1000000398</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_24__Control1000000398Format">
+          <DataField>QtyOnPurchOrders_24__Control1000000398Format</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_25__Control1000000399">
+          <DataField>QtyOnPurchOrders_25__Control1000000399</DataField>
+        </Field>
+        <Field Name="QtyOnPurchOrders_25__Control1000000399Format">
+          <DataField>QtyOnPurchOrders_25__Control1000000399Format</DataField>
+        </Field>
+        <Field Name="Purchase_OrdersCaption">
+          <DataField>Purchase_OrdersCaption</DataField>
+        </Field>
+        <Field Name="Qty__on_Purchase_OrdersCaption">
+          <DataField>Qty__on_Purchase_OrdersCaption</DataField>
+        </Field>
+        <Field Name="PurchOrderLoop_Number">
+          <DataField>PurchOrderLoop_Number</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_10_">
+          <DataField>QtyOnSalesOrdersDetail_10_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_10_Format">
+          <DataField>QtyOnSalesOrdersDetail_10_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_11_">
+          <DataField>QtyOnSalesOrdersDetail_11_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_11_Format">
+          <DataField>QtyOnSalesOrdersDetail_11_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_12_">
+          <DataField>QtyOnSalesOrdersDetail_12_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_12_Format">
+          <DataField>QtyOnSalesOrdersDetail_12_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_13_">
+          <DataField>QtyOnSalesOrdersDetail_13_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_13_Format">
+          <DataField>QtyOnSalesOrdersDetail_13_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_14_">
+          <DataField>QtyOnSalesOrdersDetail_14_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_14_Format">
+          <DataField>QtyOnSalesOrdersDetail_14_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_15_">
+          <DataField>QtyOnSalesOrdersDetail_15_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_15_Format">
+          <DataField>QtyOnSalesOrdersDetail_15_Format</DataField>
+        </Field>
+        <Field Name="SalesLine__Document_No___________SalesHeader__Sell_to_Customer_Name_">
+          <DataField>SalesLine__Document_No___________SalesHeader__Sell_to_Customer_Name_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_16_">
+          <DataField>QtyOnSalesOrdersDetail_16_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_16_Format">
+          <DataField>QtyOnSalesOrdersDetail_16_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_17_">
+          <DataField>QtyOnSalesOrdersDetail_17_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_17_Format">
+          <DataField>QtyOnSalesOrdersDetail_17_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_18_">
+          <DataField>QtyOnSalesOrdersDetail_18_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_18_Format">
+          <DataField>QtyOnSalesOrdersDetail_18_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_19_">
+          <DataField>QtyOnSalesOrdersDetail_19_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_19_Format">
+          <DataField>QtyOnSalesOrdersDetail_19_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_20_">
+          <DataField>QtyOnSalesOrdersDetail_20_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_20_Format">
+          <DataField>QtyOnSalesOrdersDetail_20_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_21_">
+          <DataField>QtyOnSalesOrdersDetail_21_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_21_Format">
+          <DataField>QtyOnSalesOrdersDetail_21_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_22_">
+          <DataField>QtyOnSalesOrdersDetail_22_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_22_Format">
+          <DataField>QtyOnSalesOrdersDetail_22_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_23_">
+          <DataField>QtyOnSalesOrdersDetail_23_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_23_Format">
+          <DataField>QtyOnSalesOrdersDetail_23_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_24_">
+          <DataField>QtyOnSalesOrdersDetail_24_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_24_Format">
+          <DataField>QtyOnSalesOrdersDetail_24_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_25_">
+          <DataField>QtyOnSalesOrdersDetail_25_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrdersDetail_25_Format">
+          <DataField>QtyOnSalesOrdersDetail_25_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_10_">
+          <DataField>QtyOnSalesOrders_10_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_10_Format">
+          <DataField>QtyOnSalesOrders_10_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_11_">
+          <DataField>QtyOnSalesOrders_11_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_11_Format">
+          <DataField>QtyOnSalesOrders_11_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_12_">
+          <DataField>QtyOnSalesOrders_12_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_12_Format">
+          <DataField>QtyOnSalesOrders_12_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_13_">
+          <DataField>QtyOnSalesOrders_13_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_13_Format">
+          <DataField>QtyOnSalesOrders_13_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_14_">
+          <DataField>QtyOnSalesOrders_14_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_14_Format">
+          <DataField>QtyOnSalesOrders_14_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_15_">
+          <DataField>QtyOnSalesOrders_15_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_15_Format">
+          <DataField>QtyOnSalesOrders_15_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_16_">
+          <DataField>QtyOnSalesOrders_16_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_16_Format">
+          <DataField>QtyOnSalesOrders_16_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_17_">
+          <DataField>QtyOnSalesOrders_17_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_17_Format">
+          <DataField>QtyOnSalesOrders_17_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_18_">
+          <DataField>QtyOnSalesOrders_18_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_18_Format">
+          <DataField>QtyOnSalesOrders_18_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_19_">
+          <DataField>QtyOnSalesOrders_19_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_19_Format">
+          <DataField>QtyOnSalesOrders_19_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_20_">
+          <DataField>QtyOnSalesOrders_20_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_20_Format">
+          <DataField>QtyOnSalesOrders_20_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_21_">
+          <DataField>QtyOnSalesOrders_21_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_21_Format">
+          <DataField>QtyOnSalesOrders_21_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_22_">
+          <DataField>QtyOnSalesOrders_22_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_22_Format">
+          <DataField>QtyOnSalesOrders_22_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_23_">
+          <DataField>QtyOnSalesOrders_23_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_23_Format">
+          <DataField>QtyOnSalesOrders_23_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_24_">
+          <DataField>QtyOnSalesOrders_24_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_24_Format">
+          <DataField>QtyOnSalesOrders_24_Format</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_25_">
+          <DataField>QtyOnSalesOrders_25_</DataField>
+        </Field>
+        <Field Name="QtyOnSalesOrders_25_Format">
+          <DataField>QtyOnSalesOrders_25_Format</DataField>
+        </Field>
+        <Field Name="Sales_OrdersCaption">
+          <DataField>Sales_OrdersCaption</DataField>
+        </Field>
+        <Field Name="Qty__on_Sales_OrdersCaption">
+          <DataField>Qty__on_Sales_OrdersCaption</DataField>
+        </Field>
+        <Field Name="SalesOrderLoop_Number">
+          <DataField>SalesOrderLoop_Number</DataField>
+        </Field>
+        <Field Name="Vendor_Name">
+          <DataField>Vendor_Name</DataField>
+        </Field>
+        <Field Name="Vendor_NameCaption">
+          <DataField>Vendor_NameCaption</DataField>
+        </Field>
+        <Field Name="Vendor_No_">
+          <DataField>Vendor_No_</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_No__">
+          <DataField>Lot_No__Information__Lot_No__</DataField>
+        </Field>
+        <Field Name="Lot_No__Information_Inventory">
+          <DataField>Lot_No__Information_Inventory</DataField>
+        </Field>
+        <Field Name="Lot_No__Information_InventoryFormat">
+          <DataField>Lot_No__Information_InventoryFormat</DataField>
+        </Field>
+        <Field Name="Lot_No__Information__Lot_Creation_Date_">
+          <DataField>Lot_No__Information__Lot_Creation_Date_</DataField>
+        </Field>
+        <Field Name="Over">
+          <DataField>Over</DataField>
+        </Field>
+        <Field Name="Lot_No__Information_Item_No_">
+          <DataField>Lot_No__Information_Item_No_</DataField>
+        </Field>
+        <Field Name="Lot_No__Information_Variant_Code">
+          <DataField>Lot_No__Information_Variant_Code</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>
