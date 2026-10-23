@@ -1693,7 +1693,8 @@ report 50089 "[P] Availability Canada"
 
                 trigger OnAfterGetRecord()
                 begin
-                    Over := TODAY - "Lot Creation Date";
+                    if "Lot Creation Date" <> 0D then
+                        Over := TODAY - "Lot Creation Date";
                     IF (ExportToExcel) AND (Over > 120) THEN
                         MakeExcelLotInfoBody_lFnc;
                 end;
