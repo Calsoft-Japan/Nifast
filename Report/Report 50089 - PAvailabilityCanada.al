@@ -2833,26 +2833,32 @@ report 50089 "[P] Availability Canada"
                     field(PeriodStartingDate_2; PeriodStartingDate[2])
                     {
                         Caption = 'Starting Date';
+                        applicationarea = All;
                     }
                     field(PeriodCalculation; PeriodCalculation)
                     {
                         Caption = 'Length Of Period';
+                        applicationarea = All;
                     }
                     field(ExportToExcel; ExportToExcel)
                     {
                         Caption = 'Export To Excel';
+                        applicationarea = All;
                     }
                     field(ShowDetails; ShowDetails)
                     {
                         Caption = 'Customer, Sales, Purchase Details';
+                        applicationarea = All;
                     }
                     field(ShowDetailDetroit; ShowDetailDetroit)
                     {
                         Caption = 'Cross Ref. Info.';
+                        applicationarea = All;
                     }
                     field(ShowAge; ShowAge)
                     {
                         Caption = 'Show Inventory Age';
+                        applicationarea = All;
                     }
                 }
             }
