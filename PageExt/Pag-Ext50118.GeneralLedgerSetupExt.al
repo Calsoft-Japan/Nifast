@@ -20,6 +20,11 @@ pageextension 50118 GeneralLedgerSetupExt extends "General Ledger Setup"
                 {
                     ApplicationArea = All;
                 }
+                field("SPS E-Mail Body Text"; Rec."SPS E-Mail Body Text")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the SPS Body Text field.', Comment = '%';
+                }
             }
         }
     }

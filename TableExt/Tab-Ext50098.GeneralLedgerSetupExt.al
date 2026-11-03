@@ -27,6 +27,11 @@ tableextension 50098 "General Ledger Setup Ext" extends "General Ledger Setup"
             Caption = 'SPS Subject Text';
             DataClassification = CustomerContent;
         }
+        field(50005; "SPS E-Mail Body Text"; Text[250])
+        {
+            Caption = 'SPS Body Text';
+            DataClassification = CustomerContent;
+        }
         field(50051; "Payee Match Export Shared Dir"; Text[100])
         {
             Caption = 'Payee Match Export File Shared Directory';
