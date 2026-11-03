@@ -8,6 +8,7 @@ table 50049 "SPS Customer"
         field(1; "Customer No."; Code[20])
         {
             Caption = 'Customer No.';
+            tableRelation = Customer."No.";
         }
         field(2; "Customer Name"; Text[100])
         {

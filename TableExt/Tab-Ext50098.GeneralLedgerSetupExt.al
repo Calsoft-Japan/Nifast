@@ -17,11 +17,6 @@ tableextension 50098 "General Ledger Setup Ext" extends "General Ledger Setup"
             DataClassification = ToBeClassified;
             Caption = 'SPS E-mail';
         }
-        field(50003; "SPS Error E-Mails Text Code"; Code[20])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "Standard Text".Code;
-        }
         field(50004; "SPS E-Mail Subject Text"; Text[100])
         {
             Caption = 'SPS Subject Text';

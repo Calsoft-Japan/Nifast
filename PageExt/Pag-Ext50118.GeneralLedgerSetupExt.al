@@ -16,13 +16,10 @@ pageextension 50118 GeneralLedgerSetupExt extends "General Ledger Setup"
                     MultiLine = true;
                     ToolTip = 'Specifies the value of the SPS Subject Text field.', Comment = '%';
                 }
-                field("SPS Error E-Mails Text Code"; Rec."SPS Error E-Mails Text Code")
-                {
-                    ApplicationArea = All;
-                }
                 field("SPS E-Mail Body Text"; Rec."SPS E-Mail Body Text")
                 {
                     ApplicationArea = All;
+                    MultiLine = true;
                     ToolTip = 'Specifies the value of the SPS Body Text field.', Comment = '%';
                 }
             }

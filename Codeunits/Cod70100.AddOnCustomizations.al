@@ -583,7 +583,9 @@ codeunit 70100 AddOnCustomizations
 
         if TempSPSStaging.FindSet() then
             repeat
-                SPSStaging := TempSPSStaging;
+                SPSStaging.Init();
+                SPSStaging.TransferFields(TempSPSStaging);
+                SPSStaging."Entry No." := 0;
                 SPSStaging.INSERT(true);
             until TempSPSStaging.Next() = 0;
 
