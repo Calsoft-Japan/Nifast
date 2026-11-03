@@ -522,5 +522,64 @@ codeunit 70100 AddOnCustomizations
         Handled := true;
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Pack Line Scanning Mgt.", pubOnAfterCreateLinesFromPostedPackage, '', false, false)]
+    local procedure "LAX Pack Line Scanning Mgt._pubOnAfterCreateLinesFromPostedPackage"(var CurrentInputLine: Text; Item: Record Item; PostedPackageLine: Record "LAX Posted Package Line"; PackingRule: Record "LAX Packing Rule"; var Package: Record "LAX Package"; var PackingStation: Record "LAX Packing Station"; var ShippingAgent: Record "Shipping Agent"; var PackingControl: Record "LAX Packing Control"; var BillofLading: Record "LAX Bill of Lading"; var ItemCrossReference: Record "Item Reference"; var ReturnVal: Boolean)
+    var
+        CartonFrstSno: Integer;
+        CartonLastSno: Integer;
+        NoOfCartonSno: Integer;
+        i: integer;
+        SPSStaging: Record "SPS Staging";
+    begin
+        Evaluate(CartonFrstSno, PostedPackageLine."Carton First SrNo.");
+        Evaluate(CartonLastSno, PostedPackageLine."Carton Last SrNo.");
+        NoOfCartonSno := CartonLastSno - CartonFrstSno + 1;
+        if NoOfCartonSno = 0 then begin
+            SendEmail();
+            exit;
+        end;
+        if Item."Units per Parcel" <> (PostedPackageLine.Quantity / NoOfCartonSno) then begin
+            SendEmail();
+            exit;
+        end;
+        for i := 1 to NoOfCartonSno do begin
+            SPSStaging.INIT;
+            SPSStaging."Entry No." := 0;
+            SPSStaging."Posted Shipment No." := PostedPackageLine."Posted Source ID";
+            SPSStaging."Package No." := PostedPackageLine."Package No.";
+            SPSStaging."Package Line No." := PostedPackageLine."Line No.";
+            SPSStaging."Serial Number" := StrSubstNo('%1-%2', PostedPackageLine."Carton Last SrNo.", PostedPackageLine."Carton First SrNo.");
+            SPSStaging."Units per parcel" := PostedPackageLine.Quantity / NoOfCartonSno;
+            SPSStaging."Package Weight" := PostedPackageLine."Gross Weight" / NoOfCartonSno;
+            SPSStaging."Line Type" := 'carton';
+            SPSStaging."Master Serial No." := PostedPackageLine."Master Label SrNo.";
+            SPSStaging.INSERT(true);
+        end;
+        if PostedPackageLine."Master Label SrNo." <> '' then begin
+            SPSStaging.INIT;
+            SPSStaging."Entry No." := 0;
+            SPSStaging."Posted Shipment No." := PostedPackageLine."Posted Source ID";
+            SPSStaging."Package No." := PostedPackageLine."Package No.";
+            SPSStaging."Package Line No." := PostedPackageLine."Line No.";
+            SPSStaging."Serial Number" := PostedPackageLine."Master Label SrNo.";
+            SPSStaging."Units per parcel" := PostedPackageLine.Quantity / NoOfCartonSno;
+            SPSStaging."Line Type" := 'master';
+            SPSStaging.INSERT(true);
+        end;
+    end;
+
+    local procedure SendEmail()
+    var
+        EmailMessage: Codeunit "Email Message";
+        Email: Codeunit Email;
+        GLSetup: Record "General Ledger Setup";
+    begin
+        GLSetup.GET();
+        if GLSetup."SPS E-Mail" = '' then
+            exit;
+        EmailMessage.Create(GLSetup."SPS E-Mail", GLSetup."SPS E-Mail Subject Text", '');
+        Email.Send(EmailMessage, Enum::"Email Scenario"::Default);
+    end;
+
 
 }
