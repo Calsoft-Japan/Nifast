@@ -1,0 +1,42 @@
+permissionset 50282 "LEG0183"
+{
+    Assignable = true;
+    Caption = '501 ITEMS UPDATE';
+    Permissions =
+        tabledata "Change Log Setup" = R,
+        tabledata "Country/Region" = RIM,
+        tabledata "LAX Customer Item Package UOM" = R,
+        tabledata "Default Dimension" = R,
+        tabledata "LAX EShip Tracking Code" = R,
+        tabledata "Entry Summary" = R,
+        tabledata "Extended Text Line" = R,
+        tabledata "Forecast Log File" = IM,
+        tabledata "Gen. Product Posting Group" = R,
+        tabledata "Inventory Posting Group" = R,
+        tabledata "Inventory Posting Setup" = R,
+        tabledata "Item" = IMD,
+        tabledata "Item Application Entry" = R,
+        tabledata "Item Category" = R,
+        tabledata "Item Reference" = RIMD,
+        tabledata "Item Ledger Entry" = RI,
+        tabledata "Item Tracking Code" = R,
+        tabledata "Item Translation" = R,
+        tabledata "Item Variant" = R,
+        tabledata "Item Vendor" = R,
+        tabledata "Manufacturer" = R,
+        tabledata "Phys. Invt. Counting Period" = R,
+        tabledata "Purch. Inv. Header" = R,
+        tabledata "Purchase Header" = R,
+        tabledata "Purchase Line Discount" = R,
+        tabledata "Purchase Price" = R,
+        tabledata "Put-away Template Header" = R,
+        tabledata "LAX Receive Rule" = R,
+        tabledata "Sales Header" = R,
+        tabledata "Sales Invoice Header" = R,
+        tabledata "Sales Line Discount" = R,
+        tabledata "Sales Price" = R,
+        tabledata "Special Equipment" = R,
+        tabledata "Stockkeeping Unit" = RIm,
+        tabledata "Tax Group" = R,
+        tabledata "Vehicle Production" = RIMD;
+}
