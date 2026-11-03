@@ -530,7 +530,7 @@ codeunit 70100 AddOnCustomizations
         NoOfCartonSno: Integer;
         i: integer;
         SPSStaging: Record "SPS Staging";
-        TempSPSStaging: Record "SPS Staging";
+        TempSPSStaging: Record "SPS Staging" temporary;
         PostedPackage: Record "LAX Posted Package";
         SPSCustomer: record "SPS Customer";
         PostedPackageLineLVar: Record "LAX Posted Package Line";
