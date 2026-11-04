@@ -266,7 +266,7 @@ permissionset 50000 Nifast
         report "Daily Invoicing Report New" = X,
         report "Export Payee Match" = X,
         report "Forecast Module" = X,
-        // report "Forecast Module Export"=X,
+    // report "Forecast Module Export"=X,
         report "Inventory Posting - Test New" = X,
         report "Inventory Valuation NIF" = X,
         report "Item Age Comp. by Loc.  - Qty." = X,
@@ -598,5 +598,11 @@ permissionset 50000 Nifast
         page "[[P] Availability Projection]" = X,
         query "SCT - Lot Info" = X,
         query "SCT -Order Line Special Fields" = X,
-        query "SCT-Sales Shpmnt Special Field" = X;
+        query "SCT-Sales Shpmnt Special Field" = X,
+        tabledata "SPS Staging" = RIMD,
+        table "SPS Staging" = X,
+        page "SPS Staging" = X,
+        tabledata "SPS Customer" = RIMD,
+        table "SPS Customer" = X,
+        page "SPS Customer" = X;
 }
