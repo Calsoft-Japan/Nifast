@@ -522,9 +522,11 @@ codeunit 70100 AddOnCustomizations
         Handled := true;
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"LAX Pack Line Scanning Mgt.", pubOnAfterCreateLinesFromPostedPackage, '', false, false)]
-    local procedure "LAX Pack Line Scanning Mgt._pubOnAfterCreateLinesFromPostedPackage"(var CurrentInputLine: Text; Item: Record Item; PostedPackageLine: Record "LAX Posted Package Line"; PackingRule: Record "LAX Packing Rule"; var Package: Record "LAX Package"; var PackingStation: Record "LAX Packing Station"; var ShippingAgent: Record "Shipping Agent"; var PackingControl: Record "LAX Packing Control"; var BillofLading: Record "LAX Bill of Lading"; var ItemCrossReference: Record "Item Reference"; var ReturnVal: Boolean)
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::CU_7324, pubOnBeforeDeletePackage, '', false, false)]
+    local procedure "pubOnBeforeDeletePackage"(var PostedSourceNo: code[20])
     var
+        Item: Record Item;
         CartonFrstSno: Integer;
         CartonLastSno: Integer;
         NoOfCartonSno: Integer;
@@ -533,53 +535,72 @@ codeunit 70100 AddOnCustomizations
         TempSPSStaging: Record "SPS Staging" temporary;
         PostedPackage: Record "LAX Posted Package";
         SPSCustomer: record "SPS Customer";
-        PostedPackageLineLVar: Record "LAX Posted Package Line";
+        PostedPackageLine: Record "LAX Posted Package Line";
+        SerialNo: text[30];
+        PrevSerialNo: text[30];
     begin
-        if not PostedPackage.GET(PostedPackageLine."Package No.") then
+        PostedPackage.Reset();
+        PostedPackage.SetRange("Posted Source ID", PostedSourceNo);
+        if not PostedPackage.FindFirst() then
             exit;
         if not SPSCustomer.Get(PostedPackage."Ship-to No.") then
             exit;
+
         TempSPSStaging.DeleteAll();
-        PostedPackageLineLVar.reset;
-        PostedPackageLineLVar.SetRange("Package No.", PostedPackageLine."Package No.");
-        if PostedPackageLineLVar.FindSet() then
+        PostedPackageLine.reset;
+        PostedPackageLine.SetRange("Package No.", PostedPackage."No.");
+        PostedPackageLine.SetRange(Type, PostedPackageLine.Type::Item);
+        postedPackageLine.SetFilter("Carton First SrNo.", '<>%1', '');
+        postedPackageLine.SetFilter("Carton Last SrNo.", '<>%1', '');
+        if PostedPackageLine.FindSet() then
             repeat
-                Evaluate(CartonFrstSno, PostedPackageLineLVar."Carton First SrNo.");
-                Evaluate(CartonLastSno, PostedPackageLineLVar."Carton Last SrNo.");
+                if not Item.Get(PostedPackageLine."No.") then
+                    Item.Init();
+                Evaluate(CartonFrstSno, PostedPackageLine."Carton First SrNo.");
+                Evaluate(CartonLastSno, PostedPackageLine."Carton Last SrNo.");
                 NoOfCartonSno := CartonLastSno - CartonFrstSno + 1;
                 if NoOfCartonSno = 0 then begin
-                    SendEmail(PostedPackageLineLVar);
+                    SendEmail(PostedPackageLine, true);
                     exit;
                 end;
-                if Item."Units per Parcel" <> (PostedPackageLineLVar.Quantity / NoOfCartonSno) then begin
-                    SendEmail(PostedPackageLineLVar);
+                if Item."Units per Parcel" <> (PostedPackageLine.Quantity / NoOfCartonSno) then begin
+                    SendEmail(PostedPackageLine, false);
                     exit;
                 end;
+                clear(SerialNo);
+                clear(PrevSerialNo);
                 for i := 1 to NoOfCartonSno do begin
                     TempSPSStaging.INIT;
-                    TempSPSStaging."Entry No." := 0;
-                    TempSPSStaging."Posted Shipment No." := PostedPackageLineLVar."Posted Source ID";
-                    TempSPSStaging."Package No." := PostedPackageLineLVar."Package No.";
-                    TempSPSStaging."Package Line No." := PostedPackageLineLVar."Line No.";
-                    TempSPSStaging."Serial Number" := StrSubstNo('%1-%2', PostedPackageLineLVar."Carton Last SrNo.", PostedPackageLineLVar."Carton First SrNo.");
-                    TempSPSStaging."Units per parcel" := PostedPackageLineLVar.Quantity / NoOfCartonSno;
-                    TempSPSStaging."Package Weight" := PostedPackageLineLVar."Gross Weight" / NoOfCartonSno;
+                    TempSPSStaging."Entry No." := i;
+                    TempSPSStaging."Posted Shipment No." := PostedPackageLine."Posted Source ID";
+                    TempSPSStaging."Package No." := PostedPackageLine."Package No.";
+                    TempSPSStaging."Package Line No." := PostedPackageLine."Line No.";
+                    if i = 1 then
+                        SerialNo := PostedPackageLine."Carton First SrNo."
+                    else if i = NoOfCartonSno then
+                        SerialNo := PostedPackageLine."Carton Last SrNo."
+                    else
+                        SerialNo := IncStr(PrevSerialNo);
+                    PrevSerialNo := SerialNo;
+                    TempSPSStaging."Serial Number" := SerialNo;
+                    TempSPSStaging."Units per parcel" := PostedPackageLine.Quantity / NoOfCartonSno;
+                    TempSPSStaging."Package Weight" := PostedPackageLine."Gross Weight" / NoOfCartonSno;
                     TempSPSStaging."Line Type" := 'carton';
-                    TempSPSStaging."Master Serial No." := PostedPackageLineLVar."Master Label SrNo.";
+                    TempSPSStaging."Master Serial No." := PostedPackageLine."Master Label SrNo.";
                     TempSPSStaging.INSERT(true);
                 end;
-                if PostedPackageLineLVar."Master Label SrNo." <> '' then begin
+                if PostedPackageLine."Master Label SrNo." <> '' then begin
                     TempSPSStaging.INIT;
-                    TempSPSStaging."Entry No." := 0;
-                    TempSPSStaging."Posted Shipment No." := PostedPackageLineLVar."Posted Source ID";
-                    TempSPSStaging."Package No." := PostedPackageLineLVar."Package No.";
-                    TempSPSStaging."Package Line No." := PostedPackageLineLVar."Line No.";
-                    TempSPSStaging."Serial Number" := PostedPackageLineLVar."Master Label SrNo.";
-                    TempSPSStaging."Units per parcel" := PostedPackageLineLVar.Quantity / NoOfCartonSno;
+                    TempSPSStaging."Entry No." := NoOfCartonSno + 1;
+                    TempSPSStaging."Posted Shipment No." := PostedPackageLine."Posted Source ID";
+                    TempSPSStaging."Package No." := PostedPackageLine."Package No.";
+                    TempSPSStaging."Package Line No." := PostedPackageLine."Line No.";
+                    TempSPSStaging."Serial Number" := PostedPackageLine."Master Label SrNo.";
+                    TempSPSStaging."Units per parcel" := PostedPackageLine.Quantity;
                     TempSPSStaging."Line Type" := 'master';
                     TempSPSStaging.INSERT(true);
                 end;
-            until PostedPackageLineLVar.Next() = 0;
+            until PostedPackageLine.Next() = 0;
 
         if TempSPSStaging.FindSet() then
             repeat
@@ -588,10 +609,9 @@ codeunit 70100 AddOnCustomizations
                 SPSStaging."Entry No." := 0;
                 SPSStaging.INSERT(true);
             until TempSPSStaging.Next() = 0;
-
     end;
 
-    local procedure SendEmail(PostedPackageLine: Record "LAX Posted Package Line")
+    local procedure SendEmail(PostedPackageLine: Record "LAX Posted Package Line"; Serial: boolean)
     var
         EmailMessage: Codeunit "Email Message";
         Email: Codeunit Email;
@@ -599,9 +619,14 @@ codeunit 70100 AddOnCustomizations
     begin
         GLSetup.GET();
         GLSetup.TestField("SPS E-Mail");
-        GLSetup.TestField("SPS E-Mail Subject Text");
-        GLSetup.TestField("SPS E-Mail Body Text");
-        EmailMessage.Create(GLSetup."SPS E-Mail", GLSetup."SPS E-Mail Subject Text", StrSubstNo(GLSetup."SPS E-Mail Body Text", PostedPackageLine."Package No.", PostedPackageLine."Posted Source ID"));
+        GLSetup.TestField("SPS Serial E-Mail Subject Text");
+        GLSetup.TestField("SPS Partial E-Mail Subject Text");
+        GLSetup.TestField("SPS Serial E-Mail Body Text");
+        GLSetup.TestField("SPS Partial E-Mail Body Text");
+        if Serial then
+            EmailMessage.Create(GLSetup."SPS E-Mail", GLSetup."SPS Serial E-Mail Subject Text", StrSubstNo(GLSetup."SPS Serial E-Mail Body Text", PostedPackageLine."Package No.", PostedPackageLine."Posted Source ID"))
+        else
+            EmailMessage.Create(GLSetup."SPS E-Mail", GLSetup."SPS Partial E-Mail Subject Text", StrSubstNo(GLSetup."SPS Partial E-Mail Body Text", PostedPackageLine."Package No.", PostedPackageLine."Posted Source ID"));
         Email.Send(EmailMessage, Enum::"Email Scenario"::Default);
     end;
 

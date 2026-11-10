@@ -96,6 +96,7 @@ codeunit 50261 CU_7324
             END;
         END;
         //NF2.00:CIS.RAM 10-10-2017
+        pubOnBeforeDeletePackage(PostedSourceNo);
         gPackageRec.RESET;
         gPackageRec.SETRANGE(gPackageRec."No.", PostedInvtPickHdr."Invt Pick No.");
         IF gPackageRec.FINDFIRST THEN BEGIN
@@ -110,7 +111,10 @@ codeunit 50261 CU_7324
         //NF2.00:CIS.RAM 09-29-2017
     end;
 
-
+    [BusinessEvent(false)]
+    local procedure pubOnBeforeDeletePackage(var PostedSourceNo: code[20])
+    begin
+    end;
 
 
 

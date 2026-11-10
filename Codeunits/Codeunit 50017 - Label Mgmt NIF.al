@@ -1433,7 +1433,7 @@ codeunit 50017 "Label Mgmt NIF"
                         UNTIL TempLabelValue.NEXT() = 0;
                 END;
                 BuildJsonBody(PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", 1, PayloadText);
-                LabelPrintBarTenderCloud(PayloadText);
+                LabelPrintBarTenderCloud(PayloadText, i = noCopies);
                 // BtFormat.PrintOut(TRUE, FALSE);   //show print dialog//TODO
             END;
 
@@ -1521,7 +1521,7 @@ codeunit 50017 "Label Mgmt NIF"
         PrintBTWAction.WriteTo(PayloadText);
     end;
 
-    local procedure LabelPrintBarTenderCloud(PayloadText: Text)
+    local procedure LabelPrintBarTenderCloud(PayloadText: Text; showMessage: Boolean)
     var
         BarTenderSetup: Record "Bar Tender Setup";
         Client: HttpClient;
@@ -1546,7 +1546,7 @@ codeunit 50017 "Label Mgmt NIF"
         if Client.Post(BarTenderURL, Content, Response) then begin
             if not Response.IsSuccessStatusCode() then
                 Error('BarTender printing failed: %1', Response.ReasonPhrase)
-            else
+            else if showMessage then
                 Message('BarTender printing successful.');
         end else
             Error('Could not connect to BarTender API service.');
