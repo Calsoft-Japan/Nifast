@@ -294,7 +294,6 @@ codeunit 50017 "Label Mgmt NIF"
         PackingRule: Record 14000715;
         LabelHeader: Record 14000841;
         NoSeriesMgt: Codeunit "No. Series";
-        PayloadText: Text;
     begin
         CLEAR(Item);
         //jrr
@@ -722,68 +721,8 @@ codeunit 50017 "Label Mgmt NIF"
         UNTIL LabelContent.NEXT() = 0;
 
         //print label
-        LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
         GenerateAccessToken();
-        BuildJsonBody(TempLabelValue, PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", NoCopies, PayloadText);
-        LabelPrintBarTenderCloud(PayloadText);
-    end;
-
-    procedure BuildJsonBody(var TempLabelValue: Record 50006 temporary; PrinterName: Text[250]; DocumentFile: Text[100]; NoCopies: Integer; var PayloadText: Text)
-    var
-        PrintBTWAction: JsonObject;
-        JsonPayload: JsonObject;
-        VariablesObj: JsonObject;
-        SEATemplateLibrary: Record "SEA Template Library";
-    begin
-        // 1. Build the Variable mappings from Business Central fields
-        if TempLabelValue.FindSet() then
-            repeat
-                VariablesObj.Add(TempLabelValue."Field Code", TempLabelValue."Print Value");
-            until TempLabelValue.Next() = 0;
-        SEATemplateLibrary.Reset();
-        SEATemplateLibrary.SetRange(Name, DocumentFile);
-        if not SEATemplateLibrary.FindFirst() then
-            Error('BarTender template %1 not found in SEA Template Library.', DocumentFile);
-        // 2. Build the main layout payload
-        JsonPayload.Add('DocumentFile', SEATemplateLibrary."Unc Path" + DocumentFile);
-        JsonPayload.Add('Printer', 'printer:' + PrinterName);
-        JsonPayload.Add('Copies', NoCopies);
-        JsonPayload.Add('NamedDataSources', VariablesObj);
-
-        PrintBTWAction.Add('PrintBTWAction', JsonPayload);
-
-        PrintBTWAction.WriteTo(PayloadText);
-    end;
-
-    local procedure LabelPrintBarTenderCloud(PayloadText: Text)
-    var
-        BarTenderSetup: Record "Bar Tender Setup";
-        Client: HttpClient;
-        Content: HttpContent;
-        Response: HttpResponseMessage;
-        Headers: HttpHeaders;
-        AuthToken: Text;
-        BarTenderURL: Text;
-    begin
-        Content.WriteFrom(PayloadText);
-        Content.GetHeaders(Headers);
-        Headers.Clear();
-        Headers.Add('Content-Type', 'application/json');
-
-        // Add authorization (Replace with your actual OAuth Bearer Token logic)
-        BarTenderSetup.GET();
-        AuthToken := StrSubstNo('Bearer %1', BarTenderSetup."Token");
-        Client.DefaultRequestHeaders.Add('Authorization', AuthToken);
-
-        // 4. Send the API request to BarTender
-        BarTenderURL := BarTenderSetup."Bar Tender Print URL";
-        if Client.Post(BarTenderURL, Content, Response) then begin
-            if not Response.IsSuccessStatusCode() then
-                Error('BarTender printing failed: %1', Response.ReasonPhrase)
-            else
-                Message('BarTender printing successful.');
-        end else
-            Error('Could not connect to BarTender API service.');
+        LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview        
     end;
 
     procedure GenerateAccessToken()
@@ -1302,9 +1241,7 @@ codeunit 50017 "Label Mgmt NIF"
 
         //print label
         GenerateAccessToken();
-        LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview
-        BuildJsonBody(TempLabelValue, PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", NoCopies, PayloadText);
-        LabelPrintBarTenderCloud(PayloadText);
+        LabelPrint(LabelHeader, PackingStation."Printer Name", FALSE, NoCopies);   //FALSE=No Preview       
         MastLbl := FALSE;     //jrr
         CartonPkgNo := '';          //jrr
         CartonPkgLnNo := 0;     //jrr
@@ -1417,6 +1354,7 @@ codeunit 50017 "Label Mgmt NIF"
         i: Integer;
         CartonFirstSrNo: Text;
         CartonLastSrNo: Text;
+        PayloadText: Text;
     begin
         //MESSAGE('Bar Tender components are not installed');
 
@@ -1473,7 +1411,7 @@ codeunit 50017 "Label Mgmt NIF"
         UNTIL TempLabelValue.NEXT() = 0;
 
         //BtFormat.EnablePrompting(FALSE);//TODO
-
+        PayloadText := '';
         //print label
         IF (NOT Preview) THEN
             FOR i := 1 TO NoCopies DO BEGIN
@@ -1491,8 +1429,11 @@ codeunit 50017 "Label Mgmt NIF"
                             //<<CIS.RAM051322
                             // BtFormat.SetNamedSubStringValue(TempLabelValue."Field Code", TempLabelValue."Print Value");//TODO
                             CartonLastSrNo := TempLabelValue."Print Value";   //jrr
+                            TempLabelValue.Modify();
                         UNTIL TempLabelValue.NEXT() = 0;
                 END;
+                BuildJsonBody(PackingStation."Bar Tender Printer", LabelHeader."Bar Tender Template Mapping", 1, PayloadText);
+                LabelPrintBarTenderCloud(PayloadText);
                 // BtFormat.PrintOut(TRUE, FALSE);   //show print dialog//TODO
             END;
 
@@ -1550,6 +1491,65 @@ codeunit 50017 "Label Mgmt NIF"
         MastLbl := FALSE;
 
         //jrre
+    end;
+
+    procedure BuildJsonBody(PrinterName: Text[250]; DocumentFile: Text[100]; NoCopies: Integer; var PayloadText: Text)
+    var
+        PrintBTWAction: JsonObject;
+        JsonPayload: JsonObject;
+        VariablesObj: JsonObject;
+        SEATemplateLibrary: Record "SEA Template Library";
+    begin
+        // 1. Build the Variable mappings from Business Central fields
+        TempLabelValue.SetRange("No. Series");
+        if TempLabelValue.FindFirst() then
+            repeat
+                VariablesObj.Add(TempLabelValue."Field Code", TempLabelValue."Print Value");
+            until TempLabelValue.Next() = 0;
+        SEATemplateLibrary.Reset();
+        SEATemplateLibrary.SetRange(Name, DocumentFile);
+        if not SEATemplateLibrary.FindFirst() then
+            Error('BarTender template %1 not found in SEA Template Library.', DocumentFile);
+        // 2. Build the main layout payload
+        JsonPayload.Add('DocumentFile', SEATemplateLibrary."Unc Path" + DocumentFile);
+        JsonPayload.Add('Printer', 'printer:' + PrinterName);
+        JsonPayload.Add('Copies', NoCopies);
+        JsonPayload.Add('NamedDataSources', VariablesObj);
+
+        PrintBTWAction.Add('PrintBTWAction', JsonPayload);
+
+        PrintBTWAction.WriteTo(PayloadText);
+    end;
+
+    local procedure LabelPrintBarTenderCloud(PayloadText: Text)
+    var
+        BarTenderSetup: Record "Bar Tender Setup";
+        Client: HttpClient;
+        Content: HttpContent;
+        Response: HttpResponseMessage;
+        Headers: HttpHeaders;
+        AuthToken: Text;
+        BarTenderURL: Text;
+    begin
+        Content.WriteFrom(PayloadText);
+        Content.GetHeaders(Headers);
+        Headers.Clear();
+        Headers.Add('Content-Type', 'application/json');
+
+        // Add authorization (Replace with your actual OAuth Bearer Token logic)
+        BarTenderSetup.GET();
+        AuthToken := StrSubstNo('Bearer %1', BarTenderSetup."Token");
+        Client.DefaultRequestHeaders.Add('Authorization', AuthToken);
+
+        // 4. Send the API request to BarTender
+        BarTenderURL := BarTenderSetup."Bar Tender Print URL";
+        if Client.Post(BarTenderURL, Content, Response) then begin
+            if not Response.IsSuccessStatusCode() then
+                Error('BarTender printing failed: %1', Response.ReasonPhrase)
+            else
+                Message('BarTender printing successful.');
+        end else
+            Error('Could not connect to BarTender API service.');
     end;
 
     procedure ClearPackageVars()
@@ -2128,8 +2128,9 @@ codeunit 50017 "Label Mgmt NIF"
                 PostedPackageLine."Posted Source ID" := PostedPackage."Posted Source ID";
                 //<<IST 032409 CCL $12797 #12797
                 PostedPackageLine.INSERT;
-            UNTIL PackageLine.NEXT = 0;
 
+            UNTIL PackageLine.NEXT = 0;
+        pubOnAfterInsertPostedPackLineFromRegPick(PostedPackageLine);
         IF Package.Closed THEN
             Shipping.OpenPackage(Package);
         Package.DELETE(TRUE);
@@ -2239,6 +2240,7 @@ codeunit 50017 "Label Mgmt NIF"
                 PostedPackageLine.TRANSFERFIELDS(PackageLine);
                 //CCL012609       PostedPackageLine."Sales Shipment No." := PostedPackage."Sales Shipment No.";
                 PostedPackageLine.INSERT;
+
             UNTIL PackageLine.NEXT = 0;
 
         IF Package.Closed THEN
@@ -2390,6 +2392,10 @@ codeunit 50017 "Label Mgmt NIF"
         end;
     end;
 
+    [BusinessEvent(false)]
+    local procedure pubOnAfterInsertPostedPackLineFromRegPick(var PostedPackageLine: Record "LAX Posted Package Line")
+    begin
+    end;
 
 }
 
