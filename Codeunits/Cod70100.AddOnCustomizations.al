@@ -550,8 +550,6 @@ codeunit 70100 AddOnCustomizations
         PostedPackageLine.reset;
         PostedPackageLine.SetRange("Package No.", PostedPackage."No.");
         PostedPackageLine.SetRange(Type, PostedPackageLine.Type::Item);
-        postedPackageLine.SetFilter("Carton First SrNo.", '<>%1', '');
-        postedPackageLine.SetFilter("Carton Last SrNo.", '<>%1', '');
         if PostedPackageLine.FindSet() then
             repeat
                 if not Item.Get(PostedPackageLine."No.") then
