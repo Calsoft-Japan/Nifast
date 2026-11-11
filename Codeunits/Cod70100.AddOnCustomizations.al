@@ -556,8 +556,10 @@ codeunit 70100 AddOnCustomizations
             repeat
                 if not Item.Get(PostedPackageLine."No.") then
                     Item.Init();
-                Evaluate(CartonFrstSno, PostedPackageLine."Carton First SrNo.");
-                Evaluate(CartonLastSno, PostedPackageLine."Carton Last SrNo.");
+                if PostedPackageLine."Carton First SrNo." <> '' then
+                    Evaluate(CartonFrstSno, PostedPackageLine."Carton First SrNo.");
+                if PostedPackageLine."Carton Last SrNo." <> '' then
+                    Evaluate(CartonLastSno, PostedPackageLine."Carton Last SrNo.");
                 NoOfCartonSno := CartonLastSno - CartonFrstSno + 1;
                 if NoOfCartonSno = 0 then begin
                     SendEmail(PostedPackageLine, true);
