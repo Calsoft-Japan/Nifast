@@ -560,7 +560,10 @@ codeunit 70100 AddOnCustomizations
                     Evaluate(CartonFrstSno, PostedPackageLine."Carton First SrNo.");
                 if PostedPackageLine."Carton Last SrNo." <> '' then
                     Evaluate(CartonLastSno, PostedPackageLine."Carton Last SrNo.");
-                NoOfCartonSno := CartonLastSno - CartonFrstSno + 1;
+                if (PostedPackageLine."Carton First SrNo." = '') or (PostedPackageLine."Carton Last SrNo." = '') then
+                    NoOfCartonSno := 0
+                else
+                    NoOfCartonSno := CartonLastSno - CartonFrstSno + 1;
                 if NoOfCartonSno = 0 then begin
                     SendEmail(PostedPackageLine, true);
                     exit;
