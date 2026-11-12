@@ -1420,7 +1420,7 @@ codeunit 50017 "Label Mgmt NIF"
                     TempLabelValue.SETFILTER("No. Series", '<>%1', '');
                     IF TempLabelValue.FIND('-') THEN
                         REPEAT
-                            IF LabelHeader."Printer Type" = LabelHeader."Printer Type"::" " THEN //CIS.RAM051322
+                            IF LabelHeader."Label Type" = LabelHeader."Label Type"::" " THEN //CIS.RAM051322
                                 TempLabelValue."Print Value" := FORMAT(NoSeriesMgt.GetNextNo(TempLabelValue."No. Series", TODAY, TRUE))
                             //>>CIS.RAM051322
                             ELSE
