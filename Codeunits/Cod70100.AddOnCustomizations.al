@@ -538,6 +538,11 @@ codeunit 70100 AddOnCustomizations
         PostedPackageLine: Record "LAX Posted Package Line";
         SerialNo: text[30];
         PrevSerialNo: text[30];
+        LabelMgt: Codeunit "Label Mgmt NIF";
+        ConstValue: Code[20];
+        PackingRule: Record 14000715;
+        LabelHeader: Record 14000841;
+        TypeHelper: Codeunit "Type Helper";
     begin
         PostedPackage.Reset();
         PostedPackage.SetRange("Posted Source ID", PostedSourceNo);
@@ -546,6 +551,26 @@ codeunit 70100 AddOnCustomizations
         if not SPSCustomer.Get(PostedPackage."Ship-to No.") then
             exit;
 
+        PackingRule.GetPackingRule(PostedPackage."Ship-to Type".AsInteger(), PostedPackage."Ship-to No.", PostedPackage."Ship-to Code");
+        LabelHeader.GET(PackingRule."Std. Package Label Code");
+        if labelHeader."Label Type" = labelHeader."Label Type"::" " then
+            ConstValue := ' '
+        else begin
+            LabelHeader.TESTFIELD("Label Constant");
+            ConstValue := LabelHeader."Label Constant";
+
+            IF STRLEN(FORMAT(DATE2DMY(TODAY, 2))) < 2 THEN
+                ConstValue += '0' + FORMAT(DATE2DMY(TODAY, 2))
+            ELSE
+                ConstValue += FORMAT(DATE2DMY(TODAY, 2));
+
+            IF STRLEN(FORMAT(DATE2DMY(TODAY, 1))) < 2 THEN
+                ConstValue += '0' + FORMAT(DATE2DMY(TODAY, 1))
+            ELSE
+                ConstValue += FORMAT(DATE2DMY(TODAY, 1));
+
+            ConstValue += COPYSTR(FORMAT(DATE2DMY(TODAY, 3)), 3, 2);
+        end;
         TempSPSStaging.DeleteAll();
         PostedPackageLine.reset;
         PostedPackageLine.SetRange("Package No.", PostedPackage."No.");
@@ -554,10 +579,17 @@ codeunit 70100 AddOnCustomizations
             repeat
                 if not Item.Get(PostedPackageLine."No.") then
                     Item.Init();
-                if PostedPackageLine."Carton First SrNo." <> '' then
-                    Evaluate(CartonFrstSno, PostedPackageLine."Carton First SrNo.");
-                if PostedPackageLine."Carton Last SrNo." <> '' then
-                    Evaluate(CartonLastSno, PostedPackageLine."Carton Last SrNo.");
+                if LabelHeader."Label Type" = LabelHeader."Label Type"::" " then begin
+                    if PostedPackageLine."Carton First SrNo." <> '' then
+                        Evaluate(CartonFrstSno, PostedPackageLine."Carton First SrNo.");
+                    if PostedPackageLine."Carton Last SrNo." <> '' then
+                        Evaluate(CartonLastSno, PostedPackageLine."Carton Last SrNo.");
+                end else begin
+                    if PostedPackageLine."Carton First SrNo." <> '' then
+                        Evaluate(CartonFrstSno, DelStr(PostedPackageLine."Carton First SrNo.", 1, StrLen(ConstValue)));
+                    if PostedPackageLine."Carton Last SrNo." <> '' then
+                        Evaluate(CartonLastSno, DelStr(PostedPackageLine."Carton Last SrNo.", 1, StrLen(ConstValue)));
+                end;
                 if (PostedPackageLine."Carton First SrNo." = '') or (PostedPackageLine."Carton Last SrNo." = '') then
                     NoOfCartonSno := 0
                 else
